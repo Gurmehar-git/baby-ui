@@ -316,7 +316,7 @@ export function FormDemo({ props }: { props: Props }) {
 
 export function NativeSelectDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof NativeSelect>>(props);
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 	const [region, setRegion] = useState("fra");
 	return (
 		<div className="flex w-full max-w-60 flex-col gap-1.5">

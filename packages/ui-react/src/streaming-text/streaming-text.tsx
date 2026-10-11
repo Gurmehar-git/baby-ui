@@ -26,7 +26,7 @@ function SourceChip({ source }: { source?: StreamingSource }) {
 			href={source.href}
 			target="_blank"
 			rel="noreferrer"
-			className="pop-in mr-1 inline-flex h-4.5 translate-y-[-1px] items-center gap-1 rounded-[5px] bg-muted px-[3px] align-middle font-mono text-xs text-muted-foreground shadow-xs transition-colors duration-(--duration-fast) hover:bg-foreground/[0.06] hover:text-foreground"
+			className="pop-in mr-1 inline-flex h-4.5 translate-y-[-1px] items-center gap-1 rounded-[5px] bg-muted px-[3px] align-middle font-mono text-xs text-muted-foreground shadow-xs transition-colors duration-(--duration-fast) hover:bg-accent hover:text-accent-foreground"
 		>
 			<img src={source.image} alt="" className="size-3 rounded-[3px]" />
 			<span>{source.domain}</span>
@@ -35,7 +35,7 @@ function SourceChip({ source }: { source?: StreamingSource }) {
 }
 
 const ACTION_ICON =
-	"flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06] hover:text-foreground";
+	"flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors duration-(--duration-instant) hover:bg-accent hover:text-accent-foreground";
 
 export interface StreamingTextProps {
 	layout?: StreamingTextLayout;
@@ -267,7 +267,7 @@ export function StreamingText({
 						type="button"
 						aria-expanded={sourcesOpen}
 						onClick={() => setSourcesOpen((v) => !v)}
-						className="ml-1.5 flex items-center gap-1.5 rounded-md px-1 py-0.5 text-left transition-colors duration-(--duration-fast) hover:bg-foreground/[0.06]"
+						className="ml-1.5 flex items-center gap-1.5 rounded-md px-1 py-0.5 text-left transition-colors duration-(--duration-fast) hover:bg-accent"
 					>
 						<span className="flex -space-x-1">
 							{sources.map((source) => (
@@ -289,7 +289,7 @@ export function StreamingText({
 
 			{sources.length ? (
 				<div
-					className="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-out)]"
+					className="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-ui-out)]"
 					style={{
 						gridTemplateRows: done && sourcesOpen ? "1fr" : "0fr",
 						opacity: done && sourcesOpen ? 1 : 0,
@@ -303,7 +303,7 @@ export function StreamingText({
 									href={source.href}
 									target="_blank"
 									rel="noreferrer"
-									className="flex items-center gap-2 rounded-md px-1.5 py-1 text-xs text-muted-foreground transition-colors duration-(--duration-fast) hover:bg-foreground/[0.06] hover:text-foreground"
+									className="flex items-center gap-2 rounded-md px-1.5 py-1 text-xs text-muted-foreground transition-colors duration-(--duration-fast) hover:bg-accent hover:text-accent-foreground"
 								>
 									<img src={source.image} alt="" className="size-4 rounded-[4px]" />
 									<span>{source.name}</span>
@@ -329,7 +329,7 @@ export function StreamingText({
 								key={label}
 								type="button"
 								onClick={() => onFollowUp?.(label, i)}
-								className="-mx-1.5 flex items-center gap-2 rounded-md border-border border-b px-1.5 py-1.5 text-left text-xs text-foreground transition-colors duration-(--duration-instant) last:border-0 hover:bg-foreground/[0.06]"
+								className="-mx-1.5 flex items-center gap-2 rounded-md border-border border-b px-1.5 py-1.5 text-left text-xs text-foreground transition-colors duration-(--duration-instant) last:border-0 hover:bg-accent"
 							>
 								<svg
 									viewBox="0 0 24 24"

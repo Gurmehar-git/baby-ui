@@ -16,7 +16,7 @@ let {
 	value = $bindable(""),
 	ref = $bindable(null),
 	class: classProp,
-	size = "md",
+	size = "default",
 	invalid = false,
 	...rest
 }: Props = $props();

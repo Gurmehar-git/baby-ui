@@ -8,7 +8,7 @@ export const textLoop = tv({
 		viewport: "relative col-start-1 row-start-1 grid overflow-hidden",
 		item: "col-start-1 row-start-1 block whitespace-nowrap",
 		stack: [
-			"block translate-y-[calc(var(--text-loop-step,0)*-1.2em)] transition-[translate] duration-(--text-loop-duration) ease-(--ease-out)",
+			"block translate-y-[calc(var(--text-loop-step,0)*-1.2em)] transition-[translate] duration-(--text-loop-duration) ease-(--ease-ui-out)",
 			"data-snap:transition-none motion-reduce:transition-none",
 		],
 		stackItem: "block h-[1.2em] whitespace-nowrap leading-[1.2em]",

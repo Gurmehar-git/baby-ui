@@ -87,7 +87,7 @@ export const emailHero = tv({
 				text: "text-muted-foreground dark:text-muted-foreground-dark",
 			},
 			accent: {
-				root: "bg-accent-soft dark:bg-accent-soft-dark",
+				root: "bg-primary-soft dark:bg-primary-soft-dark",
 				eyebrow: "text-foreground dark:text-foreground-dark",
 				meta: "text-foreground dark:text-foreground-dark",
 				title: "text-foreground dark:text-foreground-dark",
@@ -125,7 +125,7 @@ export const emailPanel = tv({
 	variants: {
 		tone: {
 			muted: "bg-card dark:bg-card-dark",
-			accent: "bg-accent-soft dark:bg-accent-soft-dark",
+			accent: "bg-primary-soft dark:bg-primary-soft-dark",
 			outline: "border border-border border-solid dark:border-border-dark",
 		},
 	},
@@ -158,7 +158,7 @@ export const emailList = tv({
 		marker: {
 			number: {
 				marker:
-					"bg-accent-soft text-foreground dark:bg-accent-soft-dark dark:text-foreground-dark",
+					"bg-primary-soft text-foreground dark:bg-primary-soft-dark dark:text-foreground-dark",
 			},
 			check: {
 				marker:
@@ -196,7 +196,7 @@ export const emailBadge = tv({
 			neutral:
 				"bg-card text-muted-foreground dark:bg-card-dark dark:text-muted-foreground-dark",
 			accent:
-				"bg-accent-soft text-foreground dark:bg-accent-soft-dark dark:text-foreground-dark",
+				"bg-primary-soft text-foreground dark:bg-primary-soft-dark dark:text-foreground-dark",
 			success:
 				"bg-success-soft text-foreground dark:bg-success-soft-dark dark:text-success-dark",
 			warning:
@@ -374,7 +374,7 @@ export const emailStats = tv({
 		tone: {
 			neutral: {},
 			accent: {
-				card: "border-accent-soft bg-accent-soft dark:border-accent-soft-dark dark:bg-accent-soft-dark",
+				card: "border-primary-soft bg-primary-soft dark:border-primary-soft-dark dark:bg-primary-soft-dark",
 				label: "text-foreground dark:text-foreground-dark",
 			},
 		},

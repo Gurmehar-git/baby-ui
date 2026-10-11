@@ -96,9 +96,9 @@ export function ThemeToggle({
 		>
 			<span key={theme} className="theme-toggle-icon">
 				{isDark ? (
-					<SunIcon className={iconClassName} />
+					<SunIcon className={cn("size-4", iconClassName)} />
 				) : (
-					<MoonIcon className={iconClassName} />
+					<MoonIcon className={cn("size-4", iconClassName)} />
 				)}
 			</span>
 		</button>

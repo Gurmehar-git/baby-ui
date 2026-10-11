@@ -38,7 +38,7 @@ const gl = canvasEngine(
 	() => options,
 );
 const fade =
-	"transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]";
+	"transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]";
 </script>
 
 <div

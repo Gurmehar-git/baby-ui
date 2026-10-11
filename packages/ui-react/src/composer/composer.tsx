@@ -50,7 +50,7 @@ export interface ComposerProps {
 }
 
 const ACTIONS_TRIGGER =
-	"flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06] hover:text-foreground data-[popup-open]:bg-foreground/[0.06] data-[popup-open]:text-foreground [&>svg]:transition-transform [&>svg]:duration-(--duration-fast) [&>svg]:ease-[var(--ease-out)] data-[popup-open]:[&>svg]:rotate-45";
+	"flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-(--duration-instant) hover:bg-accent hover:text-accent-foreground data-[popup-open]:bg-accent data-[popup-open]:text-foreground [&>svg]:transition-transform [&>svg]:duration-(--duration-fast) [&>svg]:ease-[var(--ease-ui-out)] data-[popup-open]:[&>svg]:rotate-45";
 
 /** Controlled/uncontrolled `value` and `model`, same contract as Select/Accordion elsewhere in this registry. */
 export function Composer({
@@ -205,7 +205,7 @@ export function Composer({
 						items={models}
 						disabled={disabled || loading}
 					>
-						<SelectTrigger className="h-8 w-auto max-w-52 gap-1.5 rounded-full border-0 bg-transparent px-2 text-xs hover:bg-foreground/[0.06]">
+						<SelectTrigger className="h-8 w-auto max-w-52 gap-1.5 rounded-full border-0 bg-transparent px-2 text-xs hover:bg-accent">
 							<span className="flex min-w-0 items-center gap-1.5">
 								{currentModel?.icon ? (
 									<span className="grid size-4 shrink-0 place-items-center text-muted-foreground [&_svg]:size-3.5">
@@ -246,7 +246,7 @@ export function Composer({
 					onClick={loading ? onStop : submit}
 					disabled={loading ? !onStop : !canSubmit}
 					aria-label={loading ? "Stop generating" : "Send message"}
-					className="ml-auto grid size-8 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground transition-[transform,scale,translate] duration-[var(--duration-press)] ease-[var(--ease-out)] active:scale-[var(--press-scale)] disabled:pointer-events-none disabled:opacity-40"
+					className="ml-auto grid size-8 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground transition-[transform,scale,translate] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] active:scale-[var(--press-scale)] disabled:pointer-events-none disabled:opacity-40"
 				>
 					{loading ? (
 						<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden className="size-2.5">

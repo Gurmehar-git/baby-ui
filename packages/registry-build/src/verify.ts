@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import {
@@ -51,6 +52,8 @@ export async function verifySprings(
 }
 
 const SIBLING_IMPORT = /(?:from\s+|import\s+)["']\.\.\/([^/"']+)/g;
+const LOCAL_IMPORT = /(?:from\s+|import\s+)["']\.\/([^"']+)["']/g;
+const LOCAL_EXTENSIONS = ["", ".ts", ".tsx", ".svelte", "/index.ts"];
 
 /** Every folder a shipped file imports from must come with it, or the install breaks. */
 export async function verifyRegistryDependencies(
@@ -72,9 +75,22 @@ export async function verifyRegistryDependencies(
 		const impl = spec.impl[framework];
 		if (!impl) continue;
 		const shipped = new Set(impl.files.map((f) => f.path.split("/")[0]));
+		const shippedFiles = new Set(impl.files.map((f) => f.path));
 		const declared = new Set(impl.registryDependencies ?? []);
 		for (const file of impl.files) {
 			const source = await readFile(resolve(srcDir, file.path), "utf8").catch(() => "");
+			const dir = file.path.split("/").slice(0, -1).join("/");
+			for (const [, name = ""] of source.matchAll(LOCAL_IMPORT)) {
+				const candidates = LOCAL_EXTENSIONS.map((ext) =>
+					dir ? `${dir}/${name}${ext}` : `${name}${ext}`,
+				);
+				if (candidates.some((path) => shippedFiles.has(path))) continue;
+				const onDisk = candidates.find((path) => existsSync(resolve(srcDir, path)));
+				if (onDisk)
+					errors.push(
+						`${spec.slug} (${framework}) ${file.path}: imports ./${name}, so files needs "${onDisk}"`,
+					);
+			}
 			for (const [, folder = ""] of source.matchAll(SIBLING_IMPORT)) {
 				const dep = owner.get(folder);
 				if (folder === "lib" || shipped.has(folder) || !dep || declared.has(dep))

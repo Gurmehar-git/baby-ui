@@ -7,14 +7,14 @@ export const nativeSelect = defineComponent({
 		"The platform select, styled to match: native pickers on mobile, autofill and form posting for free.",
 	category: "base",
 	status: "stable",
-	variants: { size: ["sm", "md", "lg"] },
+	variants: { size: ["xs", "sm", "default", "lg", "xl"] },
 	props: [
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "Height and text size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "disabled",
@@ -42,6 +42,7 @@ export const nativeSelect = defineComponent({
 			files: [
 				{ path: "native-select/native-select.tsx", type: "registry:ui" },
 				{ path: "native-select/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
@@ -53,6 +54,7 @@ export const nativeSelect = defineComponent({
 				{ path: "native-select/native-select-opt-group.svelte", type: "registry:ui" },
 				{ path: "native-select/native-select-option.svelte", type: "registry:ui" },
 				{ path: "native-select/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],

@@ -63,8 +63,9 @@ export default function Page() {
 
 - The component in its own folder with an `index` file, e.g. `components/ui/button/`, plus
   `lib/cn.ts`.
-- Its npm packages and their `@types`, its CSS, and `tokens` (motion variables) the first time.
-  Your colour variables are never touched.
+- Its npm packages and their `@types`, its CSS (in `@layer baby-ui`), and `tokens` the first
+  time, plus `tokens-charts` or `tokens-effects` if it reads them.
+  `tokens` only adds variables: your colours, fonts and Tailwind defaults are never touched.
 - The folder follows the category: `ui`, `blocks`, `animated`, `text`, `backgrounds`,
   `agents`, `charts`, `og` or `emails`. Imports between items are rewritten to match.
 
@@ -83,8 +84,8 @@ React can use a namespace instead of full URLs (`shadcn-svelte` can't yet). In
 }
 ```
 
-Then `npx shadcn@latest add @baby-ui/button`. Every item, `tokens`, `theme` and the
-`registry.json` index are on all four routes:
+Then `npx shadcn@latest add @baby-ui/button`. Every item, `tokens`, `theme`, the
+`registry.json` index and a light `index.json` are on all four routes:
 
 | Framework | TypeScript | JavaScript |
 | --- | --- | --- |

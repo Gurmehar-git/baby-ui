@@ -160,7 +160,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 	>
 		<span
 			aria-hidden="true"
-			class="pointer-events-none absolute inset-x-0 rounded-lg bg-foreground/[0.06] top-0 transition-[transform,height,opacity] duration-(--duration-fast) ease-[var(--ease-out)] motion-reduce:transition-none"
+			class="pointer-events-none absolute inset-x-0 rounded-lg bg-foreground/[0.06] top-0 transition-[transform,height,opacity] duration-(--duration-fast) ease-[var(--ease-ui-out)] motion-reduce:transition-none"
 			style:transform="translateY({glideBox[group]?.top ?? 0}px)"
 			style:height="{glideBox[group]?.height ?? 0}px"
 			style:opacity={glideVisible[group] ? 1 : 0}
@@ -210,7 +210,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 	data-slot="sidebar-nav"
 	aria-label={labels.navigation}
 	class={cn(
-		"relative flex shrink-0 overflow-hidden transition-[width] duration-[var(--duration-overlay)] ease-[var(--ease-out)] motion-reduce:transition-none",
+		"relative flex shrink-0 overflow-hidden transition-[width] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		fill ? "h-full" : "h-[600px]",
 		collapsed ? "w-13" : classes,
 		classProp,
@@ -222,7 +222,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 				<DropdownMenuTrigger
 					aria-hidden={collapsed}
 					tabindex={collapsed ? -1 : 0}
-					class="absolute top-1 right-12 left-2 flex h-8 items-center rounded-lg px-2 text-left transition-[background-color,transform] duration-(--duration-instant) hover:bg-foreground/[0.06] active:scale-[0.99]"
+					class="absolute top-1 right-12 left-2 flex h-8 items-center rounded-lg px-2 text-left transition-[background-color,transform] duration-(--duration-instant) hover:bg-accent active:scale-[0.99]"
 				>
 					<span
 						class={cn(
@@ -307,7 +307,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 				tabindex={collapsed ? -1 : 0}
 				onclick={() => setCollapsed(true)}
 				class={cn(
-					"absolute top-1 right-2 flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color] duration-(--duration-fast) hover:bg-foreground/[0.06] hover:text-foreground",
+					"absolute top-1 right-2 flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color] duration-(--duration-fast) hover:bg-accent hover:text-accent-foreground",
 					collapsed && "pointer-events-none opacity-0",
 				)}
 			>
@@ -320,7 +320,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 				tabindex={collapsed ? 0 : -1}
 				onclick={() => setCollapsed(false)}
 				class={cn(
-					"absolute top-0.5 left-2 flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color] duration-(--duration-fast) hover:bg-foreground/[0.06] hover:text-foreground",
+					"absolute top-0.5 left-2 flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color] duration-(--duration-fast) hover:bg-accent hover:text-accent-foreground",
 					!collapsed && "pointer-events-none opacity-0",
 				)}
 			>
@@ -351,7 +351,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 					tabindex={searchOpen ? -1 : 0}
 					onclick={() => (recentsOpen = !recentsOpen)}
 					class={cn(
-						"absolute inset-0 flex items-center gap-1.5 rounded-lg px-2 font-medium text-xs text-muted-foreground transition-[opacity,transform,background-color] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] hover:bg-foreground/[0.06]",
+						"absolute inset-0 flex items-center gap-1.5 rounded-lg px-2 font-medium text-xs text-muted-foreground transition-[opacity,transform,background-color] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] hover:bg-accent",
 						searchOpen ? "pointer-events-none -translate-x-1 opacity-0" : "translate-x-0 opacity-100",
 					)}
 				>
@@ -370,7 +370,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 						searchEl?.focus();
 					}}
 					class={cn(
-						"absolute top-0 right-0 z-10 flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color,transform] duration-[var(--duration-dropdown)] hover:bg-foreground/[0.06] hover:text-foreground active:scale-[0.96]",
+						"absolute top-0 right-0 z-10 flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color,transform] duration-[var(--duration-dropdown)] hover:bg-accent hover:text-accent-foreground active:scale-[0.96]",
 						searchOpen ? "pointer-events-none opacity-0" : "opacity-100",
 					)}
 				>
@@ -379,7 +379,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 
 				<div
 					class={cn(
-						"absolute top-0 right-0 z-20 flex h-8 items-center overflow-hidden rounded-lg bg-input text-muted-foreground shadow-xs transition-[width,opacity] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] focus-within:text-foreground",
+						"absolute top-0 right-0 z-20 flex h-8 items-center overflow-hidden rounded-lg bg-input text-muted-foreground shadow-xs transition-[width,opacity] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] focus-within:text-foreground",
 						searchOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
 					)}
 					style:width={searchOpen ? "100%" : "28px"}
@@ -405,7 +405,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 							searchOpen = false;
 							query = "";
 						}}
-						class="flex size-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-[background-color,color,transform] duration-(--duration-fast) hover:bg-foreground/[0.06] hover:text-foreground active:scale-[0.96]"
+						class="flex size-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-[background-color,color,transform] duration-(--duration-fast) hover:bg-accent hover:text-accent-foreground active:scale-[0.96]"
 					>
 						{@render crossIcon()}
 					</button>
@@ -417,7 +417,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 					{@const active = item.label === activeTitle}
 					{@const shown = matches(item)}
 					<div
-						class="grid transition-[grid-template-rows,opacity] duration-(--duration-base) ease-[var(--ease-out)] motion-reduce:transition-none"
+						class="grid transition-[grid-template-rows,opacity] duration-(--duration-base) ease-[var(--ease-ui-out)] motion-reduce:transition-none"
 						style:grid-template-rows={shown ? "1fr" : "0fr"}
 						style:opacity={shown ? 1 : 0}
 						inert={!shown}
@@ -446,7 +446,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 			{/snippet}
 			<div
 				class={cn(
-					"grid transition-[grid-template-rows,opacity] duration-(--duration-base) ease-[var(--ease-out)] motion-reduce:transition-none",
+					"grid transition-[grid-template-rows,opacity] duration-(--duration-base) ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 					collapsed && "opacity-0",
 				)}
 				style:grid-template-rows={recentsOpen ? "1fr" : "0fr"}

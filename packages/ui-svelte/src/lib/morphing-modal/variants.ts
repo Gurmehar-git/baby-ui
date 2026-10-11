@@ -9,7 +9,7 @@ export const morphingModal = tv({
 		header: "flex items-start justify-between gap-4",
 		title: "font-medium text-foreground text-lg",
 		close:
-			"rounded-md p-1 text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground",
+			"rounded-md p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground",
 		body: "mt-3 text-muted-foreground text-sm",
 	},
 	variants: {

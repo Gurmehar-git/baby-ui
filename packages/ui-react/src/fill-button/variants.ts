@@ -1,6 +1,6 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
-const EASE = "duration-500 ease-[var(--ease-out)] motion-reduce:transition-none";
+const EASE = "duration-500 ease-[var(--ease-ui-out)] motion-reduce:transition-none";
 
 /** The fill is always --primary and the base derives from it, so any primary keeps them distinct.
  * clip-path reveals only the icon tile until hover or focus. */
@@ -8,7 +8,7 @@ export const fillButton = tv({
 	slots: {
 		root: [
 			"group/fill relative isolate inline-flex shrink-0 select-none items-center overflow-hidden whitespace-nowrap p-1 font-medium text-foreground",
-			"outline-none transition-[scale] duration-[var(--duration-press)] ease-[var(--ease-out)] active:scale-[var(--press-scale)]",
+			"outline-none transition-[scale] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] active:scale-[var(--press-scale)]",
 			"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 			"aria-disabled:pointer-events-none aria-disabled:opacity-50",
 		],

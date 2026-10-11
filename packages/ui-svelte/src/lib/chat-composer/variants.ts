@@ -11,7 +11,7 @@ export const chatComposer = tv({
 		thread: "flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-3 pt-3 pb-1",
 		user: "card-fade-up ml-12 self-end rounded-xl border border-border bg-background px-3 py-1.5 text-foreground leading-snug",
 		assistant:
-			"card-fade-up flex flex-col gap-1 transition-[opacity,filter] duration-(--duration-slow) ease-[var(--ease-out)] motion-reduce:transition-none",
+			"card-fade-up flex flex-col gap-1 transition-[opacity,filter] duration-(--duration-slow) ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		byline: "flex items-center gap-1 text-xs leading-tight",
 		author: "font-medium text-foreground",
 		meta: "text-muted-foreground",

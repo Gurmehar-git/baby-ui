@@ -46,12 +46,7 @@
 	--color-chart-positive: var(--chart-positive);
 	--color-chart-negative: var(--chart-negative);
 
-	--color-surface: var(--surface);
-	--color-overlay: var(--overlay);
-	--color-default: var(--default);
-	--color-default-hover: var(--default-hover);
 	--color-segment: var(--segment);
-	--color-accent-ink: var(--accent-ink);
 	--color-primary-hover: var(--primary-hover);
 
 	--shadow-surface: var(--surface-shadow);
@@ -71,14 +66,14 @@
 	--font-mono: var(--font-mono);
 	--font-serif: var(--font-serif);
 
-	--ease-out: var(--ease-out);
-	--ease-in-out: var(--ease-in-out);
+	--ease-ui-out: var(--ease-ui-out);
+	--ease-ui-in-out: var(--ease-ui-in-out);
 	--ease-drawer: var(--ease-drawer);
 
 	/* Without these a bare `transition-colors` uses Tailwind's own curve, which
 	   is most hovers in the system quietly ignoring the motion layer. */
 	--default-transition-duration: var(--duration-fast);
-	--default-transition-timing-function: var(--ease-out);
+	--default-transition-timing-function: var(--ease-ui-out);
 }
 
 /* The type scale. UI text is xs, sm, base, lg; display is 2xl, 4xl, 6xl with tracking baked

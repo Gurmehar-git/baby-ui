@@ -43,7 +43,7 @@ let {
 	],
 	label = "Colour",
 	variant = "field",
-	size = "md",
+	size = "default",
 	invalid = false,
 	disabled = false,
 	id,

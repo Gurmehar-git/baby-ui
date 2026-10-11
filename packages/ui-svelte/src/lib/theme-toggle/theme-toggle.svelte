@@ -63,7 +63,7 @@ function toggle() {
 	{#key theme}
 		<span class="theme-toggle-icon">
 			{#if isDark}
-				<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class={iconClass}>
+				<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class={cn("size-4", iconClass)}>
 					<circle cx="8" cy="8" r="3.2" stroke="currentColor" stroke-width="1.4" />
 					<path
 						d="M8 1v1.4M8 13.6V15M15 8h-1.4M2.4 8H1M12.6 3.4l-1 1M4.4 11.6l-1 1M12.6 12.6l-1-1M4.4 4.4l-1-1"
@@ -73,7 +73,7 @@ function toggle() {
 					/>
 				</svg>
 			{:else}
-				<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class={iconClass}>
+				<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class={cn("size-4", iconClass)}>
 					<path
 						d="M13.8 9.7A6 6 0 1 1 6.3 2.2a5 5 0 0 0 7.5 7.5Z"
 						stroke="currentColor"

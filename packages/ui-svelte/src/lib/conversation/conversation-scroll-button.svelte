@@ -34,7 +34,7 @@ function scrollToBottom() {
 		disabled={!visible}
 		tabindex={visible ? undefined : -1}
 		class={cn(
-			"pointer-events-auto inline-flex size-9 items-center justify-center rounded-full border border-border bg-popover text-foreground shadow-lg transition-[opacity,translate] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] hover:bg-foreground/[0.06] motion-reduce:transition-none",
+			"pointer-events-auto inline-flex size-9 items-center justify-center rounded-full border border-border bg-popover text-foreground shadow-lg transition-[opacity,translate] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] hover:bg-accent motion-reduce:transition-none",
 			visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-1.5 opacity-0",
 			classProp,
 		)}

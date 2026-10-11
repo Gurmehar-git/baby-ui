@@ -60,11 +60,35 @@ Settings sheets, inspectors and property panels read as one dense grid, not stac
 - Controls inside rows are the `sm` size; dividers are `border-border/60`, used between
   sections only.
 
+## Control scale
+
+Every control (buttons, fields, triggers, toggles, tabs, pagination) sits on one height ladder,
+so any two controls of the same `size` line up in a row. Size names are shadcn's: the middle
+step is `default`, never `md`.
+
+| `size` | Height | Radius | Text | Icon | Field `px` | Button `px` | Gap |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `xs` | `h-6` 24 | `rounded-sm` 6 | `text-xs` | `size-3` | `px-2` | `px-2` | `gap-1` |
+| `sm` | `h-8` 32 | `rounded-md` 8 | `text-xs` | `size-3.5` | `px-2.5` | `px-3` | `gap-1.5` |
+| `default` | `h-9` 36 | `rounded-lg` 10 | `text-sm` | `size-4` | `px-3` | `px-4` | `gap-2` |
+| `lg` | `h-10` 40 | `rounded-lg` 10 | `text-sm` | `size-4.5` | `px-3.5` | `px-5` | `gap-2` |
+| `xl` | `h-12` 48 | `rounded-xl` 14 | `text-base` | `size-5` | `px-4` | `px-6` | `gap-2.5` |
+
+- Radius rides the size variant, never the base: the ladder holds radius at 25 to 29% of height,
+  so small controls don't turn into pills and large ones don't go square.
+- A group (ToggleGroup, segmented Tabs) is the control height in total: rim plus items.
+- Text entry is `text-base` below `md` and the table's size from `md` up; iOS zooms under 16px.
+- Popup rows pair with their trigger's size: `xs` 24, `sm` 28, `default` 32, `lg` 36, `xl` 40.
+
 ## Shape
 
 - `--radius` scales `sm` to `3xl` (`-4px` to `+10px`).
-- Controls: `rounded-lg`. Popovers and menus: `rounded-xl`. Dialogs and sheets: `rounded-2xl`.
+- Controls: the ladder above. Popovers and menus: `rounded-xl`. Dialogs and sheets: `rounded-2xl`.
   Drawers: `rounded-3xl` on the free edge. Calendar days and range cells: `rounded-full`.
+- Concentric: a nested corner is the outer radius minus the inset. Menus are `rounded-xl p-1`, so
+  rows are `rounded-lg`; an `xs` menu is `rounded-lg p-1` with `rounded-sm` rows; framed bodies in
+  a `rounded-2xl p-1` rim with a hairline are `rounded-[11px]`.
+- Checkbox and radio boxes: 14 `rounded-[4px]`, 16 `rounded-[5px]`, 20 `rounded-md`, 24 `rounded-md`.
 - Shadows: `--surface-shadow`, `--overlay-shadow`, `--field-shadow`, `--thumb-shadow`, used
   as `shadow-(--overlay-shadow)`.
 
@@ -108,7 +132,8 @@ Tokens:
 - Springs are CSS `linear()` curves: `ease-(--ease-spring-snappy)` over 400ms (no overshoot) and
   `ease-(--ease-spring-bouncy)` over 600ms (3% overshoot). No JS animation library.
 - Scales: `--popover-enter-scale` 0.9, `--popover-exit-scale` 0.95, `--modal-enter-scale` 1.05,
-  `--press-scale` 0.97 (`-sm` 0.98, `-lg` 0.96, `-icon` 0.93, `-row` 0.98).
+  `--press-scale` 0.97 (`-sm` 0.96, `-lg` 0.98, `-icon` 0.93, `-row` 0.98): a ratio moves a
+  big control more pixels, so larger controls give a smaller ratio.
 - Anything whose content changes size animates the size (grid rows), never pops.
 
 ## States
@@ -118,9 +143,15 @@ Tokens:
   Large areas (drop zones, full-width accordion rows) take a 3% tint plus a stronger border.
 - A tile or chip inside a hoverable area never shares the hover's colour: give it its own
   step (`bg-background` with a border in light, `bg-muted` in dark).
-- Fields (Input, InputGroup, Select and Combobox triggers, MultiSelect, TagInput, ScrubField,
-  date/time fields) share one frame: `border-input`, `hover:border-border-strong`,
-  `border-ring` + `ring-2` on focus or while open, destructive border when invalid.
+- Fields (Input, Textarea, NativeSelect, InputGroup, Select and Combobox triggers, MultiSelect,
+  TagInput, NumberInput, date/time fields) share one frame:
+  - rest `border-input`, hover `border-border-strong`;
+  - focus or open `border-ring` plus a `ring-3 ring-ring/20` halo (the solid border carries 3:1);
+  - invalid `border-destructive`, halo `ring-destructive/20`;
+  - disabled `opacity-50` and `cursor-not-allowed`.
+- Pressables (Button, Toggle, Checkbox, Switch, Radio) focus with `ring-2 ring-ring ring-offset-2
+  ring-offset-background`. Checkbox, Radio and Switch also take the invalid border.
+- Checkbox and radio rest borders are `muted-foreground/75` (3.2:1 light, 3.9:1 dark).
 - A popover opened from a field anchors to the whole field and matches its width.
 - Search, password, currency, phone and card fields are InputGroup recipes, not components.
 

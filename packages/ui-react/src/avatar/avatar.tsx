@@ -40,7 +40,7 @@ export function AvatarImage({
 			// to mounted-when-loaded, with no fade of its own to preserve).
 			keepMounted
 			className={cn(
-				"absolute inset-0 size-full object-cover opacity-100 transition-opacity duration-(--duration-base) ease-[var(--ease-out)] data-[loading]:opacity-0 data-[error]:hidden motion-reduce:transition-none",
+				"absolute inset-0 size-full object-cover opacity-100 transition-opacity duration-(--duration-base) ease-[var(--ease-ui-out)] data-[loading]:opacity-0 data-[error]:hidden motion-reduce:transition-none",
 				className,
 			)}
 			{...props}

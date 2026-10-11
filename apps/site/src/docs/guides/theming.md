@@ -34,11 +34,30 @@ Or paste it over what `init` wrote, after `@import "tailwindcss"`:
 }
 ```
 
-- With `theme`, `--ring` derives from `--primary`, so focus rings follow it. The swatches in
-  this site's Settings panel write exactly this pair.
-- Beyond shadcn's set, `tokens` adds `--success`, `--warning`, `--info`, `--border-strong`,
-  `--neon` and `--violet`. Override them the same way.
-- `--accent` is a brand colour here, not a neutral, so hovers use `bg-foreground/[0.06]`.
+- `--primary` is the brand and `--accent` the neutral hover surface, as in shadcn. Hovers,
+  highlighted menu rows and open triggers use `bg-accent`.
+- The swatches in this site's Settings panel write `--primary`, `--primary-foreground` and
+  `--ring`, nothing else.
+
+## Bring your own theme
+
+`tokens` only adds variables. It never redefines a shadcn variable or a Tailwind default, so
+installing a component leaves the rest of your app as it was.
+
+| Variable | Comes from | Notes |
+| --- | --- | --- |
+| `--background` … `--ring`, `--chart-1` … `--chart-5` | your theme | shadcn's set, read as is |
+| `--success`, `--warning`, `--info` (+ `-foreground`, `-strong`) | `tokens` | status colours |
+| `--destructive-strong`, `--destructive-foreground`, `--border-strong`, `--segment` | `tokens` | |
+| `--primary-hover` | `tokens` | derived from your `--primary` |
+| `--surface-shadow`, `--overlay-shadow`, `--field-shadow`, `--thumb-shadow` | `tokens` | |
+| `--duration-*`, `--ease-ui-*`, `--ease-drawer`, `--ease-spring*` | `tokens` | motion |
+| `--chart-scale-*`, `--chart-positive`, `--chart-negative` | `tokens-charts` | only with charts |
+| `--glass-*`, `--gradient-*`, `--neon`, `--violet` | `tokens-effects` | only with effects |
+
+Only `theme` (opt-in) changes your app: the palette, fonts, the type scale's letter spacing,
+the default transition curve and `cursor: pointer` on buttons. Component CSS installs in
+`@layer baby-ui`, so your own unlayered CSS overrides it.
 
 ## Dark mode
 
@@ -60,5 +79,5 @@ fades stay.
 --duration-dropdown: 200ms;
 --duration-overlay: 280ms;
 --duration-exit: 120ms;
---ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+--ease-ui-out: cubic-bezier(0.16, 1, 0.3, 1);
 ```

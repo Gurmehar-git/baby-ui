@@ -11,14 +11,14 @@ export const docsNav = tv({
 			"inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-foreground/[0.06] px-1 font-medium text-xs text-foreground/70 tabular-nums",
 		content: "px-0 pt-1 pb-1",
 		list: "relative",
-		pill: "pointer-events-none absolute right-0 rounded-md bg-foreground/[0.06] transition-[transform,height,opacity] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none",
+		pill: "pointer-events-none absolute right-0 rounded-md bg-foreground/[0.06] transition-[transform,height,opacity] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		row: "relative",
 		marker:
-			"pointer-events-none absolute duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"pointer-events-none absolute duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		rail: "pointer-events-none absolute top-1/2 bottom-0 left-3 border-foreground/20 border-l",
 		link: "relative z-[1] flex items-center justify-between gap-2 py-1.5 pr-3 pl-7 text-sm outline-none transition-[color,opacity] duration-(--duration-fast) focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset motion-reduce:transition-none",
 		label:
-			"truncate transition-transform duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"truncate transition-transform duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		badge: "h-4.5 rounded px-1 text-[11px]",
 	},
 	variants: {

@@ -17,11 +17,11 @@ export const combobox = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description:
 				"ComboboxTrigger and ComboboxContent: height, width and padding. Pass the same size to both so the trigger and the opened list line up.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 	],
 	motion: {
@@ -55,6 +55,7 @@ export const combobox = defineComponent({
 			files: [
 				{ path: "combobox/combobox.tsx", type: "registry:ui" },
 				{ path: "combobox/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
@@ -67,6 +68,7 @@ export const combobox = defineComponent({
 				{ path: "combobox/combobox-trigger.svelte", type: "registry:ui" },
 				{ path: "combobox/combobox-content.svelte", type: "registry:ui" },
 				{ path: "combobox/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],

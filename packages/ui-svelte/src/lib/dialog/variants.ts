@@ -9,7 +9,7 @@ export const dialogFrame = tv({
 		// Fades in step with the panel; the primitive owns the top layer and inertness.
 		backdrop: [
 			"fixed inset-0 z-50 bg-black/50 opacity-0 backdrop-blur-[2px]",
-			"transition-opacity duration-[var(--duration-exit)] ease-[var(--ease-out)]",
+			"transition-opacity duration-[var(--duration-exit)] ease-[var(--ease-ui-out)]",
 			"data-[open]:opacity-100 data-[open]:duration-[var(--duration-dropdown)]",
 			"data-[state=open]:opacity-100 data-[state=open]:duration-[var(--duration-dropdown)]",
 			"starting:data-[open]:opacity-0 starting:data-[state=open]:opacity-0",

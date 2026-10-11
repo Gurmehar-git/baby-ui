@@ -4,7 +4,7 @@ export interface TextTransitionPreset {
 	target: TextTransitionTarget;
 	durationMs: number;
 	staggerMs: number;
-	/** Defaults to `var(--ease-out)`. */
+	/** Defaults to `var(--ease-ui-out)`. */
 	easing?: string;
 	/** The unit's starting state; it always animates in to its own natural layout (opacity 1, no transform, no blur). */
 	from: {

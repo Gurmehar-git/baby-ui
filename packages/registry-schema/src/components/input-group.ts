@@ -8,16 +8,16 @@ export const inputGroup = defineComponent({
 	category: "base",
 	status: "stable",
 	variants: {
-		size: ["sm", "md", "lg"],
+		size: ["xs", "sm", "default", "lg", "xl"],
 		align: ["inline-start", "inline-end", "block-start", "block-end"],
 	},
 	props: [
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "InputGroup height.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "align",
@@ -47,6 +47,7 @@ export const inputGroup = defineComponent({
 			files: [
 				{ path: "input-group/input-group.tsx", type: "registry:ui" },
 				{ path: "input-group/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
@@ -62,6 +63,7 @@ export const inputGroup = defineComponent({
 				{ path: "input-group/input-group-text.svelte", type: "registry:ui" },
 				{ path: "input-group/input-group-textarea.svelte", type: "registry:ui" },
 				{ path: "input-group/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],

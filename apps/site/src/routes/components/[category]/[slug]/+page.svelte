@@ -512,7 +512,7 @@ const categoryTrail = $derived(
 			<IconArrowUpRight size={12} />
 		</a>
 		<!-- A real link, not only the menu item: crawlers and agents follow it to the markdown twin. -->
-		<a href="{specHref(data.spec)}.md" class="underline decoration-border underline-offset-4 transition-colors hover:text-foreground">
+		<a href="{specHref(data.spec)}.md" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors hover:text-foreground">
 			View this page as Markdown
 		</a>
 	</div>

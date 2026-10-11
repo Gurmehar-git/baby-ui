@@ -4,7 +4,7 @@ import { tv } from "tailwind-variants";
 // Desktop is a reading pane wider than the 600px layout; mobile is a 375px phone, the common
 // floor clients lay out at.
 const frameWidth = tv({
-	base: "block border-0 transition-[width] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none",
+	base: "block border-0 transition-[width] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 	variants: {
 		viewport: {
 			desktop: "w-full rounded-lg",

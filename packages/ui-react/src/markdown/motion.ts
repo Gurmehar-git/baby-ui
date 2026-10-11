@@ -8,6 +8,6 @@ export function markdownMotion(animate: MarkdownAnimate): AnimateOptions | false
 	return {
 		effect: animate === true ? "fade" : animate,
 		duration: 250,
-		easing: "var(--ease-out)",
+		easing: "var(--ease-ui-out)",
 	};
 }

@@ -7,8 +7,8 @@ export const navigationMenuTriggerStyle = tv({
 		"group/navigation-menu-trigger inline-flex w-max items-center justify-center rounded-lg font-medium outline-none",
 		// bg-muted matches card and popover surfaces, so the fill is a foreground tint like ghost buttons.
 		"transition-[color,background-color,scale] [transition-duration:var(--duration-instant),var(--duration-instant),var(--duration-slow)] ease-[var(--ease-out-quart)]",
-		"hover:bg-foreground/[0.06] focus-visible:ring-2 focus-visible:ring-ring active:scale-[var(--press-scale-sm)]",
-		"data-[state=open]:bg-foreground/[0.06] data-[popup-open]:bg-foreground/[0.06]",
+		"hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring active:scale-[var(--press-scale-sm)]",
+		"data-[state=open]:bg-accent data-[popup-open]:bg-accent",
 		"disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none",
 	],
 	variants: {
@@ -32,7 +32,7 @@ export const navigationMenu = tv({
 		list: "group flex flex-1 list-none items-center justify-center gap-0",
 		item: "relative",
 		chevron: [
-			"relative top-px ml-1 size-3 shrink-0 transition-transform duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"relative top-px ml-1 size-3 shrink-0 transition-transform duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 			"group-data-[state=open]/navigation-menu-trigger:rotate-180",
 			"group-data-[popup-open]/navigation-menu-trigger:rotate-180 motion-reduce:transition-none",
 		],
@@ -43,7 +43,7 @@ export const navigationMenu = tv({
 		link: [
 			"flex flex-col gap-0.5 rounded-md p-2 text-sm outline-none",
 			"transition-[background-color,scale] [transition-duration:var(--duration-instant),var(--duration-slow)] ease-[var(--ease-out-quart)]",
-			"hover:bg-foreground/[0.06] focus:bg-foreground/[0.06] active:scale-[var(--press-scale-row)]",
+			"hover:bg-accent focus:bg-accent active:scale-[var(--press-scale-row)]",
 			"data-[active]:bg-foreground/[0.06] aria-[current=page]:bg-foreground/[0.06] motion-reduce:transition-none",
 		],
 		indicator: "top-full z-10 flex h-1.5 items-end justify-center overflow-hidden",

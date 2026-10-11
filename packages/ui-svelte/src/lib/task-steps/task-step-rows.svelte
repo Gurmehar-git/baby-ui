@@ -104,7 +104,7 @@ function toggle(id: string) {
 							stroke-linejoin="round"
 							aria-hidden="true"
 							style:transform={open ? "rotate(180deg)" : undefined}
-							class="size-3.5 transition-transform duration-(--duration-slow) ease-[var(--ease-out)] motion-reduce:transition-none"
+							class="size-3.5 transition-transform duration-(--duration-slow) ease-[var(--ease-ui-out)] motion-reduce:transition-none"
 						>
 							<path d="M6 9l6 6 6-6" />
 						</svg>
@@ -117,7 +117,7 @@ function toggle(id: string) {
 				{/if}
 			</div>
 			<div
-				class="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-out)]"
+				class="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-ui-out)]"
 				style:grid-template-rows={open ? "1fr" : "0fr"}
 				style:opacity={open ? 1 : 0}
 			>

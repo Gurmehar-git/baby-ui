@@ -8,7 +8,7 @@ export const timePicker = tv({
 	slots: {
 		trailing: "ms-auto flex shrink-0 items-center gap-0.5",
 		// The hands point at the field's time and take the short way round when it changes.
-		hand: "origin-center transition-[rotate] duration-300 ease-[var(--ease-out)] [transform-box:view-box] motion-reduce:transition-none",
+		hand: "origin-center transition-[rotate] duration-300 ease-[var(--ease-ui-out)] [transform-box:view-box] motion-reduce:transition-none",
 		clearButton: [
 			button({ variant: "ghost", size: "icon-xs" }),
 			"text-muted-foreground hover:text-foreground",

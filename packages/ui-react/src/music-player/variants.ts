@@ -14,7 +14,7 @@ export const musicPlayer = tv({
 		pin: "size-[12%] rounded-full bg-foreground/60",
 		sheen:
 			"pointer-events-none absolute inset-0 rounded-full bg-[conic-gradient(from_45deg,transparent,color-mix(in_oklch,var(--background)_28%,transparent)_12%,transparent_25%,transparent_50%,color-mix(in_oklch,var(--background)_20%,transparent)_62%,transparent_75%)]",
-		arm: "pointer-events-none absolute z-10 origin-top-right rotate-[10deg] transition-[rotate] duration-500 ease-[var(--ease-in-out)] data-[playing=true]:rotate-[-18deg] motion-reduce:transition-none",
+		arm: "pointer-events-none absolute z-10 origin-top-right rotate-[10deg] transition-[rotate] duration-500 ease-[var(--ease-ui-in-out)] data-[playing=true]:rotate-[-18deg] motion-reduce:transition-none",
 		armBase:
 			"absolute top-0 right-0 size-7 translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-card bg-muted-foreground shadow-sm",
 		armStick:

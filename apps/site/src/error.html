@@ -38,7 +38,7 @@
 				--border: oklch(16% 0.002 265 / 0.08);
 				--input: var(--border);
 				--hover: oklch(15% 0 0 / 0.06);
-				--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+				--ease-ui-out: cubic-bezier(0.16, 1, 0.3, 1);
 			}
 			:root.dark {
 				color-scheme: dark;
@@ -172,7 +172,7 @@
 				line-height: 1;
 				text-decoration: none;
 				cursor: pointer;
-				transition: background-color 100ms var(--ease-out);
+				transition: background-color 100ms var(--ease-ui-out);
 			}
 			.button:focus-visible {
 				outline: 2px solid var(--foreground);

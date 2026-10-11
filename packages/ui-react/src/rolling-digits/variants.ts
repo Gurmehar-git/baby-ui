@@ -14,7 +14,7 @@ export const rollingDigits = tv({
 		odometerDigit: "relative inline-block h-[1lh] overflow-hidden align-bottom",
 		odometerTrack: [
 			"flex translate-y-[calc(var(--rd-index,0)*-1lh)] flex-col",
-			"transition-[translate] duration-(--rd-duration) ease-(--ease-out) motion-reduce:transition-none",
+			"transition-[translate] duration-(--rd-duration) ease-(--ease-ui-out) motion-reduce:transition-none",
 		],
 		odometerRow: "h-[1lh] leading-[1lh]",
 	},

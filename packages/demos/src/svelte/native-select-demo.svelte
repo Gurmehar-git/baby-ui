@@ -11,7 +11,7 @@ let region = $state("fra");
 
 <div class="flex w-full max-w-60 flex-col gap-1.5">
 	<label for="region" class="font-medium text-sm">Region</label>
-	<NativeSelect id="region" class="w-full" size={p.size ?? "md"} bind:value={region} disabled={p.disabled ?? false}>
+	<NativeSelect id="region" class="w-full" size={p.size ?? "default"} bind:value={region} disabled={p.disabled ?? false}>
 		<NativeSelectOptGroup label="Europe">
 			<NativeSelectOption value="fra">Frankfurt</NativeSelectOption>
 			<NativeSelectOption value="lhr">London</NativeSelectOption>

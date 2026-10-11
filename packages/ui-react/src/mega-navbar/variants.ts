@@ -16,9 +16,9 @@ export const megaNavbar = tv({
 			"transition-[width,height,transform,opacity] duration-300 ease-[cubic-bezier(0.625,0.05,0,1)] motion-reduce:transition-none",
 		],
 		pane: "absolute inset-x-0 top-0 w-max transition-opacity duration-[var(--duration-dropdown)] motion-reduce:transition-none",
-		item: "flex gap-3 rounded-lg p-3 transition-colors hover:bg-foreground/[0.06] focus-visible:bg-foreground/[0.06] focus-visible:outline-none aria-[current=page]:bg-foreground/[0.06] motion-reduce:transition-none",
+		item: "flex gap-3 rounded-lg p-3 transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none aria-[current=page]:bg-foreground/[0.06] motion-reduce:transition-none",
 		footer:
-			"group/cta flex items-center justify-between gap-4 border-border border-t px-5 py-3 transition-colors hover:bg-foreground/[0.06] focus-visible:bg-foreground/[0.06] focus-visible:outline-none motion-reduce:transition-none",
+			"group/cta flex items-center justify-between gap-4 border-border border-t px-5 py-3 transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none motion-reduce:transition-none",
 		link: "inline-flex items-center whitespace-nowrap rounded-full px-3.5 py-2 font-medium text-sm transition-colors hover:text-foreground motion-reduce:transition-none",
 		mobileChevron:
 			"size-4 shrink-0 text-muted-foreground transition-transform duration-[var(--duration-dropdown)] motion-reduce:transition-none",
@@ -32,10 +32,10 @@ export const megaNavbar = tv({
 		moreHeading: "px-3 pt-1 pb-1.5 font-medium text-muted-foreground text-xs",
 		moreList: "grid grid-cols-3 gap-0.5",
 		moreLink:
-			"flex items-center rounded-md px-3 py-1.5 text-foreground text-sm transition-colors hover:bg-foreground/[0.06] focus-visible:bg-foreground/[0.06] focus-visible:outline-none motion-reduce:transition-none",
+			"flex items-center rounded-md px-3 py-1.5 text-foreground text-sm transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none motion-reduce:transition-none",
 		sheet: "w-full gap-0 p-0 sm:max-w-sm",
 		menuButton:
-			"grid size-9 cursor-pointer place-items-center rounded-lg text-foreground transition-colors hover:bg-foreground/[0.06] @3xl:hidden motion-reduce:transition-none",
+			"grid size-9 cursor-pointer place-items-center rounded-lg text-foreground transition-colors hover:bg-accent @3xl:hidden motion-reduce:transition-none",
 		shelf: "pointer-events-auto hidden @3xl:block",
 		shelfBar: "flex h-16 items-center gap-4 px-5 @5xl:gap-6 @5xl:px-6",
 		mobileBar:
@@ -74,8 +74,8 @@ export const megaNavbar = tv({
 			false: {
 				trigger: "text-muted-foreground hover:text-foreground",
 				link: "text-muted-foreground",
-				mobileItem: "hover:bg-foreground/[0.06]",
-				mobileLink: "hover:bg-foreground/[0.06]",
+				mobileItem: "hover:bg-accent",
+				mobileLink: "hover:bg-accent",
 			},
 		},
 		open: {

@@ -5,7 +5,7 @@ export const emailTeamInvite = tv({
 	slots: {
 		avatar: "mx-auto block h-[64px] w-[64px] rounded-full",
 		initials:
-			"m-0 mx-auto h-[64px] w-[64px] rounded-full bg-accent-soft text-center font-semibold text-[22px] text-foreground leading-[64px] dark:bg-accent-soft-dark dark:text-foreground-dark",
+			"m-0 mx-auto h-[64px] w-[64px] rounded-full bg-primary-soft text-center font-semibold text-[22px] text-foreground leading-[64px] dark:bg-primary-soft-dark dark:text-foreground-dark",
 		lead: "m-0 mt-5 mb-1 text-center text-[14px] text-muted-foreground leading-[22px] dark:text-muted-foreground-dark",
 		role: "mt-4 text-center",
 		signoff:

@@ -98,7 +98,7 @@ export function NavigationMenuContent({
 			data-slot="navigation-menu-content"
 			// In flow, as shadcn's Base UI port: the popup sizes itself to the active content.
 			className={cn(
-				"h-full w-auto transition-[opacity,translate] duration-[var(--duration-overlay)] ease-[var(--ease-out)] motion-reduce:transition-none",
+				"h-full w-auto transition-[opacity,translate] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 				"data-[starting-style]:opacity-0 data-[ending-style]:opacity-0",
 				"data-[starting-style]:data-[activation-direction=left]:-translate-x-1/2 data-[starting-style]:data-[activation-direction=right]:translate-x-1/2",
 				"data-[ending-style]:data-[activation-direction=left]:translate-x-1/2 data-[ending-style]:data-[activation-direction=right]:-translate-x-1/2",
@@ -128,7 +128,7 @@ export function NavigationMenuViewport({
 				alignOffset={alignOffset}
 				className={cn(
 					"isolate z-50 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width)",
-					"transition-[top,left,right,bottom] duration-[var(--duration-overlay)] ease-[var(--ease-out)] data-instant:transition-none motion-reduce:transition-none",
+					"transition-[top,left,right,bottom] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] data-instant:transition-none motion-reduce:transition-none",
 					// A hover bridge over the gap, so moving down to the panel never closes it.
 					"before:absolute before:inset-x-0 before:-top-2.5 before:h-2.5",
 					className,

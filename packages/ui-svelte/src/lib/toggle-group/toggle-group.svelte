@@ -10,7 +10,7 @@ let {
 	value = $bindable<string | string[]>(""),
 	type = "single",
 	variant = "default",
-	size = "md",
+	size = "default",
 	disabled = false,
 	label = "Options",
 	onValueChange,

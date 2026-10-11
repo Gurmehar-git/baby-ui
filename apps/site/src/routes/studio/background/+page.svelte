@@ -4,7 +4,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 const studio = tv({
 	slots: {
 		frame:
-			"@container relative overflow-hidden rounded-2xl border border-border bg-background shadow-sm transition-[max-width,max-height] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"@container relative overflow-hidden rounded-2xl border border-border bg-background shadow-sm transition-[max-width,max-height] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		// Sized by the frame, not the window: a phone-wide frame gets phone-sized type.
 		overlay:
 			"pointer-events-none absolute inset-0 z-10 flex flex-col p-4 @sm:p-6 @lg:p-12",
@@ -299,7 +299,7 @@ const code = new LiveCode(() => ({
 					{#if activeRow >= 0}
 						<span
 							aria-hidden="true"
-							class="absolute inset-x-1 top-1 h-16 rounded-lg bg-foreground transition-transform duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none"
+							class="absolute inset-x-1 top-1 h-16 rounded-lg bg-foreground transition-transform duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none"
 							style:transform="translateY({activeRow * ROW_PX}px)"
 						></span>
 					{/if}
@@ -311,7 +311,7 @@ const code = new LiveCode(() => ({
 									type="button"
 									onclick={() => pick(item.spec.slug)}
 									aria-current={active ? "true" : undefined}
-									class="group/scene flex h-16 w-full items-center gap-3 rounded-lg p-1.5 text-left transition-[color,scale] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] not-aria-[current=true]:hover:bg-foreground/[0.06] active:scale-[0.98] motion-reduce:transition-none"
+									class="group/scene flex h-16 w-full items-center gap-3 rounded-lg p-1.5 text-left transition-[color,scale] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] not-aria-[current=true]:hover:bg-foreground/[0.06] active:scale-[0.98] motion-reduce:transition-none"
 								>
 									<SceneThumb slug={item.spec.slug} entry={item.entry} props={item.thumb} class="h-full w-16 shrink-0 rounded-md" />
 									<span class="min-w-0 flex-1">

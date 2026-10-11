@@ -73,14 +73,14 @@ async function copyPage() {
 	<DropdownMenu>
 		<DropdownMenuTrigger
 			aria-label="Page options"
-			class="grid h-8 w-7 place-items-center rounded-l-none rounded-r-xl border-border border-l text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground [&>svg]:transition-[transform,scale,translate,rotate] [&>svg]:duration-[var(--duration-exit)] [&>svg]:ease-[var(--ease-out)] [&[data-state=open]>svg]:rotate-180 [&[data-state=open]>svg]:duration-[var(--duration-dropdown)] motion-reduce:[&>svg]:transition-none"
+			class="grid h-8 w-7 place-items-center rounded-l-none rounded-r-xl border-border border-l text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground [&>svg]:transition-[transform,scale,translate,rotate] [&>svg]:duration-[var(--duration-exit)] [&>svg]:ease-[var(--ease-ui-out)] [&[data-state=open]>svg]:rotate-180 [&[data-state=open]>svg]:duration-[var(--duration-dropdown)] motion-reduce:[&>svg]:transition-none"
 		>
 			<IconChevronDown size={14} />
 		</DropdownMenuTrigger>
 		<DropdownMenuContent align="end" collisionPadding={16} class="w-52">
 			<DropdownMenuItem class="justify-start">
 				{#snippet child({ props })}
-					<a {...props} href={markdownUrl}>
+					<a {...props} href={markdownUrl} target="_blank" rel="noopener">
 						{@render mark(MARKDOWN)}
 						View as Markdown
 					</a>

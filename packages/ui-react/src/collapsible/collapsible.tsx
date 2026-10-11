@@ -53,7 +53,7 @@ export function CollapsibleTrigger({
 				fill="none"
 				aria-hidden
 				data-slot="collapsible-icon"
-				className="size-3.5 shrink-0 text-muted-foreground transition-[rotate] duration-(--duration-exit) ease-(--ease-out) group-data-[panel-open]/collapsible-trigger:rotate-90 group-data-[panel-open]/collapsible-trigger:duration-(--duration-overlay) motion-reduce:transition-none"
+				className="size-3.5 shrink-0 text-muted-foreground transition-[rotate] duration-(--duration-exit) ease-(--ease-ui-out) group-data-[panel-open]/collapsible-trigger:rotate-90 group-data-[panel-open]/collapsible-trigger:duration-(--duration-overlay) motion-reduce:transition-none"
 			>
 				<path
 					d="m6 4 4 4-4 4"

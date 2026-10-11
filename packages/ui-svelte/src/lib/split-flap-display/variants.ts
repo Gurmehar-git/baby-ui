@@ -8,12 +8,12 @@ export const splitFlap = tv({
 		board:
 			"mx-auto flex w-fit max-w-full flex-col rounded-[0.6em] px-[0.6em] pt-[0.3em] pb-[0.6em]",
 		rowShell:
-			"grid grid-rows-[0fr] transition-[grid-template-rows] duration-(--duration-dropdown) ease-(--ease-out) data-[open]:grid-rows-[1fr] starting:data-[enter]:grid-rows-[0fr] motion-reduce:transition-none",
+			"grid grid-rows-[0fr] transition-[grid-template-rows] duration-(--duration-dropdown) ease-(--ease-ui-out) data-[open]:grid-rows-[1fr] starting:data-[enter]:grid-rows-[0fr] motion-reduce:transition-none",
 		rowClip: "min-h-0 overflow-hidden",
 		row: "flex items-stretch gap-[0.3em] pt-[0.3em]",
 		cells: "flex",
 		cellShell:
-			"grid shrink-0 grid-cols-[0fr] transition-[grid-template-columns] duration-(--duration-dropdown) ease-(--ease-out) data-[open]:grid-cols-[1fr] starting:data-[enter]:grid-cols-[0fr] motion-reduce:transition-none",
+			"grid shrink-0 grid-cols-[0fr] transition-[grid-template-columns] duration-(--duration-dropdown) ease-(--ease-ui-out) data-[open]:grid-cols-[1fr] starting:data-[enter]:grid-cols-[0fr] motion-reduce:transition-none",
 		cellClip: "min-w-0 overflow-hidden",
 		cell: "relative block h-[1.75em] w-[1.3em] select-none px-[0.05em]",
 		tile: "relative block size-full rounded-[0.14em] perspective-[8em]",

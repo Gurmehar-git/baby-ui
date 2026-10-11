@@ -61,7 +61,7 @@ function Example({
 // Search, password, currency, phone and card fields are InputGroup recipes, not components.
 export function InputGroupDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof InputGroup>>(props);
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 	const id = useId();
 	const [domain, setDomain] = useState("");
 	const [note, setNote] = useState("");

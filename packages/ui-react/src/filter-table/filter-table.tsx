@@ -104,7 +104,7 @@ export function FilterTable({
 								"flex h-[26px] shrink-0 items-center gap-1.5 rounded-full px-2.5 text-xs font-medium transition-[background-color,box-shadow,color] duration-(--duration-base)",
 								active
 									? "bg-card text-foreground shadow-sm"
-									: "text-muted-foreground hover:bg-foreground/[0.06]",
+									: "text-muted-foreground hover:bg-accent",
 							)}
 						>
 							{f.tone ? <span className={cn("size-1.5 rounded-full", f.tone)} /> : null}
@@ -152,7 +152,7 @@ export function FilterTable({
 						return (
 							<div
 								key={row.task}
-								className="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-out)]"
+								className="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-ui-out)]"
 								style={{
 									gridTemplateRows: shown ? "1fr" : "0fr",
 									opacity: shown ? 1 : 0,
@@ -161,7 +161,7 @@ export function FilterTable({
 								<div className="overflow-hidden">
 									<div
 										className={cn(
-											"grid border-border border-b text-sm transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06]",
+											"grid border-border border-b text-sm transition-colors duration-(--duration-instant) hover:bg-accent",
 											GRID_COLS,
 										)}
 									>

@@ -7,7 +7,7 @@ let {
 	ref = $bindable(null),
 	value = $bindable(),
 	class: classProp,
-	size = "md",
+	size = "default",
 	children,
 	...rest
 }: Omit<HTMLSelectAttributes, "size"> & {

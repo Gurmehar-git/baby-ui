@@ -9,7 +9,7 @@ const preview = tv({
 		frame: { sm: "h-44", md: "h-56", lg: "h-72", xl: "h-88" },
 		// A tile is the preview alone; a card insets it under the title and description.
 		tile: {
-			true: "rounded-xl border border-border transition-[border-color,scale] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] group-hover/card:border-border-strong group-active/card:scale-[0.99] motion-reduce:transition-none",
+			true: "rounded-xl border border-border transition-[border-color,scale] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] group-hover/card:border-border-strong group-active/card:scale-[0.99] motion-reduce:transition-none",
 			false: "mt-auto rounded-[7px]",
 		},
 	},
@@ -133,7 +133,7 @@ const intrinsic = $derived(FRAME_PX[frame] + (tile ? 0 : CARD_HEADER_PX));
 {#snippet demoView(Demo: Awaited<ReturnType<DemoLoader>>["default"])}
 	<!-- w-full: as a shrink-to-fit grid item, w-full demos (every chart) resolved to 0. -->
 	<div
-		class="pointer-events-none flex w-full scale-90 justify-center opacity-90 transition-opacity duration-[var(--duration-dropdown)] ease-[var(--ease-out)] group-hover/card:opacity-100 motion-reduce:transition-none"
+		class="pointer-events-none flex w-full scale-90 justify-center opacity-90 transition-opacity duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] group-hover/card:opacity-100 motion-reduce:transition-none"
 	>
 		<Demo props={demoProps} />
 	</div>
@@ -158,7 +158,7 @@ const intrinsic = $derived(FRAME_PX[frame] + (tile ? 0 : CARD_HEADER_PX));
 		<!-- The name surfaces like a popover on hover or focus; touch screens, with no hover, always show it. -->
 		<p
 			aria-hidden="true"
-			class="pointer-events-none absolute bottom-2.5 left-2.5 z-10 flex max-w-[calc(100%-1.25rem)] translate-y-1 items-center gap-1.5 rounded-full border border-border bg-popover/90 px-2.5 py-1 font-medium text-foreground text-xs opacity-0 shadow-(--overlay-shadow) backdrop-blur-md transition-[opacity,translate] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] group-focus-within/card:translate-y-0 group-focus-within/card:opacity-100 group-hover/card:translate-y-0 group-hover/card:opacity-100 motion-reduce:transition-none [@media(hover:none)]:translate-y-0 [@media(hover:none)]:opacity-100"
+			class="pointer-events-none absolute bottom-2.5 left-2.5 z-10 flex max-w-[calc(100%-1.25rem)] translate-y-1 items-center gap-1.5 rounded-full border border-border bg-popover/90 px-2.5 py-1 font-medium text-foreground text-xs opacity-0 shadow-(--overlay-shadow) backdrop-blur-md transition-[opacity,translate] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] group-focus-within/card:translate-y-0 group-focus-within/card:opacity-100 group-hover/card:translate-y-0 group-hover/card:opacity-100 motion-reduce:transition-none [@media(hover:none)]:translate-y-0 [@media(hover:none)]:opacity-100"
 		>
 			<span class="truncate">{item.name}</span>
 			{@render badges()}
@@ -166,7 +166,7 @@ const intrinsic = $derived(FRAME_PX[frame] + (tile ? 0 : CARD_HEADER_PX));
 	{:else}
 		<!-- The same inset frame as the component page's preview, so a card reads as a small preview. -->
 		<div
-			class="relative flex h-full flex-col rounded-xl border border-border bg-card p-1 transition-[border-color,scale] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] group-hover/card:border-border-strong group-active/card:scale-[0.99] motion-reduce:transition-none"
+			class="relative flex h-full flex-col rounded-xl border border-border bg-card p-1 transition-[border-color,scale] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] group-hover/card:border-border-strong group-active/card:scale-[0.99] motion-reduce:transition-none"
 		>
 			<div class="px-3 pt-2.5 pb-3">
 				<h3 class="flex items-center gap-2 font-semibold text-foreground text-sm">

@@ -31,7 +31,7 @@ export interface RollingDigitsProps {
 	locale?: RollingDigitsLocale;
 	/** Custom formatter; wins over `locale`. */
 	format?: (value: number) => string;
-	/** Show 0 until scrolled into view once, then roll up to `value`. */
+	/** Roll up from 0 the first time it scrolls into view; the server renders `value`. */
 	startOnView?: boolean;
 	/** Gap between queued steps when `value` changes faster than a roll. */
 	stepMs?: number;
@@ -106,11 +106,14 @@ function Digit({
 // `count`: tweens from the last shown number with an ease-out cubic, writing text directly.
 function CountTween({
 	to,
+	instant,
 	durationMs,
 	render,
 	className,
 }: {
 	to: number;
+	/** Jump without tweening, e.g. the offscreen reset to 0. */
+	instant: boolean;
 	durationMs: number;
 	render: (value: number) => string;
 	className: string;
@@ -121,7 +124,11 @@ function CountTween({
 		const el = ref.current;
 		if (!el) return;
 		const start = from.current;
-		if (matchMedia("(prefers-reduced-motion: reduce)").matches || start === to) {
+		if (
+			instant ||
+			matchMedia("(prefers-reduced-motion: reduce)").matches ||
+			start === to
+		) {
 			el.textContent = render(to);
 			from.current = to;
 			return;
@@ -137,7 +144,7 @@ function CountTween({
 		};
 		raf = requestAnimationFrame(tick);
 		return () => cancelAnimationFrame(raf);
-	}, [to, durationMs, render]);
+	}, [to, instant, durationMs, render]);
 	return (
 		<span ref={ref} aria-hidden="true" className={className}>
 			{render(from.current)}
@@ -165,7 +172,8 @@ export function RollingDigits({
 	digitClassName,
 }: RollingDigitsProps) {
 	const rootRef = useRef<HTMLSpanElement>(null);
-	const [armed, setArmed] = useState(!startOnView);
+	// Server and first paint show the real value; `false` only ever means "reset offscreen".
+	const [armed, setArmed] = useState(true);
 	const target = formatRollingDigits(armed ? value : 0, { pad, locale, format });
 	const [shown, setShown] = useState(target);
 	const displayed = useRef(target);
@@ -179,9 +187,14 @@ export function RollingDigits({
 		if (!startOnView) return setArmed(true);
 		const node = rootRef.current;
 		if (!node) return;
+		let first = true;
 		const observer = new IntersectionObserver(
 			([entry]) => {
-				if (!entry?.isIntersecting) return;
+				const visible = entry?.isIntersecting ?? false;
+				// Already on screen: keep the value. Offscreen: drop to 0 and roll up on arrival.
+				if (first && !visible) setArmed(false);
+				first = false;
+				if (!visible) return;
 				setArmed(true);
 				observer.disconnect();
 			},
@@ -192,6 +205,14 @@ export function RollingDigits({
 	}, [startOnView]);
 
 	useEffect(() => {
+		if (!armed) {
+			if (timer.current) clearTimeout(timer.current);
+			timer.current = null;
+			queue.current = [];
+			displayed.current = target;
+			setShown(target);
+			return;
+		}
 		const pump = () => {
 			const next = queue.current.shift();
 			if (next === undefined) {
@@ -208,7 +229,7 @@ export function RollingDigits({
 		else queue.current.push(target);
 		if (coalesce && timer.current) clearTimeout(timer.current);
 		if (coalesce || !timer.current) pump();
-	}, [target, coalesce]);
+	}, [target, coalesce, armed]);
 
 	useEffect(
 		() => () => {
@@ -230,7 +251,8 @@ export function RollingDigits({
 		setRendered([...gone, ...cells.map((c) => ({ ...c, entering: !before.has(c.key) }))]);
 	}
 
-	// Odometer strips start on 0 and roll to their digit once mounted, so the first value turns too.
+	// Without startOnView, strips start on 0 and roll once mounted so the first value turns too;
+	// with it, the server shows the digits and the offscreen reset supplies the roll.
 	const [mounted, setMounted] = useState(false);
 	useEffect(() => {
 		const frame = requestAnimationFrame(() => setMounted(true));
@@ -259,6 +281,7 @@ export function RollingDigits({
 				{variant === "count" ? (
 					<CountTween
 						to={armed ? value : 0}
+						instant={!armed}
 						durationMs={duration}
 						render={render}
 						className={digitClassName ?? ""}
@@ -281,7 +304,9 @@ export function RollingDigits({
 								>
 									<span
 										className={styles.odometerTrack()}
-										style={{ "--rd-index": mounted ? char : 0 } as CSSProperties}
+										style={
+											{ "--rd-index": mounted || startOnView ? char : 0 } as CSSProperties
+										}
 									>
 										{ODOMETER_ROWS.map((row) => (
 											<span key={row} className={styles.odometerRow()}>

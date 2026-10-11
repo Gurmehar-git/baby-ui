@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 export const mirrorText = tv({
 	slots: {
 		root: "group/mirror relative inline-flex w-fit flex-col justify-end overflow-hidden text-foreground",
-		layer: "transition-transform ease-[var(--ease-out)]",
+		layer: "transition-transform ease-[var(--ease-ui-out)]",
 	},
 	variants: {
 		direction: {

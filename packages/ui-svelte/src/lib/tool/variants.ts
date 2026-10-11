@@ -9,9 +9,9 @@ export const tool = tv({
 		name: "flex-1 font-mono text-foreground text-xs",
 		label: "shrink-0 text-xs",
 		chevron:
-			"size-3.5 shrink-0 text-muted-foreground transition-[transform,scale,translate,rotate] duration-[var(--duration-exit)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"size-3.5 shrink-0 text-muted-foreground transition-[transform,scale,translate,rotate] duration-[var(--duration-exit)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		panel:
-			"grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-exit)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-exit)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		body: "flex flex-col gap-2 border-border/60 border-t p-3",
 		heading: "mb-1 font-medium text-xs text-muted-foreground uppercase tracking-wider",
 		code: "overflow-x-auto rounded-lg bg-background p-2 font-mono text-xs",

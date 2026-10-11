@@ -135,7 +135,7 @@ function GlideList({ children, className }: { children: ReactNode; className?: s
 		>
 			<span
 				aria-hidden
-				className="pointer-events-none absolute inset-x-0 rounded-lg bg-foreground/[0.06] top-0 transition-[transform,height,opacity] duration-(--duration-fast) ease-[var(--ease-out)] motion-reduce:transition-none"
+				className="pointer-events-none absolute inset-x-0 rounded-lg bg-foreground/[0.06] top-0 transition-[transform,height,opacity] duration-(--duration-fast) ease-[var(--ease-ui-out)] motion-reduce:transition-none"
 				style={{
 					transform: `translateY(${box?.top ?? 0}px)`,
 					height: box?.height ?? 0,
@@ -311,7 +311,7 @@ export function SidebarNav({
 			data-slot="sidebar-nav"
 			aria-label={labels.navigation}
 			className={cn(
-				"relative flex shrink-0 overflow-hidden transition-[width] duration-[var(--duration-overlay)] ease-[var(--ease-out)] motion-reduce:transition-none",
+				"relative flex shrink-0 overflow-hidden transition-[width] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 				fill ? "h-full" : "h-[600px]",
 				isCollapsed ? "w-13" : sidebarNav({ size }),
 				className,
@@ -323,7 +323,7 @@ export function SidebarNav({
 						<DropdownMenuTrigger
 							aria-hidden={isCollapsed}
 							tabIndex={isCollapsed ? -1 : 0}
-							className="absolute top-1 right-12 left-2 flex h-8 items-center rounded-lg px-2 text-left transition-[background-color,transform] duration-(--duration-instant) hover:bg-foreground/[0.06] active:scale-[0.99]"
+							className="absolute top-1 right-12 left-2 flex h-8 items-center rounded-lg px-2 text-left transition-[background-color,transform] duration-(--duration-instant) hover:bg-accent active:scale-[0.99]"
 						>
 							<span
 								className={cn(
@@ -433,7 +433,7 @@ export function SidebarNav({
 						tabIndex={isCollapsed ? -1 : 0}
 						onClick={() => setCollapsed(true)}
 						className={cn(
-							"absolute top-1 right-2 flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color] duration-(--duration-fast) hover:bg-foreground/[0.06] hover:text-foreground",
+							"absolute top-1 right-2 flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color] duration-(--duration-fast) hover:bg-accent hover:text-accent-foreground",
 							isCollapsed && "pointer-events-none opacity-0",
 						)}
 					>
@@ -446,7 +446,7 @@ export function SidebarNav({
 						tabIndex={isCollapsed ? 0 : -1}
 						onClick={() => setCollapsed(false)}
 						className={cn(
-							"absolute top-0.5 left-2 flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color] duration-(--duration-fast) hover:bg-foreground/[0.06] hover:text-foreground",
+							"absolute top-0.5 left-2 flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color] duration-(--duration-fast) hover:bg-accent hover:text-accent-foreground",
 							!isCollapsed && "pointer-events-none opacity-0",
 						)}
 					>
@@ -493,7 +493,7 @@ export function SidebarNav({
 							tabIndex={searchOpen ? -1 : 0}
 							onClick={() => setRecentsOpen((open) => !open)}
 							className={cn(
-								"absolute inset-0 flex items-center gap-1.5 rounded-lg px-2 font-medium text-xs text-muted-foreground transition-[opacity,transform,background-color] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] hover:bg-foreground/[0.06]",
+								"absolute inset-0 flex items-center gap-1.5 rounded-lg px-2 font-medium text-xs text-muted-foreground transition-[opacity,transform,background-color] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] hover:bg-accent",
 								searchOpen
 									? "pointer-events-none -translate-x-1 opacity-0"
 									: "translate-x-0 opacity-100",
@@ -517,7 +517,7 @@ export function SidebarNav({
 								searchRef.current?.focus();
 							}}
 							className={cn(
-								"absolute top-0 right-0 z-10 flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color,transform] duration-[var(--duration-dropdown)] hover:bg-foreground/[0.06] hover:text-foreground active:scale-[0.96]",
+								"absolute top-0 right-0 z-10 flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-[opacity,background-color,color,transform] duration-[var(--duration-dropdown)] hover:bg-accent hover:text-accent-foreground active:scale-[0.96]",
 								searchOpen ? "pointer-events-none opacity-0" : "opacity-100",
 							)}
 						>
@@ -526,7 +526,7 @@ export function SidebarNav({
 
 						<div
 							className={cn(
-								"absolute top-0 right-0 z-20 flex h-8 items-center overflow-hidden rounded-lg bg-input text-muted-foreground shadow-xs transition-[width,opacity] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] focus-within:text-foreground",
+								"absolute top-0 right-0 z-20 flex h-8 items-center overflow-hidden rounded-lg bg-input text-muted-foreground shadow-xs transition-[width,opacity] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] focus-within:text-foreground",
 								searchOpen
 									? "pointer-events-auto opacity-100"
 									: "pointer-events-none opacity-0",
@@ -557,7 +557,7 @@ export function SidebarNav({
 									setSearchOpen(false);
 									setQuery("");
 								}}
-								className="flex size-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-[background-color,color,transform] duration-(--duration-fast) hover:bg-foreground/[0.06] hover:text-foreground active:scale-[0.96]"
+								className="flex size-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-[background-color,color,transform] duration-(--duration-fast) hover:bg-accent hover:text-accent-foreground active:scale-[0.96]"
 							>
 								<CrossIcon />
 							</button>
@@ -566,7 +566,7 @@ export function SidebarNav({
 
 					<div
 						className={cn(
-							"grid transition-[grid-template-rows,opacity] duration-(--duration-base) ease-[var(--ease-out)] motion-reduce:transition-none",
+							"grid transition-[grid-template-rows,opacity] duration-(--duration-base) ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 							isCollapsed && "opacity-0",
 						)}
 						style={{ gridTemplateRows: recentsOpen ? "1fr" : "0fr" }}
@@ -580,7 +580,7 @@ export function SidebarNav({
 									return (
 										<div
 											key={item.id}
-											className="grid transition-[grid-template-rows,opacity] duration-(--duration-base) ease-[var(--ease-out)] motion-reduce:transition-none"
+											className="grid transition-[grid-template-rows,opacity] duration-(--duration-base) ease-[var(--ease-ui-out)] motion-reduce:transition-none"
 											style={{
 												gridTemplateRows: shown ? "1fr" : "0fr",
 												opacity: shown ? 1 : 0,

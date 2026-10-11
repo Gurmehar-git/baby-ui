@@ -11,7 +11,7 @@ export const emailWelcome = tv({
 		steps: "mt-6",
 		stepIndex: "w-[40px] align-top",
 		stepBadge:
-			"m-0 h-[26px] w-[26px] rounded-full bg-accent-soft text-center font-semibold text-[13px] text-foreground leading-[26px] dark:bg-accent-soft-dark dark:text-foreground-dark",
+			"m-0 h-[26px] w-[26px] rounded-full bg-primary-soft text-center font-semibold text-[13px] text-foreground leading-[26px] dark:bg-primary-soft-dark dark:text-foreground-dark",
 		stepTitle:
 			"m-0 font-semibold text-[15px] text-foreground leading-[24px] dark:text-foreground-dark",
 		stepBody:

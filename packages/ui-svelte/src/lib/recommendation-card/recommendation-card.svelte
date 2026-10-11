@@ -56,7 +56,7 @@ const others = $derived(
 	</div>
 
 	<div
-		class="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-out)]"
+		class="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-ui-out)]"
 		style={`grid-template-rows: ${open ? "1fr" : "0fr"}; opacity: ${open ? 1 : 0}`}
 	>
 		<div class="overflow-hidden">
@@ -69,7 +69,7 @@ const others = $derived(
 							selected = index;
 							accepted = false;
 						}}
-						class="flex w-full items-center gap-2.5 rounded-lg px-1.5 py-1.5 text-left transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06]"
+						class="flex w-full items-center gap-2.5 rounded-lg px-1.5 py-1.5 text-left transition-colors duration-(--duration-instant) hover:bg-accent"
 					>
 						{@render meter(option.signal, option.tone)}
 						<span class="min-w-0 flex-1 truncate text-xs text-foreground">{option.short}</span>

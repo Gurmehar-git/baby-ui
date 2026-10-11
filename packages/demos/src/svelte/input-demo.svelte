@@ -14,7 +14,7 @@ let value = $state("");
 	<Input
 		id="demo-input"
 		bind:value
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		invalid={p.invalid ?? false}
 		disabled={p.disabled ?? false}
 		placeholder={p.placeholder || "Enter a value"}

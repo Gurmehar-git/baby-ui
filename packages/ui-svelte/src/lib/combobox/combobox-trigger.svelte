@@ -7,7 +7,7 @@ import { type ComboboxSize, combobox } from "./variants";
 let {
 	children,
 	class: classProp,
-	size = "md",
+	size = "default",
 	...rest
 }: ComponentProps<typeof PopoverTrigger> & { size?: ComboboxSize } = $props();
 </script>

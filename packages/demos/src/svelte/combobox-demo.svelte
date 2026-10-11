@@ -16,7 +16,7 @@ let { props = {} }: { props?: Record<string, unknown> } = $props();
 let open = $state(false);
 let value = $state("");
 const p = $derived(controlProps<ComponentProps<typeof ComboboxTrigger>>(props));
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 
 const regions = [
 	{ value: "ams", label: "Amsterdam" },

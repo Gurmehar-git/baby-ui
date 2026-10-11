@@ -13,7 +13,7 @@ export const gaugeChart = tv({
 		ring: "absolute inset-0 -rotate-[225deg]",
 		ringTrack: "fill-none stroke-foreground/[0.08]",
 		ringActive:
-			"fill-none transition-[stroke-dashoffset] duration-[var(--duration-overlay)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"fill-none transition-[stroke-dashoffset] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 	},
 	variants: {
 		/** Arc and linear are notched tracks; ring is a compact three-quarter dial for tight spots. */

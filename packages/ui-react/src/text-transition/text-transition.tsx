@@ -21,7 +21,7 @@ function unitStyle(preset: TextTransitionPreset, index: number): CSSProperties {
 	return {
 		"--tt-duration": `${preset.durationMs}ms`,
 		"--tt-delay": `${index * preset.staggerMs}ms`,
-		"--tt-ease": preset.easing ?? "var(--ease-out)",
+		"--tt-ease": preset.easing ?? "var(--ease-ui-out)",
 		"--tt-from-opacity": preset.from.opacity ?? 1,
 		"--tt-from-x": preset.from.x ?? "0px",
 		"--tt-from-y": preset.from.y ?? "0px",

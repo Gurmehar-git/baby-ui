@@ -4,9 +4,9 @@ export const chromaticWave = tv({
 	slots: {
 		root: "inset-0 isolate overflow-hidden bg-background",
 		fallback:
-			"pointer-events-none absolute inset-0 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		canvas:
-			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		content: "relative z-10 size-full",
 	},
 	variants: {
@@ -17,7 +17,7 @@ export const chromaticWave = tv({
 			},
 			cool: {
 				fallback:
-					"bg-[repeating-linear-gradient(170deg,transparent_0_14px,var(--info)_14px_15px),radial-gradient(ellipse_at_60%_40%,var(--accent),transparent_60%)]_opacity-25",
+					"bg-[repeating-linear-gradient(170deg,transparent_0_14px,var(--info)_14px_15px),radial-gradient(ellipse_at_60%_40%,var(--primary),transparent_60%)]_opacity-25",
 			},
 			warm: {
 				fallback:
@@ -55,7 +55,7 @@ export type ChromaticWavePosition = NonNullable<
 /** Shader colours per tone: base, then the three tone colours. */
 export const CHROMATIC_WAVE_COLORS: Record<ChromaticWaveTone, readonly string[]> = {
 	spectrum: ["var(--background)", "var(--chart-1)", "var(--violet)", "var(--chart-4)"],
-	cool: ["var(--background)", "var(--info)", "var(--accent)", "var(--violet)"],
+	cool: ["var(--background)", "var(--info)", "var(--primary)", "var(--violet)"],
 	warm: ["var(--background)", "var(--chart-4)", "var(--chart-2)", "var(--chart-5)"],
 	mono: [
 		"var(--background)",

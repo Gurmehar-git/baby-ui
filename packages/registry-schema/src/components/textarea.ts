@@ -16,10 +16,10 @@ export const textarea = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "Control size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "variant",
@@ -103,6 +103,7 @@ export const textarea = defineComponent({
 			files: [
 				{ path: "textarea/textarea.tsx", type: "registry:ui" },
 				{ path: "textarea/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
@@ -112,6 +113,7 @@ export const textarea = defineComponent({
 			files: [
 				{ path: "textarea/textarea.svelte", type: "registry:ui" },
 				{ path: "textarea/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],

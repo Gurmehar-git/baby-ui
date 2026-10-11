@@ -33,7 +33,7 @@ export const infiniteImageField = tv({
 			gallery: {
 				root: "cursor-grab touch-none select-none text-muted-foreground active:cursor-grabbing",
 				canvas:
-					"transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+					"transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 			},
 		},
 		shape: { square: {}, rounded: {} },

@@ -19,40 +19,40 @@ export const videoPlayer = tv({
 			// Set on the button itself: one portalled into a popover inherits nothing from the bar.
 			"[--media-button-padding:0px] [&_svg]:size-4",
 			"[--media-control-background:transparent] [--media-control-hover-background:transparent] [--media-focus-box-shadow:none]",
-			"data-popup-open:bg-foreground/[0.06] data-[state=open]:bg-foreground/[0.06]",
+			"data-popup-open:bg-accent data-[state=open]:bg-accent",
 		],
 		iconStack: "grid place-items-center [&>svg]:col-start-1 [&>svg]:row-start-1",
 		// Swapped glyphs stay mounted and cross-fade on data-shown, so a state change never pops.
 		swapIcon: [
-			"transition-[opacity,scale,filter] duration-(--duration-base) ease-(--ease-out)",
+			"transition-[opacity,scale,filter] duration-(--duration-base) ease-(--ease-ui-out)",
 			"data-[shown=false]:opacity-0 data-[shown=false]:duration-(--duration-exit)",
 			"motion-safe:data-[shown=false]:scale-50 motion-safe:data-[shown=false]:blur-[2px]",
 		],
 		wave: [
-			"origin-left [transform-box:fill-box] transition-[opacity,scale] duration-(--duration-base) ease-(--ease-out)",
+			"origin-left [transform-box:fill-box] transition-[opacity,scale] duration-(--duration-base) ease-(--ease-ui-out)",
 			"data-[shown=false]:opacity-0 motion-safe:data-[shown=false]:scale-50",
 		],
 		seekButton: "group/seek",
 		seekIcon: [
-			"grid place-items-center transition-[rotate] duration-(--duration-fast) ease-(--ease-out) motion-reduce:transition-none",
+			"grid place-items-center transition-[rotate] duration-(--duration-fast) ease-(--ease-ui-out) motion-reduce:transition-none",
 			"group-active/seek:data-[direction=backward]:-rotate-45 group-active/seek:data-[direction=forward]:rotate-45",
 		],
 		loopButton: "group/loop",
 		loopDot: [
 			"pointer-events-none absolute bottom-0.5 left-1/2 size-1 -translate-x-1/2 rounded-full bg-current",
-			"scale-0 opacity-0 transition-[opacity,scale] duration-(--duration-base) ease-(--ease-out)",
+			"scale-0 opacity-0 transition-[opacity,scale] duration-(--duration-base) ease-(--ease-ui-out)",
 			"group-aria-pressed/loop:scale-100 group-aria-pressed/loop:opacity-100",
 		],
 		loopIcon: [
-			"transition-[rotate] duration-(--duration-slow) ease-(--ease-out) motion-reduce:transition-none",
+			"transition-[rotate] duration-(--duration-slow) ease-(--ease-ui-out) motion-reduce:transition-none",
 			"group-aria-pressed/loop:rotate-180",
 		],
 		range: [
 			"h-8 min-w-0 bg-transparent [--media-range-padding:7px]",
 			"[--media-range-track-height:4px] [--media-range-track-border-radius:9999px] hover:[--media-range-track-height:6px]",
-			"[--media-range-track-transition:height_var(--duration-fast)_var(--ease-out)]",
+			"[--media-range-track-transition:height_var(--duration-fast)_var(--ease-ui-out)]",
 			"[--media-range-thumb-width:14px] [--media-range-thumb-height:14px] [--media-range-thumb-border-radius:9999px]",
-			"[--media-range-thumb-transition:transform_var(--duration-fast)_var(--ease-out)]",
+			"[--media-range-thumb-transition:transform_var(--duration-fast)_var(--ease-ui-out)]",
 			"hover:[--media-range-thumb-transform:scale(1.15)] active:[--media-range-thumb-transform:scale(0.9)]",
 			"motion-reduce:[--media-range-thumb-transition:none] motion-reduce:[--media-range-track-transition:none]",
 		],
@@ -70,13 +70,13 @@ export const videoPlayer = tv({
 		timeValue: "inline-flex overflow-hidden",
 		// A changed character remounts and rises in from @starting-style, so the time ticks instead of repainting.
 		timeChar: [
-			"inline-block transition-[opacity,translate] duration-(--duration-base) ease-(--ease-out)",
+			"inline-block transition-[opacity,translate] duration-(--duration-base) ease-(--ease-ui-out)",
 			"starting:opacity-0 motion-safe:starting:translate-y-[0.6em]",
 		],
 		separator: "",
 		menuTrigger: "min-w-10 px-2 font-mono tabular-nums",
 		menuValue: [
-			"inline-block transition-[opacity,translate] duration-(--duration-base) ease-(--ease-out)",
+			"inline-block transition-[opacity,translate] duration-(--duration-base) ease-(--ease-ui-out)",
 			"starting:opacity-0 motion-safe:starting:translate-y-1",
 		],
 		menu: "w-44 p-1.5",
@@ -95,18 +95,18 @@ export const videoPlayer = tv({
 		],
 		error: [
 			"absolute inset-0 z-20 grid place-content-center justify-items-center gap-3 p-6 text-center backdrop-blur-sm",
-			"transition-opacity duration-(--duration-base) ease-(--ease-out) starting:opacity-0",
+			"transition-opacity duration-(--duration-base) ease-(--ease-ui-out) starting:opacity-0",
 		],
 		errorMessage: "max-w-[34ch] text-balance text-sm",
 		// Stays mounted so closing fades out the way it came in; a large play button joins its flow.
 		endScreen: [
 			"group/end-screen absolute inset-0 z-[15] grid place-items-center overflow-y-auto bg-black/65 p-6 text-center text-white backdrop-blur-md",
-			"transition-[opacity] duration-(--duration-slow) ease-(--ease-out)",
+			"transition-[opacity] duration-(--duration-slow) ease-(--ease-ui-out)",
 			"data-[open=false]:pointer-events-none data-[open=false]:opacity-0 data-[open=false]:duration-(--duration-panel-exit)",
 			"[&_[data-size=lg]]:static [&_[data-size=lg]]:translate-x-0 [&_[data-size=lg]]:translate-y-0",
 		],
 		endScreenBody: [
-			"flex flex-col items-center gap-3 transition-[translate,scale] duration-(--duration-slow) ease-(--ease-out)",
+			"flex flex-col items-center gap-3 transition-[translate,scale] duration-(--duration-slow) ease-(--ease-ui-out)",
 			"motion-safe:group-data-[open=false]/end-screen:translate-y-2 motion-safe:group-data-[open=false]/end-screen:scale-[0.98]",
 		],
 		errorAction: "",
@@ -172,7 +172,7 @@ export const videoPlayer = tv({
 			class: {
 				root: "bg-black text-white",
 				controlBar: [
-					"transition-[opacity,translate] duration-(--duration-slow) ease-(--ease-out)",
+					"transition-[opacity,translate] duration-(--duration-slow) ease-(--ease-ui-out)",
 					// Hides with the viewport's idle state unless the row is hovered, focused or has a menu open.
 					"[[userinactive]:not([mediapaused])~&:not(:hover,:focus-within,[data-menu-open=true])]:opacity-0",
 					"[[userinactive]:not([mediapaused])~&:not(:hover,:focus-within,[data-menu-open=true])]:duration-(--duration-panel-exit)",
@@ -219,7 +219,7 @@ export const videoPlayerButton = tv({
 			// A large round play control centred over the frame, gone once playback starts.
 			lg: [
 				"absolute top-1/2 left-1/2 size-14 -translate-x-1/2 -translate-y-1/2 rounded-full shadow-lg backdrop-blur-md [&_svg]:size-6 [&_[data-glyph=fill]]:fill-current",
-				"transition-[opacity,scale,background-color] duration-(--duration-base) ease-(--ease-out)",
+				"transition-[opacity,scale,background-color] duration-(--duration-base) ease-(--ease-ui-out)",
 				"hover:scale-105 active:scale-[var(--press-scale-lg)]",
 				"data-[playing=true]:pointer-events-none data-[playing=true]:scale-90 data-[playing=true]:opacity-0",
 			],

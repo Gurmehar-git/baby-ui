@@ -6,7 +6,10 @@ export const toggle = defineComponent({
 	description: "Two-state button that stays pressed, for formatting and view switches.",
 	category: "base",
 	status: "stable",
-	variants: { variant: ["default", "outline"], size: ["sm", "md", "lg", "xl"] },
+	variants: {
+		variant: ["default", "outline"],
+		size: ["xs", "sm", "default", "lg", "xl"],
+	},
 	props: [
 		{
 			name: "pressed",
@@ -25,10 +28,10 @@ export const toggle = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "Control size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "disabled",
@@ -72,6 +75,7 @@ export const toggle = defineComponent({
 			files: [
 				{ path: "toggle/toggle.tsx", type: "registry:ui" },
 				{ path: "toggle/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
@@ -81,6 +85,7 @@ export const toggle = defineComponent({
 			files: [
 				{ path: "toggle/toggle.svelte", type: "registry:ui" },
 				{ path: "toggle/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],

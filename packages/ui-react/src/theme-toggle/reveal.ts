@@ -39,7 +39,7 @@ html[data-theme-reveal="blinds"]::view-transition-new(root) {
 	mix-blend-mode: normal;
 	mask-repeat: repeat;
 	mask-composite: intersect;
-	animation: theme-reveal-blinds 700ms var(--ease-out);
+	animation: theme-reveal-blinds 700ms var(--ease-ui-out);
 }
 html[data-theme-reveal="blinds"][data-theme-reveal-start="top-left"]::view-transition-new(root) {
 	mask-image: linear-gradient(90deg, #000 0 var(--theme-reveal-slat), transparent calc(var(--theme-reveal-slat) + 20px)), linear-gradient(180deg, #000 0 var(--theme-reveal-slat), transparent calc(var(--theme-reveal-slat) + 20px));

@@ -4,9 +4,9 @@ export const auroraFlow = tv({
 	slots: {
 		root: "inset-0 isolate overflow-hidden bg-background",
 		fallback:
-			"pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		canvas:
-			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		content: "relative z-10 size-full",
 	},
 	variants: {
@@ -22,7 +22,7 @@ export const auroraFlow = tv({
 			},
 			accent: {
 				fallback:
-					"bg-[image:radial-gradient(ellipse_at_18%_28%,var(--accent),transparent_52%),radial-gradient(ellipse_at_78%_40%,var(--violet),transparent_48%)]",
+					"bg-[image:radial-gradient(ellipse_at_18%_28%,var(--primary),transparent_52%),radial-gradient(ellipse_at_78%_40%,var(--violet),transparent_48%)]",
 			},
 			ember: {
 				fallback:
@@ -34,7 +34,7 @@ export const auroraFlow = tv({
 			},
 			pearl: {
 				fallback:
-					"bg-[image:radial-gradient(ellipse_at_18%_28%,var(--chart-4),transparent_52%),radial-gradient(ellipse_at_78%_40%,var(--accent),transparent_48%)]",
+					"bg-[image:radial-gradient(ellipse_at_18%_28%,var(--chart-4),transparent_52%),radial-gradient(ellipse_at_78%_40%,var(--primary),transparent_48%)]",
 			},
 			mono: {
 				fallback:
@@ -68,10 +68,10 @@ export type AuroraFlowPosition = NonNullable<VariantProps<typeof auroraFlow>["po
 /** Each tone's two hues; mono has no hue and gets its own tonal palettes below. */
 const TONE_HUES: Record<Exclude<AuroraFlowTone, "mono">, readonly [string, string]> = {
 	chart: ["var(--chart-1)", "var(--chart-3)"],
-	accent: ["var(--accent)", "var(--violet)"],
+	accent: ["var(--primary)", "var(--violet)"],
 	ember: ["var(--chart-2)", "var(--chart-4)"],
 	violet: ["var(--violet)", "var(--chart-5)"],
-	pearl: ["var(--chart-4)", "var(--accent)"],
+	pearl: ["var(--chart-4)", "var(--primary)"],
 };
 
 /** Shader colours for a tone: veil takes five deepest first, silk base, mid, sheen and accent. */

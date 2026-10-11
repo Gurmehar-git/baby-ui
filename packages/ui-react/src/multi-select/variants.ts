@@ -5,7 +5,7 @@ export const multiSelect = tv({
 		// The whole field anchors the list, so it drops straight below at full width.
 		root: [
 			"flex w-full min-w-0 flex-wrap items-center gap-1 rounded-lg border border-input bg-background",
-			"transition-[box-shadow,border-color] duration-[var(--duration-press)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"transition-[box-shadow,border-color] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 			"hover:border-border-strong has-[[role=combobox]:focus-visible]:border-ring has-[[role=combobox]:focus-visible]:ring-2 has-[[role=combobox]:focus-visible]:ring-ring",
 			"has-[[role=combobox][data-popup-open]]:border-ring has-[[role=combobox][data-state=open]]:border-ring",
 			"has-[[aria-invalid=true]]:border-[var(--destructive)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -19,7 +19,7 @@ export const multiSelect = tv({
 			"data-[placeholder]:text-muted-foreground",
 		],
 		chevron: [
-			"size-3.5 shrink-0 text-muted-foreground transition-transform duration-[var(--duration-exit)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"size-3.5 shrink-0 text-muted-foreground transition-transform duration-[var(--duration-exit)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 			"group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180 group-data-[popup-open]/trigger:duration-[var(--duration-dropdown)] group-data-[state=open]/trigger:duration-[var(--duration-dropdown)]",
 		],
 		// As wide as the field: Base UI sets --anchor-width, bits-ui --bits-popover-anchor-width.

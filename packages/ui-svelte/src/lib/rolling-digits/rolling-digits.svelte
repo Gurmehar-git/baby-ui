@@ -39,7 +39,7 @@ let {
 	locale?: RollingDigitsLocale;
 	/** Custom formatter; wins over `locale`. */
 	format?: (value: number) => string;
-	/** Show 0 until scrolled into view once, then roll up to `value`. */
+	/** Roll up from 0 the first time it scrolls into view; the server renders `value`. */
 	startOnView?: boolean;
 	/** Gap between queued steps when `value` changes faster than a roll. */
 	stepMs?: number;
@@ -62,8 +62,8 @@ let {
 type Shown = RollingDigitCell & { leaving?: boolean; entering?: boolean };
 
 let root = $state<HTMLSpanElement | null>(null);
-// svelte-ignore state_referenced_locally -- one-time seed, like React's useState(initialValue)
-let armed = $state(!startOnView);
+// Server and first paint show the real value; `false` only ever means "reset offscreen".
+let armed = $state(true);
 const target = $derived(formatRollingDigits(armed ? value : 0, { pad, locale, format }));
 // svelte-ignore state_referenced_locally
 let shown = $state(target);
@@ -79,9 +79,14 @@ $effect(() => {
 	}
 	const node = root;
 	if (!node) return;
+	let first = true;
 	const observer = new IntersectionObserver(
 		([entry]) => {
-			if (!entry?.isIntersecting) return;
+			const visible = entry?.isIntersecting ?? false;
+			// Already on screen: keep the value. Offscreen: drop to 0 and roll up on arrival.
+			if (first && !visible) armed = false;
+			first = false;
+			if (!visible) return;
 			armed = true;
 			observer.disconnect();
 		},
@@ -106,7 +111,16 @@ function pump() {
 $effect(() => {
 	const next = target;
 	const merge = coalesce;
+	const silent = !armed;
 	untrack(() => {
+		if (silent) {
+			if (timer) clearTimeout(timer);
+			timer = null;
+			queue = [];
+			displayed = next;
+			shown = next;
+			return;
+		}
 		if (!timer && next === displayed) return;
 		if (merge) queue = [next];
 		else queue.push(next);
@@ -142,7 +156,8 @@ const render = (n: number) =>
 const chars = $derived([...target]);
 const ODOMETER_ROWS = Array.from({ length: 10 }, (_, i) => i);
 
-// Odometer strips start on 0 and roll to their digit once mounted, so the first value turns too.
+// Without startOnView, strips start on 0 and roll once mounted so the first value turns too;
+// with it, the server shows the digits and the offscreen reset supplies the roll.
 let mounted = $state(false);
 $effect(() => {
 	const frame = requestAnimationFrame(() => (mounted = true));
@@ -150,14 +165,15 @@ $effect(() => {
 });
 
 // `count`: tweens from the last shown number with an ease-out cubic.
-let counted = $state(0);
-let countFrom = 0;
+// svelte-ignore state_referenced_locally -- seeds the server render with the real value
+let counted = $state(value);
+let countFrom = untrack(() => value);
 $effect(() => {
 	if (variant !== "count") return;
 	const to = armed ? value : 0;
 	const span = duration;
 	const start = untrack(() => countFrom);
-	if (matchMedia("(prefers-reduced-motion: reduce)").matches || start === to) {
+	if (!armed || matchMedia("(prefers-reduced-motion: reduce)").matches || start === to) {
 		counted = to;
 		countFrom = to;
 		return;
@@ -192,7 +208,7 @@ $effect(() => {
 				{#each chars as char, i (`${chars.length - i}-${/^[0-9]$/.test(char) ? "digit" : char}`)}
 					{#if /^[0-9]$/.test(char)}
 						<span class={cn(styles.odometerDigit(), digitClass)}>
-							<span class={styles.odometerTrack()} style:--rd-index={mounted ? char : 0}>
+							<span class={styles.odometerTrack()} style:--rd-index={mounted || startOnView ? char : 0}>
 								{#each ODOMETER_ROWS as row (row)}
 									<span class={styles.odometerRow()}>{row}</span>
 								{/each}

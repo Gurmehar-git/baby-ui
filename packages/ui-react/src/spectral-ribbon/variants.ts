@@ -4,9 +4,9 @@ export const spectralRibbon = tv({
 	slots: {
 		root: "inset-0 isolate overflow-hidden bg-background",
 		fallback:
-			"pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		canvas:
-			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		content: "relative z-10 size-full",
 	},
 	variants: {
@@ -57,7 +57,7 @@ export const SPECTRAL_RIBBON_COLORS: Record<SpectralRibbonTone, readonly string[
 		"var(--foreground)",
 		"var(--chart-4)",
 		"var(--chart-3)",
-		"var(--accent)",
+		"var(--primary)",
 		"var(--chart-1)",
 		"var(--violet)",
 	],

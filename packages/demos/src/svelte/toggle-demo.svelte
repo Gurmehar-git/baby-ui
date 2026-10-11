@@ -17,7 +17,7 @@ $effect(() => {
 <Toggle
 	bind:pressed
 	variant={p.variant ?? "default"}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	disabled={p.disabled ?? false}
 >
 	<!-- The outline fills once pressed, so the state reads from the glyph as well as the fill. -->

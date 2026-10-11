@@ -113,6 +113,7 @@ export { default as CardDescription } from "./card/card-description.svelte";
 export { default as CardFooter } from "./card/card-footer.svelte";
 export { default as CardHeader } from "./card/card-header.svelte";
 export { default as CardTitle } from "./card/card-title.svelte";
+export { type CardWellFooter, type CardWellContext, getCardWell, setCardWell } from "./card/context";
 export { cardFrame, type CardVariant } from "./card/variants";
 export { default as CaseStudyFlipStack } from "./case-study-flip-stack/case-study-flip-stack.svelte";
 export { type CaseStudyFlipItem, flipCardOffsets, activeFlipCard } from "./case-study-flip-stack/types";

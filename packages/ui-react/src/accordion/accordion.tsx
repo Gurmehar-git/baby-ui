@@ -86,7 +86,7 @@ export function AccordionTrigger({
 					fill="none"
 					aria-hidden
 					data-slot="accordion-icon"
-					className="size-4 shrink-0 text-muted-foreground transition-[rotate] duration-(--duration-exit) ease-(--ease-out) group-data-[panel-open]/accordion-trigger:rotate-180 group-data-[panel-open]/accordion-trigger:duration-(--duration-overlay) motion-reduce:transition-none"
+					className="size-4 shrink-0 text-muted-foreground transition-[rotate] duration-(--duration-exit) ease-(--ease-ui-out) group-data-[panel-open]/accordion-trigger:rotate-180 group-data-[panel-open]/accordion-trigger:duration-(--duration-overlay) motion-reduce:transition-none"
 				>
 					<path
 						d="m4 6 4 4 4-4"

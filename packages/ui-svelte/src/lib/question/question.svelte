@@ -116,7 +116,7 @@ function queueAutoAdvance() {
 					aria-label="Previous question"
 					disabled={currentStep === 0}
 					onclick={() => setStep(currentStep - 1)}
-					class="grid size-7 shrink-0 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
+					class="grid size-7 shrink-0 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-40"
 				>
 					<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="size-3.5">
 						<path d="M10 3.5 5.5 8l4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
@@ -127,7 +127,7 @@ function queueAutoAdvance() {
 						<span
 							aria-hidden="true"
 							class={cn(
-								"size-1.5 rounded-full bg-foreground transition-[opacity,scale] duration-(--duration-base) ease-[var(--ease-out)]",
+								"size-1.5 rounded-full bg-foreground transition-[opacity,scale] duration-(--duration-base) ease-[var(--ease-ui-out)]",
 								i === currentStep ? "scale-100 opacity-100" : "scale-75 opacity-35",
 							)}
 						></span>

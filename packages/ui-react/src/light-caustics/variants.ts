@@ -4,20 +4,20 @@ export const lightCaustics = tv({
 	slots: {
 		root: "inset-0 isolate overflow-hidden bg-background",
 		fallback:
-			"pointer-events-none absolute inset-0 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		canvas:
-			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		content: "relative z-10 size-full",
 	},
 	variants: {
 		tone: {
 			ocean: {
 				fallback:
-					"bg-[radial-gradient(ellipse_at_50%_35%,var(--accent),transparent_60%),radial-gradient(ellipse_at_20%_80%,var(--info),transparent_55%)]_opacity-30",
+					"bg-[radial-gradient(ellipse_at_50%_35%,var(--primary),transparent_60%),radial-gradient(ellipse_at_20%_80%,var(--info),transparent_55%)]_opacity-30",
 			},
 			lagoon: {
 				fallback:
-					"bg-[radial-gradient(ellipse_at_50%_35%,var(--accent),transparent_60%),radial-gradient(ellipse_at_20%_80%,var(--chart-3),transparent_55%)]_opacity-30",
+					"bg-[radial-gradient(ellipse_at_50%_35%,var(--primary),transparent_60%),radial-gradient(ellipse_at_20%_80%,var(--chart-3),transparent_55%)]_opacity-30",
 			},
 			ember: {
 				fallback:
@@ -52,13 +52,13 @@ export const LIGHT_CAUSTICS_COLORS: Record<LightCausticsTone, readonly string[]>
 	ocean: [
 		"var(--background)",
 		"var(--info)",
-		"var(--accent)",
-		"color-mix(in oklch, var(--foreground) 55%, var(--accent))",
+		"var(--primary)",
+		"color-mix(in oklch, var(--foreground) 55%, var(--primary))",
 	],
 	lagoon: [
 		"var(--background)",
 		"var(--chart-3)",
-		"var(--accent)",
+		"var(--primary)",
 		"color-mix(in oklch, var(--foreground) 55%, var(--chart-3))",
 	],
 	ember: [

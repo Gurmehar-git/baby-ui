@@ -4,9 +4,9 @@ export const closingPlasma = tv({
 	slots: {
 		root: "inset-0 isolate overflow-hidden bg-background",
 		fallback:
-			"pointer-events-none absolute inset-0 opacity-50 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 opacity-50 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		canvas:
-			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		content: "relative z-10 size-full",
 	},
 	variants: {
@@ -17,7 +17,7 @@ export const closingPlasma = tv({
 			},
 			accent: {
 				fallback:
-					"bg-[image:radial-gradient(ellipse_at_30%_40%,var(--accent),transparent_60%),radial-gradient(ellipse_at_75%_70%,var(--info),transparent_55%)]",
+					"bg-[image:radial-gradient(ellipse_at_30%_40%,var(--primary),transparent_60%),radial-gradient(ellipse_at_75%_70%,var(--info),transparent_55%)]",
 			},
 			violet: {
 				fallback:
@@ -56,8 +56,8 @@ export const CLOSING_PLASMA_COLORS: Record<ClosingPlasmaTone, readonly string[]>
 	],
 	accent: [
 		"var(--background)",
-		"color-mix(in oklch, var(--accent) 18%, var(--background))",
-		"color-mix(in oklch, var(--accent) 45%, var(--background))",
+		"color-mix(in oklch, var(--primary) 18%, var(--background))",
+		"color-mix(in oklch, var(--primary) 45%, var(--background))",
 	],
 	violet: [
 		"var(--background)",

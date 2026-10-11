@@ -72,7 +72,7 @@ const counts = $derived.by(() => {
 				onclick={() => setFilter(f.key)}
 				class={cn(
 					"flex h-[26px] shrink-0 items-center gap-1.5 rounded-full px-2.5 text-xs font-medium transition-[background-color,box-shadow,color] duration-(--duration-base)",
-					active ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:bg-foreground/[0.06]",
+					active ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:bg-accent",
 				)}
 			>
 				{#if f.tone}
@@ -109,13 +109,13 @@ const counts = $derived.by(() => {
 			{#each rows as row (row.task)}
 				{@const shown = filter === "all" || row.status === filter}
 				<div
-					class="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-out)]"
+					class="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-ui-out)]"
 					style={`grid-template-rows: ${shown ? "1fr" : "0fr"}; opacity: ${shown ? 1 : 0}`}
 				>
 					<div class="overflow-hidden">
 						<div
 							class={cn(
-								"grid border-border border-b text-sm transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06]",
+								"grid border-border border-b text-sm transition-colors duration-(--duration-instant) hover:bg-accent",
 								GRID_COLS,
 							)}
 						>

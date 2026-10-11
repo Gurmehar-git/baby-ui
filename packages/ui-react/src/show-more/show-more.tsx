@@ -93,14 +93,14 @@ export function ShowMore({
 						overflowY: scrollable ? "auto" : "hidden",
 						scrollbarGutter: scrollable ? "stable" : undefined,
 					}}
-					className="scroll-area overscroll-contain rounded-sm outline-none transition-[height] duration-[var(--duration-overlay)] ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+					className="scroll-area overscroll-contain rounded-sm outline-none transition-[height] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
 				>
 					<div ref={content}>{children}</div>
 				</div>
 				<div
 					aria-hidden
 					data-on={veiled}
-					className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent opacity-0 transition-opacity duration-[var(--duration-press)] ease-[var(--ease-out)] motion-reduce:transition-none data-[on=true]:opacity-100"
+					className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent opacity-0 transition-opacity duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none data-[on=true]:opacity-100"
 				/>
 			</div>
 
@@ -110,7 +110,7 @@ export function ShowMore({
 					onClick={toggle}
 					aria-expanded={open}
 					aria-controls={`${uid}-region`}
-					className="-ml-2 mt-2 inline-flex h-8 items-center gap-1.5 rounded-md px-2 font-medium text-muted-foreground text-sm transition-colors hover:bg-foreground/[0.06] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+					className="-ml-2 mt-2 inline-flex h-8 items-center gap-1.5 rounded-md px-2 font-medium text-muted-foreground text-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
 				>
 					{open ? lessLabel : moreLabel}
 					<svg
@@ -118,7 +118,7 @@ export function ShowMore({
 						fill="none"
 						aria-hidden
 						data-on={open}
-						className="size-3 transition-[rotate] duration-[var(--duration-press)] ease-[var(--ease-out)] motion-reduce:transition-none data-[on=true]:rotate-180"
+						className="size-3 transition-[rotate] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none data-[on=true]:rotate-180"
 					>
 						<path
 							d="m2.5 4.25 3.5 3.5 3.5-3.5"

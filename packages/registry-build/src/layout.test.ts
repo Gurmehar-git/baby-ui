@@ -3,7 +3,7 @@ import type { Framework } from "@baby-ui/registry-schema";
 import { getSpec, specs } from "@baby-ui/registry-schema/components";
 import { buildItem } from "./build";
 import { installLayout } from "./layout";
-import { buildThemeItems } from "./theme";
+import { assertAdditive, buildThemeItems, tailwindThemeKeys } from "./theme";
 import { verifyEmittedImports, verifyRegistryDependencies } from "./verify";
 
 const layouts = {
@@ -163,4 +163,42 @@ describe("theme installs on a project that never ran shadcn init", () => {
 			expect(vars["radius-sm"]).toBe("calc(var(--radius) - 4px)");
 		},
 	);
+});
+
+describe("tokens install additively into an existing shadcn app", () => {
+	test.each(["react", "svelte"] as const)(
+		"%s tokens and layers never redefine shadcn or Tailwind keys",
+		async (framework) => {
+			const items = await buildThemeItems(framework);
+			const tailwind = await tailwindThemeKeys();
+			for (const item of items.filter((i) => i.name !== "theme"))
+				expect(() => assertAdditive(item, tailwind)).not.toThrow();
+			const tokens = items.find((i) => i.name === "tokens");
+			expect(tokens?.cssVars?.light?.primary).toBeUndefined();
+			expect(tokens?.cssVars?.theme?.["ease-out"]).toBeUndefined();
+			expect(JSON.stringify(tokens?.css)).not.toContain("@layer base");
+		},
+	);
+
+	test("assertAdditive rejects a redefined shadcn variable", async () => {
+		const tailwind = await tailwindThemeKeys();
+		const [tokens] = await buildThemeItems("react");
+		if (!tokens) throw new Error("no tokens item");
+		const bad = { ...tokens, css: { ":root, .dark": { "--primary": "var(--accent)" } } };
+		expect(() => assertAdditive(bad, tailwind)).toThrow(/--primary/);
+	});
+
+	test("opt-in layers follow what a component reads", async () => {
+		const deps = async (slug: string) =>
+			(await built(slug, "react")).registryDependencies?.map((u) => u.split("/").pop());
+		expect(await deps("button")).not.toContain("tokens-charts.json");
+		expect(await deps("button")).not.toContain("tokens-effects.json");
+		expect(await deps("line-chart")).toContain("tokens-charts.json");
+		expect(await deps("aurora-flow")).toContain("tokens-effects.json");
+	});
+
+	test("component CSS installs into the baby-ui layer", async () => {
+		const item = await built("roll-text", "react");
+		expect(Object.keys(item.css ?? {})).toContain("@layer baby-ui");
+	});
 });

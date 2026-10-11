@@ -41,7 +41,7 @@ async function copy() {
 	onclick={copy}
 	aria-label={iconOnly ? (copied ? copiedLabel : label) : undefined}
 	class={cn(
-		"inline-flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-border bg-card font-medium text-muted-foreground text-xs transition-[color,transform,scale,translate] duration-[var(--duration-press)] ease-[var(--ease-out)] hover:text-foreground active:scale-[var(--press-scale)]",
+		"inline-flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-border bg-card font-medium text-muted-foreground text-xs transition-[color,transform,scale,translate] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] hover:text-foreground active:scale-[var(--press-scale)]",
 		iconOnly ? "w-8 justify-center" : "px-2.5",
 		classProp,
 	)}

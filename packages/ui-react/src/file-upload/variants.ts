@@ -5,7 +5,7 @@ export const fileUpload = tv({
 		root: "flex w-full min-w-0 flex-col gap-3",
 		zone: [
 			"group/zone relative flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-border border-dashed bg-background text-center outline-none",
-			"transition-[border-color,background-color] duration-[var(--duration-press)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"transition-[border-color,background-color] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 			"hover:border-border-strong hover:bg-foreground/[0.03] focus-visible:ring-2 focus-visible:ring-ring",
 			"data-[dragging=true]:border-foreground/40 data-[dragging=true]:bg-foreground/[0.05]",
 			"disabled:cursor-not-allowed disabled:opacity-50",
@@ -24,7 +24,7 @@ export const fileUpload = tv({
 		name: "min-w-0 truncate font-medium text-foreground",
 		meta: "shrink-0 text-muted-foreground text-xs tabular-nums",
 		track: "h-1 w-full overflow-hidden rounded-full bg-foreground/[0.08]",
-		bar: "h-full origin-left rounded-full bg-foreground transition-[scale] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none data-[status=error]:bg-[var(--destructive)] data-[status=done]:bg-[var(--success)]",
+		bar: "h-full origin-left rounded-full bg-foreground transition-[scale] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none data-[status=error]:bg-[var(--destructive)] data-[status=done]:bg-[var(--success)]",
 		actions: "flex shrink-0 items-center gap-1",
 	},
 	variants: {

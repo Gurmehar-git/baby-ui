@@ -6,14 +6,14 @@ export const input = defineComponent({
 	description: "Text field with invalid and disabled states that stay legible together.",
 	category: "base",
 	status: "stable",
-	variants: { size: ["sm", "md", "lg", "xl"] },
+	variants: { size: ["xs", "sm", "default", "lg", "xl"] },
 	props: [
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "Height and horizontal padding.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "invalid",
@@ -69,6 +69,7 @@ export const input = defineComponent({
 			files: [
 				{ path: "input/input.tsx", type: "registry:ui" },
 				{ path: "input/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
@@ -78,6 +79,7 @@ export const input = defineComponent({
 			files: [
 				{ path: "input/input.svelte", type: "registry:ui" },
 				{ path: "input/variants.ts", type: "registry:ui" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],

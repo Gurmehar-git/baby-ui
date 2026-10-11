@@ -75,12 +75,19 @@ export async function cssFor(sources: string[]): Promise<Css | undefined> {
 		}
 	});
 
+	if (!Object.keys(out).length) return undefined;
+	// A named layer first seen after Tailwind's keeps today's rank over utilities, yet stays
+	// identifiable and loses to the host's unlayered CSS. `components` would rank below utilities.
+	const layered: Css = { [`@layer ${COMPONENT_LAYER}`]: out };
 	for (const name of animations) {
 		const frames = keyframes.get(name);
-		if (frames) out[`@keyframes ${name}`] = frames;
+		if (frames) layered[`@keyframes ${name}`] = frames;
 	}
-	return Object.keys(out).length ? out : undefined;
+	return layered;
 }
+
+/** The cascade layer every item's component CSS installs into. */
+export const COMPONENT_LAYER = "baby-ui";
 
 /** The `css` object as a stylesheet, for the Manual install view. */
 export function cssText(css: Css | undefined, depth = 0): string {

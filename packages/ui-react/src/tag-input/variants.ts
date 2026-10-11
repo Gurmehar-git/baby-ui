@@ -5,7 +5,7 @@ export const tagInput = tv({
 	slots: {
 		root: [
 			"flex w-full min-w-0 cursor-text flex-wrap items-center gap-1 rounded-lg border border-input bg-background",
-			"transition-[box-shadow,border-color] duration-[var(--duration-press)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"transition-[box-shadow,border-color] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 			"hover:border-border-strong focus-within:border-ring focus-within:ring-2 focus-within:ring-ring",
 			"aria-invalid:border-[var(--destructive)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 		],

@@ -76,12 +76,21 @@ const path = $derived(data.slug === "index" ? "/docs" : `/docs/${data.slug}`);
 		<div class="mt-8"><DocsIntroCover /></div>
 	{/if}
 	<article class="prose-baby mt-8"><Renderer nodes={data.page.content} {registry} /></article>
-	<p class="mt-10 text-muted-foreground text-xs">
+	<div class="mt-10 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-muted-foreground text-xs">
 		<!-- A real link, not only the menu item: crawlers and agents follow it to the markdown twin. -->
-		<a href="/docs/{data.slug}.md" class="underline decoration-border underline-offset-4 transition-colors hover:text-foreground">
+		<a href="/docs/{data.slug}.md" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors hover:text-foreground">
 			View this page as Markdown
 		</a>
-	</p>
+		<p>
+			Powered by
+			<a
+				href="https://docvia.dev"
+				target="_blank"
+				rel="noopener"
+				class="font-medium underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+			>docvia</a>
+		</p>
+	</div>
 </main>
 
 <aside aria-label="On this page" class="hidden min-w-0 xl:block">

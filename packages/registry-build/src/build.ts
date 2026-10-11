@@ -11,7 +11,7 @@ import {
 import { cssFor } from "./component-css";
 import { FRAMEWORK, REGISTRY_URL, SITE_URL } from "./config";
 import type { InstallLayout } from "./layout";
-import { bareVars, tokensUrl } from "./theme";
+import { bareVars, tokenLayerUrls, tokensUrl } from "./theme";
 import { jsPath, toJavaScript } from "./tojs";
 
 /** A bare slug in a spec's `registryDependencies` resolves to that item's own URL,
@@ -203,6 +203,10 @@ export async function buildItem(
 		registryDependencies: [
 			...impl.registryDependencies.map((dep) => resolveRegistryDep(framework, dep)),
 			tokensUrl(framework),
+			...tokenLayerUrls(
+				framework,
+				files.map((f) => f.content),
+			),
 		],
 		files,
 		cssVars: Object.keys(spec.cssVars).length

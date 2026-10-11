@@ -59,7 +59,8 @@ export const rollingDigits = defineComponent({
 		{
 			name: "startOnView",
 			type: "boolean",
-			description: "Show 0 until scrolled into view once, then roll up to the value.",
+			description:
+				"Roll up from 0 the first time it scrolls into view. The server always renders the real value.",
 			default: true,
 			control: { kind: "boolean" },
 		},

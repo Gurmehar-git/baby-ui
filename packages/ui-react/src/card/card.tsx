@@ -1,11 +1,11 @@
-import type { ComponentProps } from "react";
+import { Children, type ComponentProps, isValidElement, type ReactNode } from "react";
 import { cn } from "../lib/cn";
 import { type CardVariant, cardFrame } from "./variants";
 
 export type { CardVariant };
 
 const LIFT =
-	"transition-[transform,scale,translate,border-color] duration-(--duration-base) ease-[var(--ease-out)] hover:-translate-y-0.5 hover:border-border-strong motion-reduce:hover:translate-y-0";
+	"transition-[transform,scale,translate,border-color] duration-(--duration-base) ease-[var(--ease-ui-out)] hover:-translate-y-0.5 hover:border-border-strong motion-reduce:hover:translate-y-0";
 
 /** Slot names and class shape follow shadcn/ui, so this drops into an existing project. */
 export function Card({
@@ -16,6 +16,24 @@ export function Card({
 	...props
 }: ComponentProps<"div"> & { interactive?: boolean; variant?: CardVariant }) {
 	const { root, body } = cardFrame({ variant });
+
+	if (variant === "well") {
+		// Direct CardFooter children sit in the rim below the body; picked here so SSR has them.
+		const parts = Children.toArray(children);
+		const isFooter = (child: ReactNode) =>
+			isValidElement(child) && child.type === CardFooter;
+		return (
+			<div
+				data-slot="card"
+				data-variant="well"
+				className={cn(root(), interactive && LIFT, className)}
+				{...props}
+			>
+				<div className={body()}>{parts.filter((child) => !isFooter(child))}</div>
+				{parts.filter(isFooter)}
+			</div>
+		);
+	}
 
 	if (variant === "framed") {
 		// Inset frame, same treatment as Dialog: a rim in bg-background around a bg-card body.

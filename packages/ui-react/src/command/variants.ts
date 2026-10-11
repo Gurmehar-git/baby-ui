@@ -5,8 +5,8 @@ export const commandFrame = tv({
 		// Opened from the keyboard many times a day, so it appears at once; only closing fades.
 		popup: [
 			"fixed top-[14vh] left-1/2 z-50 -translate-x-1/2 outline-none transition-opacity duration-0",
-			"data-[closed]:opacity-0 data-[closed]:duration-[var(--duration-exit)] data-[closed]:ease-[var(--ease-out)]",
-			"data-[state=closed]:opacity-0 data-[state=closed]:duration-[var(--duration-exit)] data-[state=closed]:ease-[var(--ease-out)]",
+			"data-[closed]:opacity-0 data-[closed]:duration-[var(--duration-exit)] data-[closed]:ease-[var(--ease-ui-out)]",
+			"data-[state=closed]:opacity-0 data-[state=closed]:duration-[var(--duration-exit)] data-[state=closed]:ease-[var(--ease-ui-out)]",
 			"flex max-h-[min(30rem,70dvh)] w-[min(36rem,calc(100vw-2rem))] flex-col overflow-hidden",
 			"motion-reduce:transition-none",
 		],
@@ -21,13 +21,13 @@ export const commandFrame = tv({
 			"w-full min-w-0 bg-transparent text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
 		count: "hidden",
 		// Caps in a hint depress while their key is held, so the footer answers the keyboard.
-		kbd: "inline-flex h-5 min-w-5 shrink-0 items-center justify-center gap-0.5 rounded-md bg-foreground/[0.06] px-1.5 font-medium font-sans text-muted-foreground text-xs transition-[translate,background-color,color] duration-(--duration-instant) ease-[var(--ease-out)] data-[pressed]:translate-y-px data-[pressed]:bg-foreground/[0.08] data-[pressed]:text-foreground motion-reduce:transition-none",
+		kbd: "inline-flex h-5 min-w-5 shrink-0 items-center justify-center gap-0.5 rounded-md bg-foreground/[0.06] px-1.5 font-medium font-sans text-muted-foreground text-xs transition-[translate,background-color,color] duration-(--duration-instant) ease-[var(--ease-ui-out)] data-[pressed]:translate-y-px data-[pressed]:bg-foreground/[0.08] data-[pressed]:text-foreground motion-reduce:transition-none",
 		// ToggleGroup brings a rim and a pressed fill; the sliding pill replaces both.
 		filters: "relative flex shrink-0 items-center border-0 bg-transparent p-0",
-		pill: "pointer-events-none absolute top-0 left-0 data-[ready]:transition-[translate,width,height] data-[ready]:duration-(--duration-slow) data-[ready]:ease-[var(--ease-out)] motion-reduce:transition-none",
+		pill: "pointer-events-none absolute top-0 left-0 data-[ready]:transition-[translate,width,height] data-[ready]:duration-(--duration-slow) data-[ready]:ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		filter: [
 			"relative z-10 inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 font-medium text-muted-foreground outline-none data-[pressed]:bg-transparent data-[state=on]:bg-transparent",
-			"transition-[color,background-color] duration-(--duration-fast) ease-[var(--ease-out)] hover:text-foreground",
+			"transition-[color,background-color] duration-(--duration-fast) ease-[var(--ease-ui-out)] hover:text-foreground",
 			"focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none [&_svg]:size-4 [&_svg]:shrink-0",
 		],
 		list: "scroll-area relative min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain",
@@ -44,7 +44,7 @@ export const commandFrame = tv({
 		],
 		// One marker for the active row. It snaps: arrow keys repeat too fast for motion to help.
 		marker:
-			"pointer-events-none absolute top-0 left-0 data-[glide]:transition-[translate,width,height] data-[glide]:duration-(--duration-fast) data-[glide]:ease-[var(--ease-out)] motion-reduce:transition-none",
+			"pointer-events-none absolute top-0 left-0 data-[glide]:transition-[translate,width,height] data-[glide]:duration-(--duration-fast) data-[glide]:ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		empty: "text-center text-muted-foreground text-sm",
 		shortcut: "ml-auto shrink-0 text-muted-foreground text-xs tracking-widest",
 		separator: "-mx-1 h-px border-0 bg-border",
@@ -69,7 +69,7 @@ export const commandFrame = tv({
 				groupHeading: "px-2 py-1.5",
 				item: [
 					"rounded-sm px-2 py-1.5",
-					'data-[selected=""]:bg-foreground/[0.06] data-[selected=""]:[&_svg]:text-foreground data-[selected=true]:bg-foreground/[0.06] data-[selected=true]:[&_svg]:text-foreground',
+					'data-[selected=""]:bg-foreground/[0.06] data-[selected=""]:[&_svg]:text-foreground data-[selected=true]:bg-accent data-[selected=true]:[&_svg]:text-foreground',
 				],
 				marker: "hidden",
 				empty: "py-6",
@@ -118,7 +118,7 @@ export const commandFrame = tv({
 				groupHeading: "px-2.5 pt-2 pb-1.5",
 				item: [
 					"gap-3 rounded-xl px-2.5 py-2.5 text-muted-foreground text-sm",
-					"transition-[color,scale] [transition-duration:var(--duration-instant),var(--duration-fast)] ease-[var(--ease-out)] active:scale-[0.99] motion-reduce:transition-none",
+					"transition-[color,scale] [transition-duration:var(--duration-instant),var(--duration-fast)] ease-[var(--ease-ui-out)] active:scale-[0.99] motion-reduce:transition-none",
 					'data-[selected=""]:text-foreground data-[selected=true]:text-foreground',
 				],
 				marker: "rounded-xl bg-foreground/[0.06]",
@@ -141,7 +141,7 @@ export const commandFrame = tv({
 					"[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:pt-2 [&_[cmdk-group-heading]]:pb-1",
 				groupHeading: "px-3 pt-2 pb-1",
 				item: [
-					"gap-3 rounded-lg px-3 py-2.5 text-base transition-[scale] duration-(--duration-fast) ease-[var(--ease-out)] active:scale-[0.99] motion-reduce:transition-none",
+					"gap-3 rounded-lg px-3 py-2.5 text-base transition-[scale] duration-(--duration-fast) ease-[var(--ease-ui-out)] active:scale-[0.99] motion-reduce:transition-none",
 					"[&_svg:not([class*='size-'])]:size-[18px] [&_svg]:text-foreground",
 				],
 				marker: "rounded-lg bg-foreground/[0.08]",

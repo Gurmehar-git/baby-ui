@@ -48,10 +48,10 @@ const iconFor = (slug: string) => STUDIOS.find((studio) => studio.slug === slug)
 			<li>
 				<a
 					href={studio.href}
-					class="group/studio flex h-full flex-col rounded-2xl bg-card p-1.5 transition-[background-color,scale] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] hover:bg-muted active:scale-[0.99] motion-reduce:transition-none"
+					class="group/studio flex h-full flex-col rounded-2xl bg-card p-1.5 transition-[background-color,scale] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] hover:bg-muted active:scale-[0.99] motion-reduce:transition-none"
 				>
 					<div class="relative aspect-[16/9] overflow-hidden rounded-xl border border-border bg-background shadow-xs">
-						<div class="absolute inset-0 transition-transform duration-[var(--duration-dialog)] ease-[var(--ease-out)] group-hover/studio:scale-[1.03] motion-reduce:transition-none">
+						<div class="absolute inset-0 transition-transform duration-[var(--duration-dialog)] ease-[var(--ease-ui-out)] group-hover/studio:scale-[1.03] motion-reduce:transition-none">
 							{#if studio.preview.kind === "component"}
 								<LiveComponent slug={studio.preview.slug} entry={studio.entry} props={studio.thumb} />
 							{:else}

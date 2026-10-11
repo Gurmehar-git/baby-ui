@@ -19,7 +19,7 @@ export const Combobox = Popover;
 
 export function ComboboxTrigger({
 	className,
-	size = "md",
+	size = "default",
 	...props
 }: ComponentProps<typeof PopoverTrigger> & { size?: ComboboxSize }) {
 	return (
@@ -34,7 +34,7 @@ export function ComboboxTrigger({
 export function ComboboxContent({
 	className,
 	children,
-	size = "md",
+	size = "default",
 	...props
 }: ComponentProps<typeof PopoverContent> & { size?: ComboboxSize }) {
 	const c = combobox({ size });

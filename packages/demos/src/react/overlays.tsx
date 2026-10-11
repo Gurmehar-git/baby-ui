@@ -344,7 +344,7 @@ export function ComboboxDemo({ props }: { props: Props }) {
 	const [open, setOpen] = useState(false);
 	const [value, setValue] = useState("");
 	const selected = REGIONS.find((r) => r.value === value);
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 
 	return (
 		<Combobox open={open} onOpenChange={setOpen}>

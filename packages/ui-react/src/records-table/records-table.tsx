@@ -291,7 +291,7 @@ export function RecordsTable({
 						onOpenChange={(o) => setOpenColumn(o ? key : null)}
 					>
 						<PopoverTrigger
-							className="min-w-0 items-center gap-1.5 truncate rounded-md px-1 hover:bg-foreground/[0.06]"
+							className="min-w-0 items-center gap-1.5 truncate rounded-md px-1 hover:bg-accent"
 							aria-label={text.configure(label)}
 						>
 							<GlyphIcon glyphs={TYPE_GLYPHS[resolveColumn(key, config, text).type]} />
@@ -395,7 +395,7 @@ export function RecordsTable({
 									<DropdownMenu>
 										<DropdownMenuTrigger
 											aria-label={text.newProperty}
-											className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+											className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
 										>
 											<Icon size={15}>
 												<path d="M12 5v14M5 12h14" />
@@ -415,7 +415,7 @@ export function RecordsTable({
 									<DropdownMenu>
 										<DropdownMenuTrigger
 											aria-label={text.tableOptions}
-											className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+											className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
 										>
 											<svg
 												width="15"

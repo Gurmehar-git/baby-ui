@@ -54,6 +54,17 @@ async function writeJson(relative: string, value: unknown) {
 	await outputs.write(resolve(OUT_DIR, relative), json(value));
 }
 
+type IndexSource = Pick<RegistryItem, "name" | "type" | "title" | "description"> & {
+	categories?: string[];
+};
+const indexEntry = ({ name, type, title, description, categories }: IndexSource) => ({
+	name,
+	type,
+	title,
+	description,
+	categories,
+});
+
 // One file per component, not one combined blob, so a request for one slug only loads
 // that slug's source text instead of every component's.
 async function writeGenerated(relative: string, value: unknown) {
@@ -120,8 +131,8 @@ async function main() {
 
 	for (const framework of FRAMEWORKS as readonly Framework[]) {
 		const { routePrefix } = FRAMEWORK[framework];
-		const index: unknown[] = [];
-		const jsIndex: unknown[] = [];
+		const index: IndexSource[] = [];
+		const jsIndex: IndexSource[] = [];
 
 		// No files to transpile, so the JS route gets the same JSON.
 		for (const item of await buildThemeItems(framework)) {
@@ -162,6 +173,8 @@ async function main() {
 				homepage: SITE_URL,
 				items,
 			});
+			// registry.json carries every item's CSS and vars; tooling that only searches reads this.
+			await writeJson(`${prefix}/index.json`, items.map(indexEntry));
 		}
 	}
 

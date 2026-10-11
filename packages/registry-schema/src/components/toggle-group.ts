@@ -29,10 +29,10 @@ export const toggleGroup = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "Item size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "disabled",

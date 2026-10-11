@@ -3,8 +3,8 @@
 
 :root {
 	/* Built-in CSS easings are too weak to read as intentional. */
-	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-	--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+	--ease-ui-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-ui-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 	--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 	--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 	--ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -47,9 +47,9 @@
 	--stagger-step: 45ms;
 
 	--press-scale: 0.97;
-	/* Same perceived squish at every size: small controls give less, big ones more. */
-	--press-scale-sm: 0.98;
-	--press-scale-lg: 0.96;
+	/* Same perceived squish at every size: a ratio moves big controls more pixels, so they give less. */
+	--press-scale-sm: 0.96;
+	--press-scale-lg: 0.98;
 	--press-scale-icon: 0.93;
 	--press-scale-row: 0.98;
 	--hover-scale: 1.02;
@@ -84,7 +84,7 @@
 
 /* Shared by both file-tree ports so a revealed row enters identically. */
 .tree-row {
-	animation: tree-row-in 200ms var(--ease-out);
+	animation: tree-row-in 200ms var(--ease-ui-out);
 }
 
 @keyframes tree-row-in {
@@ -117,7 +117,7 @@
 	);
 	background-size: 250% 100%;
 	background-repeat: no-repeat;
-	animation: badge-shine 3.2s var(--ease-in-out) infinite;
+	animation: badge-shine 3.2s var(--ease-ui-in-out) infinite;
 }
 
 @keyframes badge-shine {
@@ -171,7 +171,7 @@
 
 /* Shared by both alert ports. */
 .alert-in {
-	animation: alert-in 200ms var(--ease-out);
+	animation: alert-in 200ms var(--ease-ui-out);
 }
 
 @keyframes alert-in {
@@ -193,7 +193,7 @@
 .checkbox-check path {
 	stroke-dasharray: 12;
 	stroke-dashoffset: 12;
-	transition: stroke-dashoffset 200ms var(--ease-out) 60ms;
+	transition: stroke-dashoffset 200ms var(--ease-ui-out) 60ms;
 }
 
 .checkbox-check[data-on="true"] path {
@@ -248,12 +248,12 @@
 .switch-thumb {
 	transition:
 		translate 300ms var(--ease-drawer),
-		scale var(--duration-press) var(--ease-out),
+		scale var(--duration-press) var(--ease-ui-out),
 		transform-origin 0s linear 300ms;
 }
 
 .switch-thumb[data-shake] {
-	animation: switch-refuse 420ms var(--ease-out);
+	animation: switch-refuse 420ms var(--ease-ui-out);
 }
 
 @keyframes switch-refuse {
@@ -430,7 +430,7 @@
 /* Shared by ported list-of-cards components (ContextCards, others); pair with
    `animation-delay: calc(var(--stagger-step) * N)` for a staggered reveal. */
 .card-fade-up {
-	animation: card-fade-up var(--duration-overlay) var(--ease-out) both;
+	animation: card-fade-up var(--duration-overlay) var(--ease-ui-out) both;
 }
 
 @keyframes card-fade-up {
@@ -441,7 +441,7 @@
 }
 
 .fade-in {
-	animation: fade-in var(--duration-dropdown) var(--ease-out) both;
+	animation: fade-in var(--duration-dropdown) var(--ease-ui-out) both;
 }
 
 @keyframes fade-in {
@@ -460,7 +460,7 @@
 /* Shared by both Question ports: each question slides in from the right as the
    step advances, instead of a hard cut. */
 .question-slide-in {
-	animation: question-slide-in 220ms var(--ease-out) both;
+	animation: question-slide-in 220ms var(--ease-ui-out) both;
 }
 
 @keyframes question-slide-in {
@@ -516,7 +516,7 @@
 
 /* Shared by LoadingState's Surfer video card and similar small mount-time pop-ins. */
 .pop-in {
-	animation: pop-in 200ms var(--ease-out) both;
+	animation: pop-in 200ms var(--ease-ui-out) both;
 }
 
 @keyframes pop-in {
@@ -568,7 +568,7 @@
 
 /* Shared by AnimatedGradientText: the gradient fill sweeps left-right and back. */
 .gradient-text-animate {
-	animation: gradient-text-shift var(--agt-duration, 3s) var(--ease-in-out) infinite alternate;
+	animation: gradient-text-shift var(--agt-duration, 3s) var(--ease-ui-in-out) infinite alternate;
 }
 
 @keyframes gradient-text-shift {
@@ -643,7 +643,7 @@
 }
 
 .roll-text--animating .roll-unit__stack {
-	animation: roll-stack-open var(--roll-unit-duration, 250ms) var(--ease-in-out)
+	animation: roll-stack-open var(--roll-unit-duration, 250ms) var(--ease-ui-in-out)
 		var(--roll-delay, 0ms) forwards;
 }
 
@@ -759,7 +759,7 @@
 /* Shared by TextTransition: one generic keyframe driven by custom properties the
    component sets per unit, so every named preset shares one animation. */
 .text-transition-unit {
-	animation: text-transition-enter var(--tt-duration, 400ms) var(--tt-ease, var(--ease-out))
+	animation: text-transition-enter var(--tt-duration, 400ms) var(--tt-ease, var(--ease-ui-out))
 		var(--tt-delay, 0ms) both;
 }
 
@@ -851,20 +851,20 @@
 }
 
 .collab-cursor--host {
-	animation: collab-host 9s var(--ease-in-out) infinite;
+	animation: collab-host 9s var(--ease-ui-in-out) infinite;
 }
 
 .collab-cursor--first {
-	animation: collab-first 5.5s var(--ease-in-out) infinite;
+	animation: collab-first 5.5s var(--ease-ui-in-out) infinite;
 }
 
 .collab-cursor--second {
-	animation: collab-second 5.5s var(--ease-in-out) infinite 0.8s;
+	animation: collab-second 5.5s var(--ease-ui-in-out) infinite 0.8s;
 }
 
 .collab-cursor [data-burst] {
 	opacity: 0;
-	animation: collab-burst 5.5s var(--ease-in-out) infinite;
+	animation: collab-burst 5.5s var(--ease-ui-in-out) infinite;
 	animation-fill-mode: both;
 }
 
@@ -963,7 +963,7 @@
 
 .theme-toggle-icon {
 	display: inline-flex;
-	animation: theme-toggle-icon-in 200ms var(--ease-in-out) both;
+	animation: theme-toggle-icon-in 200ms var(--ease-ui-in-out) both;
 }
 
 @keyframes theme-toggle-icon-in {
@@ -1254,7 +1254,7 @@
 
 /* Reasoning: a step that turns active grows its row open and fades in, like a Collapsible. */
 .reasoning-step-in {
-	animation: reasoning-step-in var(--duration-overlay) var(--ease-out) both;
+	animation: reasoning-step-in var(--duration-overlay) var(--ease-ui-out) both;
 }
 
 @keyframes reasoning-step-in {
@@ -1272,19 +1272,19 @@
 
 /* WeekCalendar: a new week or month dissolves in through a blur as the old one dissolves out. */
 .week-calendar-in {
-	animation: week-calendar-in var(--duration-overlay) var(--ease-out) both;
+	animation: week-calendar-in var(--duration-overlay) var(--ease-ui-out) both;
 }
 
 .week-calendar-out {
-	animation: week-calendar-out var(--duration-exit) var(--ease-out) both;
+	animation: week-calendar-out var(--duration-exit) var(--ease-ui-out) both;
 }
 
 .week-calendar-label-in {
-	animation: week-calendar-label-in var(--duration-overlay) var(--ease-out) both;
+	animation: week-calendar-label-in var(--duration-overlay) var(--ease-ui-out) both;
 }
 
 .week-calendar-label-out {
-	animation: week-calendar-label-out var(--duration-exit) var(--ease-out) both;
+	animation: week-calendar-label-out var(--duration-exit) var(--ease-ui-out) both;
 }
 
 @keyframes week-calendar-in {
@@ -1508,11 +1508,11 @@
 
 /* A digit gained or lost opens or closes its column instead of popping the width. */
 .rolling-digits-cell-in {
-	animation: rolling-digits-cell var(--duration-overlay) var(--ease-out) both;
+	animation: rolling-digits-cell var(--duration-overlay) var(--ease-ui-out) both;
 }
 
 .rolling-digits-cell-out {
-	animation: rolling-digits-cell-close var(--duration-overlay) var(--ease-out) both;
+	animation: rolling-digits-cell-close var(--duration-overlay) var(--ease-ui-out) both;
 }
 
 @keyframes rolling-digits-cell {
@@ -1532,11 +1532,11 @@
 @media (prefers-reduced-motion: reduce) {
 	.rolling-digits-in,
 	.rolling-digits-cell-in {
-		animation: fade-in 160ms var(--ease-out) both;
+		animation: fade-in 160ms var(--ease-ui-out) both;
 	}
 	.rolling-digits-out,
 	.rolling-digits-cell-out {
-		animation: text-fade-out var(--duration-exit) var(--ease-out) both;
+		animation: text-fade-out var(--duration-exit) var(--ease-ui-out) both;
 	}
 }
 
@@ -2253,7 +2253,7 @@
 	transition-duration: 611ms, 611ms, 611ms, 611ms, var(--duration-press), var(--duration-press);
 	transition-timing-function:
 		var(--slider-spring), var(--slider-spring), var(--slider-spring), var(--slider-spring),
-		var(--ease-out), var(--ease-out);
+		var(--ease-ui-out), var(--ease-ui-out);
 }
 
 .slider-glide[data-orientation="vertical"] {
@@ -2340,11 +2340,11 @@
 /* HeroStage: the frame rises in and its slots stagger in by --i. */
 .hero-stage-frame {
 	transform-origin: 50% 0;
-	animation: hero-stage-in 900ms var(--ease-out) both;
+	animation: hero-stage-in 900ms var(--ease-ui-out) both;
 }
 
 .hero-stage-slot {
-	animation: hero-stage-slot-in 700ms var(--ease-out) both;
+	animation: hero-stage-slot-in 700ms var(--ease-ui-out) both;
 	animation-delay: calc(250ms + var(--i, 0) * 110ms);
 }
 
@@ -2386,7 +2386,7 @@
 @supports (animation-timeline: scroll()) {
 	.hero-stage-tilt {
 		animation:
-			hero-stage-in 900ms var(--ease-out) both,
+			hero-stage-in 900ms var(--ease-ui-out) both,
 			hero-stage-tilt linear both;
 		animation-timeline: auto, scroll(root);
 		animation-range: normal, 0 55vh;
@@ -2562,7 +2562,7 @@
 }
 
 .roll-text--tilt.roll-text--animating .roll-unit__line:first-child {
-	animation: roll-tilt-out var(--roll-unit-duration, 450ms) var(--ease-in-out)
+	animation: roll-tilt-out var(--roll-unit-duration, 450ms) var(--ease-ui-in-out)
 		var(--roll-delay, 0ms) forwards;
 }
 
@@ -2610,22 +2610,22 @@
 /* ImageTrail: a spawn restarts these on a pooled image; JS only writes the positions. */
 .image-trail--fade .image-trail-item[data-active] {
 	animation:
-		image-trail-travel var(--image-trail-duration, 1600ms) var(--ease-out) both,
+		image-trail-travel var(--image-trail-duration, 1600ms) var(--ease-ui-out) both,
 		image-trail-fade calc(var(--image-trail-duration, 1600ms) * 0.6) ease-out
 		calc(var(--image-trail-duration, 1600ms) * 0.4) both;
 }
 
 .image-trail--fall .image-trail-item[data-active] {
 	animation:
-		image-trail-travel var(--image-trail-duration, 1600ms) var(--ease-out) both,
-		image-trail-fall calc(var(--image-trail-duration, 1600ms) * 0.6) var(--ease-in-out)
+		image-trail-travel var(--image-trail-duration, 1600ms) var(--ease-ui-out) both,
+		image-trail-fall calc(var(--image-trail-duration, 1600ms) * 0.6) var(--ease-ui-in-out)
 		calc(var(--image-trail-duration, 1600ms) * 0.4) both;
 }
 
 .image-trail--shrink .image-trail-item[data-active] {
 	animation:
-		image-trail-travel var(--image-trail-duration, 1600ms) var(--ease-out) both,
-		image-trail-shrink calc(var(--image-trail-duration, 1600ms) * 0.6) var(--ease-out)
+		image-trail-travel var(--image-trail-duration, 1600ms) var(--ease-ui-out) both,
+		image-trail-shrink calc(var(--image-trail-duration, 1600ms) * 0.6) var(--ease-ui-out)
 		calc(var(--image-trail-duration, 1600ms) * 0.4) both;
 }
 
@@ -2730,7 +2730,7 @@
 
 /* GithubCalendar: cells pop in column by column; `backwards` hands scale back to hover. */
 .github-calendar-cell {
-	animation: github-calendar-cell-in 360ms var(--ease-out) backwards;
+	animation: github-calendar-cell-in 360ms var(--ease-ui-out) backwards;
 	animation-delay: calc(var(--col, 0) * 8ms);
 }
 
@@ -2886,19 +2886,19 @@
 
 /* RippleTransition: the next image opens as a circle from the origin while rings ride its edge. */
 .ripple-transition-enter {
-	animation: ripple-transition-reveal var(--rt-duration, 1200ms) var(--ease-in-out) both;
+	animation: ripple-transition-reveal var(--rt-duration, 1200ms) var(--ease-ui-in-out) both;
 }
 
 .ripple-transition-enter > img {
-	animation: ripple-transition-settle var(--rt-duration, 1200ms) var(--ease-out) both;
+	animation: ripple-transition-settle var(--rt-duration, 1200ms) var(--ease-ui-out) both;
 }
 
 .ripple-transition-leave > img {
-	animation: ripple-transition-push var(--rt-duration, 1200ms) var(--ease-in-out) both;
+	animation: ripple-transition-push var(--rt-duration, 1200ms) var(--ease-ui-in-out) both;
 }
 
 .ripple-transition-ring {
-	animation: ripple-transition-ring var(--rt-duration, 1200ms) var(--ease-in-out) both;
+	animation: ripple-transition-ring var(--rt-duration, 1200ms) var(--ease-ui-in-out) both;
 }
 
 @keyframes ripple-transition-reveal {
@@ -3130,11 +3130,11 @@
 
 /* FlightStatusCard: code glyphs rise in one after another; the progress fill wipes in once. */
 .flight-status-char {
-	animation: flight-status-char 420ms var(--ease-out) var(--flight-status-delay, 0ms) both;
+	animation: flight-status-char 420ms var(--ease-ui-out) var(--flight-status-delay, 0ms) both;
 }
 
 .flight-status-reveal {
-	animation: flight-status-reveal 1100ms var(--ease-out) 200ms both;
+	animation: flight-status-reveal 1100ms var(--ease-ui-out) 200ms both;
 }
 
 /* Sparklines draw left to right by clip, so stroke width and aspect stretch never matter. */
@@ -3161,7 +3161,7 @@
    ring once when a new key lands. Delays come inline, one step per chip. */
 .license-flip {
 	transform-origin: 50% 0%;
-	animation: license-flip 360ms var(--ease-out) both;
+	animation: license-flip 360ms var(--ease-ui-out) both;
 }
 
 @keyframes license-flip {
@@ -3172,7 +3172,7 @@
 }
 
 .license-wave {
-	animation: license-wave 420ms var(--ease-out) both;
+	animation: license-wave 420ms var(--ease-ui-out) both;
 }
 
 @keyframes license-wave {
@@ -3197,8 +3197,8 @@
 
 .license-ring {
 	animation:
-		license-flip 360ms var(--ease-out) both,
-		license-ring 1100ms var(--ease-out) both;
+		license-flip 360ms var(--ease-ui-out) both,
+		license-ring 1100ms var(--ease-ui-out) both;
 }
 
 @keyframes license-ring {
@@ -3244,7 +3244,7 @@
 
 /* CircuitBoard: traces draw in (pathLength 100), nodes pop, then dashes of 8 ride each trace. */
 .circuit-board-trace {
-	animation: circuit-board-draw 900ms var(--ease-out) var(--circuit-board-delay, 0s) both;
+	animation: circuit-board-draw 900ms var(--ease-ui-out) var(--circuit-board-delay, 0s) both;
 }
 
 .circuit-board-pulse {
@@ -3314,15 +3314,15 @@
 .signature-glyph {
 	stroke-dasharray: 8em 100em;
 	fill-opacity: 0;
-	animation: signature-stroke calc(var(--signature-step, 0.2s) * 2.5) var(--ease-in-out)
+	animation: signature-stroke calc(var(--signature-step, 0.2s) * 2.5) var(--ease-ui-in-out)
 		calc(var(--signature-delay, 0s) + var(--signature-i, 0) * var(--signature-step, 0.2s)) both;
 }
 
 .signature-glyph.signature-ink {
 	animation:
-		signature-stroke calc(var(--signature-step, 0.2s) * 2.5) var(--ease-in-out)
+		signature-stroke calc(var(--signature-step, 0.2s) * 2.5) var(--ease-ui-in-out)
 			calc(var(--signature-delay, 0s) + var(--signature-i, 0) * var(--signature-step, 0.2s)) both,
-		signature-fill calc(var(--signature-step, 0.2s) * 2) var(--ease-out)
+		signature-fill calc(var(--signature-step, 0.2s) * 2) var(--ease-ui-out)
 			calc(var(--signature-delay, 0s) + (var(--signature-i, 0) + 1.5) * var(--signature-step, 0.2s))
 			both;
 }
@@ -3367,34 +3367,34 @@
    month or year grids zooms like a level change. The root's data-calendar-motion picks which. */
 .calendar-weeks-in,
 .calendar-choices-in {
-	animation: calendar-settle 180ms var(--ease-out);
+	animation: calendar-settle 180ms var(--ease-ui-out);
 }
 
 [data-calendar-motion="next"] .calendar-weeks-in,
 [data-calendar-motion="next"] .calendar-choices-in,
 [data-calendar-motion="next"] .calendar-caption-in {
-	animation: calendar-page-next 240ms var(--ease-out);
+	animation: calendar-page-next 240ms var(--ease-ui-out);
 }
 
 [data-calendar-motion="prev"] .calendar-weeks-in,
 [data-calendar-motion="prev"] .calendar-choices-in,
 [data-calendar-motion="prev"] .calendar-caption-in {
-	animation: calendar-page-prev 240ms var(--ease-out);
+	animation: calendar-page-prev 240ms var(--ease-ui-out);
 }
 
 [data-calendar-motion="zoom-in"] .calendar-weeks-in,
 [data-calendar-motion="zoom-in"] .calendar-choices-in {
-	animation: calendar-zoom-in 260ms var(--ease-out);
+	animation: calendar-zoom-in 260ms var(--ease-ui-out);
 }
 
 [data-calendar-motion="zoom-out"] .calendar-weeks-in,
 [data-calendar-motion="zoom-out"] .calendar-choices-in {
-	animation: calendar-zoom-out 260ms var(--ease-out);
+	animation: calendar-zoom-out 260ms var(--ease-ui-out);
 }
 
 /* Month and year cells rise in one after another; the delay comes inline per cell. */
 .calendar-choice-in {
-	animation: calendar-settle 220ms var(--ease-out) both;
+	animation: calendar-settle 220ms var(--ease-ui-out) both;
 }
 
 @keyframes calendar-settle {
@@ -3521,16 +3521,16 @@
 /* bits-ui navigation menu: its presence waits for animations, not transitions, so the panels
    cross-slide on keyframes keyed to data-motion, as shadcn-svelte does. */
 .nav-menu-content[data-motion="from-start"] {
-	animation: nav-menu-from-start var(--duration-overlay) var(--ease-out);
+	animation: nav-menu-from-start var(--duration-overlay) var(--ease-ui-out);
 }
 .nav-menu-content[data-motion="from-end"] {
-	animation: nav-menu-from-end var(--duration-overlay) var(--ease-out);
+	animation: nav-menu-from-end var(--duration-overlay) var(--ease-ui-out);
 }
 .nav-menu-content[data-motion="to-start"] {
-	animation: nav-menu-to-start var(--duration-overlay) var(--ease-out) forwards;
+	animation: nav-menu-to-start var(--duration-overlay) var(--ease-ui-out) forwards;
 }
 .nav-menu-content[data-motion="to-end"] {
-	animation: nav-menu-to-end var(--duration-overlay) var(--ease-out) forwards;
+	animation: nav-menu-to-end var(--duration-overlay) var(--ease-ui-out) forwards;
 }
 /* The ANCHORED contract: in from 0.9 and 4px up over 150ms, out to 0.95 over 100ms, plain ease. */
 .nav-menu-viewport[data-state="open"] {

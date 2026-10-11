@@ -147,8 +147,35 @@ function item(
 	});
 }
 
-export function tokensUrl(framework: Framework): string {
-	return `${REGISTRY_URL}/${FRAMEWORK[framework].routePrefix}/tokens.json`;
+export function tokensUrl(framework: Framework, name = "tokens"): string {
+	return `${REGISTRY_URL}/${FRAMEWORK[framework].routePrefix}/${name}.json`;
+}
+
+/** Opt-in token layers: `vars` picks a layer's variables, `uses` spots them in a component's
+ * source, so one button never pulls chart scales or glass. */
+export const TOKEN_LAYERS = [
+	{
+		name: "tokens-charts",
+		title: "Chart tokens",
+		description: "Sequential scales and positive/negative colours for charts.",
+		vars: /^--(color-)?chart-(scale-\d|positive|negative)$/,
+		uses: /chart-(scale-\d|positive|negative)/,
+	},
+	{
+		name: "tokens-effects",
+		title: "Effect tokens",
+		description: "Glass, brand gradients and the neon and violet highlights.",
+		vars: /^--(color-)?(glass-|gradient-|neon$|violet$)|^--background-image-brand-/,
+		uses: /glass-(bg|border)|gradient-(bg|accent)|brand-(bg|accent)|(?:-|var\(--)(?:neon|violet)(?![\w-])/,
+	},
+] as const;
+
+/** The opt-in layers a component's shipped sources read. */
+export function tokenLayerUrls(framework: Framework, sources: string[]): string[] {
+	const text = sources.join("\n");
+	return TOKEN_LAYERS.filter((layer) => layer.uses.test(text)).map((layer) =>
+		tokensUrl(framework, layer.name),
+	);
 }
 
 /**
@@ -159,10 +186,15 @@ export async function buildThemeItems(framework: Framework): Promise<RegistryIte
 	const palette = await split("tokens.css");
 	const motion = await split("motion.css");
 	const theme = await split("theme.css");
+	const tailwind = await tailwindThemeKeys();
 
 	// Fonts travel with the theme: a project keeps its own type stack until it adopts the look.
-	const extension = (name: string) =>
-		!SHADCN_VARS.has(name) && !name.startsWith("--font-");
+	const layered = (name: string) => TOKEN_LAYERS.some((layer) => layer.vars.test(name));
+	const additive = (name: string) =>
+		!SHADCN_VARS.has(name) && !name.startsWith("--font-") && !tailwind.has(name);
+	const extension = (name: string) => additive(name) && !layered(name);
+	// `@layer base` (cursor) restyles the host's own buttons, so only `theme` carries it.
+	const { "@layer base": base, ...additiveCss } = palette.css;
 	const tokens = item(framework, {
 		name: "tokens",
 		type: "registry:style",
@@ -176,7 +208,26 @@ export async function buildThemeItems(framework: Framework): Promise<RegistryIte
 		},
 		// Class rules travel with the component that uses them (see cssFor); only the
 		// global bits stay here.
-		css: { ...palette.css, ...globalOnly(motion.css) },
+		css: { ...additiveCss, ...globalOnly(motion.css) },
+	});
+	assertAdditive(tokens, tailwind);
+
+	const layers = TOKEN_LAYERS.map((layer) => {
+		const inLayer = (name: string) => additive(name) && layer.vars.test(name);
+		const built = item(framework, {
+			name: layer.name,
+			type: "registry:style",
+			title: layer.title,
+			description: layer.description,
+			registryDependencies: [tokensUrl(framework)],
+			cssVars: {
+				theme: pick({ ...theme.theme }, inLayer),
+				light: pick(palette.light, inLayer),
+				dark: pick(palette.dark, inLayer),
+			},
+		});
+		assertAdditive(built, tailwind);
+		return built;
 	});
 
 	const standard = (name: string) => SHADCN_VARS.has(name) || name.startsWith("--font-");
@@ -185,16 +236,56 @@ export async function buildThemeItems(framework: Framework): Promise<RegistryIte
 		type: "registry:theme",
 		title: "Theme",
 		description: "The full palette, radius and type stack, replacing shadcn's defaults.",
-		registryDependencies: [tokensUrl(framework)],
+		registryDependencies: [
+			tokensUrl(framework),
+			...TOKEN_LAYERS.map((layer) => tokensUrl(framework, layer.name)),
+		],
 		cssVars: {
 			// The whole @theme block, so bg-popover and friends exist even without `shadcn init`.
 			theme: { ...theme.theme },
 			light: pick(palette.light, standard),
 			dark: pick(palette.dark, standard),
 		},
+		css: base && typeof base === "object" ? { "@layer base": base } : undefined,
 	});
 
-	return [tokens, full];
+	return [tokens, ...layers, full];
+}
+
+let tailwindKeys: Promise<Set<string>> | undefined;
+
+/** Every variable Tailwind's default theme defines; `tokens` must leave all of them alone. */
+export function tailwindThemeKeys(): Promise<Set<string>> {
+	tailwindKeys ??= readFile(
+		createRequire(import.meta.url).resolve("tailwindcss/theme.css"),
+		"utf8",
+	).then(
+		(css) => new Set([...css.matchAll(/^\s*(--[\w-]+)\s*:/gm)].map((m) => m[1] ?? "")),
+	);
+	return tailwindKeys;
+}
+
+function declared(css: Css, out: string[] = []): string[] {
+	for (const [k, v] of Object.entries(css)) {
+		if (typeof v === "object") declared(v, out);
+		else if (k.startsWith("--")) out.push(k);
+	}
+	return out;
+}
+
+/** `tokens` installs into apps that already have a theme: it may add variables, never redefine
+ * shadcn's or Tailwind's. Throws so a regression fails the build, not a consumer's app. */
+export function assertAdditive(tokens: RegistryItem, tailwind: Set<string>): void {
+	const vars = Object.values(tokens.cssVars ?? {}).flatMap((group) =>
+		Object.keys(group ?? {}).map((k) => `--${k}`),
+	);
+	const clashes = [...vars, ...declared((tokens.css ?? {}) as Css)].filter(
+		(name) => SHADCN_VARS.has(name) || tailwind.has(name),
+	);
+	if (clashes.length)
+		throw new Error(
+			`tokens redefines host variables: ${[...new Set(clashes)].join(", ")}`,
+		);
 }
 
 // Class rules ship with the component that uses them; only the :root overrides stay global.

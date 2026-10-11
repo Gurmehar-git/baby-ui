@@ -7,7 +7,7 @@ export const footer = tv({
 		topLink:
 			"group/top inline-flex h-9 items-center gap-2 rounded-full px-5 font-medium text-foreground text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring",
 		topIcon:
-			"size-4 transition-transform duration-[var(--duration-press)] ease-[var(--ease-out)] group-hover/top:-translate-y-0.5 motion-reduce:transition-none",
+			"size-4 transition-transform duration-[var(--duration-press)] ease-[var(--ease-ui-out)] group-hover/top:-translate-y-0.5 motion-reduce:transition-none",
 		inner: "mx-auto max-w-6xl px-6 pt-20 pb-10 @3xl:pt-24 @3xl:pb-12",
 		grid: "grid gap-14",
 		brandBlock: "",

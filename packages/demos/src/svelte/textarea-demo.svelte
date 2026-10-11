@@ -16,7 +16,7 @@ let value = $state(
 		bind:value
 		label={p.label ?? "Message"}
 		description={p.description}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		variant={p.variant ?? "outline"}
 		rows={p.rows ?? 4}
 		autoGrow={p.autoGrow ?? false}

@@ -4,9 +4,9 @@ export const iridescentFold = tv({
 	slots: {
 		root: "inset-0 isolate overflow-hidden bg-background",
 		fallback:
-			"pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		canvas:
-			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		content: "relative z-10 size-full",
 	},
 	variants: {
@@ -87,7 +87,7 @@ export const IRIDESCENT_FOLD_COLORS: Record<IridescentFoldTone, readonly string[
 	opal: ["var(--background)", "#f7d58b", "#f2a7c9", "#a9c4f5"],
 	lavender: ["var(--background)", "#c9a7f5", "#e6a8e8", "#9fb8f2"],
 	spectrum: ["var(--background)", "var(--chart-1)", "var(--violet)", "var(--chart-3)"],
-	cool: ["var(--background)", "var(--info)", "var(--violet)", "var(--accent)"],
+	cool: ["var(--background)", "var(--info)", "var(--violet)", "var(--primary)"],
 	warm: ["var(--background)", "var(--chart-4)", "var(--chart-2)", "var(--chart-5)"],
 	mono: [
 		"var(--background)",

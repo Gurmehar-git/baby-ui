@@ -79,7 +79,7 @@ export function RecommendationCard({ title, options, labels }: RecommendationCar
 			</div>
 
 			<div
-				className="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-out)]"
+				className="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-ui-out)]"
 				style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
 			>
 				<div className="overflow-hidden">
@@ -95,7 +95,7 @@ export function RecommendationCard({ title, options, labels }: RecommendationCar
 									setSelected(index);
 									setAccepted(false);
 								}}
-								className="flex w-full items-center gap-2.5 rounded-lg px-1.5 py-1.5 text-left transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06]"
+								className="flex w-full items-center gap-2.5 rounded-lg px-1.5 py-1.5 text-left transition-colors duration-(--duration-instant) hover:bg-accent"
 							>
 								<Meter signal={option.signal} tone={option.tone} />
 								<span className="min-w-0 flex-1 truncate text-xs text-foreground">

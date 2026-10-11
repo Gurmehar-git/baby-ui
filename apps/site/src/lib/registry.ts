@@ -245,6 +245,7 @@ export type NavIcon =
 	| "intro"
 	| "install"
 	| "theming"
+	| "design"
 	| "llms";
 
 export type NavMenuItem = NavLink & {
@@ -339,6 +340,12 @@ export function siteNav(categories: NavCategory[]): NavItem[] {
 					label: "Theming",
 					description: "Tokens, colours and motion variables.",
 					icon: "theming",
+				},
+				{
+					href: "/design-system",
+					label: "Design system",
+					description: "The scale, tokens and states, measured live.",
+					icon: "design",
 				},
 				{
 					href: "/llms.txt",

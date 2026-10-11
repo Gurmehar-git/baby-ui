@@ -272,7 +272,7 @@ export function ChartTooltipPanel({
 			data-slot="chart-tooltip"
 			data-open={anchor ? "" : undefined}
 			aria-hidden="true"
-			className="pointer-events-none absolute z-30 opacity-0 transition-opacity duration-[var(--duration-exit)] ease-[var(--ease-out)] data-open:opacity-100 data-open:duration-(--duration-instant)"
+			className="pointer-events-none absolute z-30 opacity-0 transition-opacity duration-[var(--duration-exit)] ease-[var(--ease-ui-out)] data-open:opacity-100 data-open:duration-(--duration-instant)"
 		>
 			<div
 				ref={panelRef}

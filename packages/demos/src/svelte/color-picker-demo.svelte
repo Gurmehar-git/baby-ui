@@ -24,7 +24,7 @@ $effect(() => {
 	bind:format
 	variant={p.variant ?? "field"}
 	class={p.variant === "row" ? "max-w-64" : undefined}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	invalid={p.invalid ?? false}
 	{recent}
 	onOpenChange={(open) => {

@@ -4,15 +4,15 @@ export const recordsTable = tv({
 	slots: {
 		root: "",
 		table:
-			"border-collapse text-sm transition-[width,min-width] duration-(--duration-slow) ease-[var(--ease-out)] motion-reduce:transition-none",
+			"border-collapse text-sm transition-[width,min-width] duration-(--duration-slow) ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		cell: "px-3",
 		headerCell: "px-3",
 		row: "transition-colors",
 		pinCell: "bg-card",
 		aiCol:
-			"transition-[width] duration-(--duration-slow) ease-[var(--ease-out)] motion-reduce:transition-none",
+			"transition-[width] duration-(--duration-slow) ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		aiCell:
-			"transition-[padding,opacity] duration-(--duration-slow) ease-[var(--ease-out)] motion-reduce:transition-none",
+			"transition-[padding,opacity] duration-(--duration-slow) ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		// minmax(0,1fr) gives the cell a zero min-content, so the col width alone sizes it.
 		aiInner: "grid grid-cols-[minmax(0,1fr)] overflow-hidden",
 	},

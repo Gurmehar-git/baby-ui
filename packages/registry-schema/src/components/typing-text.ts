@@ -114,6 +114,7 @@ export const typingText = defineComponent({
 			entry: "TypingText",
 			files: [
 				{ path: "typing-text/typing-text.tsx", type: "registry:ui" },
+				{ path: "typing-text/stumble.ts", type: "registry:ui" },
 				{ path: "typing-text/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
@@ -123,6 +124,7 @@ export const typingText = defineComponent({
 			entry: "TypingText",
 			files: [
 				{ path: "typing-text/typing-text.svelte", type: "registry:ui" },
+				{ path: "typing-text/stumble.ts", type: "registry:ui" },
 				{ path: "typing-text/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],

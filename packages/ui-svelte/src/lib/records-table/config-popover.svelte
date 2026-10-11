@@ -58,9 +58,9 @@ const behaviour: (keyof Omit<RecordsColumnSettings, "grounding">)[] = [
 ];
 const typeItems = NEW_PROPERTY_TYPES.map((type) => ({ value: type, label: type }));
 const actionRow =
-	"flex h-8 items-center gap-2.5 rounded-md px-1.5 text-left text-sm text-foreground transition-colors hover:bg-foreground/[0.06]";
+	"flex h-8 items-center gap-2.5 rounded-md px-1.5 text-left text-sm text-foreground transition-colors hover:bg-accent";
 const pickerTrigger =
-	"h-7 w-auto min-w-0 gap-1.5 border-none bg-transparent px-1.5 font-medium text-sm text-foreground hover:bg-foreground/[0.06]";
+	"h-7 w-auto min-w-0 gap-1.5 border-none bg-transparent px-1.5 font-medium text-sm text-foreground hover:bg-accent";
 </script>
 
 {#snippet icon(size: number, d: string[], circles: [number, number, number][] = [])}
@@ -132,7 +132,7 @@ const pickerTrigger =
 			<HoverCard>
 				<HoverCardTrigger
 					aria-label={labels.aboutGrounding}
-					class="flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+					class="flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
 				>
 					{@render icon(13, ["M12 8h.01M11 12h1v4h1"], [[12, 12, 9]])}
 				</HoverCardTrigger>
@@ -148,7 +148,7 @@ const pickerTrigger =
 		<Popover>
 			<PopoverTrigger
 				aria-label={labels.inputs}
-				class="flex h-7 max-w-[220px] items-center gap-1.5 rounded-md px-1.5 text-sm text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+				class="flex h-7 max-w-[220px] items-center gap-1.5 rounded-md px-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
 			>
 				{#if column.inputs.length}
 					<span class="flex min-w-0 items-center gap-1">
@@ -175,7 +175,7 @@ const pickerTrigger =
 								() => column.inputs.includes(option),
 								() => onChange({ inputs: toggleIn(column.inputs, option) })
 							}
-							class="min-h-8 rounded-md px-1.5 py-1 hover:bg-foreground/[0.06]"
+							class="min-h-8 rounded-md px-1.5 py-1 hover:bg-accent"
 						/>
 					{/each}
 				</div>
@@ -229,7 +229,7 @@ const pickerTrigger =
 		data-slot="records-table-more-settings"
 		data-open={moreOpen || undefined}
 		inert={!moreOpen}
-		class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] data-[open]:grid-rows-[1fr] motion-reduce:transition-none"
+		class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] data-[open]:grid-rows-[1fr] motion-reduce:transition-none"
 	>
 		<div class="min-h-0 overflow-hidden">
 			<div class="mt-2 border-border border-t pt-2">

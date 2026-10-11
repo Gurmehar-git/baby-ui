@@ -39,7 +39,7 @@ const BG_CLASS =
 			<!-- p-px: the rotating beam shows through as a 1px ring around the pill. -->
 			<a
 				href="/components#new"
-				class="hero-in group relative mb-7 inline-flex rounded-full bg-border p-px text-foreground text-xs transition-[scale] duration-150 ease-[var(--ease-out)] active:scale-[0.97] motion-reduce:transition-none"
+				class="hero-in group relative mb-7 inline-flex rounded-full bg-border p-px text-foreground text-xs transition-[scale] duration-150 ease-[var(--ease-ui-out)] active:scale-[0.97] motion-reduce:transition-none"
 			>
 				<span aria-hidden="true" class="new-beam absolute inset-0 rounded-full"></span>
 				<span aria-hidden="true" class="new-beam absolute -inset-1 rounded-full opacity-50 blur-md"></span>
@@ -91,7 +91,7 @@ const BG_CLASS =
 <style>
 	/* One entrance, played once: 400ms per block, 50ms apart, done by 550ms. */
 	.hero-in {
-		animation: hero-in 400ms var(--ease-out) both;
+		animation: hero-in 400ms var(--ease-ui-out) both;
 		animation-delay: calc(var(--i, 0) * 50ms);
 	}
 
@@ -139,7 +139,7 @@ const BG_CLASS =
 	}
 
 	.new-dot {
-		animation: dot-pulse 1.6s var(--ease-out) infinite;
+		animation: dot-pulse 1.6s var(--ease-ui-out) infinite;
 	}
 
 	@keyframes beam-spin {

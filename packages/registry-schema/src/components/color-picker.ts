@@ -22,11 +22,11 @@ export const colorPicker = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description:
 				"Size of the field, area, slider and discs; the inline panel keeps its width.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 		{
 			name: "invalid",

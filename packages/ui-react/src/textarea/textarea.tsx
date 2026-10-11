@@ -22,7 +22,7 @@ export interface TextareaProps
 export function Textarea({
 	className,
 	rows = 3,
-	size = "md",
+	size = "default",
 	variant = "outline",
 	autoGrow = false,
 	maxRows = 10,

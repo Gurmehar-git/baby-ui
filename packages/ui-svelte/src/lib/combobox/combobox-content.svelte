@@ -8,7 +8,7 @@ import { type ComboboxSize, combobox } from "./variants";
 let {
 	children,
 	class: classProp,
-	size = "md",
+	size = "default",
 	...rest
 }: ComponentProps<typeof PopoverContent> & { size?: ComboboxSize } = $props();
 

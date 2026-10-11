@@ -11,7 +11,7 @@ export const githubCalendar = tv({
 		month:
 			"w-0 overflow-visible whitespace-nowrap pb-1.5 text-xs text-muted-foreground leading-none",
 		weekday: "self-center pr-2 text-xs text-muted-foreground leading-none",
-		cell: "github-calendar-cell relative block bg-[var(--cell)] outline-none transition-[scale,box-shadow,background-color] duration-(--duration-base) ease-[var(--ease-out)] hover:z-10 hover:scale-125 motion-reduce:hover:scale-100 focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-ring data-[active]:z-10 data-[active]:ring-2 data-[active]:ring-foreground/70 motion-reduce:transition-none",
+		cell: "github-calendar-cell relative block bg-[var(--cell)] outline-none transition-[scale,box-shadow,background-color] duration-(--duration-base) ease-[var(--ease-ui-out)] hover:z-10 hover:scale-125 motion-reduce:hover:scale-100 focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-ring data-[active]:z-10 data-[active]:ring-2 data-[active]:ring-foreground/70 motion-reduce:transition-none",
 		legend: "flex items-center justify-end gap-1 text-muted-foreground text-xs",
 		swatch: "block bg-[var(--cell)]",
 		tip: "flex items-baseline gap-1 whitespace-nowrap",

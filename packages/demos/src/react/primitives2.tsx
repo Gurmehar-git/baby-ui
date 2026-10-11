@@ -57,7 +57,7 @@ export function ToggleDemo({ props }: { props: Props }) {
 			pressed={pressed}
 			onPressedChange={setPressed}
 			variant={p.variant ?? "default"}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			disabled={p.disabled ?? false}
 		>
 			{/* The outline fills once pressed, so the state reads from the glyph as well as the fill. */}
@@ -94,7 +94,7 @@ export function ToggleGroupDemo({ props }: { props: Props }) {
 			onValueChange={setValue}
 			type={type}
 			variant={p.variant ?? "default"}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			disabled={p.disabled ?? false}
 			label={multiple ? "Text formatting" : "Text alignment"}
 		>

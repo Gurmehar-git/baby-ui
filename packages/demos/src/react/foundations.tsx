@@ -9,7 +9,7 @@ type Props = Record<string, unknown>;
 
 export function ButtonDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof Button>>(props);
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 	return (
 		<Button
 			variant={p.variant ?? "default"}

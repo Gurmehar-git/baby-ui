@@ -28,7 +28,7 @@ function offset(index: number) {
 }
 
 const HALF_CLASS =
-	"inline h-1/2 select-none overflow-y-hidden whitespace-pre leading-none transition-transform ease-[var(--ease-out)]";
+	"inline h-1/2 select-none overflow-y-hidden whitespace-pre leading-none transition-transform ease-[var(--ease-ui-out)]";
 </script>
 
 <div data-slot="split-text" class={cn(splitText({ size }), classProp)}>

@@ -240,7 +240,7 @@ function PlainTyping({
 								// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
 								key={i}
 								className={cn(
-									"transition-opacity duration-[var(--tt-fade-duration,300ms)] ease-[var(--ease-in-out)]",
+									"transition-opacity duration-[var(--tt-fade-duration,300ms)] ease-[var(--ease-ui-in-out)]",
 									i < index ? "opacity-100" : "opacity-0",
 								)}
 							>

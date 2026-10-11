@@ -87,9 +87,9 @@ function ConfigRow({ label, children }: { label: string; children: ReactNode }) 
 }
 
 const ACTION_ROW =
-	"flex h-8 items-center gap-2.5 rounded-md px-1.5 text-left text-sm text-foreground transition-colors hover:bg-foreground/[0.06]";
+	"flex h-8 items-center gap-2.5 rounded-md px-1.5 text-left text-sm text-foreground transition-colors hover:bg-accent";
 const PICKER_TRIGGER =
-	"h-7 w-auto min-w-0 gap-1.5 border-none bg-transparent px-1.5 font-medium text-sm text-foreground hover:bg-foreground/[0.06]";
+	"h-7 w-auto min-w-0 gap-1.5 border-none bg-transparent px-1.5 font-medium text-sm text-foreground hover:bg-accent";
 
 export interface ConfigPopoverProps {
 	title: string;
@@ -189,7 +189,7 @@ export function ConfigPopover({
 					<HoverCard>
 						<HoverCardTrigger
 							aria-label={labels.aboutGrounding}
-							className="flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+							className="flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
 						>
 							<Icon size={13}>
 								<circle cx="12" cy="12" r="9" />
@@ -207,7 +207,7 @@ export function ConfigPopover({
 				<Popover>
 					<PopoverTrigger
 						aria-label={labels.inputs}
-						className="flex h-7 max-w-[220px] items-center gap-1.5 rounded-md px-1.5 text-sm text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+						className="flex h-7 max-w-[220px] items-center gap-1.5 rounded-md px-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
 					>
 						{column.inputs.length ? (
 							<span className="flex min-w-0 items-center gap-1">
@@ -242,7 +242,7 @@ export function ConfigPopover({
 									onCheckedChange={() =>
 										onChange({ inputs: toggleIn(column.inputs, option) })
 									}
-									className="min-h-8 rounded-md px-1.5 py-1 hover:bg-foreground/[0.06]"
+									className="min-h-8 rounded-md px-1.5 py-1 hover:bg-accent"
 								/>
 							))}
 						</div>
@@ -332,7 +332,7 @@ export function ConfigPopover({
 				data-slot="records-table-more-settings"
 				data-open={moreOpen || undefined}
 				inert={!moreOpen}
-				className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] data-[open]:grid-rows-[1fr] motion-reduce:transition-none"
+				className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] data-[open]:grid-rows-[1fr] motion-reduce:transition-none"
 			>
 				<div className="min-h-0 overflow-hidden">
 					<div className="mt-2 border-border border-t pt-2">

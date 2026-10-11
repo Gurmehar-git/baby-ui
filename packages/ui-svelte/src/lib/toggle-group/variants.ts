@@ -24,21 +24,32 @@ export const toggleGroup = tv({
 				item: "data-[state=on]:bg-foreground/[0.08]",
 			},
 		},
+		// The whole group sits on the control ladder: items are the height minus the rim
+		// (border + padding), and their radius is the group's minus that same inset.
 		size: {
-			// The rim and radius scale with the item, so small groups stay slim.
-			sm: {
-				root: "rounded-lg p-0.5",
-				item: "h-6 rounded-md px-2 text-xs [&_svg]:size-3",
+			xs: {
+				root: "h-6 rounded-sm p-0.5",
+				item: "h-4.5 rounded-[calc(var(--radius-sm)-3px)] px-1.5 text-xs [&_svg]:size-3",
 			},
-			md: { root: "rounded-lg p-0.5", item: "h-7 rounded-md px-2.5 text-xs" },
-			lg: { root: "rounded-xl p-1", item: "h-8 rounded-lg px-3 text-sm [&_svg]:size-4" },
+			sm: {
+				root: "h-8 rounded-md p-0.5",
+				item: "h-6.5 rounded-[calc(var(--radius-md)-3px)] px-2 text-xs [&_svg]:size-3.5",
+			},
+			default: {
+				root: "h-9 rounded-lg p-0.5",
+				item: "h-7.5 rounded-[calc(var(--radius-lg)-3px)] px-2.5 text-sm [&_svg]:size-4",
+			},
+			lg: {
+				root: "h-10 rounded-lg p-0.5",
+				item: "h-8.5 rounded-[calc(var(--radius-lg)-3px)] px-3 text-sm [&_svg]:size-4",
+			},
 			xl: {
-				root: "rounded-xl p-1",
-				item: "h-10 rounded-lg px-4 text-base [&_svg]:size-4",
+				root: "h-12 rounded-xl p-1",
+				item: "h-9.5 rounded-[calc(var(--radius-xl)-5px)] px-3.5 text-base [&_svg]:size-4.5",
 			},
 		},
 	},
-	defaultVariants: { variant: "default", size: "md" },
+	defaultVariants: { variant: "default", size: "default" },
 });
 
 export type ToggleGroupVariant = NonNullable<VariantProps<typeof toggleGroup>["variant"]>;

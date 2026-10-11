@@ -8,7 +8,7 @@ export const wheelCarousel = tv({
 		photoCol: "flex h-full w-[var(--photo-width)] shrink-0 items-center justify-center",
 		photo: "relative isolate w-full max-h-full overflow-hidden rounded-[14px] bg-muted",
 		image:
-			"absolute inset-0 size-full object-cover transition-[opacity,scale] duration-[var(--duration-overlay)] ease-[var(--ease-out)] starting:scale-[1.04] starting:opacity-0 data-[leaving]:opacity-0 motion-reduce:transition-none",
+			"absolute inset-0 size-full object-cover transition-[opacity,scale] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] starting:scale-[1.04] starting:opacity-0 data-[leaving]:opacity-0 motion-reduce:transition-none",
 		list: "relative h-full min-w-0 flex-1 overflow-hidden outline-none mask-[linear-gradient(to_bottom,transparent,black_30%,black_70%,transparent)]",
 		marker:
 			"absolute top-1/2 z-10 size-4 -translate-x-full -translate-y-1/2 rounded-full bg-primary",

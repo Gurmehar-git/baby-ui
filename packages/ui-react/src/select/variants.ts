@@ -1,44 +1,55 @@
 import { tv, type VariantProps } from "tailwind-variants";
+import { controlSize, fieldFrame } from "../lib/control";
 
 // Open state is `data-popup-open` from Base UI and `data-state=open` from bits-ui.
 export const selectTrigger = tv({
-	base: "inline-flex items-center justify-between gap-2 text-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+	base: "inline-flex items-center justify-between",
 	variants: {
 		variant: {
 			default: [
-				"w-full rounded-lg border border-input bg-background",
-				"hover:border-border-strong focus-visible:border-ring data-[popup-open]:border-ring data-[state=open]:border-ring",
+				fieldFrame(),
+				"w-full",
+				"data-[popup-open]:border-ring data-[popup-open]:ring-3 data-[popup-open]:ring-ring/20",
+				"data-[state=open]:border-ring data-[state=open]:ring-3 data-[state=open]:ring-ring/20",
 			],
 			// Text and a chevron: a compact switch beside a heading, not a form field.
 			ghost: [
-				"w-auto rounded-md font-medium text-muted-foreground",
-				"hover:bg-foreground/[0.06] hover:text-foreground",
-				"data-[popup-open]:bg-foreground/[0.06] data-[popup-open]:text-foreground data-[state=open]:bg-foreground/[0.06] data-[state=open]:text-foreground",
+				"w-auto font-medium text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring",
+				"transition-[color,background-color,scale] duration-(--duration-fast) ease-(--ease-ui-out) motion-reduce:transition-none",
+				"hover:bg-accent hover:text-accent-foreground active:scale-[var(--press-scale-sm)]",
+				"data-[popup-open]:bg-accent data-[popup-open]:text-foreground data-[state=open]:bg-accent data-[state=open]:text-foreground",
+				"disabled:cursor-not-allowed disabled:opacity-50",
 			],
 		},
+		// The chevron stays a step under the ladder's icon at lg and xl.
 		size: {
-			xs: "h-6 gap-1 px-1.5 text-xs [&_svg]:size-3",
-			sm: "h-8 px-2.5 text-xs",
-			default: "h-9 px-3 text-sm",
+			xs: [controlSize({ size: "xs" }), "gap-1 px-2"],
+			sm: [controlSize({ size: "sm" }), "gap-1.5 px-2.5"],
+			default: [controlSize({ size: "default" }), "gap-2 px-3"],
+			lg: [controlSize({ size: "lg" }), "gap-2 px-3.5 [&_svg]:size-4"],
+			xl: [controlSize({ size: "xl" }), "gap-2.5 px-4 [&_svg]:size-4.5"],
 		},
 	},
 	defaultVariants: { variant: "default", size: "default" },
 });
 
-// Pair with the trigger's size; every size grows past a short trigger to fit its rows.
+// Pair with the trigger's size. Rows: xs 24, sm 28, default 32, lg 36, xl 40; the xs surface
+// drops to rounded-lg so its rows stay concentric.
 export const selectContent = tv({
 	variants: {
 		size: {
 			xs: [
 				"rounded-lg",
-				"**:data-[slot=select-item]:gap-3 **:data-[slot=select-item]:px-2 **:data-[slot=select-item]:py-1 **:data-[slot=select-item]:text-xs",
+				"**:data-[slot=select-item]:gap-1.5 **:data-[slot=select-item]:rounded-sm **:data-[slot=select-item]:px-2 **:data-[slot=select-item]:py-1 **:data-[slot=select-item]:text-xs",
 				"[&_[data-slot=select-item]_svg]:size-3",
 			],
-			sm: [
-				"**:data-[slot=select-item]:gap-3 **:data-[slot=select-item]:py-1 **:data-[slot=select-item]:text-xs",
-				"[&_[data-slot=select-item]_svg]:size-3",
-			],
+			sm: "**:data-[slot=select-item]:text-xs [&_[data-slot=select-item]_svg]:size-3",
 			default: "",
+			lg: "**:data-[slot=select-item]:py-2 [&_[data-slot=select-item]_svg]:size-4",
+			xl: [
+				"**:data-[slot=select-item]:px-3 **:data-[slot=select-item]:py-2 **:data-[slot=select-item]:text-base",
+				"[&_[data-slot=select-item]_svg]:size-4",
+			],
 		},
 	},
 	defaultVariants: { size: "default" },

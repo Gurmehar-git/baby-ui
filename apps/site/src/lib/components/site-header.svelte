@@ -7,6 +7,7 @@ import {
 	IconComponents,
 	IconFileText,
 	IconForms,
+	IconLayers,
 	IconLayoutGrid,
 	IconMail,
 	IconMenu2,
@@ -68,6 +69,7 @@ const ICONS: Record<NavIcon, typeof IconBook> = {
 	intro: IconBook,
 	install: IconTerminal2,
 	theming: IconPalette,
+	design: IconLayers,
 	llms: IconFileText,
 };
 
@@ -149,7 +151,7 @@ function active(match: string[]) {
 		"fixed inset-x-0 top-0 z-40",
 		// The blur layer is always composited; scrolling only fades its opacity.
 		"before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:border-border before:border-b before:bg-background/70 before:backdrop-blur-xl before:backdrop-saturate-150",
-		"before:transition-opacity before:duration-[var(--duration-dropdown)] before:ease-[var(--ease-out)] motion-reduce:before:transition-none",
+		"before:transition-opacity before:duration-[var(--duration-dropdown)] before:ease-[var(--ease-ui-out)] motion-reduce:before:transition-none",
 		scrolled ? "before:opacity-100" : "before:opacity-0",
 	]}
 >
@@ -264,7 +266,7 @@ function active(match: string[]) {
 <style>
 	/* Global: `.gear` lands on Button's own element, outside this component's scope. */
 	:global(.gear svg) {
-		transition: transform var(--duration-dropdown) var(--ease-out);
+		transition: transform var(--duration-dropdown) var(--ease-ui-out);
 	}
 
 	@media (hover: hover) and (pointer: fine) {

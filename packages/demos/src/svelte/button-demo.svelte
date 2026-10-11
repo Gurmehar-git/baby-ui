@@ -7,7 +7,7 @@ let { props = {} }: { props?: Record<string, unknown> } = $props();
 const p = $derived(controlProps<ComponentProps<typeof Button>>(props));
 
 const variant = $derived(p.variant ?? "default");
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 const href = $derived(p.href || undefined);
 const loading = $derived(p.loading ?? false);
 const loadingLabel = $derived(p.loadingLabel || "Loading…");

@@ -14,8 +14,6 @@ const TOKENS = [
 	"border-strong",
 	"primary",
 	"primary-foreground",
-	"accent",
-	"accent-foreground",
 	"destructive",
 	"destructive-foreground",
 	"success",
@@ -103,7 +101,7 @@ function palette(vars) {
 	}
 	// Soft fills for callouts and badges: email cannot mix colours at render time.
 	const [lr, lg, lb] = parse(resolve("background"));
-	for (const token of ["accent", "info", "success", "warning", "destructive"]) {
+	for (const token of ["primary", "info", "success", "warning", "destructive"]) {
 		const [r, g, b] = parse(resolve(token));
 		const k = lr > 128 ? 0.1 : 0.18;
 		out[`${token}-soft`] =

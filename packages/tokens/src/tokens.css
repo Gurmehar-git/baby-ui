@@ -2,7 +2,7 @@
    still fits while our own extensions stay available. */
 
 /* Surfaces are distinct steps so nesting reads without borders: card sits on the page, popover
-   rises off it, muted sits in. Chroma stays at or under 0.004 so accent themes read true. */
+   rises off it, muted sits in. Chroma stays at or under 0.004 so brand themes read true. */
 :root {
 	--background: oklch(100% 0 0);
 	--foreground: oklch(16% 0.002 265);
@@ -14,14 +14,24 @@
 	--segment: oklch(100% 0 0);
 
 	--border-strong: oklch(16% 0.002 265 / 0.14);
-	/* The Blue theme's ramp: white text 4.93:1, 4.6:1 as a ring on --card. */
-	--accent: oklch(55% 0.18 255);
-	--accent-fg: oklch(99% 0 0);
+	/* shadcn's roles: --primary is the brand (Blue: white text 4.93:1, 4.6:1 as a ring on --card),
+	   --accent the neutral hover surface. Literals, not aliases, so nested .dark re-resolves. */
+	--primary: oklch(55% 0.18 255);
+	--primary-foreground: oklch(99% 0 0);
+	--secondary: oklch(95.3% 0.002 265);
+	--secondary-foreground: oklch(16% 0.002 265);
+	--accent: oklch(16% 0.002 265 / 0.06);
+	--accent-foreground: oklch(16% 0.002 265);
+	--card-foreground: oklch(16% 0.002 265);
+	--popover-foreground: oklch(16% 0.002 265);
+	--input: oklch(16% 0.002 265 / 0.08);
+	--ring: oklch(55% 0.18 255);
 	--neon: oklch(80% 0.22 145);
 	--violet: oklch(68% 0.22 295);
-	/* Status fills are too light for 4.5:1 text on white, so text uses -strong: fill mixed toward ink. */
-	--danger: oklch(65.32% 0.2328 25.74);
-	--destructive-strong: color-mix(in oklab, var(--danger) 64%, var(--foreground));
+	/* Status fills are too light for 4.5:1 text on white, so text uses -strong: fill mixed toward ink.
+	   Destructive is the exception: it carries a white label, 4.74:1. */
+	--destructive: oklch(58% 0.2 25);
+	--destructive-strong: color-mix(in oklab, var(--destructive) 64%, var(--foreground));
 	--success: oklch(73.29% 0.1935 150.81);
 	--success-strong: color-mix(in oklab, var(--success) 57%, var(--foreground));
 	--success-foreground: oklch(21.03% 0.0059 285.89);
@@ -87,10 +97,18 @@
 	--segment: oklch(30% 0.004 265);
 
 	--border-strong: oklch(100% 0 0 / 0.12);
-	--accent: oklch(70% 0.15 255);
-	--accent-fg: #151515;
-	--danger: oklch(59.4% 0.1967 24.63);
-	--destructive-strong: color-mix(in oklab, var(--danger) 73%, var(--foreground));
+	--primary: oklch(70% 0.15 255);
+	--primary-foreground: #151515;
+	--secondary: oklch(27% 0.004 265);
+	--secondary-foreground: oklch(96% 0.001 265);
+	--accent: oklch(96% 0.001 265 / 0.06);
+	--accent-foreground: oklch(96% 0.001 265);
+	--card-foreground: oklch(96% 0.001 265);
+	--popover-foreground: oklch(96% 0.001 265);
+	--input: oklch(100% 0 0 / 0.07);
+	--ring: oklch(70% 0.15 255);
+	--destructive: oklch(58% 0.2 25);
+	--destructive-strong: color-mix(in oklab, var(--destructive) 73%, var(--foreground));
 	--destructive-foreground: oklch(99.11% 0 0);
 	--success: oklch(73.29% 0.1935 150.81);
 	--success-strong: color-mix(in oklab, var(--success) 73%, var(--foreground));
@@ -129,29 +147,10 @@
 	);
 }
 
-/* Aliases and derived tokens re-resolve wherever `.dark` sits, not only on the root. */
+/* Additive only: derived from shadcn's names, never redefining them (registry-build enforces it).
+   Declared for both so they re-resolve wherever `.dark` sits, not only on the root. */
 :root,
 .dark {
-	--card-foreground: var(--foreground);
-	--popover-foreground: var(--foreground);
-	--primary: var(--accent);
-	--primary-foreground: var(--accent-fg);
-	--secondary: var(--muted);
-	--secondary-foreground: var(--foreground);
-	--accent-foreground: var(--accent-fg);
-	--destructive: var(--danger);
-	--input: var(--border);
-	/* Focus rings and links; a theme whose fill is too light to clear 3:1 swaps in a darker ink. */
-	--accent-ink: var(--accent);
-	/* Solid: at 50% alpha the ring fell under 3:1 on 19 of 20 theme and mode pairs. */
-	--ring: var(--accent-ink);
-
-	/* Role names on the same palette: the hover fill every ghost control already used. */
-	--surface: var(--card);
-	--overlay: var(--popover);
-	--default: color-mix(in oklab, var(--foreground) 6%, transparent);
-	--default-hover: color-mix(in oklab, var(--foreground) 10%, transparent);
-
 	/* Toward --foreground, not the label colour: darker in light, lighter in dark, so text
 	   contrast rises on hover (white on a lightened blue fell to 4.05:1). */
 	--primary-hover: color-mix(in oklab, var(--primary) 90%, var(--foreground));

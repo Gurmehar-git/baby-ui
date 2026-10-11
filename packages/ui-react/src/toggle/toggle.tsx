@@ -23,7 +23,7 @@ export function Toggle({
 	pressed,
 	disabled = false,
 	variant = "default",
-	size = "md",
+	size = "default",
 	label,
 	className,
 	onPressedChange,

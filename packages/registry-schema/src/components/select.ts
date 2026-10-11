@@ -8,7 +8,7 @@ export const select = defineComponent({
 		"Listbox at least as wide as its trigger that grows to fit its longest option, keeps the selected option in view and flips when needed.",
 	category: "base",
 	status: "stable",
-	variants: { variant: ["default", "ghost"], size: ["xs", "sm", "default"] },
+	variants: { variant: ["default", "ghost"], size: ["xs", "sm", "default", "lg", "xl"] },
 	props: [
 		{
 			name: "variant",
@@ -20,10 +20,10 @@ export const select = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"xs" | "sm" | "default"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "SelectTrigger: height and text size.",
 			default: "default",
-			control: { kind: "select", options: ["xs", "sm", "default"] },
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "value",
@@ -92,6 +92,7 @@ export const select = defineComponent({
 				{ path: "select/variants.ts", type: "registry:ui" },
 				{ path: "lib/anchor.ts", type: "registry:lib" },
 				{ path: "lib/menu.ts", type: "registry:lib" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "@base-ui/react"],
@@ -110,6 +111,7 @@ export const select = defineComponent({
 				{ path: "select/variants.ts", type: "registry:ui" },
 				{ path: "lib/anchor.ts", type: "registry:lib" },
 				{ path: "lib/menu.ts", type: "registry:lib" },
+				{ path: "lib/control.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "bits-ui"],

@@ -38,7 +38,7 @@ export const button = defineComponent({
 		size: [
 			"xs",
 			"sm",
-			"md",
+			"default",
 			"lg",
 			"xl",
 			"icon-xs",
@@ -87,15 +87,15 @@ export const button = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"xs" | "sm" | "md" | "lg" | "xl" | "icon-xs" | "icon-sm" | "icon" | "icon-lg" | "icon-xl"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl" | "icon-xs" | "icon-sm" | "icon" | "icon-lg" | "icon-xl"',
 			description: "Height and horizontal padding. The `icon-*` sizes render squares.",
-			default: "md",
+			default: "default",
 			control: {
 				kind: "select",
 				options: [
 					"xs",
 					"sm",
-					"md",
+					"default",
 					"lg",
 					"xl",
 					"icon-xs",

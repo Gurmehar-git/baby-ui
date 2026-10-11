@@ -30,7 +30,7 @@ export const dataTable = tv({
 			"active:cursor-grabbing data-[dragging=true]:opacity-100",
 		],
 		sortTrigger:
-			"-ms-2 max-w-full gap-1 px-2 text-muted-foreground hover:text-foreground data-[popup-open]:bg-foreground/[0.06] data-[state=open]:bg-foreground/[0.06]",
+			"-ms-2 max-w-full gap-1 px-2 text-muted-foreground hover:text-foreground data-[popup-open]:bg-accent data-[state=open]:bg-accent",
 		sortLabel: "truncate",
 		icon: "size-3.5 shrink-0",
 		resizer: [

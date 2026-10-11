@@ -85,14 +85,14 @@ function toggle() {
 			style:max-height={height === undefined ? `${lines}lh` : undefined}
 			style:overflow-y={scrollable ? "auto" : "hidden"}
 			style:scrollbar-gutter={scrollable ? "stable" : undefined}
-			class="scroll-area overscroll-contain rounded-sm outline-none transition-[height] duration-[var(--duration-overlay)] ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+			class="scroll-area overscroll-contain rounded-sm outline-none transition-[height] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
 		>
 			<div bind:this={content}>{@render children()}</div>
 		</div>
 		<div
 			aria-hidden="true"
 			data-on={veiled}
-			class="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent opacity-0 transition-opacity duration-[var(--duration-press)] ease-[var(--ease-out)] motion-reduce:transition-none data-[on=true]:opacity-100"
+			class="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent opacity-0 transition-opacity duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none data-[on=true]:opacity-100"
 		></div>
 	</div>
 
@@ -102,7 +102,7 @@ function toggle() {
 			onclick={toggle}
 			aria-expanded={open}
 			aria-controls="{uid}-region"
-			class="-ml-2 mt-2 inline-flex h-8 items-center gap-1.5 rounded-md px-2 font-medium text-muted-foreground text-sm transition-colors hover:bg-foreground/[0.06] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+			class="-ml-2 mt-2 inline-flex h-8 items-center gap-1.5 rounded-md px-2 font-medium text-muted-foreground text-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
 		>
 			{open ? lessLabel : moreLabel}
 			<svg
@@ -110,7 +110,7 @@ function toggle() {
 				fill="none"
 				aria-hidden="true"
 				data-on={open}
-				class="size-3 transition-[rotate] duration-[var(--duration-press)] ease-[var(--ease-out)] motion-reduce:transition-none data-[on=true]:rotate-180"
+				class="size-3 transition-[rotate] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none data-[on=true]:rotate-180"
 			>
 				<path d="m2.5 4.25 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 			</svg>

@@ -4,9 +4,9 @@ export const liquidChrome = tv({
 	slots: {
 		root: "inset-0 isolate overflow-hidden bg-background",
 		fallback:
-			"pointer-events-none absolute inset-0 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		canvas:
-			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		content: "relative z-10 size-full",
 	},
 	variants: {
@@ -21,7 +21,7 @@ export const liquidChrome = tv({
 			},
 			accent: {
 				fallback:
-					"bg-[image:linear-gradient(160deg,var(--background)_10%,color-mix(in_oklch,var(--accent)_60%,var(--background))_45%,var(--background)_60%,color-mix(in_oklch,var(--accent)_50%,var(--foreground))_85%)]",
+					"bg-[image:linear-gradient(160deg,var(--background)_10%,color-mix(in_oklch,var(--primary)_60%,var(--background))_45%,var(--background)_60%,color-mix(in_oklch,var(--primary)_50%,var(--foreground))_85%)]",
 			},
 		},
 		speed: { slow: {}, normal: {}, fast: {} },
@@ -64,8 +64,8 @@ export const LIQUID_CHROME_COLORS: Record<LiquidChromeTone, readonly string[]> =
 	],
 	accent: [
 		"var(--background)",
-		"color-mix(in oklch, var(--accent) 25%, var(--background))",
-		"color-mix(in oklch, var(--accent) 50%, var(--foreground))",
+		"color-mix(in oklch, var(--primary) 25%, var(--background))",
+		"color-mix(in oklch, var(--primary) 50%, var(--foreground))",
 		"var(--foreground)",
 	],
 };

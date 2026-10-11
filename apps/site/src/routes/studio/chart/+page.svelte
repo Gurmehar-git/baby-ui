@@ -4,7 +4,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 const stage = tv({
 	slots: {
 		frame:
-			"w-full rounded-xl border border-border bg-background p-3 shadow-sm transition-[max-width] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none sm:p-6",
+			"w-full rounded-xl border border-border bg-background p-3 shadow-sm transition-[max-width] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none sm:p-6",
 	},
 	variants: {
 		frame: {
@@ -366,7 +366,7 @@ const allCharts = $derived([...data.kinds, ...data.samples]);
 			type="button"
 			onclick={() => pick(item.spec.slug)}
 			aria-current={item.spec.slug === slug ? "true" : undefined}
-			class="group/kind flex h-12 w-full flex-col justify-center rounded-lg px-3 text-left transition-[color,scale] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] not-aria-[current=true]:hover:bg-foreground/[0.06] active:scale-[0.98] motion-reduce:transition-none"
+			class="group/kind flex h-12 w-full flex-col justify-center rounded-lg px-3 text-left transition-[color,scale] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] not-aria-[current=true]:hover:bg-foreground/[0.06] active:scale-[0.98] motion-reduce:transition-none"
 		>
 			<span class="flex items-center gap-1.5">
 				<span class="truncate font-medium text-foreground text-sm transition-colors group-aria-[current=true]/kind:text-background">{item.spec.name}</span>
@@ -383,7 +383,7 @@ const allCharts = $derived([...data.kinds, ...data.samples]);
 	{#if index >= 0}
 		<span
 			aria-hidden="true"
-			class="absolute inset-x-1 top-1 h-12 rounded-lg bg-foreground transition-transform duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none"
+			class="absolute inset-x-1 top-1 h-12 rounded-lg bg-foreground transition-transform duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none"
 			style:transform="translateY({index * ROW_PX}px)"
 		></span>
 	{/if}

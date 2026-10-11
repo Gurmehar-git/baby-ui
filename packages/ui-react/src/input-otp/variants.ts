@@ -38,14 +38,14 @@ export const inputOtp = tv({
 			invalid: true,
 			invalidMotion: "shake",
 			class: {
-				root: "animate-[otp-shake_400ms_var(--ease-out)] motion-reduce:animate-none",
+				root: "animate-[otp-shake_400ms_var(--ease-ui-out)] motion-reduce:animate-none",
 			},
 		},
 		{
 			invalid: true,
 			invalidMotion: "pulse",
 			class: {
-				slot: "animate-[otp-pulse_360ms_var(--ease-out)] motion-reduce:animate-none",
+				slot: "animate-[otp-pulse_360ms_var(--ease-ui-out)] motion-reduce:animate-none",
 			},
 		},
 	],

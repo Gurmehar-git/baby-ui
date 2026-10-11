@@ -90,7 +90,7 @@ export function ColorPicker({
 	onValueChange,
 	onFormatChange,
 	variant = "field",
-	size = "md",
+	size = "default",
 	invalid = false,
 	disabled = false,
 	id,

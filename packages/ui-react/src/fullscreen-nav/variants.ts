@@ -6,7 +6,7 @@ export const fullscreenNav = tv({
 	slots: {
 		popup: [
 			"fixed inset-0 z-50 flex flex-col bg-background outline-none",
-			"transition-[opacity,visibility,translate,clip-path] duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"transition-[opacity,visibility,translate,clip-path] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 			"starting:opacity-0 data-[closed]:invisible data-[closed]:opacity-0 data-[closed]:duration-[var(--duration-exit)]",
 			"data-[state=closed]:invisible data-[state=closed]:opacity-0 data-[state=closed]:duration-[var(--duration-exit)]",
 			"motion-reduce:transition-[opacity,visibility] motion-reduce:!delay-0",
@@ -17,7 +17,7 @@ export const fullscreenNav = tv({
 		// The anchor carries the entrance (with its stagger delay); the inner row carries hover,
 		// so dimming siblings is not held back by that delay.
 		link: [
-			"group/link outline-none transition-[opacity,translate] duration-[var(--duration-drawer)] ease-[var(--ease-out)]",
+			"group/link outline-none transition-[opacity,translate] duration-[var(--duration-drawer)] ease-[var(--ease-ui-out)]",
 			"starting:translate-y-[0.3em] starting:opacity-0",
 			"data-[state=closed]:translate-y-[0.3em] data-[state=closed]:opacity-0 data-[state=closed]:duration-[var(--duration-exit)]",
 			"motion-reduce:transition-opacity motion-reduce:!delay-0 motion-reduce:starting:translate-y-0 motion-reduce:data-[state=closed]:translate-y-0",

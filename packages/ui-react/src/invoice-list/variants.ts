@@ -5,7 +5,7 @@ export const invoiceList = tv({
 		root: "@container flex w-full flex-col gap-3",
 		table: "hidden @xl:block",
 		cell: "py-0",
-		grow: "grid grid-rows-[1fr] transition-[grid-template-rows,opacity] duration-(--duration-collapse) ease-[var(--ease-out)] motion-reduce:transition-none starting:grid-rows-[0fr] starting:opacity-0",
+		grow: "grid grid-rows-[1fr] transition-[grid-template-rows,opacity] duration-(--duration-collapse) ease-[var(--ease-ui-out)] motion-reduce:transition-none starting:grid-rows-[0fr] starting:opacity-0",
 		growInner: "min-h-0 overflow-hidden",
 		number: "font-mono text-muted-foreground text-xs",
 		amount: "text-right tabular-nums",

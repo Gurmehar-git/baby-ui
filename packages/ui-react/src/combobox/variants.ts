@@ -1,56 +1,69 @@
 import { tv, type VariantProps } from "tailwind-variants";
+import { controlSize, fieldFrame } from "../lib/control";
 
 export const combobox = tv({
 	slots: {
 		trigger: [
-			"items-center justify-between gap-2 rounded-lg border border-input bg-background font-normal text-foreground outline-none transition-colors",
-			"hover:border-border-strong focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring",
+			fieldFrame(),
+			"inline-flex w-full items-center justify-between font-normal",
 			// Base UI marks the open trigger data-popup-open, bits-ui data-state=open.
-			"data-[popup-open]:border-ring data-[state=open]:border-ring",
+			"data-[popup-open]:border-ring data-[popup-open]:ring-3 data-[popup-open]:ring-ring/20",
+			"data-[state=open]:border-ring data-[state=open]:ring-3 data-[state=open]:ring-ring/20",
 		],
 		// As wide as its trigger: Base UI sets --anchor-width, bits-ui --bits-popover-anchor-width.
 		content:
 			"w-[var(--anchor-width,var(--bits-popover-anchor-width))] overflow-hidden p-0",
-		list: "rounded-none border-none bg-transparent shadow-none",
+		list: [
+			"rounded-none border-none bg-transparent shadow-none",
+			"[&_[data-slot=command-input]]:h-full [&_[data-slot=command-input]]:text-base",
+		],
 	},
 	variants: {
-		// Rows keep one inline padding at every size, so group headings stay aligned with them.
+		// Rows match Select's (xs 24 to xl 40); rows keep one inline padding, so headings align.
 		size: {
+			xs: {
+				trigger: [controlSize({ size: "xs" }), "gap-1 px-2"],
+				list: [
+					"max-h-56 [&_[data-slot=command-empty]]:text-xs",
+					"[&_[data-slot=command-input-wrapper]]:h-7 md:[&_[data-slot=command-input]]:text-xs",
+					"[&_[data-slot=command-item]]:py-1 [&_[data-slot=command-item]]:text-xs",
+				],
+			},
 			sm: {
-				trigger: "h-8 w-56 px-2.5 text-xs",
+				trigger: [controlSize({ size: "sm" }), "gap-1.5 px-2.5"],
 				list: [
 					"max-h-64 [&_[data-slot=command-empty]]:text-xs",
-					"[&_[data-slot=command-input]]:h-9 [&_[data-slot=command-input]]:text-xs",
+					"[&_[data-slot=command-input-wrapper]]:h-8 md:[&_[data-slot=command-input]]:text-xs",
 					"[&_[data-slot=command-item]]:py-1.5 [&_[data-slot=command-item]]:text-xs",
 				],
 			},
-			md: {
-				trigger: "h-9 w-64 px-3 text-sm",
+			default: {
+				trigger: [controlSize({ size: "default" }), "gap-2 px-3"],
 				list: [
 					"max-h-72 [&_[data-slot=command-empty]]:text-sm",
-					"[&_[data-slot=command-input]]:h-10 [&_[data-slot=command-input]]:text-sm",
-					"[&_[data-slot=command-item]]:py-2 [&_[data-slot=command-item]]:text-sm",
+					"[&_[data-slot=command-input-wrapper]]:h-8 md:[&_[data-slot=command-input]]:text-sm",
+					"[&_[data-slot=command-item]]:py-1.5 [&_[data-slot=command-item]]:text-sm",
 				],
 			},
 			lg: {
-				trigger: "h-10 w-72 px-3.5 text-sm",
+				trigger: [controlSize({ size: "lg" }), "gap-2 px-3.5 [&_svg]:size-4"],
 				list: [
 					"max-h-80 [&_[data-slot=command-empty]]:text-sm",
-					"[&_[data-slot=command-input]]:h-11 [&_[data-slot=command-input]]:text-sm",
-					"[&_[data-slot=command-item]]:py-2.5 [&_[data-slot=command-item]]:text-sm",
+					"[&_[data-slot=command-input-wrapper]]:h-9 md:[&_[data-slot=command-input]]:text-sm",
+					"[&_[data-slot=command-item]]:py-2 [&_[data-slot=command-item]]:text-sm",
 				],
 			},
 			xl: {
-				trigger: "h-12 w-80 px-4 text-base",
+				trigger: [controlSize({ size: "xl" }), "gap-2.5 px-4 [&_svg]:size-4.5"],
 				list: [
 					"max-h-96 [&_[data-slot=command-empty]]:text-base",
-					"[&_[data-slot=command-input]]:h-12 [&_[data-slot=command-input]]:text-base",
-					"[&_[data-slot=command-item]]:py-3 [&_[data-slot=command-item]]:text-base",
+					"[&_[data-slot=command-input-wrapper]]:h-10",
+					"[&_[data-slot=command-item]]:py-2 [&_[data-slot=command-item]]:text-base",
 				],
 			},
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type ComboboxSize = NonNullable<VariantProps<typeof combobox>["size"]>;

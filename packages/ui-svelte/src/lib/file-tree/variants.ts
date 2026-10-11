@@ -5,14 +5,14 @@ export const fileTree = tv({
 		root: "select-none font-mono",
 		row: [
 			"tree-row flex cursor-pointer items-center outline-none transition-colors",
-			"hover:bg-foreground/[0.06] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
+			"hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
 		],
 		chevron:
-			"shrink-0 transition-[transform,scale,translate] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"shrink-0 transition-[transform,scale,translate] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		spacer: "shrink-0",
 		name: "truncate",
 		group:
-			"grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] data-[open]:grid-rows-[1fr] motion-reduce:transition-none",
+			"grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] data-[open]:grid-rows-[1fr] motion-reduce:transition-none",
 		groupInner: "overflow-hidden",
 	},
 	variants: {

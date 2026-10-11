@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 export const magnetLines = tv({
 	slots: {
 		root: "relative grid shrink-0 place-items-center",
-		line: "rounded-full rotate-[var(--ml-angle,var(--ml-base))] transition-[rotate] duration-[var(--duration-overlay)] ease-[var(--ease-out)] motion-reduce:transition-none",
+		line: "rounded-full rotate-[var(--ml-angle,var(--ml-base))] transition-[rotate] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 	},
 	variants: {
 		size: {

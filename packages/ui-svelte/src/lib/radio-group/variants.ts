@@ -21,7 +21,7 @@ export const radioGroup = tv({
 			list: {
 				root: "gap-0.5",
 				label: [
-					"w-full items-center rounded-md px-2 py-1.5 transition-colors hover:bg-foreground/[0.06]",
+					"w-full items-center rounded-md px-2 py-1.5 transition-colors hover:bg-accent",
 					"has-data-checked:bg-foreground/[0.06] has-data-[state=checked]:bg-foreground/[0.06] has-data-checked:font-medium has-data-[state=checked]:font-medium",
 				],
 				ring: "mt-0",

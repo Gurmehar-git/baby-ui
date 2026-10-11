@@ -8,7 +8,12 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
 	ref?: Ref<HTMLInputElement>;
 }
 
-export function Input({ className, size = "md", invalid = false, ...rest }: InputProps) {
+export function Input({
+	className,
+	size = "default",
+	invalid = false,
+	...rest
+}: InputProps) {
 	return (
 		<input
 			{...rest}

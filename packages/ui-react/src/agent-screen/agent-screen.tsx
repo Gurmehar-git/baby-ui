@@ -225,7 +225,7 @@ export function AgentScreen({
 									Teach a task
 								</Button>
 							)}
-							<DialogClose className="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground">
+							<DialogClose className="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
 								<svg viewBox="0 0 16 16" fill="none" aria-hidden className="size-3.5">
 									<path
 										d="M3 9h4v4M13 7H9V3M9 7l5-5M7 9l-5 5"

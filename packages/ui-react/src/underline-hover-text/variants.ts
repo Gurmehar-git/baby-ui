@@ -35,7 +35,7 @@ export const underlineHoverText = tv({
 		tone: {
 			default: { root: "text-foreground", stroke: "bg-foreground" },
 			primary: { root: "text-primary", stroke: "bg-primary" },
-			accent: { root: "text-accent", stroke: "bg-accent" },
+			accent: { root: "text-primary", stroke: "bg-primary" },
 		},
 		trigger: { hover: {}, always: {} },
 	},

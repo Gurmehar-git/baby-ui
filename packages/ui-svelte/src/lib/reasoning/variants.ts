@@ -4,7 +4,7 @@ export const reasoning = tv({
 	slots: {
 		root: "w-full overflow-hidden rounded-xl",
 		trigger:
-			"group/trigger flex w-full items-start gap-2 px-3 py-2.5 text-left text-sm transition-[background-color,scale] duration-(--duration-press) ease-(--ease-out) hover:bg-foreground/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:scale-(--press-scale) motion-reduce:transition-none",
+			"group/trigger flex w-full items-start gap-2 px-3 py-2.5 text-left text-sm transition-[background-color,scale] duration-(--duration-press) ease-(--ease-ui-out) hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:scale-(--press-scale) motion-reduce:transition-none",
 		icon: "mt-0.5 size-3.5 shrink-0 text-muted-foreground",
 		heading: "min-w-0 flex-1",
 		titleRow: "flex items-baseline gap-1.5",
@@ -13,9 +13,9 @@ export const reasoning = tv({
 		duration: "text-muted-foreground text-xs tabular-nums",
 		preview: "mt-0.5 block truncate text-muted-foreground text-xs",
 		chevron:
-			"mt-0.5 size-3.5 shrink-0 text-muted-foreground transition-transform duration-(--duration-dropdown) ease-(--ease-out) group-data-[panel-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180 motion-reduce:transition-none",
+			"mt-0.5 size-3.5 shrink-0 text-muted-foreground transition-transform duration-(--duration-dropdown) ease-(--ease-ui-out) group-data-[panel-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180 motion-reduce:transition-none",
 		panel:
-			"grid grid-rows-[0fr] transition-[grid-template-rows] duration-(--duration-dropdown) ease-(--ease-out) data-[open]:grid-rows-[1fr] data-[state=open]:grid-rows-[1fr] motion-reduce:transition-none",
+			"grid grid-rows-[0fr] transition-[grid-template-rows] duration-(--duration-dropdown) ease-(--ease-ui-out) data-[open]:grid-rows-[1fr] data-[state=open]:grid-rows-[1fr] motion-reduce:transition-none",
 		clip: "overflow-hidden",
 		content: "px-3 pt-1 pb-2.5 text-muted-foreground text-xs leading-relaxed",
 	},
@@ -107,10 +107,10 @@ export const reasoningRows = tv({
 		kind: {
 			steps: {},
 			search: {
-				row: "transition-colors duration-(--duration-fast) hover:bg-foreground/[0.06]",
+				row: "transition-colors duration-(--duration-fast) hover:bg-accent",
 			},
 			coding: {
-				row: "transition-colors duration-(--duration-fast) hover:bg-foreground/[0.06] aria-pressed:bg-muted",
+				row: "transition-colors duration-(--duration-fast) hover:bg-accent aria-pressed:bg-muted",
 			},
 		},
 	},

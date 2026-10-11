@@ -22,7 +22,7 @@ export const flightStatusCard = tv({
 		track:
 			"relative h-11 overflow-hidden rounded-full border border-border bg-background",
 		reveal: "flight-status-reveal absolute inset-0",
-		fill: "flex h-full min-w-11 items-center justify-end rounded-full pr-1.5 transition-[width] duration-700 ease-[var(--ease-out)] motion-reduce:transition-none",
+		fill: "flex h-full min-w-11 items-center justify-end rounded-full pr-1.5 transition-[width] duration-700 ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		plane:
 			"flex size-8 items-center justify-center rounded-full bg-background/25 [&_svg]:size-5",
 		remaining:

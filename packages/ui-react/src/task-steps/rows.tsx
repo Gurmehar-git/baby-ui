@@ -142,7 +142,7 @@ export function TaskStepRows({
 										strokeLinejoin="round"
 										aria-hidden
 										style={{ transform: open ? "rotate(180deg)" : undefined }}
-										className="size-3.5 transition-transform duration-(--duration-slow) ease-[var(--ease-out)] motion-reduce:transition-none"
+										className="size-3.5 transition-transform duration-(--duration-slow) ease-[var(--ease-ui-out)] motion-reduce:transition-none"
 									>
 										<path d="M6 9l6 6 6-6" />
 									</svg>
@@ -160,7 +160,7 @@ export function TaskStepRows({
 							) : null}
 						</div>
 						<div
-							className="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-out)]"
+							className="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-ui-out)]"
 							style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
 						>
 							<div className="overflow-hidden">

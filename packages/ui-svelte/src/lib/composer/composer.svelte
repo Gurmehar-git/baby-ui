@@ -13,7 +13,7 @@ import type { ComposerAction, ComposerModel } from "./types";
 import { COMPOSER_LINE_HEIGHT, type ComposerSize, composer } from "./variants";
 
 const ACTIONS_TRIGGER =
-	"flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06] hover:text-foreground data-[state=open]:bg-foreground/[0.06] data-[state=open]:text-foreground [&>svg]:transition-transform [&>svg]:duration-(--duration-fast) [&>svg]:ease-[var(--ease-out)] data-[state=open]:[&>svg]:rotate-45";
+	"flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-(--duration-instant) hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-foreground [&>svg]:transition-transform [&>svg]:duration-(--duration-fast) [&>svg]:ease-[var(--ease-ui-out)] data-[state=open]:[&>svg]:rotate-45";
 
 let {
 	value = $bindable(""),
@@ -181,7 +181,7 @@ function onKeyDown(event: KeyboardEvent) {
 
 		{#if models.length}
 			<Select bind:value={selectValue} items={models} disabled={disabled || loading}>
-				<SelectTrigger class="h-8 w-auto max-w-52 gap-1.5 rounded-full border-0 bg-transparent px-2 text-xs hover:bg-foreground/[0.06]">
+				<SelectTrigger class="h-8 w-auto max-w-52 gap-1.5 rounded-full border-0 bg-transparent px-2 text-xs hover:bg-accent">
 					<span class="flex min-w-0 items-center gap-1.5">
 						{#if currentModelOption?.icon}
 							<span class="grid size-4 shrink-0 place-items-center text-muted-foreground [&_svg]:size-3.5">
@@ -213,7 +213,7 @@ function onKeyDown(event: KeyboardEvent) {
 			onclick={loading ? onStop : submit}
 			disabled={loading ? !onStop : !canSubmit}
 			aria-label={loading ? "Stop generating" : "Send message"}
-			class="ml-auto grid size-8 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground transition-[transform,scale,translate] duration-[var(--duration-press)] ease-[var(--ease-out)] active:scale-[var(--press-scale)] disabled:pointer-events-none disabled:opacity-40"
+			class="ml-auto grid size-8 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground transition-[transform,scale,translate] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] active:scale-[var(--press-scale)] disabled:pointer-events-none disabled:opacity-40"
 		>
 			{#if loading}
 				<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="size-2.5">

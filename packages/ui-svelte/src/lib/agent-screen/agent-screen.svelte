@@ -169,7 +169,7 @@ function endRecording() {
 						</Button>
 					{/if}
 					<DialogClose
-						class="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+						class="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
 					>
 						<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="size-3.5">
 							<path

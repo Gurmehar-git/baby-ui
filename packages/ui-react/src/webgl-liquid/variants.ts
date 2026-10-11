@@ -4,16 +4,16 @@ export const webglLiquid = tv({
 	slots: {
 		root: "inset-0 isolate overflow-hidden bg-background",
 		fallback:
-			"pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		canvas:
-			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-out)]",
+			"pointer-events-none absolute inset-0 block size-full transition-opacity duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)]",
 		content: "relative z-10 size-full",
 	},
 	variants: {
 		tone: {
 			ocean: {
 				fallback:
-					"bg-[image:radial-gradient(ellipse_at_40%_85%,var(--accent),transparent_45%),radial-gradient(ellipse_at_30%_95%,var(--chart-1),transparent_70%)]",
+					"bg-[image:radial-gradient(ellipse_at_40%_85%,var(--primary),transparent_45%),radial-gradient(ellipse_at_30%_95%,var(--chart-1),transparent_70%)]",
 			},
 			ember: {
 				fallback:
@@ -45,7 +45,7 @@ export type WebglLiquidPosition = NonNullable<
 
 /** Deep, mid and highlight colours per tone. */
 export const WEBGL_LIQUID_COLORS: Record<WebglLiquidTone, readonly string[]> = {
-	ocean: ["var(--background)", "var(--chart-1)", "var(--accent)"],
+	ocean: ["var(--background)", "var(--chart-1)", "var(--primary)"],
 	ember: ["var(--background)", "var(--chart-2)", "var(--chart-4)"],
 	mono: [
 		"var(--background)",

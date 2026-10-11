@@ -20,7 +20,7 @@ const s = inputGroup();
 
 export function InputGroup({
 	className,
-	size = "md",
+	size = "default",
 	...props
 }: ComponentProps<"div"> & { size?: InputGroupSize }) {
 	return (

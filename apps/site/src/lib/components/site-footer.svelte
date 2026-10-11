@@ -10,6 +10,7 @@ const RESOURCES = [
 	{ href: "/docs/installation", label: "Installation" },
 	{ href: "/llms.txt", label: "llms.txt" },
 	{ href: "/r/registry.json", label: "registry.json" },
+	{ href: "https://docvia.dev", label: "Docs by docvia", external: true },
 ];
 const year = new Date().getFullYear();
 const LINK = "text-foreground/70 text-sm transition-colors hover:text-foreground";
@@ -79,7 +80,14 @@ const CELL = "border-border border-r border-b p-6 md:p-8";
 					<p class={HEAD}>Resources</p>
 					<ul class="space-y-2.5">
 						{#each RESOURCES as link (link.href)}
-							<li><a href={link.href} class={LINK}>{link.label}</a></li>
+							<li>
+								<a
+									href={link.href}
+									class={LINK}
+									target={link.external ? "_blank" : undefined}
+									rel={link.external ? "noopener" : undefined}>{link.label}</a
+								>
+							</li>
 						{/each}
 					</ul>
 				</nav>

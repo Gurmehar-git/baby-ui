@@ -46,8 +46,8 @@ $effect(() => {
 		transform: scaleX(1);
 		opacity: 0;
 		transition:
-			transform 200ms var(--ease-out),
-			opacity 200ms var(--ease-out) 50ms;
+			transform 200ms var(--ease-ui-out),
+			opacity 200ms var(--ease-ui-out) 50ms;
 	}
 
 	@keyframes nav-progress-grow {

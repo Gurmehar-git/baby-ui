@@ -14,9 +14,9 @@ export const rollSwap = tv({
 export const rollSwapSlide = tv({
 	slots: {
 		first:
-			"flex flex-col transition-transform ease-[var(--ease-out)] motion-reduce:transition-none",
+			"flex flex-col transition-transform ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		second:
-			"absolute top-full block transition-transform ease-[var(--ease-out)] motion-reduce:transition-none",
+			"absolute top-full block transition-transform ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 	},
 	variants: {
 		active: {

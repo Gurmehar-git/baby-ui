@@ -149,7 +149,7 @@ const classes = $derived(typingText({ size }));
 		{#if smooth}
 			<span class="flex flex-wrap whitespace-pre">
 				{#each words as word, i (i)}
-					<span class={cn("transition-opacity duration-[var(--tt-fade-duration,300ms)] ease-[var(--ease-in-out)]", i < index ? "opacity-100" : "opacity-0")}>
+					<span class={cn("transition-opacity duration-[var(--tt-fade-duration,300ms)] ease-[var(--ease-ui-in-out)]", i < index ? "opacity-100" : "opacity-0")}>
 						{word}{#if i < words.length - 1}<span>&nbsp;</span>{/if}
 					</span>
 				{/each}

@@ -22,7 +22,7 @@ $effect(() => {
 	bind:value
 	type={p.type ?? "single"}
 	variant={p.variant ?? "default"}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	disabled={p.disabled ?? false}
 	label={multiple ? "Text formatting" : "Text alignment"}
 >

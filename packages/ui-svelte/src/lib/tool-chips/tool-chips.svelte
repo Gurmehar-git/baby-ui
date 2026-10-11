@@ -51,7 +51,7 @@ function toggleRow(label: string) {
 		type="button"
 		aria-expanded={open}
 		onclick={() => (open = !open)}
-		class="-mx-1.5 flex w-fit items-center gap-1.5 rounded-md px-1.5 py-1 text-xs text-muted-foreground transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06]"
+		class="-mx-1.5 flex w-fit items-center gap-1.5 rounded-md px-1.5 py-1 text-xs text-muted-foreground transition-colors duration-(--duration-instant) hover:bg-accent"
 	>
 		<svg
 			width="12"
@@ -85,7 +85,7 @@ function toggleRow(label: string) {
 							type="button"
 							aria-expanded={rowOpen}
 							onclick={() => toggleRow(row.label)}
-							class="group/row -mx-[3px] flex h-7 w-[calc(100%+6px)] min-w-0 items-center gap-2 rounded-md px-[3px] text-left transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06]"
+							class="group/row -mx-[3px] flex h-7 w-[calc(100%+6px)] min-w-0 items-center gap-2 rounded-md px-[3px] text-left transition-colors duration-(--duration-instant) hover:bg-accent"
 						>
 							<span class="relative flex size-4 shrink-0 items-center justify-center text-muted-foreground">
 								<span
@@ -123,7 +123,7 @@ function toggleRow(label: string) {
 							<span class="shrink-0 font-medium text-xs text-foreground">{row.label}</span>
 							<span
 								class={cn(
-									"inline-flex h-5.5 min-w-0 flex-1 cursor-pointer items-center truncate rounded-full bg-input px-1.5 text-xs text-muted-foreground shadow-xs transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06]",
+									"inline-flex h-5.5 min-w-0 flex-1 cursor-pointer items-center truncate rounded-full bg-input px-1.5 text-xs text-muted-foreground shadow-xs transition-colors duration-(--duration-instant) hover:bg-accent",
 									row.mono && "font-mono",
 								)}
 							>
@@ -132,7 +132,7 @@ function toggleRow(label: string) {
 						</button>
 
 						<div
-							class="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-out)]"
+							class="grid transition-[grid-template-rows,opacity] duration-(--duration-slow) ease-[var(--ease-ui-out)]"
 							style:grid-template-rows={rowOpen ? "1fr" : "0fr"}
 							style:opacity={rowOpen ? 1 : 0}
 						>
@@ -162,7 +162,7 @@ function toggleRow(label: string) {
 						<HoverCard>
 							<HoverCardTrigger
 								aria-label={`Show diff for ${diff.file}`}
-								class="card-fade-up inline-flex h-7 max-w-full items-center gap-2 rounded-full bg-card px-2 font-mono text-xs text-foreground shadow-sm transition-colors duration-(--duration-instant) hover:bg-foreground/[0.06]"
+								class="card-fade-up inline-flex h-7 max-w-full items-center gap-2 rounded-full bg-card px-2 font-mono text-xs text-foreground shadow-sm transition-colors duration-(--duration-instant) hover:bg-accent"
 								style="animation-delay: calc(var(--stagger-step) * {steps.length + index});"
 							>
 								<span class="min-w-0 truncate">{diff.file}</span>

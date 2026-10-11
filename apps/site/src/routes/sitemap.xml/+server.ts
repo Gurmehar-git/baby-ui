@@ -17,6 +17,7 @@ export const GET: RequestHandler = async () => {
 	const staticPages = [url("/", "1.0"), url("/components", "0.9")];
 	const studioPages = [
 		url("/studio", "0.8"),
+		url("/design-system", "0.7"),
 		...STUDIOS.map((studio) => url(studio.href, "0.8")),
 	];
 

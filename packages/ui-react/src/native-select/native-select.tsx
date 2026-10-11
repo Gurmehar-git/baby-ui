@@ -6,7 +6,7 @@ export type { NativeSelectSize };
 
 export function NativeSelect({
 	className,
-	size = "md",
+	size = "default",
 	...props
 }: Omit<ComponentProps<"select">, "size"> & { size?: NativeSelectSize }) {
 	const s = nativeSelect({ size });

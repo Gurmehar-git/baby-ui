@@ -217,7 +217,7 @@ const footerCell = $derived(
 			{/if}
 			<Popover bind:open={() => openColumn === key, (o) => (openColumn = o ? key : null)}>
 				<PopoverTrigger
-					class="min-w-0 items-center gap-1.5 truncate rounded-md px-1 hover:bg-foreground/[0.06]"
+					class="min-w-0 items-center gap-1.5 truncate rounded-md px-1 hover:bg-accent"
 					aria-label={text.configure(label)}
 				>
 					<GlyphIcon glyphs={TYPE_GLYPHS[resolveColumn(key, config, text).type]} />
@@ -311,7 +311,7 @@ const footerCell = $derived(
 							<DropdownMenu>
 								<DropdownMenuTrigger
 									aria-label={text.newProperty}
-									class="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+									class="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
 								>
 									<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 										<path d="M12 5v14M5 12h14" />
@@ -331,7 +331,7 @@ const footerCell = $derived(
 							<DropdownMenu>
 								<DropdownMenuTrigger
 									aria-label={text.tableOptions}
-									class="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+									class="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
 								>
 									<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 										<circle cx="5" cy="12" r="1.6" />

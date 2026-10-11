@@ -7,7 +7,7 @@ export const card = defineComponent({
 	category: "base",
 	status: "stable",
 	isUpdated: true,
-	variants: { variant: ["default", "secondary", "ghost", "framed"] },
+	variants: { variant: ["default", "secondary", "ghost", "framed", "well"] },
 	props: [
 		{
 			name: "interactive",
@@ -19,11 +19,14 @@ export const card = defineComponent({
 		},
 		{
 			name: "variant",
-			type: '"default" | "secondary" | "ghost" | "framed"',
+			type: '"default" | "secondary" | "ghost" | "framed" | "well"',
 			description:
-				"`default` sits on the page colour with a border; `secondary` is the borderless grey card step for grouped or nested areas; `ghost` has no fill or border; `framed` wraps the body in Dialog's inset rim.",
+				"`default` sits on the page colour with a border; `secondary` is the borderless grey card step for grouped or nested areas; `ghost` has no fill or border; `framed` wraps the body in Dialog's inset rim; `well` is a grey rim around a raised page-colour body, with a direct `CardFooter` in the rim below it.",
 			default: "default",
-			control: { kind: "select", options: ["default", "secondary", "ghost", "framed"] },
+			control: {
+				kind: "select",
+				options: ["default", "secondary", "ghost", "framed", "well"],
+			},
 		},
 	],
 	motion: {
@@ -67,6 +70,7 @@ export const card = defineComponent({
 				{ path: "card/card-action.svelte", type: "registry:ui" },
 				{ path: "card/card-content.svelte", type: "registry:ui" },
 				{ path: "card/card-footer.svelte", type: "registry:ui" },
+				{ path: "card/context.ts", type: "registry:ui" },
 				{ path: "card/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],

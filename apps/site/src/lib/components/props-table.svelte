@@ -48,7 +48,7 @@ const duration = $derived(prefersReducedMotion.current ? 0 : 200);
 								<span class="flex justify-center px-2 text-muted-foreground">
 									<IconChevronDown
 										size={16}
-										class="transition-[transform,scale,translate] duration-[var(--duration-dropdown)] ease-[var(--ease-out)] motion-reduce:transition-none"
+										class="transition-[transform,scale,translate] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none"
 										style={expanded ? "transform: rotate(180deg)" : undefined}
 									/>
 								</span>

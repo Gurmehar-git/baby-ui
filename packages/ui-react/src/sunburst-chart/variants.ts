@@ -4,7 +4,7 @@ export const sunburstChart = tv({
 	slots: {
 		breadcrumb: "flex min-h-7 flex-wrap items-center gap-1 text-xs",
 		crumb:
-			"rounded-md px-1.5 py-1 font-medium text-muted-foreground outline-none transition-colors hover:bg-foreground/[0.06] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring aria-[current=page]:text-foreground",
+			"rounded-md px-1.5 py-1 font-medium text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring aria-[current=page]:text-foreground",
 		separator: "text-muted-foreground/60",
 		segment: "transition-opacity duration-[160ms] ease-[cubic-bezier(0,0,0.58,1)]",
 		path: "stroke-background [stroke-linejoin:round] [stroke-width:1px]",

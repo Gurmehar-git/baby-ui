@@ -149,15 +149,13 @@ class Preferences {
 
 		const entry = THEMES.find((t) => t.id === this.theme) ?? THEMES[0];
 		const ramp = "light" in entry ? (dark ? entry.dark : entry.light) : undefined;
-		// Ring and ink follow the fill unless a light fill needs a darker ink to clear 3:1.
+		// The ring follows the fill unless a light fill needs a darker ink to clear 3:1.
+		// --accent stays shadcn's neutral hover surface, so a brand theme never touches it.
 		const ink = (ramp as Ramp | undefined)?.ink ?? ramp?.primary;
 		for (const [name, value] of [
 			["--primary", ramp?.primary],
 			["--primary-foreground", ramp?.fg],
 			["--ring", ink],
-			["--accent-ink", ink],
-			["--accent", ramp?.primary],
-			["--accent-foreground", ramp?.fg],
 		] as const) {
 			if (value) root.style.setProperty(name, value);
 			else root.style.removeProperty(name);

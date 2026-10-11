@@ -83,7 +83,7 @@ export function ContextCards({
 					</p>
 					<div className="px-3 pb-3">
 						<span
-							className="inline-flex h-6 items-center gap-1.5 rounded-full bg-muted px-2 text-xs text-muted-foreground transition-[opacity,transform,background-color] duration-(--duration-slow) ease-[var(--ease-out)] hover:bg-foreground/[0.06]"
+							className="inline-flex h-6 items-center gap-1.5 rounded-full bg-muted px-2 text-xs text-muted-foreground transition-[opacity,transform,background-color] duration-(--duration-slow) ease-[var(--ease-ui-out)] hover:bg-accent"
 							style={{
 								opacity: chipsShown ? 1 : 0,
 								transform: chipsShown ? "scale(1)" : "scale(0.95)",

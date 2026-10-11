@@ -9,7 +9,7 @@ let {
 	pressed = $bindable(false),
 	disabled = false,
 	variant = "default",
-	size = "md",
+	size = "default",
 	label,
 	class: classProp,
 }: {

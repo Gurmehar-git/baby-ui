@@ -203,7 +203,7 @@ export function Question({
 							aria-label="Previous question"
 							disabled={currentStep === 0}
 							onClick={() => setStep(currentStep - 1)}
-							className="grid size-7 shrink-0 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
+							className="grid size-7 shrink-0 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-40"
 						>
 							<svg viewBox="0 0 16 16" fill="none" aria-hidden className="size-3.5">
 								<path
@@ -221,7 +221,7 @@ export function Question({
 									key={q.id}
 									aria-hidden
 									className={cn(
-										"size-1.5 rounded-full bg-foreground transition-[opacity,scale] duration-(--duration-base) ease-[var(--ease-out)]",
+										"size-1.5 rounded-full bg-foreground transition-[opacity,scale] duration-(--duration-base) ease-[var(--ease-ui-out)]",
 										i === currentStep ? "scale-100 opacity-100" : "scale-75 opacity-35",
 									)}
 								/>

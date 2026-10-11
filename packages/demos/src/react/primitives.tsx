@@ -163,7 +163,7 @@ export function InputDemo({ props }: { props: Props }) {
 				id={id}
 				value={value}
 				onChange={(e) => setValue(e.currentTarget.value)}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				invalid={p.invalid ?? false}
 				disabled={p.disabled ?? false}
 				placeholder={p.placeholder || "Enter a value"}
@@ -203,7 +203,7 @@ export function TextareaDemo({ props }: { props: Props }) {
 				onChange={(e) => setValue(e.currentTarget.value)}
 				label={p.label ?? "Message"}
 				description={p.description}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				variant={p.variant ?? "outline"}
 				rows={p.rows ?? 4}
 				autoGrow={p.autoGrow ?? false}

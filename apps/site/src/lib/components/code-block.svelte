@@ -87,7 +87,7 @@ const BODY =
 			style:max-height={expanded ? `${contentHeight + 72}px` : "18rem"}
 			class={[
 				BODY,
-				"overflow-hidden pb-14 transition-[max-height] duration-[var(--duration-overlay)] ease-[var(--ease-out)] motion-reduce:transition-none",
+				"overflow-hidden pb-14 transition-[max-height] duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 			]}
 		>
 			<div bind:clientHeight={contentHeight}>{@html html}</div>

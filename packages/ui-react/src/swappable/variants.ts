@@ -6,7 +6,7 @@ export const swappable = tv({
 		root: "",
 		slot: [
 			"rounded-xl outline-2 outline-transparent -outline-offset-2 outline-dashed",
-			"transition-[background-color,outline-color] duration-(--duration-fast) ease-[var(--ease-out)] motion-reduce:transition-none",
+			"transition-[background-color,outline-color] duration-(--duration-fast) ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 			"data-[swapy-highlighted]:bg-primary/5 data-[swapy-highlighted]:outline-primary/40",
 		],
 		// Without a SwappableHandle inside, the whole item is the grip.
@@ -17,7 +17,7 @@ export const swappable = tv({
 		],
 		handle: [
 			"inline-flex shrink-0 cursor-grab touch-none items-center justify-center rounded-md text-muted-foreground",
-			"transition-colors hover:bg-foreground/[0.06] hover:text-foreground active:cursor-grabbing [&_svg]:size-4",
+			"transition-colors hover:bg-accent hover:text-accent-foreground active:cursor-grabbing [&_svg]:size-4",
 		],
 	},
 	variants: {
@@ -26,7 +26,7 @@ export const swappable = tv({
 			card: {
 				item: [
 					"rounded-xl border border-border bg-card shadow-sm",
-					"transition-[box-shadow,border-color] duration-(--duration-fast) ease-[var(--ease-out)] motion-reduce:transition-none",
+					"transition-[box-shadow,border-color] duration-(--duration-fast) ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 					"data-[swapy-dragging]:border-border-strong data-[swapy-dragging]:shadow-2xl",
 				],
 			},

@@ -5,7 +5,7 @@ export const loadingScreen = tv({
 	slots: {
 		root: [
 			"inset-0 z-50 grid place-content-center justify-items-center gap-5 bg-background text-foreground",
-			"transition-[opacity,visibility] ease-[var(--ease-out)] motion-reduce:transition-none",
+			"transition-[opacity,visibility] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		],
 		logo: "grid size-10 place-items-center [&_svg]:size-full",
 		indicator: "flex items-center justify-center",

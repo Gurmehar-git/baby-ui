@@ -25,7 +25,7 @@ let {
 	ref = $bindable(null),
 	class: classProp,
 	rows = 3,
-	size = "md",
+	size = "default",
 	variant = "outline",
 	autoGrow = false,
 	maxRows = 10,
