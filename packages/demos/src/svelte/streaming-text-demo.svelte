@@ -55,17 +55,45 @@ const FOLLOW_UPS = [
 	"Compare gelato and soft serve margins",
 ];
 
+const MARKDOWN_ANSWER = [
+	"**Pistachio** is your fastest-growing flavor:",
+	"",
+	"- Sales are up `23%` this month",
+	"- Margins beat vanilla by 8 points",
+	"",
+	"Stone-fruit flavors are trending in the same range.",
+].join("\n");
+// Whitespace stays on the chunk before it, so the joined text is the answer verbatim.
+const MARKDOWN_CHUNKS = MARKDOWN_ANSWER.split(/(?<=\s)/);
+
 const layout = $derived(p.layout ?? "inline");
+const markdown = $derived(p.markdown ?? false);
+let count = $state(0);
+
+// Markdown mode is controlled, so the demo scripts the chunks a model would send.
+$effect(() => {
+	void layout;
+	void props.actions;
+	count = 0;
+	if (!markdown) return;
+	const timer = setInterval(() => {
+		count += 1;
+		if (count >= MARKDOWN_CHUNKS.length) clearInterval(timer);
+	}, 40);
+	return () => clearInterval(timer);
+});
 </script>
 
-{#key `${layout}-${String(props.actions)}`}
+{#key `${layout}-${String(props.actions)}-${markdown}`}
 	<div class="w-full max-w-96">
 		<StreamingText
 			{layout}
 			size={p.size ?? "md"}
 			caret={p.caret ?? true}
 			actions={p.actions ?? true}
-			content={CONTENT}
+			{markdown}
+			streaming={markdown ? count < MARKDOWN_CHUNKS.length : undefined}
+			content={markdown ? MARKDOWN_CHUNKS.slice(0, count).join("") : CONTENT}
 			sources={SOURCES}
 			followUps={FOLLOW_UPS}
 			onFollowUp={() => {}}

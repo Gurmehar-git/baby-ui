@@ -26,7 +26,13 @@ export function sharedFiles(output, target) {
 			}
 			// A React file generated earlier in this run is newer than the copy on disk.
 			const src = join(reactRoot, entry.name, file);
-			output.add(join(destDir, file), output.files.get(src) ?? readFileSync(src, "utf8"));
+			output.add(
+				join(destDir, file),
+				output.files.get(src) ?? readFileSync(src, "utf8"),
+				{
+					source: src,
+				},
+			);
 		}
 	}
 }

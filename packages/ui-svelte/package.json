@@ -31,6 +31,7 @@
 	},
 	"dependencies": {
 		"@better-svelte-email/components": "catalog:",
+		"@docvia/markdown": "catalog:",
 		"@internationalized/date": "catalog:",
 		"@tanstack/store": "catalog:",
 		"@tanstack/svelte-form": "catalog:",

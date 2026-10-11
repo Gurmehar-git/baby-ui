@@ -1,4 +1,5 @@
 <script lang="ts">
+import { registry } from "virtual:docvia/registry";
 import {
 	IconArrowLeft,
 	IconArrowRight,
@@ -13,6 +14,7 @@ import {
 	Alert,
 	AlertDescription,
 	AlertTitle,
+	Markdown,
 	Select,
 	SelectContent,
 	SelectItem,
@@ -23,8 +25,7 @@ import {
 	TabsList,
 	TabsTrigger,
 } from "@baby-ui/svelte";
-import { Renderer } from "@docvia/renderer-svelte";
-import { registry } from "docvia/registry";
+import { Renderer } from "@docvia/core/svelte";
 import type { Snippet } from "svelte";
 import { track } from "#lib/analytics.js";
 import CodeBlock from "#lib/components/code-block.svelte";
@@ -66,6 +67,8 @@ import { page } from "$app/state";
 import type { PageProps } from "./$types";
 
 let { data }: PageProps = $props();
+
+const bullets = (items: string[]) => items.map((item) => `- ${item}`).join("\n");
 
 let tab = $state("preview");
 let viewport = $state<"desktop" | "mobile">("desktop");
@@ -426,12 +429,10 @@ const categoryTrail = $derived(
 				as a person. Not a description of either one's code.
 			</p>
 			<div class="mt-4 max-w-2xl rounded-xl border border-border p-4">
-				<ul class="flex list-disc flex-col gap-1.5 pl-5 text-muted-foreground text-sm [overflow-wrap:anywhere]">
-					{#each data.spec.motion.behaviour as rule (rule)}
-						<li>{rule}</li>
-					{/each}
-					<li>{data.spec.motion.reducedMotion}</li>
-				</ul>
+				<Markdown
+					variant="muted"
+					content={bullets([...data.spec.motion.behaviour, data.spec.motion.reducedMotion])}
+				/>
 			</div>
 		</section>
 	{/if}
@@ -445,19 +446,11 @@ const categoryTrail = $derived(
 			<div class="mt-4 flex max-w-2xl flex-col gap-4 rounded-xl border border-border p-4">
 				{#if data.spec.a11y.keyboard.length}
 					<p class="-mb-2 font-medium text-foreground text-xs">Keyboard</p>
-					<ul class="flex list-disc flex-col gap-1.5 pl-5 text-muted-foreground text-sm [overflow-wrap:anywhere]">
-						{#each data.spec.a11y.keyboard as key (key)}
-							<li>{key}</li>
-						{/each}
-					</ul>
+					<Markdown variant="muted" content={bullets(data.spec.a11y.keyboard)} />
 				{/if}
 				{#if data.spec.a11y.notes.length}
 					<p class="-mb-2 font-medium text-foreground text-xs">Notes</p>
-					<ul class="flex list-disc flex-col gap-1.5 pl-5 text-muted-foreground text-sm [overflow-wrap:anywhere]">
-						{#each data.spec.a11y.notes as note (note)}
-							<li>{note}</li>
-						{/each}
-					</ul>
+					<Markdown variant="muted" content={bullets(data.spec.a11y.notes)} />
 				{/if}
 			</div>
 		</section>

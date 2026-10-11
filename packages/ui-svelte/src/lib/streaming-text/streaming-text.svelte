@@ -1,5 +1,6 @@
 <script lang="ts">
 import { cn } from "../lib/cn";
+import Markdown from "../markdown/markdown.svelte";
 import type { StreamingSource, StreamingToken } from "./types";
 import {
 	type StreamingTextLayout,
@@ -13,6 +14,8 @@ let {
 	layout = "inline",
 	size = "md",
 	content: contentProp,
+	markdown = false,
+	streaming,
 	caret = true,
 	actions = true,
 	sources = [],
@@ -30,6 +33,10 @@ let {
 	size?: StreamingTextSize;
 	/** Tokens with optional citations, or plain text revealed word by word. */
 	content: StreamingToken[] | string;
+	/** Render `content` as Markdown; the reveal follows `streaming` instead of the word timer. */
+	markdown?: boolean;
+	/** Markdown mode: `true` while chunks arrive, `false` once done. Unset renders it static. */
+	streaming?: boolean;
 	/** Blinking caret while the text reveals. */
 	caret?: boolean;
 	/** Copy, retry and feedback row once done. */
@@ -49,19 +56,24 @@ let {
 const content: StreamingToken[] = $derived(
 	typeof contentProp === "string"
 		? contentProp
-				.split(/s+/)
+				.split(/\s+/)
 				.filter(Boolean)
 				.map((word) => ({ text: word }))
 		: contentProp,
 );
+const source = $derived(
+	typeof contentProp === "string"
+		? contentProp
+		: contentProp.map((token) => token.text).join(" "),
+);
 let count = $state(0);
 let sourcesOpen = $state(false);
 let copied = $state(false);
-const done = $derived(count >= content.length);
+const done = $derived(markdown ? !streaming : count >= content.length);
 const slots = $derived(streamingText({ layout, size }));
 
 $effect(() => {
-	if (count >= content.length) return;
+	if (markdown || count >= content.length) return;
 	const t = setTimeout(() => {
 		count = Math.min(content.length, count + 1);
 	}, wordDelay);
@@ -76,9 +88,8 @@ $effect(() => {
 });
 
 async function copyText() {
-	const plain = content.map((t) => t.text).join(" ");
 	try {
-		await navigator.clipboard.writeText(plain);
+		await navigator.clipboard.writeText(source);
 		copied = true;
 		setTimeout(() => {
 			copied = false;
@@ -90,6 +101,9 @@ async function copyText() {
 </script>
 
 <div data-slot="streaming-text" class={cn(slots.root(), classProp)}>
+	{#if markdown}
+		<Markdown content={source} {streaming} {size} {caret} />
+	{:else}
 	<p aria-busy={!done || undefined} class={slots.text()}>
 		{#each content.slice(0, count) as token, i (i)}
 			{#if token.cite !== undefined}
@@ -113,6 +127,7 @@ async function copyText() {
 			<span aria-hidden="true" class="stream-caret ml-0.5 inline-block h-[1em] w-[2px] translate-y-[0.15em] bg-current"></span>
 		{/if}
 	</p>
+	{/if}
 
 	<div
 		class="mt-2 flex items-center gap-0.5 transition-opacity duration-400"

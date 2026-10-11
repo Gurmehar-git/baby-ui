@@ -1,6 +1,4 @@
-import { createRequire } from "node:module";
-import { dirname, join } from "node:path";
-import { docvia, docviaSourcePlugin } from "@docvia/plugin-vite";
+import { docvia } from "@docvia/build/vite";
 import adapter from "@sveltejs/adapter-cloudflare";
 import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";
@@ -9,7 +7,6 @@ import { defineConfig, loadEnv, type Plugin, searchForWorkspaceRoot } from "vite
 import { reportMemory } from "../../scripts/lib/memory.mjs";
 import docviaConfig from "./docvia.config.ts";
 
-const require = createRequire(import.meta.url);
 // The Worker's resolve settings: no `node` condition (yaml picks ESM); only `node:` ids are
 // builtins (nodejs_compat), so `browser` field maps apply to bare ones (postcss drops fs/path/url).
 const WORKER_RESOLVE = {
@@ -17,13 +14,6 @@ const WORKER_RESOLVE = {
 	mainFields: ["browser", "module", "jsnext:main", "jsnext"],
 	builtins: [/^node:/],
 };
-
-// @docvia/renderer-svelte@0.2.4 points its `svelte` condition at ./src, which it never
-// publishes. Resolve dist via the /node subpath; ./package.json is not exported either.
-const rendererSvelte = join(
-	dirname(require.resolve("@docvia/renderer-svelte/node")),
-	"index.js",
-);
 
 /** The dev server's own memory, logged beside the gen and registry watchers' lines. */
 function devMemory(): Plugin {
@@ -46,25 +36,18 @@ export default defineConfig(({ command, mode, isPreview }) => {
 	return {
 		define: { __SHOW_PRO__: JSON.stringify(showPro) },
 		resolve: {
-			alias: [{ find: "@docvia/renderer-svelte", replacement: rendererSvelte }],
 			// The Pro submodule has its own node_modules. One copy of each shared dep keeps the Svelte
 			// runtime (and kernel context) single, and stops dev re-optimizing when a Pro page loads.
 			dedupe: ["svelte", "tailwind-variants", "d3-scale"],
 		},
-		// The package ships a raw .svelte file in dist; dev SSR externalises it and Node
-		// then refuses the extension. Harmless in the bundled prod build, fatal in dev.
-		ssr: { noExternal: ["@docvia/renderer-svelte"] },
 		// The OG renderer worker lazy-loads takumi's backend, which an IIFE worker can't split.
 		worker: { format: "es" },
 		// SvelteKit narrows fs.allow to the app; demos and components live in packages/ and pro/.
 		server: { fs: { allow: [searchForWorkspaceRoot(process.cwd())] } },
-		// The scanner can't see lazy demos or docvia's virtual modules; finding these mid-session
-		// re-bundles deps and pages hydrate against a second Svelte runtime. Icons ship raw .svelte.
+		// The scanner can't see lazy demos; finding these mid-session re-bundles deps and pages
+		// hydrate against a second Svelte runtime. docvia adds its own runtime packages.
 		optimizeDeps: {
 			include: [
-				"@docvia/renderer-svelte",
-				"@docvia/search",
-				"@docvia/source/internal",
 				"@shikijs/langs/bash",
 				"@shikijs/langs/css",
 				"@shikijs/langs/javascript",
@@ -98,11 +81,8 @@ export default defineConfig(({ command, mode, isPreview }) => {
 		},
 		environments: {
 			ssr: {
-				resolve: {
-					noExternal: ["@docvia/renderer-svelte"],
-					// Build only: dev SSR runs in Node.
-					...(command === "build" && WORKER_RESOLVE),
-				},
+				// Build only: dev SSR runs in Node.
+				resolve: command === "build" ? WORKER_RESOLVE : {},
 			},
 		},
 		plugins: [
@@ -118,8 +98,6 @@ export default defineConfig(({ command, mode, isPreview }) => {
 			}),
 			tailwindcss(),
 			docvia(docviaConfig),
-			// Resolves `docvia/registry` to the registry alone; docvia() only serves the full source.
-			docviaSourcePlugin(),
 			sveltekit({
 				// The fullscreen-nav demo ships placeholder anchors like #product,
 				// which have no target on the page that previews them. Warn, do not fail.

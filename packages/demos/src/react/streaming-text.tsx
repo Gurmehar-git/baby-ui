@@ -1,7 +1,7 @@
 "use client";
 
 import { type StreamingSource, StreamingText, type StreamingToken } from "@baby-ui/react";
-import type { ComponentProps } from "react";
+import { type ComponentProps, useEffect, useState } from "react";
 import { controlProps } from "../data/preview-props";
 
 type Props = Record<string, unknown>;
@@ -51,17 +51,41 @@ const FOLLOW_UPS = [
 	"Compare gelato and soft serve margins",
 ];
 
+const MARKDOWN_ANSWER = [
+	"**Pistachio** is your fastest-growing flavor:",
+	"",
+	"- Sales are up `23%` this month",
+	"- Margins beat vanilla by 8 points",
+	"",
+	"Stone-fruit flavors are trending in the same range.",
+].join("\n");
+// Whitespace stays on the chunk before it, so the joined text is the answer verbatim.
+const MARKDOWN_CHUNKS = MARKDOWN_ANSWER.split(/(?<=\s)/);
+
 export function StreamingTextDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof StreamingText>>(props);
+	const markdown = p.markdown ?? false;
+	const [count, setCount] = useState(0);
+
+	// Markdown mode is controlled, so the demo scripts the chunks a model would send.
+	useEffect(() => setCount(0), [markdown, props.layout, props.actions]);
+	useEffect(() => {
+		if (!markdown || count >= MARKDOWN_CHUNKS.length) return;
+		const timer = setTimeout(() => setCount((n) => n + 1), 40);
+		return () => clearTimeout(timer);
+	}, [markdown, count]);
+
 	return (
 		<div className="w-full max-w-96">
 			<StreamingText
-				key={`${String(props.layout)}-${String(props.actions)}`}
+				key={`${String(props.layout)}-${String(props.actions)}-${markdown}`}
 				layout={p.layout ?? "inline"}
 				size={p.size ?? "md"}
 				caret={p.caret ?? true}
 				actions={p.actions ?? true}
-				content={CONTENT}
+				markdown={markdown}
+				streaming={markdown ? count < MARKDOWN_CHUNKS.length : undefined}
+				content={markdown ? MARKDOWN_CHUNKS.slice(0, count).join("") : CONTENT}
 				sources={SOURCES}
 				followUps={FOLLOW_UPS}
 				onFollowUp={() => {}}

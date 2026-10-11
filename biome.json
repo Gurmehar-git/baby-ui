@@ -20,7 +20,6 @@
 			"!packages/icons/src/index.ts",
 			"!pnpm-lock.yaml",
 			"!**/*.css",
-			"!**/docvia-env.d.ts",
 			"!.vscode"
 		]
 	},

@@ -88,8 +88,8 @@ export async function verifyRegistryDependencies(
 	return [...new Set(errors)];
 }
 
-/** docvia applies one frontmatter schema to every collection, so it cannot require
- * `component`/`category` of component docs alone. `missing` lists specs with no page yet. */
+/** Cross-checks component docs against the specs (docvia validates the fields, not that a spec
+ * exists or agrees). `missing` lists specs with no page yet. */
 export async function verifyComponentDocs(
 	specs: ComponentSpec[],
 	docsDir: string,

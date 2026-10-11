@@ -60,6 +60,8 @@ export function generate({ check = false, quiet = false } = {}) {
 		for (const line of report.usageMissing ?? [])
 			console.log(`  usage needs a default for ${line}`);
 		for (const line of result.conflicts) console.log(`  conflict: ${line}`);
+		for (const line of result.overwritten)
+			console.warn(`  ${check ? "will overwrite" : "overwrote"}: ${line}`);
 	}
 	return result;
 }

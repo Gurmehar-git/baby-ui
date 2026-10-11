@@ -1,6 +1,7 @@
 <script lang="ts">
 import { IconChevronDown } from "@baby-ui/icons";
 import type { PropSpec } from "@baby-ui/registry-schema";
+import { Markdown } from "@baby-ui/svelte";
 import { prefersReducedMotion } from "svelte/motion";
 import { slide } from "svelte/transition";
 
@@ -56,7 +57,7 @@ const duration = $derived(prefersReducedMotion.current ? 0 : 200);
 							{#if expanded}
 								<div transition:slide={{ duration }} class="overflow-hidden">
 									<div class="border-border/60 border-t px-4 py-3">
-										<p class="text-foreground text-sm">{prop.description}</p>
+										<Markdown content={prop.description} />
 										<dl class="mt-3 grid grid-cols-[6rem_minmax(0,1fr)] items-baseline gap-y-1">
 											<dt class="text-muted-foreground text-sm">Default</dt>
 											<dd class="font-mono text-[13px] text-foreground wrap-anywhere">

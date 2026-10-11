@@ -132,23 +132,16 @@ async function swap(node: Node): Promise<Node> {
 	return { ...node, children: out };
 }
 
-function collect(node: Node, out: Heading[]) {
-	if (
-		node.kind === "element" &&
-		(node.tag === "h2" || node.tag === "h3") &&
-		typeof node.props?.id === "string"
-	) {
-		out.push({ id: node.props.id, label: text(node), depth: node.tag === "h2" ? 2 : 3 });
-	}
-	for (const child of node.children ?? []) collect(child, out);
-}
+const isOutlined = (depth: number): depth is Heading["depth"] =>
+	depth === 2 || depth === 3;
 
-/** Rewrites code fences to site components and lists the h2/h3 headings for an outline. */
-export async function prepare<T>(
-	content: T,
-): Promise<{ content: T; headings: Heading[] }> {
-	const node = await swap(content as Node);
-	const headings: Heading[] = [];
-	collect(node, headings);
-	return { content: node as T, headings };
+/** Rewrites code fences to site components and keeps docvia's h2/h3 headings for an outline. */
+export async function prepare<T>(page: {
+	content: T;
+	headings: { depth: number; text: string; id: string }[];
+}): Promise<{ content: T; headings: Heading[] }> {
+	const headings = page.headings.flatMap(({ depth, text, id }) =>
+		isOutlined(depth) ? [{ id, label: text, depth }] : [],
+	);
+	return { content: (await swap(page.content as Node)) as T, headings };
 }

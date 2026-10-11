@@ -1,7 +1,7 @@
 <script lang="ts">
+import { registry } from "virtual:docvia/registry";
 import { IconList } from "@baby-ui/icons";
-import { Renderer } from "@docvia/renderer-svelte";
-import { registry } from "docvia/registry";
+import { Renderer } from "@docvia/core/svelte";
 import DocsIntroCover from "#lib/components/docs-intro-cover.svelte";
 import MobileNavDrawer from "#lib/components/mobile-nav-drawer.svelte";
 import OutlineToggle from "#lib/components/outline-toggle.svelte";

@@ -13,7 +13,6 @@
 		"src/**/*.ts",
 		"src/**/*.svelte",
 		".docvia/**/*.ts",
-		"docvia-env.d.ts",
 		"docvia.config.ts",
 		"vite.config.ts"
 	]

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "../lib/cn";
+import { Markdown } from "../markdown/markdown";
 import {
 	type StreamingTextLayout,
 	type StreamingTextSize,
@@ -41,6 +42,10 @@ export interface StreamingTextProps {
 	size?: StreamingTextSize;
 	/** Tokens with optional citations, or plain text revealed word by word. */
 	content: StreamingToken[] | string;
+	/** Render `content` as Markdown; the reveal follows `streaming` instead of the word timer. */
+	markdown?: boolean;
+	/** Markdown mode: `true` while chunks arrive, `false` once done. Unset renders it static. */
+	streaming?: boolean;
 	/** Blinking caret while the text reveals. */
 	caret?: boolean;
 	/** Copy, retry and feedback row once done. */
@@ -62,6 +67,8 @@ export function StreamingText({
 	layout = "inline",
 	size = "md",
 	content: contentProp,
+	markdown = false,
+	streaming,
 	caret = true,
 	actions = true,
 	sources = [],
@@ -75,6 +82,10 @@ export function StreamingText({
 	onFeedback,
 	className,
 }: StreamingTextProps) {
+	const source =
+		typeof contentProp === "string"
+			? contentProp
+			: contentProp.map((token) => token.text).join(" ");
 	const content = useMemo<StreamingToken[]>(
 		() =>
 			typeof contentProp === "string"
@@ -88,19 +99,19 @@ export function StreamingText({
 	const [count, setCount] = useState(0);
 	const [sourcesOpen, setSourcesOpen] = useState(false);
 	const [copied, setCopied] = useState(false);
-	const done = count >= content.length;
+	const done = markdown ? !streaming : count >= content.length;
 	const doneRef = useRef(false);
 	const { root, text } = streamingText({ layout, size });
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: re-run triggers the body never reads: count.
 	useEffect(() => {
-		if (done) return;
+		if (markdown || done) return;
 		const id = setTimeout(
 			() => setCount((c) => Math.min(content.length, c + 1)),
 			wordDelay,
 		);
 		return () => clearTimeout(id);
-	}, [count, done, content.length, wordDelay]);
+	}, [count, done, markdown, content.length, wordDelay]);
 
 	useEffect(() => {
 		if (!done || doneRef.current) return;
@@ -109,9 +120,8 @@ export function StreamingText({
 	}, [done, onDone]);
 
 	async function copyText() {
-		const plain = content.map((t) => t.text).join(" ");
 		try {
-			await navigator.clipboard.writeText(plain);
+			await navigator.clipboard.writeText(source);
 			setCopied(true);
 			setTimeout(() => setCopied(false), 1500);
 		} catch {
@@ -121,23 +131,27 @@ export function StreamingText({
 
 	return (
 		<div data-slot="streaming-text" className={cn(root(), className)}>
-			<p aria-busy={!done || undefined} className={text()}>
-				{content.slice(0, count).map((token, i) =>
-					token.cite !== undefined ? (
-						// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
-						<SourceChip key={`${token.text}-${i}`} source={sources[token.cite]} />
-					) : (
-						// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
-						<span key={`${token.text}-${i}`}>{token.text} </span>
-					),
-				)}
-				{caret && !done ? (
-					<span
-						aria-hidden
-						className="stream-caret ml-0.5 inline-block h-[1em] w-[2px] translate-y-[0.15em] bg-current"
-					/>
-				) : null}
-			</p>
+			{markdown ? (
+				<Markdown content={source} streaming={streaming} size={size} caret={caret} />
+			) : (
+				<p aria-busy={!done || undefined} className={text()}>
+					{content.slice(0, count).map((token, i) =>
+						token.cite !== undefined ? (
+							// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
+							<SourceChip key={`${token.text}-${i}`} source={sources[token.cite]} />
+						) : (
+							// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
+							<span key={`${token.text}-${i}`}>{token.text} </span>
+						),
+					)}
+					{caret && !done ? (
+						<span
+							aria-hidden
+							className="stream-caret ml-0.5 inline-block h-[1em] w-[2px] translate-y-[0.15em] bg-current"
+						/>
+					) : null}
+				</p>
+			)}
 
 			<div
 				className="mt-2 flex items-center gap-0.5 transition-opacity duration-400"

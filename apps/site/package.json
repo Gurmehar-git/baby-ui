@@ -7,7 +7,7 @@
 		"dev:app": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check": "docvia sync && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"portless": {
@@ -16,9 +16,8 @@
 	},
 	"devDependencies": {
 		"@baby-ui/registry-build": "workspace:*",
-		"@docvia/cli": "^1.0.0",
-		"@docvia/plugin-shiki": "^0.2.2",
-		"@docvia/plugin-vite": "^1.0.0",
+		"@docvia/build": "^3.0.0",
+		"@docvia/cli": "^3.0.0",
 		"@sveltejs/adapter-cloudflare": "catalog:",
 		"@sveltejs/kit": "catalog:",
 		"@sveltejs/vite-plugin-svelte": "catalog:",
@@ -41,10 +40,7 @@
 		"@baby-ui/svelte": "workspace:*",
 		"@baby-ui/tokens": "workspace:*",
 		"@better-svelte-email/server": "catalog:",
-		"@docvia/renderer-core": "^0.2.3",
-		"@docvia/renderer-svelte": "^0.2.4",
-		"@docvia/search": "^0.4.1",
-		"@docvia/source": "^0.4.0",
+		"@docvia/core": "^3.0.0",
 		"@fontsource-variable/inter": "catalog:",
 		"@fontsource-variable/jetbrains-mono": "catalog:",
 		"@fontsource-variable/newsreader": "catalog:",

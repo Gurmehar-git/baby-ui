@@ -1,24 +1,29 @@
-import { existsSync } from "node:fs";
-import { ComponentDocExtrasSchema } from "@baby-ui/registry-schema";
-import { defineConfig } from "@docvia/cli";
-import { createSvelteRenderer } from "@docvia/renderer-svelte/node";
-
-// Prose for Pro components lives in the private submodule, when it is checked out.
-const PRO_DOCS = "../../pro/docs/components";
+import { ComponentDocRequiredSchema } from "@baby-ui/registry-schema";
+import { defineConfig } from "@docvia/core";
+import { createSvelteRenderer } from "@docvia/core/svelte/node";
 
 export default defineConfig({
 	sourceDir: "src/docs",
 	outDir: ".docvia",
 	collections: [
-		{ name: "components", sourceDir: "src/docs/components", baseUrl: "/components" },
+		{
+			name: "components",
+			sourceDir: "src/docs/components",
+			baseUrl: "/components",
+			frontmatter: ComponentDocRequiredSchema,
+		},
 		{ name: "guides", sourceDir: "src/docs/guides", baseUrl: "/docs" },
-		...(existsSync(PRO_DOCS)
-			? [{ name: "pro", sourceDir: PRO_DOCS, baseUrl: "/components" }]
-			: []),
+		// Pro prose lives in the private submodule; public checkouts get an empty collection.
+		{
+			name: "pro",
+			sourceDir: "../../pro/docs/components",
+			baseUrl: "/components",
+			frontmatter: ComponentDocRequiredSchema,
+			optional: true,
+		},
 	],
-	frontmatter: ComponentDocExtrasSchema,
 
-	// Registering these is also what makes `registry` exist on virtual:docvia/source.
+	// Registering these is what fills `virtual:docvia/registry`.
 	components: {
 		"button-demo": {
 			path: "../../packages/demos/src/svelte/button-demo.svelte",
@@ -33,5 +38,6 @@ export default defineConfig({
 			hydrate: true,
 		},
 	},
-	renderer: createSvelteRenderer(),
+	// docs-nodes.ts swaps fences for CodeBlock/CodeGroup, so they can't merge into static html.
+	renderer: createSvelteRenderer({ staticHtml: { keepTags: ["pre"] } }),
 });

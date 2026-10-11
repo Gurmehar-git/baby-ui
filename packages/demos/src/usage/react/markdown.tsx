@@ -1,13 +1,11 @@
 import { Markdown } from "@baby-ui/react";
 
-const content = [
-	"## Installing",
-	"Components are copied into your project rather than installed.",
-	"",
-	"- You own the source",
-	"- Updates are a diff, not a version bump",
-].join("\n");
-
-export function Example() {
-	return <Markdown content={content} />;
+export function Example({ answer, done }: { answer: string; done: boolean }) {
+	return (
+		<>
+			<Markdown content="Components are **copied into your project**, not installed." />
+			{/* An AI answer: pass the whole text so far and flip `streaming` off when it ends. */}
+			<Markdown content={answer} streaming={!done} animate="settle" />
+		</>
+	);
 }

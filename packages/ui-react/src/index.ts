@@ -275,7 +275,8 @@ export { type MagnetLinesProps, MagnetLines } from "./magnet-lines/magnet-lines"
 export { type MagnetLinesOptions, mountMagnetLines } from "./magnet-lines/magnet";
 export { magnetLines, type MagnetLinesSize, type MagnetLinesTone } from "./magnet-lines/variants";
 export { type MarkdownProps, Markdown } from "./markdown/markdown";
-export { markdown, type MarkdownSize } from "./markdown/variants";
+export { type MarkdownAnimate, markdownMotion } from "./markdown/motion";
+export { markdown, type MarkdownVariant, type MarkdownSize } from "./markdown/variants";
 export { type MarkerProps, Marker } from "./marker/marker";
 export { marker, type MarkerVariant, type MarkerTone, type MarkerShape, MARKER_SHAPES, MARKER_STAGGER_MS } from "./marker/variants";
 export { type MaskTextProps, MaskText } from "./mask-text/mask-text";

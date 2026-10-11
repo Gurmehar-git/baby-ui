@@ -29,6 +29,21 @@ export const streamingText = defineComponent({
 			control: { kind: "select", options: SIZES },
 		},
 		{
+			name: "markdown",
+			type: "boolean",
+			description:
+				"Render `content` as Markdown. The reveal then follows `streaming` instead of the word timer.",
+			default: false,
+			control: { kind: "boolean" },
+		},
+		{
+			name: "streaming",
+			type: "boolean",
+			description:
+				"Markdown mode: `true` while chunks arrive, `false` once done. Actions and follow-ups show once it is `false`.",
+			control: { kind: "none" },
+		},
+		{
 			name: "caret",
 			type: "boolean",
 			description: "Blinking caret while the text reveals.",
@@ -69,6 +84,7 @@ export const streamingText = defineComponent({
 			description: "Milliseconds between each revealed word.",
 			default: 55,
 			control: { kind: "number", min: 10, max: 200, step: 5 },
+			showWhen: { markdown: [false] },
 		},
 	],
 	motion: {
@@ -102,6 +118,7 @@ export const streamingText = defineComponent({
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
+			registryDependencies: ["markdown"],
 		},
 		svelte: {
 			entry: "StreamingText",
@@ -112,6 +129,7 @@ export const streamingText = defineComponent({
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
+			registryDependencies: ["markdown"],
 		},
 	},
 	keywords: ["streaming", "answer", "citations", "sources", "follow-ups", "agent"],

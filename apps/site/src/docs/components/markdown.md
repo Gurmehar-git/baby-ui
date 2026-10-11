@@ -1,14 +1,18 @@
 ---
 title: Markdown
-description: Minimal block renderer for headings, paragraphs, lists and fenced code.
+description: CommonMark and GFM from a string, static or streamed in word by word for AI answers.
 component: markdown
 category: base
-tags: [markdown]
+tags: [markdown, streaming]
 ---
 
-Headings, paragraphs, lists, fenced code. That is the entire grammar, and that is the
-point: it is 60 lines you can read, and it renders everything as text nodes so untrusted
-input cannot inject markup.
+Renders CommonMark and GitHub tables, task lists and strikethrough with no innerHTML: raw HTML
+is escaped and unsafe URLs are dropped, so model output and user input are safe to pass in.
 
-If you need links, tables, footnotes or anything else, use a real pipeline. A
-half-implemented markdown parser in a copied component is a liability, not a feature.
+## Streaming
+
+Pass the whole text so far as `content` and set `streaming` while chunks arrive. Finished blocks
+parse once; only the tail re-parses, and half-written `**bold` or `` `code `` renders closed.
+Flip `streaming` to `false` when the answer ends, or drop it to render static text on the server.
+
+Built on [`@docvia/markdown`](https://docvia.dev/docs/packages/markdown).

@@ -1,4 +1,4 @@
-import { components, docviaSource } from "virtual:docvia/source";
+import { components, pro } from "virtual:docvia/source";
 import type { Framework } from "@baby-ui/registry-schema";
 import { FRAMEWORKS, TOP_LEVEL_CATEGORIES } from "@baby-ui/registry-schema";
 import { error } from "@sveltejs/kit";
@@ -21,14 +21,8 @@ export const load: PageServerLoad = async ({ params }) => {
 	const spec = findSpec(params.category, params.slug);
 	if (!spec) throw error(404, `No ${params.category} component named "${params.slug}"`);
 
-	// Pro prose is its own collection, present only when the Pro submodule is checked out.
-	const collections = docviaSource.collections as Record<
-		string,
-		typeof components | undefined
-	>;
-	const doc = await (spec.tier === "pro" ? collections.pro : components)?.getPage([
-		params.slug,
-	]);
+	// Pro prose is an optional collection: empty unless the Pro submodule is checked out.
+	const doc = await (spec.tier === "pro" ? pro : components).getPage([params.slug]);
 
 	const ports = await Promise.all(
 		FRAMEWORKS.filter((f) => spec.impl[f]).map(async (framework: Framework) => {
@@ -66,7 +60,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	const email = spec.category === "emails" ? await emailRender(spec.slug) : null;
 
-	const prose = doc ? await prepare(doc.content) : null;
+	const prose = doc ? await prepare(doc) : null;
 	const related = specs
 		.filter((s) => s.category === spec.category && s.slug !== spec.slug)
 		.slice(0, 6)

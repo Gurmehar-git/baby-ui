@@ -28,12 +28,15 @@ export class Output {
 		this.files = new Map();
 		this.keep = new Set();
 		this.yielding = new Set();
+		this.sources = new Map();
 	}
 
-	/** `yieldToHand`: a hand-written file at this path wins (usage). Every other path the generator owns. */
-	add(path, content, { yieldToHand = false } = {}) {
+	/** `yieldToHand`: a hand-written file at this path wins (usage). Every other path the generator owns.
+	 * `source`: the file to edit instead, named when a hand edit here gets overwritten. */
+	add(path, content, { yieldToHand = false, source } = {}) {
 		this.files.set(path, content);
 		if (yieldToHand) this.yielding.add(path);
+		if (source) this.sources.set(path, source);
 	}
 
 	/** A path that must survive even though this run no longer generates it (port-specific files). */
@@ -103,13 +106,12 @@ export function previousFor(root) {
 	);
 }
 
-/**
- * Writes changed files and prunes ones it generated before but no longer does. It never touches a
- * file it did not write, or one edited since, and reports those as conflicts instead.
- */
+/** Writes changed files and prunes ones it no longer generates. Prunes skip hand-edited files
+ * (conflicts); rewrites of an owned file report the lost hand edit (overwritten). */
 export function flush(output, { check }) {
 	const stale = [];
 	const conflicts = [];
+	const overwritten = [];
 	const byRoot = new Map(output.roots.map((root) => [root, []]));
 	for (const path of output.files.keys()) byRoot.get(output.rootOf(path))?.push(path);
 
@@ -132,6 +134,16 @@ export function flush(output, { check }) {
 			}
 			written[posix(relative(root, path))] = hash(content);
 			if (current === content) continue;
+			const sum = before.get(path);
+			// Owned paths still regenerate, but a silent overwrite reads as a lost edit.
+			if (current !== null && sum && hash(current) !== sum) {
+				const source = output.sources.get(path);
+				overwritten.push(
+					source
+						? `${rel(path)} was edited by hand; it is copied from ${rel(source)}, edit that`
+						: `${rel(path)} was edited by hand; it is generated, edit its source`,
+				);
+			}
 			stale.push(path);
 			if (!check) {
 				mkdirSync(dirname(path), { recursive: true });
@@ -170,5 +182,5 @@ export function flush(output, { check }) {
 			else writeAtomic(file, content);
 		}
 	}
-	return { generated: [...output.files.keys()], stale, conflicts };
+	return { generated: [...output.files.keys()], stale, conflicts, overwritten };
 }
