@@ -39,13 +39,32 @@ export const accordion = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab moves between panel headers",
-			"Enter and Space toggle the focused panel",
+			{ keys: ["Tab"], action: "Moves between panel headers" },
+			{ keys: ["Enter", "Space"], action: "Toggles the focused panel" },
 		],
 		notes: [
 			"Each trigger is a button inside a heading, with aria-expanded and aria-controls pointing at its panel region.",
 			"Uses grid-template-rows rather than max-height, so a tall panel does not open at the wrong speed.",
 			"Open/close state, focus and keyboard handling are delegated to Base UI (React) and bits-ui (Svelte); this component only owns the classes and data-slots.",
+		],
+	},
+	guidance: {
+		when: [
+			"FAQs and settings groups where readers open one section at a time.",
+			"Long pages whose sections can start collapsed.",
+		],
+		whenNot: [
+			{ text: "A single show and hide region.", use: "collapsible" },
+			{ text: "Switching between peer views.", use: "tabs" },
+		],
+		responsive: [
+			"Height animates through grid rows, so content of any height opens smoothly at every width.",
+		],
+		performance: [
+			"Panels stay mounted so the height animation and in-page search work; keep very heavy panel content lazy.",
+		],
+		ai: [
+			'`type="single"` opens one section at a time (add `collapsible` to let it close); `type="multiple"` opens any number.',
 		],
 	},
 	licenseOrigin: {

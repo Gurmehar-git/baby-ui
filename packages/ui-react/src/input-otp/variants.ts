@@ -7,7 +7,7 @@ export const inputOtp = tv({
 		input: "disabled:cursor-not-allowed",
 		group: "flex items-center gap-2",
 		slot: [
-			"relative flex items-center justify-center rounded-lg border border-input bg-background font-medium tabular-nums",
+			"relative flex items-center justify-center rounded-lg border border-input bg-(--field) font-medium tabular-nums",
 			"outline-none transition-[box-shadow,border-color] duration-(--duration-fast) ease-[var(--ease-smooth)]",
 			"data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-2 data-[active=true]:ring-ring/30",
 			"aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/25",

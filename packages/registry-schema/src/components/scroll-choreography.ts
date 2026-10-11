@@ -66,7 +66,12 @@ export const scrollChoreography = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Arrow keys, Page Up/Down, Home and End scroll the focused box"],
+		keyboard: [
+			{
+				keys: ["Arrow keys", "Page Up", "Page Down", "Home", "End"],
+				action: "Scrolls the focused box",
+			},
+		],
 		notes: [
 			"The scroll box is a focusable labelled region; every image keeps its alt text.",
 		],

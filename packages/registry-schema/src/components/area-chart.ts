@@ -99,10 +99,11 @@ export const areaChart = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Inherits the chart plot's keyboard model"],
+		keyboard: [],
 		notes: [
 			"Each Area registers its series, so the summary, table and live region list it.",
 			"The pattern variant hatches each fill so stacked series stay apart without colour.",
+			"Keyboard follows the Chart plot: arrow keys move between points.",
 		],
 	},
 

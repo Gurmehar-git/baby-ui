@@ -78,13 +78,13 @@ export const starHistoryBlock = defineComponent({
 
 	a11y: {
 		keyboard: [
-			"Total and Gained are tabs: arrows move between them.",
-			"Charts inherit Tab focus on the plot and the data-table summary they expose.",
+			{ keys: ["Arrow Left", "Arrow Right"], action: "Switch between Total and Gained" },
 		],
 		notes: [
 			"Every chart announces an accessible name from `ChartContainer.title` and a generated summary.",
 			"The tab list is named by `labels.modeLabel`; facts and counts are `dl` pairs.",
 			"Icons are aria-hidden; the trend's signed percent is read as text, never colour alone.",
+			"The charts keep the Chart plot's keyboard model and data-table summary.",
 		],
 	},
 

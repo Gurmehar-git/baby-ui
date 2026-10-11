@@ -42,7 +42,8 @@ export const breadcrumb = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Enter or Space on the ellipsis opens the hidden levels; arrow keys move through them",
+			{ keys: ["Enter", "Space"], action: "On the ellipsis, opens the hidden levels" },
+			{ keys: ["Arrow keys"], action: "Move through the hidden levels" },
 		],
 		notes: [
 			"A nav labelled Breadcrumb wrapping an ordered list, so the order is conveyed rather than implied by the separators.",

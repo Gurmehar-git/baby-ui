@@ -115,9 +115,12 @@ export const musicPlayer = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Space and Enter activate the focused play, skip or mute button",
-			"Arrow keys step the focused seek or volume slider",
-			"Home and End jump a slider to its bounds",
+			{
+				keys: ["Space", "Enter"],
+				action: "Activates the focused play, skip or mute button",
+			},
+			{ keys: ["Arrow keys"], action: "Steps the focused seek or volume slider" },
+			{ keys: ["Home", "End"], action: "Jumps a slider to its bounds" },
 		],
 		notes: [
 			"Play and mute buttons swap their accessible names with their state.",

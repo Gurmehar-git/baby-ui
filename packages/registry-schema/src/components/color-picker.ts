@@ -94,11 +94,30 @@ export const colorPicker = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab reaches the area, the hue strip, the hex field, each channel slider and each preset",
-			"Arrow keys move the area (saturation across, brightness up and down) and the hue strip; Shift moves by 10",
-			"Swatches: one tab stop; arrow keys move and choose, as native radios do",
-			"Field and row variants: type a hex and press Enter; arrows step it by 1, Page keys by 16; Escape reverts",
-			"Field and row variants: Enter or Space on the swatch opens the picker, Escape closes it and returns focus",
+			{
+				keys: ["Tab"],
+				action:
+					"Reaches the area, the hue strip, the hex field, each channel slider and each preset",
+			},
+			{
+				keys: ["Arrow keys"],
+				action:
+					"Move the area (saturation across, brightness up and down) and the hue strip",
+			},
+			{ keys: ["Shift+Arrow keys"], action: "Move by 10" },
+			{
+				keys: ["Arrow keys"],
+				action: "Swatches: move and choose, as native radios do (one tab stop)",
+			},
+			{ keys: ["Enter"], action: "Field and row: applies a typed hex" },
+			{ keys: ["Arrow Up", "Arrow Down"], action: "Field and row: steps the value by 1" },
+			{ keys: ["Page Up", "Page Down"], action: "Field and row: steps the value by 16" },
+			{ keys: ["Escape"], action: "Field and row: reverts the edit" },
+			{
+				keys: ["Enter", "Space"],
+				action: "Field and row: on the swatch, opens the picker",
+			},
+			{ keys: ["Escape"], action: "Closes the picker and returns focus to the swatch" },
 		],
 		notes: [
 			"The area and the hue strip are sliders with spoken values, so the area and slider variants work without a pointer.",

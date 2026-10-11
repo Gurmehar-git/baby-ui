@@ -73,8 +73,8 @@ export const draggableMarquee = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab focuses the marquee",
-			"Arrow Left and Right move it by a third of its width",
+			{ keys: ["Tab"], action: "Focuses the marquee" },
+			{ keys: ["Arrow Left", "Arrow Right"], action: "Moves it by a third of its width" },
 		],
 		notes: [
 			'A labelled region with aria-roledescription="marquee"; the repeated copies are aria-hidden and inert.',

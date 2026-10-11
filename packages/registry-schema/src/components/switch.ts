@@ -47,7 +47,10 @@ export const switchComponent = defineComponent({
 	},
 	a11y: {
 		role: "switch",
-		keyboard: ["Space toggles the switch", "Enter toggles the switch"],
+		keyboard: [
+			{ keys: ["Space"], action: "Toggles the switch" },
+			{ keys: ["Enter"], action: "Toggles the switch" },
+		],
 		notes: [
 			"Uses role=switch with aria-checked, not a checkbox: a switch takes effect immediately, a checkbox waits for submit.",
 			"State, keyboard and the hidden input are delegated to Base UI (React) and bits-ui (Svelte); this component only owns the classes and data-slots.",

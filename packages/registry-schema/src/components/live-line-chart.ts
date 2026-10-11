@@ -138,9 +138,12 @@ export const liveLineChart = defineComponent({
 	a11y: {
 		role: "group",
 		keyboard: [
-			"Arrow Left and Right move between samples in the window",
-			"Home and End jump to the oldest and newest sample",
-			"Escape clears the active sample",
+			{
+				keys: ["Arrow Left", "Arrow Right"],
+				action: "Moves between samples in the window",
+			},
+			{ keys: ["Home", "End"], action: "Jumps to the oldest and newest sample" },
+			{ keys: ["Escape"], action: "Clears the active sample" },
 		],
 		notes: [
 			"The summary reports the latest value and the window's range; the hidden table lists the samples in view.",

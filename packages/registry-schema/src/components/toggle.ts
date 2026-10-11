@@ -56,7 +56,7 @@ export const toggle = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Space and Enter toggle"],
+		keyboard: [{ keys: ["Space", "Enter"], action: "Toggles" }],
 		notes: [
 			"aria-pressed, not aria-checked: this is a button that stays down, not a checkbox.",
 			"An icon-only toggle needs `label`, or it is announced as an unnamed button.",

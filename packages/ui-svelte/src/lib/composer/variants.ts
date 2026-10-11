@@ -2,7 +2,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 export const composer = tv({
 	slots: {
-		root: "relative w-full rounded-2xl border border-input bg-background p-2 transition-colors focus-within:border-ring",
+		root: "relative w-full rounded-2xl border border-input bg-(--field) p-2 transition-colors focus-within:border-ring",
 		textarea:
 			"scrollbar-none block w-full resize-none overflow-y-auto bg-transparent text-foreground outline-none placeholder:text-muted-foreground",
 		toolbar: "mt-1 flex min-h-8 items-center gap-1",

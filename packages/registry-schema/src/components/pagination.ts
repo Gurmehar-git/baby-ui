@@ -47,7 +47,7 @@ export const pagination = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Tab reaches each page link and both arrows"],
+		keyboard: [{ keys: ["Tab"], action: "Reaches each page link and both arrows" }],
 		notes: [
 			"A nav labelled Pagination; the current page carries aria-current=page.",
 			"The arrows have accessible names, because a bare chevron is announced as button.",

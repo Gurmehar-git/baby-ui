@@ -44,6 +44,33 @@ export const card = defineComponent({
 			"Part names and `data-slot` values match shadcn/ui, so this replaces an existing card without touching call sites.",
 		],
 	},
+	guidance: {
+		when: [
+			"Grouping one subject's content (a project, a plan, a setting) with an optional header and footer.",
+			"A tile that links somewhere: `interactive` adds the hover lift.",
+			"Pages of many cards: `well` keeps content on the page colour with grey only as the frame.",
+		],
+		whenNot: [
+			{
+				text: "Rows of uniform records that need sorting or scanning.",
+				use: "data-table",
+			},
+			{ text: "Sections the reader should be able to collapse.", use: "accordion" },
+			{ text: "A one-line status or message.", use: "alert" },
+		],
+		responsive: [
+			"Cards fill their container; set the grid or width on the parent, not the card.",
+			"The header is a container-query context, so its contents respond to the card's width, not the viewport.",
+		],
+		performance: [
+			"Plain markup with no client state; `interactive` only adds a CSS transition.",
+		],
+		ai: [
+			"Compose CardHeader, CardTitle, CardDescription, CardAction, CardContent and CardFooter, as in shadcn.",
+			"In `well`, put CardFooter directly inside Card, not inside CardContent, so it renders in the rim.",
+			"Use `secondary` for a card nested inside another surface; top-level cards use `default`.",
+		],
+	},
 	licenseOrigin: {
 		source: "sivir-ui",
 		url: "https://github.com/aidan-neel/sivir-ui",

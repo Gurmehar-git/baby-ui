@@ -2,7 +2,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 export const switchTrack = tv({
 	base: [
-		"group/switch relative inline-flex shrink-0 items-center rounded-full border border-transparent bg-input p-px",
+		"group/switch relative inline-flex shrink-0 items-center rounded-full border border-transparent bg-(--track) p-px",
 		"transition-[background-color,box-shadow] duration-(--duration-slow) ease-[var(--ease-smooth)] motion-reduce:transition-none",
 		"outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 		"aria-checked:bg-primary aria-disabled:cursor-not-allowed aria-disabled:opacity-50",

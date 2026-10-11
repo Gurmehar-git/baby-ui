@@ -8,7 +8,7 @@ export const dateField = tv({
 	slots: {
 		root: "inline-flex w-fit min-w-0 max-w-full flex-col gap-1.5",
 		group: [
-			"inline-flex w-full min-w-0 items-center rounded-lg border border-input bg-background px-1.5 text-foreground tabular-nums",
+			"inline-flex w-full min-w-0 items-center rounded-lg border border-input bg-(--field) px-1.5 text-foreground tabular-nums",
 			"transition-[box-shadow,border-color] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 			// Rings while a segment is focused, not while the calendar button is.
 			"has-[[data-segment]:focus]:border-ring has-[[data-segment]:focus]:ring-2 has-[[data-segment]:focus]:ring-ring",

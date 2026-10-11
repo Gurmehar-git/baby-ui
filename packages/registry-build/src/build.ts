@@ -219,6 +219,9 @@ export async function buildItem(
 			status: spec.status,
 			frameworks: Object.keys(spec.impl),
 			docs: `${SITE_URL}${docsPath(spec)}`,
+			// Agents that fetched the item jump straight to the page built for them.
+			markdown: `${SITE_URL}${docsPath(spec)}.md`,
+			tags: spec.keywords,
 		},
 	});
 }

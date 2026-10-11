@@ -64,7 +64,7 @@ export const toast = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Each toast's close button is reachable by Tab"],
+		keyboard: [{ keys: ["Tab"], action: "Reaches each toast's close button" }],
 		notes: [
 			"sonner renders an aria-live region, so a new toast is announced without interrupting.",
 			"Timers pause while the pointer is over the stack and while the page is hidden.",

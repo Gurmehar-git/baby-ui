@@ -133,7 +133,8 @@ export const orbitHero = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab reaches the actions and the two centre buttons; Enter or Space advances each.",
+			{ keys: ["Tab"], action: "Reaches the actions and the two centre buttons" },
+			{ keys: ["Enter", "Space"], action: "Advances each" },
 		],
 		notes: [
 			"Rings, readouts, glows and noise are aria-hidden; the centre buttons name the current group and tone.",

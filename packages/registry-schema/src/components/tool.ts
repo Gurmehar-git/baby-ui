@@ -73,7 +73,7 @@ export const tool = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Enter and Space toggle the panel"],
+		keyboard: [{ keys: ["Enter", "Space"], action: "Toggles the panel" }],
 		notes: [
 			"State is written out as a word beside the icon, so it does not depend on colour.",
 			"The collapsed panel is inert, so its payload leaves the tab order and the accessibility tree.",

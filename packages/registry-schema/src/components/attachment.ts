@@ -74,7 +74,7 @@ export const attachment = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Retry and remove are reachable by Tab"],
+		keyboard: [{ keys: ["Tab"], action: "Reaches retry and remove" }],
 		notes: [
 			"The state is always written out as text, never carried by the border colour alone.",
 			"Remove and retry name their file, so a list of them is not five identical buttons.",

@@ -70,7 +70,10 @@ export const diffTable = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Tab reaches each toggleable row", "Enter and Space toggle a row"],
+		keyboard: [
+			{ keys: ["Tab"], action: "Reaches each toggleable row" },
+			{ keys: ["Enter", "Space"], action: "Toggles a row" },
+		],
 		notes: [
 			'Each row carries `role="checkbox"`/`aria-checked` since the whole row is the control, not a separate input.',
 			"Removed rows use both colour and a strikethrough; added rows use colour and the same include/exclude mark, so neither depends on colour alone.",

@@ -65,8 +65,8 @@ export const toolChips = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab reaches the run header, each row and each diff chip",
-			"Enter and Space toggle a row",
+			{ keys: ["Tab"], action: "Reaches the run header, each row and each diff chip" },
+			{ keys: ["Enter", "Space"], action: "Toggles a row" },
 		],
 		notes: [
 			"Each diff chip's preview composes the real HoverCard, so its open/close timing and positioning aren't reimplemented here.",

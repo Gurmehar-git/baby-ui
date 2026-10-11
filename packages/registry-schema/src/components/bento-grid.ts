@@ -51,7 +51,9 @@ export const bentoGrid = defineComponent({
 	},
 
 	a11y: {
-		keyboard: ["Tab reaches each cell that carries its own link or button"],
+		keyboard: [
+			{ keys: ["Tab"], action: "Reaches each cell that carries its own link or button" },
+		],
 		notes: [
 			"The grid is a plain container with no list semantics; cells carry whatever role their content needs.",
 		],

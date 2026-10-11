@@ -98,9 +98,9 @@ export const wheelPicker = defineComponent({
 	a11y: {
 		role: "listbox",
 		keyboard: [
-			"Arrow Up and Down move one row",
-			"Page Up and Down move a screenful",
-			"Home and End jump to the first and last enabled row",
+			{ keys: ["Arrow Up", "Arrow Down"], action: "Moves one row" },
+			{ keys: ["Page Up", "Page Down"], action: "Move a screenful" },
+			{ keys: ["Home", "End"], action: "Jumps to the first and last enabled row" },
 		],
 		notes: [
 			"Each column is a listbox tracking the centred row with aria-activedescendant; loop copies are hidden.",

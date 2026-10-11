@@ -49,14 +49,40 @@ export const dialog = defineComponent({
 	a11y: {
 		role: "dialog",
 		keyboard: [
-			"Escape closes the dialog",
-			"Tab cycles within the dialog while it is open",
+			{ keys: ["Escape"], action: "Closes the dialog" },
+			{ keys: ["Tab"], action: "Cycles within the dialog while it is open" },
 		],
 		notes: [
 			"Rendered with the native dialog element, so the top layer, the backdrop and inertness of the rest of the page come from the browser rather than a focus-trap library.",
 			"DialogTitle and DialogDescription own the ids that the dialog is labelled and described by, so the wiring cannot drift.",
 			'`variant="default"` renders a single flat surface (the DialogFooter padding moves inline with it), matching the shadcn/ui baseline exactly.',
 			"Part names and data-slot values match shadcn/ui, so this replaces an existing dialog without touching call sites.",
+		],
+	},
+	guidance: {
+		when: [
+			"A focused task that blocks the page until it is done or dismissed: a form, a detail view, settings.",
+			"Content the user must not lose to a stray click outside: set `dismissOnBackdrop={false}`.",
+		],
+		whenNot: [
+			{ text: "Confirming a destructive action.", use: "alert-dialog" },
+			{
+				text: "A panel that slides from an edge, or a long form on mobile.",
+				use: "sheet",
+			},
+			{
+				text: "Extra detail anchored to a trigger without blocking the page.",
+				use: "popover",
+			},
+		],
+		responsive: [
+			"`size` caps the width (sm, md, lg, xl) and the dialog always keeps a 1rem margin from the viewport edge.",
+		],
+		performance: ["Content mounts only while open."],
+		ai: [
+			"Control it with `open` and `onOpenChange`; never toggle it with CSS.",
+			"Always include a DialogTitle: it names the dialog for screen readers.",
+			"Escape and the close button always dismiss; `dismissOnBackdrop` only governs outside clicks.",
 		],
 	},
 	licenseOrigin: {

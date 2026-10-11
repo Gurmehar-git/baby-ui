@@ -79,8 +79,11 @@ export const fineTuneCard = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab reaches the layout segments, each slider and the type select",
-			"Arrow keys adjust a focused slider",
+			{
+				keys: ["Tab"],
+				action: "Reaches the layout segments, each slider and the type select",
+			},
+			{ keys: ["Arrow keys"], action: "Adjusts a focused slider" },
 		],
 		notes: [
 			"Every row is a real baby-ui control with its own label, so no semantics are reimplemented here.",

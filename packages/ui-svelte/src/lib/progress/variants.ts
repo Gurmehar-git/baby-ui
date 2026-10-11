@@ -8,7 +8,7 @@ export const progress = tv({
 		title: "font-medium text-sm text-foreground/90",
 		helper: "text-sm text-muted-foreground leading-5",
 		value: "shrink-0 font-medium text-sm text-muted-foreground tabular-nums",
-		track: "relative w-full overflow-hidden rounded-full bg-input",
+		track: "relative w-full overflow-hidden rounded-full bg-(--track)",
 		fill: "progress-fill h-full w-full rounded-full bg-current",
 		sweep: "progress-gloss absolute inset-y-0 left-0 w-[38%] rounded-full",
 		ring: "relative shrink-0",

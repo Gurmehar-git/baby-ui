@@ -104,6 +104,22 @@ export async function verifyRegistryDependencies(
 	return [...new Set(errors)];
 }
 
+/** A "When not to use" alternative must be another component that exists. */
+export function verifyGuidance(specs: ComponentSpec[]): string[] {
+	const known = new Set(specs.map((s) => s.slug));
+	return specs.flatMap((spec) =>
+		spec.guidance.whenNot.flatMap(({ use }) =>
+			!use
+				? []
+				: use === spec.slug
+					? [`${spec.slug}: guidance.whenNot points at itself`]
+					: known.has(use)
+						? []
+						: [`${spec.slug}: guidance.whenNot uses "${use}", which is not a component`],
+		),
+	);
+}
+
 /** Cross-checks component docs against the specs (docvia validates the fields, not that a spec
  * exists or agrees). `missing` lists specs with no page yet. */
 export async function verifyComponentDocs(

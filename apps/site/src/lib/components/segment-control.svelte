@@ -16,7 +16,7 @@ let {
 	current,
 	onPick,
 	label = "Options",
-	size = "md",
+	size = "default",
 }: {
 	options: SegmentOption<T>[];
 	current: T;

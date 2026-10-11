@@ -81,8 +81,14 @@ export const docsNav = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab moves through section triggers and the links of expanded sections",
-			"Enter or Space on a section trigger expands or collapses it",
+			{
+				keys: ["Tab"],
+				action: "Moves through section triggers and the links of expanded sections",
+			},
+			{
+				keys: ["Enter", "Space"],
+				action: "On a section trigger, expands or collapses it",
+			},
 		],
 		notes: [
 			'A nav landmark named by `label`; the current link carries aria-current="page".',

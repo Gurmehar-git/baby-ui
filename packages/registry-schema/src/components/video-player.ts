@@ -168,10 +168,13 @@ export const videoPlayer = defineComponent({
 	a11y: {
 		role: "region",
 		keyboard: [
-			"Tab reaches every control in the bar",
-			"Space and Enter activate the focused button",
-			"Arrow keys step the focused scrubber or volume slider",
-			"With focus on the video, Space or K toggles play, M mutes, F toggles fullscreen and the arrow keys seek",
+			{ keys: ["Tab"], action: "Reaches every control in the bar" },
+			{ keys: ["Space", "Enter"], action: "Activates the focused button" },
+			{ keys: ["Arrow keys"], action: "Steps the focused scrubber or volume slider" },
+			{ keys: ["Space", "K"], action: "With the video focused, toggles play" },
+			{ keys: ["M"], action: "Mutes" },
+			{ keys: ["F"], action: "Toggles fullscreen" },
+			{ keys: ["Arrow Left", "Arrow Right"], action: "Seek" },
 		],
 		notes: [
 			"Media-chrome owns playback wiring, focus, hotkeys and the buttons' accessible names, which follow their state.",

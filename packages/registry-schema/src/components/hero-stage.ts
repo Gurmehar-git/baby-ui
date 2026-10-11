@@ -58,7 +58,9 @@ export const heroStage = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Tab reaches whatever interactive content the slots hold"],
+		keyboard: [
+			{ keys: ["Tab"], action: "Reaches whatever interactive content the slots hold" },
+		],
 		notes: [
 			"A plain container: slots add no roles. Mark the stage aria-hidden when its cards are decorative.",
 			"Scroll-linked motion is driven by the root scroller, so place the stage near the top of the page.",

@@ -25,7 +25,12 @@ export const scrollArea = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Arrow keys and Page Up and Page Down scroll the region natively"],
+		keyboard: [
+			{
+				keys: ["Arrow keys", "Page Up", "Page Down"],
+				action: "Scrolls the region natively",
+			},
+		],
 		notes: [
 			"The viewport still scrolls via real overflow, so keyboard scrolling, momentum and screen-reader virtual cursors all keep working; only the scrollbar track and thumb are custom-drawn.",
 			"Positioning, drag-to-scroll and auto-hide are delegated to Base UI (React) and bits-ui (Svelte); this component only owns the classes and data-slots.",

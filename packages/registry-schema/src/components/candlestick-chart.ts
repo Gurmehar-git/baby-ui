@@ -77,10 +77,11 @@ export const candlestickChart = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Inherits the chart plot's keyboard model"],
+		keyboard: [],
 		notes: [
 			"Rising candles are hollow and falling ones filled, so direction never rests on colour alone.",
 			"The data table lists open, high, low and close for every row.",
+			"Keyboard follows the Chart plot: arrow keys move between points.",
 		],
 	},
 

@@ -25,7 +25,7 @@ export const collapsible = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Enter and Space toggle the panel"],
+		keyboard: [{ keys: ["Enter", "Space"], action: "Toggles the panel" }],
 		notes: [
 			"A button with aria-expanded and aria-controls pointing at the region.",
 			"State and keyboard are delegated to Base UI (React) and bits-ui (Svelte); this component only owns the classes and data-slots.",

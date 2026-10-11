@@ -57,12 +57,36 @@ export const MotionSpecSchema = z.object({
 	behaviour: z.array(z.string()).default([]),
 });
 
+/** One row of the Keys | Action table: `{ keys: ["Enter", "Space"], action: "Toggles the panel" }`. */
+export const KeyBindingSchema = z.object({
+	/** Each entry is one key or chord as printed: "Tab", "Shift+Tab", "Arrow Left", "Page Up". */
+	keys: z.array(z.string().min(1)).min(1),
+	action: z.string().min(1),
+});
+
 export const A11ySchema = z.object({
 	role: z.string().optional(),
-	/** `["Escape closes", "Arrow keys move focus"]`, asserted by tests in both ports. */
-	keyboard: z.array(z.string()).default([]),
+	keyboard: z.array(KeyBindingSchema).default([]),
 	notes: z.array(z.string()).default([]),
 });
+
+const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+/** Choosing and using the component well; read by the page, its markdown twin and agents. */
+export const GuidanceSchema = z.object({
+	when: z.array(z.string().min(1)).default([]),
+	/** `use` names the component to reach for instead; registry-build checks the slug exists. */
+	whenNot: z
+		.array(z.object({ text: z.string().min(1), use: z.string().regex(SLUG).optional() }))
+		.default([]),
+	responsive: z.array(z.string().min(1)).default([]),
+	performance: z.array(z.string().min(1)).default([]),
+	/** Pitfalls and choices an agent gets wrong without being told. */
+	ai: z.array(z.string().min(1)).default([]),
+});
+
+export type KeyBinding = z.infer<typeof KeyBindingSchema>;
+export type Guidance = z.infer<typeof GuidanceSchema>;
 
 export const ComponentSpecSchema = z.object({
 	slug: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "slug must be kebab-case"),
@@ -100,6 +124,13 @@ export const ComponentSpecSchema = z.object({
 
 	motion: MotionSpecSchema.optional(),
 	a11y: A11ySchema.default({ keyboard: [], notes: [] }),
+	guidance: GuidanceSchema.default({
+		when: [],
+		whenNot: [],
+		responsive: [],
+		performance: [],
+		ai: [],
+	}),
 	licenseOrigin: LicenseOriginSchema.optional(),
 
 	/** CSS custom properties the component reads, beyond the shared token layer. */

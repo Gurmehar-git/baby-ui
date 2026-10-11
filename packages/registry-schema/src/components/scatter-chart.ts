@@ -66,9 +66,10 @@ export const scatterChart = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Inherits the chart plot's keyboard model; arrows select a whole row"],
+		keyboard: [],
 		notes: [
 			"Every series has its own marker shape, so series never differ by colour alone.",
+			"Keyboard follows the Chart plot: arrow keys move between points, selecting a whole row.",
 		],
 	},
 

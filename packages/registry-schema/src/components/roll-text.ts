@@ -112,11 +112,10 @@ export const rollText = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: [
-			"Focusable by default (`tabindex=0`) unless `groupHover` is set, in which case the wrapping link/button should carry focus instead.",
-		],
+		keyboard: [],
 		notes: [
 			"The rolling track is `aria-hidden`; a single `sr-only` copy carries the real text once.",
+			"Focusable by default (`tabindex=0`) unless `groupHover` is set; then the wrapping link or button carries focus.",
 		],
 	},
 

@@ -67,15 +67,39 @@ export const select = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Arrow Down or Enter opens the list from the trigger",
-			"Arrow keys move between options",
-			"Escape closes and returns focus to the trigger",
+			{ keys: ["Arrow Down", "Enter"], action: "Opens the list from the trigger" },
+			{ keys: ["Arrow keys"], action: "Moves between options" },
+			{ keys: ["Escape"], action: "Closes and returns focus to the trigger" },
 		],
 		notes: [
 			"The trigger is role=combobox with aria-haspopup=listbox, which is the documented pattern for a custom select.",
 			"The list opens with focus on the selected option, not the first one.",
 			"Positioning, roving focus, typeahead and portaling are delegated to Base UI (React) and bits-ui (Svelte); this component only owns the classes and data-slots.",
 			"Svelte: SelectItem needs a `label` prop (used by SelectValue to render the trigger's text) since bits-ui doesn't read it back from the item's own rendered children the way Base UI's React SelectItem does.",
+		],
+	},
+	guidance: {
+		when: [
+			"Choosing one value from a fixed list of roughly five to fifteen options.",
+			"Forms where the options are known and do not need typing to find.",
+		],
+		whenNot: [
+			{ text: "Long or searchable lists.", use: "combobox" },
+			{ text: "Picking several values.", use: "multi-select" },
+			{ text: "Two to four options that should stay visible.", use: "radio-group" },
+			{
+				text: "A plain native picker, for example on mobile forms.",
+				use: "native-select",
+			},
+		],
+		responsive: [
+			"The list is at least as wide as the trigger and grows to fit its longest option.",
+			"Height caps at 16rem or the space available, and the list flips to the other side when it runs out of room.",
+		],
+		performance: ["The list mounts only while open."],
+		ai: [
+			"Pass `items` (value and label) so the trigger shows the selected label before the list has opened.",
+			"Use `value` with `onValueChange` for controlled state; `placeholder` shows while nothing is chosen.",
 		],
 	},
 	licenseOrigin: {

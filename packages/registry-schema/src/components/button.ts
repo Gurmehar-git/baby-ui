@@ -151,16 +151,43 @@ export const button = defineComponent({
 	a11y: {
 		role: "button",
 		keyboard: [
-			"Space and Enter activate the button",
-			"Space activates the anchor form, which browsers do not",
-			"Activation is refused while loading; focus stays put",
+			{ keys: ["Space", "Enter"], action: "Activates the button" },
+			{ keys: ["Space"], action: "Activates the anchor form, which browsers do not" },
 		],
 		notes: [
 			"`aria-busy` is set while loading.",
 			"A visually hidden live region announces the settled loading label.",
+			"Activation is refused while loading; focus stays put.",
 		],
 	},
 
+	guidance: {
+		when: [
+			"A single action in a form, toolbar or dialog: submit, save, open.",
+			"A link that should read as an action: pass `href` and it renders an anchor.",
+			"An action that takes time: `loading` crossfades in a spinner and blocks repeat presses.",
+		],
+		whenNot: [
+			{ text: "Switching between views of the same content.", use: "tabs" },
+			{
+				text: "Picking one option from a short set that stays visible.",
+				use: "toggle-group",
+			},
+			{ text: "Several related actions behind one trigger.", use: "dropdown-menu" },
+		],
+		responsive: [
+			"Width follows the label; add `w-full` for a full-width action on small screens.",
+			"Sizes are fixed heights (xs to xl, plus square icon sizes), so mixed rows line up at every width.",
+		],
+		performance: [
+			"Both faces stay mounted and crossfade, so toggling `loading` never remounts the label.",
+		],
+		ai: [
+			"Style with `variant` and `size`; use `className`/`class` only for layout such as width or margin.",
+			"Pass `href` for navigation instead of wrapping a button in a link: nested interactive elements are invalid HTML.",
+			"Drive `loading` from your own request state and set `loadingLabel` so screen readers hear what is happening.",
+		],
+	},
 	licenseOrigin: {
 		source: "sivir-ui",
 		url: "https://github.com/aidan-neel/sivir-ui",

@@ -59,9 +59,9 @@ export const question = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab reaches each option",
-			"Enter and Space select",
-			"Arrow keys move within a radio group",
+			{ keys: ["Tab"], action: "Reaches each option" },
+			{ keys: ["Enter", "Space"], action: "Selects" },
+			{ keys: ["Arrow keys"], action: "Moves within a radio group" },
 		],
 		notes: [
 			"Options are real `RadioGroup`/`Checkbox` primitives, not styled toggle buttons: full keyboard and screen-reader semantics come from the primitive, not reimplemented here.",

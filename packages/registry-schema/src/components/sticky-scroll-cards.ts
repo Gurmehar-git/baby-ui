@@ -66,7 +66,10 @@ export const stickyScrollCards = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Tab focuses the scroll box; arrow keys and Page Up/Down scroll it"],
+		keyboard: [
+			{ keys: ["Tab"], action: "Focuses the scroll box" },
+			{ keys: ["Arrow keys", "Page Up", "Page Down"], action: "Scroll it" },
+		],
 		notes: ["A labelled region of figures with visible captions."],
 	},
 	licenseOrigin: {

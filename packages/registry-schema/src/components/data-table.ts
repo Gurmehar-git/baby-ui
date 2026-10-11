@@ -107,9 +107,20 @@ export const dataTable = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab reaches each column header menu, the resize handles and the row checkboxes",
-			"Arrow Left/Right on a focused resize handle narrows or widens the column",
-			"Arrow Left/Right on a focused column grip moves the column; Escape cancels a drag",
+			{
+				keys: ["Tab"],
+				action:
+					"Reaches each column header menu, the resize handles and the row checkboxes",
+			},
+			{
+				keys: ["Arrow Left", "Arrow Right"],
+				action: "On a resize handle, narrows or widens the column",
+			},
+			{
+				keys: ["Arrow Left", "Arrow Right"],
+				action: "On a column grip, moves the column",
+			},
+			{ keys: ["Escape"], action: "Cancels a column drag" },
 		],
 		notes: [
 			"A real table: headers carry aria-sort, and the root is aria-busy while loading.",

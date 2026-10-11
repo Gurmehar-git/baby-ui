@@ -49,13 +49,37 @@ export const tabs = defineComponent({
 	a11y: {
 		role: "tablist",
 		keyboard: [
-			"Arrow keys move between tabs",
-			"Home and End jump to the first and last tab",
+			{ keys: ["Arrow keys"], action: "Moves between tabs" },
+			{ keys: ["Home", "End"], action: "Jumps to the first and last tab" },
 		],
 		notes: [
 			"Each tab is aria-controls linked to its panel, and the panel is aria-labelledby its tab.",
 			"Selection follows focus (arrow keys switch immediately, not just Enter/Space): Base UI's List has `activateOnFocus` set explicitly since it otherwise defaults to manual activation, unlike bits-ui which defaults to automatic.",
 			"Positioning, roving focus, keyboard nav and panel mount/hide are delegated to Base UI (React) and bits-ui (Svelte); this component only owns the sliding-indicator measurement, overflow-scroll arrows and data-slots.",
+		],
+	},
+	guidance: {
+		when: [
+			"Switching between views of one subject: Overview, Activity, Settings.",
+			"Peer panels where only one needs to be visible at a time.",
+		],
+		whenNot: [
+			{
+				text: "Moving between pages: use links in site navigation.",
+				use: "navigation-menu",
+			},
+			{ text: "Choosing a value for a form or a filter.", use: "toggle-group" },
+			{ text: "Sections a reader may want open side by side.", use: "accordion" },
+		],
+		responsive: [
+			"When triggers overflow, the list scrolls horizontally, with scroll buttons, and keeps the active tab in view.",
+		],
+		performance: [
+			"Every panel stays mounted so switching is instant; load heavy panel content lazily yourself.",
+		],
+		ai: [
+			"Give every TabsTrigger and TabsContent the same `value`; the active one comes from `value` or `defaultValue`.",
+			"Keep labels short and parallel; tabs are for views, not steps in a flow.",
 		],
 	},
 	licenseOrigin: {

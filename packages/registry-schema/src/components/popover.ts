@@ -58,7 +58,9 @@ export const popover = defineComponent({
 	},
 	a11y: {
 		role: "dialog",
-		keyboard: ["Escape closes the popover and returns focus to the trigger"],
+		keyboard: [
+			{ keys: ["Escape"], action: "Closes the popover and returns focus to the trigger" },
+		],
 		notes: [
 			"The trigger carries aria-expanded and aria-controls, so the relationship is announced.",
 			"Positioning, dismiss-on-outside-click, focus return and portaling are all delegated to Base UI (React) and bits-ui (Svelte); this component only owns the classes and data-slots.",

@@ -69,7 +69,9 @@ export const fileUpload = defineComponent({
 		},
 	],
 	a11y: {
-		keyboard: ["Enter or Space on the dropzone opens the file picker"],
+		keyboard: [
+			{ keys: ["Enter", "Space"], action: "On the dropzone, opens the file picker" },
+		],
 		notes: [
 			"The dropzone is a real button, so it takes focus and opens the picker from the keyboard.",
 			"Rejected files are listed in a FieldError alert, one reason per file.",

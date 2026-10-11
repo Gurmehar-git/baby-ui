@@ -43,7 +43,7 @@ export const toggleGroup = defineComponent({
 		},
 	],
 	a11y: {
-		keyboard: ["Tab moves into the group, then between options"],
+		keyboard: [{ keys: ["Tab"], action: "Moves into the group, then between options" }],
 		notes: [
 			"role=group with a label. In multiple mode each option carries aria-pressed; in single mode the group is a real radiogroup (role=radio, aria-checked) per WAI-ARIA, since bits-ui distinguishes the two but Base UI does not (React uses aria-pressed either way).",
 			"In single mode clicking the active option clears it. If clearing makes no sense for your data, this should be a radio group instead.",

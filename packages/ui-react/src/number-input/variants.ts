@@ -6,7 +6,7 @@ export const numberInput = tv({
 		label:
 			"w-fit cursor-ew-resize select-none font-medium text-foreground text-sm data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
 		group: [
-			"flex w-full min-w-0 items-stretch overflow-hidden rounded-lg border border-input bg-background",
+			"flex w-full min-w-0 items-stretch overflow-hidden rounded-lg border border-input bg-(--field)",
 			"transition-[box-shadow,border-color] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 			"has-[input:focus-visible]:border-ring has-[input:focus-visible]:ring-2 has-[input:focus-visible]:ring-ring",
 			"has-[input[aria-invalid=true]]:border-[var(--destructive)] has-[input:disabled]:opacity-50",
@@ -30,7 +30,7 @@ export const numberInput = tv({
 			default: {},
 			scrub: {
 				root: "w-auto",
-				group: "hover:border-border-strong",
+				group: "hover:border-muted-foreground/60",
 				label: [
 					"flex shrink-0 touch-none items-center gap-1 border-input border-e font-medium text-muted-foreground",
 					"transition-colors duration-(--duration-fast) hover:bg-accent hover:text-accent-foreground",

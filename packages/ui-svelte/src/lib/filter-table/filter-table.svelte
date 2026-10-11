@@ -82,7 +82,7 @@ const counts = $derived.by(() => {
 				<span
 					class={cn(
 						"rounded-[4px] px-1 text-xs tabular-nums",
-						active ? "bg-input text-muted-foreground" : "text-muted-foreground",
+						active ? "bg-muted text-muted-foreground" : "text-muted-foreground",
 					)}
 				>
 					{counts[f.key]}

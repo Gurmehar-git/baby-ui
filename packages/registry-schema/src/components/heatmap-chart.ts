@@ -102,11 +102,11 @@ export const heatmapChart = defineComponent({
 	a11y: {
 		role: "group",
 		keyboard: [
-			"Up and Down move a day",
-			"Left and Right move a week",
-			"Page Up and Page Down move a tenth of the range",
-			"Home and End jump to the first and last day",
-			"Escape clears the active day",
+			{ keys: ["Arrow Up", "Arrow Down"], action: "Moves a day" },
+			{ keys: ["Arrow Left", "Arrow Right"], action: "Moves a week" },
+			{ keys: ["Page Up", "Page Down"], action: "Moves a tenth of the range" },
+			{ keys: ["Home", "End"], action: "Jumps to the first and last day" },
+			{ keys: ["Escape"], action: "Clears the active day" },
 		],
 		notes: [
 			"Keyboard moves announce the full date and value.",

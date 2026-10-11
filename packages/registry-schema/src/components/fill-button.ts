@@ -53,7 +53,11 @@ export const fillButton = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab focuses it and plays the fill; Enter (and Space as a button) activates",
+			{ keys: ["Tab"], action: "Focuses it and plays the fill" },
+			{
+				keys: ["Enter", "Space"],
+				action: "Activates (Space only when it renders as a button)",
+			},
 		],
 		notes: [
 			"The label on the fill is an aria-hidden copy, so the accessible name is read once.",

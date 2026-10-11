@@ -118,7 +118,11 @@ export const recordsTable = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab reaches each header's sort/config controls, the resize handle, and every row checkbox",
+			{
+				keys: ["Tab"],
+				action:
+					"Reaches each header's sort/config controls, the resize handle, and every row checkbox",
+			},
 		],
 		notes: [
 			'Column resize handles are `role="separator"` with an `aria-label` naming the column.',

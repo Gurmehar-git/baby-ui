@@ -94,8 +94,10 @@ export const chatComposer = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Enter sends, Shift+Enter adds a new line",
-			"Arrow keys move between topic toggles; Tab reaches the actions, the prompt and send",
+			{ keys: ["Enter"], action: "Sends" },
+			{ keys: ["Shift+Enter"], action: "Adds a new line" },
+			{ keys: ["Arrow keys"], action: "Moves between topic toggles" },
+			{ keys: ["Tab"], action: "Reaches the actions, the prompt and send" },
 		],
 		notes: [
 			"Topics are a single-select ToggleGroup, so each carries its checked state.",

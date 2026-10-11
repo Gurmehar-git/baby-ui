@@ -163,9 +163,9 @@ export const infiniteImageField = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab focuses the field",
-			"Arrow keys drift or pan",
-			"Home recentres the fisheye",
+			{ keys: ["Tab"], action: "Focuses the field" },
+			{ keys: ["Arrow keys"], action: "Drifts or pan" },
+			{ keys: ["Home"], action: "Recentres the fisheye" },
 		],
 		notes: [
 			"A labelled region; the canvas is aria-hidden and a visually hidden list names every item.",

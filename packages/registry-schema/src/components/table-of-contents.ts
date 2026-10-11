@@ -80,8 +80,8 @@ export const tableOfContents = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab moves through the links in heading order",
-			"Enter jumps to that heading",
+			{ keys: ["Tab"], action: "Moves through the links in heading order" },
+			{ keys: ["Enter"], action: "Jumps to that heading" },
 		],
 		notes: [
 			'A <nav> landmark named by `label`; links for headings in view carry aria-current="location".',

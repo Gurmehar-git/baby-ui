@@ -26,7 +26,7 @@ const current = $derived(options.find((o) => o.value === value));
 <span data-ui class="relative inline-flex min-w-0">
 	<Select bind:value={() => value, onChange}>
 		<SelectTrigger
-			class="h-6 min-w-0 gap-1 rounded-md border-none bg-input px-1.5 font-medium text-xs text-foreground [&>svg]:size-3"
+			class="h-6 min-w-0 gap-1 rounded-md border-none bg-muted px-1.5 font-medium text-xs text-foreground [&>svg]:size-3"
 		>
 			{#if dot}<span class="size-1.5 shrink-0 rounded-full bg-current"></span>{/if}
 			<SelectValue>{current?.label ?? value}</SelectValue>

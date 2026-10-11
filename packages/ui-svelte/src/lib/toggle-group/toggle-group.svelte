@@ -16,7 +16,10 @@ let {
 	onValueChange,
 	class: classProp,
 	...rest
-}: {
+}: Omit<
+	ToggleGroupPrimitive.RootProps,
+	"type" | "value" | "onValueChange" | "disabled" | "children" | "child" | "class"
+> & {
 	children?: Snippet;
 	value?: string | string[];
 	type?: "single" | "multiple";

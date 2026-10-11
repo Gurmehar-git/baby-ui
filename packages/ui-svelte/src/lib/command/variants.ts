@@ -61,7 +61,7 @@ export const commandFrame = tv({
 			default: {
 				panel: "rounded-xl bg-popover shadow-(--overlay-shadow)",
 				body: "rounded-xl bg-popover p-1",
-				inputWrap: "mx-1 mt-1 h-8 rounded-lg border border-input/30 bg-input/30 px-2",
+				inputWrap: "mx-1 mt-1 h-8 rounded-lg bg-accent px-2",
 				inputIcon: "opacity-50",
 				input: "h-8 text-sm",
 				list: "max-h-72 scroll-py-1",

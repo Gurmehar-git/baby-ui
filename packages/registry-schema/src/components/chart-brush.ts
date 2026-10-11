@@ -67,10 +67,10 @@ export const chartBrush = defineComponent({
 	a11y: {
 		role: "slider",
 		keyboard: [
-			"Arrow keys slide the window one point",
-			"Shift+arrows resize the window's end",
-			"Page Up and Page Down slide by the window's span",
-			"Home and End jump to either edge",
+			{ keys: ["Arrow keys"], action: "Slides the window one point" },
+			{ keys: ["Shift+Arrow keys"], action: "Resizes the window's end" },
+			{ keys: ["Page Up", "Page Down"], action: "Slides by the window's span" },
+			{ keys: ["Home", "End"], action: "Jumps to either edge" },
 		],
 		notes: [
 			"The strip is one slider whose value text reads the window's start and end dates in the chart's locale.",

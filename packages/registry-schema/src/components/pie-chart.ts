@@ -87,10 +87,10 @@ export const pieChart = defineComponent({
 	a11y: {
 		role: "group",
 		keyboard: [
-			"Tab focuses the chart",
-			"Arrow keys move between slices",
-			"Home and End jump to the first and last slice",
-			"Escape clears the active slice",
+			{ keys: ["Tab"], action: "Focuses the chart" },
+			{ keys: ["Arrow keys"], action: "Moves between slices" },
+			{ keys: ["Home", "End"], action: "Jumps to the first and last slice" },
+			{ keys: ["Escape"], action: "Clears the active slice" },
 		],
 		notes: [
 			"Keyboard moves announce the slice name, value and share.",

@@ -33,9 +33,9 @@ export const combobox = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Arrow keys move through the filtered results",
-			"Enter selects the highlighted result",
-			"Escape closes the list",
+			{ keys: ["Arrow keys"], action: "Moves through the filtered results" },
+			{ keys: ["Enter"], action: "Selects the highlighted result" },
+			{ keys: ["Escape"], action: "Closes the list" },
 		],
 		notes: [
 			"aria-activedescendant points at the highlighted option, so focus stays in the input while the list is navigated.",

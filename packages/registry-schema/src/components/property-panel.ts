@@ -85,7 +85,9 @@ export const propertyPanel = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Enter and Space on a collapsible group's label toggle it"],
+		keyboard: [
+			{ keys: ["Enter", "Space"], action: "On a group's label, toggles the group" },
+		],
 		notes: [
 			"Groups are plain containers, as in a sidebar; the label is a visual heading for its rows.",
 			"A collapsible label is a button with aria-expanded; the action sits beside it, never inside it.",

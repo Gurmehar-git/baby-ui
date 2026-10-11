@@ -106,7 +106,10 @@ export const funnelChart = defineComponent({
 	},
 	a11y: {
 		role: "group",
-		keyboard: ["Arrow keys move between stages", "Escape clears the active stage"],
+		keyboard: [
+			{ keys: ["Arrow keys"], action: "Moves between stages" },
+			{ keys: ["Escape"], action: "Clears the active stage" },
+		],
 		notes: [
 			"Stage colours step down one blue ramp in order and every band prints its value, share and name, so colour is never the only cue.",
 			"The hidden table lists each stage with its share of the first and of the previous stage.",

@@ -78,9 +78,9 @@ export const radarChart = defineComponent({
 	a11y: {
 		role: "group",
 		keyboard: [
-			"Arrow keys move between series",
-			"Home and End jump to the first and last series",
-			"Escape clears the highlight",
+			{ keys: ["Arrow keys"], action: "Moves between series" },
+			{ keys: ["Home", "End"], action: "Jumps to the first and last series" },
+			{ keys: ["Escape"], action: "Clears the highlight" },
 		],
 		notes: [
 			"The summary names each series' highest and lowest metric; the hidden table lists every value.",

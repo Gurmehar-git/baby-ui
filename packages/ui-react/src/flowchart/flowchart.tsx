@@ -78,7 +78,7 @@ function ConditionChip({
 	return (
 		<span data-ui className="relative inline-flex min-w-0">
 			<Select value={value} onValueChange={onValueChange}>
-				<SelectTrigger className="h-6 min-w-0 gap-1 rounded-md border-none bg-input px-1.5 font-medium text-xs text-foreground [&>svg]:size-3">
+				<SelectTrigger className="h-6 min-w-0 gap-1 rounded-md border-none bg-muted px-1.5 font-medium text-xs text-foreground [&>svg]:size-3">
 					{dot ? <span className="size-1.5 shrink-0 rounded-full bg-current" /> : null}
 					<SelectValue>{current?.label ?? value}</SelectValue>
 				</SelectTrigger>

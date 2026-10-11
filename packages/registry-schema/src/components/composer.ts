@@ -86,7 +86,10 @@ export const composer = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Enter sends", "Shift and Enter insert a line break"],
+		keyboard: [
+			{ keys: ["Enter"], action: "Sends" },
+			{ keys: ["Shift+Enter"], action: "Inserts a line break" },
+		],
 		notes: [
 			"Enter sends and Shift+Enter breaks the line, the convention every chat client uses. The reverse strands anyone writing more than a sentence.",
 			"A composing Enter (committing an IME conversion) never submits, only a plain Enter does.",

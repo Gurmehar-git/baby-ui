@@ -56,8 +56,9 @@ export const chartMarkers = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab reaches each marker; Enter on a stack pins its fan open",
-			"Escape closes an open fan",
+			{ keys: ["Tab"], action: "Reaches each marker" },
+			{ keys: ["Enter"], action: "On a stack, pins its fan open" },
+			{ keys: ["Escape"], action: "Closes an open fan" },
 		],
 		notes: [
 			"Markers with an href are links and with onClick are buttons; markers with neither are labelled images, never inert buttons.",

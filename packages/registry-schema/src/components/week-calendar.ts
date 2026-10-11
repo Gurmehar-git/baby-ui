@@ -115,9 +115,12 @@ export const weekCalendar = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Arrow keys move between days, crossing into the next week or month",
-			"Enter and Space select the focused day",
-			"The handle toggles the month grid from the keyboard",
+			{
+				keys: ["Arrow keys"],
+				action: "Moves between days, crossing into the next week or month",
+			},
+			{ keys: ["Enter", "Space"], action: "Selects the focused day" },
+			{ keys: ["Enter", "Space"], action: "On the handle, toggles the month grid" },
 		],
 		notes: [
 			"Days are buttons with aria-pressed for the selection and aria-current=date for today.",

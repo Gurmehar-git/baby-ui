@@ -97,9 +97,12 @@ export const githubStatsBlock = defineComponent({
 
 	a11y: {
 		keyboard: [
-			"Days and Weeks are tabs: arrows move between them.",
-			"The year select opens with Enter, Space or the arrows.",
-			"Calendar days are one tab stop; arrows move by day and week.",
+			{ keys: ["Arrow Left", "Arrow Right"], action: "Switch between Days and Weeks" },
+			{ keys: ["Enter", "Space", "Arrow keys"], action: "On the year select, opens it" },
+			{
+				keys: ["Arrow keys"],
+				action: "In the calendar (one tab stop), move by day and week",
+			},
 		],
 		notes: [
 			"The trend carries its sign and comparison window as text, never colour alone.",

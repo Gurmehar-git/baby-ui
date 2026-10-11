@@ -4,9 +4,9 @@ export const multiSelect = tv({
 	slots: {
 		// The whole field anchors the list, so it drops straight below at full width.
 		root: [
-			"flex w-full min-w-0 flex-wrap items-center gap-1 rounded-lg border border-input bg-background",
+			"flex w-full min-w-0 flex-wrap items-center gap-1 rounded-lg border border-input bg-(--field)",
 			"transition-[box-shadow,border-color] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
-			"hover:border-border-strong has-[[role=combobox]:focus-visible]:border-ring has-[[role=combobox]:focus-visible]:ring-2 has-[[role=combobox]:focus-visible]:ring-ring",
+			"hover:border-muted-foreground/60 has-[[role=combobox]:focus-visible]:border-ring has-[[role=combobox]:focus-visible]:ring-2 has-[[role=combobox]:focus-visible]:ring-ring",
 			"has-[[role=combobox][data-popup-open]]:border-ring has-[[role=combobox][data-state=open]]:border-ring",
 			"has-[[aria-invalid=true]]:border-[var(--destructive)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 		],

@@ -92,7 +92,9 @@ export const pricing02 = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Arrow keys move between billing periods inside the toggle"],
+		keyboard: [
+			{ keys: ["Arrow keys"], action: "Moves between billing periods inside the toggle" },
+		],
 		notes: [
 			"The billing toggle is a single-select ToggleGroup named by labels.period.",
 			"Rolling digits are aria-hidden; a visually hidden copy reads the whole price.",

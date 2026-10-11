@@ -53,11 +53,25 @@ export const dropdownMenu = defineComponent({
 	a11y: {
 		role: "menu",
 		keyboard: [
-			"Arrow keys move between items, wrapping at both ends",
-			"Home and End jump to the first and last item",
-			"Escape closes the entire menu, including any open submenu, and returns focus to the trigger",
-			"On a submenu trigger: ArrowRight or Enter opens it and focuses its first item",
-			"Inside an open submenu: arrow keys rove within it only, and ArrowLeft closes just that submenu and returns focus to its trigger",
+			{ keys: ["Arrow keys"], action: "Moves between items, wrapping at both ends" },
+			{ keys: ["Home", "End"], action: "Jumps to the first and last item" },
+			{
+				keys: ["Escape"],
+				action:
+					"Closes the entire menu, including any open submenu, and returns focus to the trigger",
+			},
+			{
+				keys: ["Arrow Right", "Enter"],
+				action: "On a submenu trigger, opens it and focuses its first item",
+			},
+			{
+				keys: ["Arrow Up", "Arrow Down"],
+				action: "Inside a submenu, move within it only",
+			},
+			{
+				keys: ["Arrow Left"],
+				action: "Inside a submenu, closes it and returns focus to its trigger",
+			},
 		],
 		notes: [
 			"The trigger declares aria-haspopup=menu, so a screen reader announces that it opens something.",

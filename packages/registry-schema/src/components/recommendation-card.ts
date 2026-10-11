@@ -39,7 +39,12 @@ export const recommendationCard = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Tab reaches the alternatives toggle, each alternative row, and the CTA"],
+		keyboard: [
+			{
+				keys: ["Tab"],
+				action: "Reaches the alternatives toggle, each alternative row, and the CTA",
+			},
+		],
 		notes: [
 			"The alternatives toggle carries `aria-expanded` reflecting the drawer's open state.",
 			'Confidence is shown as a 3-bar meter plus a text label ("High confidence"/"Needs review"/"No signal"), never colour alone.',

@@ -87,9 +87,12 @@ export const numberInput = defineComponent({
 	a11y: {
 		role: "spinbutton",
 		keyboard: [
-			"ArrowUp and ArrowDown step by step",
-			"Shift+Arrow, PageUp and PageDown step by the large step",
-			"Home and End jump to min and max",
+			{ keys: ["Arrow Up", "Arrow Down"], action: "Steps by step" },
+			{
+				keys: ["Shift+Arrow", "Page Up", "Page Down"],
+				action: "Steps by the large step",
+			},
+			{ keys: ["Home", "End"], action: "Jumps to min and max" },
 		],
 		notes: [
 			"The field is a spinbutton with the formatted value as its value text.",

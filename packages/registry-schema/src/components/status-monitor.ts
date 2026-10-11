@@ -69,8 +69,9 @@ export const statusMonitor = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab focuses the strip once, on the newest bar",
-			"Arrow Left and Right move between bars; Home and End jump to the oldest and newest",
+			{ keys: ["Tab"], action: "Focuses the strip once, on the newest bar" },
+			{ keys: ["Arrow Left", "Arrow Right"], action: "Moves between bars" },
+			{ keys: ["Home", "End"], action: "Jumps to the oldest and newest" },
 		],
 		notes: [
 			"The strip is a toolbar named by the title; each bar is a button labelled with its timestamp and status.",

@@ -84,7 +84,9 @@ export const pricing01 = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Arrow keys move between billing periods inside the toggle"],
+		keyboard: [
+			{ keys: ["Arrow keys"], action: "Moves between billing periods inside the toggle" },
+		],
 		notes: [
 			"The billing toggle is a single-select ToggleGroup named by labels.period.",
 			"The hover note is decorative (aria-hidden); put anything essential in features.",

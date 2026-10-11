@@ -31,9 +31,11 @@ import { track } from "#lib/analytics.js";
 import CodeBlock from "#lib/components/code-block.svelte";
 import ComponentCard from "#lib/components/component-card.svelte";
 import ControlsPanel from "#lib/components/controls-panel.svelte";
+import CopyButton from "#lib/components/copy-button.svelte";
 import DemoPreview from "#lib/components/demo-preview.svelte";
 import EmailFrame from "#lib/components/email-frame.svelte";
 import InstallBlock from "#lib/components/install-block.svelte";
+import KeyboardTable from "#lib/components/keyboard-table.svelte";
 import MobileNavDrawer from "#lib/components/mobile-nav-drawer.svelte";
 import OgPngStage from "#lib/components/og-png-stage.svelte";
 import OutlineToggle from "#lib/components/outline-toggle.svelte";
@@ -57,10 +59,12 @@ import {
 	TOP_LEVEL,
 } from "#lib/registry.js";
 import {
+	absoluteUrl,
 	breadcrumbLd,
 	componentKeywords,
 	componentLd,
 	metaDescription,
+	SITE_URL,
 } from "#lib/seo.js";
 import { installSourceUrl } from "#lib/source.js";
 import { page } from "$app/state";
@@ -171,30 +175,69 @@ const FRAMEWORKS: { id: Framework; label: string; icon: typeof IconBrandReact }[
 	{ id: "react", label: "React", icon: IconBrandReact },
 ];
 const product = $derived(productFor(data.spec.slug));
+const guide = $derived(data.spec.guidance);
+const insteadLine = ({ text, use }: { text: string; use?: string }) => {
+	const alt = use ? data.alternatives[use] : undefined;
+	return alt ? `${text} Use [${alt.name}](${alt.href}).` : text;
+};
+const SECTION = "mt-16 scroll-mt-[calc(var(--header-h)+1.5rem)]";
+const HEADING = "font-semibold text-foreground text-xl tracking-tight";
 const PAGE_SECTIONS = new Set([
 	"overview",
 	"preview",
+	"when-to-use",
+	"when-not-to-use",
 	"installation",
-	"behaviour",
-	"accessibility",
 	"api-reference",
+	"keyboard",
+	"accessibility",
+	"behaviour",
+	"responsive",
+	"performance",
+	"notes-for-ai",
 	"related",
 ]);
-const hasA11y = $derived(
-	data.spec.a11y.keyboard.length > 0 || data.spec.a11y.notes.length > 0,
-);
 const outline = $derived(
 	[
 		{ id: "overview", label: "Overview", depth: 2 as const },
 		{ id: "preview", label: "Preview", depth: 2 as const },
+		(guide.when.length > 0 || guide.whenNot.length > 0) && {
+			id: "when-to-use",
+			label: "When to use",
+			depth: 2 as const,
+		},
 		{ id: "installation", label: "Installation", depth: 2 as const },
 		// A prose heading that reuses a page section's id would key the outline twice and crash it.
 		...data.proseHeadings.filter((h) => !PAGE_SECTIONS.has(h.id)),
-		data.spec.motion && { id: "behaviour", label: "Behaviour", depth: 2 as const },
-		hasA11y && { id: "accessibility", label: "Accessibility", depth: 2 as const },
 		data.spec.props.length > 0 && {
 			id: "api-reference",
 			label: "API reference",
+			depth: 2 as const,
+		},
+		data.spec.a11y.keyboard.length > 0 && {
+			id: "keyboard",
+			label: "Keyboard",
+			depth: 2 as const,
+		},
+		data.spec.a11y.notes.length > 0 && {
+			id: "accessibility",
+			label: "Accessibility",
+			depth: 2 as const,
+		},
+		data.spec.motion && { id: "behaviour", label: "Motion", depth: 2 as const },
+		guide.responsive.length > 0 && {
+			id: "responsive",
+			label: "Responsive",
+			depth: 2 as const,
+		},
+		guide.performance.length > 0 && {
+			id: "performance",
+			label: "Performance",
+			depth: 2 as const,
+		},
+		guide.ai.length > 0 && {
+			id: "notes-for-ai",
+			label: "Notes for AI",
 			depth: 2 as const,
 		},
 		related.length > 0 && {
@@ -371,6 +414,25 @@ const categoryTrail = $derived(
 		</Tabs>
 	</section>
 
+	{#if guide.when.length || guide.whenNot.length}
+		<section id="when-to-use" class={SECTION}>
+			<div class="grid max-w-3xl gap-8 @2xl:grid-cols-2">
+				{#if guide.when.length}
+					<div>
+						<h2 class={HEADING}>When to use</h2>
+						<Markdown variant="muted" class="mt-3" content={bullets(guide.when)} />
+					</div>
+				{/if}
+				{#if guide.whenNot.length}
+					<div id="when-not-to-use" class="scroll-mt-[calc(var(--header-h)+1.5rem)]">
+						<h2 class={HEADING}>When not to use</h2>
+						<Markdown variant="muted" class="mt-3" content={bullets(guide.whenNot.map(insteadLine))} />
+					</div>
+				{/if}
+			</div>
+		</section>
+	{/if}
+
 	<section id="installation" class="mt-16 scroll-mt-[calc(var(--header-h)+1.5rem)]">
 		<!-- The framework switch reads as part of the heading: "Installation · Svelte". -->
 		<div class="flex flex-wrap items-center gap-1.5">
@@ -421,45 +483,65 @@ const categoryTrail = $derived(
 		</section>
 	{/if}
 
-	{#if data.spec.motion}
-		<section id="behaviour" class="mt-16 scroll-mt-[calc(var(--header-h)+1.5rem)]">
-			<h2 class="font-semibold text-foreground text-xl tracking-tight">Behaviour contract</h2>
-			<p class="mt-2 max-w-2xl text-[0.9375rem] text-muted-foreground leading-7">
-				What both implementations must observably do, for an agent reading this page as well
-				as a person. Not a description of either one's code.
-			</p>
-			<div class="mt-4 max-w-2xl rounded-xl border border-border p-4">
-				<Markdown
-					variant="muted"
-					content={bullets([...data.spec.motion.behaviour, data.spec.motion.reducedMotion])}
-				/>
-			</div>
-		</section>
-	{/if}
-
-	{#if hasA11y}
-		<section id="accessibility" class="mt-16 scroll-mt-[calc(var(--header-h)+1.5rem)]">
-			<h2 class="font-semibold text-foreground text-xl tracking-tight">Accessibility</h2>
-			<p class="mt-2 max-w-2xl text-[0.9375rem] text-muted-foreground leading-7">
-				Keyboard support and assistive-technology guarantees both ports share.
-			</p>
-			<div class="mt-4 flex max-w-2xl flex-col gap-4 rounded-xl border border-border p-4">
-				{#if data.spec.a11y.keyboard.length}
-					<p class="-mb-2 font-medium text-foreground text-xs">Keyboard</p>
-					<Markdown variant="muted" content={bullets(data.spec.a11y.keyboard)} />
-				{/if}
-				{#if data.spec.a11y.notes.length}
-					<p class="-mb-2 font-medium text-foreground text-xs">Notes</p>
-					<Markdown variant="muted" content={bullets(data.spec.a11y.notes)} />
-				{/if}
-			</div>
-		</section>
-	{/if}
-
 	{#if data.spec.props.length}
-		<section id="api-reference" class="mt-16 scroll-mt-[calc(var(--header-h)+1.5rem)]">
-			<h2 class="font-semibold text-foreground text-xl tracking-tight">API Reference</h2>
+		<section id="api-reference" class={SECTION}>
+			<h2 class={HEADING}>API Reference</h2>
 			<div class="mt-4"><PropsTable props={data.spec.props} /></div>
+		</section>
+	{/if}
+
+	{#if data.spec.a11y.keyboard.length}
+		<section id="keyboard" class={SECTION}>
+			<h2 class={HEADING}>Keyboard interactions</h2>
+			<div class="mt-4 max-w-2xl"><KeyboardTable bindings={data.spec.a11y.keyboard} /></div>
+		</section>
+	{/if}
+
+	{#if data.spec.a11y.notes.length}
+		<section id="accessibility" class={SECTION}>
+			<h2 class={HEADING}>Accessibility</h2>
+			<Markdown variant="muted" class="mt-4 max-w-2xl" content={bullets(data.spec.a11y.notes)} />
+		</section>
+	{/if}
+
+	{#if data.spec.motion}
+		<section id="behaviour" class={SECTION}>
+			<h2 class={HEADING}>Motion</h2>
+			<p class="mt-2 max-w-2xl text-[0.9375rem] text-muted-foreground leading-7">
+				What both implementations must observably do. Not a description of either one's code.
+			</p>
+			<Markdown
+				variant="muted"
+				class="mt-4 max-w-2xl"
+				content={bullets([
+					...data.spec.motion.behaviour,
+					`Reduced motion: ${data.spec.motion.reducedMotion}`,
+				])}
+			/>
+		</section>
+	{/if}
+
+	{#if guide.responsive.length}
+		<section id="responsive" class={SECTION}>
+			<h2 class={HEADING}>Responsive behavior</h2>
+			<Markdown variant="muted" class="mt-4 max-w-2xl" content={bullets(guide.responsive)} />
+		</section>
+	{/if}
+
+	{#if guide.performance.length}
+		<section id="performance" class={SECTION}>
+			<h2 class={HEADING}>Performance</h2>
+			<Markdown variant="muted" class="mt-4 max-w-2xl" content={bullets(guide.performance)} />
+		</section>
+	{/if}
+
+	{#if guide.ai.length}
+		<section id="notes-for-ai" class={SECTION}>
+			<div class="flex max-w-2xl items-center justify-between gap-3">
+				<h2 class={HEADING}>Notes for AI</h2>
+				<CopyButton text={absoluteUrl(SITE_URL, `${specHref(data.spec)}.md`)} />
+			</div>
+			<Markdown variant="muted" class="mt-4 max-w-2xl" content={bullets(guide.ai)} />
 		</section>
 	{/if}
 

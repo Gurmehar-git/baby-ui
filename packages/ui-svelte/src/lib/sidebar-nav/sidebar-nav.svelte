@@ -379,7 +379,7 @@ function onGlideOver(group: string, event: MouseEvent) {
 
 				<div
 					class={cn(
-						"absolute top-0 right-0 z-20 flex h-8 items-center overflow-hidden rounded-lg bg-input text-muted-foreground shadow-xs transition-[width,opacity] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] focus-within:text-foreground",
+						"absolute top-0 right-0 z-20 flex h-8 items-center overflow-hidden rounded-lg bg-muted text-muted-foreground shadow-xs transition-[width,opacity] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] focus-within:text-foreground",
 						searchOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
 					)}
 					style:width={searchOpen ? "100%" : "28px"}

@@ -120,9 +120,10 @@ export const githubCalendar = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab focuses the grid once, on the selected or newest day",
-			"Arrow Up and Down move a day, Left and Right a week; Home and End jump to either end",
-			"Enter or Space toggles the day's selection",
+			{ keys: ["Tab"], action: "Focuses the grid once, on the selected or newest day" },
+			{ keys: ["Arrow Up", "Arrow Down"], action: "Moves a day, Left and Right a week" },
+			{ keys: ["Home", "End"], action: "Jumps to either end" },
+			{ keys: ["Enter", "Space"], action: "Toggles the day's selection" },
 		],
 		notes: [
 			"Each cell is a button labelled with its count and date; its tooltip repeats that text.",

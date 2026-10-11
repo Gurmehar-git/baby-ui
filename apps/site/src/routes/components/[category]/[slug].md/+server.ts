@@ -13,7 +13,7 @@ export const entries: EntryGenerator = () =>
 export const GET: RequestHandler = async ({ params }) => {
 	const spec = findSpec(params.category, params.slug);
 	if (!spec) throw error(404);
-	return new Response(await componentMarkdown(spec), {
+	return new Response(await componentMarkdown(spec, specs), {
 		headers: { "content-type": "text/markdown; charset=utf-8" },
 	});
 };

@@ -54,8 +54,8 @@ export const radioGroup = defineComponent({
 	a11y: {
 		role: "radiogroup",
 		keyboard: [
-			"Arrow keys move between options and select as they go",
-			"Tab enters the group at the selected option, not the first",
+			{ keys: ["Arrow keys"], action: "Moves between options and select as they go" },
+			{ keys: ["Tab"], action: "Enters the group at the selected option, not the first" },
 		],
 		notes: [
 			"Roving tabindex, so the group is one tab stop. Arrow keys selecting on move is the documented radio pattern, not an accident.",

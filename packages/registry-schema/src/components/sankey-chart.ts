@@ -77,9 +77,9 @@ export const sankeyChart = defineComponent({
 	a11y: {
 		role: "group",
 		keyboard: [
-			"Arrow keys walk the links",
-			"Home and End jump to the first and last link",
-			"Escape clears the highlight",
+			{ keys: ["Arrow keys"], action: "Walks the links" },
+			{ keys: ["Home", "End"], action: "Jumps to the first and last link" },
+			{ keys: ["Escape"], action: "Clears the highlight" },
 		],
 		notes: [
 			"Each keyboard move announces source, target, value and share of the source.",

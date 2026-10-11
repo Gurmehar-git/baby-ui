@@ -104,8 +104,11 @@ export const swappable = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab reaches each item",
-			"Alt+Arrow swaps the focused item with the previous or next slot; focus follows it",
+			{ keys: ["Tab"], action: "Reaches each item" },
+			{
+				keys: ["Alt+Arrow keys"],
+				action: "Swaps the focused item with the previous or next slot; focus follows it",
+			},
 		],
 		notes: [
 			"Swapy is pointer-only, so the keyboard path is added on top and announced through a polite live region.",

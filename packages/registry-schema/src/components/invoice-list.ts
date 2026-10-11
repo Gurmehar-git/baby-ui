@@ -87,7 +87,7 @@ export const invoiceList = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Tab reaches every receipt and invoice link"],
+		keyboard: [{ keys: ["Tab"], action: "Reaches every receipt and invoice link" }],
 		notes: [
 			"A real table with a caption and column headers scoped to their columns.",
 			"Status is a text badge, never colour alone.",

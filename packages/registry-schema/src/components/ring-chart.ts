@@ -70,9 +70,9 @@ export const ringChart = defineComponent({
 	a11y: {
 		role: "group",
 		keyboard: [
-			"Tab focuses the chart",
-			"Arrow keys move between rings",
-			"Escape clears the active ring",
+			{ keys: ["Tab"], action: "Focuses the chart" },
+			{ keys: ["Arrow keys"], action: "Moves between rings" },
+			{ keys: ["Escape"], action: "Clears the active ring" },
 		],
 		notes: [
 			"Keyboard moves announce the ring name, value, maximum and progress.",

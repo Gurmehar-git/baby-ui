@@ -61,9 +61,9 @@ export const command = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Arrow keys move through results",
-			"Enter runs the highlighted command",
-			"Escape closes the palette",
+			{ keys: ["Arrow keys"], action: "Moves through results" },
+			{ keys: ["Enter"], action: "Runs the highlighted command" },
+			{ keys: ["Escape"], action: "Closes the palette" },
 		],
 		notes: [
 			"aria-activedescendant keeps focus in the input while the list is navigated.",

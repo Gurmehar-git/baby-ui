@@ -104,11 +104,12 @@ export const statCard = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Inherits the chart plot's keyboard model"],
+		keyboard: [],
 		notes: [
 			"The trend badge pairs its colour with an arrow and a signed percentage, so direction never rests on colour alone.",
 			'Screen readers hear the badge as a sentence ("Increased by 12.5% vs last month"); 0% reads as no change.',
 			"A polite live region announces a new resting value, and the chart's summary uses the card's own number format.",
+			"Keyboard follows the Chart plot: arrow keys move between points.",
 		],
 	},
 	licenseOrigin: BKLIT,
@@ -215,8 +216,10 @@ export const statCardMap = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Inherits the choropleth's keyboard model"],
-		notes: ["The trend badge pairs its colour with an arrow and a signed percentage."],
+		notes: [
+			"Keyboard follows the Choropleth chart: arrow keys move between regions.",
+			"The trend badge pairs its colour with an arrow and a signed percentage.",
+		],
 	},
 	licenseOrigin: BKLIT,
 	impl: {

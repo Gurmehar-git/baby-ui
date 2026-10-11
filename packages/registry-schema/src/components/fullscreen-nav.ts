@@ -96,10 +96,11 @@ export const fullscreenNav = defineComponent({
 	},
 	a11y: {
 		role: "dialog",
-		keyboard: ["Escape closes the overlay", "Focus moves to the first link on open"],
+		keyboard: [{ keys: ["Escape"], action: "Closes the overlay" }],
 		notes: [
 			"Body scroll is locked while open and the previous value is restored on close, rather than being blanked.",
 			"aria-modal with a labelled heading.",
+			"Focus moves to the first link on open.",
 		],
 	},
 	licenseOrigin: {

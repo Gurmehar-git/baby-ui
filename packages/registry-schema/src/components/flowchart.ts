@@ -43,7 +43,12 @@ export const flowchart = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Tab reaches each node card and every condition row's real Select"],
+		keyboard: [
+			{
+				keys: ["Tab"],
+				action: "Reaches each node card and every condition row's real Select",
+			},
+		],
 		notes: [
 			"The connector SVG is `aria-hidden`; the information it conveys (which nodes are linked) comes from the `edges` prop driving actual DOM adjacency, not the line alone.",
 			"Condition rows compose the real Select, so their own keyboard and screen-reader semantics aren't reimplemented here.",

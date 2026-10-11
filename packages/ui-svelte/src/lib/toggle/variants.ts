@@ -14,7 +14,7 @@ export const toggleButton = tv({
 		variant: {
 			default: "",
 			outline:
-				"border-input hover:border-border-strong aria-pressed:border-border-strong",
+				"border-border-strong hover:border-muted-foreground/60 aria-pressed:border-muted-foreground/60",
 		},
 		// Square at rest (min-w equals the height), so an icon-only toggle needs no extra size.
 		size: {

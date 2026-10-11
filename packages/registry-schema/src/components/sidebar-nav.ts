@@ -92,7 +92,11 @@ export const sidebarNav = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab reaches the workspace switcher, every nav row, search and the footer action when present",
+			{
+				keys: ["Tab"],
+				action:
+					"Reaches the workspace switcher, every nav row, search and the footer action when present",
+			},
 		],
 		notes: [
 			"Collapsed controls are `aria-hidden` or `inert`, and closed recents are `inert`, so nothing invisible stays focusable.",

@@ -98,9 +98,11 @@ export const choroplethChart = defineComponent({
 	a11y: {
 		role: "group",
 		keyboard: [
-			"Arrow keys walk regions with data in label order",
-			"+ and - zoom, 0 resets, shift+arrows pan when zoomable",
-			"Escape clears the active region",
+			{ keys: ["Arrow keys"], action: "Walks regions with data in label order" },
+			{ keys: ["+", "-"], action: "Zoom in and out when zoomable" },
+			{ keys: ["0"], action: "Resets the zoom" },
+			{ keys: ["Shift+Arrow keys"], action: "Pans when zoomable" },
+			{ keys: ["Escape"], action: "Clears the active region" },
 		],
 		notes: [
 			"Regions without data use the muted fill and a No data legend entry, so the scale never implies a zero.",

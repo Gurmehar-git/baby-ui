@@ -29,8 +29,11 @@ export const conversation = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"The transcript itself is a Tab stop when its content overflows, for keyboard scrolling",
-			"The jump-to-latest button is reachable by Tab when visible",
+			{
+				keys: ["Tab"],
+				action: "Focuses the transcript when it overflows, so arrow keys scroll it",
+			},
+			{ keys: ["Tab"], action: "Reaches the jump-to-latest button when it shows" },
 		],
 		notes: [
 			'The transcript is `role="log"` with `aria-live="polite"` and `aria-relevant="additions text"`, so assistive tech announces new turns without re-reading the whole history.',

@@ -44,7 +44,12 @@ export const filterTable = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Tab reaches each filter chip and the scrollable table region"],
+		keyboard: [
+			{
+				keys: ["Tab"],
+				action: "Reaches each filter chip and the scrollable table region",
+			},
+		],
 		notes: [
 			"Filter chips are toggle buttons with `aria-pressed`, not a radio group: only one is visually active but they're independently focusable.",
 			'The table region has `role="region"` and a `tabIndex` so keyboard users can scroll it horizontally.',

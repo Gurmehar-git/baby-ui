@@ -43,7 +43,7 @@ export const sheet = defineComponent({
 	},
 	a11y: {
 		role: "dialog",
-		keyboard: ["Escape closes the sheet"],
+		keyboard: [{ keys: ["Escape"], action: "Closes the sheet" }],
 		notes: [
 			"aria-modal with a labelled heading. Focus moves to the first control inside on open.",
 			"Prefer `bottom` on phones: it is the reachable part of the screen.",

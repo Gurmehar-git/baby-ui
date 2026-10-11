@@ -123,7 +123,7 @@ function toggleRow(label: string) {
 							<span class="shrink-0 font-medium text-xs text-foreground">{row.label}</span>
 							<span
 								class={cn(
-									"inline-flex h-5.5 min-w-0 flex-1 cursor-pointer items-center truncate rounded-full bg-input px-1.5 text-xs text-muted-foreground shadow-xs transition-colors duration-(--duration-instant) hover:bg-accent",
+									"inline-flex h-5.5 min-w-0 flex-1 cursor-pointer items-center truncate rounded-full bg-muted px-1.5 text-xs text-muted-foreground shadow-xs transition-colors duration-(--duration-instant) hover:bg-accent",
 									row.mono && "font-mono",
 								)}
 							>

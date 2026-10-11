@@ -124,9 +124,9 @@ export const slider = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Arrow keys move by one step",
-			"Page Up and Page Down move by ten steps",
-			"Home and End jump to the bounds",
+			{ keys: ["Arrow keys"], action: "Moves by one step" },
+			{ keys: ["Page Up", "Page Down"], action: "Moves by ten steps" },
+			{ keys: ["Home", "End"], action: "Jumps to the bounds" },
 		],
 		notes: [
 			"A real range input underneath (Base UI's Thumb, React) or a real focusable div driving the same keyboard model (bits-ui, Svelte), so every one of those keys works without being reimplemented.",

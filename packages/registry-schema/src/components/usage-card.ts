@@ -58,9 +58,10 @@ export const usageCard = defineComponent({
 		behaviour: ["Inherits the ring chart's own sweep-in and hover motion."],
 	},
 	a11y: {
-		keyboard: ["Inherits the ring chart's keyboard model"],
+		keyboard: [],
 		notes: [
 			"Every legend entry is a real toggle (aria-pressed), so hiding a metric works from the keyboard.",
+			"Keyboard follows the Ring chart: arrow keys move between segments.",
 		],
 	},
 	impl: {

@@ -31,6 +31,7 @@ import { buildUsage, verifyUsage } from "./usage";
 import {
 	verifyComponentDocs,
 	verifyEmittedImports,
+	verifyGuidance,
 	verifyRegistryDependencies,
 	verifySprings,
 } from "./verify";
@@ -95,6 +96,7 @@ async function main() {
 		...docs.errors,
 		...(DEV ? [] : docs.missing),
 		...(await verifyUsage([...specs])),
+		...verifyGuidance([...specs]),
 	];
 	if (errors.length) {
 		console.error("registry-build failed:");

@@ -74,10 +74,11 @@ export const overviewCard = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Inherits the chart plot's keyboard model"],
+		keyboard: [],
 		notes: [
 			"The trend badge pairs its colour with an arrow and a signed percentage, so direction never rests on colour alone.",
 			"The period switcher is a real ToggleGroup, keyboard operable and announced by name.",
+			"Keyboard follows the Chart plot: arrow keys move between points.",
 		],
 	},
 	impl: {

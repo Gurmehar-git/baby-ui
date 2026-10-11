@@ -110,9 +110,9 @@ export const orbitCardStack = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab focuses the active card and fans the stack",
-			"Arrow keys, Home and End move the active card",
-			"Escape closes the fan and releases focus",
+			{ keys: ["Tab"], action: "Focuses the active card and fans the stack" },
+			{ keys: ["Arrow keys", "Home", "End"], action: "Moves the active card" },
+			{ keys: ["Escape"], action: "Closes the fan and releases focus" },
 		],
 		notes: [
 			"A labelled list of cards with roving tabindex; the active card carries `aria-current`.",

@@ -11,7 +11,7 @@ export const attachment = tv({
 		// Collapses by grid rows, so the row height eases instead of popping.
 		progress:
 			"grid transition-[grid-template-rows,opacity] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
-		track: "mt-1.5 h-1 w-full overflow-hidden rounded-full bg-input",
+		track: "mt-1.5 h-1 w-full overflow-hidden rounded-full bg-(--track)",
 		fill: "h-full w-full origin-left rounded-full bg-primary transition-transform duration-[var(--duration-overlay)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 		action:
 			"grid size-7 shrink-0 place-items-center rounded-md text-muted-foreground outline-none transition-[background-color,color,scale] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring active:scale-[0.97] motion-reduce:transition-none",

@@ -10,11 +10,12 @@ const sizeProp = {
 
 const a11y = {
 	keyboard: [
-		"Arrow keys move by day, or by week with Up and Down",
-		"Page Up and Page Down move to the previous or next month",
-		"Home and End jump to the start or end of the week",
-		"Enter or Space selects the focused day",
-		"In the month and year grids, arrows move between cells and Escape returns to the days",
+		{ keys: ["Arrow keys"], action: "Moves by day, or by week with Up and Down" },
+		{ keys: ["Page Up", "Page Down"], action: "Moves to the previous or next month" },
+		{ keys: ["Home", "End"], action: "Jumps to the start or end of the week" },
+		{ keys: ["Enter", "Space"], action: "Selects the focused day" },
+		{ keys: ["Arrow keys"], action: "In the month and year grids, moves between cells" },
+		{ keys: ["Escape"], action: "In the month and year grids, returns to the days" },
 	],
 	notes: [
 		"Grid semantics, focus and keyboard come from react-day-picker (React) and bits-ui (Svelte).",

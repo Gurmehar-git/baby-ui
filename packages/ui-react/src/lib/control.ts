@@ -19,9 +19,9 @@ export type ControlSize = NonNullable<VariantProps<typeof controlSize>["size"]>;
 /** One frame for every field: hairline at rest, ring border plus a soft halo on focus or open. */
 export const fieldFrame = tv({
 	base: [
-		"border border-input bg-background text-foreground outline-none",
+		"border border-input bg-(--field) text-foreground outline-none",
 		"transition-[color,border-color,box-shadow] duration-(--duration-fast) ease-(--ease-ui-out) motion-reduce:transition-none",
-		"hover:border-border-strong",
+		"hover:border-muted-foreground/60",
 		"focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/20",
 		"aria-invalid:border-destructive aria-invalid:ring-destructive/20",
 		"disabled:cursor-not-allowed disabled:opacity-50",

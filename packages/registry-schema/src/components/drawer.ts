@@ -64,8 +64,8 @@ export const drawer = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Escape closes and returns focus to the trigger",
-			"Tab stays inside the drawer while it is open",
+			{ keys: ["Escape"], action: "Closes and returns focus to the trigger" },
+			{ keys: ["Tab"], action: "Stays inside the drawer while it is open" },
 		],
 		notes: [
 			"vaul renders a modal dialog with focus trapped inside and the page behind it inert.",

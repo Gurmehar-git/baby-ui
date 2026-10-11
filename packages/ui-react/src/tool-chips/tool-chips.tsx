@@ -168,7 +168,7 @@ export function ToolChips({
 										</span>
 										<span
 											className={cn(
-												"h-5.5 min-w-0 flex-1 cursor-pointer truncate rounded-full bg-input px-1.5 text-xs text-muted-foreground shadow-xs transition-colors duration-(--duration-instant) hover:bg-accent",
+												"h-5.5 min-w-0 flex-1 cursor-pointer truncate rounded-full bg-muted px-1.5 text-xs text-muted-foreground shadow-xs transition-colors duration-(--duration-instant) hover:bg-accent",
 												"inline-flex items-center",
 												row.mono && "font-mono",
 											)}

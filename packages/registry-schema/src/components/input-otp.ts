@@ -58,8 +58,8 @@ export const inputOtp = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Backspace clears the previous character",
-			"Arrow Left and Right move between slots",
+			{ keys: ["Backspace"], action: "Clears the previous character" },
+			{ keys: ["Arrow Left", "Arrow Right"], action: "Moves between slots" },
 		],
 		notes: [
 			"One real input holds the code, so paste, one-time-code autofill and screen readers see a single field.",

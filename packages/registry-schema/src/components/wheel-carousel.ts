@@ -112,8 +112,9 @@ export const wheelCarousel = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Tab focuses the wheel",
-			"Arrow keys move one label; Home and End jump to the first and last",
+			{ keys: ["Tab"], action: "Focuses the wheel" },
+			{ keys: ["Arrow keys"], action: "Moves one label" },
+			{ keys: ["Home", "End"], action: "Jumps to the first and last" },
 		],
 		notes: [
 			"A listbox of options with aria-activedescendant; a polite live region announces the label and its position.",

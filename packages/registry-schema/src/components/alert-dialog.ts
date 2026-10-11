@@ -40,13 +40,34 @@ export const alertDialog = defineComponent({
 	},
 	a11y: {
 		role: "alertdialog",
-		keyboard: ["Escape cancels", "Focus starts on the cancel button"],
+		keyboard: [{ keys: ["Escape"], action: "Cancels" }],
 		notes: [
 			"role=alertdialog, so assistive tech announces it as an interruption rather than a passive dialog.",
 			"Focus lands on cancel, never on the destructive action. A confirmation that focuses Delete turns a reflexive Enter into data loss.",
 			"aria-describedby points at the consequence, so it is read with the title.",
 			'`variant="default"` renders a single flat surface, matching the shadcn/ui baseline.',
 			"Part names and data-slot values match shadcn/ui, so this replaces an existing alert dialog without touching call sites.",
+			"Focus starts on the cancel button.",
+		],
+	},
+	guidance: {
+		when: [
+			"Confirming an action that cannot be undone: delete, revoke, discard changes.",
+			"A decision the user must make before continuing, with exactly two outcomes.",
+		],
+		whenNot: [
+			{ text: "A form or anything longer than a short question.", use: "dialog" },
+			{
+				text: "Reporting that something happened, with nothing to decide.",
+				use: "toast",
+			},
+		],
+		responsive: [],
+		performance: ["Content mounts only while open."],
+		ai: [
+			"Focus starts on Cancel by design; never move initial focus to the destructive action.",
+			"Set `destructive` so the confirming action takes the destructive style.",
+			"State the consequence in AlertDialogDescription; it is read together with the title.",
 		],
 	},
 	licenseOrigin: {

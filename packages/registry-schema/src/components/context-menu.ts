@@ -59,9 +59,15 @@ export const contextMenu = defineComponent({
 	a11y: {
 		role: "menu",
 		keyboard: [
-			"Escape closes an open submenu first, then the menu",
-			"On a submenu trigger: ArrowRight or Enter opens it and focuses its first item",
-			"Inside an open submenu: ArrowLeft closes just that submenu and returns focus to its trigger",
+			{ keys: ["Escape"], action: "Closes an open submenu first, then the menu" },
+			{
+				keys: ["Arrow Right", "Enter"],
+				action: "On a submenu trigger, opens it and focuses its first item",
+			},
+			{
+				keys: ["Arrow Left"],
+				action: "Inside a submenu, closes it and returns focus to its trigger",
+			},
 		],
 		notes: [
 			"Right-click has no keyboard equivalent on every platform, so anything here must also be reachable another way.",

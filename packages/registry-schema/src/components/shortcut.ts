@@ -48,13 +48,12 @@ export const shortcut = defineComponent({
 		},
 	],
 	a11y: {
-		keyboard: [
-			"The combo itself clicks the enclosing button, unless focus is in a text field",
-		],
+		keyboard: [],
 		notes: [
 			"The glyphs are aria-hidden and a spoken form is provided in visually hidden text, so a screen reader says Command K rather than reading the symbol names.",
 			"Single-key combos are ignored while typing in an input or textarea; Enter and Escape still fire from inputs.",
 			"Glyphs are rendered as kbd elements, which is what the element is for.",
+			"The combo clicks the enclosing button, unless focus is in a text field.",
 		],
 	},
 	licenseOrigin: {

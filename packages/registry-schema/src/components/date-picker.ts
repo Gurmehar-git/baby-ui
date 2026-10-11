@@ -52,10 +52,13 @@ const timeMotion = {
 };
 
 const segmentKeys = [
-	"ArrowUp and ArrowDown step the focused segment; an empty one starts from today",
-	"ArrowLeft and ArrowRight move between segments",
-	"Digits type a value and jump to the next segment when complete",
-	"Backspace clears the segment, then moves back",
+	{
+		keys: ["Arrow Up", "Arrow Down"],
+		action: "Step the focused segment; an empty one starts from today",
+	},
+	{ keys: ["Arrow Left", "Arrow Right"], action: "Move between segments" },
+	{ keys: ["Digits"], action: "Type a value and jump to the next segment when complete" },
+	{ keys: ["Backspace"], action: "Clears the segment, then moves back" },
 ];
 
 const segmentNote =
@@ -209,8 +212,10 @@ export const datePicker = defineComponent({
 	a11y: {
 		keyboard: [
 			...segmentKeys,
-			"Alt+ArrowDown opens the calendar; Escape closes it and returns focus to its button",
-			"Arrow keys move by day in the calendar; Enter selects",
+			{ keys: ["Alt+Arrow Down"], action: "Opens the calendar" },
+			{ keys: ["Escape"], action: "Closes the calendar and returns focus to its button" },
+			{ keys: ["Arrow keys"], action: "Move by day in the calendar" },
+			{ keys: ["Enter"], action: "Selects the focused day" },
 		],
 		notes: [
 			segmentNote,
@@ -291,11 +296,12 @@ export const dateRangePicker = defineComponent({
 	a11y: {
 		keyboard: [
 			...segmentKeys,
-			"Focus runs from the start date's segments into the end date's",
-			"Alt+ArrowDown opens the calendar; Tab moves from the presets to the calendar",
+			{ keys: ["Alt+Arrow Down"], action: "Opens the calendar" },
+			{ keys: ["Tab"], action: "Moves from the presets to the calendar" },
 		],
 		notes: [
 			segmentNote,
+			"Focus runs from the start date's segments into the end date's.",
 			"An end date before the start date marks both invalid and explains why.",
 			"Two months show from 640px up, one below, so the popover never overflows a phone.",
 		],
@@ -416,7 +422,7 @@ export const timePicker = defineComponent({
 	],
 	motion: timeMotion,
 	a11y: {
-		keyboard: [...segmentKeys, "A or P sets the period"],
+		keyboard: [...segmentKeys, { keys: ["A", "P"], action: "Sets the period" }],
 		notes: [
 			segmentNote,
 			"Clear and Now trailing buttons mirror the group's focus ring; both expose aria-label.",

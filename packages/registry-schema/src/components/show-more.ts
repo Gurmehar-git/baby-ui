@@ -54,7 +54,7 @@ export const showMore = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Enter and Space toggle the content"],
+		keyboard: [{ keys: ["Enter", "Space"], action: "Toggles the content" }],
 		notes: [
 			"The control is only rendered when the content actually overflows, so there is never a Show more that does nothing.",
 			"aria-expanded points at the clamped region, and that region only becomes a focusable scroll landmark when it actually scrolls.",

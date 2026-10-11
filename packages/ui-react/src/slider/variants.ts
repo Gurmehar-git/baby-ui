@@ -11,7 +11,7 @@ export const slider = tv({
 		control:
 			"relative flex touch-none select-none items-center data-[orientation=horizontal]:w-full data-[orientation=vertical]:min-h-0 data-[orientation=vertical]:flex-1 data-[orientation=vertical]:flex-col data-disabled:opacity-50",
 		track:
-			"relative overflow-hidden rounded-full bg-input transition-[height,width] duration-(--duration-press) ease-(--ease-ui-out) data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full motion-reduce:transition-none",
+			"relative overflow-hidden rounded-full bg-(--track) transition-[height,width] duration-(--duration-press) ease-(--ease-ui-out) data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full motion-reduce:transition-none",
 		range:
 			"slider-glide rounded-full bg-primary data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full",
 		thumb:

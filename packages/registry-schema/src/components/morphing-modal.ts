@@ -70,13 +70,13 @@ export const morphingModal = defineComponent({
 	a11y: {
 		role: "dialog",
 		keyboard: [
-			"Escape closes the dialog",
-			"Tab cycles within the dialog while it is open",
-			"Focus returns to the trigger on close",
+			{ keys: ["Escape"], action: "Closes the dialog" },
+			{ keys: ["Tab"], action: "Cycles within the dialog while it is open" },
 		],
 		notes: [
 			"Rendered with the native <dialog> element, so the top layer and inertness come from the platform.",
 			"aria-labelledby points at the dialog's own heading, not the trigger's text.",
+			"Focus returns to the trigger on close.",
 		],
 	},
 

@@ -82,7 +82,9 @@ export const collectionSurfer = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Arrow keys, Page Up/Down scroll the focused box"],
+		keyboard: [
+			{ keys: ["Arrow keys", "Page Up", "Page Down"], action: "Scrolls the focused box" },
+		],
 		notes: [
 			"The scroll box is a focusable labelled region.",
 			"The repeated second set of cards is aria-hidden, so each image is announced once.",

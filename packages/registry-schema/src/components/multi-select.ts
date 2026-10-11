@@ -47,9 +47,12 @@ export const multiSelect = defineComponent({
 	a11y: {
 		role: "combobox",
 		keyboard: [
-			"Enter or Space opens the list",
-			"Backspace on the field, or in an empty search, removes the last chip",
-			"Arrow keys move through options and Enter toggles one",
+			{ keys: ["Enter", "Space"], action: "Opens the list" },
+			{
+				keys: ["Backspace"],
+				action: "On the field or in an empty search, removes the last chip",
+			},
+			{ keys: ["Arrow keys"], action: "Moves through options and Enter toggles one" },
 		],
 		notes: [
 			"Each chip has its own labelled remove button.",

@@ -45,7 +45,7 @@ export const copyButton = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Enter and Space copy"],
+		keyboard: [{ keys: ["Enter", "Space"], action: "Copies" }],
 		notes: [
 			"A visually hidden live region announces the confirmation; a label that only changes visually is silent to a screen reader.",
 			"Clipboard access throws outside a secure context, so the catch tells the user to press Ctrl+C rather than showing a false success.",

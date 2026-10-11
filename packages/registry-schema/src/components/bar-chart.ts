@@ -93,12 +93,11 @@ export const barChart = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: [
-			"Inherits the chart plot's keyboard model, stepping one category at a time",
-		],
+		keyboard: [],
 		notes: [
 			"The summary names each series' highest and lowest category; the data table lists every value.",
 			"`texture` hatches series so colour is never the only cue.",
+			"Keyboard follows the Chart plot: arrow keys move between points, one category at a time.",
 		],
 	},
 

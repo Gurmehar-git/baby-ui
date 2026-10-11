@@ -83,7 +83,9 @@ export const reasoning = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Enter and Space toggle the panel and each step's details"],
+		keyboard: [
+			{ keys: ["Enter", "Space"], action: "Toggles the panel and each step's details" },
+		],
 		notes: [
 			"The trigger is a button with aria-expanded pointing at the panel region.",
 			"Reasoning is supplementary, so the panel is not a live region; announcing it would talk over the answer.",

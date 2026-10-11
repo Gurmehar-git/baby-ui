@@ -60,9 +60,9 @@ export const tagInput = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Enter or comma commits the current text",
-			"Backspace on an empty field removes the last tag",
-			"Each tag's remove button is reachable by Tab",
+			{ keys: ["Enter", ","], action: "Commits the current text" },
+			{ keys: ["Backspace"], action: "In an empty field, removes the last tag" },
+			{ keys: ["Tab"], action: "Reaches each tag's remove button" },
 		],
 		notes: [
 			"A live region reports the tag count, so adding and removing is audible without focusing each chip.",

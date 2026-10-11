@@ -149,12 +149,15 @@ export const chart = defineComponent({
 	a11y: {
 		role: "group",
 		keyboard: [
-			"Tab focuses the plot",
-			"Arrow Left and Right move between data points",
-			"Page Up and Page Down move a tenth of the data",
-			"Home and End jump to the first and last point",
-			"Shift with Arrow Left or Right grows a selected range from the active point",
-			"Escape clears the selected range, then the active point",
+			{ keys: ["Tab"], action: "Focuses the plot" },
+			{ keys: ["Arrow Left", "Arrow Right"], action: "Moves between data points" },
+			{ keys: ["Page Up", "Page Down"], action: "Moves a tenth of the data" },
+			{ keys: ["Home", "End"], action: "Jumps to the first and last point" },
+			{
+				keys: ["Shift+Arrow Left", "Shift+Arrow Right"],
+				action: "Grows a selected range from the active point",
+			},
+			{ keys: ["Escape"], action: "Clears the selected range, then the active point" },
 		],
 		notes: [
 			"The plot is a focusable group with aria-roledescription, named by title and described by a generated summary.",
@@ -360,8 +363,8 @@ export const lineChart = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Inherits the chart plot's keyboard model"],
 		notes: [
+			"Keyboard follows the Chart plot: arrow keys move between points.",
 			"Each Line registers its series, so the summary, table and live region list it.",
 		],
 	},

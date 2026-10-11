@@ -41,7 +41,12 @@ export const showcaseGrid = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Tab reaches each panel's actions and content in reading order"],
+		keyboard: [
+			{
+				keys: ["Tab"],
+				action: "Reaches each panel's actions and content in reading order",
+			},
+		],
 		notes: [
 			"Dots, rulers and hatches are decorative (aria-hidden).",
 			"Actions stay in the tab order while hidden and show on focus, so keyboard users can always reach them.",

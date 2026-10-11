@@ -43,11 +43,12 @@ export const hoverCard = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Focusing the trigger opens the card"],
+		keyboard: [],
 		notes: [
 			"Hover-only content is supplementary by definition; never put the only copy of something in here.",
 			"The card is aria-describedby the trigger and opens on focus as well as hover.",
 			"Positioning, hover-intent timing and portaling are delegated to Base UI's preview-card (React) and bits-ui's link-preview (Svelte); this component only owns the classes and data-slots.",
+			"Focusing the trigger opens the card.",
 		],
 	},
 	licenseOrigin: {

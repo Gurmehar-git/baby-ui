@@ -104,11 +104,11 @@ export const fileTree = defineComponent({
 	a11y: {
 		role: "tree",
 		keyboard: [
-			"Arrow Down and Arrow Up move between visible rows",
-			"Arrow Right opens a closed folder, then moves into it",
-			"Arrow Left closes an open folder, then moves to its parent",
-			"Home and End jump to the first and last visible row",
-			"Enter and Space select the focused row",
+			{ keys: ["Arrow Down", "Arrow Up"], action: "Moves between visible rows" },
+			{ keys: ["Arrow Right"], action: "Opens a closed folder, then moves into it" },
+			{ keys: ["Arrow Left"], action: "Closes an open folder, then moves to its parent" },
+			{ keys: ["Home", "End"], action: "Jumps to the first and last visible row" },
+			{ keys: ["Enter", "Space"], action: "Selects the focused row" },
 		],
 		notes: [
 			"Rows use roving tabindex, so the tree is one tab stop rather than one per file.",

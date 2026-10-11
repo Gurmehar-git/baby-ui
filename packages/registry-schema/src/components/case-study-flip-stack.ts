@@ -104,7 +104,12 @@ export const caseStudyFlipStack = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Arrow keys, Page Up/Down, Home and End scroll the focused box"],
+		keyboard: [
+			{
+				keys: ["Arrow keys", "Page Up", "Page Down", "Home", "End"],
+				action: "Scrolls the focused box",
+			},
+		],
 		notes: [
 			"The scroll box is a focusable labelled region; the front card carries `data-active`.",
 			"All card text stays in the DOM, so screen readers read every case study in order.",

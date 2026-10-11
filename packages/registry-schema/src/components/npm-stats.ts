@@ -78,14 +78,16 @@ export const npmStatsBlock = defineComponent({
 
 	a11y: {
 		keyboard: [
-			"Range toggle items are buttons; Tab reaches the group, arrows move, Space/Enter selects.",
-			"The chart inherits Tab focus on the plot and its data-table summary.",
+			{ keys: ["Tab"], action: "Reaches the range toggle" },
+			{ keys: ["Arrow keys"], action: "Move between ranges" },
+			{ keys: ["Space", "Enter"], action: "Selects a range" },
 		],
 		notes: [
 			"The chart's accessible name comes from `ChartContainer.title` plus a generated summary.",
 			"Trend arrows are aria-hidden; the signed percent and its comparison window are read as text.",
 			"Each package's share is written as text in its row; the stacked bar is decorative.",
 			"Empty state uses `role=status` so screen readers announce when no packages are passed.",
+			"The chart keeps the Chart plot's keyboard model and data-table summary.",
 		],
 	},
 

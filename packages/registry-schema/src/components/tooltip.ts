@@ -45,16 +45,37 @@ export const tooltip = defineComponent({
 	},
 	a11y: {
 		role: "tooltip",
-		keyboard: [
-			"Escape closes the tooltip",
-			"Focusing the trigger opens it with no delay",
-		],
+		keyboard: [{ keys: ["Escape"], action: "Closes the tooltip" }],
 		notes: [
 			"Opens on focus as well as hover, otherwise keyboard users never see it.",
 			"The tooltip is aria-describedby the trigger, so it supplements the accessible name rather than replacing it.",
 			"pointer-events are off, so the tooltip can never eat the click meant for the trigger.",
 			"Positioning, hover-intent timing and portaling are delegated to Base UI (React) and bits-ui (Svelte); this component only owns the classes and data-slots.",
 			"Svelte: bits-ui's Tooltip.Root requires a Tooltip.Provider ancestor and throws without one; Base UI's Tooltip.Root has no such requirement, so React usage is fine standalone.",
+			"Focusing the trigger opens it with no delay.",
+		],
+	},
+	guidance: {
+		when: [
+			"Naming an icon-only button.",
+			"A short hint for a control whose purpose is not obvious.",
+		],
+		whenNot: [
+			{ text: "Anything interactive or longer than a phrase.", use: "popover" },
+			{ text: "A rich preview of a link or a person.", use: "hover-card" },
+			{
+				text: "Information a touch user must see: tooltips need hover or keyboard focus.",
+			},
+		],
+		responsive: [
+			"Flips and shifts to stay in the viewport; `side` sets the preferred edge.",
+		],
+		performance: [
+			"Wrap a toolbar in TooltipProvider so moving between its triggers skips the open delay.",
+		],
+		ai: [
+			"Never put essential information only in a tooltip.",
+			"The default delay is 400ms; lower it only for dense toolbars.",
 		],
 	},
 	licenseOrigin: {

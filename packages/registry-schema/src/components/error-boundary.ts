@@ -58,7 +58,9 @@ export const errorBoundary = defineComponent({
 		},
 	],
 	a11y: {
-		keyboard: ["Tab reaches the retry button and the details summary"],
+		keyboard: [
+			{ keys: ["Tab"], action: "Reaches the retry button and the details summary" },
+		],
 		notes: [
 			"The fallback is role=alert, so the failure is announced where it happened.",
 			"Errors in event handlers are not caught, in either framework; handle those where they run.",

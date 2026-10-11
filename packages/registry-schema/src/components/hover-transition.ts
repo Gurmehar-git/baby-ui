@@ -116,10 +116,11 @@ export const hoverTransition = defineComponent({
 	},
 	a11y: {
 		role: "group",
-		keyboard: ["Focus reveals the hover content; blur restores the resting content"],
+		keyboard: [],
 		notes: [
 			"Exactly one copy of the visible view is exposed: the resting content while idle, one hover copy while active.",
 			"Every duplicate layer is aria-hidden and inert, so interactive hover content has a single tab stop.",
+			"Focus reveals the hover content; blur restores the resting content.",
 		],
 	},
 	licenseOrigin: {

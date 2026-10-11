@@ -80,8 +80,8 @@ export const rippleTransition = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Enter or Space shows the next image",
-			"ArrowRight and ArrowLeft step forward and back",
+			{ keys: ["Enter", "Space"], action: "Shows the next image" },
+			{ keys: ["Arrow Right", "Arrow Left"], action: "Steps forward and back" },
 		],
 		notes: [
 			"A full-size button carries the label; the current image's alt text is announced in a polite live region.",

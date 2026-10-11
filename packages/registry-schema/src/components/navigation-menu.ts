@@ -53,9 +53,10 @@ export const navigationMenu = defineComponent({
 	a11y: {
 		role: "navigation",
 		keyboard: [
-			"Arrow keys move between top-level triggers and links",
-			"Enter or Space opens a trigger's panel; ArrowDown moves focus into it",
-			"Escape closes the panel and returns focus to its trigger",
+			{ keys: ["Arrow keys"], action: "Moves between top-level triggers and links" },
+			{ keys: ["Enter", "Space"], action: "Opens a trigger's panel" },
+			{ keys: ["Arrow Down"], action: "Moves focus into it" },
+			{ keys: ["Escape"], action: "Closes the panel and returns focus to its trigger" },
 		],
 		notes: [
 			"Roving focus, hover intent, dismissal and ARIA state come from Base UI (React) and bits-ui (Svelte).",

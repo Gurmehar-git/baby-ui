@@ -81,9 +81,10 @@ export const sunburstChart = defineComponent({
 	a11y: {
 		role: "group",
 		keyboard: [
-			"Arrow keys walk the arcs visible under the focus",
-			"Enter drills into the active arc",
-			"Backspace goes up a level; Escape clears the active arc, then goes up",
+			{ keys: ["Arrow keys"], action: "Walks the arcs visible under the focus" },
+			{ keys: ["Enter"], action: "Drills into the active arc" },
+			{ keys: ["Backspace"], action: "Goes up a level" },
+			{ keys: ["Escape"], action: "Clears the active arc, then goes up" },
 		],
 		notes: [
 			"The breadcrumb is a nav of real buttons, so every level is reachable without the chart.",

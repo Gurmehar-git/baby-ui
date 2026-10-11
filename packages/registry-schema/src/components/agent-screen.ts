@@ -59,8 +59,8 @@ export const agentScreen = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Enter and Space open the resting card",
-			"Escape collapses the expanded viewer",
+			{ keys: ["Enter", "Space"], action: "Opens the resting card" },
+			{ keys: ["Escape"], action: "Collapses the expanded viewer" },
 		],
 		notes: [
 			"The expanded viewer is a real Dialog: focus trap, scroll lock and outside-dismiss all come from that primitive, not reimplemented here.",

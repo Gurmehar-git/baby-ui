@@ -61,8 +61,8 @@ export const responsiveDialog = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Escape closes and returns focus to the trigger",
-			"Tab stays inside the open surface",
+			{ keys: ["Escape"], action: "Closes and returns focus to the trigger" },
+			{ keys: ["Tab"], action: "Stays inside the open surface" },
 		],
 		notes: [
 			"Renders the real Dialog or Drawer component underneath, so every a11y guarantee of the active surface (focus trap, aria-labelledby/describedby wiring, inert background) carries over unchanged.",

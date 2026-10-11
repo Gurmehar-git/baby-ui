@@ -90,7 +90,12 @@ export const pixelImageTrail = defineComponent({
 	},
 	a11y: {
 		role: "group",
-		keyboard: ["Tab focuses the area and reveals its centre; blur clears it"],
+		keyboard: [
+			{
+				keys: ["Tab"],
+				action: "Focuses the area and reveals its centre; blur clears it",
+			},
+		],
 		notes: ["The canvas is aria-hidden; the focusable group is labelled by `alt`."],
 	},
 	licenseOrigin: {

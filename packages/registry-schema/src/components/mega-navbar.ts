@@ -85,9 +85,19 @@ export const megaNavbar = defineComponent({
 	},
 	a11y: {
 		keyboard: [
-			"Escape on a desktop trigger closes its panel and returns focus to the trigger",
-			"ArrowDown on a desktop trigger opens its panel and moves focus to the first link",
-			"Tab reaches every trigger, panel link, mobile accordion header and mobile link",
+			{
+				keys: ["Escape"],
+				action: "Closes the open panel and returns focus to its trigger",
+			},
+			{
+				keys: ["Arrow Down"],
+				action: "On a desktop trigger, opens its panel and focuses the first link",
+			},
+			{
+				keys: ["Tab"],
+				action:
+					"Reaches every trigger, panel link, mobile accordion header and mobile link",
+			},
 		],
 		notes: [
 			"Desktop group triggers carry aria-expanded and aria-controls pointing at the shared panel.",

@@ -77,9 +77,10 @@ export const composedChart = defineComponent({
 		],
 	},
 	a11y: {
-		keyboard: ["Inherits the chart plot's keyboard model"],
+		keyboard: [],
 		notes: [
 			"Every SeriesBar, Line and Area registers, so tooltip rows, summary and table list them all.",
+			"Keyboard follows the Chart plot: arrow keys move between points.",
 		],
 	},
 

@@ -12,7 +12,7 @@ export const colorPicker = tv({
 		// Sized to its content, a swatch plus "#RRGGBB", not the InputGroup's full width.
 		field: "w-fit",
 		// A full-width property row: label, then the hex and the swatch that opens the picker.
-		row: "flex w-full items-center gap-2 rounded-lg border border-input bg-background px-2.5 transition-[border-color,box-shadow] duration-(--duration-fast) ease-[var(--ease-ui-out)] hover:border-border-strong focus-within:border-ring focus-within:ring-2 focus-within:ring-ring motion-reduce:transition-none has-disabled:pointer-events-none has-disabled:opacity-50",
+		row: "flex w-full items-center gap-2 rounded-lg border border-input bg-(--field) px-2.5 transition-[border-color,box-shadow] duration-(--duration-fast) ease-[var(--ease-ui-out)] hover:border-muted-foreground/60 focus-within:border-ring focus-within:ring-2 focus-within:ring-ring motion-reduce:transition-none has-disabled:pointer-events-none has-disabled:opacity-50",
 		rowLabel: "min-w-0 flex-1 truncate text-muted-foreground",
 		// Reads as text until pointed at or focused; typing a hex commits on Enter or blur.
 		rowHex:
