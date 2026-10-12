@@ -7,6 +7,7 @@ const files = (main: string) => [
 	{ path: "changelog-feed/changelog.ts", type: "registry:ui" as const },
 	{ path: "changelog-feed/variants.ts", type: "registry:ui" as const },
 	{ path: "lib/cn.ts", type: "registry:lib" as const },
+	{ path: "lib/image.ts", type: "registry:lib" as const },
 ];
 
 const deps = ["accordion", "badge", "code-block", "rolling-digits", "toggle-group"];
@@ -20,6 +21,13 @@ export const changelogFeed = defineComponent({
 	status: "stable",
 	variants: { variant: VARIANTS },
 	props: [
+		{
+			name: "image",
+			type: "(props: ImageSlotProps) => ReactNode | Snippet<[ImageSlotProps]>",
+			description:
+				"Renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
+			control: { kind: "none" },
+		},
 		{
 			name: "entries",
 			type: "ChangelogEntry[]",

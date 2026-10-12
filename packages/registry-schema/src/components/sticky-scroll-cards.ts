@@ -13,6 +13,13 @@ export const stickyScrollCards = defineComponent({
 	variants: { size: SIZES, variant: VARIANTS },
 	props: [
 		{
+			name: "image",
+			type: "(props: ImageSlotProps) => ReactNode | Snippet<[ImageSlotProps]>",
+			description:
+				"Renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
+			control: { kind: "none" },
+		},
+		{
 			name: "cards",
 			type: "{ title: string; src: string; alt?: string }[]",
 			description: "The cards, in stacking order.",
@@ -85,6 +92,7 @@ export const stickyScrollCards = defineComponent({
 				{ path: "sticky-scroll-cards/sticky-scroll-cards.tsx", type: "registry:ui" },
 				{ path: "sticky-scroll-cards/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
+				{ path: "lib/image.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
@@ -94,6 +102,7 @@ export const stickyScrollCards = defineComponent({
 				{ path: "sticky-scroll-cards/sticky-scroll-cards.svelte", type: "registry:ui" },
 				{ path: "sticky-scroll-cards/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
+				{ path: "lib/image.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},

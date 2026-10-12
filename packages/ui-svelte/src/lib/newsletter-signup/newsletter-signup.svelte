@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import Avatar from "../avatar/avatar.svelte";
 import AvatarFallback from "../avatar/avatar-fallback.svelte";
 import AvatarGroup from "../avatar/avatar-group.svelte";
@@ -9,6 +10,7 @@ import InputGroupAddon from "../input-group/input-group-addon.svelte";
 import InputGroupButton from "../input-group/input-group-button.svelte";
 import InputGroupInput from "../input-group/input-group-input.svelte";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import RollingDigits from "../rolling-digits/rolling-digits.svelte";
 import Spinner from "../spinner/spinner.svelte";
 import {
@@ -42,6 +44,7 @@ let {
 	name = "",
 	issues = [],
 	upcoming,
+	image,
 	class: className,
 }: {
 	title: string;
@@ -70,6 +73,8 @@ let {
 	issues?: NewsletterIssue[];
 	/** The next issue; it lands on the stack, addressed to the reader, on success. */
 	upcoming?: NewsletterIssue;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
 } = $props();
 
@@ -242,7 +247,7 @@ $effect(() => {
 						<ul class={s.stories()}>
 							{#each issue.stories.slice(0, 3) as story (story.title)}
 								<li class={s.story()}>
-									<img src={story.image} alt="" width={88} height={88} loading="lazy" decoding="async" class={s.thumb()} />
+									{#if image}{@render image({ src: story.image, alt: "", width: 88, height: 88, className: s.thumb(), loading: "lazy" })}{:else}<img src={story.image} alt="" width={88} height={88} loading="lazy" decoding="async" class={s.thumb()} />{/if}
 									<span class={s.storyTitle()}>{story.title}</span>
 									<span class={s.minutes()}>{story.minutes} min</span>
 								</li>

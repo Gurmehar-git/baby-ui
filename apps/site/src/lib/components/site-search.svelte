@@ -51,6 +51,11 @@ const PAGES = [
 		keywords: "setup cli shadcn install",
 	},
 	{ href: "/docs/theming", name: "Theming", keywords: "tokens colours dark mode motion" },
+	{
+		href: "/docs/mcp",
+		name: "MCP",
+		keywords: "ai agent cursor claude webmcp server tools",
+	},
 	{ href: "/components", name: "All components", keywords: "browse registry catalog" },
 ];
 

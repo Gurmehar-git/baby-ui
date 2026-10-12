@@ -1,7 +1,8 @@
 "use client";
 
-import { type CSSProperties, useEffect, useRef } from "react";
+import { type CSSProperties, type ReactNode, useEffect, useRef } from "react";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import { bindScrollProgress } from "../lib/scroll-frame";
 import {
 	CHOREOGRAPHY_SLOTS,
@@ -29,6 +30,8 @@ export interface ScrollChoreographyProps {
 	size?: ScrollChoreographySize;
 	/** Accessible name of the scroll region. */
 	label?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
 }
 
@@ -37,6 +40,7 @@ export function ScrollChoreography({
 	variant = "expand",
 	size = "default",
 	label = "Scroll to arrange the images",
+	image,
 	className,
 }: ScrollChoreographyProps) {
 	const rootRef = useRef<HTMLElement>(null);
@@ -62,7 +66,7 @@ export function ScrollChoreography({
 			<div ref={trackRef} className={s.track()}>
 				<div className={s.stage()}>
 					{CHOREOGRAPHY_SLOTS.map((slot) => {
-						const image = images[slot.key];
+						const shot = images[slot.key];
 						return (
 							<div
 								key={slot.key}
@@ -76,12 +80,17 @@ export function ScrollChoreography({
 									} as CSSProperties
 								}
 							>
-								<img
-									src={image.src}
-									alt={image.alt}
-									className={s.img()}
-									draggable={false}
-								/>
+								{image ? (
+									image({ src: shot.src, alt: shot.alt, className: s.img() })
+								) : (
+									<img
+										src={shot.src}
+										alt={shot.alt}
+										className={s.img()}
+										decoding="async"
+										draggable={false}
+									/>
+								)}
 							</div>
 						);
 					})}

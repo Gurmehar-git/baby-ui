@@ -1,8 +1,9 @@
 "use client";
 
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
 import { Card } from "../card/card";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import { bindScrollProgress, scrollToProgress } from "../lib/scroll-frame";
 import { activeFlipCard, type CaseStudyFlipItem, flipCardOffsets } from "./types";
 import {
@@ -28,6 +29,8 @@ export interface CaseStudyFlipStackProps {
 	label?: string;
 	tone?: CaseStudyFlipStackTone;
 	size?: CaseStudyFlipStackSize;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
 }
 
@@ -61,6 +64,7 @@ export function CaseStudyFlipStack({
 	label = "Case studies",
 	tone = "card",
 	size = "default",
+	image,
 	className,
 }: CaseStudyFlipStackProps) {
 	const rootRef = useRef<HTMLElement>(null);
@@ -156,13 +160,23 @@ export function CaseStudyFlipStack({
 											</div>
 										</div>
 										<div className={s.media()}>
-											<img
-												src={item.image}
-												alt={item.imageAlt}
-												className={s.image()}
-												loading={i < 2 ? "eager" : "lazy"}
-												draggable={false}
-											/>
+											{image ? (
+												image({
+													src: item.image,
+													alt: item.imageAlt,
+													className: s.image(),
+													loading: i < 2 ? "eager" : "lazy",
+												})
+											) : (
+												<img
+													src={item.image}
+													alt={item.imageAlt}
+													className={s.image()}
+													loading={i < 2 ? "eager" : "lazy"}
+													decoding="async"
+													draggable={false}
+												/>
+											)}
 										</div>
 									</Card>
 								</article>

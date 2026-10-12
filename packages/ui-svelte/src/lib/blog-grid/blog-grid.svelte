@@ -1,10 +1,12 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { tick } from "svelte";
 import Avatar from "../avatar/avatar.svelte";
 import AvatarFallback from "../avatar/avatar-fallback.svelte";
 import AvatarImage from "../avatar/avatar-image.svelte";
 import Button from "../button/button.svelte";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import Pagination from "../pagination/pagination.svelte";
 import PaginationContent from "../pagination/pagination-content.svelte";
 import PaginationItem from "../pagination/pagination-item.svelte";
@@ -39,6 +41,7 @@ let {
 	openPost = $bindable(),
 	onOpenPostChange,
 	locale,
+	image,
 	class: className,
 }: {
 	posts: BlogPost[];
@@ -62,6 +65,8 @@ let {
 	openPost?: string | null;
 	onOpenPostChange?: (id: string | null) => void;
 	locale?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
 } = $props();
 
@@ -164,7 +169,7 @@ const imageName = (post: BlogPost) =>
 	>
 		{#if post.image}
 			<div class={s.imageFrame()} style:view-transition-name={imageName(post)}>
-				<img src={post.image.src} alt={post.image.alt} loading={featured ? "eager" : "lazy"} decoding="async" class={s.image()} />
+				{#if image}{@render image({ src: post.image.src, alt: post.image.alt, className: s.image(), loading: featured ? "eager" : "lazy" })}{:else}<img src={post.image.src} alt={post.image.alt} loading={featured ? "eager" : "lazy"} decoding="async" class={s.image()} />{/if}
 			</div>
 		{/if}
 		<div class={s.body()}>
@@ -200,7 +205,7 @@ const imageName = (post: BlogPost) =>
 				</header>
 				{#if reading.image}
 					<div class={s.readerImage()} style:view-transition-name={imageName(reading)}>
-						<img src={reading.image.src} alt={reading.image.alt} decoding="async" class="size-full object-cover" />
+						{#if image}{@render image({ src: reading.image.src, alt: reading.image.alt, className: "size-full object-cover" })}{:else}<img src={reading.image.src} alt={reading.image.alt} decoding="async" class="size-full object-cover" />{/if}
 					</div>
 				{/if}
 				<div class={s.readerBody()}>

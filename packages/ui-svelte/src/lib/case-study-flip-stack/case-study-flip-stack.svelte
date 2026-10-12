@@ -1,7 +1,9 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { untrack } from "svelte";
 import Card from "../card/card.svelte";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import { bindScrollProgress, scrollToProgress } from "../lib/scroll-frame";
 import { activeFlipCard, type CaseStudyFlipItem, flipCardOffsets } from "./types";
 import {
@@ -20,6 +22,7 @@ let {
 	label = "Case studies",
 	tone = "card",
 	size = "default",
+	image,
 	class: classProp,
 }: {
 	items: CaseStudyFlipItem[];
@@ -35,6 +38,8 @@ let {
 	label?: string;
 	tone?: CaseStudyFlipStackTone;
 	size?: CaseStudyFlipStackSize;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
 } = $props();
 
@@ -129,13 +134,13 @@ $effect(() => {
 								</div>
 							</div>
 							<div class={s.media()}>
-								<img
+								{#if image}{@render image({ src: item.image, alt: item.imageAlt, className: s.image(), loading: i < 2 ? "eager" : "lazy" })}{:else}<img
 									src={item.image}
 									alt={item.imageAlt}
 									class={s.image()}
 									loading={i < 2 ? "eager" : "lazy"}
 									draggable="false"
-								/>
+								/>{/if}
 							</div>
 						</Card>
 					</article>

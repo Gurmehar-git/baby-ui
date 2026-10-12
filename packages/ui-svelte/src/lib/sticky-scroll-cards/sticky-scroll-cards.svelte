@@ -1,5 +1,7 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import {
 	cardLayout,
 	type StickyScrollCardItem,
@@ -16,6 +18,7 @@ let {
 	size = "default",
 	variant,
 	label = "Photo stack",
+	image,
 	class: className,
 }: {
 	cards: readonly StickyScrollCardItem[];
@@ -27,6 +30,8 @@ let {
 	variant?: StickyScrollCardsVariant;
 	/** Accessible name of the stack. */
 	label?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
 } = $props();
 
@@ -63,13 +68,13 @@ $effect(() => {
 					class={s.card()}
 					style="top: {layout.offset}px; --sticky-scroll-start: {layout.start}; --sticky-scroll-rest: {layout.rest}; --sticky-scroll-rotate: {layout.rotate}deg"
 				>
-					<img
+					{#if image}{@render image({ src: card.src, alt: card.alt ?? card.title, className: s.image(), loading: i < 2 ? "eager" : "lazy" })}{:else}<img
 						src={card.src}
 						alt={card.alt ?? card.title}
 						class={s.image()}
 						loading={i < 2 ? "eager" : "lazy"}
 						draggable="false"
-					/>
+					/>{/if}
 					<figcaption class={s.caption()}>{card.title}</figcaption>
 				</figure>
 			</div>

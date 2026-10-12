@@ -12,6 +12,13 @@ export const musicPlayer = defineComponent({
 	variants: { layout: LAYOUTS },
 	props: [
 		{
+			name: "image",
+			type: "(props: ImageSlotProps) => ReactNode | Snippet<[ImageSlotProps]>",
+			description:
+				"Renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
+			control: { kind: "none" },
+		},
+		{
 			name: "title",
 			type: "string",
 			description: "Track title.",
@@ -141,6 +148,7 @@ export const musicPlayer = defineComponent({
 				{ path: "music-player/types.ts", type: "registry:ui" },
 				{ path: "music-player/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
+				{ path: "lib/image.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 			registryDependencies: ["button", "slider"],
@@ -152,6 +160,7 @@ export const musicPlayer = defineComponent({
 				{ path: "music-player/types.ts", type: "registry:ui" },
 				{ path: "music-player/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
+				{ path: "lib/image.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 			registryDependencies: ["button", "slider"],

@@ -1,5 +1,7 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import { onScrollFrame } from "../lib/scroll-frame";
 import {
 	type CollectionSurferItem,
@@ -21,6 +23,7 @@ let {
 	title,
 	hint = "Scroll to surf",
 	label = "Collection",
+	image,
 	class: classProp,
 }: {
 	items: CollectionSurferItem[];
@@ -34,6 +37,8 @@ let {
 	hint?: string;
 	/** Accessible name of the scroll region. */
 	label?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
 } = $props();
 
@@ -125,7 +130,7 @@ $effect(() => {
 					>
 						<span class={s.number()}>{String((i % count) + 1).padStart(2, "0")}</span>
 						<div class={s.frame()}>
-							<img src={item.src} alt={item.alt} class={s.image()} draggable="false" />
+							{#if image}{@render image({ src: item.src, alt: item.alt, className: s.image() })}{:else}<img src={item.src} alt={item.alt} class={s.image()} draggable="false" />{/if}
 						</div>
 					</div>
 				{/each}

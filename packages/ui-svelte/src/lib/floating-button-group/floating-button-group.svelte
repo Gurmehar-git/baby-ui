@@ -128,6 +128,7 @@ const select = (item: FloatingButtonGroupAction) => {
 						<Toolbar.Button
 							{...props}
 							data-fbg-item=""
+							data-icon={item.icon ? "" : undefined}
 							data-icon-only={iconOnlyOf(item) || undefined}
 							aria-label={item.label}
 							aria-pressed={item.pressed}
@@ -147,6 +148,7 @@ const select = (item: FloatingButtonGroupAction) => {
 		{:else}
 			<Toolbar.Button
 				data-fbg-item=""
+				data-icon={item.icon ? "" : undefined}
 				aria-label={item.label}
 				aria-pressed={item.pressed}
 				aria-disabled={item.disabled || undefined}

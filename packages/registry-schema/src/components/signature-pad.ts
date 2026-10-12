@@ -15,7 +15,7 @@ export const signaturePad = defineComponent({
 	slug: "signature-pad",
 	name: "Signature Pad",
 	description:
-		"A signature field with real ink: width follows pen pressure or speed, ends taper, with undo, redo, a wiping clear and cropped PNG or SVG export.",
+		"A signature field with real ink: width follows pen pressure or speed, ends taper, with three inks, undo, redo, a time-true replay, a wiping clear and cropped PNG or SVG export.",
 	category: "advanced",
 	status: "stable",
 	variants: { variant: VARIANTS },
@@ -48,20 +48,38 @@ export const signaturePad = defineComponent({
 			control: { kind: "none" },
 		},
 		{
+			name: "defaultTone",
+			type: '"default" | "primary" | "violet"',
+			description: "The ink selected at first.",
+			default: "default",
+			control: { kind: "none" },
+		},
+		{
+			name: "defaultWidth",
+			type: '"fine" | "medium" | "bold"',
+			description: "The nib selected at first.",
+			default: "medium",
+			control: { kind: "none" },
+		},
+		{
 			name: "downloadable",
 			type: "boolean",
-			description: "Adds a Download button that saves a cropped transparent PNG.",
+			description:
+				"Adds Save as PNG and SVG buttons; both crop to the ink on a transparent background.",
 			default: false,
 			control: { kind: "none" },
 		},
 	],
 	motion: {
 		springs: [],
-		reducedMotion: "Clearing removes the ink at once.",
+		reducedMotion:
+			"Clearing removes the ink at once; the hint and swaps fade without moving.",
 		behaviour: [
 			"Ink follows the pointer with light streamlining; pen pressure or drawing speed sets the width.",
-			"Clear wipes the ink away left to right before the strokes are dropped.",
-			"The hint fades once the first stroke lands.",
+			"Replay redraws each stroke at its own pace with a nib riding the tip; pauses are held to 90 to 260ms and long signatures play faster.",
+			"Clear cuts the ink away behind a squeegee edge that crosses the pad over 560ms.",
+			"Redone strokes fade back in; the hint rises and blurs away on the first stroke.",
+			"Save buttons swap to Saved for 1.8s; Play swaps to Stop while a replay runs.",
 		],
 	},
 	a11y: {
@@ -69,10 +87,12 @@ export const signaturePad = defineComponent({
 			{ keys: ["Mod+Z"], action: "Undo the last stroke" },
 			{ keys: ["Shift+Mod+Z", "Mod+Y"], action: "Redo" },
 			{ keys: ["Delete"], action: "Clear the pad" },
+			{ keys: ["Escape"], action: "Stop a replay" },
 		],
 		notes: [
 			"The pad is focusable and named as signed or empty; the shortcuts are described to screen readers.",
 			"Every action also has a toolbar button, so nothing depends on the keyboard shortcuts.",
+			"Strokes added, undo, redo, clears, replays and saves are announced through a polite live region.",
 		],
 	},
 	guidance: {

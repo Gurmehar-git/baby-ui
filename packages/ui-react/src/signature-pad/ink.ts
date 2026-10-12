@@ -7,14 +7,31 @@ export interface InkPoint {
 }
 
 export type InkWidth = "fine" | "medium" | "bold";
-export type InkTone = "default" | "primary";
+export type InkTone = "default" | "primary" | "violet";
 
 export interface InkStroke {
 	id: string;
 	points: InkPoint[];
 	tone: InkTone;
 	width: InkWidth;
+	/** When the stroke began (event timeStamp ms), so a replay keeps the pauses between strokes. */
+	at: number;
 }
+
+export const INK_TONES: InkTone[] = ["default", "primary", "violet"];
+export const INK_WIDTHS: InkWidth[] = ["fine", "medium", "bold"];
+export const TONE_LABELS: Record<InkTone, string> = {
+	default: "Dark ink",
+	primary: "Blue ink",
+	violet: "Violet ink",
+};
+export const WIDTH_LABELS: Record<InkWidth, string> = {
+	fine: "Fine nib",
+	medium: "Medium nib",
+	bold: "Bold nib",
+};
+/** Undo depth; older steps fall off. */
+export const HISTORY_LIMIT = 60;
 
 export const PAD_WIDTH = 600;
 export const PAD_HEIGHT = 260;
@@ -186,12 +203,20 @@ function outlinePath(points: Vec[]) {
 	return `${d}Z`;
 }
 
-/** The SVG path of a stroke; pass `last: false` while it is still being drawn. */
-export function strokePath(stroke: Pick<InkStroke, "width" | "points">, last = true) {
+/** The SVG path of a stroke: `live` while it is still drawing, `upTo` ms to draw only its start. */
+export function strokePath(
+	stroke: Pick<InkStroke, "width" | "points">,
+	{
+		live = false,
+		upTo = Number.POSITIVE_INFINITY,
+	}: { live?: boolean; upTo?: number } = {},
+) {
 	const size = INK_SIZES[stroke.width];
 	const pen = stroke.points.some((point) => point.p > 0);
+	const last = !live && upTo === Number.POSITIVE_INFINITY;
+	const points = last ? stroke.points : stroke.points.filter((point) => point.t <= upTo);
 	return outlinePath(
-		strokeOutline(stroke.points, {
+		strokeOutline(points, {
 			size,
 			simulatePressure: !pen,
 			taperStart: size * 1.5,
@@ -287,8 +312,83 @@ export function toneColors(pad: Element): Record<InkTone, string> {
 	return {
 		default: style.getPropertyValue("--foreground").trim() || "#111",
 		primary: style.getPropertyValue("--primary").trim() || "#2563eb",
+		violet: style.getPropertyValue("--violet").trim() || "#7c3aed",
 	};
 }
+
+export interface ReplayPlan {
+	/** Replay time at which each stroke starts. */
+	offsets: number[];
+	total: number;
+	/** Long signatures play faster, so a replay never runs past ~3s. */
+	speed: number;
+}
+
+/** Each stroke keeps its own rhythm; pauses between strokes are held to 90 to 260ms. */
+export function replayPlan(strokes: InkStroke[]): ReplayPlan {
+	const offsets: number[] = [];
+	let cursor = 0;
+	strokes.forEach((stroke, i) => {
+		const previous = strokes[i - 1];
+		if (previous) {
+			const gap = stroke.at - (previous.at + (previous.points.at(-1)?.t ?? 0));
+			cursor += Math.min(260, Math.max(90, gap));
+		}
+		offsets.push(cursor);
+		cursor += stroke.points.at(-1)?.t ?? 0;
+	});
+	return { offsets, total: cursor + 120, speed: Math.max(1, cursor / 3200) };
+}
+
+export interface ReplayFrame {
+	/** Per stroke: null draws it whole, "" hides it, anything else is its partial path. */
+	paths: (string | null)[];
+	/** The nib rides the newest point of the stroke being drawn. */
+	nib: { x: number; y: number; tone: InkTone; r: number } | null;
+}
+
+export function replayFrame(
+	strokes: InkStroke[],
+	plan: ReplayPlan,
+	at: number,
+): ReplayFrame {
+	let nib: ReplayFrame["nib"] = null;
+	const paths = strokes.map((stroke, i) => {
+		const local = at - (plan.offsets[i] ?? 0);
+		const end = stroke.points.at(-1)?.t ?? 0;
+		if (local < 0) return "";
+		if (local >= end) return null;
+		const point = stroke.points.findLast((p) => p.t <= local) ?? stroke.points[0];
+		if (point)
+			nib = {
+				x: point.x,
+				y: point.y,
+				tone: stroke.tone,
+				r: INK_SIZES[stroke.width] * 0.9,
+			};
+		return strokePath(stroke, { upTo: local });
+	});
+	return { paths, nib };
+}
+
+/** 24px stroke icons for the toolbar, so neither port needs an icon package. */
+export const PAD_ICONS = {
+	undo: "M9 14 4 9l5-5M4 9h10.5a5.5 5.5 0 0 1 0 11H11",
+	redo: "m15 14 5-5-5-5M20 9H9.5a5.5 5.5 0 0 0 0 11H13",
+	play: "M7 4.8v14.4a.6.6 0 0 0 .9.5l11.4-7.2a.6.6 0 0 0 0-1L7.9 4.3a.6.6 0 0 0-.9.5Z",
+	stop: "M7.5 6.5h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Z",
+	clear:
+		"m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L11 21M22 21H7M5 11l9 9",
+	download: "M12 15V3m-5 7 5 5 5-5M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4",
+	check: "M20 6 9 17l-5-5",
+	mark: "M18 6 6 18M6 6l12 12",
+} as const;
+
+export type PadIcon = keyof typeof PAD_ICONS;
+
+/** The cropped SVG as a downloadable file. */
+export const signatureSvgBlob = (strokes: InkStroke[], colors: Record<InkTone, string>) =>
+	new Blob([signatureToSvg(strokes, colors)], { type: "image/svg+xml" });
 
 export function downloadBlob(blob: Blob, name: string) {
 	const url = URL.createObjectURL(blob);

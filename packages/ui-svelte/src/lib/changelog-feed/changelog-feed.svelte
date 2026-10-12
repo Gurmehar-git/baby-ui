@@ -7,6 +7,7 @@ import AccordionTrigger from "../accordion/accordion-trigger.svelte";
 import Badge from "../badge/badge.svelte";
 import CodeBlock from "../code-block/code-block.svelte";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import RollingDigits from "../rolling-digits/rolling-digits.svelte";
 import ToggleGroup from "../toggle-group/toggle-group.svelte";
 import ToggleGroupItem from "../toggle-group/toggle-group-item.svelte";
@@ -34,6 +35,7 @@ let {
 	value = $bindable(),
 	onValueChange,
 	locale,
+	image,
 	class: className,
 }: {
 	/** Release notes; grouped by month, newest first. */
@@ -54,6 +56,8 @@ let {
 	value?: string[];
 	onValueChange?: (value: string[]) => void;
 	locale?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
 } = $props();
 
@@ -146,7 +150,7 @@ function setOpen(next: string | string[]) {
 										{/if}
 										{#if entry.media?.type === "photo"}
 											<figure class={s.figure()}>
-												<img src={entry.media.src} alt={entry.media.alt} loading="lazy" decoding="async" class={s.photo()} />
+												{#if image}{@render image({ src: entry.media.src, alt: entry.media.alt, className: s.photo(), loading: "lazy" })}{:else}<img src={entry.media.src} alt={entry.media.alt} loading="lazy" decoding="async" class={s.photo()} />{/if}
 												{#if entry.media.caption}<figcaption class={s.caption()}>{entry.media.caption}</figcaption>{/if}
 											</figure>
 										{:else if entry.media?.type === "code"}

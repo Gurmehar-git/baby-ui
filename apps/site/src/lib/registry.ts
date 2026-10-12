@@ -355,6 +355,12 @@ export function siteNav(categories: NavCategory[]): NavItem[] {
 					icon: "create",
 				},
 				{
+					href: "/docs/mcp",
+					label: "MCP",
+					description: "Search, read and install components from your AI tool.",
+					icon: "llms",
+				},
+				{
 					href: "/llms.txt",
 					label: "llms.txt",
 					description: "Every component as plain text for AI tools.",

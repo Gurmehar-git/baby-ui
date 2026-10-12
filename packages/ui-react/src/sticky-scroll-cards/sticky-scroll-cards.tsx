@@ -1,7 +1,8 @@
 "use client";
 
-import { type CSSProperties, useEffect, useRef } from "react";
+import { type CSSProperties, type ReactNode, useEffect, useRef } from "react";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import {
 	cardLayout,
 	type StickyScrollCardItem,
@@ -23,6 +24,8 @@ export interface StickyScrollCardsProps {
 	variant?: StickyScrollCardsVariant;
 	/** Accessible name of the stack. */
 	label?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
 }
 
@@ -34,6 +37,7 @@ export function StickyScrollCards({
 	size = "default",
 	variant,
 	label = "Photo stack",
+	image,
 	className,
 }: StickyScrollCardsProps) {
 	const root = useRef<HTMLElement>(null);
@@ -77,13 +81,23 @@ export function StickyScrollCards({
 									} as CSSProperties
 								}
 							>
-								<img
-									src={card.src}
-									alt={card.alt ?? card.title}
-									className={s.image()}
-									loading={i < 2 ? "eager" : "lazy"}
-									draggable={false}
-								/>
+								{image ? (
+									image({
+										src: card.src,
+										alt: card.alt ?? card.title,
+										className: s.image(),
+										loading: i < 2 ? "eager" : "lazy",
+									})
+								) : (
+									<img
+										src={card.src}
+										alt={card.alt ?? card.title}
+										className={s.image()}
+										loading={i < 2 ? "eager" : "lazy"}
+										decoding="async"
+										draggable={false}
+									/>
+								)}
 								<figcaption className={s.caption()}>{card.title}</figcaption>
 							</figure>
 						</div>

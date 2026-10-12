@@ -1,7 +1,9 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import Badge from "../badge/badge.svelte";
 import Button from "../button/button.svelte";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import {
 	clampIndex,
 	DEFAULT_ORBIT_LABELS,
@@ -30,6 +32,7 @@ let {
 	size,
 	layout = "arc",
 	labels,
+	image,
 	class: className,
 }: {
 	items: readonly OrbitStackItem[];
@@ -49,6 +52,8 @@ let {
 	size?: OrbitCardStackSize;
 	layout?: OrbitCardStackLayout;
 	labels?: Partial<OrbitCardStackLabels>;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
 } = $props();
 
@@ -136,7 +141,7 @@ function onkeydown(event: KeyboardEvent) {
 			>
 				<div class={s.portrait()}>
 					{#if item.image}
-						<img src={item.image} alt="" class={s.portraitImage()} />
+						{#if image}{@render image({ src: item.image, alt: "", className: s.portraitImage() })}{:else}<img src={item.image} alt="" class={s.portraitImage()} />{/if}
 					{:else}
 						<span aria-hidden="true" class={s.monogram()}>{initials}</span>
 					{/if}

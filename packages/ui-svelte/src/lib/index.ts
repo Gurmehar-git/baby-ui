@@ -980,7 +980,7 @@ export { sidebarNav, type SidebarNavSize } from "./sidebar-nav/variants";
 export { default as Signature } from "./signature/signature.svelte";
 export { signature, type SignatureVariant, signatureTiming } from "./signature/variants";
 export { default as SignaturePad } from "./signature-pad/signature-pad.svelte";
-export { type InkPoint, type InkWidth, type InkTone, type InkStroke, PAD_WIDTH, PAD_HEIGHT, INK_SIZES, strokePath, signatureToSvg, signatureToPng, inkPoint, historyKey, toneColors, downloadBlob } from "./signature-pad/ink";
+export { type InkPoint, type InkWidth, type InkTone, type InkStroke, INK_TONES, INK_WIDTHS, TONE_LABELS, WIDTH_LABELS, HISTORY_LIMIT, PAD_WIDTH, PAD_HEIGHT, INK_SIZES, strokePath, signatureToSvg, signatureToPng, inkPoint, historyKey, toneColors, type ReplayPlan, replayPlan, type ReplayFrame, replayFrame, PAD_ICONS, type PadIcon, signatureSvgBlob, downloadBlob } from "./signature-pad/ink";
 export { signaturePad, type SignaturePadVariant } from "./signature-pad/variants";
 export { default as Skeleton } from "./skeleton/skeleton.svelte";
 export { skeleton, type SkeletonShape, skeletonReveal } from "./skeleton/variants";

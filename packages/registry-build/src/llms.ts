@@ -55,6 +55,11 @@ export function buildLlmsTxt(all: ComponentSpec[]): string {
 			`${SITE_URL}/docs/theming.md`,
 			"colour, dark mode and motion variables",
 		),
+		entry(
+			"MCP",
+			`${SITE_URL}/docs/mcp.md`,
+			"the remote MCP server at /api/mcp and the WebMCP tools on every page",
+		),
 		"",
 		"## Registry",
 		"",

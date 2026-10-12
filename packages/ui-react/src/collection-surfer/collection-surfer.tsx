@@ -1,7 +1,8 @@
 "use client";
 
-import { type CSSProperties, useEffect, useRef } from "react";
+import { type CSSProperties, type ReactNode, useEffect, useRef } from "react";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import { onScrollFrame } from "../lib/scroll-frame";
 import {
 	type CollectionSurferItem,
@@ -29,6 +30,8 @@ export interface CollectionSurferProps {
 	hint?: string;
 	/** Accessible name of the scroll region. */
 	label?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
 }
 
@@ -40,6 +43,7 @@ export function CollectionSurfer({
 	title,
 	hint = "Scroll to surf",
 	label = "Collection",
+	image,
 	className,
 }: CollectionSurferProps) {
 	const rootRef = useRef<HTMLElement>(null);
@@ -130,12 +134,17 @@ export function CollectionSurfer({
 									{String((i % count) + 1).padStart(2, "0")}
 								</span>
 								<div className={s.frame()}>
-									<img
-										src={item.src}
-										alt={item.alt}
-										className={s.image()}
-										draggable={false}
-									/>
+									{image ? (
+										image({ src: item.src, alt: item.alt, className: s.image() })
+									) : (
+										<img
+											src={item.src}
+											alt={item.alt}
+											className={s.image()}
+											decoding="async"
+											draggable={false}
+										/>
+									)}
 								</div>
 							</div>
 						))}

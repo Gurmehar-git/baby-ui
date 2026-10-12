@@ -14,6 +14,13 @@ export const orbitCardStack = defineComponent({
 	variants: { size: SIZES, layout: LAYOUTS },
 	props: [
 		{
+			name: "image",
+			type: "(props: ImageSlotProps) => ReactNode | Snippet<[ImageSlotProps]>",
+			description:
+				"Renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
+			control: { kind: "none" },
+		},
+		{
 			name: "items",
 			type: "{ name: string; role?: string; description?: string; image?: string; initials?: string; stat?: string; href?: string }[]",
 			description: "The profiles. `href` adds a real link button to that card.",
@@ -131,6 +138,7 @@ export const orbitCardStack = defineComponent({
 				{ path: "orbit-card-stack/orbit-card-stack.tsx", type: "registry:ui" },
 				{ path: "orbit-card-stack/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
+				{ path: "lib/image.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 			registryDependencies: ["badge", "button"],
@@ -141,6 +149,7 @@ export const orbitCardStack = defineComponent({
 				{ path: "orbit-card-stack/orbit-card-stack.svelte", type: "registry:ui" },
 				{ path: "orbit-card-stack/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
+				{ path: "lib/image.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 			registryDependencies: ["badge", "button"],

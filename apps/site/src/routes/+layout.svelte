@@ -6,6 +6,7 @@ import { initAnalytics, setAnalyticsContext, track } from "#lib/analytics.js";
 import NavProgress from "#lib/components/nav-progress.svelte";
 import PreferencesPanel from "#lib/components/preferences-panel.svelte";
 import SiteHeader from "#lib/components/site-header.svelte";
+import { provideWebMcp } from "#lib/mcp/webmcp.js";
 import { prefs } from "#lib/preferences.svelte.js";
 import { afterNavigate, beforeNavigate } from "$app/navigation";
 import { page } from "$app/state";
@@ -22,6 +23,7 @@ $effect(() => {
 });
 onMount(() => {
 	void initAnalytics();
+	provideWebMcp();
 	// Fades out the boot screen app.html paints before hydration, then drops it.
 	const root = document.documentElement;
 	root.dataset.ready = "";

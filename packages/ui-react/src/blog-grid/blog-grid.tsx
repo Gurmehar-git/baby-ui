@@ -3,6 +3,7 @@
 import {
 	type CSSProperties,
 	type MouseEvent,
+	type ReactNode,
 	useId,
 	useLayoutEffect,
 	useRef,
@@ -12,6 +13,7 @@ import { flushSync } from "react-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar/avatar";
 import { Button } from "../button/button";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import {
 	Pagination,
 	PaginationContent,
@@ -56,6 +58,8 @@ export interface BlogGridProps {
 	openPost?: string | null;
 	onOpenPostChange?: (id: string | null) => void;
 	locale?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
 }
 
@@ -75,6 +79,7 @@ export function BlogGrid({
 	openPost: openProp,
 	onOpenPostChange,
 	locale,
+	image,
 	className,
 }: BlogGridProps) {
 	const uid = useId().replace(/[^a-zA-Z0-9_-]/g, "");
@@ -172,13 +177,23 @@ export function BlogGrid({
 		>
 			{post.image ? (
 				<div className={s.imageFrame()} style={imageName(post)}>
-					<img
-						src={post.image.src}
-						alt={post.image.alt}
-						loading={featured ? "eager" : "lazy"}
-						decoding="async"
-						className={s.image()}
-					/>
+					{image ? (
+						image({
+							src: post.image.src,
+							alt: post.image.alt,
+							className: s.image(),
+							loading: featured ? "eager" : "lazy",
+						})
+					) : (
+						<img
+							src={post.image.src}
+							alt={post.image.alt}
+							className={s.image()}
+							loading={featured ? "eager" : "lazy"}
+							decoding="async"
+							draggable={false}
+						/>
+					)}
 				</div>
 			) : null}
 			<div className={s.body()}>
@@ -228,12 +243,21 @@ export function BlogGrid({
 						</header>
 						{reading.image ? (
 							<div className={s.readerImage()} style={imageName(reading)}>
-								<img
-									src={reading.image.src}
-									alt={reading.image.alt}
-									decoding="async"
-									className="size-full object-cover"
-								/>
+								{image ? (
+									image({
+										src: reading.image.src,
+										alt: reading.image.alt,
+										className: "size-full object-cover",
+									})
+								) : (
+									<img
+										src={reading.image.src}
+										alt={reading.image.alt}
+										className={"size-full object-cover"}
+										decoding="async"
+										draggable={false}
+									/>
+								)}
 							</div>
 						) : null}
 						<div className={s.readerBody()}>

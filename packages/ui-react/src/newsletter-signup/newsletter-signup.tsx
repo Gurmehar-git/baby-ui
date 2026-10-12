@@ -1,6 +1,13 @@
 "use client";
 
-import { type FormEvent, useEffect, useId, useRef, useState } from "react";
+import {
+	type FormEvent,
+	type ReactNode,
+	useEffect,
+	useId,
+	useRef,
+	useState,
+} from "react";
 import { Avatar, AvatarFallback, AvatarGroup, AvatarImage } from "../avatar/avatar";
 import { Button } from "../button/button";
 import {
@@ -10,6 +17,7 @@ import {
 	InputGroupInput,
 } from "../input-group/input-group";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import { RollingDigits } from "../rolling-digits/rolling-digits";
 import { Spinner } from "../spinner/spinner";
 import {
@@ -59,6 +67,8 @@ export interface NewsletterSignupProps {
 	issues?: NewsletterIssue[];
 	/** The next issue; it lands on the stack, addressed to the reader, on success. */
 	upcoming?: NewsletterIssue;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
 }
 
@@ -81,6 +91,7 @@ export function NewsletterSignup({
 	name = "",
 	issues = [],
 	upcoming,
+	image,
 	className,
 }: NewsletterSignupProps) {
 	const id = useId();
@@ -295,15 +306,27 @@ export function NewsletterSignup({
 								<ul className={s.stories()}>
 									{issue.stories.slice(0, 3).map((story) => (
 										<li key={story.title} className={s.story()}>
-											<img
-												src={story.image}
-												alt=""
-												width={88}
-												height={88}
-												loading="lazy"
-												decoding="async"
-												className={s.thumb()}
-											/>
+											{image ? (
+												image({
+													src: story.image,
+													alt: "",
+													width: 88,
+													height: 88,
+													className: s.thumb(),
+													loading: "lazy",
+												})
+											) : (
+												<img
+													src={story.image}
+													alt={""}
+													width={88}
+													height={88}
+													className={s.thumb()}
+													loading={"lazy"}
+													decoding="async"
+													draggable={false}
+												/>
+											)}
 											<span className={s.storyTitle()}>{story.title}</span>
 											<span className={s.minutes()}>{story.minutes} min</span>
 										</li>

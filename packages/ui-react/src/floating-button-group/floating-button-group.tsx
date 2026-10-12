@@ -106,6 +106,7 @@ export function FloatingButtonGroup({
 				const button = (
 					<Toolbar.Button
 						data-fbg-item=""
+						data-icon={item.icon ? "" : undefined}
 						data-icon-only={iconOnly || undefined}
 						aria-label={item.label}
 						aria-pressed={item.pressed}

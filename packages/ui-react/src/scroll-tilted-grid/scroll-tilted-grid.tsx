@@ -1,7 +1,8 @@
 "use client";
 
-import { type CSSProperties, useEffect, useRef } from "react";
+import { type CSSProperties, type ReactNode, useEffect, useRef } from "react";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import {
 	type ScrollTiltedGridAspect,
 	type ScrollTiltedGridImage,
@@ -33,6 +34,8 @@ export interface ScrollTiltedGridProps {
 	radius?: ScrollTiltedGridRadius;
 	/** Accessible name of the gallery. */
 	label?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
 }
 
@@ -47,6 +50,7 @@ export function ScrollTiltedGrid({
 	aspect,
 	radius,
 	label = "Image gallery",
+	image,
 	className,
 }: ScrollTiltedGridProps) {
 	const root = useRef<HTMLElement>(null);
@@ -69,7 +73,7 @@ export function ScrollTiltedGrid({
 			className={cn(s.root(), className)}
 		>
 			<div className={s.grid()}>
-				{tiles.map((image, i) => (
+				{tiles.map((tile, i) => (
 					<figure
 						// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
 						key={i}
@@ -85,13 +89,23 @@ export function ScrollTiltedGrid({
 						}
 					>
 						<div className={s.tile()}>
-							<img
-								src={image.src}
-								alt={image.alt}
-								className={s.image()}
-								loading={i < 4 ? "eager" : "lazy"}
-								draggable={false}
-							/>
+							{image ? (
+								image({
+									src: tile.src,
+									alt: tile.alt,
+									className: s.image(),
+									loading: i < 4 ? "eager" : "lazy",
+								})
+							) : (
+								<img
+									src={tile.src}
+									alt={tile.alt}
+									className={s.image()}
+									loading={i < 4 ? "eager" : "lazy"}
+									decoding="async"
+									draggable={false}
+								/>
+							)}
 							<span aria-hidden className={s.sheen()} />
 						</div>
 					</figure>

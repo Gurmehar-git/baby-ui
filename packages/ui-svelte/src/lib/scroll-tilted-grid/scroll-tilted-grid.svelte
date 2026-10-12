@@ -1,5 +1,7 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import {
 	type ScrollTiltedGridAspect,
 	type ScrollTiltedGridImage,
@@ -19,6 +21,7 @@ let {
 	aspect,
 	radius,
 	label = "Image gallery",
+	image,
 	class: className,
 }: {
 	images: readonly ScrollTiltedGridImage[];
@@ -35,6 +38,8 @@ let {
 	radius?: ScrollTiltedGridRadius;
 	/** Accessible name of the gallery. */
 	label?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
 } = $props();
 
@@ -59,20 +64,20 @@ $effect(() => {
 	class={cn(s.root(), className)}
 >
 	<div class={s.grid()}>
-		{#each tiles as image, i (i)}
+		{#each tiles as tile, i (i)}
 			<figure
 				data-scroll-tilted-tile=""
 				class={scrollTiltedGrid({ side: i % 2 ? "right" : "left" }).figure()}
 				style="perspective: {perspective}px; --scroll-tilted-side: {i % 2 ? 1 : -1}; --scroll-tilted-tilt: {maxTilt}; --scroll-tilted-blur: {maxBlur}"
 			>
 				<div class={s.tile()}>
-					<img
-						src={image.src}
-						alt={image.alt}
+					{#if image}{@render image({ src: tile.src, alt: tile.alt, className: s.image(), loading: i < 4 ? "eager" : "lazy" })}{:else}<img
+						src={tile.src}
+						alt={tile.alt}
 						class={s.image()}
 						loading={i < 4 ? "eager" : "lazy"}
 						draggable="false"
-					/>
+					/>{/if}
 					<span aria-hidden="true" class={s.sheen()}></span>
 				</div>
 			</figure>

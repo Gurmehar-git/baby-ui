@@ -9,6 +9,7 @@ const files = (ext: string) => [
 	{ path: "collection-surfer/variants.ts", type: "registry:ui" as const },
 	{ path: "lib/scroll-frame.ts", type: "registry:lib" as const },
 	{ path: "lib/cn.ts", type: "registry:lib" as const },
+	{ path: "lib/image.ts", type: "registry:lib" as const },
 ];
 
 export const collectionSurfer = defineComponent({
@@ -21,6 +22,13 @@ export const collectionSurfer = defineComponent({
 	demo: { mode: "auto", frame: "none" },
 	variants: { variant: VARIANTS, size: SIZES },
 	props: [
+		{
+			name: "image",
+			type: "(props: ImageSlotProps) => ReactNode | Snippet<[ImageSlotProps]>",
+			description:
+				"Renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
+			control: { kind: "none" },
+		},
 		{
 			name: "items",
 			type: "CollectionSurferItem[]",

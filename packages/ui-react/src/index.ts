@@ -604,7 +604,7 @@ export { sidebarNav, type SidebarNavSize } from "./sidebar-nav/variants";
 export { type SignatureProps, Signature } from "./signature/signature";
 export { signature, type SignatureVariant, signatureTiming } from "./signature/variants";
 export { type SignaturePadProps, SignaturePad } from "./signature-pad/signature-pad";
-export { type InkPoint, type InkWidth, type InkTone, type InkStroke, PAD_WIDTH, PAD_HEIGHT, INK_SIZES, strokePath, signatureToSvg, signatureToPng, inkPoint, historyKey, toneColors, downloadBlob } from "./signature-pad/ink";
+export { type InkPoint, type InkWidth, type InkTone, type InkStroke, INK_TONES, INK_WIDTHS, TONE_LABELS, WIDTH_LABELS, HISTORY_LIMIT, PAD_WIDTH, PAD_HEIGHT, INK_SIZES, strokePath, signatureToSvg, signatureToPng, inkPoint, historyKey, toneColors, type ReplayPlan, replayPlan, type ReplayFrame, replayFrame, PAD_ICONS, type PadIcon, signatureSvgBlob, downloadBlob } from "./signature-pad/ink";
 export { signaturePad, type SignaturePadVariant } from "./signature-pad/variants";
 export { type SkeletonProps, Skeleton } from "./skeleton/skeleton";
 export { skeleton, type SkeletonShape, skeletonReveal } from "./skeleton/variants";

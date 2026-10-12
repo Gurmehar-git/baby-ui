@@ -14,6 +14,13 @@ export const scrollTiltedGrid = defineComponent({
 	variants: { size: SIZES, aspect: ASPECTS, radius: RADII },
 	props: [
 		{
+			name: "image",
+			type: "(props: ImageSlotProps) => ReactNode | Snippet<[ImageSlotProps]>",
+			description:
+				"Renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
+			control: { kind: "none" },
+		},
+		{
 			name: "images",
 			type: "{ src: string; alt: string }[]",
 			description: "The images, laid out left then right down two columns.",
@@ -107,6 +114,7 @@ export const scrollTiltedGrid = defineComponent({
 				{ path: "scroll-tilted-grid/scroll-tilted-grid.tsx", type: "registry:ui" },
 				{ path: "scroll-tilted-grid/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
+				{ path: "lib/image.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
@@ -116,6 +124,7 @@ export const scrollTiltedGrid = defineComponent({
 				{ path: "scroll-tilted-grid/scroll-tilted-grid.svelte", type: "registry:ui" },
 				{ path: "scroll-tilted-grid/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
+				{ path: "lib/image.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},

@@ -10,6 +10,7 @@ import {
 import { Badge } from "../badge/badge";
 import { CodeBlock } from "../code-block/code-block";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import { RollingDigits } from "../rolling-digits/rolling-digits";
 import { ToggleGroup, ToggleGroupItem } from "../toggle-group/toggle-group";
 import {
@@ -46,6 +47,8 @@ export interface ChangelogFeedProps {
 	value?: string[];
 	onValueChange?: (value: string[]) => void;
 	locale?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
 }
 
@@ -62,6 +65,7 @@ export function ChangelogFeed({
 	value,
 	onValueChange,
 	locale,
+	image,
 	className,
 }: ChangelogFeedProps) {
 	const id = useId();
@@ -185,13 +189,23 @@ export function ChangelogFeed({
 														) : null}
 														{entry.media?.type === "photo" ? (
 															<figure className={s.figure()}>
-																<img
-																	src={entry.media.src}
-																	alt={entry.media.alt}
-																	loading="lazy"
-																	decoding="async"
-																	className={s.photo()}
-																/>
+																{image ? (
+																	image({
+																		src: entry.media.src,
+																		alt: entry.media.alt,
+																		className: s.photo(),
+																		loading: "lazy",
+																	})
+																) : (
+																	<img
+																		src={entry.media.src}
+																		alt={entry.media.alt}
+																		className={s.photo()}
+																		loading={"lazy"}
+																		decoding="async"
+																		draggable={false}
+																	/>
+																)}
 																{entry.media.caption ? (
 																	<figcaption className={s.caption()}>
 																		{entry.media.caption}

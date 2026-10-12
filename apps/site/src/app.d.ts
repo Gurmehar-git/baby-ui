@@ -17,6 +17,18 @@ declare global {
 	/** The Pro feature flag, a build-time literal from vite.config.ts so Pro-only globs fold away. */
 	const __SHOW_PRO__: boolean;
 
+	/** WebMCP: tools a page offers to an in-browser agent; absent where unsupported. */
+	interface ModelContextTool {
+		name: string;
+		description: string;
+		inputSchema: object;
+		annotations?: { readOnlyHint?: boolean };
+		execute: (input: Record<string, unknown>) => Promise<unknown>;
+	}
+	interface Navigator {
+		modelContext?: { provideContext: (context: { tools: ModelContextTool[] }) => void };
+	}
+
 	interface ImportMetaEnv {
 		readonly VITE_POSTHOG_KEY?: string;
 		readonly VITE_SHOW_PRO?: string;

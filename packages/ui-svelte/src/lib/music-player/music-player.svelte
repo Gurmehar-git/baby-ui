@@ -1,6 +1,8 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import Button from "../button/button.svelte";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import Slider from "../slider/slider.svelte";
 import {
 	clampUnit,
@@ -28,6 +30,7 @@ let {
 	onNext,
 	layout = "vinyl",
 	labels,
+	image,
 	class: classProp,
 }: {
 	title: string;
@@ -53,6 +56,8 @@ let {
 	onNext?: () => void;
 	layout?: MusicPlayerLayout;
 	labels?: Partial<MusicPlayerLabels>;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
 } = $props();
 
@@ -120,7 +125,7 @@ $effect(() => {
 	<div class={s.frame()}>
 		<div class={s.deck()}>
 			<div class={s.disc()} data-playing={playing}>
-				<img src={cover} alt={coverAlt} class={s.cover()} draggable="false" />
+				{#if image}{@render image({ src: cover, alt: coverAlt, className: s.cover() })}{:else}<img src={cover} alt={coverAlt} class={s.cover()} draggable="false" />{/if}
 				<div aria-hidden="true" class={s.grooves()}></div>
 				<div aria-hidden="true" class={s.label()}>
 					<div class={s.pin()}></div>

@@ -1,5 +1,7 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import { bindScrollProgress } from "../lib/scroll-frame";
 import { CHOREOGRAPHY_SLOTS, type ScrollChoreographyImages } from "./types";
 import {
@@ -13,6 +15,7 @@ let {
 	variant = "expand",
 	size = "default",
 	label = "Scroll to arrange the images",
+	image,
 	class: classProp,
 }: {
 	/** Four images; `topRight` is the one that ends up filling the frame. */
@@ -22,6 +25,8 @@ let {
 	size?: ScrollChoreographySize;
 	/** Accessible name of the scroll region. */
 	label?: string;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
 } = $props();
 
@@ -50,12 +55,12 @@ $effect(() => {
 					class={cn(s.image(), slot.key === "topRight" ? s.hero() : s.under())}
 					style="--x0: {slot.x}; --y0: {slot.y}; --dy: {slot.dy}; z-index: {slot.z};"
 				>
-					<img
+					{#if image}{@render image({ src: images[slot.key].src, alt: images[slot.key].alt, className: s.img() })}{:else}<img
 						src={images[slot.key].src}
 						alt={images[slot.key].alt}
 						class={s.img()}
 						draggable="false"
-					/>
+					/>{/if}
 				</div>
 			{/each}
 		</div>

@@ -8,6 +8,7 @@ const files = (main: string) => [
 	{ path: "newsletter-signup/signup.ts", type: "registry:ui" as const },
 	{ path: "newsletter-signup/variants.ts", type: "registry:ui" as const },
 	{ path: "lib/cn.ts", type: "registry:lib" as const },
+	{ path: "lib/image.ts", type: "registry:lib" as const },
 ];
 
 const deps = ["avatar", "button", "input-group", "rolling-digits", "spinner"];
@@ -21,6 +22,13 @@ export const newsletterSignup = defineComponent({
 	status: "stable",
 	variants: { variant: VARIANTS },
 	props: [
+		{
+			name: "image",
+			type: "(props: ImageSlotProps) => ReactNode | Snippet<[ImageSlotProps]>",
+			description:
+				"Renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
+			control: { kind: "none" },
+		},
 		{
 			name: "title",
 			type: "string",

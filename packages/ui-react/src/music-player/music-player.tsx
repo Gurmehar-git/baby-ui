@@ -3,6 +3,7 @@
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { Button } from "../button/button";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import { Slider } from "../slider/slider";
 import {
 	clampUnit,
@@ -42,6 +43,8 @@ export interface MusicPlayerProps {
 	onNext?: () => void;
 	layout?: MusicPlayerLayout;
 	labels?: Partial<MusicPlayerLabels>;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
 }
 
@@ -96,6 +99,7 @@ export function MusicPlayer({
 	onNext,
 	layout = "vinyl",
 	labels,
+	image,
 	className,
 }: MusicPlayerProps) {
 	const text = { ...MUSIC_PLAYER_LABELS, ...labels };
@@ -167,7 +171,17 @@ export function MusicPlayer({
 			<div className={s.frame()}>
 				<div className={s.deck()}>
 					<div className={s.disc()} data-playing={playing}>
-						<img src={cover} alt={coverAlt} className={s.cover()} draggable={false} />
+						{image ? (
+							image({ src: cover, alt: coverAlt, className: s.cover() })
+						) : (
+							<img
+								src={cover}
+								alt={coverAlt}
+								className={s.cover()}
+								decoding="async"
+								draggable={false}
+							/>
+						)}
 						<div aria-hidden className={s.grooves()} />
 						<div aria-hidden className={s.label()}>
 							<div className={s.pin()} />

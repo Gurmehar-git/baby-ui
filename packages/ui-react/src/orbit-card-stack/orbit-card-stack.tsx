@@ -1,9 +1,17 @@
 "use client";
 
-import { type FocusEvent, type KeyboardEvent, useEffect, useRef, useState } from "react";
+import {
+	type FocusEvent,
+	type KeyboardEvent,
+	type ReactNode,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { Badge } from "../badge/badge";
 import { Button } from "../button/button";
 import { cn } from "../lib/cn";
+import type { ImageSlotProps } from "../lib/image";
 import {
 	clampIndex,
 	DEFAULT_ORBIT_LABELS,
@@ -44,6 +52,8 @@ export interface OrbitCardStackProps {
 	size?: OrbitCardStackSize;
 	layout?: OrbitCardStackLayout;
 	labels?: Partial<OrbitCardStackLabels>;
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
 }
 
@@ -61,6 +71,7 @@ export function OrbitCardStack({
 	size,
 	layout = "arc",
 	labels,
+	image,
 	className,
 }: OrbitCardStackProps) {
 	const stage = useRef<HTMLUListElement>(null);
@@ -163,7 +174,17 @@ export function OrbitCardStack({
 						>
 							<div className={s.portrait()}>
 								{item.image ? (
-									<img src={item.image} alt="" className={s.portraitImage()} />
+									image ? (
+										image({ src: item.image, alt: "", className: s.portraitImage() })
+									) : (
+										<img
+											src={item.image}
+											alt={""}
+											className={s.portraitImage()}
+											decoding="async"
+											draggable={false}
+										/>
+									)
 								) : (
 									<span aria-hidden className={s.monogram()}>
 										{initials}
