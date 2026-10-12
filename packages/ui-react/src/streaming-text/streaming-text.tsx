@@ -65,7 +65,7 @@ export interface StreamingTextProps {
 /** A streamed answer that reveals once and stops: plain text, or cited tokens with sources and follow-ups. */
 export function StreamingText({
 	layout = "inline",
-	size = "md",
+	size = "default",
 	content: contentProp,
 	markdown = false,
 	streaming,

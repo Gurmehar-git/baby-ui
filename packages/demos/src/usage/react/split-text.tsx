@@ -3,5 +3,5 @@
 import { SplitText } from "@baby-ui/react";
 
 export function Example() {
-	return <SplitText text="BABY UI" size="md" />;
+	return <SplitText text="BABY UI" size="default" />;
 }

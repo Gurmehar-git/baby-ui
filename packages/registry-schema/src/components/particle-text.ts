@@ -31,7 +31,7 @@ export const particleText = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Canvas height.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

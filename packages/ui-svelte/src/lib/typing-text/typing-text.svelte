@@ -14,7 +14,7 @@ let {
 	hideCursorOnComplete = false,
 	stumbles = false,
 	onComplete,
-	size = "md",
+	size = "default",
 	class: classProp,
 }: {
 	text: string;

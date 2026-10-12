@@ -12,7 +12,6 @@ export const infiniteImageField = defineComponent({
 		"An endless image field that drifts toward the pointer, or pans by drag through a fisheye or WebGL lens.",
 	category: "animated",
 	status: "stable",
-	isUpdated: true,
 	demo: { mode: "auto", frame: "lg" },
 	variants: { variant: VARIANTS, shape: SHAPES, layout: LAYOUTS, size: SIZES },
 	props: [
@@ -35,7 +34,7 @@ export const infiniteImageField = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Height of the field.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

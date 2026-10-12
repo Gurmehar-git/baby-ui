@@ -16,10 +16,11 @@ let {
 			{...props}
 			inert={!open}
 			data-slot="accordion-content"
-			class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-out-quad)] data-[state=open]:grid-rows-[1fr] data-[state=open]:duration-[var(--duration-collapse)] motion-reduce:transition-none"
+			class="group/accordion-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-out-quad)] data-[state=open]:grid-rows-[1fr] data-[state=open]:duration-[var(--duration-collapse)] motion-reduce:transition-none"
 		>
 			<div class="overflow-hidden">
-				<div class={cn("px-4 pb-3 text-muted-foreground text-sm leading-relaxed", classProp)}>
+				<!-- The answer settles into place as the panel opens, and lifts back as it closes. -->
+				<div class={cn("px-4 pb-3 text-muted-foreground text-sm leading-relaxed -translate-y-1 opacity-0 transition-[translate,opacity] duration-(--duration-dropdown) ease-(--ease-ui-out) group-data-[state=open]/accordion-panel:translate-y-0 group-data-[state=open]/accordion-panel:opacity-100 motion-reduce:transition-none", classProp)}>
 					{@render children?.()}
 				</div>
 			</div>

@@ -1,7 +1,8 @@
 <script lang="ts">
 import Badge from "../badge/badge.svelte";
 import { cn } from "../lib/cn";
-import { type TagInputSize, tagInput } from "./variants";
+import { armKey } from "./arm";
+import { TAG_INPUT_CHIP, type TagInputSize, tagInput } from "./variants";
 
 let {
 	tags = $bindable<string[]>([]),
@@ -9,7 +10,7 @@ let {
 	max,
 	disabled = false,
 	invalid = false,
-	size = "md",
+	size = "default",
 	label,
 	class: classProp,
 }: {
@@ -25,6 +26,7 @@ let {
 } = $props();
 
 let draft = $state("");
+let armed = $state<number | null>(null);
 
 const s = $derived(tagInput({ size }));
 const full = $derived(max !== undefined && tags.length >= max);
@@ -45,10 +47,12 @@ function onkeydown(event: KeyboardEvent) {
 		add();
 		return;
 	}
-	// Backspace on an empty field removes the last tag, which is the expected shortcut.
-	if (event.key === "Backspace" && draft === "" && tags.length > 0) {
-		tags = tags.slice(0, -1);
-	}
+	if (draft !== "") return;
+	const step = armKey(event.key, armed, tags.length);
+	if (!step) return;
+	event.preventDefault();
+	armed = step.armed;
+	if (step.remove !== undefined) tags = tags.filter((_, i) => i !== step.remove);
 }
 </script>
 
@@ -58,8 +62,8 @@ function onkeydown(event: KeyboardEvent) {
 	aria-invalid={invalid || undefined}
 	class={cn(s.root(), classProp)}
 >
-	{#each tags as tag (tag)}
-		<Badge variant="secondary" size={size === "sm" ? "sm" : "md"} class={s.chip()}>
+	{#each tags as tag, index (tag)}
+		<Badge variant="secondary" size={TAG_INPUT_CHIP[size]} data-armed={armed === index} class={s.chip()}>
 			<span class={s.chipLabel()}>{tag}</span>
 			<button
 				type="button"
@@ -83,9 +87,15 @@ function onkeydown(event: KeyboardEvent) {
 		placeholder={full ? "" : placeholder}
 		{disabled}
 		{onkeydown}
-		onblur={add}
+		oninput={() => (armed = null)}
+		onblur={() => {
+			armed = null;
+			add();
+		}}
 		class={s.input()}
 	/>
 
-	<span role="status" class="sr-only">{tags.length} tags</span>
+	<span role="status" class="sr-only"
+		>{armed !== null ? `${tags[armed]} selected. Press Backspace again to remove it.` : `${tags.length} tags`}</span
+	>
 </div>

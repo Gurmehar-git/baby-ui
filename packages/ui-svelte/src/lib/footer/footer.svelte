@@ -2,7 +2,7 @@
 import type { Snippet } from "svelte";
 import { cn } from "../lib/cn";
 import NotchedShelf from "../notched-shelf/notched-shelf.svelte";
-import type { FooterColumn, FooterLink, FooterSocialLink } from "./types";
+import type { FooterColumn, FooterLink, FooterSocialLink, FooterStatus } from "./types";
 import { type FooterLayout, footer } from "./variants";
 
 let {
@@ -17,6 +17,7 @@ let {
 	topHref,
 	topLabel = "Back to top",
 	layout = "split",
+	status,
 	class: className,
 }: {
 	brand?: Snippet;
@@ -34,6 +35,8 @@ let {
 	topHref?: string;
 	topLabel?: string;
 	layout?: FooterLayout;
+	/** A system status link with a pulsing dot in its tone. */
+	status?: FooterStatus;
 	class?: string;
 } = $props();
 
@@ -59,6 +62,16 @@ const notched = $derived(layout === "notched");
 				</li>
 			{/each}
 		</ul>
+	{/if}
+{/snippet}
+
+{#snippet statusLink()}
+	{#if status}
+		{#if status.href}
+			<a href={status.href} class={styles.status()}><span aria-hidden="true" data-tone={status.tone} class={styles.statusDot()}></span>{status.label}</a>
+		{:else}
+			<p class={styles.status()}><span aria-hidden="true" data-tone={status.tone} class={styles.statusDot()}></span>{status.label}</p>
+		{/if}
 	{/if}
 {/snippet}
 
@@ -116,6 +129,7 @@ const notched = $derived(layout === "notched");
 					{#if copyright}
 						<p class={styles.copyright()}>{@render copyright()}</p>
 					{/if}
+					{@render statusLink()}
 					{@render legalList()}
 					{@render actionsSlot()}
 				{/if}
@@ -123,7 +137,7 @@ const notched = $derived(layout === "notched");
 
 			<div class={styles.columns()}>
 				{#each columns as column (column.title)}
-					<div>
+					<div class={styles.column()}>
 						<h4 class={styles.columnTitle()}>{column.title}</h4>
 						<ul class={styles.links()}>
 							{#each column.links as link (link.href)}
@@ -137,7 +151,7 @@ const notched = $derived(layout === "notched");
 										<span>
 											<span class="inline-flex items-center gap-1">
 												{link.label}
-												{#if link.external && notched}{@render arrowUpRight()}{/if}
+												{#if link.external}{@render arrowUpRight()}{/if}
 											</span>
 											{#if link.description}
 												<span class={styles.linkDescription()}>{link.description}</span>
@@ -156,6 +170,7 @@ const notched = $derived(layout === "notched");
 			<span aria-hidden="true" class={styles.rule()}></span>
 			<div class={styles.bottom()}>
 				{#if copyright}<p>{@render copyright()}</p>{/if}
+				{@render statusLink()}
 				{@render legalList()}
 				{@render actionsSlot()}
 			</div>

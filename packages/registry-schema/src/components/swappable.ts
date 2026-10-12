@@ -4,7 +4,6 @@ const AXIS_OPTIONS = ["both", "x", "y"];
 
 export const swappable = defineComponent({
 	slug: "swappable",
-	isNew: true,
 	name: "Swappable",
 	description:
 		"Drag-to-swap primitive on Swapy: make any layout's slots and items swappable, from a dashboard to a kanban board.",

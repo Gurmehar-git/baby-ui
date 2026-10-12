@@ -8,7 +8,7 @@ const p = $derived(controlProps<ComponentProps<typeof NotchedShelf>>(props));
 
 const variant = $derived(p.variant ?? "solid");
 const layout = $derived(p.layout ?? "hanging");
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 </script>
 
 <!-- Muted matches the card, so it bridges into a page-coloured surface instead. -->

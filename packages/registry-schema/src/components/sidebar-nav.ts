@@ -4,7 +4,6 @@ const SIZES = ["sm", "md", "lg"];
 
 export const sidebarNav = defineComponent({
 	slug: "sidebar-nav",
-	isNew: true,
 	name: "Sidebar Nav",
 	description:
 		"A collapsible workspace sidebar: switcher, primary nav, searchable recents, and a footer action.",
@@ -61,7 +60,7 @@ export const sidebarNav = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Expanded width.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

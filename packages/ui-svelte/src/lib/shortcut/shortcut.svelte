@@ -12,7 +12,7 @@ import { type ShortcutSize, type ShortcutVariant, shortcutCap } from "./variants
 
 let {
 	shortcut,
-	size = "md",
+	size = "default",
 	variant = "default",
 	joined = false,
 	ontrigger,

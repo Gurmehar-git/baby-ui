@@ -52,10 +52,10 @@ export const overviewCard = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"md" | "lg"',
+			type: '"default" | "lg"',
 			description: "Chart height.",
-			default: "md",
-			control: { kind: "select", options: ["md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["default", "lg"] },
 		},
 		{
 			name: "activeIndex",

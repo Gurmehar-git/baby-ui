@@ -7,7 +7,6 @@ const union = (values: string[]) => values.map((v) => `"${v}"`).join(" | ");
 
 export const chromaticWave = defineComponent({
 	slug: "chromatic-wave",
-	isNew: true,
 	name: "Chromatic Wave",
 	description:
 		"Dozens of fine flowing contour lines with a chromatic gradient along them, drawn in WebGL.",

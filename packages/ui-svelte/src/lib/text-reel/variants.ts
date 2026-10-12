@@ -29,11 +29,11 @@ export const textReel = tv({
 		},
 		size: {
 			sm: { root: "text-2xl" },
-			md: { root: "text-4xl" },
+			default: { root: "text-4xl" },
 			lg: { root: "text-6xl" },
 		},
 	},
-	defaultVariants: { orientation: "vertical", size: "md" },
+	defaultVariants: { orientation: "vertical", size: "default" },
 });
 
 export type TextReelOrientation = NonNullable<

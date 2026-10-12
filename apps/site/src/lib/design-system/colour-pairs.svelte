@@ -12,7 +12,7 @@ type Pair = {
 
 const SURFACES = ["--background", "--card", "--popover", "--muted"];
 
-// Floors are WCAG: 4.5 text, 3 for a control's edge or focus ring; null marks a hairline.
+// Floors are WCAG: 4.5 text, 3 for a focus ring; null marks an edge ranked by job, not a floor.
 const PAIRS: Pair[] = [
 	{ label: "Body text", fg: "--foreground", bg: "--background", floor: 4.5 },
 	{ label: "Secondary text", fg: "--muted-foreground", bg: "--background", floor: 4.5 },
@@ -39,12 +39,25 @@ const PAIRS: Pair[] = [
 	{
 		label: "Field edge",
 		fg: "--input",
+		bg: "--field",
+		floor: null,
+		note: "On the field fill; hover and the focus ring step up from here.",
+	},
+	{
+		label: "Off track",
+		fg: "--track",
 		bg: "--background",
 		floor: null,
-		note: "Hairline at rest; hover and the focus ring carry the edge.",
+		note: "Switch, slider, progress.",
+	},
+	{
+		label: "Strong divider",
+		fg: "--border-strong",
+		bg: "--background",
+		floor: null,
+		note: "Hover edge.",
 	},
 	{ label: "Divider", fg: "--border", bg: "--background", floor: null },
-	{ label: "Strong divider", fg: "--border-strong", bg: "--background", floor: null },
 ];
 
 let ratios = $state<number[]>([]);
@@ -103,7 +116,7 @@ function read(host: HTMLElement) {
 					</div>
 					<span class="font-mono text-foreground text-sm tabular-nums">{ratio.toFixed(2)}:1</span>
 					{#if pair.floor === null}
-						<Badge variant="outline" size="sm">hairline</Badge>
+						<Badge variant="outline" size="sm">edge</Badge>
 					{:else if ratio >= pair.floor}
 						<Badge variant="success" size="sm">≥ {pair.floor}</Badge>
 					{:else}

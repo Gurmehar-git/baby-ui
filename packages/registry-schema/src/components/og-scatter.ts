@@ -9,7 +9,6 @@ export const ogScatter = defineComponent({
 		"A 1200x630 brand card: the wordmark in a clearing, ringed by rounded image tiles, some softly blurred.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

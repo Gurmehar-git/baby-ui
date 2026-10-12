@@ -5,11 +5,11 @@ export const gibberishText = tv({
 	variants: {
 		size: {
 			sm: "text-sm",
-			md: "text-base",
+			default: "text-base",
 			lg: "text-lg",
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type GibberishTextSize = NonNullable<VariantProps<typeof gibberishText>["size"]>;

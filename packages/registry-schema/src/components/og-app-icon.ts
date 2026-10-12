@@ -9,7 +9,6 @@ export const ogAppIcon = defineComponent({
 		"A 1200x630 card: one large app icon centred, on a faint doodle field in light or a plain field in dark.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

@@ -24,7 +24,7 @@ let {
 	onStop,
 	minRows = 1,
 	maxRows = 8,
-	size = "md",
+	size = "default",
 	models = [],
 	model = $bindable(undefined),
 	onModelChange,

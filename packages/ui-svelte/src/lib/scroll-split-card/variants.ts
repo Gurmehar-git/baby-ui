@@ -22,7 +22,7 @@ export const scrollSplitCard = tv({
 	variants: {
 		size: {
 			sm: { root: "h-96" },
-			md: { root: "h-[32rem]" },
+			default: { root: "h-[32rem]" },
 			lg: { root: "h-[40rem]" },
 		},
 		tone: {
@@ -42,7 +42,7 @@ export const scrollSplitCard = tv({
 			},
 		},
 	},
-	defaultVariants: { size: "md", tone: "card", position: "middle" },
+	defaultVariants: { size: "default", tone: "card", position: "middle" },
 });
 
 export type ScrollSplitCardSize = NonNullable<

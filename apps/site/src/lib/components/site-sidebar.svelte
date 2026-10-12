@@ -20,12 +20,13 @@ let {
 	onNavigate?: () => void;
 } = $props();
 
-// Pro outranks New, New outranks a status; Pro alone gets the gold shine.
+// Pro outranks New/Updated, which outrank a status; Pro alone gets the gold shine.
 function navBadge(
 	item: SidebarGroup["items"][number],
 ): Pick<DocsNavItem, "badge" | "badgeVariant"> {
 	if (item.tier === "pro") return { badge: "Pro", badgeVariant: "gold" };
-	if (item.isNew) return { badge: "New" };
+	if (item.fresh === "new") return { badge: "New", badgeVariant: "info" };
+	if (item.fresh === "updated") return { badge: "Updated", badgeVariant: "success" };
 	return { badge: item.status !== "stable" ? item.status : undefined };
 }
 

@@ -10,7 +10,7 @@ const p = $derived(controlProps<ComponentProps<typeof ScrollTiltedGrid>>(props))
 
 <ScrollTiltedGrid
 	images={TILTED_IMAGES}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	aspect={p.aspect ?? "portrait"}
 	radius={p.radius ?? "sm"}
 	maxTilt={Number(props.maxTilt ?? 62)}

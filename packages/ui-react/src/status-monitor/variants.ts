@@ -12,17 +12,17 @@ export const statusMonitor = tv({
 		footer: "flex justify-between text-muted-foreground text-xs",
 		tip: "flex max-w-60 flex-col gap-1 p-1 text-sm",
 		tipHead: "flex items-center gap-2 font-semibold",
-		tipMeta: "text-muted-foreground",
+		tipMeta: "text-background/65",
 		tipInfo: "text-foreground/80 leading-snug",
 	},
 	variants: {
 		size: {
 			sm: { bars: "h-6" },
-			md: { bars: "h-8" },
+			default: { bars: "h-8" },
 			lg: { bars: "h-10" },
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export const statusTone = tv({

@@ -12,7 +12,7 @@ const WORD_DELAY = 55;
 
 let {
 	layout = "inline",
-	size = "md",
+	size = "default",
 	content: contentProp,
 	markdown = false,
 	streaming,

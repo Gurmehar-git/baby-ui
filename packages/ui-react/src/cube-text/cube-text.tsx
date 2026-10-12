@@ -22,7 +22,7 @@ export function CubeText({
 	delayMs = 0,
 	loop = true,
 	stagger = "wave",
-	size = "md",
+	size = "default",
 	className,
 }: CubeTextProps) {
 	const s = cubeText({ size, stagger });

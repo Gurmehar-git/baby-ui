@@ -119,7 +119,7 @@ const s = $derived(emailWelcome({ density }));
 	</EmailSection>
 	{#if steps.length > 0}
 		<EmailSection>
-			<EmailHeading size="md">{stepsTitle}</EmailHeading>
+			<EmailHeading size="default">{stepsTitle}</EmailHeading>
 			<Section class={s.steps()}>
 				{#each steps as step, i (step.title)}
 					<Section>
@@ -148,7 +148,7 @@ const s = $derived(emailWelcome({ density }));
 	{/if}
 	{#if resources.length > 0}
 		<EmailSection>
-			<EmailHeading size="md">{resourcesTitle}</EmailHeading>
+			<EmailHeading size="default">{resourcesTitle}</EmailHeading>
 			<Section class={s.steps()}>
 				{#each resources as resource (resource.href)}
 					<Section class={s.resource()}>

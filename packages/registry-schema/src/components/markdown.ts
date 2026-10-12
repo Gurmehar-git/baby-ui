@@ -1,7 +1,7 @@
 import { defineComponent } from "../index.ts";
 
 const VARIANTS = ["default", "muted"];
-const SIZES = ["sm", "md", "lg"];
+const SIZES = ["sm", "default", "lg"];
 const EFFECTS = ["fade", "blur", "rise", "settle", "wipe"];
 
 export const markdown = defineComponent({
@@ -11,7 +11,6 @@ export const markdown = defineComponent({
 		"CommonMark and GFM from a string, static or streamed in word by word for AI answers.",
 	category: "base",
 	status: "stable",
-	isUpdated: true,
 	variants: { variant: VARIANTS, size: SIZES },
 	props: [
 		{
@@ -32,7 +31,7 @@ export const markdown = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Prose scale: body text, heading sizes and block spacing.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

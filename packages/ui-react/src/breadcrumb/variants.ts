@@ -26,10 +26,10 @@ export const breadcrumb = tv({
 		},
 		size: {
 			sm: { root: "text-xs", ellipsis: "size-6 [&>svg]:size-3.5" },
-			md: { root: "text-sm" },
+			default: { root: "text-sm" },
 		},
 	},
-	defaultVariants: { variant: "default", size: "md" },
+	defaultVariants: { variant: "default", size: "default" },
 });
 
 export type BreadcrumbVariant = NonNullable<VariantProps<typeof breadcrumb>["variant"]>;

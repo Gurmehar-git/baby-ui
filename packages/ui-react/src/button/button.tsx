@@ -1,6 +1,14 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "../lib/cn";
-import { type ButtonSize, type ButtonVariant, button, isIconSize } from "./variants";
+import {
+	type ButtonSize,
+	type ButtonVariant,
+	button,
+	buttonFace,
+	isIconSize,
+} from "./variants";
+
+const faceStyles = buttonFace();
 
 type Base = {
 	variant?: ButtonVariant;
@@ -17,10 +25,6 @@ export type ButtonProps = Base &
 		| ({ href?: undefined } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof Base>)
 	);
 
-// The hidden face leaves the flow, so the button is sized by what it shows, not by "Loading…".
-const FACE =
-	"col-start-1 row-start-1 flex items-center justify-center gap-[inherit] whitespace-nowrap transition-[opacity,transform,scale,translate,filter] duration-(--duration-base) ease-[var(--ease-ui-out)] motion-reduce:transition-none data-[on=false]:pointer-events-none data-[on=false]:absolute data-[on=false]:inset-0 data-[on=false]:translate-y-[3px] data-[on=false]:opacity-0 data-[on=false]:blur-[3px]";
-
 function Faces({
 	loading,
 	loadingLabel,
@@ -28,11 +32,11 @@ function Faces({
 	children,
 }: Required<Pick<Base, "loading">> & Base) {
 	return (
-		<span className="relative grid place-items-center gap-[inherit]">
-			<span className={FACE} data-on={!loading} aria-hidden={loading}>
+		<span className={faceStyles.wrap()}>
+			<span className={faceStyles.face()} data-on={!loading} aria-hidden={loading}>
 				{children}
 			</span>
-			<span className={FACE} data-on={loading} aria-hidden={!loading}>
+			<span className={faceStyles.face()} data-on={loading} aria-hidden={!loading}>
 				<Spinner spinning={loading} />
 				{isIconSize(size) ? (
 					<span className="sr-only">{loadingLabel}</span>

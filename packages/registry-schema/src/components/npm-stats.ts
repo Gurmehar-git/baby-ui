@@ -35,7 +35,6 @@ export const npmStatsBlock = defineComponent({
 		"npm downloads: the range total and its trend, the daily average, peak, busiest weekday and fastest-growing package, the chart, and every package's share.",
 	category: "blocks",
 	status: "beta",
-	isNew: true,
 
 	props: [
 		{
@@ -128,7 +127,7 @@ export const npmStatsBlock = defineComponent({
 				{ path: "npm-stats/npm-stats.svelte", type: "registry:ui" },
 				{ path: "npm-stats/downloads-chart.svelte", type: "registry:ui" },
 				{ path: "npm-stats/package-breakdown.svelte", type: "registry:ui" },
-				{ path: "npm-stats/sparkline.svelte", type: "registry:ui" },
+				{ path: "npm-stats/npm-sparkline.svelte", type: "registry:ui" },
 				{ path: "npm-stats/trend-badge.svelte", type: "registry:ui" },
 				{ path: "npm-stats/core.ts", type: "registry:ui" },
 				{ path: "npm-stats/variants.ts", type: "registry:ui" },

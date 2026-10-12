@@ -10,7 +10,6 @@ export const ogTagline = defineComponent({
 		"A 1200x630 card: the brand over a centred two-line headline, the second line in an accent colour.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES, tone: TONES },
 	props: [

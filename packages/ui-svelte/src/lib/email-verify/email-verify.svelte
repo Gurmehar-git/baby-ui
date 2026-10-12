@@ -102,7 +102,7 @@ const v = emailVerify();
 	</Section>
 	{#if helpItems.length > 0}
 		<EmailDivider spacing="lg" />
-		<EmailHeading size="md">{helpTitle}</EmailHeading>
+		<EmailHeading size="default">{helpTitle}</EmailHeading>
 		<Section class={v.helpList()}>
 			<EmailList items={helpItems} marker="dot" />
 		</Section>

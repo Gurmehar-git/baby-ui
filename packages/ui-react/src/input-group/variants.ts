@@ -6,7 +6,7 @@ export const inputGroup = tv({
 		root: [
 			"group/input-group relative flex w-full min-w-0 items-center border border-input bg-(--field) outline-none",
 			"transition-[box-shadow,border-color] duration-(--duration-fast) ease-(--ease-ui-out) motion-reduce:transition-none",
-			"hover:border-muted-foreground/60",
+			"hover:border-border-strong",
 			"has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-3 has-[[data-slot=input-group-control]:focus-visible]:ring-ring/20",
 			"has-[[data-slot][aria-invalid=true]]:border-destructive has-[[data-slot][aria-invalid=true]]:ring-destructive/20",
 			"has-[>textarea]:h-auto has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col",

@@ -10,7 +10,16 @@ import {
 	useRef,
 	useState,
 } from "react";
+import { Button } from "../button/button";
+import { DraggableMarquee } from "../draggable-marquee/draggable-marquee";
 import { cn } from "../lib/cn";
+import {
+	type LogoCarouselTone,
+	type LogoCarouselVariant,
+	logoCarousel,
+} from "./variants";
+
+export type { LogoCarouselTone, LogoCarouselVariant };
 
 const CYCLE_INTERVAL_MS = 1600;
 const STAGGER_MS = 125;
@@ -21,6 +30,16 @@ export interface LogoCarouselProps {
 	columnCount?: number;
 	/** Which edge the per-column stagger counts from. */
 	direction?: "ltr" | "rtl";
+	/** `columns` cycles logos in place; `marquee` drifts them past in one strip. */
+	variant?: LogoCarouselVariant;
+	tone?: LogoCarouselTone;
+	/** Holds the motion still. */
+	paused?: boolean;
+	onPausedChange?: (paused: boolean) => void;
+	/** A Pause / Play button under the logos; on by default for the marquee. */
+	pauseControl?: boolean;
+	/** Accessible name of the marquee strip. */
+	label?: string;
 	className?: string;
 }
 
@@ -61,13 +80,27 @@ export function LogoCarousel({
 	children,
 	columnCount = 4,
 	direction = "ltr",
+	variant = "columns",
+	tone = "color",
+	paused: pausedProp,
+	onPausedChange,
+	pauseControl = variant === "marquee",
+	label = "Logos",
 	className,
 }: LogoCarouselProps) {
+	const s = logoCarousel({ variant, tone });
+	const [ownPaused, setOwnPaused] = useState(false);
+	const paused = pausedProp ?? ownPaused;
+	const togglePaused = () => {
+		if (pausedProp === undefined) setOwnPaused(!paused);
+		onPausedChange?.(!paused);
+	};
 	const logos = useMemo(() => Children.toArray(children), [children]);
 	const columns = useMemo(() => distribute(logos, columnCount), [logos, columnCount]);
 
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [inView, setInView] = useState(false);
+	// biome-ignore lint/correctness/useExhaustiveDependencies: the columns grid only exists in that variant, so a switch re-observes it.
 	useEffect(() => {
 		const el = containerRef.current;
 		if (!el) return;
@@ -77,11 +110,11 @@ export function LogoCarousel({
 		);
 		observer.observe(el);
 		return () => observer.disconnect();
-	}, []);
+	}, [variant]);
 
 	const reduced = useReducedMotion();
 	const pageVisible = usePageVisible();
-	const shouldPlay = inView && pageVisible && !reduced;
+	const shouldPlay = inView && pageVisible && !reduced && !paused;
 
 	const [indices, setIndices] = useState<number[]>(() => columns.map(() => 0));
 	const columnsRef = useRef(columns);
@@ -99,25 +132,58 @@ export function LogoCarousel({
 		return () => clearInterval(id);
 	}, [shouldPlay]);
 
+	const body =
+		variant === "marquee" ? (
+			<DraggableMarquee
+				speed={paused ? 0 : 0.5}
+				gap="lg"
+				pauseOnHover
+				label={label}
+				className={cn(s.strip(), className)}
+			>
+				{logos}
+			</DraggableMarquee>
+		) : (
+			<div
+				ref={containerRef}
+				data-slot="logo-carousel"
+				className={cn(s.columns(), className)}
+				style={{ gridTemplateColumns: `repeat(${columns.length}, minmax(0, 1fr))` }}
+			>
+				{columns.map((col, i) => (
+					<LogoColumn
+						// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
+						key={i}
+						logos={col}
+						activeIndex={col.length > 0 ? (indices[i] ?? 0) % col.length : 0}
+						delayMs={
+							reduced
+								? 0
+								: (direction === "rtl" ? columns.length - 1 - i : i) * STAGGER_MS
+						}
+						reduced={reduced}
+					/>
+				))}
+			</div>
+		);
+	if (!pauseControl) return body;
 	return (
-		<div
-			ref={containerRef}
-			data-slot="logo-carousel"
-			className={cn("grid", className)}
-			style={{ gridTemplateColumns: `repeat(${columns.length}, minmax(0, 1fr))` }}
-		>
-			{columns.map((col, i) => (
-				<LogoColumn
-					// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
-					key={i}
-					logos={col}
-					activeIndex={col.length > 0 ? (indices[i] ?? 0) % col.length : 0}
-					delayMs={
-						reduced ? 0 : (direction === "rtl" ? columns.length - 1 - i : i) * STAGGER_MS
-					}
-					reduced={reduced}
-				/>
-			))}
+		<div data-slot="logo-carousel-root" className={s.root()}>
+			{body}
+			<div className={s.footer()}>
+				<Button
+					variant="ghost"
+					size="sm"
+					aria-pressed={paused}
+					className={s.pause()}
+					onClick={togglePaused}
+				>
+					<svg aria-hidden="true" viewBox="0 0 16 16" fill="currentColor">
+						<path d={paused ? "M5 3.5v9l7-4.5z" : "M4.5 3h2.5v10H4.5zM9 3h2.5v10H9z"} />
+					</svg>
+					{paused ? "Play" : "Pause"}
+				</Button>
+			</div>
 		</div>
 	);
 }

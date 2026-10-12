@@ -15,7 +15,7 @@ export const scrollChoreography = tv({
 	variants: {
 		size: {
 			sm: { root: "h-96" },
-			md: { root: "h-[32rem]" },
+			default: { root: "h-[32rem]" },
 			lg: { root: "h-[40rem]" },
 		},
 		variant: {
@@ -23,7 +23,7 @@ export const scrollChoreography = tv({
 			stack: { stage: "[--sc-c3:0] [--sc-c4:0]" },
 		},
 	},
-	defaultVariants: { size: "md", variant: "expand" },
+	defaultVariants: { size: "default", variant: "expand" },
 });
 
 export type ScrollChoreographySize = NonNullable<

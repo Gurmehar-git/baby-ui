@@ -5,7 +5,7 @@ import { type GibberishTextSize, gibberishText } from "./variants";
 let {
 	text,
 	speedMs = 24,
-	size = "md",
+	size = "default",
 	class: classProp,
 }: {
 	text: string;

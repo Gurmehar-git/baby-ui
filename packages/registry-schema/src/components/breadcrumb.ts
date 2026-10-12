@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const breadcrumb = defineComponent({
 	slug: "breadcrumb",
-	isNew: true,
 	name: "Breadcrumb",
 	description:
 		"Trail to the current page; its middle folds into an ellipsis that opens the hidden levels in a dropdown.",
@@ -18,10 +17,10 @@ export const breadcrumb = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md"',
+			type: '"sm" | "default"',
 			description: "Breadcrumb: text and ellipsis size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default"] },
 		},
 		{
 			name: "collapsed",

@@ -21,7 +21,7 @@ export const stickyScrollCards = tv({
 				stack: "pt-48 pb-96",
 				section: "h-96",
 			},
-			md: {
+			default: {
 				root: "h-[32rem] overflow-y-auto overscroll-contain rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring",
 				stack: "pt-64 pb-[32rem]",
 				section: "h-[32rem]",
@@ -47,7 +47,7 @@ export const stickyScrollCards = tv({
 			},
 		},
 	},
-	defaultVariants: { size: "md", variant: "polaroid" },
+	defaultVariants: { size: "default", variant: "polaroid" },
 });
 
 export type StickyScrollCardsSize = NonNullable<

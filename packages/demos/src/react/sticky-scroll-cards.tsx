@@ -13,7 +13,7 @@ export function StickyScrollCardsDemo({ props }: { props: Props }) {
 		<StickyScrollCards
 			cards={STICKY_CARDS}
 			variant={p.variant ?? "polaroid"}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			tilt={Number(props.tilt ?? 1)}
 			hint={p.hint ?? "Scroll to explore"}
 			className="max-w-3xl"

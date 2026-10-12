@@ -13,11 +13,11 @@ export const particleText = tv({
 		},
 		size: {
 			sm: { root: "h-40" },
-			md: { root: "h-64" },
+			default: { root: "h-64" },
 			lg: { root: "h-96" },
 		},
 	},
-	defaultVariants: { shape: "circle", size: "md" },
+	defaultVariants: { shape: "circle", size: "default" },
 });
 
 export type ParticleTextShape = NonNullable<VariantProps<typeof particleText>["shape"]>;

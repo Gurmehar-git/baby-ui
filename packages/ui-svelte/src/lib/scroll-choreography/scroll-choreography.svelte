@@ -11,7 +11,7 @@ import {
 let {
 	images,
 	variant = "expand",
-	size = "md",
+	size = "default",
 	label = "Scroll to arrange the images",
 	class: classProp,
 }: {

@@ -35,7 +35,7 @@ type SizeProp = { size?: PaginationSize };
 export function PaginationLink({
 	className,
 	active = false,
-	size = "md",
+	size = "default",
 	...props
 }: ComponentProps<"button"> & SizeProp & { active?: boolean }) {
 	return (
@@ -56,7 +56,7 @@ const navClass = (size: PaginationSize) => {
 
 export function PaginationPrevious({
 	className,
-	size = "md",
+	size = "default",
 	...props
 }: ComponentProps<"button"> & SizeProp) {
 	return (
@@ -82,7 +82,7 @@ export function PaginationPrevious({
 
 export function PaginationNext({
 	className,
-	size = "md",
+	size = "default",
 	...props
 }: ComponentProps<"button"> & SizeProp) {
 	return (

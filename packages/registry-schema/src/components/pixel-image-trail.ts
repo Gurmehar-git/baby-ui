@@ -37,7 +37,7 @@ export const pixelImageTrail = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Height of the area.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

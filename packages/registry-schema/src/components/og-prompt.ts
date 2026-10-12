@@ -10,7 +10,6 @@ export const ogPrompt = defineComponent({
 		"A 1200x630 card: a wordmark and one line over a chat prompt box that rises out of a band of colour.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES, tone: TONES },
 	props: [

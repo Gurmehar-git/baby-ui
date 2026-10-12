@@ -60,7 +60,7 @@ export function CaseStudyFlipStack({
 	endLabel,
 	label = "Case studies",
 	tone = "card",
-	size = "md",
+	size = "default",
 	className,
 }: CaseStudyFlipStackProps) {
 	const rootRef = useRef<HTMLElement>(null);

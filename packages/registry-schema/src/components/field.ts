@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const field = defineComponent({
 	slug: "field",
-	isUpdated: true,
 	name: "Field",
 	description:
 		"Label, control, description and error laid out as one accessible unit, with shadcn's exact part names.",

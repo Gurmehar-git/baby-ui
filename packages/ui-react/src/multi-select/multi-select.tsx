@@ -13,7 +13,9 @@ import {
 } from "../command/command";
 import { cn } from "../lib/cn";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover/popover";
+import { RollingDigits } from "../rolling-digits/rolling-digits";
 import {
+	MULTI_SELECT_CHIP,
 	MULTI_SELECT_LABELS,
 	type MultiSelectLabels,
 	type MultiSelectOption,
@@ -46,7 +48,7 @@ export function MultiSelect({
 	value,
 	onValueChange,
 	maxChips = 3,
-	size = "md",
+	size = "default",
 	disabled = false,
 	invalid = false,
 	id,
@@ -84,7 +86,7 @@ export function MultiSelect({
 					<Badge
 						key={option.value}
 						variant="secondary"
-						size={size === "sm" ? "sm" : "md"}
+						size={MULTI_SELECT_CHIP[size]}
 						className={s.chip()}
 					>
 						<span className={s.chipLabel()}>{option.label}</span>
@@ -109,8 +111,10 @@ export function MultiSelect({
 					</Badge>
 				))}
 				{hidden > 0 ? (
-					<Badge size={size === "sm" ? "sm" : "md"} variant="outline">
-						{labels.more.replace("{count}", String(hidden))}
+					<Badge size={MULTI_SELECT_CHIP[size]} variant="outline" className="pop-in">
+						{labels.more.split("{count}")[0]}
+						<RollingDigits value={hidden} startOnView={false} />
+						{labels.more.split("{count}")[1]}
 					</Badge>
 				) : null}
 				<PopoverTrigger

@@ -6,12 +6,14 @@ import {
 	type RevealTextSplit,
 	type RevealTextStaggerFrom,
 	type RevealTextTrigger,
+	type RevealTextVariant,
 	revealText,
 	revealUnits,
 } from "./variants";
 
 let {
 	text,
+	variant = "default",
 	split = "word",
 	trigger = "mount",
 	once = true,
@@ -29,6 +31,8 @@ let {
 }: {
 	/** One string, or one per line. */
 	text: string | string[];
+	/** `tracking` letters converge from loose spacing (splits by character); `wipe` uncovers through a soft edge. */
+	variant?: RevealTextVariant;
 	split?: RevealTextSplit;
 	/** Reveal on mount, or when scrolled into view. */
 	trigger?: RevealTextTrigger;
@@ -57,9 +61,19 @@ let node = $state<HTMLElement | null>(null);
 let internal = $state(false);
 const revealed = $derived(revealedProp ?? internal);
 const lines = $derived((Array.isArray(text) ? text : [text]).filter(Boolean));
-const units = $derived(revealUnits(lines, split, delayMs, staggerMs, staggerFrom));
+const unitSplit = $derived(variant === "tracking" ? "char" : split);
+const units = $derived(
+	revealUnits(
+		lines,
+		unitSplit,
+		delayMs,
+		staggerMs,
+		staggerFrom,
+		variant === "tracking" ? 0.06 : 0,
+	),
+);
 const styles = $derived(
-	revealText({ split, trigger, direction, mask, staggerFrom, size }),
+	revealText({ variant, split: unitSplit, trigger, direction, mask, staggerFrom, size }),
 );
 
 function set(next: boolean) {
@@ -103,7 +117,7 @@ $effect(() => {
 			<span class={styles.line()}>
 				{#each line as unit (unit.key)}
 					<span class={styles.mask()}
-						><span class={styles.unit()} style:--reveal-delay="{unit.delay}ms">{unit.text}</span></span
+						><span class={styles.unit()} style:--reveal-delay="{unit.delay}ms" style:--reveal-track="{unit.track}em">{unit.text}</span></span
 					>
 				{/each}
 			</span>

@@ -30,7 +30,7 @@ export const caseStudyFlipStack = tv({
 	variants: {
 		size: {
 			sm: { root: "h-96" },
-			md: { root: "h-[32rem]" },
+			default: { root: "h-[32rem]" },
 			lg: { root: "h-[40rem]" },
 		},
 		tone: {
@@ -39,7 +39,7 @@ export const caseStudyFlipStack = tv({
 			chart: { card: "border-transparent bg-(--tint) text-background" },
 		},
 	},
-	defaultVariants: { size: "md", tone: "card" },
+	defaultVariants: { size: "default", tone: "card" },
 });
 
 export type CaseStudyFlipStackSize = NonNullable<

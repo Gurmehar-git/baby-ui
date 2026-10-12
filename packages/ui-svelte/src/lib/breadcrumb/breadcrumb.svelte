@@ -8,7 +8,7 @@ import { type BreadcrumbSize, type BreadcrumbVariant, breadcrumb } from "./varia
 let {
 	children,
 	variant = "default",
-	size = "md",
+	size = "default",
 	class: classProp,
 	...rest
 }: {

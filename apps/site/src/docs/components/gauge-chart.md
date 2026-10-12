@@ -13,3 +13,6 @@ rather than a keyboard-walked plot. Pass `label` to name it.
 
 When `value` changes, notches switch on and off in a ripple from the old edge, and the
 printed value counts from the previous reading.
+
+`bands` names states along the track: the highest band the value reaches sets the tone and
+adds its label, so "Healthy" or "Critical" is read, not just seen in colour.

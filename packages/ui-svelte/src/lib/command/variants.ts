@@ -64,7 +64,8 @@ export const commandFrame = tv({
 				inputWrap: "mx-1 mt-1 h-8 rounded-lg bg-accent px-2",
 				inputIcon: "opacity-50",
 				input: "h-8 text-sm",
-				list: "max-h-72 scroll-py-1",
+				// The primitive measures its rows into a height var, so filtering eases instead of snapping.
+				list: "h-[var(--cmdk-list-height,var(--bits-command-list-height,auto))] max-h-72 flex-none scroll-py-1 transition-[height] duration-(--duration-base) ease-(--ease-ui-out) motion-reduce:transition-none",
 				group: "p-1 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5",
 				groupHeading: "px-2 py-1.5",
 				item: [

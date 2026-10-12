@@ -31,7 +31,7 @@ export const magnetLines = defineComponent({
 			name: "size",
 			type: union(SIZES),
 			description: "Grid size and line length.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

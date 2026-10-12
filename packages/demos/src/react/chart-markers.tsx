@@ -43,7 +43,7 @@ export function ChartMarkersDemo({ props }: { props: Props }) {
 					<Line dataKey="desktop" />
 					<ChartMarkers
 						items={markers}
-						size={p.size ?? "md"}
+						size={p.size ?? "default"}
 						appearance={p.appearance ?? "solid"}
 						showLines={p.showLines ?? true}
 					/>

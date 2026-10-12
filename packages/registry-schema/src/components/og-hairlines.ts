@@ -9,7 +9,6 @@ export const ogHairlines = defineComponent({
 		"A 1200x630 card: centred brand, title and description inside hairline guides that cross at the corners.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

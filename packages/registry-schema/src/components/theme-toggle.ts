@@ -1,6 +1,14 @@
 import { defineComponent } from "../index.ts";
 
-const VARIANTS = ["rectangle", "circle", "circle-blur", "blinds"];
+const VARIANTS = [
+	"rectangle",
+	"circle",
+	"circle-blur",
+	"blinds",
+	"eclipse",
+	"split",
+	"rise",
+];
 const STARTS = [
 	"top-left",
 	"top-right",
@@ -59,6 +67,7 @@ export const themeToggle = defineComponent({
 			"The page-wide reveal is skipped entirely (no `startViewTransition` call); the theme still flips instantly. The icon swap is also dropped.",
 		behaviour: [
 			"`rectangle` and `blinds` clip the incoming theme's snapshot in from `start`; `circle`/`circle-blur` clip it in as a growing circle centred on `start` instead.",
+			"`eclipse` sweeps a disc across from the left (or right, when `start` ends in right); `split` parts the halves from the centre; `rise` sinks the old page and lifts the new one in.",
 			"Browsers without View Transition support (or a user with reduced motion) get an instant swap, no reveal.",
 			"The icon (sun showing while dark, moon while light) blurs and scales in on every flip, keyed by the current theme so it always replays.",
 		],

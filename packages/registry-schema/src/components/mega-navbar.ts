@@ -64,11 +64,11 @@ export const megaNavbar = defineComponent({
 		},
 		{
 			name: "variant",
-			type: '"solid" | "floating" | "notched"',
+			type: '"solid" | "floating" | "notched" | "capsule"',
 			description:
-				"Solid spans the page edge to edge; floating is an inset rounded bar; notched hangs a shelf from the top edge on desktop, over a plain ruled bar and a top sheet on mobile.",
+				"Solid spans the page edge to edge; floating is an inset rounded bar; notched hangs a shelf from the top edge on desktop, over a plain ruled bar and a top sheet on mobile; capsule gathers the centre links in a pill track with a sliding highlight.",
 			default: "solid",
-			control: { kind: "select", options: ["solid", "floating", "notched"] },
+			control: { kind: "select", options: ["solid", "floating", "notched", "capsule"] },
 		},
 	],
 	motion: {
@@ -76,6 +76,7 @@ export const megaNavbar = defineComponent({
 		reducedMotion:
 			"The mega menu panel and mobile chevrons stop transitioning; content still appears and disappears instantly.",
 		behaviour: [
+			"Capsule: a pill slides to the hovered link and rests on the current one.",
 			"One shared panel resizes and slides between desktop triggers, measured from the active trigger and panel, rather than a fresh popover per item.",
 			"A disclosure pattern, not role=menu: contents are links to pages, so the browser's own link semantics are what a screen reader hears.",
 			"Hovering off a trigger toward the panel schedules a short close delay so the diagonal path to the panel doesn't close it first.",
@@ -103,6 +104,12 @@ export const megaNavbar = defineComponent({
 			"Desktop group triggers carry aria-expanded and aria-controls pointing at the shared panel.",
 			"The mobile sheet is a real dialog: it traps focus and hides the rest of the page from assistive tech while open.",
 		],
+	},
+	licenseOrigin: {
+		source: "arc",
+		url: "https://uiarc.dev",
+		license: "MIT",
+		copyright: "Copyright (c) 2026 Elia Kuratli",
 	},
 	impl: {
 		react: {

@@ -14,11 +14,11 @@ export const pixelImageTrail = tv({
 		},
 		size: {
 			sm: { root: "h-48" },
-			md: { root: "h-72" },
+			default: { root: "h-72" },
 			lg: { root: "h-96" },
 		},
 	},
-	defaultVariants: { variant: "fade", size: "md" },
+	defaultVariants: { variant: "fade", size: "default" },
 });
 
 export type PixelImageTrailVariant = NonNullable<

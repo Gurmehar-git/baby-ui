@@ -1,11 +1,15 @@
 import { EMAIL_SAMPLES } from "./email-samples";
 import { OG_SAMPLE_BY_PROPS, OG_SAMPLES } from "./og-samples";
+import { USAGE_METER } from "./storage";
 
 /** Samples that follow a control value, keyed by slug. */
 export const SAMPLE_BY_PROPS: Record<
 	string,
 	(props: Record<string, unknown>) => Record<string, unknown>
-> = { ...OG_SAMPLE_BY_PROPS };
+> = {
+	...OG_SAMPLE_BY_PROPS,
+	"usage-card": (props) => (props.layout === "meter" ? USAGE_METER : {}),
+};
 
 /** Control values minus the unset ones, typed as the component's props (controls come from its spec). */
 export function controlProps<Props>(props: Record<string, unknown> | undefined): Props {

@@ -146,7 +146,7 @@ export function EmailWelcome({
 			</EmailSection>
 			{steps.length > 0 ? (
 				<EmailSection>
-					<EmailHeading size="md">{stepsTitle}</EmailHeading>
+					<EmailHeading size="default">{stepsTitle}</EmailHeading>
 					<Section className={s.steps()}>
 						{steps.map((step, i) => (
 							<Section key={step.title}>
@@ -175,7 +175,7 @@ export function EmailWelcome({
 			) : null}
 			{resources.length > 0 ? (
 				<EmailSection>
-					<EmailHeading size="md">{resourcesTitle}</EmailHeading>
+					<EmailHeading size="default">{resourcesTitle}</EmailHeading>
 					<Section className={s.steps()}>
 						{resources.map((resource) => (
 							<Section key={resource.href} className={s.resource()}>

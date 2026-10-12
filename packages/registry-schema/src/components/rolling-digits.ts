@@ -12,7 +12,6 @@ export const rollingDigits = defineComponent({
 	category: "text",
 	status: "stable",
 	variants: { variant: VARIANTS, direction: DIRECTIONS, size: SIZES },
-	isUpdated: true,
 	props: [
 		{
 			name: "variant",

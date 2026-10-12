@@ -7,7 +7,13 @@ import { highlight, langFor } from "#lib/highlight.js";
 import { specHref } from "#lib/registry.js";
 import { componentCss, cssNames } from "#lib/registry-items.js";
 import { emailRender } from "#lib/server/emails.js";
-import { adjacentComponents, cardItems, findSpec, specs } from "#lib/server/registry.js";
+import {
+	adjacentComponents,
+	cardItems,
+	findSpec,
+	freshness,
+	specs,
+} from "#lib/server/registry.js";
 import { usageSnippet } from "#lib/usage.js";
 import type { EntryGenerator, PageServerLoad } from "./$types";
 
@@ -79,6 +85,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	);
 	return {
 		spec,
+		fresh: freshness(spec),
 		alternatives,
 		related: cardItems(related),
 		adjacent: adjacentComponents(spec.category, spec.slug),

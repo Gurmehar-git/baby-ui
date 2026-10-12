@@ -1,5 +1,13 @@
 <script lang="ts">
-import { Avatar, AvatarFallback, AvatarImage } from "@baby-ui/svelte";
+import {
+	Avatar,
+	AvatarBadge,
+	AvatarFallback,
+	AvatarGroup,
+	AvatarGroupCount,
+	AvatarImage,
+	Button,
+} from "@baby-ui/svelte";
 import type { ComponentProps } from "svelte";
 import { controlProps } from "../data/preview-props";
 
@@ -17,15 +25,33 @@ const initials = $derived(
 		.join("")
 		.toUpperCase(),
 );
+const TEAM = ["AP", "MW", "PN", "JB", "LO"];
+let team = $state(3);
 </script>
 
-<div class="flex items-center gap-3">
-	<Avatar size={p.size ?? "md"} shape={p.shape ?? "circle"}>
-		<AvatarFallback>{initials}</AvatarFallback>
-		<AvatarImage src={pImage.src || "https://github.com/kanakkholwal.png"} alt={name} />
-	</Avatar>
-	<div class="text-sm">
-		<p class="font-medium text-foreground">{name}</p>
-		<p class="text-muted-foreground text-xs">Fallback shows until an image loads</p>
+<div class="grid justify-items-start gap-5">
+	<div class="flex items-center gap-3">
+		<Avatar size={p.size ?? "default"} shape={p.shape ?? "circle"}>
+			<AvatarFallback>{initials}</AvatarFallback>
+			<AvatarImage src={pImage.src || "https://github.com/kanakkholwal.png"} alt={name} />
+			<AvatarBadge class="bg-success" aria-label="Online" />
+		</Avatar>
+		<div class="text-sm">
+			<p class="font-medium text-foreground">{name}</p>
+			<p class="text-muted-foreground text-xs">Fallback shows until an image loads</p>
+		</div>
+	</div>
+	<div class="flex items-center gap-3">
+		<AvatarGroup aria-label="Team">
+			{#each TEAM.slice(0, team) as member (member)}
+				<Avatar size={p.size ?? "default"} shape={p.shape ?? "circle"}>
+					<AvatarFallback>{member}</AvatarFallback>
+				</Avatar>
+			{/each}
+			<AvatarGroupCount size={p.size ?? "default"} shape={p.shape ?? "circle"}>+{12 - team}</AvatarGroupCount>
+		</AvatarGroup>
+		<Button variant="outline" size="sm" onclick={() => (team = team === TEAM.length ? 2 : team + 1)}
+			>{team === TEAM.length ? "Reset" : "Add member"}</Button
+		>
 	</div>
 </div>

@@ -35,3 +35,67 @@ export type EmptyScene = keyof typeof EMPTY_SCENES;
 
 export const isEmptyScene = (value: unknown): value is EmptyScene =>
 	typeof value === "string" && value in EMPTY_SCENES;
+
+/** Copy for the illustration demo: each scene's idle and resolved state, and its pending line. */
+export const ILLUSTRATION_SCENES = [
+	{
+		id: "search",
+		tab: "No results",
+		idle: {
+			title: "No results for Q3 roadmap",
+			line: "Two filters are on: owner and archived status.",
+			action: "Clear filters",
+		},
+		done: {
+			title: "12 results for Q3 roadmap",
+			line: "Filters cleared. Showing every owner and status.",
+			action: "Restore filters",
+		},
+		loading: "",
+	},
+	{
+		id: "offline",
+		tab: "Offline",
+		idle: {
+			title: "You are offline",
+			line: "Edits are saved here and sync when you reconnect.",
+			action: "Try again",
+		},
+		done: {
+			title: "Back online",
+			line: "Three edits synced just now.",
+			action: "Go offline",
+		},
+		loading: "Reaching the sync server",
+	},
+	{
+		id: "inbox",
+		tab: "Caught up",
+		idle: {
+			title: "All caught up",
+			line: "You have read every message. New mail lands here first.",
+			action: "Check for mail",
+		},
+		done: {
+			title: "Still all caught up",
+			line: "Checked just now. Nothing new since this morning.",
+			action: "Check again",
+		},
+		loading: "Checking for new mail",
+	},
+	{
+		id: "map",
+		tab: "Not found",
+		idle: {
+			title: "Page not found",
+			line: "The link is broken, or the page has moved.",
+			action: "Find the page",
+		},
+		done: {
+			title: "Found it in Archive",
+			line: "The page moved to the archive in March.",
+			action: "Show broken link",
+		},
+		loading: "Searching the workspace",
+	},
+] as const;

@@ -19,7 +19,7 @@ export function ScoreCardDemo({ props }: { props: Props }) {
 				trend={4}
 				tone={p.tone ?? "primary"}
 				layout={p.layout ?? "arc"}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 			/>
 		</div>
 	);

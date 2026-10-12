@@ -9,4 +9,4 @@ const images = [
 ];
 </script>
 
-<ScrollTiltedGrid {images} size="md" />
+<ScrollTiltedGrid {images} size="default" />

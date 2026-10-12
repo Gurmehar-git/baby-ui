@@ -16,7 +16,7 @@ export function TextReelDemo({ props }: { props: Props }) {
 			speed={Number(p.speed ?? 0.6)}
 			paused={p.paused ?? false}
 			orientation={p.orientation ?? "vertical"}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			className="w-full"
 		/>
 	);

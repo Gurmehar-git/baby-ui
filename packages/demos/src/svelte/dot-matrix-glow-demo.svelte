@@ -11,7 +11,7 @@ const p = $derived(controlProps<ComponentProps<typeof DotMatrixGlow>>(props));
 	<DotMatrixGlow
 		position="absolute"
 		shape={p.shape ?? "dot"}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		tone={p.tone ?? "primary"}
 		glowRadius={Number(props.glowRadius ?? 160)}
 		ripple={props.ripple !== false}

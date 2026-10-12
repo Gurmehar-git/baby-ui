@@ -44,7 +44,7 @@ export const fillButton = tv({
 			sm: {
 				root: "h-9 rounded-lg pr-3.5 text-sm [--fill-gap:0.625rem] [--fill-radius:0.375rem] [--fill-tile:1.75rem] [&_svg]:size-3.5",
 			},
-			md: {
+			default: {
 				root: "h-11 rounded-xl pr-4.5 text-sm [--fill-gap:0.875rem] [--fill-radius:0.5rem] [--fill-tile:2.25rem] [&_svg]:size-4",
 			},
 			lg: {
@@ -52,7 +52,7 @@ export const fillButton = tv({
 			},
 		},
 	},
-	defaultVariants: { tone: "soft", size: "md" },
+	defaultVariants: { tone: "soft", size: "default" },
 });
 
 export type FillButtonTone = NonNullable<VariantProps<typeof fillButton>["tone"]>;

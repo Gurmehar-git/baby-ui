@@ -48,7 +48,7 @@ let {
 	days,
 	variant = "default",
 	shape = "rounded",
-	size = "md",
+	size = "default",
 	tone = "scale",
 	title,
 	showTotal = true,

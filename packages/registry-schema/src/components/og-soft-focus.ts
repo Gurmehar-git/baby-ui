@@ -9,7 +9,6 @@ export const ogSoftFocus = defineComponent({
 		"A 1200x630 brand card: the wordmark on a soft, out-of-focus dark form with ripple rings on grey.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

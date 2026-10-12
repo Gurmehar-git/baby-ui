@@ -29,11 +29,11 @@ export const collectionSurfer = tv({
 		},
 		size: {
 			sm: { root: "h-96 [--cs-w:120px]" },
-			md: { root: "h-[32rem] [--cs-w:160px]" },
+			default: { root: "h-[32rem] [--cs-w:160px]" },
 			lg: { root: "h-[40rem] [--cs-w:220px]" },
 		},
 	},
-	defaultVariants: { variant: "magnetic", size: "md" },
+	defaultVariants: { variant: "magnetic", size: "default" },
 });
 
 export type CollectionSurferVariant = NonNullable<

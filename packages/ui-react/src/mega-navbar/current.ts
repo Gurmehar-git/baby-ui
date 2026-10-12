@@ -29,3 +29,21 @@ export function currentHref(
 	}
 	return best;
 }
+
+/** Where the capsule pill sits: over the hovered control, else the current one; null hides it. */
+export function capsuleBox(capsule: HTMLElement, target?: EventTarget | null) {
+	const hovered = target instanceof Element ? target.closest("a, button") : null;
+	const el =
+		hovered && capsule.contains(hovered)
+			? hovered
+			: capsule.querySelector('[data-current="true"]');
+	if (!el) return null;
+	const outer = capsule.getBoundingClientRect();
+	const inner = el.getBoundingClientRect();
+	return {
+		x: inner.left - outer.left,
+		y: inner.top - outer.top,
+		w: inner.width,
+		h: inner.height,
+	};
+}

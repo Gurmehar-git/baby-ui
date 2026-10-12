@@ -18,7 +18,7 @@ let birthday = $state<DateValue | undefined>();
 		max={today(getLocalTimeZone())}
 		locale={p.locale || undefined}
 		invalid={p.invalid ?? false}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		aria-label="Date of birth"
 		aria-describedby="demo-birthday-hint"
 	/>

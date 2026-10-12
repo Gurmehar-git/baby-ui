@@ -146,6 +146,7 @@ export function FooterDemo({ props }: { props: Props }) {
 		<Footer
 			wordmark={p.wordmark ?? "Recast"}
 			layout={p.layout ?? "split"}
+			status={{ label: "All systems normal", href: "#status" }}
 			brand={
 				<>
 					<span className="grid size-8 place-items-center rounded-lg bg-foreground p-1">

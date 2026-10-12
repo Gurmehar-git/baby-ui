@@ -10,7 +10,6 @@ export const textRepel = defineComponent({
 		"Letters shy away from, lean toward, or get flicked by the pointer, then spring back.",
 	category: "text",
 	status: "stable",
-	isUpdated: true,
 	variants: { mode: MODES, size: SIZES },
 	props: [
 		{

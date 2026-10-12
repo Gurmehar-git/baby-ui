@@ -9,6 +9,20 @@ export const revealText = tv({
 		srOnly: "sr-only",
 	},
 	variants: {
+		// `tracking` letters converge from loose spacing; `wipe` uncovers the text through a soft edge.
+		variant: {
+			default: {},
+			tracking: {
+				unit: "group-data-[revealed=false]/reveal:translate-x-(--reveal-track) group-data-[revealed=false]/reveal:translate-y-0",
+			},
+			wipe: {
+				root: [
+					"-my-[0.1em] py-[0.1em] [mask-image:linear-gradient(90deg,#000_44%,transparent_56%)] [mask-position:0%_0] [mask-repeat:no-repeat] [mask-size:230%_100%]",
+					"transition-[mask-position] duration-900 ease-(--ease-ui-out) data-[revealed=false]:[mask-position:100%_0] data-[revealed=false]:transition-none motion-reduce:[mask-image:none]",
+				],
+				unit: "group-data-[revealed=false]/reveal:translate-x-0 group-data-[revealed=false]/reveal:translate-y-0 group-data-[revealed=false]/reveal:opacity-100 group-data-[revealed=false]/reveal:blur-none",
+			},
+		},
 		split: {
 			word: {},
 			char: { unit: "whitespace-pre" },
@@ -41,11 +55,12 @@ export const revealText = tv({
 		size: {
 			inherit: {},
 			sm: { root: "text-xl" },
-			md: { root: "text-3xl" },
+			default: { root: "text-3xl" },
 			lg: { root: "text-5xl" },
 		},
 	},
 	defaultVariants: {
+		variant: "default",
 		split: "word",
 		trigger: "mount",
 		direction: "up",
@@ -55,6 +70,7 @@ export const revealText = tv({
 	},
 });
 
+export type RevealTextVariant = NonNullable<VariantProps<typeof revealText>["variant"]>;
 export type RevealTextSplit = NonNullable<VariantProps<typeof revealText>["split"]>;
 export type RevealTextTrigger = NonNullable<VariantProps<typeof revealText>["trigger"]>;
 export type RevealTextDirection = NonNullable<
@@ -65,7 +81,8 @@ export type RevealTextStaggerFrom = NonNullable<
 >;
 export type RevealTextSize = NonNullable<VariantProps<typeof revealText>["size"]>;
 
-export type RevealUnit = { key: string; text: string; delay: number };
+/** `track` is the em offset a letter starts from its word's centre, for the tracking variant. */
+export type RevealUnit = { key: string; text: string; delay: number; track: number };
 
 const NBSP = String.fromCharCode(160);
 
@@ -90,6 +107,7 @@ export function revealUnits(
 	delayMs: number,
 	staggerMs: number,
 	staggerFrom: RevealTextStaggerFrom = "start",
+	trackEm = 0,
 ): RevealUnit[][] {
 	const parts = lines.map((line) =>
 		split === "line"
@@ -100,11 +118,25 @@ export function revealUnits(
 	);
 	const total = parts.reduce((sum, p) => sum + p.length, 0);
 	let n = 0;
-	return parts.map((line, l) =>
-		line.map((part, i) => {
+	return parts.map((line, l) => {
+		const tracks = split === "char" && trackEm ? letterTracks(line, trackEm) : [];
+		return line.map((part, i) => {
 			const text = split === "word" && i < line.length - 1 ? `${part}${NBSP}` : part;
 			const delay = delayMs + staggerRank(n++, total, staggerFrom) * staggerMs;
-			return { key: `${l}-${i}`, text, delay };
-		}),
-	);
+			return { key: `${l}-${i}`, text, delay, track: tracks[i] ?? 0 };
+		});
+	});
+}
+
+/** Each letter's offset from its word's centre, so a word opens from tight spacing. */
+function letterTracks(chars: string[], trackEm: number): number[] {
+	const out = chars.map(() => 0);
+	let start = 0;
+	for (let i = 0; i <= chars.length; i++) {
+		if (i < chars.length && !/\s/.test(chars[i] ?? "")) continue;
+		const center = (i - 1 - start) / 2;
+		for (let j = start; j < i; j++) out[j] = (center - (j - start)) * trackEm;
+		start = i + 1;
+	}
+	return out;
 }

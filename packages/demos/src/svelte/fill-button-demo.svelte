@@ -7,6 +7,6 @@ let { props = {} }: { props?: Record<string, unknown> } = $props();
 const p = $derived(controlProps<ComponentProps<typeof FillButton>>(props));
 </script>
 
-<FillButton tone={p.tone ?? "soft"} size={p.size ?? "md"}>
+<FillButton tone={p.tone ?? "soft"} size={p.size ?? "default"}>
 	Get started
 </FillButton>

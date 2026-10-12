@@ -59,11 +59,11 @@ export const fullscreenNav = tv({
 			center: { nav: "items-center text-center", row: "justify-center" },
 		},
 		size: {
-			md: { label: "text-3xl sm:text-4xl" },
+			default: { label: "text-3xl sm:text-4xl" },
 			lg: { label: "text-4xl sm:text-6xl" },
 		},
 	},
-	defaultVariants: { variant: "fade", align: "start", size: "md" },
+	defaultVariants: { variant: "fade", align: "start", size: "default" },
 });
 
 export type FullscreenNavVariant = NonNullable<

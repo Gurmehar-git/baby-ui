@@ -18,7 +18,7 @@ type Props = Omit<
 let {
 	checked = $bindable(false),
 	disabled = false,
-	size = "md",
+	size = "default",
 	label,
 	"aria-label": ariaLabel,
 	class: classProp,

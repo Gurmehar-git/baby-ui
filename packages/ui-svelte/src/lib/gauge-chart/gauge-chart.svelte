@@ -6,6 +6,8 @@ import {
 	activeCount,
 	arcNotches,
 	clampStagger,
+	type GaugeBand,
+	gaugeBand,
 	LINEAR_HEIGHT,
 	linearNotches,
 	NOTCH_TIMING,
@@ -24,6 +26,7 @@ let {
 	layout = "arc",
 	tone = "primary",
 	label,
+	bands = [],
 	showValue = true,
 	format,
 	locale,
@@ -42,6 +45,8 @@ let {
 	tone?: GaugeChartTone;
 	/** Accessible name; also printed under the value. */
 	label?: string;
+	/** Value bands: the highest one reached sets the tone and names the state beside the label. */
+	bands?: GaugeBand<Exclude<GaugeChartTone, "scale">>[];
 	showValue?: boolean;
 	/** Formats the printed value; defaults to the locale's grouped number. */
 	format?: (value: number) => string;
@@ -101,7 +106,12 @@ $effect.pre(() => {
 		settled = next;
 	}
 });
-const styles = $derived(gaugeChart({ layout, tone }));
+const band = $derived(gaugeBand(bands, value));
+const shownLabel = $derived(
+	band ? (label ? `${label} · ${band.label}` : band.label) : label,
+);
+const activeTone = $derived(band?.tone ?? tone);
+const styles = $derived(gaugeChart({ layout, tone: activeTone }));
 const text = $derived(formatter(value));
 // The ring sweeps from empty on mount; later changes ease along the dash.
 // svelte-ignore state_referenced_locally
@@ -141,7 +151,7 @@ const share = $derived(
 					delay={activeDelay(notch.index)}
 					{animate}
 					class={styles.active()}
-					fill={tone === "scale" ? scaleFill(notch.index, total) : undefined}
+					fill={activeTone === "scale" ? scaleFill(notch.index, total) : undefined}
 				/>
 			{/each}
 		</svg>
@@ -155,7 +165,7 @@ const share = $derived(
 	aria-valuemax={max}
 	aria-valuenow={value}
 	aria-valuetext={text}
-	aria-label={label}
+	aria-label={shownLabel}
 	data-slot="gauge-chart"
 	data-layout={layout}
 	class={cn(styles.root(), className)}
@@ -179,20 +189,20 @@ const share = $derived(
 				stroke-linecap="round"
 				stroke-dasharray="{ringArc} {RING_CIRCUMFERENCE}"
 				stroke-dashoffset={ringArc * (1 - (swept ? share : 0))}
-				stroke={tone === "scale" ? scaleFill(Math.max(0, Math.round(share * total) - 1), total) : undefined}
+				stroke={activeTone === "scale" ? scaleFill(Math.max(0, Math.round(share * total) - 1), total) : undefined}
 				class={styles.ringActive()}
 			/>
 		</svg>
 		{#if showValue}
 			<div class={styles.center()}>
 				<RollingDigits variant="count" {value} format={formatter} size="sm" startOnView={false} class={cn("font-bold text-foreground", styles.value())} />
-				{#if label}<span class={styles.label()}>{label}</span>{/if}
+				{#if shownLabel}<span class={styles.label()}>{shownLabel}</span>{/if}
 			</div>
 		{/if}
 	{:else if linear}
-		{#if showValue || label}
+		{#if showValue || shownLabel}
 			<div class={styles.header()}>
-				{#if label}<span class={styles.label()}>{label}</span>{:else}<span></span>{/if}
+				{#if shownLabel}<span class={styles.label()}>{shownLabel}</span>{:else}<span></span>{/if}
 				{#if showValue}
 					<RollingDigits variant="count" {value} format={formatter} size="sm" startOnView={false} class={cn("font-bold text-foreground", styles.value())} />
 				{/if}
@@ -203,8 +213,8 @@ const share = $derived(
 		{@render track()}
 		{#if showValue}
 			<div class={styles.center()} style:padding-top="{(geometry?.size ?? 0) * 0.08}px">
-				<RollingDigits variant="count" {value} format={formatter} size="md" startOnView={false} class={cn("font-bold text-foreground", styles.value())} />
-				{#if label}<span class={styles.label()}>{label}</span>{/if}
+				<RollingDigits variant="count" {value} format={formatter} size="default" startOnView={false} class={cn("font-bold text-foreground", styles.value())} />
+				{#if shownLabel}<span class={styles.label()}>{shownLabel}</span>{/if}
 			</div>
 		{/if}
 	{/if}

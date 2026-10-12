@@ -17,10 +17,10 @@ export const dialog = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"sm" | "default" | "lg" | "xl"',
 			description: "Maximum width of the content panel.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "variant",

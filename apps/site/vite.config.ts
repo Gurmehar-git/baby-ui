@@ -4,6 +4,7 @@ import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { FontaineTransform } from "fontaine";
 import { defineConfig, loadEnv, type Plugin, searchForWorkspaceRoot } from "vite";
+import { componentDates } from "../../scripts/lib/component-dates.mjs";
 import { reportMemory } from "../../scripts/lib/memory.mjs";
 import docviaConfig from "./docvia.config.ts";
 
@@ -25,6 +26,20 @@ function devMemory(): Plugin {
 				server.config.logger.info(`site ${line}`, { timestamp: true }),
 			);
 			server.httpServer?.once("close", stop);
+		},
+	};
+}
+
+/** `virtual:component-dates`: each component folder's first and last commit day, read at startup. */
+function componentDatesModule(): Plugin {
+	const id = "virtual:component-dates";
+	return {
+		name: "baby-ui-component-dates",
+		resolveId: (source) => (source === id ? `\0${id}` : undefined),
+		load(source) {
+			if (source !== `\0${id}`) return;
+			const dates = componentDates(searchForWorkspaceRoot(process.cwd()));
+			return `export default ${JSON.stringify(dates)};`;
 		},
 	};
 }
@@ -87,6 +102,7 @@ export default defineConfig(({ command, mode, isPreview }) => {
 		},
 		plugins: [
 			devMemory(),
+			componentDatesModule(),
 			// Size-adjusted fallback faces, so the font swap no longer moves the layout (CLS).
 			FontaineTransform.vite({
 				fallbacks: {

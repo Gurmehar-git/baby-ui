@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const inputOtp = defineComponent({
 	slug: "input-otp",
-	isNew: true,
 	name: "Input OTP",
 	description:
 		"One-time-code field with joined slots, a drawn caret, and native paste and autofill.",
@@ -21,10 +20,10 @@ export const inputOtp = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "Slot size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "invalid",

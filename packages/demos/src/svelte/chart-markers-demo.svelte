@@ -39,7 +39,7 @@ const markers = EVENTS.map((event, i) =>
 			<Line dataKey="desktop" />
 			<ChartMarkers
 				items={markers}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				appearance={p.appearance ?? "solid"}
 				showLines={props.showLines !== false}
 			/>

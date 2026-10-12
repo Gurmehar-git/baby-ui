@@ -73,7 +73,7 @@ function retry(id: string) {
 			{steps}
 			showConnector={props.showConnector !== false}
 			compact={p.compact ?? false}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 		/>
 	</div>
 {/if}

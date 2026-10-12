@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const morphingModal = defineComponent({
 	slug: "morphing-modal",
-	isNew: true,
 	name: "Morphing Modal",
 	description:
 		"Card that expands into a dialog from its own position, measured with FLIP so the two frameworks travel identically.",
@@ -32,10 +31,10 @@ export const morphingModal = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description: "Width of the expanded panel.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 		{
 			name: "dismissOnBackdrop",

@@ -34,7 +34,7 @@ let {
 	invalid = false,
 	open = $bindable(false),
 	onOpenChange,
-	size = "md",
+	size = "default",
 	labels: labelsProp,
 	id,
 	"aria-label": ariaLabel,

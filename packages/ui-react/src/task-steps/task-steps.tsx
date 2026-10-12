@@ -33,7 +33,7 @@ export function TaskSteps({
 	onRetry,
 	showConnector = true,
 	compact = false,
-	size = "md",
+	size = "default",
 	labels,
 	className,
 }: TaskStepsProps) {

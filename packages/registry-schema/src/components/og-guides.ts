@@ -9,7 +9,6 @@ export const ogGuides = defineComponent({
 		"A 1200x630 card: a title and body inside crossing edge guides, the mark tucked into the bottom right corner.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

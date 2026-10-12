@@ -19,10 +19,10 @@ export const statusMonitor = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description: "Bar height: 24, 32 or 40px.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 		{
 			name: "unit",

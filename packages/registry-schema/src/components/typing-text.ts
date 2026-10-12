@@ -91,7 +91,7 @@ export const typingText = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Type scale.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 	],

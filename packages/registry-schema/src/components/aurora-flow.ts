@@ -7,13 +7,11 @@ const POSITIONS = ["absolute", "fixed"];
 
 export const auroraFlow = defineComponent({
 	slug: "aurora-flow",
-	isNew: true,
 	name: "Aurora Flow",
 	description:
 		"Silk light drifting through a WebGL field, as layered veils or three sheened ribbons, coloured from theme tokens.",
 	category: "backgrounds",
 	status: "stable",
-	isUpdated: true,
 	variants: { variant: VARIANTS, tone: TONES, speed: SPEEDS, position: POSITIONS },
 	props: [
 		{

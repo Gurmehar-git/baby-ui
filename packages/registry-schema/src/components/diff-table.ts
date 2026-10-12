@@ -4,7 +4,6 @@ const CHANGES = ["removed", "added"];
 
 export const diffTable = defineComponent({
 	slug: "diff-table",
-	isNew: true,
 	name: "Diff Table",
 	description:
 		"A proposed edit as a table; each changed row is its own include/exclude toggle.",

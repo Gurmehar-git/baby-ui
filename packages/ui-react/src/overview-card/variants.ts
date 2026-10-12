@@ -13,7 +13,7 @@ export const overviewCard = tv({
 	},
 	variants: {
 		size: {
-			md: { chart: "h-56" },
+			default: { chart: "h-56" },
 			lg: { chart: "h-80" },
 		},
 		/** A bare line needs headroom so its stroke is not clipped at the card edge. */
@@ -22,7 +22,7 @@ export const overviewCard = tv({
 			line: { chart: "pt-2" },
 		},
 	},
-	defaultVariants: { size: "md", chart: "area" },
+	defaultVariants: { size: "default", chart: "area" },
 });
 
 export type OverviewCardSize = NonNullable<VariantProps<typeof overviewCard>["size"]>;

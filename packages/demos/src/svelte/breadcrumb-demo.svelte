@@ -26,7 +26,7 @@ const HIDDEN = [
 ];
 </script>
 
-<Breadcrumb variant={p.variant ?? "default"} size={p.size ?? "md"}>
+<Breadcrumb variant={p.variant ?? "default"} size={p.size ?? "default"}>
 	<BreadcrumbList>
 		<BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
 		<BreadcrumbSeparator />

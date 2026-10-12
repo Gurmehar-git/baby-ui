@@ -7,7 +7,7 @@
 	--background: oklch(100% 0 0);
 	--foreground: oklch(16% 0.002 265);
 	--card: oklch(97.5% 0.001 265);
-	--popover: lab(96.52% 0 0);
+	--popover: oklch(100% 0 0);
 	--muted: oklch(95.3% 0.002 265);
 	--muted-foreground: oklch(50% 0.004 265);
 	--border: oklch(16% 0.002 265 / 0.08);
@@ -24,8 +24,7 @@
 	--accent-foreground: oklch(16% 0.002 265);
 	--card-foreground: oklch(16% 0.002 265);
 	--popover-foreground: oklch(16% 0.002 265);
-	/* Edges that identify a control are stronger than dividers: field 1.68:1, track 1.39:1. */
-	--input: oklch(16% 0.002 265 / 0.23);
+	--input: oklch(16% 0.002 265 / 0.08);
 	--ring: oklch(55% 0.18 255);
 	--neon: oklch(80% 0.22 145);
 	--violet: oklch(68% 0.22 295);
@@ -94,14 +93,13 @@
 	--background: oklch(17% 0.002 265);
 	--foreground: oklch(96% 0.001 265);
 	--card: oklch(21% 0.003 265);
-	--popover: #1c1c1c;
+	--popover: oklch(24% 0 0);
 	--muted: oklch(27% 0.004 265);
 	--muted-foreground: oklch(66% 0.004 265);
-	/* Divider 1.29:1, field edge 1.82:1 on its card fill, track 1.49:1: edges read, fills stay quiet. */
-	--border: oklch(100% 0 0 / 0.1);
+	--border: oklch(100% 0 0 / 0.07);
 	--segment: oklch(30% 0.004 265);
 
-	--border-strong: oklch(100% 0 0 / 0.155);
+	--border-strong: oklch(100% 0 0 / 0.12);
 	--primary: oklch(70% 0.15 255);
 	--primary-foreground: #151515;
 	--secondary: oklch(27% 0.004 265);
@@ -110,7 +108,7 @@
 	--accent-foreground: oklch(96% 0.001 265);
 	--card-foreground: oklch(96% 0.001 265);
 	--popover-foreground: oklch(96% 0.001 265);
-	--input: oklch(100% 0 0 / 0.19);
+	--input: oklch(100% 0 0 / 0.07);
 	--ring: oklch(70% 0.15 255);
 	--destructive: oklch(58% 0.2 25);
 	--destructive-strong: color-mix(in oklab, var(--destructive) 73%, var(--foreground));

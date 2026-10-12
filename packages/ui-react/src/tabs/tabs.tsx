@@ -39,7 +39,7 @@ export function Tabs({
 	value: valueProp,
 	defaultValue = "",
 	variant = "pill",
-	size = "md",
+	size = "default",
 	onValueChange,
 	children,
 	...props

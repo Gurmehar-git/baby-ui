@@ -8,13 +8,11 @@ const union = (values: string[]) => values.map((v) => `"${v}"`).join(" | ");
 
 export const iridescentFold = defineComponent({
 	slug: "iridescent-fold",
-	isNew: true,
 	name: "Iridescent Fold",
 	description:
 		"Holographic foil or satin: crumpled creases or long draped folds, a pastel thin-film sheen and specular streaks, drawn in WebGL.",
 	category: "backgrounds",
 	status: "beta",
-	isUpdated: true,
 	variants: { variant: VARIANTS, tone: TONES, speed: SPEEDS, position: POSITIONS },
 	props: [
 		{

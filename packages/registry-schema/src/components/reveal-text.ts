@@ -1,6 +1,7 @@
 import { defineComponent } from "../index.ts";
 
 const SIZES = ["inherit", "sm", "md", "lg"];
+const VARIANTS = ["default", "tracking", "wipe"];
 const SPLITS = ["word", "char", "line"];
 const DIRECTIONS = ["up", "down", "left", "right"];
 const ORIGINS = ["start", "end", "center", "edges", "random"];
@@ -14,6 +15,7 @@ export const revealText = defineComponent({
 	category: "text",
 	status: "stable",
 	variants: {
+		variant: VARIANTS,
 		split: SPLITS,
 		trigger: TRIGGERS,
 		direction: DIRECTIONS,
@@ -27,6 +29,14 @@ export const revealText = defineComponent({
 			description: "One string, or one per line.",
 			required: true,
 			control: { kind: "none" },
+		},
+		{
+			name: "variant",
+			type: VARIANTS.map((v) => `"${v}"`).join(" | "),
+			description:
+				"`default` rises units out of a blur; `tracking` letters converge from loose spacing; `wipe` uncovers the text through a soft edge.",
+			default: "default",
+			control: { kind: "select", options: VARIANTS },
 		},
 		{
 			name: "split",
@@ -127,6 +137,7 @@ export const revealText = defineComponent({
 		behaviour: [
 			"Each unit rises 40% of its height, fades in and unblurs over 900ms on cubic-bezier(0.16, 1, 0.3, 1), 90ms after the one before.",
 			"Leaving view with once off hides the text instantly so the next entry replays.",
+			"`tracking` splits by letter and slides each one in from its word's centre; `wipe` sweeps a feathered mask across the whole text.",
 		],
 	},
 	a11y: {

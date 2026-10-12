@@ -14,7 +14,7 @@ let {
 	value,
 	columns = 24,
 	variant = "solid",
-	size = "md",
+	size = "default",
 	indicator = "success",
 	stepMs = 60,
 	staggerMs = 30,

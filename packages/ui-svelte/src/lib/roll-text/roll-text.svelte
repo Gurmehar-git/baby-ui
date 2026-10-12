@@ -16,7 +16,7 @@ let {
 	stagger = "none",
 	staggerMs = 32,
 	durationMs = 450,
-	size = "md",
+	size = "default",
 	motion = "slide",
 	to,
 	active: activeProp,

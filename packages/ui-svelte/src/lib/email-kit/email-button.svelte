@@ -14,7 +14,7 @@ let {
 	href,
 	children,
 	variant = "primary",
-	size = "md",
+	size = "default",
 	shape = "rounded",
 	width = "auto",
 }: {

@@ -107,9 +107,10 @@ export function Calendar({
 	className,
 	classNames,
 	showOutsideDays = true,
+	fixedWeeks = true,
 	captionLayout = "label",
 	buttonVariant = "ghost",
-	size = "md",
+	size = "default",
 	locale,
 	formatters,
 	components,
@@ -169,6 +170,7 @@ export function Calendar({
 		<CalendarCtx.Provider value={state}>
 			<DayPicker
 				showOutsideDays={showOutsideDays}
+				fixedWeeks={fixedWeeks}
 				className={cn(styles.root(), className)}
 				captionLayout="label"
 				locale={locale}
@@ -521,7 +523,7 @@ export function CalendarDayButton({
 	className,
 	day,
 	modifiers,
-	size = "md",
+	size = "default",
 	locale,
 	...props
 }: ComponentProps<typeof DayButton> & { size?: CalendarSize; locale?: Partial<Locale> }) {

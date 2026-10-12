@@ -44,7 +44,6 @@ export const starHistoryBlock = defineComponent({
 		"GitHub star history: the total against the 30 days before, best day, the latest milestone and the next one at the current pace, and a total or gained chart.",
 	category: "blocks",
 	status: "beta",
-	isNew: true,
 
 	props: [
 		{

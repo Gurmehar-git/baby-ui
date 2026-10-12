@@ -11,7 +11,6 @@ export const underlineHoverText = defineComponent({
 		"Inline text with a hover underline in four strokes: a centre sweep, a lifting double hairline, a drawn hairline, or a sliding bar.",
 	category: "text",
 	status: "stable",
-	isUpdated: true,
 	variants: { variant: VARIANTS, tone: TONES, trigger: TRIGGERS },
 	props: [
 		{

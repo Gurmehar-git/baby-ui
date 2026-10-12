@@ -22,10 +22,11 @@ export const toggleGroup = defineComponent({
 		},
 		{
 			name: "variant",
-			type: '"default" | "outline"',
-			description: "Filled track with a raised pressed item, or a bordered row.",
+			type: '"default" | "outline" | "segmented" | "chip"',
+			description:
+				"Filled track with a raised pressed item, a bordered row, a segmented control whose pill slides between items, or separate wrapping chips.",
 			default: "default",
-			control: { kind: "select", options: ["default", "outline"] },
+			control: { kind: "select", options: ["default", "outline", "segmented", "chip"] },
 		},
 		{
 			name: "size",
@@ -61,7 +62,9 @@ export const toggleGroup = defineComponent({
 			entry: "ToggleGroup",
 			files: [
 				{ path: "toggle-group/toggle-group.tsx", type: "registry:ui" },
+				{ path: "toggle-group/segment.ts", type: "registry:ui" },
 				{ path: "toggle-group/variants.ts", type: "registry:ui" },
+				{ path: "lib/pill.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
@@ -72,7 +75,9 @@ export const toggleGroup = defineComponent({
 				{ path: "toggle-group/toggle-group.svelte", type: "registry:ui" },
 				{ path: "toggle-group/toggle-group-item.svelte", type: "registry:ui" },
 				{ path: "toggle-group/context.ts", type: "registry:ui" },
+				{ path: "toggle-group/segment.ts", type: "registry:ui" },
 				{ path: "toggle-group/variants.ts", type: "registry:ui" },
+				{ path: "lib/pill.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],

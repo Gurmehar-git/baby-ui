@@ -45,7 +45,8 @@ function upload(id: string) {
 		accept="image/*,.pdf"
 		maxSize={AVATAR_MAX_BYTES}
 		maxFiles={4}
-		size={p.size ?? "md"}
+		compactAt={2}
+		size={p.size ?? "default"}
 		disabled={p.disabled ?? false}
 		onFilesAdded={(added) => {
 			const next = added.map((file) => ({

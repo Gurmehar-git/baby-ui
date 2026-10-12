@@ -36,7 +36,7 @@ export function NotchedShelf({
 	children,
 	variant = "solid",
 	layout = "hanging",
-	size = "md",
+	size = "default",
 	shape = "smooth",
 	align = "center",
 	edge = false,

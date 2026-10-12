@@ -27,11 +27,11 @@ export const wheelCarousel = tv({
 		},
 		size: {
 			sm: { root: "min-h-80", item: "text-lg" },
-			md: { root: "min-h-[420px]", item: "text-[clamp(1rem,2.4vw,1.625rem)]" },
+			default: { root: "min-h-[420px]", item: "text-[clamp(1rem,2.4vw,1.625rem)]" },
 			lg: { root: "min-h-[520px]", item: "text-[clamp(1.25rem,3vw,2.25rem)]" },
 		},
 	},
-	defaultVariants: { photoSide: "left", aspect: "3/4", size: "md" },
+	defaultVariants: { photoSide: "left", aspect: "3/4", size: "default" },
 });
 
 export type WheelCarouselPhotoSide = NonNullable<

@@ -20,6 +20,11 @@ component's `variants.ts`.
   Each surface is its own step: light is a white page, grey `card`, `popover` `lab(96.52% 0 0)`
   (#f5f5f5, lifted by shadow) and a darker `muted`; dark is page 17%, card 21%, popover #1c1c1c,
   muted 27%. The popover values are the user's pick (2026-10-03), matching their reference palette.
+- Field and divider edges stay hairlines (`input`, `border`, about 1.19:1). Off tracks of switches,
+  sliders and progress use `track` (1.39 light, 1.49 dark) so the off state reads. Dark hover is 4.5%.
+- Fields fill with `--field`: the page colour in light, the card step in dark, so a field reads as
+  an object rather than a hole.
+- Tooltips invert (`bg-foreground text-background`) so they never blend into a popover below.
 - Nest by surface step, not border; a framed body adds a hairline `border-border` where the steps
   sit close. Regions inside an overlay (search, filters, list) recess into `bg-background` with a
   hairline, never a third, lighter fill.
@@ -79,6 +84,18 @@ step is `default`, never `md`.
 - A group (ToggleGroup, segmented Tabs) is the control height in total: rim plus items.
 - Text entry is `text-base` below `md` and the table's size from `md` up; iOS zooms under 16px.
 - Popup rows pair with their trigger's size: `xs` 24, `sm` 28, `default` 32, `lg` 36, `xl` 40.
+- Every axis that scales a component's footprint is `size`, and its middle step is `default`
+  everywhere in the library, not only on controls. Other axes (`gap`, `spacing`, `radius`) keep
+  their own names.
+- Chip fields (MultiSelect, TagInput) use `min-h` on the ladder; inner rows are the height minus
+  border and padding, and chips step with the field (`xs`/`sm` Badge `sm`, `default`/`lg`
+  Badge `default`, `xl` Badge `lg`).
+- Tabs: the list is the ladder height in every variant; segment triggers and marker sit
+  `calc(radius - 2px)` inside the list. InputOTP slots and Pagination links are ladder squares
+  (`min-w`, so long numbers widen).
+- Hit areas: a control drawn under 24px (chip remove) gets an invisible `after:-inset-1` target.
+- Non-control boxes keep their own scales but the same radius ratio: Badge `sm` `rounded-sm`,
+  then `rounded-md`; square Avatar `md`, `lg`, `xl`, `3xl`; key caps 3px to `rounded-md`.
 
 ## Shape
 
@@ -145,12 +162,15 @@ Tokens:
   step (`bg-background` with a border in light, `bg-muted` in dark).
 - Fields (Input, Textarea, NativeSelect, InputGroup, Select and Combobox triggers, MultiSelect,
   TagInput, NumberInput, date/time fields) share one frame:
-  - rest `border-input`, hover `border-border-strong`;
-  - focus or open `border-ring` plus a `ring-3 ring-ring/20` halo (the solid border carries 3:1);
+  - rest `border-input` on `bg-(--field)`, hover `border-border-strong`;
+  - text entry on focus: `border-ring` plus a `ring-3 ring-ring/20` halo;
+  - triggers (Select, Combobox, NativeSelect, MultiSelect) stay calm: `border-ring` on keyboard
+    focus only, `border-border-strong` while open, never a halo (`fieldFrame({ kind: "trigger" })`);
   - invalid `border-destructive`, halo `ring-destructive/20`;
   - disabled `opacity-50` and `cursor-not-allowed`.
 - Pressables (Button, Toggle, Checkbox, Switch, Radio) focus with `ring-2 ring-ring ring-offset-2
-  ring-offset-background`. Checkbox, Radio and Switch also take the invalid border.
+  ring-offset-background`. Checkbox, Radio and Switch take `border-destructive` on `aria-invalid`
+  or Base UI's `data-invalid`. Disabled is `opacity-50` everywhere.
 - Checkbox and radio rest borders are `muted-foreground/75` (3.2:1 light, 3.9:1 dark).
 - A popover opened from a field anchors to the whole field and matches its width.
 - Search, password, currency, phone and card fields are InputGroup recipes, not components.

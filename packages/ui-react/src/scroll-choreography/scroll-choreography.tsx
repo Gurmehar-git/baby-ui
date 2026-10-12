@@ -35,7 +35,7 @@ export interface ScrollChoreographyProps {
 export function ScrollChoreography({
 	images,
 	variant = "expand",
-	size = "md",
+	size = "default",
 	label = "Scroll to arrange the images",
 	className,
 }: ScrollChoreographyProps) {

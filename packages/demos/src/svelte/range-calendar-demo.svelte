@@ -17,6 +17,6 @@ const wide = new MediaQuery("min-width: 768px");
 <RangeCalendar
 	bind:value
 	numberOfMonths={wide.current ? 2 : 1}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	class="rounded-lg border border-border"
 />

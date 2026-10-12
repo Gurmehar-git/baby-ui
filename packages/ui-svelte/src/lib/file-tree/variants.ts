@@ -23,7 +23,7 @@ export const fileTree = tv({
 				chevron: "size-3",
 				spacer: "size-3",
 			},
-			md: {
+			default: {
 				root: "text-sm",
 				row: "gap-1.5 rounded-md py-1 pr-2",
 				chevron: "size-3.5",
@@ -39,10 +39,10 @@ export const fileTree = tv({
 			false: {},
 		},
 	},
-	defaultVariants: { size: "md", selected: false, guide: false },
+	defaultVariants: { size: "default", selected: false, guide: false },
 });
 
 export type FileTreeSize = NonNullable<VariantProps<typeof fileTree>["size"]>;
 
 /** Left inset of a root-level row, in px; nested rows add `indent` per level on top. */
-export const ROW_INSET: Record<FileTreeSize, number> = { sm: 6, md: 8 };
+export const ROW_INSET: Record<FileTreeSize, number> = { sm: 6, default: 8 };

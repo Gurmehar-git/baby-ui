@@ -18,7 +18,7 @@ const p = $derived(controlProps<ComponentProps<typeof TypingText>>(props));
 		grow={props.grow === true}
 		hideCursorOnComplete={props.hideCursorOnComplete === true}
 		stumbles={props.stumbles === true}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		class="text-foreground"
 	/>
 {/key}

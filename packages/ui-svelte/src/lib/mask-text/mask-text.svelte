@@ -7,7 +7,7 @@ let {
 	baseText,
 	revealSize = 240,
 	durationMs = 500,
-	size = "md",
+	size = "default",
 	class: classProp,
 }: {
 	revealText: string;

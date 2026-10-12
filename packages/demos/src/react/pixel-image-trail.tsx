@@ -13,7 +13,7 @@ export function PixelImageTrailDemo({ props }: { props: Props }) {
 			src="https://picsum.photos/id/1015/1200/800"
 			alt="A river winding through a mountain valley"
 			variant={p.variant ?? "fade"}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			pixelSize={Number(p.pixelSize ?? 36)}
 			fadeDuration={Number(p.fadeDuration ?? 900)}
 			maxPixels={Number(p.maxPixels ?? 84)}

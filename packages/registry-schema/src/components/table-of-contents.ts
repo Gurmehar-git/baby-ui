@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const tableOfContents = defineComponent({
 	slug: "table-of-contents",
-	isNew: true,
 	name: "Table of Contents",
 	description:
 		"An on-this-page outline whose rail bends between heading depths and lights the headings in view.",

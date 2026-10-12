@@ -3,6 +3,7 @@
 import type { TextareaHTMLAttributes } from "react";
 import { useId, useLayoutEffect, useRef } from "react";
 import { cn } from "../lib/cn";
+import { RollingDigits } from "../rolling-digits/rolling-digits";
 import { type TextareaSize, type TextareaVariant, textarea } from "./variants";
 
 export type { TextareaSize, TextareaVariant };
@@ -88,7 +89,7 @@ export function Textarea({
 					) : null}
 					{showCount ? (
 						<p className="ml-auto shrink-0 font-mono text-muted-foreground text-xs tabular-nums">
-							{String(value ?? "").length}
+							<RollingDigits value={String(value ?? "").length} startOnView={false} />
 							{maxLength ? `/${maxLength}` : ""}
 						</p>
 					) : null}

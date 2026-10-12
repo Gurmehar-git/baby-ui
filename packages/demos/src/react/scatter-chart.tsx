@@ -22,7 +22,7 @@ const config = READINGS_CONFIG satisfies ChartConfig;
 export function ScatterChartDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof Scatter>>(props);
 	const pChart = controlProps<ComponentProps<typeof ScatterChart>>(props);
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 	const shape = props.shape && props.shape !== "auto" ? p.shape : undefined;
 	return (
 		<div className="w-full max-w-3xl">

@@ -16,16 +16,28 @@ export const controlSize = tv({
 
 export type ControlSize = NonNullable<VariantProps<typeof controlSize>["size"]>;
 
-/** One frame for every field: hairline at rest, ring border plus a soft halo on focus or open. */
+/** One frame for every field. Text entry gets the focus halo; a trigger (Select, Combobox) stays
+ * calm: a ring border on keyboard focus only, and a neutral border while its popup is open. */
 export const fieldFrame = tv({
 	base: [
 		"border border-input bg-(--field) text-foreground outline-none",
 		"transition-[color,border-color,box-shadow] duration-(--duration-fast) ease-(--ease-ui-out) motion-reduce:transition-none",
-		"hover:border-muted-foreground/60",
-		"focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/20",
-		"aria-invalid:border-destructive aria-invalid:ring-destructive/20",
+		"hover:border-border-strong aria-invalid:border-destructive",
 		"disabled:cursor-not-allowed disabled:opacity-50",
 	],
+	variants: {
+		kind: {
+			input: [
+				"focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/20",
+				"aria-invalid:ring-destructive/20",
+			],
+			trigger: [
+				"focus-visible:border-ring",
+				"data-[popup-open]:border-border-strong data-[state=open]:border-border-strong",
+			],
+		},
+	},
+	defaultVariants: { kind: "input" },
 });
 
 /** iOS zooms the page into a focused field under 16px, so text entry reads 16px below `md`. */

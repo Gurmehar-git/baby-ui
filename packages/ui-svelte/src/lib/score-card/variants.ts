@@ -11,11 +11,11 @@ export const scoreCard = tv({
 	},
 	variants: {
 		size: {
-			md: { gauge: "max-w-56" },
+			default: { gauge: "max-w-56" },
 			lg: { gauge: "max-w-72" },
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type ScoreCardSize = NonNullable<VariantProps<typeof scoreCard>["size"]>;

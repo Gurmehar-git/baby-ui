@@ -246,6 +246,7 @@ export type NavIcon =
 	| "install"
 	| "theming"
 	| "design"
+	| "create"
 	| "llms";
 
 export type NavMenuItem = NavLink & {
@@ -348,6 +349,12 @@ export function siteNav(categories: NavCategory[]): NavItem[] {
 					icon: "design",
 				},
 				{
+					href: "/create",
+					label: "Create",
+					description: "Pick accent, radius and font; copy the CSS.",
+					icon: "create",
+				},
+				{
 					href: "/llms.txt",
 					label: "llms.txt",
 					description: "Every component as plain text for AI tools.",
@@ -416,7 +423,7 @@ export type SidebarGroup = {
 		href: string;
 		status: ComponentSpec["status"];
 		tier: ComponentSpec["tier"];
-		isNew: boolean;
+		fresh: "new" | "updated" | null;
 	}[];
 };
 

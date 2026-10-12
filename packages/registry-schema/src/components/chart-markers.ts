@@ -18,10 +18,10 @@ export const chartMarkers = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description: "Marker disc size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 		{
 			name: "appearance",

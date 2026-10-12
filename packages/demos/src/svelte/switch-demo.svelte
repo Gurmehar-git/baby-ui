@@ -13,7 +13,7 @@ $effect(() => {
 	checked = p.checked ?? false;
 });
 
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 
 // Switch renders its own label; reversing the row puts the text first without a second one.
 const ROW = "flex w-full flex-row-reverse items-center justify-between gap-6";

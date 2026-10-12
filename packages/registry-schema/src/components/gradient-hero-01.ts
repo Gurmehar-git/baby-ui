@@ -41,6 +41,24 @@ export const gradientHero01 = defineComponent({
 			control: { kind: "none" },
 		},
 		{
+			name: "install",
+			type: "string",
+			description: "An install command in a pill with a copy button.",
+			control: { kind: "text" },
+		},
+		{
+			name: "meta",
+			type: "string[]",
+			description: "Small facts under the actions, such as the version and licence.",
+			control: { kind: "none" },
+		},
+		{
+			name: "media",
+			type: "ReactNode | Snippet",
+			description: "A visual beside the copy; the hero switches to a split layout.",
+			control: { kind: "none" },
+		},
+		{
 			name: "tone",
 			type: TONES.map((v) => `"${v}"`).join(" | "),
 			description:
@@ -81,7 +99,7 @@ export const gradientHero01 = defineComponent({
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "button"],
+			registryDependencies: ["badge", "button", "copy-button"],
 		},
 		svelte: {
 			entry: "GradientHero01",
@@ -92,7 +110,7 @@ export const gradientHero01 = defineComponent({
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "button"],
+			registryDependencies: ["badge", "button", "copy-button"],
 		},
 	},
 	keywords: ["hero", "landing", "gradient", "glow", "headline", "cta"],

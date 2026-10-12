@@ -10,7 +10,7 @@ const p = $derived(controlProps<ComponentProps<typeof MorphingModal>>(props));
 <MorphingModal
 	title="Deploy to production"
 	spring={p.spring ?? "gentle"}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	dismissOnBackdrop={props.dismissOnBackdrop !== false}
 	backdropBlur={Number(props.backdropBlur ?? 8)}
 >

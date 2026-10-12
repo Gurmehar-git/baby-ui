@@ -14,7 +14,7 @@ import {
 
 let {
 	shape = "dot",
-	size = "md",
+	size = "default",
 	tone = "primary",
 	position,
 	gap,

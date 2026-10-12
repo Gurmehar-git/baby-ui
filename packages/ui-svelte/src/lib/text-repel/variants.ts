@@ -21,7 +21,7 @@ export const textRepel = tv({
 		size: {
 			inherit: {},
 			sm: { root: "text-2xl" },
-			md: { root: "text-4xl" },
+			default: { root: "text-4xl" },
 			lg: { root: "text-6xl" },
 		},
 	},

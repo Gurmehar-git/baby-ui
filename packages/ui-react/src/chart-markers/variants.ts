@@ -18,7 +18,7 @@ export const chartMarkers = tv({
 	variants: {
 		size: {
 			sm: { group: "size-[22px] text-xs" },
-			md: { group: "size-7 text-sm" },
+			default: { group: "size-7 text-sm" },
 			lg: { group: "size-[34px] text-base" },
 		},
 		appearance: {
@@ -26,7 +26,7 @@ export const chartMarkers = tv({
 			outline: { disc: "border-2 border-foreground/50 bg-background" },
 		},
 	},
-	defaultVariants: { size: "md", appearance: "solid" },
+	defaultVariants: { size: "default", appearance: "solid" },
 });
 
 export type ChartMarkerSize = NonNullable<VariantProps<typeof chartMarkers>["size"]>;
@@ -34,4 +34,4 @@ export type ChartMarkerAppearance = NonNullable<
 	VariantProps<typeof chartMarkers>["appearance"]
 >;
 
-export const MARKER_PX: Record<ChartMarkerSize, number> = { sm: 22, md: 28, lg: 34 };
+export const MARKER_PX: Record<ChartMarkerSize, number> = { sm: 22, default: 28, lg: 34 };

@@ -40,7 +40,6 @@ export const invoiceList = defineComponent({
 		"Billing history from parts: a captioned table on wide containers and stacked cards on narrow ones, status badges, receipt and invoice downloads, skeletons and an empty state.",
 	category: "blocks",
 	status: "beta",
-	isNew: true,
 	props: [
 		{
 			name: "density",

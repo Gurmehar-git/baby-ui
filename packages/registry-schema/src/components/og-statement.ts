@@ -9,7 +9,6 @@ export const ogStatement = defineComponent({
 		"A 1200x630 card: a mark top left and one large statement bottom left on a quiet field.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

@@ -1,7 +1,9 @@
+import gitDates from "virtual:component-dates";
 import {
 	CATEGORIES,
 	type Category,
 	type ComponentSpec,
+	FRAMEWORKS,
 	PREVIEW_CATEGORIES,
 } from "@baby-ui/registry-schema";
 import { specs as publicSpecs } from "@baby-ui/registry-schema/components";
@@ -20,6 +22,47 @@ import { proSpecs } from "#lib/server/pro.js";
 
 const proSlugs = new Set(proSpecs.map((s) => s.slug));
 
+const FRESH_DAYS = 15;
+const DAY_MS = 86_400_000;
+// The build's clock: prerendered pages keep their labels until the next deploy.
+const today = Date.now();
+const recent = (date?: string) =>
+	!!date && today - Date.parse(date) <= FRESH_DAYS * DAY_MS;
+
+/** The spec's own folder in each port, plus the spec file; shared `lib/` never dates a component. */
+function datedPaths(spec: ComponentSpec) {
+	const pro = proSlugs.has(spec.slug);
+	const roots = pro
+		? { react: "pro/packages/react/src", svelte: "pro/packages/svelte/src/lib" }
+		: { react: "packages/ui-react/src", svelte: "packages/ui-svelte/src/lib" };
+	const folders = FRAMEWORKS.flatMap((f) => {
+		const folder = spec.impl[f]?.files[0]?.path.split("/")[0];
+		return folder && folder !== "lib" ? [`${roots[f]}/${folder}`] : [];
+	});
+	const schema = pro
+		? "pro/packages/schema/src/components"
+		: "packages/registry-schema/src/components";
+	return { folders, file: `${schema}/${spec.slug}.ts` };
+}
+
+type Freshness = "new" | "updated" | null;
+
+/** "new" for 15 days after release, then "updated" for 15 days after a code change; specs' own dates win. */
+function dateFreshness(spec: ComponentSpec): Freshness {
+	const { folders, file } = datedPaths(spec);
+	const known = [file, ...folders].flatMap((path) => gitDates[path] ?? []);
+	const added = spec.added ?? known.map((d) => d.added).sort()[0];
+	// Spec-only edits (docs, metadata) are not updates; only the ports' own code counts.
+	const updated =
+		spec.updated ??
+		folders
+			.flatMap((path) => gitDates[path]?.updated ?? [])
+			.sort()
+			.at(-1);
+	if (recent(added)) return "new";
+	return updated && recent(updated) && (!added || updated > added) ? "updated" : null;
+}
+
 /** Every spec the site shows: Pro and preview categories (emails) appear only with the flag.
  * Pages, lists, search and the sitemap all read this, so a hidden spec 404s everywhere. */
 export const specs: readonly ComponentSpec[] = [...publicSpecs, ...proSpecs].filter(
@@ -29,6 +72,12 @@ export const specs: readonly ComponentSpec[] = [...publicSpecs, ...proSpecs].fil
 
 /** What the site lists: retired specs keep their page and registry item, nothing else. */
 export const liveSpecs: readonly ComponentSpec[] = specs.filter((s) => !s.retired);
+
+const FRESHNESS = new Map(specs.map((s) => [s.slug, dateFreshness(s)]));
+
+/** The New/Updated label a component wears for this build. */
+export const freshness = (spec: Pick<ComponentSpec, "slug">): Freshness =>
+	FRESHNESS.get(spec.slug) ?? null;
 
 /** Categories with at least one component, in schema order. */
 export function navCategories(): NavCategory[] {
@@ -67,8 +116,8 @@ export function cardItem(spec: ComponentSpec): CardItem {
 		href: specHref(spec),
 		category: spec.category,
 		tier: spec.tier,
-		isNew: spec.isNew,
-		isUpdated: spec.isUpdated && !spec.isNew,
+		isNew: freshness(spec) === "new",
+		isUpdated: freshness(spec) === "updated",
 		defaults: defaultProps(spec),
 	};
 }
@@ -82,15 +131,16 @@ export function cardItems(slugs: string[]): CardItem[] {
 }
 
 /** Browsing order for card grids: new components first, then alphabetical. */
-export function newFirst<T extends { name: string; isNew: boolean }>(a: T, b: T): number {
-	return Number(b.isNew) - Number(a.isNew) || a.name.localeCompare(b.name);
+export function newFirst<T extends { slug: string; name: string }>(a: T, b: T): number {
+	const fresh = (item: T) => Number(freshness(item) === "new");
+	return fresh(b) - fresh(a) || a.name.localeCompare(b.name);
 }
 
 /** Live new components: categories in schema order, alphabetical within each. */
 export function newItems(): CardItem[] {
 	return CATEGORIES.flatMap((category) =>
 		liveSpecs
-			.filter((s) => s.isNew && s.category === category)
+			.filter((s) => freshness(s) === "new" && s.category === category)
 			.map(cardItem)
 			.sort(newFirst),
 	);
@@ -112,7 +162,7 @@ export function sidebarGroups(lead?: Category): SidebarGroup[] {
 					href: specHref(s),
 					status: s.status,
 					tier: s.tier,
-					isNew: s.isNew,
+					fresh: freshness(s),
 				}))
 				.sort((a, b) => a.name.localeCompare(b.name)),
 		}))

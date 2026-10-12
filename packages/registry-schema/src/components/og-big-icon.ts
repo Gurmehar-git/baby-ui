@@ -9,7 +9,6 @@ export const ogBigIcon = defineComponent({
 		"A 1200x630 card: brand, title and body on the left, one huge icon cropped by the right edge over a faint icon pattern.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

@@ -81,6 +81,7 @@ export const textarea = defineComponent({
 		springs: [],
 		reducedMotion: "Height changes apply immediately without easing.",
 		behaviour: [
+			"The character count rolls only the digits that change.",
 			"Auto-grow sets height from scrollHeight on input, so the caret never leaves the visible area.",
 			"Growth is not animated: a field that eases taller lags behind the character you just typed.",
 		],
@@ -107,6 +108,7 @@ export const textarea = defineComponent({
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
+			registryDependencies: ["rolling-digits"],
 		},
 		svelte: {
 			entry: "Textarea",
@@ -117,6 +119,7 @@ export const textarea = defineComponent({
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
+			registryDependencies: ["rolling-digits"],
 		},
 	},
 	keywords: ["textarea", "form", "multiline"],

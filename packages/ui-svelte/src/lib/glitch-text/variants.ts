@@ -5,11 +5,11 @@ export const glitchText = tv({
 	variants: {
 		size: {
 			sm: "text-2xl",
-			md: "text-4xl",
+			default: "text-4xl",
 			lg: "text-6xl",
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type GlitchTextSize = NonNullable<VariantProps<typeof glitchText>["size"]>;

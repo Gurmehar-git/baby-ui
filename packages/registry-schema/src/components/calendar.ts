@@ -2,10 +2,10 @@ import { defineComponent } from "../index.ts";
 
 const sizeProp = {
 	name: "size",
-	type: '"sm" | "md" | "lg"',
+	type: '"sm" | "default" | "lg"',
 	description: "Day cell size, via `--cell-size`.",
-	default: "md",
-	control: { kind: "select" as const, options: ["sm", "md", "lg"] },
+	default: "default",
+	control: { kind: "select" as const, options: ["sm", "default", "lg"] },
 };
 
 const a11y = {
@@ -27,6 +27,7 @@ const motion = {
 	springs: [],
 	reducedMotion: "Views and months cross-fade over 120ms without travel or blur.",
 	behaviour: [
+		"Every month shows six weeks (`fixedWeeks`, on by default), so the grid keeps one height as months change.",
 		"Paging slides the weeks and caption 14px the way they travel, with a 2px blur-fade, 240ms.",
 		"Opening the month or year grid zooms out from the days; picking zooms back in, 260ms.",
 		"Month and year cells stagger in 14ms apart; days and cells squish on press.",

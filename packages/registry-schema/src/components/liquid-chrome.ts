@@ -6,7 +6,6 @@ const POSITIONS = ["absolute", "fixed"];
 
 export const liquidChrome = defineComponent({
 	slug: "liquid-chrome",
-	isNew: true,
 	name: "Liquid Chrome",
 	description:
 		"Domain-warped liquid metal with silver and specular bands, drawn in WebGL from theme tokens.",

@@ -12,6 +12,8 @@ const p = $derived(controlProps<ComponentProps<typeof ShimmerText>>(props));
 		text="Agent is thinking ..."
 		durationMs={Number(props.durationMs ?? 2000)}
 		spread={Number(props.spread ?? 2)}
+		active={p.active ?? true}
+		variant={p.variant}
 		size={p.size ?? "inherit"}
 		class="font-light tracking-tight"
 	/>

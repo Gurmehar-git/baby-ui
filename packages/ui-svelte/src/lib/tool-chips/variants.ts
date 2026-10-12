@@ -5,11 +5,11 @@ export const toolChips = tv({
 	variants: {
 		size: {
 			sm: { root: "max-w-64" },
-			md: { root: "max-w-80" },
+			default: { root: "max-w-80" },
 			lg: { root: "max-w-96" },
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type ToolChipsSize = NonNullable<VariantProps<typeof toolChips>["size"]>;

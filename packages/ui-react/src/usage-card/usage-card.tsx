@@ -1,6 +1,15 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../card/card";
+import { useId, useState } from "react";
+import { Badge } from "../badge/badge";
+import {
+	Card,
+	CardAction,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "../card/card";
 import {
 	type ChartConfig,
 	ChartContainer,
@@ -11,6 +20,8 @@ import type { Datum } from "../chart/core";
 import { cn } from "../lib/cn";
 import { RingChart } from "../ring-chart/ring-chart";
 import type { RingCap } from "../ring-chart/variants";
+import { meterLayout, meterNumber, meterTone } from "./meter";
+import { UsageMeter } from "./usage-meter";
 import { type UsageCardLayout, usageCard } from "./variants";
 
 export type { UsageCardLayout };
@@ -30,6 +41,16 @@ export interface UsageCardProps {
 	layout?: UsageCardLayout;
 	cap?: RingCap;
 	centerLabel?: string;
+	/** Meter layout: the plan allowance every row shares, in the rows' unit. */
+	limit?: number;
+	/** Meter layout: unit after each amount, e.g. "GB". */
+	unit?: string;
+	/** Meter layout: digits after the decimal point. */
+	decimals?: number;
+	/** Meter layout: share of the limit at which the badge warns it is almost full. */
+	warnAt?: number;
+	freeLabel?: string;
+	overLabel?: string;
 	locale?: string;
 	activeIndex?: number | null;
 	onActiveIndexChange?: (index: number | null) => void;
@@ -48,12 +69,34 @@ export function UsageCard({
 	layout = "side",
 	cap = "round",
 	centerLabel,
+	limit,
+	unit = "",
+	decimals = 1,
+	warnAt = 0.9,
+	freeLabel = "Free",
+	overLabel = "Over limit",
 	locale,
 	activeIndex,
 	onActiveIndexChange,
 	className,
 }: UsageCardProps) {
 	const styles = usageCard({ layout });
+	const chartId = `usage-${useId().replace(/:/g, "")}`;
+	const [internal, setInternal] = useState<number | null>(null);
+	const segments = data.map((row) => ({
+		key: String(row[nameKey] ?? ""),
+		value: typeof row[dataKey] === "number" ? row[dataKey] : 0,
+	}));
+	const meterLimit = limit ?? segments.reduce((sum, s) => sum + s.value, 0);
+	const meter = meterLayout(segments, meterLimit, warnAt);
+	const amount = (value: number) =>
+		`${meterNumber(value, decimals, locale)}${unit ? ` ${unit}` : ""}`;
+	const badge =
+		meter.status === "over"
+			? `${amount(meter.over)} over`
+			: meter.status === "near"
+				? "Almost full"
+				: `${amount(meter.free)} free`;
 
 	return (
 		<Card data-slot="usage-card" className={cn(styles.root(), className)}>
@@ -64,30 +107,58 @@ export function UsageCard({
 						{description}
 					</CardDescription>
 				) : null}
+				{layout === "meter" ? (
+					<CardAction>
+						<Badge variant={meterTone[meter.status]} size="sm" className="tabular-nums">
+							{badge}
+						</Badge>
+					</CardAction>
+				) : null}
 			</CardHeader>
 			<CardContent className={styles.body()}>
-				<ChartContainer
-					config={config}
-					title={title}
-					aspect="auto"
-					locale={locale}
-					className={styles.chart()}
-				>
-					<RingChart
-						data={data}
-						dataKey={dataKey}
-						maxKey={maxKey}
-						nameKey={nameKey}
-						cap={cap}
-						centerLabel={centerLabel}
-						activeIndex={activeIndex}
-						onActiveIndexChange={onActiveIndexChange}
-						className={styles.plot()}
+				{layout === "meter" ? (
+					<UsageMeter
+						id={chartId}
+						title={title}
+						config={config}
+						layout={meter}
+						limit={meterLimit}
+						unit={unit}
+						decimals={decimals}
+						freeLabel={freeLabel}
+						overLabel={overLabel}
+						locale={locale}
+						activeIndex={activeIndex !== undefined ? activeIndex : internal}
+						onActiveIndexChange={(index) => {
+							if (activeIndex === undefined) setInternal(index);
+							onActiveIndexChange?.(index);
+						}}
+						styles={styles}
 					/>
-					<ChartLegend
-						content={<ChartLegendContent align="start" className={styles.legend()} />}
-					/>
-				</ChartContainer>
+				) : (
+					<ChartContainer
+						config={config}
+						title={title}
+						aspect="auto"
+						locale={locale}
+						className={styles.chart()}
+					>
+						<RingChart
+							data={data}
+							dataKey={dataKey}
+							maxKey={maxKey}
+							nameKey={nameKey}
+							cap={cap}
+							centerLabel={centerLabel}
+							activeIndex={activeIndex}
+							onActiveIndexChange={onActiveIndexChange}
+							className={styles.plot()}
+						/>
+						<ChartLegend
+							content={<ChartLegendContent align="start" className={styles.legend()} />}
+						/>
+					</ChartContainer>
+				)}
 			</CardContent>
 		</Card>
 	);

@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const tagInput = defineComponent({
 	slug: "tag-input",
-	isNew: true,
 	name: "Tag Input",
 	description:
 		"Free-text tags with Enter to commit and Backspace to remove the last one.",
@@ -45,27 +44,33 @@ export const tagInput = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "Field height and chip size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 	],
 	motion: {
 		springs: [],
 		reducedMotion: "Chips appear without scaling.",
 		behaviour: [
+			"Backspace on an empty field rings the tag it will remove before removing it.",
 			"A new tag pops in from 0.95 over 200ms; the field rings while the input has focus.",
 		],
 	},
 	a11y: {
 		keyboard: [
 			{ keys: ["Enter", ","], action: "Commits the current text" },
-			{ keys: ["Backspace"], action: "In an empty field, removes the last tag" },
+			{
+				keys: ["Backspace", "Delete"],
+				action: "In an empty field, selects the last tag; press again to remove it",
+			},
+			{ keys: ["ArrowLeft", "ArrowRight"], action: "Move the selection between tags" },
+			{ keys: ["Escape"], action: "Clear the selection" },
 			{ keys: ["Tab"], action: "Reaches each tag's remove button" },
 		],
 		notes: [
-			"A live region reports the tag count, so adding and removing is audible without focusing each chip.",
+			"A live region reports the tag count, and names the selected tag before Backspace removes it.",
 			"Duplicates are rejected silently rather than added twice.",
 			"Blur commits any pending text, so a half-typed tag is not lost when the user clicks away.",
 		],
@@ -82,6 +87,7 @@ export const tagInput = defineComponent({
 			files: [
 				{ path: "tag-input/tag-input.tsx", type: "registry:ui" },
 				{ path: "tag-input/variants.ts", type: "registry:ui" },
+				{ path: "tag-input/arm.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
@@ -92,6 +98,7 @@ export const tagInput = defineComponent({
 			files: [
 				{ path: "tag-input/tag-input.svelte", type: "registry:ui" },
 				{ path: "tag-input/variants.ts", type: "registry:ui" },
+				{ path: "tag-input/arm.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],

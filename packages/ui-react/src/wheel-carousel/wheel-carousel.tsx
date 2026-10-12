@@ -57,7 +57,7 @@ export function WheelCarousel({
 	onActiveIndexChange,
 	photoSide = "left",
 	aspect = "3/4",
-	size = "md",
+	size = "default",
 	photoWidth = 24,
 	radius = 320,
 	spacing = 14,

@@ -15,11 +15,11 @@ export const imageTrail = tv({
 		},
 		size: {
 			sm: { item: "h-32 w-24" },
-			md: { item: "h-48 w-36" },
+			default: { item: "h-48 w-36" },
 			lg: { item: "h-64 w-48" },
 		},
 	},
-	defaultVariants: { variant: "fall", size: "md" },
+	defaultVariants: { variant: "fall", size: "default" },
 });
 
 export type ImageTrailVariant = NonNullable<VariantProps<typeof imageTrail>["variant"]>;

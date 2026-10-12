@@ -7,7 +7,7 @@ import { type EmailTextSize, type EmailTextTone, emailText } from "./variants";
 let {
 	children,
 	tone = "default",
-	size = "md",
+	size = "default",
 	class: classProp,
 }: {
 	children: Snippet;

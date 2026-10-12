@@ -7,7 +7,11 @@ let {
 	children,
 	class: classProp,
 	...rest
-}: { children?: Snippet; value: string; disabled?: boolean; class?: string } = $props();
+}: Omit<AccordionPrimitive.ItemProps, "children" | "child" | "class"> & {
+	children?: Snippet;
+	value: string;
+	class?: string;
+} = $props();
 </script>
 
 <AccordionPrimitive.Item {...rest} data-slot="accordion-item" class={cn(classProp)}>

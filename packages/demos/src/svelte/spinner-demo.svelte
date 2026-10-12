@@ -6,7 +6,7 @@ import { controlProps } from "../data/preview-props";
 let { props = {} }: { props?: Record<string, unknown> } = $props();
 const p = $derived(controlProps<ComponentProps<typeof Spinner>>(props));
 
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 const label = $derived(p.label || "Checking availability");
 </script>
 

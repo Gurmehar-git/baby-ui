@@ -6,7 +6,6 @@ const POSITIONS = ["absolute", "fixed"];
 
 export const pixelCanvas = defineComponent({
 	slug: "pixel-canvas",
-	isNew: true,
 	name: "Pixel Canvas",
 	description:
 		"A full-bleed pixel grid that lights up in token colours around the pointer and fades behind it.",

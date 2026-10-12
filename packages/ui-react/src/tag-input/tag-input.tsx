@@ -4,7 +4,8 @@ import type { KeyboardEvent } from "react";
 import { useState } from "react";
 import { Badge } from "../badge/badge";
 import { cn } from "../lib/cn";
-import { type TagInputSize, tagInput } from "./variants";
+import { armKey } from "./arm";
+import { TAG_INPUT_CHIP, type TagInputSize, tagInput } from "./variants";
 
 export type { TagInputSize };
 
@@ -27,13 +28,14 @@ export function TagInput({
 	max,
 	disabled = false,
 	invalid = false,
-	size = "md",
+	size = "default",
 	label,
 	className,
 	onTagsChange,
 }: TagInputProps) {
 	const s = tagInput({ size });
 	const [draft, setDraft] = useState("");
+	const [armed, setArmed] = useState<number | null>(null);
 	const full = max !== undefined && tags.length >= max;
 
 	function add() {
@@ -52,10 +54,12 @@ export function TagInput({
 			add();
 			return;
 		}
-		// Backspace on an empty field removes the last tag, which is the expected shortcut.
-		if (event.key === "Backspace" && draft === "" && tags.length > 0) {
-			onTagsChange(tags.slice(0, -1));
-		}
+		if (draft !== "") return;
+		const step = armKey(event.key, armed, tags.length);
+		if (!step) return;
+		event.preventDefault();
+		setArmed(step.armed);
+		if (step.remove !== undefined) onTagsChange(tags.filter((_, i) => i !== step.remove));
 	}
 
 	return (
@@ -65,11 +69,12 @@ export function TagInput({
 			aria-invalid={invalid || undefined}
 			className={cn(s.root(), className)}
 		>
-			{tags.map((tag) => (
+			{tags.map((tag, index) => (
 				<Badge
 					key={tag}
+					data-armed={armed === index}
 					variant="secondary"
-					size={size === "sm" ? "sm" : "md"}
+					size={TAG_INPUT_CHIP[size]}
 					className={s.chip()}
 				>
 					<span className={s.chipLabel()}>{tag}</span>
@@ -101,14 +106,22 @@ export function TagInput({
 				placeholder={full ? "" : placeholder}
 				disabled={disabled}
 				value={draft}
-				onChange={(e) => setDraft(e.currentTarget.value)}
+				onChange={(e) => {
+					setDraft(e.currentTarget.value);
+					setArmed(null);
+				}}
 				onKeyDown={onKeyDown}
-				onBlur={add}
+				onBlur={() => {
+					setArmed(null);
+					add();
+				}}
 				className={s.input()}
 			/>
 
 			<span role="status" className="sr-only">
-				{tags.length} tags
+				{armed !== null
+					? `${tags[armed]} selected. Press Backspace again to remove it.`
+					: `${tags.length} tags`}
 			</span>
 		</div>
 	);

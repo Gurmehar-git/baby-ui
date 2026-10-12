@@ -11,11 +11,11 @@ export const fineTuneCard = tv({
 	variants: {
 		size: {
 			sm: { root: "max-w-60" },
-			md: { root: "max-w-72" },
+			default: { root: "max-w-72" },
 			lg: { root: "max-w-80" },
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type FineTuneCardSize = NonNullable<VariantProps<typeof fineTuneCard>["size"]>;

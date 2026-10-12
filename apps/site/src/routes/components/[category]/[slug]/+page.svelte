@@ -14,6 +14,7 @@ import {
 	Alert,
 	AlertDescription,
 	AlertTitle,
+	Badge,
 	Markdown,
 	Select,
 	SelectContent,
@@ -323,6 +324,11 @@ const categoryTrail = $derived(
 						Pro
 					</span>
 				{/if}
+				{#if data.fresh === "new"}
+					<Badge size="sm" variant="info" class="mt-1">New</Badge>
+				{:else if data.fresh === "updated"}
+					<Badge size="sm" variant="success" class="mt-1">Updated</Badge>
+				{/if}
 				{#if data.spec.status !== "stable"}
 					<span class="mt-1 rounded-full border border-border px-2 py-0.5 text-[11px] text-muted-foreground">
 						{data.spec.status}
@@ -333,6 +339,8 @@ const categoryTrail = $derived(
 				<PageMenu
 					markdownUrl="{specHref(data.spec)}.md"
 					copyText={data.spec.description}
+					installSlug={data.spec.tier === "pro" ? undefined : data.spec.slug}
+					subject="component"
 				/>
 				{#if !split && !playground}<OutlineToggle />{/if}
 			</div>

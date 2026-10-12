@@ -81,7 +81,7 @@ export function StatusMonitor({
 	unit = "days",
 	title,
 	showUptime = true,
-	size = "md",
+	size = "default",
 	labels,
 	locale,
 	className,

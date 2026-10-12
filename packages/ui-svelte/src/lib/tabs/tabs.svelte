@@ -7,7 +7,7 @@ let {
 	children,
 	value = $bindable(""),
 	variant = "pill",
-	size = "md",
+	size = "default",
 	class: classProp,
 	...rest
 }: Omit<TabsPrimitive.RootProps, "value"> & {

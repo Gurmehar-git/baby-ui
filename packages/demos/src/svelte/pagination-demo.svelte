@@ -14,7 +14,7 @@ import { controlProps } from "../data/preview-props";
 
 let { props = {} }: { props?: Record<string, unknown> } = $props();
 const size = $derived(
-	controlProps<ComponentProps<typeof PaginationLink>>(props).size ?? "md",
+	controlProps<ComponentProps<typeof PaginationLink>>(props).size ?? "default",
 );
 
 let page = $state(4);

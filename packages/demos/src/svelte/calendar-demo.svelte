@@ -14,6 +14,6 @@ let value = $state<DateValue | undefined>(today(getLocalTimeZone()));
 	type="single"
 	bind:value
 	captionLayout={p.captionLayout ?? "dropdown"}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	class="rounded-lg border border-border"
 />

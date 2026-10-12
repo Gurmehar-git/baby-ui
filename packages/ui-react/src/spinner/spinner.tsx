@@ -9,7 +9,11 @@ export interface SpinnerProps {
 	className?: string;
 }
 
-export function Spinner({ size = "md", label = "Loading", className }: SpinnerProps) {
+export function Spinner({
+	size = "default",
+	label = "Loading",
+	className,
+}: SpinnerProps) {
 	return (
 		<span role="status" aria-label={label} className={cn("inline-flex", className)}>
 			<svg viewBox="0 0 16 16" fill="none" aria-hidden className={spinnerIcon({ size })}>

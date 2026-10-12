@@ -5,7 +5,7 @@ export const nativeSelect = tv({
 	slots: {
 		wrapper: "group/native-select relative w-fit has-[select:disabled]:opacity-50",
 		select: [
-			fieldFrame(),
+			fieldFrame({ kind: "trigger" }),
 			"w-full min-w-0 appearance-none disabled:pointer-events-none disabled:opacity-100",
 		],
 		icon: "pointer-events-none absolute top-1/2 -translate-y-1/2 select-none text-muted-foreground",

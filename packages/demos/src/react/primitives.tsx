@@ -10,7 +10,10 @@ import {
 	AlertDescription,
 	AlertTitle,
 	Avatar,
+	AvatarBadge,
 	AvatarFallback,
+	AvatarGroup,
+	AvatarGroupCount,
 	AvatarImage,
 	Badge,
 	Button,
@@ -41,7 +44,7 @@ const SERVICES = [
 
 export function BadgeDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof Badge>>(props);
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 	return (
 		<div className="flex w-full max-w-72 flex-col gap-3 text-sm">
 			<div className="flex items-center justify-between gap-4">
@@ -73,24 +76,49 @@ export function AvatarDemo({ props }: { props: Props }) {
 		.slice(0, 2)
 		.join("")
 		.toUpperCase();
+	const [team, setTeam] = useState(3);
 	return (
-		<div className="flex items-center gap-3">
-			<Avatar size={p.size ?? "md"} shape={p.shape ?? "circle"}>
-				<AvatarFallback>{initials}</AvatarFallback>
-				<AvatarImage
-					src={pImage.src || "https://github.com/kanakkholwal.png"}
-					alt={name}
-				/>
-			</Avatar>
-			<div className="text-sm">
-				<p className="font-medium text-foreground">{name}</p>
-				<p className="text-muted-foreground text-xs">
-					Fallback shows until an image loads
-				</p>
+		<div className="grid justify-items-start gap-5">
+			<div className="flex items-center gap-3">
+				<Avatar size={p.size ?? "default"} shape={p.shape ?? "circle"}>
+					<AvatarFallback>{initials}</AvatarFallback>
+					<AvatarImage
+						src={pImage.src || "https://github.com/kanakkholwal.png"}
+						alt={name}
+					/>
+					<AvatarBadge className="bg-success" aria-label="Online" />
+				</Avatar>
+				<div className="text-sm">
+					<p className="font-medium text-foreground">{name}</p>
+					<p className="text-muted-foreground text-xs">
+						Fallback shows until an image loads
+					</p>
+				</div>
+			</div>
+			<div className="flex items-center gap-3">
+				<AvatarGroup aria-label="Team">
+					{TEAM.slice(0, team).map((member) => (
+						<Avatar key={member} size={p.size ?? "default"} shape={p.shape ?? "circle"}>
+							<AvatarFallback>{member}</AvatarFallback>
+						</Avatar>
+					))}
+					<AvatarGroupCount size={p.size ?? "default"} shape={p.shape ?? "circle"}>
+						+{12 - team}
+					</AvatarGroupCount>
+				</AvatarGroup>
+				<Button
+					variant="outline"
+					size="sm"
+					onClick={() => setTeam(team === TEAM.length ? 2 : team + 1)}
+				>
+					{team === TEAM.length ? "Reset" : "Add member"}
+				</Button>
 			</div>
 		</div>
 	);
 }
+
+const TEAM = ["AP", "MW", "PN", "JB", "LO"];
 
 export function CardDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof Card>>(props);
@@ -250,7 +278,7 @@ export function CheckboxDemo({ props }: { props: Props }) {
 				onCheckedChange={setChecked}
 				disabled={p.disabled ?? false}
 				indeterminate={p.indeterminate ?? false}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				label={p.label || "Remember this grant"}
 				description={p.description || "Skips the prompt for the next 30 days."}
 			/>
@@ -266,7 +294,7 @@ export function SwitchDemo({ props }: { props: Props }) {
 	const [checked, setChecked] = useState(false);
 	const [digest, setDigest] = useState(true);
 	useEffect(() => setChecked(Boolean(props.checked)), [props.checked]);
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 
 	return (
 		<div className="flex w-full max-w-72 flex-col divide-y divide-border rounded-xl border border-border">
@@ -304,7 +332,7 @@ export function ProgressDemo({ props }: { props: Props }) {
 			<Progress
 				value={value}
 				indeterminate={indeterminate}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				tone={p.tone ?? "default"}
 				variant={p.variant ?? "linear"}
 				showValue={p.showValue === true}
@@ -319,12 +347,30 @@ export function ProgressDemo({ props }: { props: Props }) {
 export function SkeletonDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof Skeleton>>(props);
 	const shape = p.shape ?? "line";
+	const [loading, setLoading] = useState(true);
 	return (
-		<div className="flex w-full max-w-72 items-center gap-3">
-			<Skeleton width="2.5rem" height="2.5rem" shape="circle" />
-			<div className="flex flex-1 flex-col gap-2">
-				<Skeleton width={p.width || "100%"} height={p.height || "1rem"} shape={shape} />
-				<Skeleton width="60%" height="0.75rem" />
+		<div className="grid w-full max-w-72 gap-6">
+			<div className="flex items-center gap-3">
+				<Skeleton width="2.5rem" height="2.5rem" shape="circle" />
+				<div className="flex flex-1 flex-col gap-2">
+					<Skeleton width={p.width || "100%"} height={p.height || "1rem"} shape={shape} />
+					<Skeleton width="60%" height="0.75rem" />
+				</div>
+			</div>
+			<div className="grid gap-2">
+				<Skeleton loading={loading} shape="block">
+					<p className="text-muted-foreground text-sm leading-relaxed">
+						The placeholder takes this paragraph's shape, then crossfades into it.
+					</p>
+				</Skeleton>
+				<Button
+					size="sm"
+					variant="outline"
+					className="justify-self-start"
+					onClick={() => setLoading((v) => !v)}
+				>
+					{loading ? "Finish loading" : "Load again"}
+				</Button>
 			</div>
 		</div>
 	);

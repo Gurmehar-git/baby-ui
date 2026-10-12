@@ -13,7 +13,7 @@ export function DotMatrixGlowDemo({ props }: { props: Props }) {
 			<DotMatrixGlow
 				position="absolute"
 				shape={p.shape ?? "dot"}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				tone={p.tone ?? "primary"}
 				glowRadius={p.glowRadius ?? 160}
 				ripple={p.ripple ?? true}

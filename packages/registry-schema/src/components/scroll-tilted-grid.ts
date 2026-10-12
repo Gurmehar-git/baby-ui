@@ -25,7 +25,7 @@ export const scrollTiltedGrid = defineComponent({
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description:
 				"Height of its own scroll box; `auto` rides the nearest scrolling ancestor.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

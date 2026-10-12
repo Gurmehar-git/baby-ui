@@ -10,7 +10,6 @@ export const orbitCardStack = defineComponent({
 		"Cards piled in a stack that fan into an arc, a row or a grid on hover or focus and raise the active card.",
 	category: "animated",
 	status: "stable",
-	isUpdated: true,
 	demo: { mode: "auto", frame: "none" },
 	variants: { size: SIZES, layout: LAYOUTS },
 	props: [
@@ -33,7 +32,7 @@ export const orbitCardStack = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Card width, type scale and stage height.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

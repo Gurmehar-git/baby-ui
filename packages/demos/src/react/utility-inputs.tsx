@@ -50,7 +50,8 @@ export function FileUploadDemo({ props }: { props: Props }) {
 				accept="image/*,.pdf"
 				maxSize={AVATAR_MAX_BYTES}
 				maxFiles={4}
-				size={p.size ?? "md"}
+				compactAt={2}
+				size={p.size ?? "default"}
 				disabled={p.disabled ?? false}
 				onFilesAdded={(added) => {
 					const next = added.map((file) => ({
@@ -77,7 +78,7 @@ export function FileUploadDemo({ props }: { props: Props }) {
 
 export function NumberInputDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof NumberInput>>(props);
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 	const [seats, setSeats] = useState<number | null>(5);
 	const [budget, setBudget] = useState<number | null>(1200);
 	return (
@@ -92,6 +93,7 @@ export function NumberInputDemo({ props }: { props: Props }) {
 				size={size}
 				suffix={p.suffix || undefined}
 				disabled={p.disabled ?? false}
+				limitHint={p.limitHint ?? true}
 			/>
 			<NumberInput
 				label="Monthly budget"
@@ -123,7 +125,7 @@ export function MultiSelectDemo({ props }: { props: Props }) {
 				value={value}
 				onValueChange={setValue}
 				maxChips={Number(props.maxChips ?? 3)}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				disabled={p.disabled ?? false}
 				labels={{ placeholder: "Add reviewers…", search: "Search people…" }}
 			/>

@@ -19,7 +19,7 @@ let {
 	checked = $bindable(false),
 	indeterminate = $bindable(false),
 	disabled = false,
-	size = "md",
+	size = "default",
 	label,
 	description,
 	"aria-label": ariaLabel,
@@ -43,32 +43,23 @@ const id = $props.id();
 		class={cn(frame.box(), !label && !description && classProp)}
 	>
 		{#snippet children({ checked: isChecked, indeterminate: isIndeterminate })}
-			{#if isIndeterminate}
-				<svg
-					viewBox="0 0 12 12"
-					fill="none"
-					aria-hidden="true"
-					class={cn("text-primary-foreground", frame.mark())}
-				>
-					<path d="M3 6h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-				</svg>
-			{:else}
-				<svg
-					viewBox="0 0 12 12"
-					fill="none"
-					aria-hidden="true"
-					data-on={isChecked}
-					class={cn("checkbox-check text-primary-foreground", frame.mark())}
-				>
-					<path
-						d="M2.5 6.2 4.8 8.5 9.5 3.6"
-						stroke="currentColor"
-						stroke-width="1.8"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg>
-			{/if}
+			<!-- One path for both marks, so the tick morphs into the dash instead of swapping. -->
+			<svg
+				viewBox="0 0 12 12"
+				fill="none"
+				aria-hidden="true"
+				data-on={isChecked || isIndeterminate}
+				data-mixed={isIndeterminate}
+				class={cn("checkbox-check text-primary-foreground", frame.mark())}
+			>
+				<path
+					d="M2.5 6.2 L4.8 8.5 L9.5 3.6"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
 		{/snippet}
 	</CheckboxPrimitive.Root>
 {/snippet}

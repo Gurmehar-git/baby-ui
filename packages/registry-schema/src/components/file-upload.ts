@@ -7,7 +7,7 @@ export const fileUpload = defineComponent({
 		"A dropzone with type, size and count checks, and a file list with per-file progress, retry and remove. You own the upload.",
 	category: "base",
 	status: "beta",
-	variants: { size: ["sm", "md"] },
+	variants: { size: ["sm", "default"] },
 	props: [
 		{
 			name: "files",
@@ -54,11 +54,18 @@ export const fileUpload = defineComponent({
 			control: { kind: "none" },
 		},
 		{
+			name: "compactAt",
+			type: "number",
+			description:
+				"Once the list holds this many files, the prompt folds to a slim bar; a drag brings it back.",
+			control: { kind: "none" },
+		},
+		{
 			name: "size",
-			type: '"sm" | "md"',
+			type: '"sm" | "default"',
 			description: "Dropzone padding and thumbnail size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default"] },
 		},
 		{
 			name: "disabled",

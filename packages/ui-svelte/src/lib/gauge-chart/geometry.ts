@@ -102,3 +102,22 @@ export function linearNotches(options: {
 /** Five-step sequential ramp across the notches for the `scale` tone. */
 export const scaleFill = (index: number, total: number) =>
 	`var(--chart-scale-${1 + Math.round((index / Math.max(1, total - 1)) * 4)})`;
+
+export interface GaugeBand<Tone extends string = string> {
+	/** The band starts at this value and runs to the next band. */
+	from: number;
+	/** Names the state, e.g. "Healthy", so it never rests on colour alone. */
+	label: string;
+	tone: Tone;
+}
+
+/** The highest band `value` reaches, or undefined below the first. */
+export function gaugeBand<Tone extends string>(
+	bands: readonly GaugeBand<Tone>[],
+	value: number,
+) {
+	let hit: GaugeBand<Tone> | undefined;
+	for (const band of [...bands].sort((a, b) => a.from - b.from))
+		if (value >= band.from) hit = band;
+	return hit;
+}

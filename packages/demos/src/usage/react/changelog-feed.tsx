@@ -1,0 +1,29 @@
+"use client";
+
+import { ChangelogFeed } from "@baby-ui/react";
+
+export function Example() {
+	return (
+		<ChangelogFeed
+			variant="timeline"
+			entries={[
+				{
+					id: "dark-mode",
+					date: "2026-10-01",
+					version: "2.4.0",
+					kind: "new",
+					title: "Dark mode",
+					summary: "Follows your system setting, or pick one in preferences.",
+				},
+				{
+					id: "export",
+					date: "2026-09-12",
+					version: "2.3.1",
+					kind: "fixed",
+					title: "CSV export keeps accents",
+					summary: "Names like Zoë now open correctly in every spreadsheet app.",
+				},
+			]}
+		/>
+	);
+}

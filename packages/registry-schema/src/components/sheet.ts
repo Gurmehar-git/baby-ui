@@ -7,7 +7,6 @@ export const sheet = defineComponent({
 		"Panel that slides in from any edge, with focus moved inside and Escape to close.",
 	category: "base",
 	status: "stable",
-	isUpdated: true,
 	variants: { variant: ["default", "framed"] },
 	props: [
 		{

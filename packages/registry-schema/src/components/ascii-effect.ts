@@ -8,7 +8,6 @@ const POSITIONS = ["absolute", "fixed"];
 
 export const asciiEffect = defineComponent({
 	slug: "ascii-effect",
-	isNew: true,
 	name: "ASCII Effect",
 	description:
 		"A full-bleed canvas that redraws an image as ASCII glyphs in the element's own font.",

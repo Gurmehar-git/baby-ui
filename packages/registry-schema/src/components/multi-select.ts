@@ -2,13 +2,12 @@ import { defineComponent } from "../index.ts";
 
 export const multiSelect = defineComponent({
 	slug: "multi-select",
-	isNew: true,
 	name: "Multi Select",
 	description:
 		"Pick several options from a searchable list; choices show as removable chips, with select all, clear and a +N overflow.",
 	category: "base",
 	status: "beta",
-	variants: { size: ["sm", "md", "lg"] },
+	variants: { size: ["xs", "sm", "default", "lg", "xl"] },
 	props: [
 		{
 			name: "options",
@@ -31,10 +30,10 @@ export const multiSelect = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "Field height.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "disabled",
@@ -68,7 +67,7 @@ export const multiSelect = defineComponent({
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "command", "popover"],
+			registryDependencies: ["badge", "command", "popover", "rolling-digits"],
 		},
 		svelte: {
 			entry: "MultiSelect",
@@ -78,7 +77,7 @@ export const multiSelect = defineComponent({
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "command", "popover"],
+			registryDependencies: ["badge", "command", "popover", "rolling-digits"],
 		},
 	},
 	keywords: ["multi select", "multiselect", "chips", "combobox", "tags", "select many"],

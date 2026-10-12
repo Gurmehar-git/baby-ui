@@ -67,7 +67,7 @@ export function DateField({
 	max,
 	disabled = false,
 	invalid = false,
-	size = "md",
+	size = "default",
 	labels: labelsProp,
 	id,
 	name,

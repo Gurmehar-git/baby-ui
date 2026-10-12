@@ -24,7 +24,7 @@ const cycle = $derived(
 		clearable={p.clearable ?? false}
 		showNow={p.showNow ?? false}
 		invalid={p.invalid ?? false}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 	/>
 	<FieldDescription>
 		Type it, or use the arrow keys. Clear and Now sit at the end.

@@ -84,10 +84,10 @@ function label(prop: PropSpec) {
 					bind:value={() => String(state[prop.name] ?? ""), (next) => (state[prop.name] = next)}
 					items={control.options.map((o) => ({ value: o, label: o }))}
 				>
-					<SelectTrigger aria-label={label(prop)} class="h-7 w-32 rounded-md text-xs">
+					<SelectTrigger aria-label={label(prop)} size="sm" class="w-32">
 						<SelectValue />
 					</SelectTrigger>
-					<SelectContent>
+					<SelectContent size="sm">
 						{#each control.options as option (option)}
 							<SelectItem value={option} label={option}>{option}</SelectItem>
 						{/each}
@@ -123,7 +123,7 @@ function label(prop: PropSpec) {
 					size="sm"
 					placeholder={control.placeholder}
 					bind:value={() => String(state[prop.name] ?? ""), (next) => (state[prop.name] = next)}
-					class="h-7 w-32 text-xs"
+					class="w-32"
 				/>
 			{/if}
 		</div>

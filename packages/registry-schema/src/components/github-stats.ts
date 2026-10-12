@@ -36,7 +36,6 @@ export const githubStatsBlock = defineComponent({
 		"A year on GitHub: the contribution total against the same days of the year before, streaks and best day, the full calendar, profile counts, and where the work went.",
 	category: "blocks",
 	status: "beta",
-	isNew: true,
 
 	props: [
 		{

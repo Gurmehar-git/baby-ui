@@ -9,6 +9,11 @@ export const megaNavbar = tv({
 		chevron:
 			"size-3.5 transition-transform duration-[var(--duration-dropdown)] motion-reduce:transition-none",
 		menu: "relative flex items-center gap-1",
+		center: "hidden flex-1 items-center justify-center @3xl:flex",
+		capsule: "relative flex items-center",
+		// Slides to the hovered link and rests on the current one; capsule variant only.
+		capsulePill:
+			"pointer-events-none absolute top-0 left-0 rounded-full bg-background opacity-0 shadow-xs ring-1 ring-border transition-[translate,width,height,opacity] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy) data-[on=true]:opacity-100 motion-reduce:transition-none",
 		// Recast's morph: one panel resizes and slides between groups on a long, soft settle.
 		panel: [
 			// box-content: the measured size is the content box, so the border must sit outside it.
@@ -43,13 +48,19 @@ export const megaNavbar = tv({
 		rule: "pointer-events-none block h-px w-full bg-border transition-opacity duration-[var(--duration-dropdown)] @3xl:hidden motion-reduce:transition-none",
 	},
 	variants: {
-		/** Solid spans the page edge to edge; floating is an inset rounded bar; notched hangs a
-		 * shelf from the top edge on desktop and a plain bar below it. */
+		/** Solid spans the page; floating is an inset rounded bar; notched hangs a shelf from the top;
+		 * capsule gathers the centre links in a quiet pill track. */
 		variant: {
 			solid: { root: "border-b" },
 			floating: {
 				root: "px-3 pt-3",
 				nav: "h-14 rounded-2xl border px-4 transition-[background,border-color,box-shadow,backdrop-filter] duration-[var(--duration-dropdown)] motion-reduce:transition-none",
+			},
+			capsule: {
+				root: "border-b",
+				capsule: "rounded-full border border-border bg-muted/40 p-1",
+				trigger: "relative z-1",
+				link: "relative z-1",
 			},
 			// The root spans the page but only the shelf and bar catch the pointer.
 			notched: {
@@ -92,6 +103,17 @@ export const megaNavbar = tv({
 		},
 	},
 	compoundVariants: [
+		{ variant: "capsule", surface: "clear", class: { root: "border-transparent" } },
+		{
+			variant: "capsule",
+			surface: "blurred",
+			class: { root: "border-border bg-background/85 backdrop-blur" },
+		},
+		{
+			variant: "capsule",
+			surface: "opaque",
+			class: { root: "border-border bg-background/85" },
+		},
 		{ variant: "solid", surface: "clear", class: { root: "border-transparent" } },
 		{
 			variant: "solid",

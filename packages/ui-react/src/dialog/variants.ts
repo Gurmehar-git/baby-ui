@@ -53,12 +53,12 @@ export const dialogWidth = tv({
 	variants: {
 		size: {
 			sm: "max-w-sm",
-			md: "max-w-lg",
+			default: "max-w-lg",
 			lg: "max-w-2xl",
 			xl: "max-w-4xl",
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type DialogSize = NonNullable<VariantProps<typeof dialogWidth>["size"]>;

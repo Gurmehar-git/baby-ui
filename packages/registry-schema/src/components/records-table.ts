@@ -4,7 +4,6 @@ const DENSITIES = ["comfortable", "compact"];
 
 export const recordsTable = defineComponent({
 	slug: "records-table",
-	isNew: true,
 	name: "Records Table",
 	description:
 		"An AI-spreadsheet grid: columns are configurable properties, each with a type, a tool and a prompt.",

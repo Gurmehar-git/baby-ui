@@ -1,6 +1,7 @@
 <script lang="ts">
 import type { HTMLTextareaAttributes } from "svelte/elements";
 import { cn } from "../lib/cn";
+import RollingDigits from "../rolling-digits/rolling-digits.svelte";
 import { type TextareaSize, type TextareaVariant, textarea } from "./variants";
 
 type Props = {
@@ -84,7 +85,7 @@ $effect(() => {
 				{/if}
 				{#if showCount}
 					<p class="ml-auto shrink-0 font-mono text-muted-foreground text-xs tabular-nums">
-						{value.length}{maxlength ? `/${maxlength}` : ""}
+						<RollingDigits value={value.length} startOnView={false} />{maxlength ? `/${maxlength}` : ""}
 					</p>
 				{/if}
 			</div>

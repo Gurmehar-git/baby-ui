@@ -16,7 +16,7 @@ let {
 	fields,
 	options = [],
 	labels,
-	size = "md",
+	size = "default",
 	id,
 	state: stateProp = $bindable(),
 	defaultState,

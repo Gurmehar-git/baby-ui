@@ -37,8 +37,9 @@ $effect(() => {
 		disabled={p.disabled ?? false}
 		label={preset?.label}
 		formatValue={preset?.format}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		showValue={p.showValue ?? false}
 		marks={variant === "default" ? SLIDER_MARKS : undefined}
+		elastic={p.elastic ?? false}
 	/>
 </div>

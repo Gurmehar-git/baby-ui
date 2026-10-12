@@ -10,7 +10,6 @@ export const ogTiltedScreen = defineComponent({
 		"A 1200x630 product card: headline on the left, one screenshot tilted off the right edge over a soft tone glow.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES, tone: TONES },
 	props: [

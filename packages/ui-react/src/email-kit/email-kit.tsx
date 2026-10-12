@@ -320,7 +320,7 @@ export function EmailList({
 export function EmailText({
 	children,
 	tone = "default",
-	size = "md",
+	size = "default",
 	className,
 }: {
 	children: ReactNode;
@@ -346,7 +346,7 @@ export function EmailButton({
 	href,
 	children,
 	variant = "primary",
-	size = "md",
+	size = "default",
 	shape = "rounded",
 	width = "auto",
 }: {

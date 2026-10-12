@@ -133,7 +133,7 @@ export function FileTree({
 	className,
 	indent = 14,
 	showGuides = true,
-	size = "md",
+	size = "default",
 }: FileTreeProps) {
 	const [internalExpandedIds, setInternalExpandedIds] = useState(defaultExpandedIds);
 	const expandedIds = expandedIdsProp ?? internalExpandedIds;

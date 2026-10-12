@@ -5,7 +5,7 @@ export const splitText = tv({
 	variants: {
 		size: {
 			sm: "text-2xl md:text-3xl",
-			md: "text-4xl md:text-5xl",
+			default: "text-4xl md:text-5xl",
 			lg: "text-[clamp(2.25rem,8vw,8rem)]",
 		},
 	},

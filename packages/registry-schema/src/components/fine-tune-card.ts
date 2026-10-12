@@ -4,13 +4,11 @@ const SIZES = ["sm", "md", "lg"];
 
 export const fineTuneCard = defineComponent({
 	slug: "fine-tune-card",
-	isNew: true,
 	name: "Fine Tune Card",
 	description:
 		"A compact element inspector on PropertyPanelControls: a layout switch, a slider per number and a type select.",
 	category: "advanced",
 	status: "stable",
-	isUpdated: true,
 	variants: { size: SIZES },
 	props: [
 		{
@@ -36,7 +34,7 @@ export const fineTuneCard = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Card's max width.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

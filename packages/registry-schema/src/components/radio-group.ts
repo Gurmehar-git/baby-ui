@@ -6,7 +6,7 @@ export const radioGroup = defineComponent({
 	description: "Single-choice group with roving focus and an indicator that scales in.",
 	category: "base",
 	status: "stable",
-	variants: { orientation: ["vertical", "horizontal"] },
+	variants: { orientation: ["vertical", "horizontal", "grid"] },
 	props: [
 		{
 			name: "value",
@@ -16,24 +16,24 @@ export const radioGroup = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"sm" | "default" | "lg" | "xl"',
 			description: "Control size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "variant",
-			type: '"default" | "card"',
+			type: '"default" | "card" | "list"',
 			description: "Bare rows, or each option in its own bordered card.",
 			default: "default",
-			control: { kind: "select", options: ["default", "card"] },
+			control: { kind: "select", options: ["default", "card", "list"] },
 		},
 		{
 			name: "orientation",
-			type: '"vertical" | "horizontal"',
-			description: "Layout direction.",
+			type: '"vertical" | "horizontal" | "grid"',
+			description: "Layout direction; `grid` places `card` items in responsive columns.",
 			default: "vertical",
-			control: { kind: "select", options: ["vertical", "horizontal"] },
+			control: { kind: "select", options: ["vertical", "horizontal", "grid"] },
 		},
 		{
 			name: "disabled",
@@ -47,6 +47,7 @@ export const radioGroup = defineComponent({
 		springs: [],
 		reducedMotion: "The indicator appears at full size.",
 		behaviour: [
+			"`list`: one highlight glides to the checked row instead of each row tinting itself.",
 			"The selected dot scales from 0.6 to 1 over 140ms, the same duration as a button press.",
 			"It never scales from 0: nothing in the world appears from nothing.",
 		],
@@ -74,6 +75,8 @@ export const radioGroup = defineComponent({
 			files: [
 				{ path: "radio-group/radio-group.tsx", type: "registry:ui" },
 				{ path: "radio-group/variants.ts", type: "registry:ui" },
+				{ path: "radio-group/glide.ts", type: "registry:ui" },
+				{ path: "lib/pill.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
@@ -85,6 +88,8 @@ export const radioGroup = defineComponent({
 				{ path: "radio-group/radio-group-item.svelte", type: "registry:ui" },
 				{ path: "radio-group/context.ts", type: "registry:ui" },
 				{ path: "radio-group/variants.ts", type: "registry:ui" },
+				{ path: "radio-group/glide.ts", type: "registry:ui" },
+				{ path: "lib/pill.ts", type: "registry:lib" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],

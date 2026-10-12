@@ -25,7 +25,7 @@ export function Checkbox({
 	checked,
 	indeterminate = false,
 	disabled = false,
-	size = "md",
+	size = "default",
 	label,
 	description,
 	"aria-label": ariaLabel,
@@ -52,32 +52,23 @@ export function Checkbox({
 				keepMounted
 				className={cn("text-primary-foreground", frame.mark())}
 			>
-				{indeterminate ? (
-					<svg viewBox="0 0 12 12" fill="none" aria-hidden className="size-full">
-						<path
-							d="M3 6h6"
-							stroke="currentColor"
-							strokeWidth="1.8"
-							strokeLinecap="round"
-						/>
-					</svg>
-				) : (
-					<svg
-						viewBox="0 0 12 12"
-						fill="none"
-						aria-hidden
-						className="checkbox-check size-full"
-						data-on={checked}
-					>
-						<path
-							d="M2.5 6.2 4.8 8.5 9.5 3.6"
-							stroke="currentColor"
-							strokeWidth="1.8"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						/>
-					</svg>
-				)}
+				{/* One path for both marks, so the tick morphs into the dash instead of swapping. */}
+				<svg
+					viewBox="0 0 12 12"
+					fill="none"
+					aria-hidden
+					className="checkbox-check size-full"
+					data-on={checked || indeterminate}
+					data-mixed={indeterminate}
+				>
+					<path
+						d="M2.5 6.2 L4.8 8.5 L9.5 3.6"
+						stroke="currentColor"
+						strokeWidth="1.8"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+					/>
+				</svg>
 			</CheckboxPrimitive.Indicator>
 		</CheckboxPrimitive.Root>
 	);

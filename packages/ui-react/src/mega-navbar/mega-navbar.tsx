@@ -4,9 +4,10 @@ import type { ReactNode } from "react";
 import { useEffect, useId, useRef, useState } from "react";
 import { Collapsible, CollapsibleContent } from "../collapsible/collapsible";
 import { cn } from "../lib/cn";
+import { pillStyle } from "../lib/pill";
 import { NotchedShelf } from "../notched-shelf/notched-shelf";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../sheet/sheet";
-import { currentHref, groupHrefs, isCurrentSection } from "./current";
+import { capsuleBox, currentHref, groupHrefs, isCurrentSection } from "./current";
 import { type MegaNavbarVariant, megaNavbar } from "./variants";
 
 export type { MegaNavbarVariant };
@@ -188,6 +189,7 @@ export function MegaMenu({
 								);
 							}
 						}}
+						data-current={isCurrentSection(group.href, active)}
 						className={styles.trigger({
 							current: isOpen || isCurrentSection(group.href, active),
 						})}
@@ -472,6 +474,18 @@ export function MegaNavbar({
 		surface: scrolled ? (blur ? "blurred" : "opaque") : "clear",
 	});
 	const current = currentHref(groupHrefs(groups, links), active);
+	const capsule = useRef<HTMLDivElement>(null);
+	const pill = useRef<HTMLSpanElement>(null);
+	const placePill = (target: EventTarget | null) => {
+		if (!capsule.current || !pill.current) return;
+		const box = capsuleBox(capsule.current, target);
+		Object.assign(pill.current.style, pillStyle(box));
+		pill.current.dataset.on = String(Boolean(box));
+	};
+	// biome-ignore lint/correctness/useExhaustiveDependencies: placePill reads refs; active and variant decide when it reruns.
+	useEffect(() => {
+		placePill(null);
+	}, [active, variant]);
 
 	const brandSlot = brand ? (
 		<span className="flex shrink-0 items-center gap-2.5 py-1 pr-2">{brand}</span>
@@ -485,6 +499,7 @@ export function MegaNavbar({
 						target={link.external ? "_blank" : undefined}
 						rel={link.external ? "noreferrer" : undefined}
 						aria-current={link.href === current ? "page" : undefined}
+						data-current={link.href === current}
 						className={styles.link({ current: link.href === current })}
 					>
 						{link.label}
@@ -539,14 +554,24 @@ export function MegaNavbar({
 			) : (
 				<nav aria-label="Primary" className={styles.nav()}>
 					{brandSlot}
-					<div className="hidden flex-1 items-center justify-center @3xl:flex">
-						<MegaMenu
-							groups={groups}
-							active={active}
-							variant={variant}
-							className="hidden @3xl:flex"
-						/>
-						{linkList}
+					<div className={styles.center()}>
+						<div
+							ref={capsule}
+							className={styles.capsule()}
+							onPointerOver={(event) => placePill(event.target)}
+							onPointerLeave={() => placePill(null)}
+						>
+							{variant === "capsule" ? (
+								<span ref={pill} aria-hidden className={styles.capsulePill()} />
+							) : null}
+							<MegaMenu
+								groups={groups}
+								active={active}
+								variant={variant}
+								className="hidden @3xl:flex"
+							/>
+							{linkList}
+						</div>
 					</div>
 					<div className="ml-auto flex shrink-0 items-center gap-2 @3xl:ml-0">
 						{actions ? (

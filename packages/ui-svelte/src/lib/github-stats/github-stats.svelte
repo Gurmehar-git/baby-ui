@@ -135,7 +135,7 @@ const countFormat = (value: number) => formatCount(Math.round(value), locale);
 					<p class={styles.eyebrow()}>{labels.eyebrow}</p>
 					<p class={styles.hero()}>
 						{#if layout.animate}
-							<RollingDigits variant="count" value={total} format={countFormat} durationMs={900} size="md" class={cn("font-bold text-foreground", styles.heroValue())} />
+							<RollingDigits variant="count" value={total} format={countFormat} durationMs={900} size="default" class={cn("font-bold text-foreground", styles.heroValue())} />
 						{:else}
 							<span class={styles.heroValue()}>{formatCount(total, locale)}</span>
 						{/if}
@@ -264,7 +264,7 @@ const countFormat = (value: number) => formatCount(Math.round(value), locale);
 								value={data.counts[key]}
 								format={countFormat}
 								durationMs={1200}
-								size="md"
+								size="default"
 								class={cn("font-bold text-foreground", styles.countValue())}
 							/>
 						{:else}

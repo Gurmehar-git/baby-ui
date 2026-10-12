@@ -60,7 +60,7 @@ export function ResponsiveDialog({
 	open,
 	defaultOpen = false,
 	variant = "default",
-	size = "md",
+	size = "default",
 	dismissOnBackdrop = true,
 	direction = "bottom",
 	dismissible = true,

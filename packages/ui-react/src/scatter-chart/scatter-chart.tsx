@@ -472,7 +472,13 @@ export interface ScatterProps {
 	className?: string;
 }
 
-export function Scatter({ dataKey, fill, size = "md", shape, className }: ScatterProps) {
+export function Scatter({
+	dataKey,
+	fill,
+	size = "default",
+	shape,
+	className,
+}: ScatterProps) {
 	const { register, data, x, yScale, innerWidth, phase, clipId } = usePlot();
 	const { activeKey, shapeFor, registerEnter } = useContext(ScatterRootContext);
 	const { active } = useActivePoint();

@@ -7,8 +7,7 @@ export const numberInput = defineComponent({
 		"A stepper with hold-to-repeat buttons, keyboard steps, Intl formatting and a label you can drag to scrub, or a compact inline scrub field.",
 	category: "base",
 	status: "beta",
-	isUpdated: true,
-	variants: { variant: ["default", "scrub"], size: ["sm", "md", "lg"] },
+	variants: { variant: ["default", "scrub"], size: ["xs", "sm", "default", "lg", "xl"] },
 	props: [
 		{
 			name: "value",
@@ -64,17 +63,30 @@ export const numberInput = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "Field height.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "suffix",
 			type: "string",
-			description: 'Scrub: a unit shown after the value, e.g. "px".',
+			description: 'Text after the value, such as "px" or " seats".',
 			control: { kind: "text" },
-			showWhen: { variant: ["scrub"] },
+		},
+		{
+			name: "prefix",
+			type: "string",
+			description: 'Text before the value, such as "$".',
+			control: { kind: "none" },
+		},
+		{
+			name: "limitHint",
+			type: "boolean | ((edge, limit) => string)",
+			description:
+				"A short note under the field when a key press runs into min or max, with a shake; a function writes the copy.",
+			default: true,
+			control: { kind: "boolean" },
 		},
 		{
 			name: "disabled",
@@ -104,6 +116,7 @@ export const numberInput = defineComponent({
 			entry: "NumberInput",
 			files: [
 				{ path: "number-input/number-input.tsx", type: "registry:ui" },
+				{ path: "number-input/limit.ts", type: "registry:ui" },
 				{ path: "number-input/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
@@ -113,6 +126,7 @@ export const numberInput = defineComponent({
 			entry: "NumberInput",
 			files: [
 				{ path: "number-input/number-input.svelte", type: "registry:ui" },
+				{ path: "number-input/limit.ts", type: "registry:ui" },
 				{ path: "number-input/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],

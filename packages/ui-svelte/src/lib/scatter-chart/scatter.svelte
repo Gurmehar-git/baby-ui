@@ -16,7 +16,7 @@ import {
 let {
 	dataKey,
 	fill,
-	size = "md",
+	size = "default",
 	shape,
 	class: className,
 }: {

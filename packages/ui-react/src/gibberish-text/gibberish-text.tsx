@@ -49,7 +49,7 @@ export interface GibberishTextProps {
 export function GibberishText({
 	text,
 	speedMs = 24,
-	size = "md",
+	size = "default",
 	className,
 }: GibberishTextProps) {
 	const letterClass = cn(gibberishText({ size }), className);

@@ -5,11 +5,11 @@ export const scrollReveal = tv({
 	variants: {
 		size: {
 			sm: "text-xl",
-			md: "text-2xl",
+			default: "text-2xl",
 			lg: "text-4xl",
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type ScrollRevealSize = NonNullable<VariantProps<typeof scrollReveal>["size"]>;

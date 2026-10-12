@@ -16,7 +16,7 @@ let {
 	details = true,
 	variant = "card",
 	layout = "vertical",
-	size = "md",
+	size = "default",
 	class: classProp,
 }: {
 	error: unknown;

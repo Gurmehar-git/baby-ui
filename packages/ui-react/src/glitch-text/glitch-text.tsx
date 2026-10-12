@@ -20,7 +20,7 @@ export interface GlitchTextProps {
 
 export function GlitchText({
 	text,
-	size = "md",
+	size = "default",
 	intensity,
 	durationSeconds,
 	baseColor,

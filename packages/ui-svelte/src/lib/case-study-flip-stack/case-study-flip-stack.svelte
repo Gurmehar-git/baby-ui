@@ -19,7 +19,7 @@ let {
 	endLabel,
 	label = "Case studies",
 	tone = "card",
-	size = "md",
+	size = "default",
 	class: classProp,
 }: {
 	items: CaseStudyFlipItem[];

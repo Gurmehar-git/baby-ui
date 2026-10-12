@@ -33,6 +33,7 @@ export const accordion = defineComponent({
 		springs: [],
 		reducedMotion: "Panels open and close instantly; the chevron still rotates.",
 		behaviour: [
+			"The answer settles 4px into place as its panel opens, and lifts back as it closes.",
 			"Opening animates height from zero with a grid-template-rows transition, so no JS measures the panel.",
 			"The chevron rotates 180 degrees over the same 200ms, so the two read as one gesture.",
 		],

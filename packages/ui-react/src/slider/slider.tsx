@@ -19,6 +19,7 @@ import {
 	sliderThumbCenter,
 	sliderWaveBars,
 } from "./core";
+import { attachElastic } from "./elastic";
 import {
 	type SliderMark,
 	type SliderSize,
@@ -52,6 +53,8 @@ export interface SliderProps
 	formatValue?: (value: number) => string;
 	/** Ticks under the track; clicking one jumps there. */
 	marks?: SliderMark[];
+	/** Dragging past either end stretches the track like elastic, then it springs back. */
+	elastic?: boolean;
 }
 
 const THUMB_WIDTH = 20;
@@ -66,10 +69,11 @@ export function Slider({
 	orientation: orientationProp = "horizontal",
 	label,
 	variant: variantProp = "default",
-	size = "md",
+	size = "default",
 	showValue = false,
 	formatValue = (v) => String(v),
 	marks = [],
+	elastic = false,
 	onValueChange,
 	onValueCommit,
 	disabled,
@@ -117,6 +121,11 @@ export function Slider({
 	const labelRef = useRef<HTMLSpanElement>(null);
 	const valueRef = useRef<HTMLSpanElement>(null);
 	const [boxes, setBoxes] = useState({ width: 0, label: [0, 0], value: [0, 0] });
+	useEffect(() => {
+		const control = controlRef.current;
+		if (!elastic || !control) return;
+		return attachElastic(control, () => control.dataset.orientation === "vertical");
+	}, [elastic]);
 	useEffect(() => {
 		if (variant !== "inline") return;
 		const control = controlRef.current;

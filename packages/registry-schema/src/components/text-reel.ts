@@ -7,8 +7,7 @@ export const textReel = defineComponent({
 		"An endless reel of words, a vertical column or a horizontal marquee, that drifts, then speeds up and reverses with page scroll.",
 	category: "text",
 	status: "stable",
-	isUpdated: true,
-	variants: { orientation: ["vertical", "horizontal"], size: ["sm", "md", "lg"] },
+	variants: { orientation: ["vertical", "horizontal"], size: ["sm", "default", "lg"] },
 	props: [
 		{
 			name: "orientation",
@@ -47,10 +46,10 @@ export const textReel = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description: "Type scale; the window shows about two lines of it.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 	],
 	motion: {

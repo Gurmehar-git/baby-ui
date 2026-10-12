@@ -8,14 +8,19 @@ export const dotMatrixGlow = tv({
 	},
 	variants: {
 		shape: { dot: {}, square: {}, plus: {} },
-		size: { sm: {}, md: {}, lg: {} },
+		size: { sm: {}, default: {}, lg: {} },
 		tone: { primary: {}, spectrum: {}, mono: {} },
 		position: {
 			absolute: { root: "absolute" },
 			fixed: { root: "fixed" },
 		},
 	},
-	defaultVariants: { shape: "dot", size: "md", tone: "primary", position: "absolute" },
+	defaultVariants: {
+		shape: "dot",
+		size: "default",
+		tone: "primary",
+		position: "absolute",
+	},
 });
 
 export type DotMatrixGlowShape = NonNullable<VariantProps<typeof dotMatrixGlow>["shape"]>;
@@ -28,6 +33,6 @@ export type DotMatrixGlowPosition = NonNullable<
 /** Grid pitch and dot radius, in CSS px, for each density preset. */
 export const DOT_MATRIX_SIZE: Record<DotMatrixGlowSize, { gap: number; dot: number }> = {
 	sm: { gap: 14, dot: 1.25 },
-	md: { gap: 20, dot: 1.6 },
+	default: { gap: 20, dot: 1.6 },
 	lg: { gap: 28, dot: 2.2 },
 };

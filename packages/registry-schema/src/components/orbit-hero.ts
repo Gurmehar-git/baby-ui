@@ -11,7 +11,6 @@ export const orbitHero = defineComponent({
 		"A hero whose headline sits over two counter-rotating rings of icons, with a centre dial that swaps the set and its colour.",
 	category: "blocks",
 	status: "stable",
-	isNew: true,
 	variants: { variant: VARIANTS, size: SIZES },
 	props: [
 		{

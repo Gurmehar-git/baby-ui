@@ -11,7 +11,7 @@ const p = $derived(controlProps<ComponentProps<typeof StickyScrollCards>>(props)
 <StickyScrollCards
 	cards={STICKY_CARDS}
 	variant={p.variant ?? "polaroid"}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	tilt={Number(props.tilt ?? 1)}
 	hint={p.hint ?? "Scroll to explore"}
 	class="max-w-3xl"

@@ -23,6 +23,13 @@ const { inputGroup } = await import(`${src}/input-group/variants.ts`);
 const { combobox } = await import(`${src}/combobox/variants.ts`);
 const { toggleButton } = await import(`${src}/toggle/variants.ts`);
 const { toggleGroup } = await import(`${src}/toggle-group/variants.ts`);
+const { multiSelect } = await import(`${src}/multi-select/variants.ts`);
+const { tagInput } = await import(`${src}/tag-input/variants.ts`);
+const { dateField } = await import(`${src}/date-field/variants.ts`);
+const { numberInput } = await import(`${src}/number-input/variants.ts`);
+const { inputOtp } = await import(`${src}/input-otp/variants.ts`);
+const { tabsFrame } = await import(`${src}/tabs/variants.ts`);
+const { pagination } = await import(`${src}/pagination/variants.ts`);
 
 // DESIGN.md "Control scale": every control of one size shares height and radius.
 const LADDER = {
@@ -42,6 +49,13 @@ const CONTROLS = {
 	combobox: (size) => combobox({ size }).trigger(),
 	toggle: (size) => toggleButton({ size }),
 	"toggle-group": (size) => toggleGroup({ size }).root(),
+	"multi-select": (size) => multiSelect({ size }).root(),
+	"tag-input": (size) => tagInput({ size }).root(),
+	"date-field": (size) => dateField({ size }).group(),
+	"number-input": (size) => numberInput({ size }).group(),
+	"input-otp": (size) => inputOtp({ size }).slot(),
+	"tabs (segment)": (size) => tabsFrame({ size, variant: "segment" }).list(),
+	pagination: (size) => pagination({ size }).link(),
 };
 
 for (const [name, classes] of Object.entries(CONTROLS)) {
@@ -49,7 +63,12 @@ for (const [name, classes] of Object.entries(CONTROLS)) {
 		for (const [size, expected] of Object.entries(LADDER)) {
 			const tokens = classes(size).split(/\s+/);
 			for (const cls of expected) {
-				assert.ok(tokens.includes(cls), `${name} ${size}: missing ${cls}`);
+				const ok = cls.startsWith("h-")
+					? [cls, `min-${cls}`, cls.replace("h-", "size-")].some((c) =>
+							tokens.includes(c),
+						)
+					: tokens.includes(cls);
+				assert.ok(ok, `${name} ${size}: missing ${cls}`);
 			}
 		}
 	});

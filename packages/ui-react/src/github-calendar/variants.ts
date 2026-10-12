@@ -16,7 +16,7 @@ export const githubCalendar = tv({
 		swatch: "block bg-[var(--cell)]",
 		tip: "flex items-baseline gap-1 whitespace-nowrap",
 		tipCount: "font-semibold tabular-nums",
-		tipText: "text-muted-foreground",
+		tipText: "text-background/65",
 	},
 	variants: {
 		variant: {
@@ -33,7 +33,7 @@ export const githubCalendar = tv({
 		},
 		size: {
 			sm: { cell: "size-2.5", swatch: "size-2.5", grid: "gap-[2px]" },
-			md: { cell: "size-3", swatch: "size-3", grid: "gap-[3px]" },
+			default: { cell: "size-3", swatch: "size-3", grid: "gap-[3px]" },
 			lg: { cell: "size-4", swatch: "size-4", grid: "gap-1" },
 			// Cells share the width; below 10px they hold and the grid scrolls instead.
 			fluid: { cell: "aspect-square w-full", swatch: "size-3", grid: "w-full gap-[3px]" },
@@ -44,7 +44,12 @@ export const githubCalendar = tv({
 			success: {},
 		},
 	},
-	defaultVariants: { variant: "default", shape: "rounded", size: "md", tone: "scale" },
+	defaultVariants: {
+		variant: "default",
+		shape: "rounded",
+		size: "default",
+		tone: "scale",
+	},
 });
 
 export type GithubCalendarVariant = NonNullable<
@@ -59,7 +64,7 @@ export type GithubCalendarTone = NonNullable<VariantProps<typeof githubCalendar>
 /** Week column track per size; only `fluid` stretches. */
 export const WEEK_TRACK: Record<GithubCalendarSize, string> = {
 	sm: "auto",
-	md: "auto",
+	default: "auto",
 	lg: "auto",
 	fluid: "minmax(0.625rem, 1fr)",
 };

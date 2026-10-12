@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const popover = defineComponent({
 	slug: "popover",
-	isNew: true,
 	name: "Popover",
 	description:
 		"Anchored panel that flips and shifts to stay on screen, dismissed by Escape or an outside click.",

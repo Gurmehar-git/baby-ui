@@ -8,7 +8,6 @@ const union = (values: string[]) => values.map((v) => `"${v}"`).join(" | ");
 
 export const dotMatrixGlow = defineComponent({
 	slug: "dot-matrix-glow",
-	isNew: true,
 	name: "Dot Matrix Glow",
 	description:
 		"A hero dot grid that brightens and swells around the pointer and ripples outward on press.",
@@ -27,7 +26,7 @@ export const dotMatrixGlow = defineComponent({
 			name: "size",
 			type: union(SIZES),
 			description: "Density preset; sets `gap` and `dotSize` unless you pass them.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

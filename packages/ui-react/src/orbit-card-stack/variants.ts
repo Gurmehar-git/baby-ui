@@ -24,7 +24,7 @@ export const orbitCardStack = tv({
 				name: "text-xl",
 				description: "text-xs",
 			},
-			md: {
+			default: {
 				stage: "h-[30rem] [--orbit-card-w:17rem]",
 				name: "text-2xl",
 				description: "text-sm",
@@ -42,7 +42,7 @@ export const orbitCardStack = tv({
 			grid: {},
 		},
 	},
-	defaultVariants: { size: "md", layout: "arc" },
+	defaultVariants: { size: "default", layout: "arc" },
 });
 
 export type OrbitCardStackSize = NonNullable<VariantProps<typeof orbitCardStack>["size"]>;

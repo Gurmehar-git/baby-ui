@@ -32,7 +32,7 @@ export function MorphingModal({
 	title,
 	className,
 	spring = "gentle",
-	size = "md",
+	size = "default",
 	dismissOnBackdrop = true,
 	backdropBlur = 8,
 	open: openProp,

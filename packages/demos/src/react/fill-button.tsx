@@ -9,7 +9,7 @@ type Props = Record<string, unknown>;
 export function FillButtonDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof FillButton>>(props);
 	return (
-		<FillButton tone={p.tone ?? "soft"} size={p.size ?? "md"}>
+		<FillButton tone={p.tone ?? "soft"} size={p.size ?? "default"}>
 			Get started
 		</FillButton>
 	);

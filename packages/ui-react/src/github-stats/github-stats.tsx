@@ -126,7 +126,7 @@ export function GithubStats({
 									value={total}
 									format={(value) => formatCount(Math.round(value), locale)}
 									durationMs={900}
-									size="md"
+									size="default"
 									className={cn("font-bold text-foreground", styles.heroValue())}
 								/>
 							) : (
@@ -239,7 +239,7 @@ export function GithubStats({
 									value={data.counts[key]}
 									format={(value) => formatCount(Math.round(value), locale)}
 									durationMs={1200}
-									size="md"
+									size="default"
 									className={cn("font-bold text-foreground", styles.countValue())}
 								/>
 							) : (

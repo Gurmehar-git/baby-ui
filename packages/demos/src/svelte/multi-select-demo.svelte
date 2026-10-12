@@ -17,7 +17,7 @@ let value = $state(["ana", "dev"]);
 		options={TEAM_MEMBERS}
 		bind:value
 		maxChips={Number(props.maxChips ?? 3)}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		disabled={p.disabled ?? false}
 		labels={{ placeholder: "Add reviewers…", search: "Search people…" }}
 	/>

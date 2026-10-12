@@ -68,7 +68,7 @@ export function LoadingScreen({
 							className="w-28"
 						/>
 					) : indicator === "spinner" ? (
-						<Spinner size="md" label={label} />
+						<Spinner size="default" label={label} />
 					) : (
 						<span className={s.dots()}>
 							{[0, 1, 2].map((i) => (

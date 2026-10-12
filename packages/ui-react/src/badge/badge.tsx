@@ -12,7 +12,7 @@ export function Badge({
 	children,
 	className,
 	variant = "default",
-	size = "md",
+	size = "default",
 	dot = false,
 	...props
 }: BadgeProps) {

@@ -14,7 +14,7 @@ export function WheelCarouselDemo({ props }: { props: Props }) {
 			items={WHEEL_ITEMS}
 			photoSide={p.photoSide ?? "left"}
 			aspect={p.aspect ?? "3/4"}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			visibleItems={Number(props.visibleItems ?? 7)}
 			spacing={Number(props.spacing ?? 14)}
 			radius={Number(props.radius ?? 320)}

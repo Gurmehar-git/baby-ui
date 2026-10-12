@@ -10,9 +10,15 @@ import {
 	type InputSize,
 	NativeSelect,
 	NativeSelectOption,
+	NumberInput,
+	PaginationLink,
 	Select,
 	SelectTrigger,
 	SelectValue,
+	Tabs,
+	TabsList,
+	TabsTrigger,
+	TagInput,
 	Toggle,
 	ToggleGroup,
 	ToggleGroupItem,
@@ -34,11 +40,18 @@ let readings = $state<Record<string, Reading[]>>({});
 function measure(row: HTMLElement) {
 	const size = row.dataset.size ?? "";
 	return watchLayout(row, () => {
-		readings[size] = [...row.querySelectorAll<HTMLElement>("[data-probe]")].map((el) => ({
-			name: el.dataset.probe ?? "",
-			height: Math.round(el.getBoundingClientRect().height * 10) / 10,
-			radius: Number.parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0,
-		}));
+		readings[size] = [...row.querySelectorAll<HTMLElement>("[data-probe]")].map(
+			(probe) => {
+				// A composite names the part that carries the frame, such as the NumberInput field box.
+				const inner = probe.dataset.probeInner;
+				const el = (inner && probe.querySelector<HTMLElement>(inner)) || probe;
+				return {
+					name: probe.dataset.probe ?? "",
+					height: Math.round(el.getBoundingClientRect().height * 10) / 10,
+					radius: Number.parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0,
+				};
+			},
+		);
 	});
 }
 
@@ -93,7 +106,7 @@ const off = (r: Reading, height: number) => Math.abs(r.height - height) > 0.5;
 				<div
 					data-size={row.size}
 					{@attach measure}
-					class="relative flex w-max items-start gap-4 px-5 pt-5 pb-11"
+					class="relative flex w-max items-start gap-6 px-5 py-5"
 				>
 					<span
 						aria-hidden="true"
@@ -107,7 +120,7 @@ const off = (r: Reading, height: number) => Math.abs(r.height - height) > 0.5;
 
 					{#snippet probe(name: string, reading: Reading | undefined)}
 						<span
-							class="absolute top-full mt-2 whitespace-nowrap font-mono text-xs text-muted-foreground tabular-nums data-[off=true]:text-destructive-strong"
+							class="whitespace-nowrap font-mono text-xs text-muted-foreground tabular-nums data-[off=true]:text-destructive-strong"
 							data-off={reading ? off(reading, row.height) : false}
 						>
 							{name}
@@ -115,15 +128,15 @@ const off = (r: Reading, height: number) => Math.abs(r.height - height) > 0.5;
 						</span>
 					{/snippet}
 
-					<div class="relative">
+					<div class="flex flex-col items-start gap-2">
 						<Button size={row.size} data-probe="Button">Button</Button>
 						{@render probe("Button", r("Button"))}
 					</div>
-					<div class="relative w-40">
+					<div class="flex w-40 flex-col gap-2">
 						<Input size={row.size} placeholder="Input" aria-label="Input" data-probe="Input" />
 						{@render probe("Input", r("Input"))}
 					</div>
-					<div class="relative w-40">
+					<div class="flex w-40 flex-col gap-2">
 						<Select type="single" items={[{ value: "a", label: "Option" }]}>
 							<SelectTrigger size={row.size} aria-label="Select" data-probe="Select">
 								<SelectValue placeholder="Select" />
@@ -131,13 +144,13 @@ const off = (r: Reading, height: number) => Math.abs(r.height - height) > 0.5;
 						</Select>
 						{@render probe("Select", r("Select"))}
 					</div>
-					<div class="relative w-40">
+					<div class="flex w-40 flex-col gap-2">
 						<NativeSelect size={row.size} aria-label="Native select" class="w-full" data-probe="Native">
 							<NativeSelectOption value="a">Native</NativeSelectOption>
 						</NativeSelect>
 						{@render probe("Native", r("Native"))}
 					</div>
-					<div class="relative w-40">
+					<div class="flex w-40 flex-col gap-2">
 						<Combobox>
 							<ComboboxTrigger size={row.size} data-probe="Combobox">
 								Combobox
@@ -148,14 +161,14 @@ const off = (r: Reading, height: number) => Math.abs(r.height - height) > 0.5;
 						</Combobox>
 						{@render probe("Combobox", r("Combobox"))}
 					</div>
-					<div class="relative w-44">
+					<div class="flex w-44 flex-col gap-2">
 						<InputGroup size={row.size} data-probe="Group">
 							<InputGroupAddon>https://</InputGroupAddon>
 							<InputGroupInput placeholder="acme" aria-label="Domain" />
 						</InputGroup>
 						{@render probe("Group", r("Group"))}
 					</div>
-					<div class="relative">
+					<div class="flex flex-col items-start gap-2">
 						<Toggle size={row.size} aria-label="Bold" data-probe="Toggle">
 							<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
 								<path d="M5 3.5h4a2.25 2.25 0 0 1 0 4.5H5zM5 8h4.5a2.25 2.25 0 0 1 0 4.5H5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
@@ -163,12 +176,41 @@ const off = (r: Reading, height: number) => Math.abs(r.height - height) > 0.5;
 						</Toggle>
 						{@render probe("Toggle", r("Toggle"))}
 					</div>
-					<div class="relative">
+					<div class="flex flex-col items-start gap-2">
 						<ToggleGroup type="single" value="day" size={row.size} label="Range" data-probe="Group·toggle">
 							<ToggleGroupItem value="day">Day</ToggleGroupItem>
 							<ToggleGroupItem value="week">Week</ToggleGroupItem>
 						</ToggleGroup>
 						{@render probe("ToggleGroup", r("Group·toggle"))}
+					</div>
+					<div class="flex flex-col items-start gap-2">
+						<span data-probe="Tabs" data-probe-inner="[data-slot=tabs-list]">
+							<Tabs value="a" variant="segment" size={row.size}>
+								<TabsList>
+									<TabsTrigger value="a">Daily</TabsTrigger>
+									<TabsTrigger value="b">Weekly</TabsTrigger>
+								</TabsList>
+							</Tabs>
+						</span>
+						{@render probe("Tabs", r("Tabs"))}
+					</div>
+					<div class="flex w-40 flex-col gap-2">
+						<span data-probe="Number" data-probe-inner="[data-slot=number-input-group]">
+							<NumberInput size={row.size} value={2} min={0} max={9} label="Seats" />
+						</span>
+						{@render probe("Number", r("Number"))}
+					</div>
+					<div class="flex w-60 flex-col gap-2">
+						<span data-probe="Tags" data-probe-inner="[data-slot=tag-input]">
+							<TagInput size={row.size} tags={["design"]} placeholder="Add" label="Tags" />
+						</span>
+						{@render probe("Tags", r("Tags"))}
+					</div>
+					<div class="flex flex-col items-start gap-2">
+						<span data-probe="Page" data-probe-inner="[data-slot=pagination-link]">
+							<PaginationLink size={row.size} active>12</PaginationLink>
+						</span>
+						{@render probe("Page", r("Page"))}
 					</div>
 				</div>
 			</div>

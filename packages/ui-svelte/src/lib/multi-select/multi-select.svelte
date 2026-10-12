@@ -11,7 +11,9 @@ import { cn } from "../lib/cn";
 import Popover from "../popover/popover.svelte";
 import PopoverContent from "../popover/popover-content.svelte";
 import PopoverTrigger from "../popover/popover-trigger.svelte";
+import RollingDigits from "../rolling-digits/rolling-digits.svelte";
 import {
+	MULTI_SELECT_CHIP,
 	MULTI_SELECT_LABELS,
 	type MultiSelectLabels,
 	type MultiSelectOption,
@@ -25,7 +27,7 @@ let {
 	value = $bindable([]),
 	onValueChange,
 	maxChips = 3,
-	size = "md",
+	size = "default",
 	disabled = false,
 	invalid = false,
 	id,
@@ -62,7 +64,7 @@ const allSelected = $derived.by(() => {
 	const enabled = options.filter((o) => !o.disabled);
 	return enabled.length > 0 && enabled.every((o) => value.includes(o.value));
 });
-const chipSize = $derived(size === "sm" ? "sm" : "md");
+const chipSize = $derived(MULTI_SELECT_CHIP[size]);
 
 function set(next: string[]) {
 	value = next;
@@ -106,7 +108,7 @@ function removeLast() {
 			</Badge>
 		{/each}
 		{#if hidden > 0}
-			<Badge size={chipSize} variant="outline">{labels.more.replace("{count}", String(hidden))}</Badge>
+			<Badge size={chipSize} variant="outline" class="pop-in">{labels.more.split("{count}")[0]}<RollingDigits value={hidden} startOnView={false} />{labels.more.split("{count}")[1]}</Badge>
 		{/if}
 		<PopoverTrigger
 			{id}

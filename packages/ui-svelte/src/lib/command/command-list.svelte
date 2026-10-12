@@ -40,5 +40,6 @@ $effect(() => {
 			style={pillCss(box)}
 		></span>
 	{/if}
-	{@render children?.()}
+	<!-- The viewport is what bits-ui measures into --bits-command-list-height. -->
+	<CommandPrimitive.Viewport>{@render children?.()}</CommandPrimitive.Viewport>
 </CommandPrimitive.List>

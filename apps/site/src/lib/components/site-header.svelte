@@ -1,5 +1,6 @@
 <script lang="ts">
 import {
+	IconAdjustmentsHorizontal,
 	IconBackground,
 	IconBook,
 	IconBrandGithub,
@@ -70,6 +71,7 @@ const ICONS: Record<NavIcon, typeof IconBook> = {
 	install: IconTerminal2,
 	theming: IconPalette,
 	design: IconLayers,
+	create: IconAdjustmentsHorizontal,
 	llms: IconFileText,
 };
 

@@ -88,7 +88,7 @@ $effect(() => {
 	<div class="w-full max-w-96">
 		<StreamingText
 			{layout}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			caret={p.caret ?? true}
 			actions={p.actions ?? true}
 			{markdown}

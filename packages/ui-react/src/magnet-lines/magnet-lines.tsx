@@ -21,7 +21,7 @@ export interface MagnetLinesProps {
 export function MagnetLines({
 	rows = 9,
 	columns = 9,
-	size = "md",
+	size = "default",
 	tone = "muted",
 	baseAngle = 0,
 	className,

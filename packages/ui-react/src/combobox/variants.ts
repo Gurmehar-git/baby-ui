@@ -4,11 +4,8 @@ import { controlSize, fieldFrame } from "../lib/control";
 export const combobox = tv({
 	slots: {
 		trigger: [
-			fieldFrame(),
+			fieldFrame({ kind: "trigger" }),
 			"inline-flex w-full items-center justify-between font-normal",
-			// Base UI marks the open trigger data-popup-open, bits-ui data-state=open.
-			"data-[popup-open]:border-ring data-[popup-open]:ring-3 data-[popup-open]:ring-ring/20",
-			"data-[state=open]:border-ring data-[state=open]:ring-3 data-[state=open]:ring-ring/20",
 		],
 		// As wide as its trigger: Base UI sets --anchor-width, bits-ui --bits-popover-anchor-width.
 		content:

@@ -124,7 +124,7 @@ export function AgentScreen({
 	agentName = "Agent",
 	streamSrc,
 	loading = false,
-	size = "md",
+	size = "default",
 	open,
 	defaultOpen = false,
 	onOpenChange,

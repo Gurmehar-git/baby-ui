@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const wheelCarousel = defineComponent({
 	slug: "wheel-carousel",
-	isNew: true,
 	name: "Wheel Carousel",
 	description:
 		"Labels on a turning wheel beside a crossfading photo; scroll, drag or click to spin it.",
@@ -11,7 +10,7 @@ export const wheelCarousel = defineComponent({
 	variants: {
 		photoSide: ["left", "right"],
 		aspect: ["3/4", "1/1", "4/3", "3/2"],
-		size: ["sm", "md", "lg"],
+		size: ["sm", "default", "lg"],
 	},
 	props: [
 		{
@@ -44,10 +43,10 @@ export const wheelCarousel = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description: "Label size and minimum height.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 		{
 			name: "visibleItems",

@@ -9,7 +9,6 @@ export const ogPromptPhoto = defineComponent({
 		"A 1200x630 card: a headline and an AI prompt box with option chips over a full-bleed photo.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

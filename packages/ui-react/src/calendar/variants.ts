@@ -32,7 +32,7 @@ export const calendar = tv({
 		choice: [
 			"calendar-choice-in flex h-7 min-w-12 select-none items-center justify-center rounded-md px-2 text-sm text-foreground tabular-nums outline-none",
 			"transition-[background-color,color,scale] [transition-duration:var(--duration-instant),var(--duration-instant),var(--duration-slow)] ease-[var(--ease-ui-out)] hover:bg-accent active:scale-[var(--press-scale-sm)]",
-			"focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-40 motion-reduce:active:scale-100",
+			"focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 motion-reduce:active:scale-100",
 			"data-[current]:font-medium data-[current]:text-primary data-[selected]:bg-primary data-[selected]:font-medium data-[selected]:text-primary-foreground data-[selected]:hover:bg-(--primary-hover)",
 		],
 		grid: "calendar-weeks-in flex w-full border-collapse flex-col",
@@ -75,11 +75,11 @@ export const calendar = tv({
 	variants: {
 		size: {
 			sm: { root: "[--cell-size:--spacing(8)]" },
-			md: { root: "[--cell-size:--spacing(9)]" },
+			default: { root: "[--cell-size:--spacing(9)]" },
 			lg: { root: "[--cell-size:--spacing(10)]" },
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type CalendarSize = NonNullable<VariantProps<typeof calendar>["size"]>;

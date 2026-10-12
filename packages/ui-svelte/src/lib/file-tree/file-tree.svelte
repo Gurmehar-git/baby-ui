@@ -32,7 +32,7 @@ let {
 	class: classProp,
 	indent = 14,
 	showGuides = true,
-	size = "md",
+	size = "default",
 }: Props = $props();
 
 // svelte-ignore state_referenced_locally -- intentional one-time seed, matching React's useState(initialValue)

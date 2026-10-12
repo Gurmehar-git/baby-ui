@@ -34,3 +34,6 @@ scrolls, and the sheet drops from the top instead of sliding in from the side.
 keyboard, without the bar, brand or mobile sheet. Drop it into a header you already have
 and pass the same `groups` and `active`. The panel centres under the open trigger, clamped
 to the row's start and the window's edge.
+
+`variant="capsule"` gathers the centre triggers and links in a quiet pill track; a highlight
+slides to whichever link the pointer is over and rests on the current one (`active`).

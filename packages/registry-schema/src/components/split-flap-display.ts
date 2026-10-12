@@ -48,7 +48,7 @@ export const splitFlapDisplay = defineComponent({
 			name: "size",
 			type: union(SIZES),
 			description: "Largest glyph size; the board shrinks below it to fit its container.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

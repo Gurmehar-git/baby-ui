@@ -83,7 +83,7 @@ export function MarkdownDemo({ props }: { props: Props }) {
 				content={SAMPLE_CHUNKS.slice(0, count).join("")}
 				streaming={count < SAMPLE_CHUNKS.length}
 				variant={p.variant ?? "default"}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				animate={p.animate ?? "fade"}
 				caret={p.caret ?? true}
 				className="w-full"
@@ -131,7 +131,7 @@ export function TagInputDemo({ props }: { props: Props }) {
 				max={p.max ?? 6}
 				disabled={p.disabled ?? false}
 				invalid={p.invalid ?? false}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				label="Tags"
 			/>
 		</div>
@@ -285,7 +285,7 @@ export function ComposerDemo({ props }: { props: Props }) {
 					setLoading(true);
 				}}
 				placeholder={p.placeholder || "Send a message…"}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				loading={loading}
 				onStop={() => setLoading(false)}
 				disabled={p.disabled ?? false}

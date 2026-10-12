@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const combobox = defineComponent({
 	slug: "combobox",
-	isNew: true,
 	name: "Combobox",
 	description:
 		"A Popover whose content is a Command: searchable selection, shadcn/ui's own recipe.",
@@ -28,7 +27,8 @@ export const combobox = defineComponent({
 		springs: [],
 		reducedMotion: "The list appears without the scale, and rows no longer stagger in.",
 		behaviour: [
-			"Positioning, dismiss and layout are Popover's; filtering, the active-row marker and keyboard nav are Command's. Combobox itself adds no motion of its own.",
+			"The list eases to its new height as filtering adds or removes rows.",
+			"Positioning, dismiss and layout are Popover's; filtering, the active-row marker and keyboard nav are Command's.",
 		],
 	},
 	a11y: {

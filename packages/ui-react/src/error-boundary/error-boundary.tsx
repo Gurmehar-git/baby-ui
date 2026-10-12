@@ -41,7 +41,7 @@ export function ErrorBoundaryFallback({
 	details = true,
 	variant = "card",
 	layout = "vertical",
-	size = "md",
+	size = "default",
 	className,
 }: ErrorBoundaryFallbackProps) {
 	const labels = { ...ERROR_BOUNDARY_LABELS, ...labelsProp };

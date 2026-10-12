@@ -10,7 +10,7 @@ import {
 	rangeRows,
 	rangeTrend,
 } from "./core";
-import NpmSparkline from "./sparkline.svelte";
+import NpmSparkline from "./npm-sparkline.svelte";
 import TrendBadge from "./trend-badge.svelte";
 import {
 	type NpmStatsRange,

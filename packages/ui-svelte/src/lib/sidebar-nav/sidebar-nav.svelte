@@ -25,7 +25,7 @@ let {
 	recents,
 	workspaceActions = [],
 	onSignOut,
-	size = "md",
+	size = "default",
 	collapsed = $bindable(false),
 	onCollapsedChange,
 	activeNav = $bindable(),

@@ -12,7 +12,7 @@ type StyleProps = {
 };
 
 const StyleCtx = createContext<StyleProps>({
-	size: "md",
+	size: "default",
 	invalid: false,
 	invalidMotion: "shake",
 });
@@ -29,7 +29,7 @@ type OTPProps =
 export function InputOTP({
 	className,
 	containerClassName,
-	size = "md",
+	size = "default",
 	invalid = false,
 	invalidMotion = "shake",
 	...props

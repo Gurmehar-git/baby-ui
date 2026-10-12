@@ -16,5 +16,5 @@ let range = $state<ComponentProps<typeof DateRangePicker>["value"]>();
 	confirm={p.confirm ?? false}
 	locale={p.locale || undefined}
 	invalid={p.invalid ?? false}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 />

@@ -16,7 +16,7 @@ const p = $derived(controlProps<ComponentProps<typeof InputOTP>>(props));
 const SAMPLE_CODE = "418206";
 
 let value = $state("");
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 const status = $derived(
 	value.length < 6 ? "idle" : value === SAMPLE_CODE ? "verified" : "wrong",
 );

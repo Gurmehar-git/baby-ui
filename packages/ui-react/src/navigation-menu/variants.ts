@@ -4,7 +4,7 @@ import { popover } from "../popover/variants";
 /** Trigger and top-level link look; shadcn's name, so shadcn blocks can import it. */
 export const navigationMenuTriggerStyle = tv({
 	base: [
-		"group/navigation-menu-trigger inline-flex w-max items-center justify-center rounded-lg font-medium outline-none",
+		"group/navigation-menu-trigger inline-flex w-max items-center justify-center font-medium outline-none",
 		// bg-muted matches card and popover surfaces, so the fill is a foreground tint like ghost buttons.
 		"transition-[color,background-color,scale] [transition-duration:var(--duration-instant),var(--duration-instant),var(--duration-slow)] ease-[var(--ease-out-quart)]",
 		"hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring active:scale-[var(--press-scale-sm)]",
@@ -13,11 +13,11 @@ export const navigationMenuTriggerStyle = tv({
 	],
 	variants: {
 		size: {
-			sm: "h-8 px-2 text-xs",
-			md: "h-9 px-2.5 text-sm",
+			sm: "h-8 rounded-md px-2 text-xs",
+			default: "h-9 rounded-lg px-2.5 text-sm",
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type NavigationMenuSize = NonNullable<

@@ -12,11 +12,11 @@ export const streamingText = tv({
 		},
 		size: {
 			sm: { text: "text-xs leading-normal" },
-			md: { text: "text-sm leading-relaxed" },
+			default: { text: "text-sm leading-relaxed" },
 			lg: { text: "text-base leading-relaxed" },
 		},
 	},
-	defaultVariants: { layout: "inline", size: "md" },
+	defaultVariants: { layout: "inline", size: "default" },
 });
 
 export type StreamingTextSize = NonNullable<VariantProps<typeof streamingText>["size"]>;

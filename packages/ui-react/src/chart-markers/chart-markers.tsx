@@ -357,7 +357,7 @@ export interface ChartMarkersProps {
 
 export function ChartMarkers({
 	items,
-	size = "md",
+	size = "default",
 	appearance = "solid",
 	showLines = true,
 	groupLabel,

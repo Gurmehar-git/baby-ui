@@ -4,7 +4,6 @@ const ROWS = ["3", "5", "7"];
 
 export const wheelPicker = defineComponent({
 	slug: "wheel-picker",
-	isNew: true,
 	name: "Wheel Picker",
 	description:
 		"iOS-style barrel columns that flick, snap and loop, for times, dates and lists.",

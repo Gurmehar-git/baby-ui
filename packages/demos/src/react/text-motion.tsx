@@ -59,9 +59,10 @@ export function RevealTextDemo({ props }: { props: Props }) {
 	return (
 		<div className="text-2xl">
 			<RevealText
-				key={`${split}-${trigger}-${props.once}-${props.staggerMs}-${props.delayMs}-${props.blur}-${props.direction}-${props.staggerFrom}-${props.mask}`}
+				key={`${p.variant}-${split}-${trigger}-${props.once}-${props.staggerMs}-${props.delayMs}-${props.blur}-${props.direction}-${props.staggerFrom}-${props.mask}`}
 				as="h2"
 				text="Design meets motion, one word at a time"
+				variant={p.variant}
 				split={split}
 				trigger={trigger}
 				once={Boolean(props.once ?? true)}
@@ -86,6 +87,8 @@ export function ShimmerTextDemo({ props }: { props: Props }) {
 				text="Agent is thinking ..."
 				durationMs={Number(props.durationMs ?? 2000)}
 				spread={Number(props.spread ?? 2)}
+				active={p.active ?? true}
+				variant={p.variant}
 				size={p.size ?? "inherit"}
 				className="font-light tracking-tight"
 			/>

@@ -8,7 +8,7 @@ export const progress = defineComponent({
 	category: "base",
 	status: "stable",
 	variants: {
-		size: ["sm", "md", "lg", "xl"],
+		size: ["sm", "default", "lg", "xl"],
 		tone: ["default", "info", "success", "destructive"],
 		variant: ["linear", "circular"],
 	},
@@ -30,10 +30,10 @@ export const progress = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"sm" | "default" | "lg" | "xl"',
 			description: "Track thickness.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "variant",

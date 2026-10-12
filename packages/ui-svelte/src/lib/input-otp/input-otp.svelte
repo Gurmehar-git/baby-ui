@@ -7,7 +7,7 @@ import { type InputOtpInvalidMotion, type InputOtpSize, inputOtp } from "./varia
 let {
 	ref = $bindable(null),
 	value = $bindable(""),
-	size = "md",
+	size = "default",
 	invalid = false,
 	invalidMotion = "shake",
 	class: classProp,

@@ -28,7 +28,7 @@ export function DateFieldDemo({ props }: { props: Props }) {
 				max={new Date()}
 				locale={p.locale || undefined}
 				invalid={p.invalid ?? false}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				aria-label="Date of birth"
 				aria-describedby="demo-birthday-hint"
 			/>
@@ -60,7 +60,7 @@ export function DatePickerDemo({ props }: { props: Props }) {
 				locale={p.locale || undefined}
 				captionLayout={p.captionLayout ?? "dropdown"}
 				invalid={p.invalid ?? false}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				aria-describedby="demo-check-in-hint"
 			/>
 			<FieldDescription id="demo-check-in-hint">
@@ -82,7 +82,7 @@ export function DateRangePickerDemo({ props }: { props: Props }) {
 			confirm={p.confirm ?? false}
 			locale={p.locale || undefined}
 			invalid={p.invalid ?? false}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 		/>
 	);
 }
@@ -105,7 +105,7 @@ export function TimePickerDemo({ props }: { props: Props }) {
 				clearable={p.clearable ?? false}
 				showNow={p.showNow ?? false}
 				invalid={p.invalid ?? false}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 			/>
 			<FieldDescription>
 				Type it, or use the arrow keys. Clear and Now sit at the end.

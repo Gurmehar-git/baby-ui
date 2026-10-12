@@ -21,7 +21,7 @@ export interface SwitchProps {
 export function Switch({
 	checked,
 	disabled = false,
-	size = "md",
+	size = "default",
 	label,
 	"aria-label": ariaLabel,
 	className,

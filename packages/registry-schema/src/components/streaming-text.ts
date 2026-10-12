@@ -1,7 +1,7 @@
 import { defineComponent } from "../index.ts";
 
 const LAYOUTS = ["inline", "card"];
-const SIZES = ["sm", "md", "lg"];
+const SIZES = ["sm", "default", "lg"];
 
 export const streamingText = defineComponent({
 	slug: "streaming-text",
@@ -10,7 +10,6 @@ export const streamingText = defineComponent({
 		"Word-by-word answer reveal, plain or with inline citation chips, then actions, sources and follow-ups once it settles.",
 	category: "agents",
 	status: "stable",
-	isUpdated: true,
 	variants: { layout: LAYOUTS, size: SIZES },
 	props: [
 		{
@@ -25,7 +24,7 @@ export const streamingText = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Type scale of the answer.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

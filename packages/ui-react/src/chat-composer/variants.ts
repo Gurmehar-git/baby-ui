@@ -28,7 +28,7 @@ export const chatComposer = tv({
 		},
 		size: {
 			sm: { root: "h-72", user: "text-sm", body: "text-sm" },
-			md: { root: "h-96", user: "text-sm", body: "text-sm" },
+			default: { root: "h-96", user: "text-sm", body: "text-sm" },
 		},
 		resolving: {
 			true: { assistant: "opacity-55 blur-[0.5px]" },

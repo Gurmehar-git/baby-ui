@@ -22,3 +22,8 @@ lingers as dead weight between cycles.
 An `IntersectionObserver` stops the interval entirely once the carousel scrolls out of
 view, and a `visibilitychange` listener does the same when the tab itself is hidden. Idle
 columns spend zero timers running for content nobody is looking at.
+
+`variant="marquee"` drifts the logos past in one strip instead, built on the draggable
+marquee: it holds under the pointer, can be thrown, and fades at both edges. A Pause button
+sits under it by default (`pauseControl`); `paused` with `onPausedChange` controls it, and
+works for the columns too. `tone="mono"` greys the logos until hovered.

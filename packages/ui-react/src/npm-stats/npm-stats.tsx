@@ -276,7 +276,7 @@ function Figure({
 			value={value}
 			format={format}
 			durationMs={900}
-			size="md"
+			size="default"
 			className={cn("font-bold text-foreground", className)}
 		/>
 	) : (

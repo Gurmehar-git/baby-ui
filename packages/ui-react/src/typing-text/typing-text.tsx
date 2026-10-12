@@ -125,7 +125,7 @@ export function TypingText({
 	hideCursorOnComplete = false,
 	stumbles = false,
 	onComplete,
-	size = "md",
+	size = "default",
 	className,
 }: TypingTextProps) {
 	if (stumbles && !smooth)
@@ -169,7 +169,7 @@ function PlainTyping({
 	grow = false,
 	hideCursorOnComplete = false,
 	onComplete,
-	size = "md",
+	size = "default",
 	className,
 }: Omit<TypingTextProps, "stumbles">) {
 	const words = useMemo(() => text.split(/\s+/), [text]);

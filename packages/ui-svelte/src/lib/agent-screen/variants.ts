@@ -5,11 +5,11 @@ export const agentScreen = tv({
 	variants: {
 		size: {
 			sm: { root: "max-w-[260px]" },
-			md: { root: "max-w-[340px]" },
+			default: { root: "max-w-[340px]" },
 			lg: { root: "max-w-[420px]" },
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type AgentScreenSize = NonNullable<VariantProps<typeof agentScreen>["size"]>;

@@ -9,7 +9,7 @@ export const scatterPoint = tv({
 	variants: {
 		size: {
 			sm: { mark: "[stroke-width:1]" },
-			md: { mark: "[stroke-width:1.5]" },
+			default: { mark: "[stroke-width:1.5]" },
 			lg: { mark: "[stroke-width:2]" },
 		},
 		shape: {
@@ -23,14 +23,14 @@ export const scatterPoint = tv({
 			false: {},
 		},
 	},
-	defaultVariants: { size: "md", shape: "circle", dimmed: false },
+	defaultVariants: { size: "default", shape: "circle", dimmed: false },
 });
 
 export type ScatterSize = NonNullable<VariantProps<typeof scatterPoint>["size"]>;
 export type ScatterShape = NonNullable<VariantProps<typeof scatterPoint>["shape"]>;
 
 /** Marker radius in pixels per size. */
-export const SCATTER_RADIUS: Record<ScatterSize, number> = { sm: 3, md: 4.5, lg: 6 };
+export const SCATTER_RADIUS: Record<ScatterSize, number> = { sm: 3, default: 4.5, lg: 6 };
 
 /** Series take shapes in registration order, so a series keeps its shape when others hide. */
 export const SCATTER_SHAPES: ScatterShape[] = ["circle", "square", "diamond", "triangle"];

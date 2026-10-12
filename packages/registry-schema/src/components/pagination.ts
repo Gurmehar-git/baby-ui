@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const pagination = defineComponent({
 	slug: "pagination",
-	isNew: true,
 	name: "Pagination",
 	description:
 		"Page links in a sliding window, with the first and last always reachable.",
@@ -32,11 +31,11 @@ export const pagination = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description:
 				"PaginationLink, PaginationPrevious and PaginationNext: button size, as in shadcn/ui.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 	],
 	motion: {

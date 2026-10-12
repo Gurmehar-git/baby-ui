@@ -134,7 +134,7 @@ function RollSwap({
 	disabled = false,
 	staggerMs = 32,
 	durationMs = 450,
-	size = "md",
+	size = "default",
 	motion = "slide",
 	className,
 }: RollTextProps & { to: string }) {
@@ -226,7 +226,7 @@ function RollLabel({
 	stagger = "none",
 	staggerMs = 32,
 	durationMs = 450,
-	size = "md",
+	size = "default",
 	motion = "slide",
 	className,
 }: RollLabelProps) {

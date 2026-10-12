@@ -29,7 +29,7 @@ let {
 	label,
 	trend,
 	chart = "area",
-	size = "md",
+	size = "default",
 	color = "var(--chart-1)",
 	periods,
 	period = $bindable(periods?.[0]?.value),

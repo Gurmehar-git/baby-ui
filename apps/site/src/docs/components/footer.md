@@ -30,3 +30,7 @@ become text links, column titles turn into small mono labels, and `copyright`, `
 
 A link's `description` adds a muted second line, which suits a products column (name,
 then what it is).
+
+`layout="minimal"` folds everything into one quiet row: brand, every link and the copyright.
+`status` adds a system status link with a dot that pulses in its tone (`success`, `warning`
+or `destructive`). External links show an outward arrow in every layout.

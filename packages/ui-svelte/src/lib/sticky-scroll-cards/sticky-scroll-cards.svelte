@@ -13,7 +13,7 @@ let {
 	cards,
 	hint = "Scroll to explore",
 	tilt = 1,
-	size = "md",
+	size = "default",
 	variant,
 	label = "Photo stack",
 	class: className,

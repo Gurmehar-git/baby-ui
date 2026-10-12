@@ -29,7 +29,7 @@ const currency = new Intl.NumberFormat("en-US", {
 		{period}
 		onPeriodChange={(v) => (period = v)}
 		chart={p.chart ?? "area"}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		formatValue={currency}
 	/>
 </div>

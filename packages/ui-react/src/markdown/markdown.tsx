@@ -22,7 +22,7 @@ export interface MarkdownProps {
 export function Markdown({
 	content,
 	variant = "default",
-	size = "md",
+	size = "default",
 	streaming,
 	animate = "fade",
 	caret = true,

@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const docsNav = defineComponent({
 	slug: "docs-nav",
-	isNew: true,
 	name: "Docs Nav",
 	description:
 		"Documentation sidebar: collapsible sections, a sliding hover pill and a tick or thread curve per link.",

@@ -9,7 +9,12 @@ import {
 
 // Hover and focus can't be forced from markup, so the row says what each one does instead.
 const STATES = [
-	{ label: "Rest", note: "border-input hairline", invalid: false, disabled: false },
+	{
+		label: "Rest",
+		note: "border-input on the field fill",
+		invalid: false,
+		disabled: false,
+	},
 	{
 		label: "Invalid",
 		note: "border-destructive, halo on focus",
@@ -40,7 +45,7 @@ const STATES = [
 		{/each}
 	</div>
 	<p class="border-border border-t bg-card px-4 py-2.5 text-muted-foreground text-xs">
-		Hover lifts the edge to border-strong. Focus or open draws the ring border with a soft halo;
+		Hover lifts the edge toward muted-foreground. Focus or open draws the ring border with a soft halo;
 		pressables add an offset ring. Tab through to see it.
 	</p>
 </div>

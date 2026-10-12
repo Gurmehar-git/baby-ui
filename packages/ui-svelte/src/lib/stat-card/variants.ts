@@ -8,6 +8,7 @@ export const statCard = tv({
 		body: "flex flex-col gap-3 px-5 pb-0",
 		headline: "flex flex-col gap-1 tabular-nums",
 		label: "text-muted-foreground text-xs",
+		description: "text-muted-foreground text-sm leading-relaxed",
 		chart: "-mx-4 relative",
 		message: "flex flex-col items-start gap-2 pt-1 pb-4 text-muted-foreground text-sm",
 		srOnly: "sr-only",
@@ -15,13 +16,14 @@ export const statCard = tv({
 	variants: {
 		size: {
 			sm: { chart: "h-24" },
-			md: { chart: "h-48" },
+			default: { chart: "h-48" },
 			lg: { chart: "h-80" },
 		},
-		/** A bare line needs headroom so its stroke is not clipped at the card edge. */
+		/** A bare line needs headroom so its stroke is not clipped; `none` is a figure-only card. */
 		chart: {
 			area: { chart: "pt-0" },
 			line: { chart: "pt-2" },
+			none: { body: "pb-5" },
 		},
 		/** Empty and error replace the chart with a message; loading skeletons the figures. */
 		status: {
@@ -36,7 +38,7 @@ export const statCard = tv({
 			down: {},
 		},
 	},
-	defaultVariants: { size: "md", chart: "area", status: "ready", positive: "up" },
+	defaultVariants: { size: "default", chart: "area", status: "ready", positive: "up" },
 });
 
 export type StatCardSize = NonNullable<VariantProps<typeof statCard>["size"]>;

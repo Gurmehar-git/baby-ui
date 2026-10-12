@@ -6,7 +6,8 @@ category: base
 tags: [avatar, profile, user]
 ---
 
-Three parts, shadcn's: `Avatar`, `AvatarImage`, `AvatarFallback`. The fallback is your
+shadcn's parts: `Avatar`, `AvatarImage`, `AvatarFallback`, plus `AvatarBadge`, `AvatarGroup` and
+`AvatarGroupCount`. The fallback is your
 content, not a string we derive, because initials are not the only sensible fallback.
 
 Put the fallback first in the markup. It renders immediately and the image fades in over
@@ -21,3 +22,8 @@ initials, so the two cannot disagree.
 
 Initials are the first letter of the first and last word, uppercased. One-word names get
 a single letter rather than two letters from the same word.
+
+## Groups
+
+`AvatarGroup` overlaps its members on a background ring. A member lifts on hover and pops in
+when it joins; end the row with `AvatarGroupCount` for the people not shown.

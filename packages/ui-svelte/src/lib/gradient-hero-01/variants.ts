@@ -17,6 +17,11 @@ export const gradientHero01 = tv({
 			"mt-6 max-w-2xl text-pretty text-base text-muted-foreground leading-7 @3xl:text-lg",
 		actions: "mt-10 flex flex-col items-center gap-3 @xl:flex-row",
 		action: "min-w-36",
+		copy: "flex flex-col items-center",
+		install:
+			"mt-8 inline-flex h-10 items-center gap-2 rounded-full border border-border bg-background/60 pr-1 pl-4 font-mono text-muted-foreground text-sm backdrop-blur-md",
+		meta: "mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-muted-foreground text-xs [&>li+li]:before:mr-3 [&>li+li]:before:content-['·']",
+		media: "w-full",
 	},
 	variants: {
 		tone: {
@@ -34,8 +39,20 @@ export const gradientHero01 = tv({
 			screen: { inner: "min-h-svh py-24" },
 			section: { inner: "py-28 @3xl:py-36" },
 		},
+		// Set from `media`: the copy sits beside the visual instead of above nothing.
+		split: {
+			true: {
+				inner:
+					"items-stretch @4xl:grid @4xl:text-left @4xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] @4xl:items-center @4xl:gap-12",
+				copy: "items-center @4xl:items-start",
+				actions: "@xl:justify-start",
+				meta: "@4xl:justify-start",
+				media: "mt-12 @4xl:mt-0",
+			},
+			false: {},
+		},
 	},
-	defaultVariants: { tone: "chart", size: "screen" },
+	defaultVariants: { tone: "chart", size: "screen", split: false },
 });
 
 export type GradientHero01Tone = NonNullable<VariantProps<typeof gradientHero01>["tone"]>;

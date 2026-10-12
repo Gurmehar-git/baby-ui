@@ -10,11 +10,11 @@ export const maskText = tv({
 	variants: {
 		size: {
 			sm: { base: "text-2xl", reveal: "text-2xl" },
-			md: { base: "text-4xl", reveal: "text-4xl" },
+			default: { base: "text-4xl", reveal: "text-4xl" },
 			lg: { base: "text-6xl", reveal: "text-6xl" },
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type MaskTextSize = NonNullable<VariantProps<typeof maskText>["size"]>;

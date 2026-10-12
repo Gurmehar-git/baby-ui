@@ -19,7 +19,7 @@ let {
 	endLabel,
 	label = "Scroll to flip the cards",
 	tone = "card",
-	size = "md",
+	size = "default",
 	class: classProp,
 }: {
 	/** One image, split into three panels that flip over to reveal `cards`. */

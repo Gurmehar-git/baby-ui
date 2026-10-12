@@ -4,7 +4,7 @@ import { type GlitchTextBlendMode, type GlitchTextSize, glitchText } from "./var
 
 let {
 	text,
-	size = "md",
+	size = "default",
 	intensity,
 	durationSeconds,
 	baseColor,

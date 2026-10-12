@@ -16,10 +16,10 @@ export const checkbox = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"sm" | "default" | "lg" | "xl"',
 			description: "Control size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "description",
@@ -53,6 +53,7 @@ export const checkbox = defineComponent({
 		springs: [],
 		reducedMotion: "The tick appears without drawing; the box still changes colour.",
 		behaviour: [
+			"Indeterminate morphs the tick into the dash along the same three points, and back.",
 			"The tick draws itself over 200ms using stroke-dashoffset rather than fading in.",
 			"The box fills before the tick draws, so the colour change reads as the cause.",
 			"Indeterminate shows a dash and takes precedence over checked, matching the native control.",

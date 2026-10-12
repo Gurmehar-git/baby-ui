@@ -15,11 +15,11 @@ export const ditheredLogo = tv({
 		},
 		size: {
 			sm: { root: "h-40" },
-			md: { root: "h-64" },
+			default: { root: "h-64" },
 			lg: { root: "h-96" },
 		},
 	},
-	defaultVariants: { variant: "solid", tone: "foreground", size: "md" },
+	defaultVariants: { variant: "solid", tone: "foreground", size: "default" },
 });
 
 export type DitheredLogoVariant = NonNullable<

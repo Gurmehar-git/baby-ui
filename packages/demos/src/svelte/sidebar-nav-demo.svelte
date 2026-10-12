@@ -77,7 +77,7 @@ $effect.pre(() => {
 	footerLabel="Invite users"
 	onFooterClick={() => (nav = "invite")}
 	onSignOut={() => {}}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	bind:collapsed
 	fill
 	class="max-h-[420px]"

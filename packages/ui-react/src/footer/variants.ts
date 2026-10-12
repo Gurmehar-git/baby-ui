@@ -19,6 +19,7 @@ export const footer = tv({
 		legal: "mt-3 flex flex-wrap gap-x-4 gap-y-1",
 		actions: "mt-4 flex items-center gap-1",
 		columns: "grid gap-10 @xl:grid-cols-3",
+		column: "",
 		columnTitle: "font-semibold text-foreground text-sm",
 		links: "mt-4 space-y-3",
 		link: "inline-flex items-center gap-1 rounded-sm text-muted-foreground text-sm outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
@@ -27,13 +28,18 @@ export const footer = tv({
 		bottom: "hidden",
 		bottomLink:
 			"rounded-sm text-muted-foreground text-xs outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+		status:
+			"mt-3 inline-flex items-center gap-2 rounded-sm text-muted-foreground text-xs outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+		// The dot pulses in its tone so a glance reads the status without the label.
+		statusDot:
+			"relative size-2 rounded-full bg-success before:absolute before:inset-0 before:animate-ping before:rounded-full before:bg-inherit before:opacity-60 data-[tone=destructive]:bg-destructive data-[tone=warning]:bg-warning motion-reduce:before:animate-none",
 		wordmarkWrap: "relative overflow-hidden px-4 pb-8 @3xl:pb-10",
 		wordmark:
 			"footer-wordmark block select-none text-center font-semibold text-[22cqw] leading-[0.82] tracking-tight",
 	},
 	variants: {
-		/** Brand beside the columns, centred above them, or nexonauts' notched shelf with a
-		 * back-to-top tab and a ruled bottom row. */
+		/** Brand beside the columns, centred above them, a notched shelf with a back-to-top tab
+		 * and ruled bottom row, or `minimal`: one quiet row of brand, links and copyright. */
 		layout: {
 			split: {
 				grid: "@3xl:grid-cols-12",
@@ -66,6 +72,21 @@ export const footer = tv({
 					"flex flex-col items-start gap-4 py-5 text-muted-foreground text-xs @xl:flex-row @xl:items-center @xl:justify-between",
 				legal: "mt-0 gap-x-5",
 				actions: "mt-0",
+			},
+			minimal: {
+				inner: "py-8 @3xl:py-8",
+				grid: "flex flex-wrap items-center justify-between gap-x-8 gap-y-4",
+				brandBlock: "flex flex-wrap items-center gap-x-6 gap-y-2",
+				description: "hidden",
+				socials: "mt-0",
+				copyright: "mt-0",
+				legal: "mt-0",
+				actions: "mt-0",
+				status: "mt-0",
+				columns: "flex flex-wrap gap-x-6 gap-y-2",
+				column: "contents",
+				columnTitle: "sr-only",
+				links: "contents space-y-0",
 			},
 		},
 	},

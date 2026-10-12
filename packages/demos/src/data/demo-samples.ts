@@ -205,6 +205,8 @@ export const GRADIENT_HERO_01 = {
 		{ label: "Explore blocks", href: "/components/blocks" },
 		{ label: "View source", href: "https://github.com/kanakkholwal/baby-ui" },
 	],
+	install: "npx shadcn@latest add @baby-ui/gradient-hero-01",
+	meta: ["React and Svelte", "MIT licensed"],
 };
 
 export const ORBIT_CARD_STACK = { items: ORBIT_PEOPLE };
@@ -247,6 +249,7 @@ export const STAT_CARD = {
 	dataKey: "revenue",
 	value: REVENUE_AVERAGE,
 	label: "Monthly average",
+	description: "Across all paid plans",
 	trend: REVENUE_TREND,
 	comparisonLabel: "vs last month",
 	formatValue: new Intl.NumberFormat("en-US", {

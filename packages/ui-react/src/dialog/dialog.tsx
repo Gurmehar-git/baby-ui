@@ -34,7 +34,7 @@ export function Dialog({
 	children,
 	open,
 	defaultOpen = false,
-	size = "md",
+	size = "default",
 	variant = "default",
 	dismissOnBackdrop = true,
 	onOpenChange,

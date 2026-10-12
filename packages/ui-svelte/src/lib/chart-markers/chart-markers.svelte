@@ -15,7 +15,7 @@ import {
 
 let {
 	items,
-	size = "md",
+	size = "default",
 	appearance = "solid",
 	showLines = true,
 	groupLabel,

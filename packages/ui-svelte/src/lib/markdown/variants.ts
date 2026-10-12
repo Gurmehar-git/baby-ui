@@ -21,11 +21,12 @@ export const markdown = tv({
 		},
 		size: {
 			sm: "gap-2 text-xs [&_h1]:text-lg [&_h2]:text-base [&_h3]:text-sm [&_pre]:text-xs",
-			md: "gap-3 text-sm [&_h1]:text-xl [&_h2]:text-lg [&_h3]:text-base [&_pre]:text-sm",
+			default:
+				"gap-3 text-sm [&_h1]:text-xl [&_h2]:text-lg [&_h3]:text-base [&_pre]:text-sm",
 			lg: "gap-4 text-base [&_h1]:text-2xl [&_h2]:text-xl [&_h3]:text-lg [&_pre]:text-sm",
 		},
 	},
-	defaultVariants: { variant: "default", size: "md" },
+	defaultVariants: { variant: "default", size: "default" },
 });
 
 export type MarkdownVariant = NonNullable<VariantProps<typeof markdown>["variant"]>;

@@ -7,7 +7,7 @@ import { type MagnetLinesSize, type MagnetLinesTone, magnetLines } from "./varia
 let {
 	rows = 9,
 	columns = 9,
-	size = "md",
+	size = "default",
 	tone = "muted",
 	baseAngle = 0,
 	class: classProp,

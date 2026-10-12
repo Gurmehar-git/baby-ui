@@ -17,6 +17,6 @@ const p = $derived(controlProps<ComponentProps<typeof ScoreCard>>(props));
 		trend={4}
 		tone={p.tone ?? "primary"}
 		layout={p.layout ?? "arc"}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 	/>
 </div>

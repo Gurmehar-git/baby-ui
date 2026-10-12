@@ -109,14 +109,15 @@ export function AccordionContent({
 	return (
 		<AccordionPrimitive.Panel
 			data-slot="accordion-content"
-			className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-out-quad)] data-[open]:grid-rows-[1fr] data-[open]:duration-[var(--duration-collapse)] motion-reduce:transition-none"
+			className="group/accordion-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-out-quad)] data-[open]:grid-rows-[1fr] data-[open]:duration-[var(--duration-collapse)] motion-reduce:transition-none"
 			render={(renderProps, state) => <div {...renderProps} inert={!state.open} />}
 			{...props}
 		>
 			<div className="overflow-hidden">
 				<div
 					className={cn(
-						"px-4 pb-3 text-muted-foreground text-sm leading-relaxed",
+						// The answer settles into place as the panel opens, and lifts back as it closes.
+						"px-4 pb-3 text-muted-foreground text-sm leading-relaxed -translate-y-1 opacity-0 transition-[translate,opacity] duration-(--duration-dropdown) ease-(--ease-ui-out) group-data-[open]/accordion-panel:translate-y-0 group-data-[open]/accordion-panel:opacity-100 motion-reduce:transition-none",
 						className,
 					)}
 				>

@@ -6,7 +6,6 @@ const POSITIONS = ["absolute", "fixed"];
 
 export const spectralRibbon = defineComponent({
 	slug: "spectral-ribbon",
-	isNew: true,
 	name: "Spectral Ribbon",
 	description:
 		"A soft light trail with a prismatic fringe, drawn in WebGL from theme tokens.",

@@ -69,7 +69,7 @@ export function OverviewCard({
 	label,
 	trend,
 	chart = "area",
-	size = "md",
+	size = "default",
 	color = "var(--chart-1)",
 	periods,
 	period: periodProp,

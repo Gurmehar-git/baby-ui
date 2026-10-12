@@ -43,7 +43,7 @@ export function ScrollTiltedGrid({
 	maxTilt = 62,
 	maxBlur = 7,
 	perspective = 1000,
-	size = "md",
+	size = "default",
 	aspect,
 	radius,
 	label = "Image gallery",

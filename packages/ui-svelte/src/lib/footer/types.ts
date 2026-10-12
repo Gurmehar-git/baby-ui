@@ -10,3 +10,8 @@ export type FooterLink = {
 export type FooterColumn = { title: string; links: FooterLink[] };
 /** `icon` draws the square icon button; without one the label shows as text. */
 export type FooterSocialLink = { icon?: Snippet; href: string; label: string };
+export type FooterStatus = {
+	label: string;
+	href?: string;
+	tone?: "success" | "warning" | "destructive";
+};

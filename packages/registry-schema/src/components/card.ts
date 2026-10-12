@@ -6,7 +6,6 @@ export const card = defineComponent({
 	description: "Content surface with header, body and footer slots.",
 	category: "base",
 	status: "stable",
-	isUpdated: true,
 	variants: { variant: ["default", "secondary", "ghost", "framed", "well"] },
 	props: [
 		{

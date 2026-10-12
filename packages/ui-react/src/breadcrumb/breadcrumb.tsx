@@ -6,7 +6,7 @@ export type { BreadcrumbSize, BreadcrumbVariant };
 
 const StyleCtx = createContext<{ variant: BreadcrumbVariant; size: BreadcrumbSize }>({
 	variant: "default",
-	size: "md",
+	size: "default",
 });
 
 const useStyles = () => breadcrumb(useContext(StyleCtx));
@@ -15,7 +15,7 @@ const useStyles = () => breadcrumb(useContext(StyleCtx));
 export function Breadcrumb({
 	className,
 	variant = "default",
-	size = "md",
+	size = "default",
 	...props
 }: ComponentProps<"nav"> & { variant?: BreadcrumbVariant; size?: BreadcrumbSize }) {
 	return (

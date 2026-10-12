@@ -10,7 +10,7 @@ let {
 	speed = 0.6,
 	paused = false,
 	orientation = "vertical",
-	size = "md",
+	size = "default",
 	class: classProp,
 }: {
 	items: string[];

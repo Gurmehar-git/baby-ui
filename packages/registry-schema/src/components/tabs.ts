@@ -9,7 +9,7 @@ export const tabs = defineComponent({
 	status: "stable",
 	variants: {
 		variant: ["pill", "underline", "segment", "soft", "outline", "enclosed"],
-		size: ["sm", "md", "lg", "xl"],
+		size: ["xs", "sm", "default", "lg", "xl"],
 	},
 	props: [
 		{
@@ -30,10 +30,10 @@ export const tabs = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
 			description: "Control size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
 	],
 	motion: {

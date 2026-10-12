@@ -13,11 +13,11 @@ export const statCardMap = tv({
 	variants: {
 		size: {
 			sm: { body: "h-64" },
-			md: { body: "h-96" },
+			default: { body: "h-96" },
 			lg: { body: "h-[32rem]" },
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type StatCardMapSize = NonNullable<VariantProps<typeof statCardMap>["size"]>;

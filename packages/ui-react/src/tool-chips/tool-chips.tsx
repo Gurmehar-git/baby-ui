@@ -59,7 +59,7 @@ export function ToolChips({
 	diffs = [],
 	hiddenDiffCount = 0,
 	labels,
-	size = "md",
+	size = "default",
 	open,
 	defaultOpen = true,
 	onOpenChange,

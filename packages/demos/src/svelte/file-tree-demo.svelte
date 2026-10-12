@@ -13,6 +13,6 @@ const p = $derived(controlProps<ComponentProps<typeof FileTree>>(props));
 	indent={Number(props.indent ?? 14)}
 	showGuides={props.showGuides !== false}
 	defaultExpanded={props.defaultExpanded !== false}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	class="w-64"
 />

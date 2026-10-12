@@ -13,7 +13,7 @@ let value = $state("weekly");
 	bind:value
 	orientation={p.orientation ?? "vertical"}
 	variant={p.variant ?? "default"}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	disabled={p.disabled ?? false}
 	name="demo-radio"
 >

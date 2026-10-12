@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const propertyPanel = defineComponent({
 	slug: "property-panel",
-	isNew: true,
 	name: "Property Panel",
 	description:
 		"A dense inspector for settings and tweak panels: compose labelled groups of compact rows by hand, or hand PropertyPanelControls a DialKit-style config and get baby-ui sliders, selects, switches and pickers.",

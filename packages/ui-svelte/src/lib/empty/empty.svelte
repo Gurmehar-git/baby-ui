@@ -7,7 +7,7 @@ import { type EmptyLayout, type EmptySize, type EmptyVariant, empty } from "./va
 let {
 	variant = "default",
 	layout = "vertical",
-	size = "md",
+	size = "default",
 	class: classProp,
 	children,
 	...rest

@@ -18,7 +18,7 @@ export const diaText = tv({
 		size: {
 			inherit: {},
 			sm: { root: "text-xl" },
-			md: { root: "text-3xl" },
+			default: { root: "text-3xl" },
 			lg: { root: "text-5xl" },
 		},
 	},

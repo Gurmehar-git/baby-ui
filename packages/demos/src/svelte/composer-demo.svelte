@@ -48,7 +48,7 @@ $effect(() => {
 		bind:value
 		bind:model
 		placeholder={p.placeholder || "Send a message…"}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		{loading}
 		onStop={() => (loading = false)}
 		disabled={p.disabled ?? false}

@@ -38,6 +38,8 @@ export interface FileUploadProps extends Omit<ComponentProps<"div">, "onDrop"> {
 	disabled?: boolean;
 	size?: FileUploadSize;
 	labels?: Partial<FileUploadLabels>;
+	/** Once the list holds this many files, the prompt folds to a slim bar; a drag brings it back. */
+	compactAt?: number;
 }
 
 export function FileUpload({
@@ -51,8 +53,9 @@ export function FileUpload({
 	maxFiles,
 	multiple = true,
 	disabled = false,
-	size = "md",
+	size = "default",
 	labels: labelsProp,
+	compactAt,
 	className,
 	...props
 }: FileUploadProps) {
@@ -60,6 +63,7 @@ export function FileUpload({
 	const s = fileUpload({ size });
 	const hintId = useId();
 	const input = useRef<HTMLInputElement>(null);
+	const zone = useRef<HTMLButtonElement>(null);
 	const [dragging, setDragging] = useState(false);
 	const [rejections, setRejections] = useState<FileRejection[]>([]);
 	const previews = usePreviews(files);
@@ -74,15 +78,25 @@ export function FileUpload({
 			current: files.length,
 		});
 		setRejections(rejected);
-		if (rejected.length) onReject?.(rejected);
+		if (rejected.length) {
+			onReject?.(rejected);
+			const el = zone.current;
+			if (el) {
+				el.dataset.nudge = "false";
+				el.getBoundingClientRect();
+				el.dataset.nudge = "true";
+			}
+		}
 		if (accepted.length) onFilesAdded(accepted);
 	}
 
 	return (
 		<div data-slot="file-upload" className={cn(s.root(), className)} {...props}>
 			<button
+				ref={zone}
 				type="button"
 				data-dragging={dragging}
+				data-compact={compactAt !== undefined && files.length >= compactAt && !dragging}
 				disabled={disabled}
 				aria-describedby={hint ? hintId : undefined}
 				className={s.zone()}
@@ -135,67 +149,69 @@ export function FileUpload({
 				<ul className={s.list()}>
 					{files.map((item) => (
 						<li key={item.id} className={s.item()} data-status={item.status}>
-							<span aria-hidden className={s.thumb()}>
-								{previews[item.id] ? (
-									<img src={previews[item.id]} alt="" className={s.thumbImage()} />
-								) : (
-									<FileIcon />
-								)}
-							</span>
-							<span className={s.body()}>
-								<span className={s.row()}>
-									<span className={s.name()} title={item.file.name}>
-										{item.file.name}
-									</span>
-									<span className={s.meta()}>
-										{item.status === "error"
-											? (item.error ?? labels.failed)
-											: item.status === "uploading"
-												? `${Math.round(item.progress)}%`
-												: item.status === "done"
-													? formatBytes(item.file.size)
-													: labels.queued}
-									</span>
+							<div className={s.row()}>
+								<span aria-hidden className={s.thumb()}>
+									{previews[item.id] ? (
+										<img src={previews[item.id]} alt="" className={s.thumbImage()} />
+									) : (
+										<FileIcon />
+									)}
 								</span>
-								<span
-									role="progressbar"
-									aria-label={`${item.file.name}, ${labels[statusLabel(item.status)]}`}
-									aria-valuemin={0}
-									aria-valuemax={100}
-									aria-valuenow={Math.round(item.progress)}
-									className={s.track()}
-								>
+								<span className={s.body()}>
+									<span className={s.line()}>
+										<span className={s.name()} title={item.file.name}>
+											{item.file.name}
+										</span>
+										<span className={s.meta()}>
+											{item.status === "error"
+												? (item.error ?? labels.failed)
+												: item.status === "uploading"
+													? `${Math.round(item.progress)}%`
+													: item.status === "done"
+														? formatBytes(item.file.size)
+														: labels.queued}
+										</span>
+									</span>
 									<span
-										data-status={item.status}
-										className={s.bar()}
-										style={{
-											scale: `${Math.min(100, Math.max(0, item.progress)) / 100} 1`,
-										}}
-									/>
+										role="progressbar"
+										aria-label={`${item.file.name}, ${labels[statusLabel(item.status)]}`}
+										aria-valuemin={0}
+										aria-valuemax={100}
+										aria-valuenow={Math.round(item.progress)}
+										className={s.track()}
+									>
+										<span
+											data-status={item.status}
+											className={s.bar()}
+											style={{
+												scale: `${Math.min(100, Math.max(0, item.progress)) / 100} 1`,
+											}}
+										/>
+									</span>
 								</span>
-							</span>
-							<span className={s.actions()}>
-								{item.status === "error" && onRetry ? (
-									<Button
-										size="icon-xs"
-										variant="ghost"
-										aria-label={`${labels.retry} ${item.file.name}`}
-										onClick={() => onRetry(item.id)}
-									>
-										<RetryIcon />
-									</Button>
-								) : null}
-								{onRemove ? (
-									<Button
-										size="icon-xs"
-										variant="ghost"
-										aria-label={`${labels.remove} ${item.file.name}`}
-										onClick={() => onRemove(item.id)}
-									>
-										<CloseIcon />
-									</Button>
-								) : null}
-							</span>
+								<span className={s.actions()}>
+									{item.status === "error" && onRetry ? (
+										<Button
+											size="icon-xs"
+											variant="ghost"
+											aria-label={`${labels.retry} ${item.file.name}`}
+											onClick={() => onRetry(item.id)}
+										>
+											<RetryIcon />
+										</Button>
+									) : null}
+									{onRemove ? (
+										<Button
+											size="icon-xs"
+											variant="ghost"
+											aria-label={`${labels.remove} ${item.file.name}`}
+											onClick={() => onRemove(item.id)}
+										>
+											<CloseIcon />
+										</Button>
+									) : null}
+								</span>
+							</div>
 						</li>
 					))}
 				</ul>

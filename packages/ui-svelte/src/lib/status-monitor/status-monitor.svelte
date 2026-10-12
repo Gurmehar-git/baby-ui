@@ -38,7 +38,7 @@ let {
 	unit = "days",
 	title,
 	showUptime = true,
-	size = "md",
+	size = "default",
 	labels,
 	locale,
 	class: classProp,

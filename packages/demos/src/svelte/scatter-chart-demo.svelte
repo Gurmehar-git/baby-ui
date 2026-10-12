@@ -17,7 +17,7 @@ let { props = {} }: { props?: Record<string, unknown> } = $props();
 const p = $derived(controlProps<ComponentProps<typeof Scatter>>(props));
 const pChart = $derived(controlProps<ComponentProps<typeof ScatterChart>>(props));
 
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 const shape = $derived(props.shape && props.shape !== "auto" ? p.shape : undefined);
 </script>
 

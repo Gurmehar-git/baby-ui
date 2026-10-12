@@ -3,7 +3,7 @@ import { cn } from "../lib/cn";
 import { type SpinnerSize, spinnerIcon } from "./variants";
 
 let {
-	size = "md",
+	size = "default",
 	label = "Loading",
 	class: classProp,
 }: { size?: SpinnerSize; label?: string; class?: string } = $props();

@@ -39,7 +39,7 @@ let {
 	weekdayFormat = "short",
 	buttonVariant = "ghost",
 	captionLayout = "label",
-	size = "md",
+	size = "default",
 	locale = "en-US",
 	minValue,
 	maxValue,

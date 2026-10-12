@@ -25,7 +25,7 @@ export function TextReel({
 	speed = 0.6,
 	paused = false,
 	orientation = "vertical",
-	size = "md",
+	size = "default",
 	className,
 }: TextReelProps) {
 	const viewportRef = useRef<HTMLDivElement>(null);

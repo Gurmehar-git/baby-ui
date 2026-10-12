@@ -31,16 +31,17 @@ import {
 
 let {
 	title,
-	data,
-	dataKey,
+	data = [],
+	dataKey = "value",
 	xKey = "date",
 	value,
 	label,
+	description,
 	trend,
 	comparisonLabel,
 	positive = "up",
 	chart = "area",
-	size = "md",
+	size = "default",
 	color = "var(--chart-1)",
 	locale,
 	formatValue,
@@ -56,13 +57,16 @@ let {
 }: {
 	/** Card heading; also the chart's accessible name. */
 	title: string;
-	data: Datum[];
-	dataKey: string;
+	/** Rows behind the chart; leave empty with `chart="none"`. */
+	data?: Datum[];
+	dataKey?: string;
 	xKey?: string;
 	/** Headline at rest, e.g. the period average. */
 	value: number;
 	/** Caption under the headline at rest, e.g. "Avg". */
 	label: string;
+	/** Context line under the headline, e.g. "Across all paid plans". */
+	description?: string;
 	/** Change over the whole period, in percent. */
 	trend: number;
 	/** What the trend compares against, read after it, e.g. "vs last month". */
@@ -114,7 +118,7 @@ const shownTrend = $derived(
 const magnitude = $derived(percent.format(Math.abs(shownTrend) / 100));
 const styles = $derived(statCard({ size, chart, status, positive }));
 const chartStatus = $derived<ChartStatus>(status === "loading" ? "loading" : "ready");
-const description = $derived(
+const summary = $derived(
 	statSummary({
 		data,
 		dataKey,
@@ -206,8 +210,12 @@ function setActive(index: number | null) {
 				<span class={styles.srOnly()} aria-live="polite">{announced}</span>
 			</div>
 		{/if}
+		{#if description && status !== "empty" && status !== "error"}
+			<p class={styles.description()}>{description}</p>
+		{/if}
+		{#if chart !== "none"}
 		<div class={styles.chart()}>
-			<ChartContainer {config} {title} {description} aspect="auto" {locale}>
+			<ChartContainer {config} {title} description={summary} aspect="auto" {locale}>
 				{#if chart === "line"}
 					<LineChart
 						{data}
@@ -233,5 +241,6 @@ function setActive(index: number | null) {
 				{/if}
 			</ChartContainer>
 		</div>
+		{/if}
 	</CardContent>
 </Card>

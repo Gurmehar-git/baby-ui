@@ -46,7 +46,7 @@ export interface DotMatrixGlowProps {
 /** A dot grid that brightens and swells near the pointer, and ripples outward on press. */
 export function DotMatrixGlow({
 	shape = "dot",
-	size = "md",
+	size = "default",
 	tone = "primary",
 	position,
 	gap,

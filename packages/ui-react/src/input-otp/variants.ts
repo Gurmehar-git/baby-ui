@@ -7,10 +7,10 @@ export const inputOtp = tv({
 		input: "disabled:cursor-not-allowed",
 		group: "flex items-center gap-2",
 		slot: [
-			"relative flex items-center justify-center rounded-lg border border-input bg-(--field) font-medium tabular-nums",
+			"relative flex items-center justify-center border border-input bg-(--field) font-medium tabular-nums",
 			"outline-none transition-[box-shadow,border-color] duration-(--duration-fast) ease-[var(--ease-smooth)]",
-			"data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-2 data-[active=true]:ring-ring/30",
-			"aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/25",
+			"data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-3 data-[active=true]:ring-ring/20",
+			"aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20",
 			"motion-reduce:transition-none",
 		],
 		value: "otp-value",
@@ -20,13 +20,16 @@ export const inputOtp = tv({
 	},
 	variants: {
 		size: {
-			sm: { slot: "size-8 text-sm" },
-			md: { slot: "size-10 text-base" },
-			lg: { slot: "size-12 text-lg" },
+			// Square slots on the control ladder, so a code field lines up with the button beside it.
+			xs: { slot: "size-6 rounded-sm text-xs", root: "gap-1", group: "gap-1" },
+			sm: { slot: "size-8 rounded-md text-sm", root: "gap-1.5", group: "gap-1.5" },
+			default: { slot: "size-9 rounded-lg text-base" },
+			lg: { slot: "size-10 rounded-lg text-lg" },
+			xl: { slot: "size-12 rounded-xl text-xl", root: "gap-2.5", group: "gap-2.5" },
 		},
 		invalid: {
 			true: {
-				slot: "border-destructive data-[active=true]:border-destructive data-[active=true]:ring-destructive/25",
+				slot: "border-destructive data-[active=true]:border-destructive data-[active=true]:ring-destructive/20",
 			},
 			false: {},
 		},
@@ -49,7 +52,7 @@ export const inputOtp = tv({
 			},
 		},
 	],
-	defaultVariants: { size: "md", invalid: false, invalidMotion: "shake" },
+	defaultVariants: { size: "default", invalid: false, invalidMotion: "shake" },
 });
 
 export type InputOtpSize = NonNullable<VariantProps<typeof inputOtp>["size"]>;

@@ -7,7 +7,7 @@ let { props = {} }: { props?: Record<string, unknown> } = $props();
 const p = $derived(controlProps<ComponentProps<typeof Shortcut>>(props));
 
 const variant = $derived(p.variant ?? "default");
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 const joined = $derived(p.joined ?? false);
 const combo = $derived(p.shortcut || "cmd+n");
 

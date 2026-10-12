@@ -74,7 +74,7 @@ function setRange(next: string | string[]) {
 
 {#snippet figure(value: number, className: string)}
 	{#if layout.animate}
-		<RollingDigits variant="count" {value} format={compact} durationMs={900} size="md" class={cn("font-bold text-foreground", className)} />
+		<RollingDigits variant="count" {value} format={compact} durationMs={900} size="default" class={cn("font-bold text-foreground", className)} />
 	{:else}
 		<span class={className}>{compact(value)}</span>
 	{/if}

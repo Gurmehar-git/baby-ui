@@ -15,6 +15,11 @@ notices are reproduced here as those licenses require.
 - Source: https://animata.design
 - License: MIT
 
+## arc
+
+- Source: https://uiarc.dev
+- License: MIT
+
 ## beUI
 
 - Source: https://beui.dev

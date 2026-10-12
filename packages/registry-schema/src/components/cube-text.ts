@@ -8,7 +8,7 @@ export const cubeText = defineComponent({
 	category: "text",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { size: ["sm", "md", "lg"], stagger: ["wave", "together"] },
+	variants: { size: ["sm", "default", "lg"], stagger: ["wave", "together"] },
 	props: [
 		{
 			name: "text",
@@ -50,10 +50,10 @@ export const cubeText = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description: "Type scale.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 	],
 	motion: {

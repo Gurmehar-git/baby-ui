@@ -1,11 +1,18 @@
 "use client";
 
 import { NumberField } from "@base-ui/react/number-field";
-import { useId } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { cn } from "../lib/cn";
+import {
+	LIMIT_HINT_MS,
+	limitHit,
+	limitMessage,
+	type NumberLimitEdge,
+	nudge,
+} from "./limit";
 import { type NumberInputSize, type NumberInputVariant, numberInput } from "./variants";
 
-export type { NumberInputSize, NumberInputVariant };
+export type { NumberInputSize, NumberInputVariant, NumberLimitEdge };
 
 export interface NumberInputProps {
 	/** Controlled; `null` is an empty field. */
@@ -23,8 +30,12 @@ export interface NumberInputProps {
 	label?: string;
 	variant?: NumberInputVariant;
 	size?: NumberInputSize;
-	/** Scrub: a unit shown after the value, e.g. "px". */
+	/** Text before the value, such as "$". */
+	prefix?: string;
+	/** Text after the value, such as "px" or " seats". */
 	suffix?: string;
+	/** A short note when a key press runs into min or max; a function writes the copy, `false` hides it. */
+	limitHint?: boolean | ((edge: NumberLimitEdge, limit: number) => string);
 	disabled?: boolean;
 	invalid?: boolean;
 	name?: string;
@@ -47,8 +58,10 @@ export function NumberInput({
 	locale,
 	label,
 	variant = "default",
-	size = "md",
+	size = "default",
+	prefix,
 	suffix,
+	limitHint = true,
 	disabled = false,
 	invalid = false,
 	name,
@@ -62,6 +75,38 @@ export function NumberInput({
 	const s = numberInput({ variant, size });
 	const fallbackId = useId();
 	const id = idProp ?? fallbackId;
+	const groupRef = useRef<HTMLDivElement>(null);
+	const [hint, setHint] = useState("");
+	useEffect(() => {
+		if (!hint) return;
+		const timer = setTimeout(() => setHint(""), LIMIT_HINT_MS);
+		return () => clearTimeout(timer);
+	}, [hint]);
+	const onLimitKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		const edge = limitHit(event.key, value, min, max);
+		if (!edge) return;
+		nudge(groupRef.current);
+		const limit = edge === "max" ? max : min;
+		if (!limitHint || limit === undefined) return;
+		setHint(
+			typeof limitHint === "function"
+				? limitHint(edge, limit)
+				: limitMessage(edge, new Intl.NumberFormat(locale, formatOptions).format(limit)),
+		);
+	};
+	const input = (
+		<>
+			{prefix ? <span className={s.prefix()}>{prefix}</span> : null}
+			<NumberField.Input
+				placeholder={placeholder}
+				aria-label={label ? undefined : ariaLabel}
+				aria-invalid={invalid || undefined}
+				className={s.input()}
+				onKeyDown={onLimitKey}
+			/>
+			{suffix ? <span className={s.suffix()}>{suffix}</span> : null}
+		</>
+	);
 
 	return (
 		<NumberField.Root
@@ -86,7 +131,11 @@ export function NumberInput({
 				</NumberField.ScrubArea>
 			) : null}
 			{variant === "scrub" ? (
-				<NumberField.Group className={s.group()}>
+				<NumberField.Group
+					ref={groupRef}
+					data-slot="number-input-group"
+					className={s.group()}
+				>
 					{label ? (
 						<NumberField.ScrubArea className={s.label()}>
 							<label htmlFor={id}>{label}</label>
@@ -101,16 +150,14 @@ export function NumberInput({
 							</svg>
 						</NumberField.ScrubArea>
 					) : null}
-					<NumberField.Input
-						placeholder={placeholder}
-						aria-label={label ? undefined : ariaLabel}
-						aria-invalid={invalid || undefined}
-						className={s.input()}
-					/>
-					{suffix ? <span className={s.suffix()}>{suffix}</span> : null}
+					{input}
 				</NumberField.Group>
 			) : (
-				<NumberField.Group className={s.group()}>
+				<NumberField.Group
+					ref={groupRef}
+					data-slot="number-input-group"
+					className={s.group()}
+				>
 					<NumberField.Decrement aria-label={decrementLabel} className={s.button()}>
 						<svg
 							viewBox="0 0 24 24"
@@ -123,12 +170,7 @@ export function NumberInput({
 							<path d="M5 12h14" />
 						</svg>
 					</NumberField.Decrement>
-					<NumberField.Input
-						placeholder={placeholder}
-						aria-label={label ? undefined : ariaLabel}
-						aria-invalid={invalid || undefined}
-						className={s.input()}
-					/>
+					{input}
 					<NumberField.Increment aria-label={incrementLabel} className={s.button()}>
 						<svg
 							viewBox="0 0 24 24"
@@ -143,6 +185,11 @@ export function NumberInput({
 					</NumberField.Increment>
 				</NumberField.Group>
 			)}
+			{limitHint ? (
+				<p aria-live="polite" data-on={!!hint} className={s.hint()}>
+					{hint}
+				</p>
+			) : null}
 		</NumberField.Root>
 	);
 }

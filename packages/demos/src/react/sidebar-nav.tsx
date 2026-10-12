@@ -95,7 +95,7 @@ export function SidebarNavDemo({ props }: { props: Props }) {
 			footerLabel="Invite users"
 			onFooterClick={() => setNav("invite")}
 			onSignOut={() => {}}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			collapsed={collapsed}
 			onCollapsedChange={setCollapsed}
 			fill

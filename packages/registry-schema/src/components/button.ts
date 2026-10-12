@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const button = defineComponent({
 	slug: "button",
-	isNew: true,
 	name: "Button",
 	description:
 		"Pressable button or link with variant and size axes, a blur-crossfaded loading face, and spring press feedback.",

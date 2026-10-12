@@ -3,12 +3,13 @@ import type { Snippet } from "svelte";
 import Collapsible from "../collapsible/collapsible.svelte";
 import CollapsibleContent from "../collapsible/collapsible-content.svelte";
 import { cn } from "../lib/cn";
+import { pillStyle } from "../lib/pill";
 import NotchedShelf from "../notched-shelf/notched-shelf.svelte";
 import Sheet from "../sheet/sheet.svelte";
 import SheetContent from "../sheet/sheet-content.svelte";
 import SheetHeader from "../sheet/sheet-header.svelte";
 import SheetTitle from "../sheet/sheet-title.svelte";
-import { currentHref, groupHrefs } from "./current";
+import { capsuleBox, currentHref, groupHrefs } from "./current";
 import MegaMenu from "./mega-menu.svelte";
 import type { MegaMenuGroup, MegaNavLink } from "./types";
 import { type MegaNavbarVariant, megaNavbar } from "./variants";
@@ -57,6 +58,19 @@ $effect(() => {
 });
 
 const footerActions = $derived(mobileActions ?? actions);
+let capsule = $state<HTMLDivElement | null>(null);
+let pill = $state<HTMLSpanElement | null>(null);
+function placePill(target: EventTarget | null) {
+	if (!capsule || !pill) return;
+	const box = capsuleBox(capsule, target);
+	Object.assign(pill.style, pillStyle(box));
+	pill.dataset.on = String(Boolean(box));
+}
+$effect(() => {
+	void active;
+	void variant;
+	placePill(null);
+});
 </script>
 
 <svelte:window
@@ -96,6 +110,7 @@ const footerActions = $derived(mobileActions ?? actions);
 					target={link.external ? "_blank" : undefined}
 					rel={link.external ? "noreferrer" : undefined}
 					aria-current={link.href === current ? "page" : undefined}
+					data-current={link.href === current}
 					class={styles.link({ current: link.href === current })}
 				>
 					{link.label}
@@ -143,9 +158,18 @@ const footerActions = $derived(mobileActions ?? actions);
 	{:else}
 		<nav aria-label="Primary" class={styles.nav()}>
 			{@render brandSlot()}
-			<div class="hidden flex-1 items-center justify-center @3xl:flex">
-				{@render desktopMenu()}
-				{@render linkList()}
+			<div class={styles.center()}>
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<div
+					bind:this={capsule}
+					class={styles.capsule()}
+					onpointerover={(event) => placePill(event.target)}
+					onpointerleave={() => placePill(null)}
+				>
+					{#if variant === "capsule"}<span bind:this={pill} aria-hidden="true" class={styles.capsulePill()}></span>{/if}
+					{@render desktopMenu()}
+					{@render linkList()}
+				</div>
 			</div>
 			<div class="ml-auto flex shrink-0 items-center gap-2 @3xl:ml-0">
 				{#if actions}

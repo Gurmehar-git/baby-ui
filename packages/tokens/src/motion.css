@@ -193,11 +193,18 @@
 .checkbox-check path {
 	stroke-dasharray: 12;
 	stroke-dashoffset: 12;
-	transition: stroke-dashoffset 200ms var(--ease-ui-out) 60ms;
+	transition:
+		stroke-dashoffset 200ms var(--ease-ui-out) 60ms,
+		d 220ms var(--ease-ui-out);
 }
 
 .checkbox-check[data-on="true"] path {
 	stroke-dashoffset: 0;
+}
+
+/* Indeterminate keeps the tick's three points, so `d` interpolates into the dash. */
+.checkbox-check[data-mixed="true"] path {
+	d: path("M3 6 L6 6 L9 6");
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1043,8 +1050,20 @@
 	}
 }
 
-/* ShimmerText: a foreground band sweeps across muted text; the band widens with text length. */
+/* ShimmerText: a foreground band sweeps across muted text; the band widens with text length.
+   Inactive, the base settles to the band's colour, so the sweep fades out instead of cutting. */
+@property --shimmer-settle {
+	syntax: "<number>";
+	inherits: false;
+	initial-value: 0;
+}
+
 .shimmer-text {
+	--shimmer-base: color-mix(
+		in oklab,
+		var(--foreground) calc(var(--shimmer-settle) * 100%),
+		var(--muted-foreground)
+	);
 	background-image:
 		linear-gradient(
 			90deg,
@@ -1052,13 +1071,38 @@
 			var(--foreground),
 			transparent calc(50% + var(--shimmer-spread, 20px))
 		),
-		linear-gradient(var(--muted-foreground), var(--muted-foreground));
+		linear-gradient(var(--shimmer-base), var(--shimmer-base));
 	background-size: 250% 100%, auto;
 	background-repeat: no-repeat, padding-box;
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
 	animation: shimmer-text var(--shimmer-duration, 2s) linear infinite;
+	transition: --shimmer-settle 360ms var(--ease-ui-out);
+}
+
+/* A bell falloff: the band brightens through soft shoulders instead of a straight ramp. */
+.shimmer-text-bell {
+	background-image:
+		linear-gradient(
+			90deg,
+			transparent calc(50% - var(--shimmer-spread, 20px)),
+			color-mix(in oklab, var(--foreground) 50%, transparent)
+				calc(50% - var(--shimmer-spread, 20px) * 0.5),
+			color-mix(in oklab, var(--foreground) 90%, transparent)
+				calc(50% - var(--shimmer-spread, 20px) * 0.2),
+			var(--foreground),
+			color-mix(in oklab, var(--foreground) 90%, transparent)
+				calc(50% + var(--shimmer-spread, 20px) * 0.2),
+			color-mix(in oklab, var(--foreground) 50%, transparent)
+				calc(50% + var(--shimmer-spread, 20px) * 0.5),
+			transparent calc(50% + var(--shimmer-spread, 20px))
+		),
+		linear-gradient(var(--shimmer-base), var(--shimmer-base));
+}
+
+.shimmer-text[data-active="false"] {
+	--shimmer-settle: 1;
 }
 
 @keyframes shimmer-text {

@@ -11,10 +11,11 @@ const trigger = $derived(p.trigger ?? "mount");
 </script>
 
 <div class="text-2xl">
-	{#key `${split}-${trigger}-${props.once}-${props.staggerMs}-${props.delayMs}-${props.blur}-${props.direction}-${props.staggerFrom}-${props.mask}`}
+	{#key `${p.variant}-${split}-${trigger}-${props.once}-${props.staggerMs}-${props.delayMs}-${props.blur}-${props.direction}-${props.staggerFrom}-${props.mask}`}
 		<RevealText
 			as="h2"
 			text="Design meets motion, one word at a time"
+			variant={p.variant}
 			{split}
 			{trigger}
 			once={Boolean(props.once ?? true)}

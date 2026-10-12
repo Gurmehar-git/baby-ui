@@ -9,7 +9,7 @@ export const slider = defineComponent({
 		"Range input on a spring glide, in seven looks from a classic thumb to a wave, a ruler and a thumbless pill.",
 	category: "base",
 	status: "stable",
-	variants: { variant: VARIANTS, size: ["sm", "md", "lg"] },
+	variants: { variant: VARIANTS, size: ["sm", "default", "lg"] },
 	props: [
 		{
 			name: "value",
@@ -66,11 +66,11 @@ export const slider = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description:
 				"Scale of the `default`, `track`, `inline`, `bubble` and `fluid` looks.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 			showWhen: { variant: ["default", "track", "inline", "bubble", "fluid"] },
 		},
 		{
@@ -93,6 +93,14 @@ export const slider = defineComponent({
 			description:
 				"Ticks under a horizontal track; a labelled mark jumps there on click.",
 			control: { kind: "none" },
+		},
+		{
+			name: "elastic",
+			type: "boolean",
+			description:
+				"Dragging past either end stretches the track like elastic, then it springs back on release.",
+			default: false,
+			control: { kind: "boolean" },
 		},
 		{
 			name: "onValueCommit",
@@ -146,6 +154,7 @@ export const slider = defineComponent({
 				{ path: "slider/slider.tsx", type: "registry:ui" },
 				{ path: "slider/variants.ts", type: "registry:ui" },
 				{ path: "slider/core.ts", type: "registry:ui" },
+				{ path: "slider/elastic.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
@@ -156,6 +165,7 @@ export const slider = defineComponent({
 				{ path: "slider/slider.svelte", type: "registry:ui" },
 				{ path: "slider/variants.ts", type: "registry:ui" },
 				{ path: "slider/core.ts", type: "registry:ui" },
+				{ path: "slider/elastic.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],

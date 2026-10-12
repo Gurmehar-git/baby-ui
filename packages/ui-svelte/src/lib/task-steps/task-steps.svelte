@@ -18,7 +18,7 @@ let {
 	onRetry,
 	showConnector = true,
 	compact = false,
-	size = "md",
+	size = "default",
 	labels,
 	class: classProp,
 }: {

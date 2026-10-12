@@ -1,5 +1,12 @@
 <script lang="ts">
 import { cn } from "../lib/cn";
+import {
+	LIMIT_HINT_MS,
+	limitHit,
+	limitMessage,
+	type NumberLimitEdge,
+	nudge,
+} from "./limit";
 import { type NumberInputSize, type NumberInputVariant, numberInput } from "./variants";
 
 let {
@@ -13,8 +20,10 @@ let {
 	locale,
 	label,
 	variant = "default",
-	size = "md",
+	size = "default",
+	prefix,
 	suffix,
+	limitHint = true,
 	disabled = false,
 	invalid = false,
 	name,
@@ -40,8 +49,12 @@ let {
 	label?: string;
 	variant?: NumberInputVariant;
 	size?: NumberInputSize;
-	/** Scrub: a unit shown after the value, e.g. "px". */
+	/** Text before the value, such as "$". */
+	prefix?: string;
+	/** Text after the value, such as "px" or " seats". */
 	suffix?: string;
+	/** A short note when a key press runs into min or max; a function writes the copy, `false` hides it. */
+	limitHint?: boolean | ((edge: NumberLimitEdge, limit: number) => string);
 	disabled?: boolean;
 	invalid?: boolean;
 	name?: string;
@@ -99,6 +112,25 @@ function stepBy(amount: number) {
 	set((value ?? min ?? 0) + amount * unit);
 }
 
+let group = $state<HTMLDivElement>();
+let hint = $state("");
+$effect(() => {
+	if (!hint) return;
+	const timer = setTimeout(() => (hint = ""), LIMIT_HINT_MS);
+	return () => clearTimeout(timer);
+});
+function onLimitKey(key: string) {
+	const edge = limitHit(key, value, min, max);
+	if (!edge) return;
+	nudge(group ?? null);
+	const limit = edge === "max" ? max : min;
+	if (!limitHint || limit === undefined) return;
+	hint =
+		typeof limitHint === "function"
+			? limitHint(edge, limit)
+			: limitMessage(edge, formatter.format(limit));
+}
+
 function commit() {
 	if (editing) set(parse(draft));
 	editing = false;
@@ -138,6 +170,7 @@ function onScrubMove(event: PointerEvent) {
 </script>
 
 {#snippet field()}
+	{#if prefix}<span class={s.prefix()}>{prefix}</span>{/if}
 	<input
 		{id}
 		type="text"
@@ -161,6 +194,7 @@ function onScrubMove(event: PointerEvent) {
 		oninput={(e) => (draft = e.currentTarget.value)}
 		onblur={commit}
 		onkeydown={(e) => {
+			onLimitKey(e.key);
 			const big = e.shiftKey ? largeStep : step;
 			const moves: Record<string, () => void> = {
 				ArrowUp: () => stepBy(big),
@@ -182,6 +216,7 @@ function onScrubMove(event: PointerEvent) {
 			}
 		}}
 	/>
+	{#if suffix}<span class={s.suffix()}>{suffix}</span>{/if}
 {/snippet}
 
 <div data-slot="number-input" data-variant={variant} class={cn(s.root(), classProp)}>
@@ -200,7 +235,7 @@ function onScrubMove(event: PointerEvent) {
 		</span>
 	{/if}
 	{#if variant === "scrub"}
-		<div class={s.group()}>
+		<div bind:this={group} data-slot="number-input-group" class={s.group()}>
 			{#if label}
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<span
@@ -219,10 +254,9 @@ function onScrubMove(event: PointerEvent) {
 				</span>
 			{/if}
 			{@render field()}
-			{#if suffix}<span class={s.suffix()}>{suffix}</span>{/if}
 		</div>
 	{:else}
-	<div class={s.group()}>
+	<div bind:this={group} data-slot="number-input-group" class={s.group()}>
 		<button
 			type="button"
 			tabindex={-1}
@@ -268,5 +302,6 @@ function onScrubMove(event: PointerEvent) {
 		</button>
 	</div>
 	{/if}
+	{#if limitHint}<p aria-live="polite" data-on={!!hint} class={s.hint()}>{hint}</p>{/if}
 	{#if name}<input type="hidden" {name} value={value ?? ""} />{/if}
 </div>

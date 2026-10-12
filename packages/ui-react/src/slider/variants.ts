@@ -144,7 +144,7 @@ export const slider = tv({
 		},
 		size: {
 			sm: {},
-			md: {},
+			default: {},
 			lg: {},
 		},
 	},
@@ -161,14 +161,14 @@ export const slider = tv({
 		},
 		{
 			variant: "default",
-			size: "md",
+			size: "default",
 			class: {
 				control: "data-[orientation=horizontal]:h-11 data-[orientation=vertical]:w-11",
 				track:
 					"data-[orientation=horizontal]:h-1 data-[orientation=vertical]:w-1 group-hover/slider:data-[orientation=horizontal]:h-1.5 group-hover/slider:data-[orientation=vertical]:w-1.5",
 			},
 		},
-		{ variant: "default", size: "md", class: { thumb: "size-4 border-2" } },
+		{ variant: "default", size: "default", class: { thumb: "size-4 border-2" } },
 		{
 			variant: "default",
 			size: "lg",
@@ -189,7 +189,7 @@ export const slider = tv({
 		},
 		{
 			variant: "bubble",
-			size: "md",
+			size: "default",
 			class: {
 				control: "data-[orientation=horizontal]:h-11 data-[orientation=vertical]:w-11",
 				track: "data-[orientation=horizontal]:h-2 data-[orientation=vertical]:w-2",
@@ -212,7 +212,7 @@ export const slider = tv({
 		},
 		{
 			variant: "track",
-			size: "md",
+			size: "default",
 			class: {
 				control: "data-[orientation=horizontal]:h-10 data-[orientation=vertical]:w-10",
 			},
@@ -225,13 +225,13 @@ export const slider = tv({
 			},
 		},
 		{ variant: "inline", size: "sm", class: { control: "h-8" } },
-		{ variant: "inline", size: "md", class: { control: "h-10" } },
+		{ variant: "inline", size: "default", class: { control: "h-10" } },
 		{ variant: "inline", size: "lg", class: { control: "h-12" } },
 		{ variant: "fluid", size: "sm", class: { control: "h-10" } },
-		{ variant: "fluid", size: "md", class: { control: "h-12" } },
+		{ variant: "fluid", size: "default", class: { control: "h-12" } },
 		{ variant: "fluid", size: "lg", class: { control: "h-14" } },
 	],
-	defaultVariants: { variant: "default", size: "md" },
+	defaultVariants: { variant: "default", size: "default" },
 });
 
 export type SliderSize = NonNullable<VariantProps<typeof slider>["size"]>;

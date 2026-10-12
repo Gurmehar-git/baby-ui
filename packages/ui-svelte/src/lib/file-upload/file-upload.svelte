@@ -28,8 +28,9 @@ let {
 	maxFiles,
 	multiple = true,
 	disabled = false,
-	size = "md",
+	size = "default",
 	labels: labelsProp,
+	compactAt,
 	class: classProp,
 	...rest
 }: Omit<HTMLAttributes<HTMLDivElement>, "ondrop"> & {
@@ -50,6 +51,8 @@ let {
 	disabled?: boolean;
 	size?: FileUploadSize;
 	labels?: Partial<FileUploadLabels>;
+	/** Once the list holds this many files, the prompt folds to a slim bar; a drag brings it back. */
+	compactAt?: number;
 } = $props();
 
 const labels = $derived({ ...FILE_UPLOAD_LABELS, ...labelsProp });
@@ -59,6 +62,7 @@ const hint = $derived(uploadHint(labels, accept, maxSize));
 let input = $state<HTMLInputElement>();
 let dragging = $state(false);
 let rejections = $state<FileRejection[]>([]);
+let zone = $state<HTMLButtonElement>();
 
 // Object URLs for image files, revoked when a file leaves the list or on unmount.
 let cache = new Map<string, string>();
@@ -86,6 +90,12 @@ function take(list: FileList | null | undefined) {
 		current: files.length,
 	});
 	rejections = rejected;
+	if (rejected.length && zone) {
+		// Restart the shake on every refusal.
+		zone.dataset.nudge = "false";
+		zone.getBoundingClientRect();
+		zone.dataset.nudge = "true";
+	}
 	if (rejected.length) onReject?.(rejected);
 	if (accepted.length) onFilesAdded(accepted);
 }
@@ -96,6 +106,8 @@ const statusLabel = (status: UploadFile["status"]) =>
 
 <div data-slot="file-upload" class={cn(s.root(), classProp)} {...rest}>
 	<button
+		bind:this={zone}
+		data-compact={compactAt !== undefined && files.length >= compactAt && !dragging}
 		type="button"
 		data-dragging={dragging}
 		{disabled}
@@ -147,6 +159,7 @@ const statusLabel = (status: UploadFile["status"]) =>
 		<ul class={s.list()}>
 			{#each files as item (item.id)}
 				<li class={s.item()} data-status={item.status}>
+					<div class={s.row()}>
 					<span aria-hidden="true" class={s.thumb()}>
 						{#if previews[item.id]}
 							<img src={previews[item.id]} alt="" class={s.thumbImage()} />
@@ -158,7 +171,7 @@ const statusLabel = (status: UploadFile["status"]) =>
 						{/if}
 					</span>
 					<span class={s.body()}>
-						<span class={s.row()}>
+						<span class={s.line()}>
 							<span class={s.name()} title={item.file.name}>{item.file.name}</span>
 							<span class={s.meta()}>
 								{item.status === "error"
@@ -212,6 +225,7 @@ const statusLabel = (status: UploadFile["status"]) =>
 							</Button>
 						{/if}
 					</span>
+					</div>
 				</li>
 			{/each}
 		</ul>

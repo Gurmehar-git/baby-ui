@@ -148,7 +148,7 @@ function fullDate(value: unknown): string {
 				</p>
 				<p class={styles.hero()}>
 					{#if layout.animate}
-						<RollingDigits variant="count" value={total} format={compact} durationMs={900} size="md" class={cn("font-bold text-foreground", styles.heroValue())} />
+						<RollingDigits variant="count" value={total} format={compact} durationMs={900} size="default" class={cn("font-bold text-foreground", styles.heroValue())} />
 					{:else}
 						<span class={styles.heroValue()}>{compact(total)}</span>
 					{/if}

@@ -14,7 +14,7 @@ const indeterminate = $derived(Boolean(props.indeterminate));
 	<Progress
 		{value}
 		{indeterminate}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		tone={p.tone ?? "default"}
 		variant={p.variant ?? "linear"}
 		showValue={props.showValue === true}

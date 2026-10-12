@@ -22,7 +22,7 @@ export const progress = tv({
 	variants: {
 		size: {
 			sm: { track: "h-1", ring: "size-28", ringLabel: "text-lg" },
-			md: { track: "h-2", ring: "size-32", ringLabel: "text-xl" },
+			default: { track: "h-2", ring: "size-32", ringLabel: "text-xl" },
 			lg: { track: "h-3", ring: "size-40", ringLabel: "text-2xl" },
 			xl: { track: "h-4", ring: "size-44", ringLabel: "text-3xl" },
 		},
@@ -37,7 +37,7 @@ export const progress = tv({
 			circular: { root: "inline-flex w-auto flex-col items-center gap-3" },
 		},
 	},
-	defaultVariants: { size: "md", tone: "default", variant: "linear" },
+	defaultVariants: { size: "default", tone: "default", variant: "linear" },
 });
 
 export type ProgressSize = NonNullable<VariantProps<typeof progress>["size"]>;

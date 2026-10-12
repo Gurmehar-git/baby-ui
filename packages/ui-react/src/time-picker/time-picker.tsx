@@ -109,7 +109,7 @@ export function TimePicker({
 	showNow = false,
 	disabled = false,
 	invalid = false,
-	size = "md",
+	size = "default",
 	labels: labelsProp,
 	id,
 	name,

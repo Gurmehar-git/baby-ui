@@ -9,7 +9,6 @@ export const ogWordmark = defineComponent({
 		"A 1200x630 brand card with nothing but the logo and wordmark on a plain field.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

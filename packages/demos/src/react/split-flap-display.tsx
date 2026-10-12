@@ -25,7 +25,7 @@ export function SplitFlapDisplayDemo({ props }: { props: Props }) {
 				}
 				columns={columns}
 				variant={p.variant ?? "solid"}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				indicator={p.indicator ?? "success"}
 				stepMs={Number(props.stepMs ?? 60)}
 				staggerMs={Number(props.staggerMs ?? 30)}

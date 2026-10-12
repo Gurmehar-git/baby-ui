@@ -57,7 +57,7 @@ const s = $derived(loadingScreen({ position, logoMotion, indicator, open }));
 			{#if indicator === "bar"}
 				<Progress value={progress ?? 0} indeterminate={progress === undefined} size="sm" class="w-28" />
 			{:else if indicator === "spinner"}
-				<Spinner size="md" {label} />
+				<Spinner size="default" {label} />
 			{:else}
 				<span class={s.dots()}>
 					{#each [0, 1, 2] as i (i)}

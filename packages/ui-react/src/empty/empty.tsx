@@ -17,7 +17,7 @@ export function Empty({
 	className,
 	variant = "default",
 	layout = "vertical",
-	size = "md",
+	size = "default",
 	...props
 }: ComponentProps<"div"> & {
 	variant?: EmptyVariant;

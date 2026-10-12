@@ -6,7 +6,7 @@ let {
 	text,
 	minOpacity = 0.5,
 	blur = true,
-	size = "md",
+	size = "default",
 	class: classProp,
 }: {
 	/** The text to reveal word by word as the container scrolls. */

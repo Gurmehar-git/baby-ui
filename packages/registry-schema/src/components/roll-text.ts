@@ -10,7 +10,6 @@ export const rollText = defineComponent({
 		"A label that rolls on hover like a flip-clock digit, or swaps to a second label on hover and click.",
 	category: "text",
 	status: "stable",
-	isUpdated: true,
 	variants: { size: SIZES, motion: MOTIONS },
 	props: [
 		{
@@ -98,7 +97,7 @@ export const rollText = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Type scale.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 	],

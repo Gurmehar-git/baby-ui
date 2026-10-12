@@ -42,7 +42,7 @@ export function ErrorBoundaryDemo({ props }: { props: Props }) {
 			<ErrorBoundary
 				variant={p.variant ?? "card"}
 				layout={p.layout ?? "vertical"}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				details={p.details ?? true}
 				onReset={() => setCrash(false)}
 			>

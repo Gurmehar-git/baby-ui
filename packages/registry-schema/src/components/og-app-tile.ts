@@ -10,7 +10,6 @@ export const ogAppTile = defineComponent({
 		"A 1200x630 card: the logo on a raised app tile with a soft glow, the name and a line of description below.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES, tone: TONES },
 	props: [

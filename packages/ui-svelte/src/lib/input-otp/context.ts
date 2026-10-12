@@ -13,4 +13,4 @@ export const setInputOtpStyle = (get: () => InputOtpStyle) => setContext(STYLE, 
 export const getInputOtpStyle = (): InputOtpStyle =>
 	hasContext(STYLE)
 		? getContext<() => InputOtpStyle>(STYLE)()
-		: { size: "md", invalid: false, invalidMotion: "shake" };
+		: { size: "default", invalid: false, invalidMotion: "shake" };

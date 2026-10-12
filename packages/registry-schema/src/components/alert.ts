@@ -22,13 +22,20 @@ export const alert = defineComponent({
 			default: false,
 			control: { kind: "boolean" },
 		},
+		{
+			name: "open",
+			type: "boolean",
+			description:
+				"Shown or folded away. Controlled with onOpenChange; bindable in Svelte.",
+			control: { kind: "none" },
+		},
 	],
 	motion: {
 		springs: [],
-		reducedMotion: "The alert appears without travel.",
+		reducedMotion: "The alert appears and disappears without travel or folding.",
 		behaviour: [
 			"On mount the alert fades and slides 4px into place over 200ms.",
-			"Dismissing is immediate: an alert the user has already read should not hold the layout open.",
+			"Dismissing folds the alert's row shut on grid rows while it fades, so content below rises instead of jumping.",
 		],
 	},
 	a11y: {

@@ -7,7 +7,6 @@ export const gaugeChart = defineComponent({
 		"A reading drawn as a notched arc or track whose notches spring in one by one, or a compact ring dial.",
 	category: "charts",
 	status: "stable",
-	isUpdated: true,
 	props: [
 		{
 			name: "value",
@@ -56,6 +55,20 @@ export const gaugeChart = defineComponent({
 			control: { kind: "text" },
 		},
 		{
+			name: "bands",
+			type: '{ from: number; label: string; tone: "primary" | "highlight" | "negative" }[]',
+			description:
+				"The highest band the value reaches sets the tone and names the state beside the label.",
+			control: { kind: "none" },
+		},
+		{
+			name: "banded",
+			type: "boolean",
+			description: "Demo only: pass three sample bands (Critical, Watch, Healthy).",
+			default: false,
+			control: { kind: "boolean" },
+		},
+		{
 			name: "showValue",
 			type: "boolean",
 			description: "Print the reading, counting up from the previous value.",
@@ -89,6 +102,7 @@ export const gaugeChart = defineComponent({
 		reducedMotion:
 			"Notches appear at their final state and the value prints without counting.",
 		behaviour: [
+			"With `bands`, crossing a threshold recolours the gauge and renames its state.",
 			"Track notches grow from 0.9 scale on a 300/20 spring, 15ms apart, never from 0.",
 			"Active notches follow after 300ms, 20ms apart, on the same spring.",
 			"A new value ripples from the old edge: notches switching on and off both animate instead of snapping.",

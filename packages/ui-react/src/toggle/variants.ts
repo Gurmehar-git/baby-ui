@@ -14,13 +14,13 @@ export const toggleButton = tv({
 		variant: {
 			default: "",
 			outline:
-				"border-border-strong hover:border-muted-foreground/60 aria-pressed:border-muted-foreground/60",
+				"border-input hover:border-border-strong aria-pressed:border-border-strong",
 		},
-		// Square at rest (min-w equals the height), so an icon-only toggle needs no extra size.
+		// Icon-only toggles stay square: 2 x px + icon + border fits the height, min-w holds the rest.
 		size: {
 			xs: [
 				controlSize({ size: "xs" }),
-				"min-w-6 gap-1 px-1.5 active:scale-[var(--press-scale-icon)]",
+				"min-w-6 gap-1 px-1 active:scale-[var(--press-scale-icon)]",
 			],
 			sm: [
 				controlSize({ size: "sm" }),
@@ -28,15 +28,15 @@ export const toggleButton = tv({
 			],
 			default: [
 				controlSize({ size: "default" }),
-				"min-w-9 gap-1.5 px-2.5 active:scale-[var(--press-scale)]",
+				"min-w-9 gap-1.5 px-2 active:scale-[var(--press-scale)]",
 			],
 			lg: [
 				controlSize({ size: "lg" }),
-				"min-w-10 gap-2 px-3 active:scale-[var(--press-scale-lg)]",
+				"min-w-10 gap-2 px-2.5 active:scale-[var(--press-scale-lg)]",
 			],
 			xl: [
 				controlSize({ size: "xl" }),
-				"min-w-12 gap-2 px-4 active:scale-[var(--press-scale-lg)]",
+				"min-w-12 gap-2 px-3 active:scale-[var(--press-scale-lg)]",
 			],
 		},
 	},

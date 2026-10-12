@@ -22,7 +22,7 @@ let checkIn = $state<DateValue | undefined>();
 		locale={p.locale || undefined}
 		captionLayout={p.captionLayout ?? "dropdown"}
 		invalid={p.invalid ?? false}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		aria-describedby="demo-check-in-hint"
 	/>
 	<FieldDescription id="demo-check-in-hint">Type a date or pick one. Up to six months ahead.</FieldDescription>

@@ -1,22 +1,14 @@
 <script lang="ts">
-import origins from "#lib/generated/origins.json";
+import { installArgs } from "#lib/install.js";
 import { prefs } from "#lib/preferences.svelte.js";
 import PmCommand from "./pm-command.svelte";
 
 let { slug, cascade = false }: { slug: string; cascade?: boolean } = $props();
-
-const CLI = { react: "shadcn@latest", svelte: "shadcn-svelte@latest" } as const;
-const ROUTE = { react: "r", svelte: "svelte/r" } as const;
-
-// JS gets its own route, so the language switch changes what the CLI writes.
-const url = $derived(
-	`${origins.registry}/${ROUTE[prefs.framework]}${prefs.dialect === "js" ? "/js" : ""}/${slug}.json`,
-);
 </script>
 
 <PmCommand
 	kind="dlx"
-	args="{CLI[prefs.framework]} add {url}"
+	args={installArgs(slug, prefs.framework, prefs.dialect)}
 	highlight="{slug}.json"
 	{cascade}
 	analytics={{ event: "install_copied", props: { item: slug, method: "cli" } }}

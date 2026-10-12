@@ -28,7 +28,7 @@ export const textLoop = tv({
 		size: {
 			inherit: {},
 			sm: { root: "text-lg" },
-			md: { root: "text-xl" },
+			default: { root: "text-xl" },
 			lg: { root: "text-3xl" },
 		},
 	},

@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const select = defineComponent({
 	slug: "select",
-	isNew: true,
 	name: "Select",
 	description:
 		"Listbox at least as wide as its trigger that grows to fit its longest option, keeps the selected option in view and flips when needed.",

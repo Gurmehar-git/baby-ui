@@ -9,7 +9,7 @@ export const cubeText = tv({
 	variants: {
 		size: {
 			sm: { root: "text-2xl" },
-			md: { root: "text-4xl" },
+			default: { root: "text-4xl" },
 			lg: { root: "text-6xl" },
 		},
 		stagger: {
@@ -17,7 +17,7 @@ export const cubeText = tv({
 			together: {},
 		},
 	},
-	defaultVariants: { size: "md", stagger: "wave" },
+	defaultVariants: { size: "default", stagger: "wave" },
 });
 
 export type CubeTextSize = NonNullable<VariantProps<typeof cubeText>["size"]>;

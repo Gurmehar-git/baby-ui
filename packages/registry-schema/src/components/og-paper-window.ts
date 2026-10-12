@@ -9,7 +9,6 @@ export const ogPaperWindow = defineComponent({
 		"A 1200x630 card: a paper window with traffic lights, a wordmark and serif copy, lying over artwork and running off the bottom edge.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

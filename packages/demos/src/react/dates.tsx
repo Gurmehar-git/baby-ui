@@ -22,7 +22,7 @@ export function InputOTPDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof InputOTP>>(props);
 	const [value, setValue] = useState("");
 	const [status, setStatus] = useState<"idle" | "verified" | "wrong">("idle");
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 
 	useEffect(() => {
 		if (value.length < 6) return setStatus("idle");
@@ -80,7 +80,7 @@ export function CalendarDemo({ props }: { props: Props }) {
 			selected={date}
 			onSelect={setDate}
 			captionLayout={p.captionLayout ?? "dropdown"}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			className="rounded-lg border border-border"
 		/>
 	);
@@ -108,7 +108,7 @@ export function RangeCalendarDemo({ props }: { props: Props }) {
 			selected={range}
 			onSelect={setRange}
 			numberOfMonths={months}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			className="rounded-lg border border-border"
 		/>
 	);

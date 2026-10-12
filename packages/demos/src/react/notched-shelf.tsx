@@ -10,7 +10,7 @@ export function NotchedShelfDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof NotchedShelf>>(props);
 	const variant = p.variant ?? "solid";
 	const layout = p.layout ?? "hanging";
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 	return (
 		// Muted matches the card, so it bridges into a page-coloured surface instead.
 		<div

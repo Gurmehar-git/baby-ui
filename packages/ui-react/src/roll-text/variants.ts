@@ -5,7 +5,7 @@ export const rollText = tv({
 	variants: {
 		size: {
 			sm: "text-sm",
-			md: "text-base",
+			default: "text-base",
 			lg: "text-lg",
 		},
 		/** Slide rolls a second copy up; tilt tips each letter back while its copy flips up in 3D. */
@@ -14,7 +14,7 @@ export const rollText = tv({
 			tilt: "roll-text--tilt",
 		},
 	},
-	defaultVariants: { size: "md", motion: "slide" },
+	defaultVariants: { size: "default", motion: "slide" },
 });
 
 export type RollTextSize = NonNullable<VariantProps<typeof rollText>["size"]>;

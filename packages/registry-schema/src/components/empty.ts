@@ -1,10 +1,16 @@
 import { defineComponent } from "../index.ts";
 
-const SVELTE_PARTS = ["header", "media", "title", "description", "content"];
+const SVELTE_PARTS = [
+	"header",
+	"media",
+	"title",
+	"description",
+	"content",
+	"illustration",
+];
 
 export const empty = defineComponent({
 	slug: "empty",
-	isNew: true,
 	name: "Empty",
 	description:
 		"Empty state for lists, tables, search results and first runs: media, title, description and actions.",
@@ -28,10 +34,10 @@ export const empty = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description: "Empty: padding, gaps and title size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 		{
 			name: "tone",
@@ -51,7 +57,24 @@ export const empty = defineComponent({
 			default: "search",
 			control: { kind: "select", options: ["search", "inbox", "error", "upload"] },
 		},
+		{
+			name: "media",
+			type: '"icon" | "illustration"',
+			description:
+				"Demo only: an icon tile, or EmptyIllustration, whose shapes morph between scenes (`scene`, `phase`).",
+			default: "icon",
+			control: { kind: "select", options: ["icon", "illustration"] },
+		},
 	],
+	motion: {
+		springs: [],
+		reducedMotion: "EmptyIllustration snaps between scenes; media skips its entrance.",
+		behaviour: [
+			"Media, title and description rise in on mount.",
+			"EmptyIllustration: every shape springs to its place in a new scene or phase; strokes redraw a beat later.",
+			"EmptyIllustration drifts slightly with a mouse pointer.",
+		],
+	},
 	a11y: {
 		keyboard: [],
 		notes: [
@@ -71,6 +94,9 @@ export const empty = defineComponent({
 			entry: "Empty",
 			files: [
 				{ path: "empty/empty.tsx", type: "registry:ui" },
+				{ path: "empty/empty-illustration.tsx", type: "registry:ui" },
+				{ path: "empty/art.ts", type: "registry:ui" },
+				{ path: "empty/illustration.ts", type: "registry:ui" },
 				{ path: "empty/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
@@ -84,6 +110,8 @@ export const empty = defineComponent({
 					path: `empty/empty-${part}.svelte`,
 					type: "registry:ui" as const,
 				})),
+				{ path: "empty/art.ts", type: "registry:ui" },
+				{ path: "empty/illustration.ts", type: "registry:ui" },
 				{ path: "empty/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],

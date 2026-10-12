@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const fileTree = defineComponent({
 	slug: "file-tree",
-	isNew: true,
 	name: "File Tree",
 	description:
 		"Keyboard-navigable file explorer with animated expand and collapse, indent guides, and single selection.",
@@ -26,10 +25,10 @@ export const fileTree = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md"',
+			type: '"sm" | "default"',
 			description: "Row height, text size and chevron scale.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default"] },
 		},
 		{
 			name: "defaultExpanded",

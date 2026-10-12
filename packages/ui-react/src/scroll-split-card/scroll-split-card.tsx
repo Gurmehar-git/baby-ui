@@ -38,7 +38,7 @@ export function ScrollSplitCard({
 	endLabel,
 	label = "Scroll to flip the cards",
 	tone = "card",
-	size = "md",
+	size = "default",
 	className,
 }: ScrollSplitCardProps) {
 	const rootRef = useRef<HTMLDivElement>(null);

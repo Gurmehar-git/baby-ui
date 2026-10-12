@@ -3,8 +3,9 @@
 import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group";
 import type { ComponentProps } from "react";
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useContext, useLayoutEffect, useMemo, useRef } from "react";
 import { cn } from "../lib/cn";
+import { attachSegmentPill } from "./segment";
 import { type ToggleGroupSize, type ToggleGroupVariant, toggleGroup } from "./variants";
 
 export type { ToggleGroupSize, ToggleGroupVariant };
@@ -46,10 +47,17 @@ export function ToggleGroup({
 	// bridged here to keep this component's own string | string[] API unchanged.
 	const arrayValue =
 		type === "multiple" ? (value as string[]) : value ? [value as string] : [];
+	const rootRef = useRef<HTMLDivElement>(null);
+	const pillRef = useRef<HTMLSpanElement>(null);
+	useLayoutEffect(() => {
+		if (variant !== "segmented" || !rootRef.current || !pillRef.current) return;
+		return attachSegmentPill(rootRef.current, pillRef.current);
+	}, [variant]);
 
 	return (
 		<ToggleGroupCtx.Provider value={useMemo(() => ({ size, variant }), [size, variant])}>
 			<ToggleGroupPrimitive
+				ref={rootRef}
 				data-slot="toggle-group"
 				aria-label={label}
 				disabled={disabled}
@@ -65,6 +73,14 @@ export function ToggleGroup({
 				)}
 				{...props}
 			>
+				{variant === "segmented" && (
+					<span
+						ref={pillRef}
+						aria-hidden
+						data-slot="toggle-group-indicator"
+						className={toggleGroup({ variant, size }).indicator()}
+					/>
+				)}
 				{children}
 			</ToggleGroupPrimitive>
 		</ToggleGroupCtx.Provider>

@@ -16,6 +16,7 @@ import {
 	type RevealTextSplit,
 	type RevealTextStaggerFrom,
 	type RevealTextTrigger,
+	type RevealTextVariant,
 	revealText,
 	revealUnits,
 } from "./variants";
@@ -26,11 +27,14 @@ export type {
 	RevealTextSplit,
 	RevealTextStaggerFrom,
 	RevealTextTrigger,
+	RevealTextVariant,
 };
 
 export interface RevealTextProps {
 	/** One string, or one per line. */
 	text: string | string[];
+	/** `tracking` letters converge from loose spacing (splits by character); `wipe` uncovers through a soft edge. */
+	variant?: RevealTextVariant;
 	split?: RevealTextSplit;
 	/** Reveal on mount, or when scrolled into view. */
 	trigger?: RevealTextTrigger;
@@ -57,6 +61,7 @@ export interface RevealTextProps {
 
 export function RevealText({
 	text,
+	variant = "default",
 	split = "word",
 	trigger = "mount",
 	once = true,
@@ -81,11 +86,28 @@ export function RevealText({
 		() => (Array.isArray(text) ? text : [text]).filter(Boolean),
 		[text],
 	);
+	const unitSplit = variant === "tracking" ? "char" : split;
 	const units = useMemo(
-		() => revealUnits(lines, split, delayMs, staggerMs, staggerFrom),
-		[lines, split, delayMs, staggerMs, staggerFrom],
+		() =>
+			revealUnits(
+				lines,
+				unitSplit,
+				delayMs,
+				staggerMs,
+				staggerFrom,
+				variant === "tracking" ? 0.06 : 0,
+			),
+		[lines, unitSplit, delayMs, staggerMs, staggerFrom, variant],
 	);
-	const styles = revealText({ split, trigger, direction, mask, staggerFrom, size });
+	const styles = revealText({
+		variant,
+		split: unitSplit,
+		trigger,
+		direction,
+		mask,
+		staggerFrom,
+		size,
+	});
 
 	useEffect(() => {
 		const set = (next: boolean) => {
@@ -129,7 +151,12 @@ export function RevealText({
 						<span key={unit.key} className={styles.mask()}>
 							<span
 								className={styles.unit()}
-								style={{ "--reveal-delay": `${unit.delay}ms` } as CSSProperties}
+								style={
+									{
+										"--reveal-delay": `${unit.delay}ms`,
+										"--reveal-track": `${unit.track}em`,
+									} as CSSProperties
+								}
 							>
 								{unit.text}
 							</span>

@@ -19,8 +19,8 @@ export const statCard = defineComponent({
 		{
 			name: "data",
 			type: "Record<string, unknown>[]",
-			description: "Rows with a date under xKey and a number under dataKey.",
-			required: true,
+			description:
+				'Rows with a date under xKey and a number under dataKey. Optional with chart "none".',
 			control: { kind: "none" },
 		},
 		{
@@ -29,6 +29,13 @@ export const statCard = defineComponent({
 			description: "Headline at rest, e.g. the period average.",
 			required: true,
 			control: { kind: "none" },
+		},
+		{
+			name: "description",
+			type: "string",
+			description:
+				"Context line under the headline; hidden in the empty and error states.",
+			control: { kind: "text" },
 		},
 		{
 			name: "trend",
@@ -69,17 +76,17 @@ export const statCard = defineComponent({
 		},
 		{
 			name: "chart",
-			type: '"area" | "line"',
-			description: "Chart under the headline.",
+			type: '"area" | "line" | "none"',
+			description: 'Chart under the headline; "none" is a figure-only metric card.',
 			default: "area",
-			control: { kind: "select", options: ["area", "line"] },
+			control: { kind: "select", options: ["area", "line", "none"] },
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description: "Chart height.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 		{
 			name: "activeIndex",
@@ -99,6 +106,7 @@ export const statCard = defineComponent({
 		springs: [],
 		reducedMotion: "The headline swaps without counting; the chart settles instantly.",
 		behaviour: [
+			'With chart "none" the headline still counts on a new value, as a figure-only metric card.',
 			"The headline counts over 400ms only when `value` changes; hovering the chart swaps the figure instantly.",
 			"The chart keeps the area or line chart's own reveal and hover motion.",
 		],
@@ -195,10 +203,10 @@ export const statCardMap = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description: "Map height.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 		{
 			name: "activeIndex",

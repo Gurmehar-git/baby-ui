@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const errorBoundary = defineComponent({
 	slug: "error-boundary",
-	isNew: true,
 	name: "Error Boundary",
 	description:
 		"Catches errors while its children render and shows a retryable fallback built from Empty, instead of a blank page.",
@@ -25,10 +24,10 @@ export const errorBoundary = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg"',
+			type: '"sm" | "default" | "lg"',
 			description: "The default fallback's size, passed to Empty.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg"] },
 		},
 		{
 			name: "details",

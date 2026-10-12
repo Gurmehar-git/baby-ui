@@ -6,7 +6,7 @@ import { type DialogSize, type DialogVariant, setDialog } from "./context";
 let {
 	children,
 	open = $bindable(false),
-	size = "md",
+	size = "default",
 	variant = "default",
 	dismissOnBackdrop = true,
 }: {

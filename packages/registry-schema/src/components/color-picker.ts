@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const colorPicker = defineComponent({
 	slug: "color-picker",
-	isNew: true,
 	name: "Color Picker",
 	description:
 		"Every colour control in one: a swatch + hex field, a labelled panel row, the full picker, a saturation area, a hue slider, a swatch and a swatch picker.",

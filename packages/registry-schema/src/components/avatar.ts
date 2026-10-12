@@ -6,7 +6,7 @@ export const avatar = defineComponent({
 	description: "User image with initials underneath, shown until the image really loads.",
 	category: "base",
 	status: "stable",
-	variants: { size: ["sm", "md", "lg", "xl"], shape: ["circle", "square"] },
+	variants: { size: ["sm", "default", "lg", "xl"], shape: ["circle", "square"] },
 	props: [
 		{
 			name: "src",
@@ -17,10 +17,10 @@ export const avatar = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"sm" | "default" | "lg" | "xl"',
 			description: "Diameter of the avatar.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "shape",
@@ -67,6 +67,9 @@ export const avatar = defineComponent({
 				{ path: "avatar/avatar.svelte", type: "registry:ui" },
 				{ path: "avatar/avatar-image.svelte", type: "registry:ui" },
 				{ path: "avatar/avatar-fallback.svelte", type: "registry:ui" },
+				{ path: "avatar/avatar-badge.svelte", type: "registry:ui" },
+				{ path: "avatar/avatar-group.svelte", type: "registry:ui" },
+				{ path: "avatar/avatar-group-count.svelte", type: "registry:ui" },
 				{ path: "avatar/context.ts", type: "registry:ui" },
 				{ path: "avatar/variants.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
@@ -74,5 +77,13 @@ export const avatar = defineComponent({
 			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
-	keywords: ["avatar", "profile", "user", "initials"],
+	keywords: [
+		"avatar",
+		"profile",
+		"user",
+		"initials",
+		"avatar group",
+		"presence",
+		"badge",
+	],
 });

@@ -28,7 +28,7 @@ export const taskSteps = tv({
 				dot: "size-1",
 				text: "text-xs leading-[1.125rem]",
 			},
-			md: {
+			default: {
 				item: "gap-3",
 				connector: "top-6 left-[0.6875rem]",
 				marker: "size-5.5",
@@ -64,7 +64,12 @@ export const taskSteps = tv({
 			},
 		},
 	},
-	defaultVariants: { variant: "timeline", size: "md", compact: false, status: "pending" },
+	defaultVariants: {
+		variant: "timeline",
+		size: "default",
+		compact: false,
+		status: "pending",
+	},
 });
 
 export type TaskStepsVariant = NonNullable<VariantProps<typeof taskSteps>["variant"]>;

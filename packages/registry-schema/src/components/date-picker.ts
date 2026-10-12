@@ -2,10 +2,10 @@ import { defineComponent } from "../index.ts";
 
 const sizeProp = {
 	name: "size",
-	type: '"sm" | "md" | "lg"',
+	type: '"xs" | "sm" | "default" | "lg" | "xl"',
 	description: "Field height.",
-	default: "md",
-	control: { kind: "select" as const, options: ["sm", "md", "lg"] },
+	default: "default",
+	control: { kind: "select" as const, options: ["xs", "sm", "default", "lg", "xl"] },
 };
 
 const localeProp = {
@@ -81,7 +81,6 @@ const svelteDeps = [
 
 export const dateField = defineComponent({
 	slug: "date-field",
-	isNew: true,
 	name: "Date Field",
 	description:
 		"Segmented month, day and year in the locale's order, typed or stepped with the arrow keys.",
@@ -156,7 +155,6 @@ export const dateField = defineComponent({
 
 export const datePicker = defineComponent({
 	slug: "date-picker",
-	isNew: true,
 	name: "Date Picker",
 	description: "A segmented date field with a calendar popover on the button at its end.",
 	category: "base",
@@ -252,7 +250,6 @@ export const datePicker = defineComponent({
 
 export const dateRangePicker = defineComponent({
 	slug: "date-range-picker",
-	isNew: true,
 	name: "Date Range Picker",
 	description:
 		"Segmented start and end dates with a two-month calendar, a presets rail and optional Apply.",
@@ -354,7 +351,6 @@ export const dateRangePicker = defineComponent({
 
 export const timePicker = defineComponent({
 	slug: "time-picker",
-	isNew: true,
 	name: "Time Picker",
 	description:
 		"Segmented hour and minute, with AM/PM on a 12-hour clock, typed or stepped with the arrows.",

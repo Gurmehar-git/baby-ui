@@ -7,7 +7,6 @@ const SIMULATE = ["normal", "error", "empty"];
 
 export const dataTable = defineComponent({
 	slug: "data-table",
-	isNew: true,
 	name: "Data Table",
 	description:
 		"Composable parts over TanStack Table core: sorting, search, column visibility, pinning, resizing, selection, pagination, virtualized rows and infinite loading, with loading, refetch, empty and error states.",

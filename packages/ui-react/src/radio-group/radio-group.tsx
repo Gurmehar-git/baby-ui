@@ -2,8 +2,17 @@
 
 import { Radio } from "@base-ui/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
-import { createContext, type ReactNode, useContext, useId, useMemo } from "react";
+import {
+	createContext,
+	type ReactNode,
+	useContext,
+	useId,
+	useLayoutEffect,
+	useMemo,
+	useRef,
+} from "react";
 import { cn } from "../lib/cn";
+import { attachRadioPill } from "./glide";
 import {
 	type RadioOrientation,
 	type RadioSize,
@@ -18,7 +27,7 @@ export function RadioGroup({
 	value,
 	orientation = "vertical",
 	variant = "default",
-	size = "md",
+	size = "default",
 	disabled = false,
 	name,
 	onValueChange,
@@ -36,22 +45,32 @@ export function RadioGroup({
 	children?: ReactNode;
 }) {
 	const itemVariant = useMemo(() => ({ variant, size }), [variant, size]);
+	const root = useRef<HTMLDivElement>(null);
+	const pill = useRef<HTMLSpanElement>(null);
+	useLayoutEffect(() => {
+		if (variant !== "list" || !root.current || !pill.current) return;
+		return attachRadioPill(root.current, pill.current);
+	}, [variant]);
 	return (
 		<RadioGroupPrimitive
+			ref={root}
 			value={value}
 			disabled={disabled}
 			name={name}
 			onValueChange={onValueChange}
 			data-slot="radio-group"
-			aria-orientation={orientation}
+			aria-orientation={orientation === "grid" ? undefined : orientation}
 			className={cn(
-				radioGroup({ orientation }).root(),
+				radioGroup({ orientation, variant }).root(),
 				disabled && "opacity-50",
 				className,
 			)}
 			{...props}
 		>
 			<RadioGroupItemVariantCtx.Provider value={itemVariant}>
+				{variant === "list" ? (
+					<span ref={pill} aria-hidden className={radioGroup({ variant }).pill()} />
+				) : null}
 				{children}
 			</RadioGroupItemVariantCtx.Provider>
 		</RadioGroupPrimitive>
@@ -63,7 +82,7 @@ const RadioGroupItemVariantCtx = createContext<{
 	size: RadioSize;
 }>({
 	variant: "default",
-	size: "md",
+	size: "default",
 });
 
 export function RadioGroupItem({

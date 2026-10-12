@@ -40,11 +40,16 @@ export const infiniteImageField = tv({
 		layout: { grid: {}, staggered: {} },
 		size: {
 			sm: { root: "h-64" },
-			md: { root: "h-96" },
+			default: { root: "h-96" },
 			lg: { root: "h-[32rem]" },
 		},
 	},
-	defaultVariants: { variant: "drift", shape: "rounded", layout: "grid", size: "md" },
+	defaultVariants: {
+		variant: "drift",
+		shape: "rounded",
+		layout: "grid",
+		size: "default",
+	},
 });
 
 export type InfiniteImageFieldVariant = NonNullable<

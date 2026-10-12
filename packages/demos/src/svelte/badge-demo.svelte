@@ -6,7 +6,7 @@ import { controlProps } from "../data/preview-props";
 let { props = {} }: { props?: Record<string, unknown> } = $props();
 const p = $derived(controlProps<ComponentProps<typeof Badge>>(props));
 
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 </script>
 
 <div class="flex w-full max-w-72 flex-col gap-3 text-sm">

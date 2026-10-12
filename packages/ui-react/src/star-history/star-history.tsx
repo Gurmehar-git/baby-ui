@@ -115,7 +115,7 @@ export function StarHistory({
 									value={total}
 									format={compact}
 									durationMs={900}
-									size="md"
+									size="default"
 									className={cn("font-bold text-foreground", styles.heroValue())}
 								/>
 							) : (

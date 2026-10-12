@@ -49,7 +49,7 @@ const content = $derived(CHUNKS.slice(0, count).join(""));
 		{content}
 		streaming={count < CHUNKS.length}
 		variant={p.variant ?? "default"}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		animate={p.animate ?? "fade"}
 		caret={p.caret ?? true}
 		class="w-full"

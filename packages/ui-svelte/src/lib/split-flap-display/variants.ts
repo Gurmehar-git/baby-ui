@@ -54,7 +54,7 @@ export const splitFlap = tv({
 				board:
 					"text-[length:min(16px,calc(70cqi/(var(--split-flap-columns)*1.3_+_2.4)))]",
 			},
-			md: {
+			default: {
 				board:
 					"text-[length:min(22px,calc(85cqi/(var(--split-flap-columns)*1.3_+_2.4)))]",
 			},
@@ -83,7 +83,7 @@ export const splitFlap = tv({
 			},
 		},
 	},
-	defaultVariants: { variant: "solid", size: "md", indicator: "success" },
+	defaultVariants: { variant: "solid", size: "default", indicator: "success" },
 });
 
 export type SplitFlapVariant = NonNullable<VariantProps<typeof splitFlap>["variant"]>;

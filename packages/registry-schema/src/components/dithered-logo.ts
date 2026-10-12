@@ -6,7 +6,6 @@ const SIZES = ["sm", "md", "lg"];
 
 export const ditheredLogo = defineComponent({
 	slug: "dithered-logo",
-	isNew: true,
 	name: "Dithered Logo",
 	description:
 		"A logo dithered into a dot grid in token colours; dots shy from the pointer and ripple on click.",
@@ -49,7 +48,7 @@ export const ditheredLogo = defineComponent({
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description: "Height of the box.",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

@@ -8,12 +8,12 @@ export const dateField = tv({
 	slots: {
 		root: "inline-flex w-fit min-w-0 max-w-full flex-col gap-1.5",
 		group: [
-			"inline-flex w-full min-w-0 items-center rounded-lg border border-input bg-(--field) px-1.5 text-foreground tabular-nums",
+			"inline-flex w-full min-w-0 items-center border border-input bg-(--field) px-1.5 text-foreground tabular-nums hover:border-border-strong",
 			"transition-[box-shadow,border-color] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
 			// Rings while a segment is focused, not while the calendar button is.
-			"has-[[data-segment]:focus]:border-ring has-[[data-segment]:focus]:ring-2 has-[[data-segment]:focus]:ring-ring",
+			"has-[[data-segment]:focus]:border-ring has-[[data-segment]:focus]:ring-3 has-[[data-segment]:focus]:ring-ring/20",
 			// aria-invalid is the `invalid` prop; bits-ui only validates a field that has a value.
-			"has-[[data-segment][data-invalid]]:border-[var(--destructive)] aria-invalid:border-[var(--destructive)]",
+			"has-[[data-segment][data-invalid]]:border-destructive aria-invalid:border-destructive aria-invalid:ring-destructive/20",
 			"aria-disabled:opacity-50 data-[disabled]:opacity-50",
 		],
 		input: "flex min-w-0 items-center gap-px px-1.5",
@@ -34,12 +34,14 @@ export const dateField = tv({
 	},
 	variants: {
 		size: {
-			sm: { group: "h-8 text-xs" },
-			md: { group: "h-9 text-sm" },
-			lg: { group: "h-10 text-sm" },
+			xs: { group: "h-6 rounded-sm px-1 text-xs", icon: "[&_svg]:size-3" },
+			sm: { group: "h-8 rounded-md text-xs", icon: "[&_svg]:size-3.5" },
+			default: { group: "h-9 rounded-lg text-sm" },
+			lg: { group: "h-10 rounded-lg text-sm" },
+			xl: { group: "h-12 rounded-xl px-2 text-base", icon: "[&_svg]:size-4.5" },
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type DateFieldSize = NonNullable<VariantProps<typeof dateField>["size"]>;

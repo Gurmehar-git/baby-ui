@@ -54,7 +54,7 @@ export function BreadcrumbDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof Breadcrumb>>(props);
 	const collapsed = props.collapsed !== false;
 	return (
-		<Breadcrumb variant={p.variant ?? "default"} size={p.size ?? "md"}>
+		<Breadcrumb variant={p.variant ?? "default"} size={p.size ?? "default"}>
 			<BreadcrumbList>
 				<BreadcrumbItem>
 					<BreadcrumbLink href="/">Home</BreadcrumbLink>
@@ -112,7 +112,7 @@ export function RadioGroupDemo({ props }: { props: Props }) {
 			onValueChange={setValue}
 			orientation={p.orientation ?? "vertical"}
 			variant={p.variant ?? "default"}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			disabled={p.disabled ?? false}
 			name="demo-radio"
 		>
@@ -155,9 +155,10 @@ export function SliderDemo({ props }: { props: Props }) {
 				disabled={p.disabled ?? false}
 				label={preset?.label}
 				formatValue={preset?.format}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				showValue={props.showValue === true}
 				marks={variant === "default" ? SLIDER_MARKS : undefined}
+				elastic={p.elastic ?? false}
 			/>
 		</div>
 	);
@@ -184,7 +185,7 @@ export function TabsDemo({ props }: { props: Props }) {
 				value={value}
 				onValueChange={setValue}
 				variant={p.variant ?? "pill"}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 			>
 				<TabsList>
 					{TABS.map((tab) => (
@@ -395,7 +396,7 @@ export function TaskStepsDemo({ props }: { props: Props }) {
 				steps={STEPS}
 				showConnector={p.showConnector ?? true}
 				compact={p.compact ?? false}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 			/>
 		</div>
 	);

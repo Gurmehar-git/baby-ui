@@ -5,11 +5,11 @@ export const typingText = tv({
 	variants: {
 		size: {
 			sm: "text-sm",
-			md: "text-base",
+			default: "text-base",
 			lg: "text-lg",
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type TypingTextSize = NonNullable<VariantProps<typeof typingText>["size"]>;

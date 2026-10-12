@@ -37,7 +37,7 @@ export function SpinnerDemo({ props }: { props: Props }) {
 	return (
 		<div className="flex w-64 flex-col items-center gap-4">
 			<div className="flex items-center gap-2.5 text-muted-foreground">
-				<Spinner size={p.size ?? "md"} label={label} />
+				<Spinner size={p.size ?? "default"} label={label} />
 				<span className="text-sm">{label}</span>
 			</div>
 			<Button loading loadingLabel="Reserving…" className="w-full">
@@ -160,7 +160,7 @@ const ROWS: [string, string][] = [
 export function ShortcutDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof Shortcut>>(props);
 	const variant = p.variant ?? "default";
-	const size = p.size ?? "md";
+	const size = p.size ?? "default";
 	const [log, setLog] = useState<string[]>([]);
 	const note = (action: string) => setLog((prev) => [action, ...prev].slice(0, 3));
 	return (
@@ -219,7 +219,8 @@ export function PaginationDemo({ props }: { props: Props }) {
 	useEffect(() => setPage(Number(props.page ?? 4)), [props.page]);
 	const total = Number(props.total ?? 12);
 	const entries = paginationRange(page, total, Number(props.siblings ?? 1));
-	const size = controlProps<ComponentProps<typeof PaginationLink>>(props).size ?? "md";
+	const size =
+		controlProps<ComponentProps<typeof PaginationLink>>(props).size ?? "default";
 	return (
 		<Pagination>
 			<PaginationPrevious

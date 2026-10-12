@@ -9,7 +9,6 @@ export const ogHalo = defineComponent({
 	description: "A 1200x630 card: one mark centred in a soft halo of light, nothing else.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES, tone: TONES },
 	props: [

@@ -42,7 +42,7 @@ export const githubCalendar = defineComponent({
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
 			description:
 				"Cell size: 10, 12 or 16px, or `fluid` to share the width (scrolling below 10px).",
-			default: "md",
+			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
 		{

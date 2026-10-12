@@ -28,7 +28,7 @@ export function MaskText({
 	baseText,
 	revealSize = 240,
 	durationMs = 500,
-	size = "md",
+	size = "default",
 	className,
 }: MaskTextProps) {
 	const { root, base, reveal } = maskText({ size });

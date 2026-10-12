@@ -24,7 +24,7 @@ let {
 	title,
 	class: classProp,
 	spring = "gentle",
-	size = "md",
+	size = "default",
 	dismissOnBackdrop = true,
 	backdropBlur = 8,
 	open = $bindable(false),

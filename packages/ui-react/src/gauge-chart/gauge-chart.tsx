@@ -8,6 +8,8 @@ import {
 	activeCount,
 	arcNotches,
 	clampStagger,
+	type GaugeBand,
+	gaugeBand,
 	LINEAR_HEIGHT,
 	linearNotches,
 	NOTCH_SPRING,
@@ -79,6 +81,8 @@ export interface GaugeChartProps {
 	tone?: GaugeChartTone;
 	/** Accessible name; also printed under the value. */
 	label?: string;
+	/** Value bands: the highest one reached sets the tone and names the state beside the label. */
+	bands?: GaugeBand<Exclude<GaugeChartTone, "scale">>[];
 	showValue?: boolean;
 	/** Formats the printed value; defaults to the locale's grouped number. */
 	format?: (value: number) => string;
@@ -99,6 +103,7 @@ export function GaugeChart({
 	layout = "arc",
 	tone = "primary",
 	label,
+	bands = [],
 	showValue = true,
 	format,
 	locale,
@@ -160,7 +165,10 @@ export function GaugeChart({
 		const step = NOTCH_TIMING.activeStep * stagger;
 		return index >= from ? (index - from) * step : (from - 1 - index) * step;
 	};
-	const styles = gaugeChart({ layout, tone });
+	const band = gaugeBand(bands, value);
+	const shownLabel = band ? (label ? `${label} · ${band.label}` : band.label) : label;
+	const activeTone = band?.tone ?? tone;
+	const styles = gaugeChart({ layout, tone: activeTone });
 	const text = formatter(value);
 	// The ring sweeps from empty on mount; later changes ease along the dash.
 	const [swept, setSwept] = useState(!animate);
@@ -181,7 +189,7 @@ export function GaugeChart({
 				aria-valuemax={max}
 				aria-valuenow={value}
 				aria-valuetext={text}
-				aria-label={label}
+				aria-label={shownLabel}
 				data-slot="gauge-chart"
 				data-layout="ring"
 				className={cn(styles.root(), className)}
@@ -205,7 +213,7 @@ export function GaugeChart({
 						strokeDasharray={`${arc} ${RING_CIRCUMFERENCE}`}
 						strokeDashoffset={arc * (1 - (swept ? share : 0))}
 						stroke={
-							tone === "scale"
+							activeTone === "scale"
 								? scaleFill(Math.max(0, Math.round(share * total) - 1), total)
 								: undefined
 						}
@@ -222,7 +230,7 @@ export function GaugeChart({
 							startOnView={false}
 							className={cn("font-bold text-foreground", styles.value())}
 						/>
-						{label ? <span className={styles.label()}>{label}</span> : null}
+						{shownLabel ? <span className={styles.label()}>{shownLabel}</span> : null}
 					</div>
 				) : null}
 			</div>
@@ -254,7 +262,7 @@ export function GaugeChart({
 					delay={activeDelay(notch.index)}
 					animate={animate}
 					className={styles.active()}
-					fill={tone === "scale" ? scaleFill(notch.index, total) : undefined}
+					fill={activeTone === "scale" ? scaleFill(notch.index, total) : undefined}
 				/>
 			))}
 		</svg>
@@ -269,16 +277,20 @@ export function GaugeChart({
 			aria-valuemax={max}
 			aria-valuenow={value}
 			aria-valuetext={text}
-			aria-label={label}
+			aria-label={shownLabel}
 			data-slot="gauge-chart"
 			data-layout={layout}
 			className={cn(styles.root(), className)}
 		>
 			{linear ? (
 				<>
-					{showValue || label ? (
+					{showValue || shownLabel ? (
 						<div className={styles.header()}>
-							{label ? <span className={styles.label()}>{label}</span> : <span />}
+							{shownLabel ? (
+								<span className={styles.label()}>{shownLabel}</span>
+							) : (
+								<span />
+							)}
 							{showValue ? (
 								<RollingDigits
 									variant="count"
@@ -305,11 +317,11 @@ export function GaugeChart({
 								variant="count"
 								value={value}
 								format={formatter}
-								size="md"
+								size="default"
 								startOnView={false}
 								className={cn("font-bold text-foreground", styles.value())}
 							/>
-							{label ? <span className={styles.label()}>{label}</span> : null}
+							{shownLabel ? <span className={styles.label()}>{shownLabel}</span> : null}
 						</div>
 					) : null}
 				</>

@@ -22,7 +22,7 @@ function profileName() {
 	<ErrorBoundary
 		variant={p.variant ?? "card"}
 		layout={p.layout ?? "vertical"}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		details={p.details ?? true}
 		onreset={() => (crash = false)}
 	>

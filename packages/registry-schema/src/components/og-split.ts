@@ -9,7 +9,6 @@ export const ogSplit = defineComponent({
 		"A 1200x630 brand card: logo and wordmark on the left, an image panel with a curved edge on the right.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

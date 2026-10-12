@@ -53,7 +53,7 @@ export function StatCardMap({
 	keyProp = "name",
 	labelProp = "name",
 	projection = "equalEarth",
-	size = "md",
+	size = "default",
 	locale,
 	formatValue,
 	activeIndex: activeIndexProp,

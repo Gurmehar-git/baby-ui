@@ -19,7 +19,7 @@ let {
 		data-slot="tooltip-content"
 		class={cn(
 			ANCHORED,
-			"static z-50 rounded-md bg-popover px-2 py-1 text-foreground text-xs shadow-(--overlay-shadow)",
+			"static z-50 rounded-md bg-foreground px-2 py-1 text-background text-xs shadow-(--overlay-shadow)",
 			"data-[state=open]:pointer-events-none",
 			// Tooltips report delayed-open/instant-open, never open. Once one is open, the next skips motion.
 			"data-[state=delayed-open]:opacity-100 data-[state=delayed-open]:scale-100 data-[state=delayed-open]:duration-[var(--duration-tooltip)]",

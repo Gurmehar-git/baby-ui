@@ -14,3 +14,6 @@ PageDown step by `largeStep`; Home and End jump to `min` and `max`.
 handle, a `suffix` names the unit, and the steppers go.
 
 The React port is Base UI's NumberField. The Svelte port matches its keys and formatting.
+
+Pressing past `min` or `max` shakes the field and briefly names the limit; set
+`limitHint={false}` to keep it silent. `prefix` and `suffix` frame the value in both variants.

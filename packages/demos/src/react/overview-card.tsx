@@ -31,7 +31,7 @@ export function OverviewCardDemo({ props }: { props: Props }) {
 				period={period}
 				onPeriodChange={setPeriod}
 				chart={p.chart ?? "area"}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				formatValue={currency}
 			/>
 		</div>

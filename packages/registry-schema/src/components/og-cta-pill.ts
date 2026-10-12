@@ -10,7 +10,6 @@ export const ogCtaPill = defineComponent({
 		"A 1200x630 card: one huge call-to-action pill on a grained colour field, lit by a warm glow rising from below.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES, tone: TONES },
 	props: [

@@ -17,7 +17,7 @@ export const scrollTiltedGrid = tv({
 				root: "h-96 overflow-y-auto overscroll-contain rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring",
 				grid: "py-48",
 			},
-			md: {
+			default: {
 				root: "h-[32rem] overflow-y-auto overscroll-contain rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring",
 				grid: "py-64",
 			},
@@ -43,7 +43,7 @@ export const scrollTiltedGrid = tv({
 			right: { figure: "pt-12 @xl:pt-24" },
 		},
 	},
-	defaultVariants: { size: "md", aspect: "portrait", radius: "sm", side: "left" },
+	defaultVariants: { size: "default", aspect: "portrait", radius: "sm", side: "left" },
 });
 
 export type ScrollTiltedGridSize = NonNullable<

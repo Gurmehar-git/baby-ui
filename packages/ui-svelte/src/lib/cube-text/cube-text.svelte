@@ -8,7 +8,7 @@ let {
 	delayMs = 0,
 	loop = true,
 	stagger = "wave",
-	size = "md",
+	size = "default",
 	class: classProp,
 }: {
 	text: string;

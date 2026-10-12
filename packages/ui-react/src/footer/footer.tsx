@@ -32,6 +32,8 @@ export interface FooterProps {
 	topHref?: string;
 	topLabel?: string;
 	layout?: FooterLayout;
+	/** A system status link with a pulsing dot in its tone. */
+	status?: FooterStatus;
 	className?: string;
 }
 
@@ -55,6 +57,12 @@ function ArrowUpRight() {
 const externalProps = (link: { href: string; external?: boolean }) =>
 	link.external ? { target: "_blank", rel: "noreferrer" } : {};
 
+export interface FooterStatus {
+	label: string;
+	href?: string;
+	tone?: "success" | "warning" | "destructive";
+}
+
 export function Footer({
 	brand,
 	description,
@@ -67,6 +75,7 @@ export function Footer({
 	topHref,
 	topLabel = "Back to top",
 	layout = "split",
+	status,
 	className,
 }: FooterProps) {
 	const styles = footer({ layout });
@@ -84,6 +93,22 @@ export function Footer({
 		</ul>
 	) : null;
 	const actionsSlot = actions ? <div className={styles.actions()}>{actions}</div> : null;
+	const statusDot = (
+		<span aria-hidden data-tone={status?.tone} className={styles.statusDot()} />
+	);
+	const statusLink = status ? (
+		status.href ? (
+			<a href={status.href} className={styles.status()}>
+				{statusDot}
+				{status.label}
+			</a>
+		) : (
+			<p className={styles.status()}>
+				{statusDot}
+				{status.label}
+			</p>
+		)
+	) : null;
 
 	return (
 		<footer
@@ -148,13 +173,14 @@ export function Footer({
 						{!notched && copyright ? (
 							<p className={styles.copyright()}>{copyright}</p>
 						) : null}
+						{!notched ? statusLink : null}
 						{!notched ? legalList : null}
 						{!notched ? actionsSlot : null}
 					</div>
 
 					<div className={styles.columns()}>
 						{columns.map((column) => (
-							<div key={column.title}>
+							<div key={column.title} className={styles.column()}>
 								<h4 className={styles.columnTitle()}>{column.title}</h4>
 								<ul className={styles.links()}>
 									{column.links.map((link) => (
@@ -167,7 +193,7 @@ export function Footer({
 												<span>
 													<span className="inline-flex items-center gap-1">
 														{link.label}
-														{link.external && notched ? <ArrowUpRight /> : null}
+														{link.external ? <ArrowUpRight /> : null}
 													</span>
 													{link.description ? (
 														<span className={styles.linkDescription()}>
@@ -189,6 +215,7 @@ export function Footer({
 						<span aria-hidden className={styles.rule()} />
 						<div className={styles.bottom()}>
 							{copyright ? <p>{copyright}</p> : null}
+							{statusLink}
 							{legalList}
 							{actionsSlot}
 						</div>

@@ -19,3 +19,6 @@ the badge, e.g. "Increased by 12.5% vs last month".
 `status` covers the fetch lifecycle: `loading` skeletons the headline and badge, `empty`
 and `error` replace the chart with a message, and `onRetry` adds a Retry button to the
 error state. The headline only counts when `value` changes; hovering swaps it instantly.
+
+`description` adds a context line under the headline. Set `chart="none"` for a figure-only
+metric card: `data` becomes optional and the headline still counts on a new `value`.

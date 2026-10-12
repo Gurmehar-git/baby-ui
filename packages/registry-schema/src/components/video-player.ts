@@ -31,7 +31,6 @@ export const videoPlayer = defineComponent({
 		"A composable video player on media-chrome with HLS, speed, quality and volume menus, buffering and error states, and every playback value controllable.",
 	category: "base",
 	status: "beta",
-	isNew: true,
 	variants: { variant: VARIANTS },
 	props: [
 		{

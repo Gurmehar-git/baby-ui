@@ -14,7 +14,7 @@ export const morphText = tv({
 		size: {
 			inherit: { subtext: "text-[0.3em]" },
 			sm: { word: "text-3xl", subtext: "text-xs" },
-			md: { word: "text-5xl", subtext: "text-sm" },
+			default: { word: "text-5xl", subtext: "text-sm" },
 			lg: { word: "text-7xl", subtext: "text-base" },
 		},
 		layout: {

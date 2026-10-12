@@ -16,7 +16,7 @@ let tags = $state(["svelte", "react"]);
 		max={Number(props.max ?? 6)}
 		disabled={Boolean(props.disabled)}
 		invalid={p.invalid ?? false}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		label="Tags"
 	/>
 </div>

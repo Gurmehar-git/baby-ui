@@ -12,7 +12,7 @@ export function ScrollTiltedGridDemo({ props }: { props: Props }) {
 	return (
 		<ScrollTiltedGrid
 			images={TILTED_IMAGES}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			aspect={p.aspect ?? "portrait"}
 			radius={p.radius ?? "sm"}
 			maxTilt={Number(props.maxTilt ?? 62)}

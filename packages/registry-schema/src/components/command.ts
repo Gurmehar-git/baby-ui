@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const command = defineComponent({
 	slug: "command",
-	isNew: true,
 	name: "Command",
 	description: "Searchable action list driven entirely from the keyboard.",
 	category: "base",
@@ -53,6 +52,7 @@ export const command = defineComponent({
 		springs: [],
 		reducedMotion: "Closing snaps instead of fading.",
 		behaviour: [
+			"The default list eases to its new height as filtering adds or removes rows.",
 			"Opening is instant: the palette is a keyboard shortcut used many times a day. Closing fades over the exit token.",
 			"One marker sits under the active row and snaps between rows, since arrow keys repeat too fast for motion to help. `default` paints the row itself, as shadcn does.",
 			"Filter tooltips open after a short delay; once one is open, the next opens instantly.",

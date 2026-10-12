@@ -15,7 +15,7 @@ import { controlProps } from "../data/preview-props";
 let { props = {} }: { props?: Record<string, unknown> } = $props();
 const p = $derived(controlProps<ComponentProps<typeof NavigationMenuTrigger>>(props));
 
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 </script>
 
 <div class="flex min-h-72 w-full justify-center pt-2">

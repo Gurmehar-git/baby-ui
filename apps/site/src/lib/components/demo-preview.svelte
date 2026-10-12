@@ -44,7 +44,7 @@ const iframeSrc = $derived(
 		{:else if demoPromise}
 			{#await demoPromise}
 				<div class="flex flex-col items-center gap-2 text-muted-foreground text-sm">
-					<Spinner size="md" label="Loading preview" />
+					<Spinner size="default" label="Loading preview" />
 					<span>Loading preview…</span>
 				</div>
 			{:then mod}

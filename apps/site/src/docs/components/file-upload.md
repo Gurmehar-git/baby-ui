@@ -13,3 +13,6 @@ your request there, then update each file's `progress` and `status` as it runs.
 Files that miss `accept`, `maxSize` or `maxFiles` are not added; each one gets a line in the
 error message under the dropzone. Image files get a thumbnail, and its object URL is released
 when the file leaves the list.
+
+`compactAt` folds the drop zone into a slim bar once the list holds that many files, so a
+long list keeps its room. A rejected drop shakes the zone beside its error message.

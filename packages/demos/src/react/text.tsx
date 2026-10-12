@@ -79,7 +79,7 @@ export function GlitchTextDemo({ props }: { props: Props }) {
 	return (
 		<GlitchText
 			text={p.text || "Glitch"}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			intensity={Number(props.intensity ?? 5)}
 			durationSeconds={Number(props.durationSeconds ?? 2.5)}
 			baseColor={p.baseColor || undefined}
@@ -153,7 +153,7 @@ export function TypingTextDemo({ props }: { props: Props }) {
 			grow={props.grow === true}
 			hideCursorOnComplete={props.hideCursorOnComplete === true}
 			stumbles={props.stumbles === true}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			className="text-foreground"
 		/>
 	);

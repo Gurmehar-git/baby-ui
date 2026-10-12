@@ -32,7 +32,7 @@ let {
 	weekdayFormat = "short",
 	buttonVariant = "ghost",
 	captionLayout = "label",
-	size = "md",
+	size = "default",
 	locale = "en-US",
 	minValue,
 	maxValue,
@@ -40,6 +40,7 @@ let {
 	yearFormat = "numeric",
 	day,
 	disableDaysOutsideMonth = false,
+	fixedWeeks = true,
 	...rest
 }: WithoutChildren<CalendarPrimitive.RootProps> & {
 	buttonVariant?: ButtonVariant;
@@ -73,6 +74,7 @@ const days = $derived(chooser.view === "days");
 	bind:placeholder
 	{weekdayFormat}
 	{disableDaysOutsideMonth}
+	{fixedWeeks}
 	{locale}
 	{minValue}
 	{maxValue}

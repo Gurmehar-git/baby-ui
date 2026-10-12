@@ -6,7 +6,7 @@ import { controlProps } from "../data/preview-props";
 let { props = {} }: { props?: Record<string, unknown> } = $props();
 const p = $derived(controlProps<ComponentProps<typeof NumberInput>>(props));
 
-const size = $derived(p.size ?? "md");
+const size = $derived(p.size ?? "default");
 let seats = $state<number | null>(5);
 let budget = $state<number | null>(1200);
 </script>
@@ -21,6 +21,7 @@ let budget = $state<number | null>(1200);
 		{size}
 		suffix={p.suffix || undefined}
 		disabled={p.disabled ?? false}
+		limitHint={p.limitHint ?? true}
 	/>
 	<NumberInput
 		label="Monthly budget"

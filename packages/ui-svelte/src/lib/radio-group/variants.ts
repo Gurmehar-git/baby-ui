@@ -5,10 +5,11 @@ export const radioGroup = tv({
 		root: "flex gap-2",
 		label: "inline-flex cursor-pointer items-start gap-2.5 text-foreground",
 		ring: [
-			"mt-0.5 grid shrink-0 place-items-center rounded-full border-2 border-muted-foreground/50 bg-background transition-colors",
-			"peer-checked:border-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-background",
+			"mt-0.5 grid shrink-0 place-items-center rounded-full border-2 border-muted-foreground/75 bg-background transition-colors",
+			"peer-aria-invalid:border-destructive peer-checked:border-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-background",
 		],
 		dot: "radio-dot rounded-full bg-primary",
+		pill: "hidden",
 	},
 	variants: {
 		variant: {
@@ -18,27 +19,31 @@ export const radioGroup = tv({
 					"rounded-xl border border-border bg-card px-3.5 py-3 transition-colors hover:border-border-strong has-checked:border-primary",
 			},
 			// Menu-style rows: the checked row is tinted, for pickers inside a popover.
+			// One highlight glides to the checked row instead of each row tinting itself.
 			list: {
-				root: "gap-0.5",
+				root: "relative isolate gap-0.5",
 				label: [
-					"w-full items-center rounded-md px-2 py-1.5 transition-colors hover:bg-accent",
-					"has-data-checked:bg-foreground/[0.06] has-data-[state=checked]:bg-foreground/[0.06] has-data-checked:font-medium has-data-[state=checked]:font-medium",
+					"relative z-1 w-full items-center rounded-md px-2 py-1.5 transition-colors hover:bg-accent/60",
+					"has-data-checked:font-medium has-data-[state=checked]:font-medium",
 				],
 				ring: "mt-0",
+				pill: "pointer-events-none absolute top-0 left-0 block rounded-md bg-foreground/[0.06] data-[ready=true]:transition-[translate,width,height,opacity] data-[ready=true]:duration-(--duration-spring-snappy) data-[ready=true]:ease-(--ease-spring-snappy) motion-reduce:transition-none",
 			},
 		},
 		size: {
 			sm: { label: "text-xs", ring: "size-3.5", dot: "size-1.5" },
-			md: { label: "text-sm", ring: "size-4", dot: "size-2" },
+			default: { label: "text-sm", ring: "size-4", dot: "size-2" },
 			lg: { label: "text-sm", ring: "size-5", dot: "size-2.5" },
 			xl: { label: "text-base", ring: "size-6", dot: "size-3" },
 		},
 		orientation: {
 			vertical: { root: "flex-col" },
 			horizontal: { root: "flex-row flex-wrap items-start" },
+			// Responsive columns for `card` items; a column never narrows below 12rem.
+			grid: { root: "grid grid-cols-[repeat(auto-fill,minmax(min(12rem,100%),1fr))]" },
 		},
 	},
-	defaultVariants: { variant: "default", size: "md", orientation: "vertical" },
+	defaultVariants: { variant: "default", size: "default", orientation: "vertical" },
 });
 
 export type RadioVariant = NonNullable<VariantProps<typeof radioGroup>["variant"]>;

@@ -9,6 +9,13 @@ export const skeleton = defineComponent({
 	variants: { shape: ["line", "circle", "block"] },
 	props: [
 		{
+			name: "loading",
+			type: "boolean",
+			description:
+				"With children: the placeholder takes their shape until false, then crossfades into them.",
+			control: { kind: "none" },
+		},
+		{
 			name: "width",
 			type: "string",
 			description: "CSS width, for example 100% or 12rem.",
@@ -34,6 +41,7 @@ export const skeleton = defineComponent({
 		springs: [],
 		reducedMotion: "The shimmer stops; the placeholder stays as a flat block.",
 		behaviour: [
+			"Wrapping content, the placeholder and the content share one cell, so revealing it crossfades without a layout jump.",
 			"The shimmer sweeps left to right over 2s linear, matching reading direction.",
 			"It animates background-position, so it stays off the layout and paint path.",
 		],

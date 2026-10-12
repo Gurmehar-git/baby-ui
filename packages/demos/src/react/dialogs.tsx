@@ -78,7 +78,7 @@ export function DialogDemo({ props }: { props: Props }) {
 		<Dialog
 			open={open}
 			onOpenChange={setOpen}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			variant={p.variant ?? "default"}
 			dismissOnBackdrop={p.dismissOnBackdrop ?? true}
 		>
@@ -422,7 +422,7 @@ export function FullscreenNavDemo({ props }: { props: Props }) {
 				title={p.title || "Menu"}
 				variant={p.variant ?? "fade"}
 				align={p.align ?? "start"}
-				size={p.size ?? "md"}
+				size={p.size ?? "default"}
 				numbered={p.numbered ?? false}
 				footer={<span>hello@example.com</span>}
 			/>

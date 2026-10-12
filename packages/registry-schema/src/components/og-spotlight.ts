@@ -9,7 +9,6 @@ export const ogSpotlight = defineComponent({
 		"A 1200x630 card: a centred headline with the brand under it on a faint grid, ringed by portrait tiles.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

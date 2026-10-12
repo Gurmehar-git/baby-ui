@@ -21,7 +21,7 @@ export function ScrollReveal({
 	text,
 	minOpacity = 0.5,
 	blur = true,
-	size = "md",
+	size = "default",
 	className,
 }: ScrollRevealProps) {
 	const words = text.trim().split(/\s+/);

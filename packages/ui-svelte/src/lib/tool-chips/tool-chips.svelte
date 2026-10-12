@@ -11,7 +11,7 @@ let {
 	diffs = [],
 	hiddenDiffCount = 0,
 	labels,
-	size = "md",
+	size = "default",
 	open = $bindable(true),
 	onToggleRow,
 	class: classProp,

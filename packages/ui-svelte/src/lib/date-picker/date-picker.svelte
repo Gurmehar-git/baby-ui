@@ -25,7 +25,7 @@ let {
 	open = $bindable(false),
 	onOpenChange,
 	captionLayout = "dropdown",
-	size = "md",
+	size = "default",
 	labels: labelsProp,
 	id,
 	name,

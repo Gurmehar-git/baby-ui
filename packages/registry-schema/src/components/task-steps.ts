@@ -7,7 +7,6 @@ export const taskSteps = defineComponent({
 		"Ordered agent plan where each step shows pending, active, done or failed, as a timeline or expandable rows.",
 	category: "agents",
 	status: "stable",
-	isUpdated: true,
 	variants: { variant: ["timeline", "capsules", "list"] },
 	props: [
 		{
@@ -55,10 +54,10 @@ export const taskSteps = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md"',
+			type: '"sm" | "default"',
 			description: "Marker, icon and label scale.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default"] },
 			showWhen: { variant: ["timeline"] },
 		},
 		{

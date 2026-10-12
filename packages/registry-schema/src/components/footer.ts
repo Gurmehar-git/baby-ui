@@ -4,7 +4,7 @@ export const footer = defineComponent({
 	slug: "footer",
 	name: "Footer",
 	description:
-		"Marketing site footer: brand and socials, link columns, legal links, an optional giant wordmark and a notched back-to-top layout.",
+		"Marketing site footer: brand and socials, link columns, legal links, an optional giant wordmark and a notched back-to-top layout, or one minimal row.",
 	category: "blocks",
 	status: "stable",
 	props: [
@@ -78,11 +78,18 @@ export const footer = defineComponent({
 		},
 		{
 			name: "layout",
-			type: '"split" | "centered" | "notched"',
+			type: '"split" | "centered" | "notched" | "minimal"',
 			description:
-				"Brand block beside the link columns, centred above them, or a rounded top with a notched back-to-top tab and a ruled bottom row.",
+				"Brand block beside the link columns, centred above them, a rounded top with a notched back-to-top tab, or one quiet row of brand, links and copyright.",
 			default: "split",
-			control: { kind: "select", options: ["split", "centered", "notched"] },
+			control: { kind: "select", options: ["split", "centered", "notched", "minimal"] },
+		},
+		{
+			name: "status",
+			type: '{ label: string; href?: string; tone?: "success" | "warning" | "destructive" }',
+			description:
+				"A system status link with a pulsing dot in its tone, beside the copyright.",
+			control: { kind: "none" },
 		},
 	],
 	motion: {
@@ -95,6 +102,12 @@ export const footer = defineComponent({
 	},
 	a11y: {
 		notes: ["A real <footer> landmark; the wordmark is decorative text, not a heading."],
+	},
+	licenseOrigin: {
+		source: "arc",
+		url: "https://uiarc.dev",
+		license: "MIT",
+		copyright: "Copyright (c) 2026 Elia Kuratli",
 	},
 	impl: {
 		react: {

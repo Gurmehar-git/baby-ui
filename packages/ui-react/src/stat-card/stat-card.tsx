@@ -29,13 +29,16 @@ export type { StatCardChartKind, StatCardPositive, StatCardSize, StatCardStatus 
 export interface StatCardProps {
 	/** Card heading; also the chart's accessible name. */
 	title: string;
-	data: Datum[];
-	dataKey: string;
+	/** Rows behind the chart; leave empty with `chart="none"`. */
+	data?: Datum[];
+	dataKey?: string;
 	xKey?: string;
 	/** Headline at rest, e.g. the period average. */
 	value: number;
 	/** Caption under the headline at rest, e.g. "Avg". */
 	label: string;
+	/** Context line under the headline, e.g. "Across all paid plans". */
+	description?: string;
 	/** Change over the whole period, in percent. */
 	trend: number;
 	/** What the trend compares against, read after it, e.g. "vs last month". */
@@ -65,16 +68,17 @@ export interface StatCardProps {
 /** The stat card: the headline, caption and trend follow whichever point the chart has active. */
 export function StatCard({
 	title,
-	data,
-	dataKey,
+	data = [],
+	dataKey = "value",
 	xKey = "date",
 	value,
 	label,
+	description,
 	trend,
 	comparisonLabel,
 	positive = "up",
 	chart = "area",
-	size = "md",
+	size = "default",
 	color = "var(--chart-1)",
 	locale,
 	formatValue,
@@ -126,7 +130,7 @@ export function StatCard({
 	const config = { [dataKey]: { label: title, color } };
 	const margin = { top: 4, right: 0, bottom: 0, left: 0 };
 	const chartStatus: ChartStatus = status === "loading" ? "loading" : "ready";
-	const description = statSummary({
+	const summary = statSummary({
 		data,
 		dataKey,
 		xKey,
@@ -217,41 +221,46 @@ export function StatCard({
 						</span>
 					</div>
 				)}
-				<div className={styles.chart()}>
-					<ChartContainer
-						config={config}
-						title={title}
-						description={description}
-						aspect="auto"
-						locale={locale}
-					>
-						{chart === "line" ? (
-							<LineChart
-								data={data}
-								xKey={xKey}
-								margin={margin}
-								status={chartStatus}
-								activeIndex={activeIndex}
-								onActiveIndexChange={setActive}
-							>
-								<Line dataKey={dataKey} curve="monotone" strokeWidth={2} />
-								{children}
-							</LineChart>
-						) : (
-							<AreaChart
-								data={data}
-								xKey={xKey}
-								margin={margin}
-								status={chartStatus}
-								activeIndex={activeIndex}
-								onActiveIndexChange={setActive}
-							>
-								<Area dataKey={dataKey} curve="monotone" fillOpacity={0.45} />
-								{children}
-							</AreaChart>
-						)}
-					</ChartContainer>
-				</div>
+				{description && status !== "empty" && status !== "error" ? (
+					<p className={styles.description()}>{description}</p>
+				) : null}
+				{chart === "none" ? null : (
+					<div className={styles.chart()}>
+						<ChartContainer
+							config={config}
+							title={title}
+							description={summary}
+							aspect="auto"
+							locale={locale}
+						>
+							{chart === "line" ? (
+								<LineChart
+									data={data}
+									xKey={xKey}
+									margin={margin}
+									status={chartStatus}
+									activeIndex={activeIndex}
+									onActiveIndexChange={setActive}
+								>
+									<Line dataKey={dataKey} curve="monotone" strokeWidth={2} />
+									{children}
+								</LineChart>
+							) : (
+								<AreaChart
+									data={data}
+									xKey={xKey}
+									margin={margin}
+									status={chartStatus}
+									activeIndex={activeIndex}
+									onActiveIndexChange={setActive}
+								>
+									<Area dataKey={dataKey} curve="monotone" fillOpacity={0.45} />
+									{children}
+								</AreaChart>
+							)}
+						</ChartContainer>
+					</div>
+				)}
 			</CardContent>
 		</Card>
 	);

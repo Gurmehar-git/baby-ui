@@ -77,7 +77,7 @@ export function FineTuneCard({
 	fields,
 	options = [],
 	labels,
-	size = "md",
+	size = "default",
 	id,
 	state: stateProp,
 	defaultState,

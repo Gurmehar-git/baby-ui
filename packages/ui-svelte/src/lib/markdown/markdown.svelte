@@ -7,7 +7,7 @@ import { type MarkdownSize, type MarkdownVariant, markdown } from "./variants";
 let {
 	content,
 	variant = "default",
-	size = "md",
+	size = "default",
 	streaming,
 	animate = "fade",
 	caret = true,

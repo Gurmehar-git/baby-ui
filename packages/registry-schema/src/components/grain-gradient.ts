@@ -5,7 +5,6 @@ const POSITIONS = ["absolute", "fixed"];
 
 export const grainGradient = defineComponent({
 	slug: "grain-gradient",
-	isNew: true,
 	name: "Grain Gradient",
 	description:
 		"A full-bleed glow and diffused shadow edge that breathe slowly under a static film grain.",

@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const draggableMarquee = defineComponent({
 	slug: "draggable-marquee",
-	isNew: true,
 	name: "Draggable Marquee",
 	description:
 		"An endless drifting row you can grab and throw; it coasts with inertia, then drifts on.",

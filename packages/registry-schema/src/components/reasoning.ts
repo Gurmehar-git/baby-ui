@@ -9,7 +9,6 @@ export const reasoning = defineComponent({
 		"Collapsible chain-of-thought panel with steps, sources, images or trace rows; opens while thinking and closes when done.",
 	category: "agents",
 	status: "stable",
-	isUpdated: true,
 	variants: { variant: VARIANTS },
 	props: [
 		{

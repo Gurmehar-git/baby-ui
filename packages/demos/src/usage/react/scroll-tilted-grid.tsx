@@ -8,5 +8,5 @@ const images = [
 ];
 
 export function Example() {
-	return <ScrollTiltedGrid images={images} size="md" />;
+	return <ScrollTiltedGrid images={images} size="default" />;
 }

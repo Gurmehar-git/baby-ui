@@ -46,7 +46,7 @@ export function ScoreCard({
 	trend,
 	tone = "primary",
 	layout = "arc",
-	size = "md",
+	size = "default",
 	locale,
 	format,
 	animate = true,

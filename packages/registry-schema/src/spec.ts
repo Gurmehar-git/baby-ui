@@ -97,10 +97,10 @@ export const ComponentSpecSchema = z.object({
 	status: z.enum(["stable", "beta", "alpha", "experimental"]).default("beta"),
 	/** Hidden from the catalog, nav, search and counts; the registry still serves it so installs keep working. */
 	retired: z.boolean().default(false),
-	/** Badged "New" and listed first; clear it once the component has settled. */
-	isNew: z.boolean().default(false),
-	/** Badged "Updated" after a user-facing change, unless `isNew` is set; clear it with the next release. */
-	isUpdated: z.boolean().default(false),
+	/** YYYY-MM-DD first release; overrides the git date. Badged "New" for 15 days. */
+	added: z.iso.date().optional(),
+	/** YYYY-MM-DD last user-facing change; overrides the git date. Badged "Updated" for 15 days. */
+	updated: z.iso.date().optional(),
 
 	props: z.array(PropSpecSchema).default([]),
 	/** Named variant axes, e.g. `{ variant: ["default","ghost"], size: ["sm","lg"] }`. */

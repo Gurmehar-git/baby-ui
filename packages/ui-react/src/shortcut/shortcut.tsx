@@ -28,7 +28,7 @@ export interface ShortcutProps {
 
 export function Shortcut({
 	shortcut,
-	size = "md",
+	size = "default",
 	variant = "default",
 	joined = false,
 	onTrigger,

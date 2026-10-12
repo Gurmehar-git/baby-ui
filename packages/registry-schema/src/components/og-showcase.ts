@@ -9,7 +9,6 @@ export const ogShowcase = defineComponent({
 		"A 1200x630 product card: a big headline bottom left, two offset columns of framed screenshots on the right.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES },
 	props: [

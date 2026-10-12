@@ -1,5 +1,7 @@
 <script lang="ts">
+import Badge from "../badge/badge.svelte";
 import Card from "../card/card.svelte";
+import CardAction from "../card/card-action.svelte";
 import CardContent from "../card/card-content.svelte";
 import CardDescription from "../card/card-description.svelte";
 import CardHeader from "../card/card-header.svelte";
@@ -11,6 +13,8 @@ import type { Datum } from "../chart/core";
 import { cn } from "../lib/cn";
 import RingChart from "../ring-chart/ring-chart.svelte";
 import type { RingCap } from "../ring-chart/variants";
+import { meterLayout, meterNumber, meterTone } from "./meter";
+import UsageMeter from "./usage-meter.svelte";
 import { type UsageCardLayout, usageCard } from "./variants";
 
 let {
@@ -24,6 +28,12 @@ let {
 	layout = "side",
 	cap = "round",
 	centerLabel,
+	limit,
+	unit = "",
+	decimals = 1,
+	warnAt = 0.9,
+	freeLabel = "Free",
+	overLabel = "Over limit",
 	locale,
 	activeIndex = $bindable(null),
 	onActiveIndexChange,
@@ -43,6 +53,16 @@ let {
 	layout?: UsageCardLayout;
 	cap?: RingCap;
 	centerLabel?: string;
+	/** Meter layout: the plan allowance every row shares, in the rows' unit. */
+	limit?: number;
+	/** Meter layout: unit after each amount, e.g. "GB". */
+	unit?: string;
+	/** Meter layout: digits after the decimal point. */
+	decimals?: number;
+	/** Meter layout: share of the limit at which the badge warns it is almost full. */
+	warnAt?: number;
+	freeLabel?: string;
+	overLabel?: string;
 	locale?: string;
 	activeIndex?: number | null;
 	onActiveIndexChange?: (index: number | null) => void;
@@ -50,6 +70,28 @@ let {
 } = $props();
 
 const styles = $derived(usageCard({ layout }));
+const uid = $props.id();
+const chartId = `usage-${uid}`;
+const segments = $derived(
+	data.map((row) => {
+		const value = row[dataKey];
+		return {
+			key: String(row[nameKey] ?? ""),
+			value: typeof value === "number" ? value : 0,
+		};
+	}),
+);
+const meterLimit = $derived(limit ?? segments.reduce((sum, s) => sum + s.value, 0));
+const meter = $derived(meterLayout(segments, meterLimit, warnAt));
+const amount = (value: number) =>
+	`${meterNumber(value, decimals, locale)}${unit ? ` ${unit}` : ""}`;
+const badge = $derived(
+	meter.status === "over"
+		? `${amount(meter.over)} over`
+		: meter.status === "near"
+			? "Almost full"
+			: `${amount(meter.free)} free`,
+);
 
 function setActive(index: number | null) {
 	activeIndex = index;
@@ -63,8 +105,30 @@ function setActive(index: number | null) {
 		{#if description}
 			<CardDescription class={styles.description()}>{description}</CardDescription>
 		{/if}
+		{#if layout === "meter"}
+			<CardAction>
+				<Badge variant={meterTone[meter.status]} size="sm" class="tabular-nums">{badge}</Badge>
+			</CardAction>
+		{/if}
 	</CardHeader>
 	<CardContent class={styles.body()}>
+		{#if layout === "meter"}
+			<UsageMeter
+				id={chartId}
+				{title}
+				{config}
+				layout={meter}
+				limit={meterLimit}
+				{unit}
+				{decimals}
+				{freeLabel}
+				{overLabel}
+				{locale}
+				{activeIndex}
+				onActiveIndexChange={setActive}
+				{styles}
+			/>
+		{:else}
 		<ChartContainer {config} {title} aspect="auto" {locale} class={styles.chart()}>
 			<RingChart
 				{data}
@@ -78,5 +142,6 @@ function setActive(index: number | null) {
 			/>
 			<ChartLegendContent align="start" class={styles.legend()} />
 		</ChartContainer>
+		{/if}
 	</CardContent>
 </Card>

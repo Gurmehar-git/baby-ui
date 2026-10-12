@@ -56,7 +56,7 @@ export const emailHeading = tv({
 	base: "m-0 font-semibold text-foreground tracking-[-0.02em] dark:text-foreground-dark",
 	variants: {
 		size: {
-			md: "text-[20px] leading-[28px]",
+			default: "text-[20px] leading-[28px]",
 			lg: "text-[26px] leading-[34px]",
 			display: "font-extrabold text-[36px] leading-[42px] tracking-[-0.03em]",
 		},
@@ -109,7 +109,7 @@ export const emailHero = tv({
 			},
 		},
 		size: {
-			md: { title: "text-[26px] leading-[32px]" },
+			default: { title: "text-[26px] leading-[32px]" },
 			display: { title: "text-[36px] leading-[42px]" },
 		},
 		align: {
@@ -182,10 +182,10 @@ export const emailText = tv({
 		},
 		size: {
 			sm: "text-[13px] leading-[20px]",
-			md: "text-[15px] leading-[26px]",
+			default: "text-[15px] leading-[26px]",
 		},
 	},
-	defaultVariants: { tone: "default", size: "md" },
+	defaultVariants: { tone: "default", size: "default" },
 });
 
 // Light status hues are under 4.5:1 on any fill, so light mode keeps the hue in the fill only.
@@ -219,7 +219,7 @@ export const emailButton = tv({
 			link: "text-foreground underline dark:text-foreground-dark",
 		},
 		size: {
-			md: "px-5 py-3 text-[14px] leading-[20px]",
+			default: "px-5 py-3 text-[14px] leading-[20px]",
 			lg: "px-6 py-[14px] text-[15px] leading-[20px]",
 		},
 		shape: {
@@ -232,12 +232,17 @@ export const emailButton = tv({
 		},
 	},
 	compoundVariants: [{ variant: "link", class: "px-0 py-0" }],
-	defaultVariants: { variant: "primary", size: "md", shape: "rounded", width: "auto" },
+	defaultVariants: {
+		variant: "primary",
+		size: "default",
+		shape: "rounded",
+		width: "auto",
+	},
 });
 
 /** Padding the Svelte button also needs as numbers, for its Outlook (MSO) spacer. */
 export const EMAIL_BUTTON_PADDING: Record<EmailButtonSize, { x: number; y: number }> = {
-	md: { x: 20, y: 12 },
+	default: { x: 20, y: 12 },
 	lg: { x: 24, y: 14 },
 };
 
@@ -318,7 +323,7 @@ export const emailCode = tv({
 	base: "m-0 rounded-lg border border-border border-solid bg-card px-6 py-5 text-center font-mono font-semibold text-foreground dark:border-border-dark dark:bg-card-dark dark:text-foreground-dark",
 	variants: {
 		size: {
-			md: "text-[22px] leading-[28px] tracking-[6px]",
+			default: "text-[22px] leading-[28px] tracking-[6px]",
 			lg: "text-[32px] leading-[40px] tracking-[10px]",
 		},
 	},

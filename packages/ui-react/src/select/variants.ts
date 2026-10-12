@@ -6,12 +6,7 @@ export const selectTrigger = tv({
 	base: "inline-flex items-center justify-between",
 	variants: {
 		variant: {
-			default: [
-				fieldFrame(),
-				"w-full",
-				"data-[popup-open]:border-ring data-[popup-open]:ring-3 data-[popup-open]:ring-ring/20",
-				"data-[state=open]:border-ring data-[state=open]:ring-3 data-[state=open]:ring-ring/20",
-			],
+			default: [fieldFrame({ kind: "trigger" }), "w-full"],
 			// Text and a chevron: a compact switch beside a heading, not a form field.
 			ghost: [
 				"w-auto font-medium text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring",

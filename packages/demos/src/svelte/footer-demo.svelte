@@ -85,6 +85,7 @@ const LEGAL: FooterLink[] = [
 <Footer
 	wordmark={p.wordmark ?? "Recast"}
 	layout={p.layout ?? "split"}
+	status={{ label: "All systems normal", href: "#status" }}
 	description={p.description || "Turns a raw screen capture into a polished, shareable demo while you record."}
 	columns={COLUMNS}
 	socials={[

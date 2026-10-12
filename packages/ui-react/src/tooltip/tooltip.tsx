@@ -79,7 +79,7 @@ export function TooltipContent({
 					data-slot="tooltip-content"
 					className={cn(
 						ANCHORED,
-						"static z-50 rounded-md bg-popover px-2 py-1 text-foreground text-xs shadow-(--overlay-shadow)",
+						"static z-50 rounded-md bg-foreground px-2 py-1 text-background text-xs shadow-(--overlay-shadow)",
 						"data-[open]:pointer-events-none",
 						className,
 					)}

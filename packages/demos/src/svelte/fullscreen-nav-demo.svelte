@@ -29,7 +29,7 @@ const links = [
 	title={p.title || "Menu"}
 	variant={p.variant ?? "fade"}
 	align={p.align ?? "start"}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	numbered={props.numbered === true}
 	footer={footer as unknown as Snippet}
 />

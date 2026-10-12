@@ -64,7 +64,7 @@ export function DatePicker({
 	open: openProp,
 	onOpenChange,
 	captionLayout = "dropdown",
-	size = "md",
+	size = "default",
 	labels: labelsProp,
 	id,
 	name,

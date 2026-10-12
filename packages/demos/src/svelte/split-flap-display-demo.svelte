@@ -21,7 +21,7 @@ $effect(() => {
 		value={props.layout === "line" ? departuresLine(tick) : departuresBoard(tick, columns)}
 		{columns}
 		variant={p.variant ?? "solid"}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		indicator={p.indicator ?? "success"}
 		stepMs={Number(props.stepMs ?? 60)}
 		staggerMs={Number(props.staggerMs ?? 30)}

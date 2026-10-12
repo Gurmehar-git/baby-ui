@@ -35,7 +35,7 @@ const granted = $derived(scopes.filter(Boolean).length);
 		bind:checked
 		disabled={p.disabled ?? false}
 		indeterminate={p.indeterminate ?? false}
-		size={p.size ?? "md"}
+		size={p.size ?? "default"}
 		label={p.label || "Remember this grant"}
 		description={p.description || "Skips the prompt for the next 30 days."}
 	/>

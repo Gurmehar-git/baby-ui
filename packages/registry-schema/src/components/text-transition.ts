@@ -32,7 +32,6 @@ export const textTransition = defineComponent({
 		"22 named text-reveal presets (per-character, per-word or whole-text) sharing one CSS animation engine.",
 	category: "text",
 	status: "stable",
-	isUpdated: true,
 	variants: { variant: VARIANTS },
 	props: [
 		{

@@ -145,7 +145,7 @@ export function DateRangePicker({
 	invalid = false,
 	open: openProp,
 	onOpenChange,
-	size = "md",
+	size = "default",
 	labels: labelsProp,
 	id,
 	"aria-label": ariaLabel,

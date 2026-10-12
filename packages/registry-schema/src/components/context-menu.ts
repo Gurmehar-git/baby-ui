@@ -2,7 +2,6 @@ import { defineComponent } from "../index.ts";
 
 export const contextMenu = defineComponent({
 	slug: "context-menu",
-	isNew: true,
 	name: "Context Menu",
 	description: "Right-click menu positioned at the pointer, clamped to the viewport.",
 	category: "base",

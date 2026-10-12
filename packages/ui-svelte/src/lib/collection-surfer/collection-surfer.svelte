@@ -16,7 +16,7 @@ import {
 let {
 	items,
 	variant = "magnetic",
-	size = "md",
+	size = "default",
 	scrollPerItem = 300,
 	title,
 	hint = "Scroll to surf",

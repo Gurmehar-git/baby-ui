@@ -18,6 +18,7 @@ export const GET: RequestHandler = async () => {
 	const studioPages = [
 		url("/studio", "0.8"),
 		url("/design-system", "0.7"),
+		url("/create", "0.7"),
 		...STUDIOS.map((studio) => url(studio.href, "0.8")),
 	];
 

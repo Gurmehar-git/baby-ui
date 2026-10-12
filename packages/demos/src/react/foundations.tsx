@@ -112,7 +112,7 @@ export function FileTreeDemo({ props }: { props: Props }) {
 			indent={Number(props.indent ?? 14)}
 			showGuides={props.showGuides !== false}
 			defaultExpanded={props.defaultExpanded !== false}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			className="w-64"
 		/>
 	);
@@ -124,7 +124,7 @@ export function MorphingModalDemo({ props }: { props: Props }) {
 		<MorphingModal
 			title="Deploy to production"
 			spring={p.spring ?? "gentle"}
-			size={p.size ?? "md"}
+			size={p.size ?? "default"}
 			dismissOnBackdrop={props.dismissOnBackdrop !== false}
 			backdropBlur={Number(props.backdropBlur ?? 8)}
 			trigger={

@@ -14,7 +14,7 @@ const images = [10, 11, 15, 16, 17, 20, 28, 29].map(
 <ImageTrail
 	{images}
 	variant={p.variant ?? "fall"}
-	size={p.size ?? "md"}
+	size={p.size ?? "default"}
 	threshold={Number(props.threshold ?? 80)}
 	duration={Number(props.duration ?? 1600)}
 	class="w-full max-w-3xl rounded-xl border border-border"

@@ -120,6 +120,7 @@ function show(i: number) {
 					requestAnimationFrame(() => panels[i]?.querySelector("a")?.focus());
 				}
 			}}
+			data-current={isCurrentSection(group.href, active)}
 			class={styles.trigger({ current: isOpen || isCurrentSection(group.href, active) })}
 		>
 			{group.label}

@@ -2,14 +2,13 @@ import { defineComponent } from "../index.ts";
 
 export const navigationMenu = defineComponent({
 	slug: "navigation-menu",
-	isNew: true,
 	name: "Navigation Menu",
 	description:
 		"Site navigation with hover and focus triggers and one shared panel that resizes and slides between them.",
 	category: "base",
 	status: "beta",
 	variants: {
-		size: ["sm", "md"],
+		size: ["sm", "default"],
 	},
 	props: [
 		{
@@ -20,10 +19,10 @@ export const navigationMenu = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md"',
+			type: '"sm" | "default"',
 			description: "Trigger height and text size, set on NavigationMenuTrigger.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default"] },
 		},
 		{
 			name: "viewport",

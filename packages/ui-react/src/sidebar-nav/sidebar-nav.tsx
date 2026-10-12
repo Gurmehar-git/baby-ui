@@ -247,7 +247,7 @@ export function SidebarNav({
 	recents,
 	workspaceActions = [],
 	onSignOut,
-	size = "md",
+	size = "default",
 	collapsed,
 	defaultCollapsed = false,
 	onCollapsedChange,

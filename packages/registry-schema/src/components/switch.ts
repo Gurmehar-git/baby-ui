@@ -6,7 +6,7 @@ export const switchComponent = defineComponent({
 	description: "On/off control whose thumb travels rather than teleports.",
 	category: "base",
 	status: "stable",
-	variants: { size: ["sm", "md", "lg", "xl"] },
+	variants: { size: ["sm", "default", "lg", "xl"] },
 	props: [
 		{
 			name: "checked",
@@ -24,10 +24,10 @@ export const switchComponent = defineComponent({
 		},
 		{
 			name: "size",
-			type: '"sm" | "md" | "lg" | "xl"',
+			type: '"sm" | "default" | "lg" | "xl"',
 			description: "Track and thumb size.",
-			default: "md",
-			control: { kind: "select", options: ["sm", "md", "lg", "xl"] },
+			default: "default",
+			control: { kind: "select", options: ["sm", "default", "lg", "xl"] },
 		},
 		{
 			name: "label",

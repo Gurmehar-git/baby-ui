@@ -19,9 +19,7 @@ export const button = tv({
 			default: "bg-primary text-primary-foreground hover:bg-(--primary-hover)",
 			default_soft: "border-primary/10 bg-primary/8 text-primary hover:bg-primary/15",
 			secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-			// Buttons take the divider-strength edge; the heavier field edge marks where you type.
-			outline:
-				"border-border-strong bg-background hover:bg-accent hover:text-accent-foreground",
+			outline: "border-input bg-background hover:bg-accent hover:text-accent-foreground",
 			ghost: "hover:bg-accent hover:text-accent-foreground",
 			link: "text-primary underline-offset-4 hover:underline active:scale-100",
 			destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
@@ -103,6 +101,19 @@ export const button = tv({
 		{ variant: "raw", class: "h-auto rounded-none p-0" },
 	],
 	defaultVariants: { variant: "default", size: "default" },
+});
+
+/** Faces fill the button and inherit its justify, direction and gap, so a caller's layout classes
+ * reach the content. The hidden face leaves the flow, so the button is sized by what it shows. */
+export const buttonFace = tv({
+	slots: {
+		wrap: "relative grid w-full min-w-0 grid-cols-[minmax(0,1fr)] gap-[inherit] [align-items:inherit] [flex-direction:inherit] [justify-content:inherit]",
+		face: [
+			"col-start-1 row-start-1 flex gap-[inherit] whitespace-nowrap [align-items:inherit] [flex-direction:inherit] [justify-content:inherit]",
+			"transition-[opacity,transform,scale,translate,filter] duration-(--duration-base) ease-[var(--ease-ui-out)] motion-reduce:transition-none",
+			"data-[on=false]:pointer-events-none data-[on=false]:absolute data-[on=false]:inset-0 data-[on=false]:translate-y-[3px] data-[on=false]:opacity-0 data-[on=false]:blur-[3px]",
+		],
+	},
 });
 
 export type ButtonVariant = NonNullable<VariantProps<typeof button>["variant"]>;

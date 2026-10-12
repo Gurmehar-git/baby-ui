@@ -15,11 +15,11 @@ export const morphingModal = tv({
 	variants: {
 		size: {
 			sm: { panel: "w-[min(24rem,calc(100vw-2rem))]" },
-			md: { panel: "w-[min(32rem,calc(100vw-2rem))]" },
+			default: { panel: "w-[min(32rem,calc(100vw-2rem))]" },
 			lg: { panel: "w-[min(40rem,calc(100vw-2rem))]" },
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type MorphingModalSize = NonNullable<VariantProps<typeof morphingModal>["size"]>;

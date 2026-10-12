@@ -10,7 +10,6 @@ export const ogEditorialBio = defineComponent({
 		"A 1200x630 personal card: your name and bio set as staggered lines over one large tone circle.",
 	category: "og-images",
 	status: "stable",
-	isNew: true,
 	demo: { mode: "auto", frame: "og" },
 	variants: { mode: MODES, tone: TONES },
 	props: [

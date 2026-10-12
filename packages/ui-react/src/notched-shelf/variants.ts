@@ -39,7 +39,7 @@ export const notchedShelf = tv({
 		/** Bar height; the wings keep their aspect, so depth and width scale with it. */
 		size: {
 			sm: { root: "h-8" },
-			md: { root: "h-11" },
+			default: { root: "h-11" },
 			lg: { root: "h-16" },
 		},
 		shape: { smooth: {}, soft: {}, sharp: {} },
@@ -64,7 +64,7 @@ export const notchedShelf = tv({
 	defaultVariants: {
 		variant: "solid",
 		layout: "hanging",
-		size: "md",
+		size: "default",
 		shape: "smooth",
 		align: "center",
 		edge: false,

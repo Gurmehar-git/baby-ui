@@ -20,7 +20,7 @@ let {
 	agentName = "Agent",
 	streamSrc,
 	loading = false,
-	size = "md",
+	size = "default",
 	open = $bindable(false),
 	class: classProp,
 }: {

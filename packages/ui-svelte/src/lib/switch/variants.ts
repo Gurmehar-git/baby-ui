@@ -6,16 +6,17 @@ export const switchTrack = tv({
 		"transition-[background-color,box-shadow] duration-(--duration-slow) ease-[var(--ease-smooth)] motion-reduce:transition-none",
 		"outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 		"aria-checked:bg-primary aria-disabled:cursor-not-allowed aria-disabled:opacity-50",
+		"aria-invalid:border-destructive data-[invalid]:border-destructive",
 	],
 	variants: {
 		size: {
 			sm: "h-4 w-8",
-			md: "h-5 w-10",
+			default: "h-5 w-10",
 			lg: "h-6 w-12",
 			xl: "h-7 w-14",
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 // A pill thumb that stretches toward its travel while pressed, as iOS switches do.
@@ -27,12 +28,12 @@ export const switchThumb = tv({
 	variants: {
 		size: {
 			sm: "h-3 w-[17px] data-[state=checked]:translate-x-[11px]",
-			md: "h-4 w-[22px] data-[state=checked]:translate-x-3.5",
+			default: "h-4 w-[22px] data-[state=checked]:translate-x-3.5",
 			lg: "h-5 w-7 data-[state=checked]:translate-x-4",
 			xl: "h-6 w-8 data-[state=checked]:translate-x-5",
 		},
 	},
-	defaultVariants: { size: "md" },
+	defaultVariants: { size: "default" },
 });
 
 export type SwitchSize = NonNullable<VariantProps<typeof switchTrack>["size"]>;

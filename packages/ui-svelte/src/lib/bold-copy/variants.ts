@@ -13,7 +13,7 @@ export const boldCopy = tv({
 				background: "text-xl md:text-2xl",
 				title: "text-sm md:text-lg group-hover/bold:text-xl group-hover/bold:md:text-2xl",
 			},
-			md: {
+			default: {
 				background: "text-2xl md:text-4xl",
 				title:
 					"text-base md:text-xl group-hover/bold:text-2xl group-hover/bold:md:text-4xl",
