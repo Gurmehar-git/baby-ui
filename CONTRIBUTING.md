@@ -52,10 +52,31 @@ process logs its memory when it moves by 10%, and every registry rebuild prints 
 | `pnpm test` | Script tests, chart core, registry-build |
 | `pnpm check` | Type-checks every package |
 | `pnpm build` | Site and registry build |
+| `pnpm verify:quick` | Generated files, Biome, comments, import extensions (seconds) |
+| `pnpm verify` | Quick set + tests + every package's type check + Pro check, one at a time |
+| `pnpm verify:full` | Everything CI and Deploy run, plus a browser sweep of every component page |
+| `pnpm probe <slug ...>` | Opens component pages headless: no console errors, demo renders in its frame, no sideways scroll |
+| `pnpm probe <slug> --dials` | Also operates every select and switch control and flags any that change nothing |
 
-The pre-commit hook (lefthook) runs the fixes on staged files and re-stages them; the comment
-gate can only block, since shortening a comment needs a person. Don't bypass it with
-`--no-verify`.
+`pnpm verify` runs in stages (gates, then tests and type checks, then build, then build checks);
+steps inside a stage run in parallel, as many as free cores and memory allow (`--jobs=N` to
+override). It stops at the first failure and prints the command to re-run that step alone;
+`--keep-going` runs everything, `--verbose` shows passing steps' output too. `pnpm probe` checks the last `pnpm build` by default; pass
+`--url=http://site.baby-ui.localhost` to check the running dev server instead, `--all` for every
+page, `--width=390` for phone layout, `--dark` for dark mode. It needs Edge, Chrome or Chromium
+installed (set `PROBE_BROWSER` to its path if it is somewhere unusual).
+
+## Git hooks
+
+Lefthook installs them on `pnpm install` (or run `pnpm exec lefthook install`):
+
+- **pre-commit** fixes import extensions and Biome issues in staged files and re-stages them,
+  runs the comment gate, and fails if generated files are stale (`pnpm gen` fixes that).
+- **pre-push** runs `pnpm verify`: the CI type checks and tests, so a push never fails CI for
+  something a laptop could have caught.
+
+The comment gate can only block, since shortening a comment needs a person. Don't bypass the
+hooks with `--no-verify`; fix what they report.
 
 ## Conventions
 

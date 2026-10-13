@@ -17,3 +17,14 @@ pre-commit:
       glob: "*.{ts,tsx,js,jsx,mjs,svelte}"
       run: node scripts/check-comments.mjs {staged_files}
       fail_text: "Comments must be 2 lines or fewer, with no banners or blank lines (listed above). Shorten them, then stage and commit again."
+    - name: generated files
+      glob: "{packages,pro/packages}/**/*.{ts,tsx,svelte}"
+      run: node scripts/generate.mjs --check
+      fail_text: "Generated files are stale. Run `pnpm gen`, stage the result and commit again."
+
+# The CI type checks and tests, so a broken build never reaches CI. `git push --no-verify` skips.
+pre-push:
+  jobs:
+    - name: verify
+      run: node scripts/verify.mjs
+      fail_text: "A CI gate failed (summary above). Fix it, or re-run the listed step on its own."

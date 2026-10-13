@@ -68,7 +68,7 @@ function label(prop: PropSpec) {
 	{@const text = "truncate font-medium text-muted-foreground text-xs capitalize"}
 	{#if control.kind === "boolean"}
 		<!-- The row is the label: a wrapping <label> names and toggles the bare switch. -->
-		<label class={row}>
+		<label class={row} data-dial={prop.name} data-dial-kind={control.kind}>
 			<span class={text}>{label(prop)}</span>
 			<Switch
 				size="sm"
@@ -76,7 +76,7 @@ function label(prop: PropSpec) {
 			/>
 		</label>
 	{:else}
-		<div class={row}>
+		<div class={row} data-dial={prop.name} data-dial-kind={control.kind}>
 			<label for="dial-{prop.name}" class={text}>{label(prop)}</label>
 
 			{#if control.kind === "select"}

@@ -10,11 +10,8 @@ Report nothing as done until every step below has run and its output is in the r
 ## 1. Static gates
 
 ```bash
-pnpm biome format --write apps packages scripts >/dev/null
-pnpm lint
-node scripts/check-comments.mjs --all
-node scripts/check-import-extensions.mjs
-pnpm turbo check
+pnpm fix              # format + autofixes
+pnpm verify           # what CI runs: generated files, biome ci, gates, tests, every type check
 ```
 
 Comment gate flags a long comment: cut words, never reflow onto one line.
@@ -22,9 +19,7 @@ Comment gate flags a long comment: cut words, never reflow onto one line.
 ## 2. Build
 
 ```bash
-pnpm turbo registry --force
-pnpm turbo build
-pnpm size
+pnpm verify:full      # verify + build + worker size + Pro hidden + browser sweep of every page
 ```
 
 `@baby-ui/site#build` failing with `EBUSY ... .svelte-kit/cloudflare` means `pnpm dev` is
@@ -53,17 +48,14 @@ into `apps/site/static`):
 
 ## 3. Runtime checks (headless Edge, no browser download)
 
-Serve `.svelte-kit/output` with a static server, then run from the session scratchpad:
+Repo scripts, no scratchpad copies (they serve the last build unless `--url` is given):
 
-- `pw/sweep.mjs`: every component page 200, no page or console errors, no empty demo, no
-  demo overflowing its frame, no horizontal page scroll.
-- `pw/dials.mjs`: every rail control changes the demo DOM, or is a known interaction-only
-  prop.
-- `pw/observe.mjs <case>`: enter/exit timelines for overlays and anchored surfaces. Exits
-  must mirror entrances; anchored surfaces must sit under their trigger in the first frame.
-
-If those scripts are missing (new session scratchpad), recreate them from
-`.notes/06-component-audit.md`, which records their contracts.
+- `pnpm probe <slug ...>` (or `--all`): page 200, no page or console errors, demo renders, no
+  demo overflowing its frame, no horizontal page scroll. Add `--width=390` and `--dark`.
+- `pnpm probe <slug ...> --dials`: every select and switch changes the demo DOM, or is a known
+  interaction-only prop.
+- Motion timelines (exits mirror entrances) still need a one-off probe built on
+  `scripts/probe/browser.mjs`; keep any reusable one in `scripts/probe/`.
 
 ## 4. Visual check
 
