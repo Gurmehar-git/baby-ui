@@ -1,4 +1,4 @@
-import type { ContactOffice } from "@baby-ui/svelte";
+import type { ContactOffice } from "../../../ui-react/src/contact-section/contact";
 
 /** Sample offices for the contact section demo, spread across time zones. */
 export const CONTACT_OFFICES: ContactOffice[] = [

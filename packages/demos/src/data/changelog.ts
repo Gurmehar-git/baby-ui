@@ -1,4 +1,4 @@
-import type { ChangelogEntry } from "@baby-ui/svelte";
+import type { ChangelogEntry } from "../../../ui-react/src/changelog-feed/changelog";
 import { photo } from "./media";
 
 const WEBHOOK = `import { verifyWebhook } from "@acme/node";

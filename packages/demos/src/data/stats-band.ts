@@ -1,4 +1,4 @@
-import type { Stat } from "@baby-ui/svelte";
+import type { Stat } from "../../../ui-react/src/stats-band/stats";
 
 /** 90 days of uptime, oldest first, with two short incidents. */
 const UPTIME = Array.from({ length: 90 }, (_, day) =>

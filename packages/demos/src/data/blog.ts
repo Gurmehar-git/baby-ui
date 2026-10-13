@@ -1,4 +1,4 @@
-import type { BlogAuthor, BlogPost } from "@baby-ui/svelte";
+import type { BlogAuthor, BlogPost } from "../../../ui-react/src/blog-grid/posts";
 import { avatar, photo } from "./media";
 
 const emma: BlogAuthor = {

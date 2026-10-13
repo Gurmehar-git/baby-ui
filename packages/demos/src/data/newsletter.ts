@@ -1,4 +1,4 @@
-import type { NewsletterIssue } from "@baby-ui/svelte";
+import type { NewsletterIssue } from "../../../ui-react/src/newsletter-signup/signup";
 import { avatar, photo } from "./media";
 
 const story = (title: string, image: number, minutes: number) => ({

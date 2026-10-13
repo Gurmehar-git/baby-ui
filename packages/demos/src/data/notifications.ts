@@ -1,4 +1,4 @@
-import type { NotificationItem } from "@baby-ui/svelte";
+import type { NotificationItem } from "../../../ui-react/src/notification-center/inbox";
 
 /** An inbox for the notification-center demo. */
 export const NOTIFICATIONS: NotificationItem[] = [

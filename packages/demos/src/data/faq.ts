@@ -1,4 +1,4 @@
-import type { FaqItem } from "@baby-ui/svelte";
+import type { FaqItem } from "../../../ui-react/src/faq-section/faq";
 
 /** Sample questions for the FAQ section demos, grouped into three topics. */
 export const FAQ_ITEMS: FaqItem[] = [
