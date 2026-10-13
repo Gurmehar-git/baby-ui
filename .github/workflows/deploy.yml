@@ -32,6 +32,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
+          # Full history: the site dates each component from git for its New/Updated badges.
+          fetch-depth: 0
           persist-credentials: false
 
       # Production always bundles Pro; without the token this fails rather than ship without it.
@@ -39,6 +41,8 @@ jobs:
       - name: Check out Pro
         uses: actions/checkout@v6
         with:
+          # Full history: the site dates each component from git for its New/Updated badges.
+          fetch-depth: 0
           repository: kanakkholwal/baby-ui-pro
           token: ${{ secrets.PRO_REPO_TOKEN }}
           # ssh-key: ${{ secrets.PRO_REPO_SSH_KEY }}

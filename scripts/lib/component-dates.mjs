@@ -52,7 +52,13 @@ function repoDates({ dir, prefix, roots }, cwd, today) {
 	if (!existsSync(join(at, ".git"))) return {};
 	// A shallow clone would date every component to the clone's first commit.
 	if (git(at, ["rev-parse", "--is-shallow-repository"]).trim() === "true") {
-		console.warn(`component dates: ${dir} is a shallow clone, using spec dates only`);
+		const message = `component dates: ${dir} is a shallow clone, so no New/Updated badges`;
+		// In CI that would ship a site with every badge gone; fail instead of warning.
+		if (process.env.CI)
+			throw Object.assign(new Error(`${message}. Check out with \`fetch-depth: 0\`.`), {
+				fatal: true,
+			});
+		console.warn(`${message}; using spec dates only`);
 		return {};
 	}
 	const commits = git(at, ["log", "--format=%x00%aI", "--name-only", "--", ...roots])
@@ -91,12 +97,13 @@ function repoDates({ dir, prefix, roots }, cwd, today) {
 
 /**
  * First and last commit day (YYYY-MM-DD) per component folder or spec file, keyed by repo path.
- * Empty when git is missing or shallow; callers fall back to the specs' own `added`/`updated`.
+ * Empty when git is missing or shallow (a shallow clone throws in CI); specs' own dates still apply.
  */
 export function componentDates(cwd, today = day(new Date().toISOString())) {
 	try {
 		return Object.assign({}, ...REPOS.map((repo) => repoDates(repo, cwd, today)));
 	} catch (error) {
+		if (error.fatal) throw error;
 		console.warn(`component dates: git unavailable (${error.message})`);
 		return {};
 	}
