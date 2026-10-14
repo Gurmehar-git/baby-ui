@@ -60,6 +60,11 @@ notices are reproduced here as those licenses require.
 - Source: https://github.com/TahaSh/swapy
 - License: MIT
 
+## valence
+
+- Source: https://github.com/ValenceOSS/Valence
+- License: MIT
+
 ## Icon sets
 
 Artwork used by the site and the demos, not by any component.

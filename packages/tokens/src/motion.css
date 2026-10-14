@@ -3721,3 +3721,54 @@
 		animation: none;
 	}
 }
+
+/* CtaBanner grain: each icon drifts up and turns while it breathes, on its own loop length. */
+.cta-banner-drift {
+	opacity: 0.25;
+	animation: cta-banner-drift 6s linear infinite;
+}
+
+@keyframes cta-banner-drift {
+	0%,
+	100% {
+		opacity: 0.1;
+		transform: translate(0, 0) rotate(0deg);
+	}
+	50% {
+		opacity: 0.4;
+		transform: translate(10px, -15px) rotate(10deg);
+	}
+}
+
+/* CtaBanner ticker: two identical halves end to end, so the loop never shows its seam. */
+.cta-banner-run {
+	animation: cta-banner-run 160s linear infinite;
+}
+
+@keyframes cta-banner-run {
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+/* CtaBanner spotlight: a short light runs along the top edge and off, then comes round again. */
+.cta-banner-sweep {
+	animation: cta-banner-sweep 6s ease-in-out infinite;
+}
+
+@keyframes cta-banner-sweep {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(300%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cta-banner-drift,
+	.cta-banner-run,
+	.cta-banner-sweep {
+		animation: none;
+	}
+}

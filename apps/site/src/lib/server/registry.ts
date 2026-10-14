@@ -47,11 +47,17 @@ function datedPaths(spec: ComponentSpec) {
 
 type Freshness = "new" | "updated" | null;
 
-/** "new" for 15 days after release, then "updated" for 15 days after a code change; specs' own dates win. */
-function dateFreshness(spec: ComponentSpec): Freshness {
+/** The day a component first landed: the spec's own date, else its earliest commit. */
+function addedDate(spec: ComponentSpec): string | undefined {
 	const { folders, file } = datedPaths(spec);
 	const known = [file, ...folders].flatMap((path) => gitDates[path] ?? []);
-	const added = spec.added ?? known.map((d) => d.added).sort()[0];
+	return spec.added ?? known.map((d) => d.added).sort()[0];
+}
+
+/** "new" for 15 days after release, then "updated" for 15 days after a code change; specs' own dates win. */
+function dateFreshness(spec: ComponentSpec): Freshness {
+	const { folders } = datedPaths(spec);
+	const added = addedDate(spec);
 	// Spec-only edits (docs, metadata) are not updates; only the ports' own code counts.
 	const updated =
 		spec.updated ??
@@ -144,6 +150,30 @@ export function newItems(): CardItem[] {
 			.map(cardItem)
 			.sort(newFirst),
 	);
+}
+
+/** The `limit` newest new components, taking one per category in turn so a row spans areas. */
+export function latestNew(limit: number, exclude: readonly string[] = []): CardItem[] {
+	const queues = CATEGORIES.map((category) =>
+		liveSpecs
+			.filter(
+				(s) =>
+					s.category === category && freshness(s) === "new" && !exclude.includes(s.slug),
+			)
+			.map((spec) => ({ spec, added: addedDate(spec) ?? "" }))
+			.sort(
+				(a, b) =>
+					b.added.localeCompare(a.added) || a.spec.name.localeCompare(b.spec.name),
+			),
+	);
+	const picked: ComponentSpec[] = [];
+	while (picked.length < limit && queues.some((q) => q.length)) {
+		// Each round takes every category's newest once, newest round members first.
+		const round = queues.flatMap((q) => q.splice(0, 1));
+		round.sort((a, b) => b.added.localeCompare(a.added));
+		picked.push(...round.slice(0, limit - picked.length).map((r) => r.spec));
+	}
+	return picked.map(cardItem);
 }
 
 /** Every category, with `lead` (the route's own category) moved to the front. */

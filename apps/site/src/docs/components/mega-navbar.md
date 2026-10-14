@@ -37,3 +37,12 @@ to the row's start and the window's edge.
 
 `variant="capsule"` gathers the centre triggers and links in a quiet pill track; a highlight
 slides to whichever link the pointer is over and rests on the current one (`active`).
+
+## Expand variant
+
+`variant="expand"` floats the bar and grows the bar itself into a full-width panel for the
+section under the pointer, dimming the page behind a blurred scrim. Give each group an
+`eyebrow` and a `description` for the panel's intro column; `footer` becomes its link. Moving
+along the bar slides the next section in from the side the pointer travelled, and narrow screens
+fold every group into the same growing surface instead of a sheet. Pass `actions` at the default
+button size so they share the bar's 36px control height.

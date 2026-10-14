@@ -11,6 +11,7 @@ import SheetHeader from "../sheet/sheet-header.svelte";
 import SheetTitle from "../sheet/sheet-title.svelte";
 import { capsuleBox, currentHref, groupHrefs } from "./current";
 import MegaMenu from "./mega-menu.svelte";
+import MegaNavbarExpand from "./mega-navbar-expand.svelte";
 import type { MegaMenuGroup, MegaNavLink } from "./types";
 import { type MegaNavbarVariant, megaNavbar } from "./variants";
 
@@ -134,6 +135,19 @@ $effect(() => {
 	</button>
 {/snippet}
 
+{#if variant === "expand"}
+	<MegaNavbarExpand
+		{brand}
+		{groups}
+		{links}
+		{actions}
+		{mobileActions}
+		{active}
+		{sticky}
+		surface={scrolled ? (blur ? "blurred" : "opaque") : "clear"}
+		class={className}
+	/>
+{:else}
 <div data-slot="mega-navbar" data-variant={variant} class={cn(styles.root(), className)}>
 	{#if variant === "notched"}
 		<nav aria-label="Primary">
@@ -263,3 +277,4 @@ $effect(() => {
 		{/if}
 	</SheetContent>
 </Sheet>
+{/if}

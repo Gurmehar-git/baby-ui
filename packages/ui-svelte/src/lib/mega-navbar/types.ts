@@ -13,6 +13,10 @@ export type MegaMenuItem = {
 export type MegaMenuGroup = {
 	label: string;
 	href: string;
+	/** A short kicker over the description; the expand variant's panel intro. */
+	eyebrow?: string;
+	/** What the section is for, beside its items in the expand variant's panel. */
+	description?: string;
 	items: MegaMenuItem[];
 	/** Secondary links under the items, one line each in columns. */
 	more?: { heading?: string; links: MegaNavLink[] };

@@ -12,6 +12,9 @@ const GROUPS: MegaMenuGroup[] = [
 	{
 		label: "Product",
 		href: "https://recast.li/features",
+		eyebrow: "What Recast does",
+		description:
+			"Record your screen, trim it and share a link in seconds, from one desktop app.",
 		items: [
 			{
 				label: "Features",
@@ -41,6 +44,9 @@ const GROUPS: MegaMenuGroup[] = [
 	{
 		label: "Tools",
 		href: "https://recast.li/tools",
+		eyebrow: "Free in the browser",
+		description:
+			"Quick fixes for any video file. Everything runs on your device; nothing is uploaded.",
 		items: [
 			{
 				label: "Trim video",
@@ -64,6 +70,8 @@ const GROUPS: MegaMenuGroup[] = [
 	{
 		label: "Resources",
 		href: "https://recast.li/blog",
+		eyebrow: "Follow along",
+		description: "What we are shipping, how it is built and where the code lives.",
 		items: [
 			{
 				label: "Blog",
@@ -86,13 +94,14 @@ const links = [
 ];
 </script>
 
-<div class="w-full max-w-4xl overflow-hidden rounded-xl border border-border">
+<!-- No overflow clipping: the menu panels open past the bar, as on a real page. -->
+<div class="isolate w-full max-w-5xl rounded-xl border border-border bg-background">
 	<MegaNavbar
 		active={p.active || undefined}
 		sticky={false}
 		blur={props.blur !== false}
 		{variant}
-		class={variant === "solid" ? "border-border border-b bg-card" : undefined}
+		class={variant === "solid" ? "rounded-t-[11px] border-border border-b bg-card" : undefined}
 		groups={GROUPS}
 		{links}
 	>
@@ -108,8 +117,15 @@ const links = [
 			<span class="whitespace-nowrap font-semibold text-foreground text-lg tracking-wide">Recast</span>
 		{/snippet}
 		{#snippet actions()}
-			<Button href="https://recast.li/download" size="sm" variant="dark">Download</Button>
+			<Button href="https://recast.li/download" variant="dark">Download</Button>
 		{/snippet}
 	</MegaNavbar>
-	<div class="h-72 bg-background"></div>
+	<div class="flex min-h-[26rem] flex-col items-center justify-center gap-4 px-6 text-center">
+		<h3 class="max-w-md text-balance font-sans font-semibold text-3xl text-foreground tracking-tight">
+			Record, trim and share in one place
+		</h3>
+		<p class="max-w-sm text-pretty text-muted-foreground">
+			Hover the menu to open a section; move along the bar to slide between them.
+		</p>
+	</div>
 </div>

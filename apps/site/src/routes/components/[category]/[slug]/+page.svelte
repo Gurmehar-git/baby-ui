@@ -339,6 +339,7 @@ const categoryTrail = $derived(
 				<PageMenu
 					markdownUrl="{specHref(data.spec)}.md"
 					copyText={data.spec.description}
+					name={data.spec.name}
 					installSlug={data.spec.tier === "pro" ? undefined : data.spec.slug}
 					subject="component"
 				/>

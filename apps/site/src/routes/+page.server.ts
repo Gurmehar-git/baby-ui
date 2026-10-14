@@ -1,4 +1,4 @@
-import { cardItems, freshness, liveSpecs } from "#lib/server/registry.js";
+import { cardItems, freshness, latestNew, liveSpecs } from "#lib/server/registry.js";
 import type { PageServerLoad } from "./$types";
 
 /** The showcase grid: one live panel per area, none repeating the hero. */
@@ -11,18 +11,9 @@ const GRID = [
 	"week-calendar",
 ];
 
-/** Picks for the "Just landed" row; any that lose their new flag drop out. */
-const NEW_PICKS = [
-	"swappable",
-	"color-picker",
-	"aurora-flow",
-	"empty",
-	"wheel-picker",
-	"flowchart",
-];
-
 export const load: PageServerLoad = () => ({
 	grid: cardItems(GRID),
-	fresh: cardItems(NEW_PICKS).filter((item) => item.isNew),
+	// Six fills the row at two and three columns.
+	fresh: latestNew(6, GRID),
 	freshCount: liveSpecs.filter((s) => freshness(s) === "new").length,
 });

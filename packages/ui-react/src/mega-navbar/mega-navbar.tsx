@@ -8,6 +8,7 @@ import { pillStyle } from "../lib/pill";
 import { NotchedShelf } from "../notched-shelf/notched-shelf";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../sheet/sheet";
 import { capsuleBox, currentHref, groupHrefs, isCurrentSection } from "./current";
+import { MegaNavbarExpand } from "./expand-nav";
 import { type MegaNavbarVariant, megaNavbar } from "./variants";
 
 export type { MegaNavbarVariant };
@@ -25,6 +26,10 @@ export type MegaMenuItem = {
 export type MegaMenuGroup = {
 	label: string;
 	href: string;
+	/** A short kicker over the description; the expand variant's panel intro. */
+	eyebrow?: string;
+	/** What the section is for, beside its items in the expand variant's panel. */
+	description?: string;
 	items: MegaMenuItem[];
 	/** Secondary links under the items, one line each in columns. */
 	more?: { heading?: string; links: MegaNavLink[] };
@@ -486,6 +491,21 @@ export function MegaNavbar({
 	useEffect(() => {
 		placePill(null);
 	}, [active, variant]);
+
+	if (variant === "expand")
+		return (
+			<MegaNavbarExpand
+				brand={brand}
+				groups={groups}
+				links={links}
+				actions={actions}
+				mobileActions={mobileActions}
+				active={active}
+				sticky={sticky}
+				surface={scrolled ? (blur ? "blurred" : "opaque") : "clear"}
+				className={className}
+			/>
+		);
 
 	const brandSlot = brand ? (
 		<span className="flex shrink-0 items-center gap-2.5 py-1 pr-2">{brand}</span>

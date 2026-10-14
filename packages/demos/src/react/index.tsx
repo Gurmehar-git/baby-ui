@@ -26,9 +26,9 @@ import { CommentThreadDemo } from "./comment-thread";
 import { ComparisonTableDemo } from "./comparison-table";
 import { ComposedChartDemo } from "./composed-chart";
 import { ConfirmMorphDemo } from "./confirm-morph";
-import { ContactSectionDemo } from "./contact-section";
 import { AttachmentDemo, ColorPickerDemo, ComposerDemo, ConversationDemo, CopyButtonDemo, FileDiffDemo, MarkdownDemo, QuestionDemo, TagInputDemo, ToolDemo } from "./content";
 import { CountdownDemo } from "./countdown";
+import { CtaBannerDemo } from "./cta-banner";
 import { CtaSectionDemo } from "./cta-section";
 import { DataTableDemo } from "./data-table";
 import { CalendarDemo, InputOTPDemo, RangeCalendarDemo } from "./dates";
@@ -269,12 +269,12 @@ export const demos: Record<string, (p: { props: Props }) => React.ReactElement> 
 	"composed-chart": ComposedChartDemo,
 	composer: ComposerDemo,
 	"confirm-morph": ConfirmMorphDemo,
-	"contact-section": ContactSectionDemo,
 	"context-cards": ContextCardsDemo,
 	"context-menu": ContextMenuDemo,
 	conversation: ConversationDemo,
 	"copy-button": CopyButtonDemo,
 	countdown: CountdownDemo,
+	"cta-banner": CtaBannerDemo,
 	"cta-section": CtaSectionDemo,
 	"cube-text": CubeTextDemo,
 	"data-table": DataTableDemo,

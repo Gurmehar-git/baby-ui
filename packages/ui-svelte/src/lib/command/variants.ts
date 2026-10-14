@@ -107,7 +107,8 @@ export const commandFrame = tv({
 				inputWrap:
 					"h-11 min-w-48 flex-1 rounded-full border border-border bg-background px-4",
 				input: "h-11 text-sm",
-				filters: "gap-0.5 rounded-full border border-border bg-background p-1",
+				// Matches the h-11 input: 1px border + 3px padding round the h-9 filters is 44px.
+				filters: "h-11 gap-0.5 rounded-full border border-border bg-background p-[3px]",
 				pill: "rounded-full bg-foreground/[0.06]",
 				filter:
 					"size-9 rounded-full data-[pressed]:text-foreground data-[state=on]:text-foreground",

@@ -22,6 +22,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@baby-ui/svelte";
+import origins from "#lib/generated/origins.json";
 import { installArgs } from "#lib/install.js";
 import { pmCommand } from "#lib/pm.js";
 import { prefs } from "#lib/preferences.svelte.js";
@@ -29,11 +30,14 @@ import { prefs } from "#lib/preferences.svelte.js";
 let {
 	markdownUrl,
 	copyText,
+	name,
 	installSlug,
 	subject = "page",
 }: {
 	markdownUrl: string;
 	copyText: string;
+	/** What the agents are asked to help with, e.g. "Signature Pad". */
+	name: string;
 	/** Adds "Copy install command" for a free component. */
 	installSlug?: string;
 	/** Names the thing the agents are asked about. */
@@ -43,12 +47,13 @@ let {
 let copied = $state<"page" | "link" | "install" | null>(null);
 let timer: ReturnType<typeof setTimeout>;
 
-const absolute = $derived(
-	typeof location === "undefined"
-		? markdownUrl
-		: new URL(markdownUrl, location.origin).href,
+// The canonical URL even in dev or a preview: the agent fetches the page from the public site.
+const absolute = $derived(`${origins.site}${markdownUrl}`);
+const ask = $derived(
+	encodeURIComponent(
+		`Read ${absolute} and help me use the Baby UI ${name} ${subject} in my project. Follow its install steps, props, keyboard and accessibility notes.`,
+	),
 );
-const ask = $derived(encodeURIComponent(`Read ${absolute} and help me with it.`));
 const LABEL = { page: "Copied", link: "Link copied", install: "Command copied" } as const;
 
 // No ChatGPT mark ships in @baby-ui/icons (Simple Icons dropped OpenAI), so it stays inline.
@@ -65,7 +70,7 @@ const agents = $derived([
 	},
 	{
 		label: "v0",
-		href: `https://v0.dev/chat/api/open?url=${encodeURIComponent(absolute)}`,
+		href: `https://v0.app/chat?q=${ask}`,
 		icon: IconBrandV0,
 	},
 ]);

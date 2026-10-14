@@ -53,12 +53,12 @@ import { comparisonTable } from "./comparison-table.ts";
 import { composedChart } from "./composed-chart.ts";
 import { composer } from "./composer.ts";
 import { confirmMorph } from "./confirm-morph.ts";
-import { contactSection } from "./contact-section.ts";
 import { contextCards } from "./context-cards.ts";
 import { contextMenu } from "./context-menu.ts";
 import { conversation } from "./conversation.ts";
 import { copyButton } from "./copy-button.ts";
 import { countdown } from "./countdown.ts";
+import { ctaBanner } from "./cta-banner.ts";
 import { ctaSection } from "./cta-section.ts";
 import { cubeText } from "./cube-text.ts";
 import { dataTable } from "./data-table.ts";
@@ -345,12 +345,12 @@ export const specs: ComponentSpec[] = [
 	composedChart,
 	composer,
 	confirmMorph,
-	contactSection,
 	contextCards,
 	contextMenu,
 	conversation,
 	copyButton,
 	countdown,
+	ctaBanner,
 	ctaSection,
 	cubeText,
 	dataTable,

@@ -25,7 +25,6 @@ function seed(target: ComponentSpec): Record<string, unknown> {
 		if (control.kind === "boolean") out[prop.name] = Boolean(prop.default);
 		else if (control.kind === "number")
 			out[prop.name] = Number(prop.default ?? control.min ?? 0);
-		else if (control.kind === "color") out[prop.name] = String(prop.default ?? "#a78bfa");
 		else out[prop.name] = String(prop.default ?? "");
 	}
 	return out;
@@ -107,15 +106,19 @@ function label(prop: PropSpec) {
 					</span>
 				</div>
 			{:else if control.kind === "color"}
+				<!-- Empty leaves the component's own default; the dimmed swatch is only a start. -->
 				<input
 					id="dial-{prop.name}"
 					type="color"
 					aria-label={label(prop)}
-					value={String(state[prop.name] ?? "#a78bfa")}
+					value={String(state[prop.name] || "#a78bfa")}
 					oninput={(event) => {
 						state[prop.name] = event.currentTarget.value;
 					}}
-					class="size-7 cursor-pointer rounded-md border border-border bg-transparent p-0.5"
+					class={[
+						"size-7 cursor-pointer rounded-md border border-border bg-transparent p-0.5",
+						!state[prop.name] && "opacity-50",
+					]}
 				/>
 			{:else if control.kind === "text"}
 				<Input

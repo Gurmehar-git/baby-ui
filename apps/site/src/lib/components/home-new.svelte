@@ -17,7 +17,7 @@ let { items, count }: { items: CardItem[]; count: number } = $props();
 				Just landed.
 			</h2>
 			<p class="mt-1 text-muted-foreground text-sm">
-				{count} new and reworked components, from drag-and-swap layouts to WebGL backgrounds.
+				{count} components landed in the last 15 days.
 			</p>
 		</div>
 		<Button href="/components#new" variant="ghost" size="sm" class="group">

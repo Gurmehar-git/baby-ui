@@ -11,7 +11,8 @@ export const megaNavbar = defineComponent({
 		{
 			name: "groups",
 			type: "MegaMenuGroup[]",
-			description: "Desktop dropdown groups, each opening a shared morphing panel.",
+			description:
+				"Desktop dropdown groups, each opening a shared morphing panel. `eyebrow` and `description` give the expand variant's panel its intro column.",
 			required: true,
 			control: { kind: "none" },
 		},
@@ -64,11 +65,14 @@ export const megaNavbar = defineComponent({
 		},
 		{
 			name: "variant",
-			type: '"solid" | "floating" | "notched" | "capsule"',
+			type: '"solid" | "floating" | "notched" | "capsule" | "expand"',
 			description:
-				"Solid spans the page edge to edge; floating is an inset rounded bar; notched hangs a shelf from the top edge on desktop, over a plain ruled bar and a top sheet on mobile; capsule gathers the centre links in a pill track with a sliding highlight.",
+				"Solid spans the page edge to edge; floating is an inset rounded bar; notched hangs a shelf from the top edge on desktop, over a plain ruled bar and a top sheet on mobile; capsule gathers the centre links in a pill track with a sliding highlight; expand grows the floating bar itself into a full-width panel per section, over a blurred scrim.",
 			default: "solid",
-			control: { kind: "select", options: ["solid", "floating", "notched", "capsule"] },
+			control: {
+				kind: "select",
+				options: ["solid", "floating", "notched", "capsule", "expand"],
+			},
 		},
 	],
 	motion: {
@@ -76,6 +80,9 @@ export const megaNavbar = defineComponent({
 		reducedMotion:
 			"The mega menu panel and mobile chevrons stop transitioning; content still appears and disappears instantly.",
 		behaviour: [
+			"Expand: resting on a section for 70ms grows the bar into its panel (height over 420ms, 280ms closing) and dims the page behind a blurred scrim; leaving closes after a 140ms grace.",
+			"Expand: moving along the bar switches at once, sliding the next pane in from the side the pointer travelled (28px, 320ms in, 150ms out) while the height eases to fit.",
+			"Expand: items rise in a 35ms stagger as their pane arrives; one highlight slides between items, and a pill slides between triggers.",
 			"Capsule: a pill slides to the hovered link and rests on the current one.",
 			"One shared panel resizes and slides between desktop triggers, measured from the active trigger and panel, rather than a fresh popover per item.",
 			"A disclosure pattern, not role=menu: contents are links to pages, so the browser's own link semantics are what a screen reader hears.",
@@ -116,8 +123,10 @@ export const megaNavbar = defineComponent({
 			entry: "MegaNavbar",
 			files: [
 				{ path: "mega-navbar/mega-navbar.tsx", type: "registry:ui" },
+				{ path: "mega-navbar/expand-nav.tsx", type: "registry:ui" },
 				{ path: "mega-navbar/variants.ts", type: "registry:ui" },
 				{ path: "mega-navbar/current.ts", type: "registry:ui" },
+				{ path: "mega-navbar/expand.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "@base-ui/react", "tailwind-variants"],
@@ -128,9 +137,11 @@ export const megaNavbar = defineComponent({
 			files: [
 				{ path: "mega-navbar/mega-navbar.svelte", type: "registry:ui" },
 				{ path: "mega-navbar/mega-menu.svelte", type: "registry:ui" },
+				{ path: "mega-navbar/mega-navbar-expand.svelte", type: "registry:ui" },
 				{ path: "mega-navbar/variants.ts", type: "registry:ui" },
 				{ path: "mega-navbar/types.ts", type: "registry:ui" },
 				{ path: "mega-navbar/current.ts", type: "registry:ui" },
+				{ path: "mega-navbar/expand.ts", type: "registry:ui" },
 				{ path: "lib/cn.ts", type: "registry:lib" },
 			],
 			dependencies: ["clsx", "tailwind-merge", "bits-ui", "tailwind-variants"],

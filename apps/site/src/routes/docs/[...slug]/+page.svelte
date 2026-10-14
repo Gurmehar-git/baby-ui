@@ -58,6 +58,7 @@ const path = $derived(data.slug === "index" ? "/docs" : `/docs/${data.slug}`);
 			<PageMenu
 				markdownUrl="/docs/{data.slug}.md"
 				copyText={data.page.data?.description ?? ""}
+				name={data.page.data?.title ?? "docs"}
 			/>
 			<OutlineToggle />
 		</div>
