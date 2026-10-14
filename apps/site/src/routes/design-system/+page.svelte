@@ -4,7 +4,10 @@ import ColourPairs from "#lib/design-system/colour-pairs.svelte";
 import ControlLadder from "#lib/design-system/control-ladder.svelte";
 import FieldStates from "#lib/design-system/field-states.svelte";
 import Foundations from "#lib/design-system/foundations.svelte";
+import TokenReference from "#lib/design-system/token-reference.svelte";
 import { breadcrumbLd } from "#lib/seo.js";
+
+let { data } = $props();
 
 const SECTIONS = [
 	{ id: "scale", label: "Control scale" },
@@ -14,6 +17,7 @@ const SECTIONS = [
 	{ id: "type", label: "Type" },
 	{ id: "elevation", label: "Elevation" },
 	{ id: "motion", label: "Motion" },
+	{ id: "tokens", label: "Every token" },
 ];
 </script>
 
@@ -79,6 +83,15 @@ const SECTIONS = [
 			</section>
 
 			<Foundations />
+
+			<section id="tokens" class="scroll-mt-24">
+				<h2 class="font-semibold text-foreground text-xl tracking-tight">Every token</h2>
+				<p class="mt-1 mb-6 max-w-2xl text-muted-foreground text-sm">
+					Each variable the theme declares, read from the token files at build time and grouped by job,
+					beside real components that use it. Values follow the current theme.
+				</p>
+				<TokenReference groups={data.groups} />
+			</section>
 		</div>
 	</div>
 </main>

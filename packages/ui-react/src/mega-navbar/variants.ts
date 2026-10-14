@@ -16,8 +16,8 @@ export const megaNavbar = tv({
 			"pointer-events-none absolute top-0 left-0 rounded-full bg-background opacity-0 shadow-xs ring-1 ring-border transition-[translate,width,height,opacity] duration-(--duration-spring-snappy) ease-(--ease-spring-snappy) data-[on=true]:opacity-100 motion-reduce:transition-none",
 		// Recast's morph: one panel resizes and slides between groups on a long, soft settle.
 		panel: [
-			// box-content: the measured size is the content box, so the border must sit outside it.
-			"absolute top-full left-0 z-50 box-content origin-top overflow-hidden rounded-xl border border-border bg-card shadow-2xl",
+			// The popover surface, so every floating panel shares one material; its edge is the shadow.
+			"absolute top-full left-0 z-50 origin-top overflow-hidden rounded-xl bg-popover shadow-(--overlay-shadow)",
 			"transition-[width,height,transform,opacity] duration-300 ease-[cubic-bezier(0.625,0.05,0,1)] motion-reduce:transition-none",
 		],
 		pane: "absolute inset-x-0 top-0 w-max transition-opacity duration-[var(--duration-dropdown)] motion-reduce:transition-none",
@@ -51,7 +51,9 @@ export const megaNavbar = tv({
 			// Concentric: a 16px bar round 8px padding round the ladder's 8px-radius h-9 controls.
 			"absolute inset-x-0 top-0 mx-auto grid w-full max-w-6xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-4 overflow-hidden rounded-2xl border border-border bg-background/85 p-2 backdrop-blur-xl backdrop-saturate-150 @3xl:gap-x-6",
 			// A bright top edge reads as light catching the material; the cast shadow lands once raised.
-			"shadow-[inset_0_1px_0_rgb(255_255_255/0.06)] transition-shadow duration-300 ease-(--ease-ui-out) data-[raised=true]:shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_28px_56px_-28px_rgb(0_0_0/0.4)] motion-reduce:transition-none",
+			"shadow-[inset_0_1px_0_rgb(255_255_255/0.06)] transition-[background-color,border-color,box-shadow] duration-300 ease-(--ease-ui-out) data-[open=false]:data-[raised=true]:shadow-[inset_0_1px_0_rgb(255_255_255/0.06),0_28px_56px_-28px_rgb(0_0_0/0.4)] motion-reduce:transition-none",
+			// Open, the bar becomes a popover: the same fill and edge as every other floating panel.
+			"data-[open=true]:border-transparent data-[open=true]:bg-popover/95 data-[open=true]:shadow-(--overlay-shadow)",
 		],
 		// Holds the resting bar's height (1px border, 8px padding, 36px controls) so the panel
 		// grows over the page instead of pushing it down.

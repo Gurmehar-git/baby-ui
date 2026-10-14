@@ -10,13 +10,39 @@ type Pair = {
 	note?: string;
 };
 
-const SURFACES = ["--background", "--card", "--popover", "--muted"];
+const SURFACES = ["--background", "--card", "--popover", "--muted", "--segment"];
 
 // Floors are WCAG: 4.5 text, 3 for a focus ring; null marks an edge ranked by job, not a floor.
 const PAIRS: Pair[] = [
 	{ label: "Body text", fg: "--foreground", bg: "--background", floor: 4.5 },
 	{ label: "Secondary text", fg: "--muted-foreground", bg: "--background", floor: 4.5 },
 	{ label: "Secondary text on card", fg: "--muted-foreground", bg: "--card", floor: 4.5 },
+	{
+		label: "Secondary text on popover",
+		fg: "--muted-foreground",
+		bg: "--popover",
+		floor: 4.5,
+	},
+	{
+		label: "Secondary text on a chip",
+		fg: "--muted-foreground",
+		bg: "--muted",
+		floor: 4.5,
+	},
+	{
+		label: "Popover over card",
+		fg: "--popover",
+		bg: "--card",
+		floor: null,
+		note: "Dark menus sit near the page; the overlay ring is their edge.",
+	},
+	{
+		label: "Chip inside popover",
+		fg: "--muted",
+		bg: "--popover",
+		floor: null,
+		note: "Key caps and secondary buttons stay visible in a menu.",
+	},
 	{ label: "Primary label", fg: "--primary-foreground", bg: "--primary", floor: 4.5 },
 	{
 		label: "Destructive label",
@@ -78,7 +104,7 @@ function read(host: HTMLElement) {
 <div {@attach read}>
 	<h3 class="font-medium text-foreground text-sm">Surface ladder</h3>
 	<p class="mt-1 text-muted-foreground text-sm">Each surface is its own step, so nesting reads without a border.</p>
-	<div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+	<div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-5">
 		{#each SURFACES as name (name)}
 			<div class="overflow-hidden rounded-xl border border-border">
 				<div class="h-20 border-border border-b" style:background="var({name})"></div>

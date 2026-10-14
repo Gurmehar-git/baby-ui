@@ -212,6 +212,7 @@ export function MegaNavbarExpand({
 			<div className={styles.expandFrame()}>
 				<nav
 					aria-label="Primary"
+					data-open={expanded}
 					data-raised={expanded || surface !== "clear"}
 					className={styles.expandBar()}
 					onMouseEnter={cancel}

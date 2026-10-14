@@ -156,6 +156,7 @@ function slideHighlight(grid: HTMLElement) {
 	<div class={styles.expandFrame()}>
 	<nav
 		aria-label="Primary"
+		data-open={expanded}
 		data-raised={expanded || surface !== "clear"}
 		class={styles.expandBar()}
 		onmouseenter={cancel}

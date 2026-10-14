@@ -93,7 +93,9 @@
 	--background: oklch(17% 0.002 265);
 	--foreground: oklch(96% 0.001 265);
 	--card: oklch(21% 0.003 265);
-	--popover: oklch(24% 0 0);
+	/* #151515 in the neutrals' hue (user pick): a dark menu near the page, lifted by the
+	   --overlay-shadow ring rather than by lightness, so chips inside stay far above it. */
+	--popover: oklch(19.6% 0.002 265);
 	--muted: oklch(27% 0.004 265);
 	--muted-foreground: oklch(66% 0.004 265);
 	--border: oklch(100% 0 0 / 0.07);
@@ -127,7 +129,10 @@
 	--gradient-bg: linear-gradient(135deg, oklch(17% 0.002 265) 0%, oklch(21% 0.008 210) 100%);
 	/* Surfaces lift by lightness on dark; only overlays keep a hairline over similar steps. */
 	--surface-shadow: none;
-	--overlay-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08), 0 14px 28px 0 rgb(0 0 0 / 0.4);
+	/* A brighter top row reads as light catching the edge; the contact shadow seats it on the page. */
+	--overlay-shadow:
+		inset 0 0 0 1px rgb(255 255 255 / 0.08), inset 0 1px 0 0 rgb(255 255 255 / 0.04),
+		0 2px 6px 0 rgb(0 0 0 / 0.3), 0 16px 32px -4px rgb(0 0 0 / 0.5);
 	--thumb-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4);
 	--field: oklch(21% 0.003 265);
 	--track: oklch(100% 0 0 / 0.145);
