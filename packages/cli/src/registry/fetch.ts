@@ -63,7 +63,13 @@ async function authHeaders(url: string, headers: Readonly<Record<string, string>
 
 /** Fetches text with an ETag cache; offline runs fall back to the cached copy. */
 export async function fetchText({ url, headers }: ItemRequest): Promise<string> {
-	if (url.startsWith("file:")) return readFile(fileURLToPath(url), "utf8");
+	if (url.startsWith("file:")) {
+		try {
+			return await readFile(fileURLToPath(url), "utf8");
+		} catch {
+			throw new CliError(`Not found: ${url}`);
+		}
+	}
 	const cached = await readCache(url);
 	let response: Response;
 	try {

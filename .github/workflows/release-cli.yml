@@ -1,0 +1,101 @@
+name: Release CLI
+
+# Automatic: merging a version bump to main publishes it. Manual: pick a dist-tag, or dry-run
+# to see exactly what would ship. Versions already on npm are skipped, so reruns are safe.
+on:
+  push:
+    branches: [main]
+    paths:
+      - packages/cli/package.json
+      - packages/create-baby-ui/package.json
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: Build, pack and run `npm publish --dry-run` only
+        type: boolean
+        default: true
+      dist-tag:
+        description: npm dist-tag (latest, next, beta)
+        type: string
+        default: latest
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-cli
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    uses: ./.github/workflows/cli.yml
+
+  publish:
+    needs: ci
+    runs-on: ubuntu-latest
+    # Add required reviewers to this environment in repo settings to gate every release.
+    environment: npm
+    permissions:
+      contents: write
+      id-token: write
+    env:
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run || false }}
+      DIST_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.dist-tag || 'latest' }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      # Trusted publishing (OIDC, no token) needs npm 11.5.1 or newer.
+      - name: npm with trusted publishing
+        run: npm install --global npm@^11.5.1
+
+      - run: pnpm install --frozen-lockfile --filter @baby-ui/cli... --filter create-baby-ui...
+
+      - name: Build
+        run: pnpm --filter @baby-ui/cli build
+
+      # The CLI first: create-baby-ui pins its exact version, which must already exist.
+      # `pnpm pack` turns `workspace:*` into that version; npm then publishes the tarball.
+      - name: Publish
+        env:
+          # Only for the very first publish, before trusted publishing can be configured.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          : > "$RUNNER_TEMP/published"
+          for dir in packages/cli packages/create-baby-ui; do
+            name=$(node -p "require('./$dir/package.json').name")
+            version=$(node -p "require('./$dir/package.json').version")
+            if npm view "$name@$version" version >/dev/null 2>&1; then
+              echo "::notice::$name@$version is already on npm, skipped."
+              continue
+            fi
+            out="$RUNNER_TEMP/packs/$(basename "$dir")"
+            (cd "$dir" && pnpm pack --pack-destination "$out")
+            tarball=$(ls "$out"/*.tgz)
+            flags=(--access public --tag "$DIST_TAG" --provenance)
+            if [ "$DRY_RUN" = "true" ]; then flags+=(--dry-run); fi
+            npm publish "$tarball" "${flags[@]}"
+            if [ "$DRY_RUN" != "true" ]; then echo "$name@$version" >> "$RUNNER_TEMP/published"; fi
+          done
+
+      - name: GitHub releases
+        if: env.DRY_RUN != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          pre=()
+          if [ "$DIST_TAG" != "latest" ]; then pre=(--prerelease); fi
+          while read -r release; do
+            [ -n "$release" ] || continue
+            gh release create "$release" --target "$GITHUB_SHA" --title "$release" "${pre[@]}" \
+              --notes "Published to npm with provenance: https://www.npmjs.com/package/${release%@*}"
+          done < "$RUNNER_TEMP/published"
