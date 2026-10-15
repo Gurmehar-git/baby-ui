@@ -15,6 +15,9 @@ export const toggleButton = tv({
 			default: "",
 			outline:
 				"border-input hover:border-border-strong aria-pressed:border-border-strong",
+			// Pressed takes the brand tint; --primary ink is 4.05:1 on it in light, --primary-hover 4.72:1.
+			primary:
+				"aria-pressed:border-transparent aria-pressed:bg-[color-mix(in_oklch,var(--primary)_14%,transparent)] aria-pressed:text-primary-hover",
 		},
 		// Icon-only toggles stay square: 2 x px + icon + border fits the height, min-w holds the rest.
 		size: {

@@ -1,4 +1,11 @@
-import { FileUpload, type UploadFile } from "@baby-ui/react";
+import {
+	FileUpload,
+	FileUploadDropzone,
+	FileUploadError,
+	FileUploadItem,
+	FileUploadList,
+	type UploadFile,
+} from "@baby-ui/react";
 import { useState } from "react";
 
 export function Example() {
@@ -19,7 +26,18 @@ export function Example() {
 					})),
 				])
 			}
-			onRemove={(id) => setFiles((list) => list.filter((f) => f.id !== id))}
-		/>
+		>
+			<FileUploadDropzone />
+			<FileUploadError />
+			<FileUploadList>
+				{files.map((file) => (
+					<FileUploadItem
+						key={file.id}
+						file={file}
+						onRemove={() => setFiles((list) => list.filter((f) => f.id !== file.id))}
+					/>
+				))}
+			</FileUploadList>
+		</FileUpload>
 	);
 }

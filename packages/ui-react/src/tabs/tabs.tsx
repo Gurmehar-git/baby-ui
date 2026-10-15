@@ -13,9 +13,14 @@ import {
 	useState,
 } from "react";
 import { cn } from "../lib/cn";
-import { type TabsSize, type TabsVariant, tabsFrame } from "./variants";
+import {
+	type TabsOrientation,
+	type TabsSize,
+	type TabsVariant,
+	tabsFrame,
+} from "./variants";
 
-export type { TabsSize, TabsVariant };
+export type { TabsOrientation, TabsSize, TabsVariant };
 
 const ARROW =
 	"absolute inset-y-0 z-20 inline-flex w-9 items-center justify-center text-foreground transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-0";
@@ -24,7 +29,10 @@ type Ctx = {
 	value: string;
 	variant: TabsVariant;
 	size: TabsSize;
+	orientation: TabsOrientation;
 };
+
+type Rect = { left: number; top: number; width: number; height: number };
 
 const TabsCtx = createContext<Ctx | null>(null);
 
@@ -40,17 +48,19 @@ export function Tabs({
 	defaultValue = "",
 	variant = "pill",
 	size = "default",
+	orientation = "horizontal",
 	onValueChange,
 	children,
 	...props
 }: Omit<
 	ComponentProps<typeof TabsPrimitive.Root>,
-	"value" | "defaultValue" | "onValueChange"
+	"value" | "defaultValue" | "onValueChange" | "orientation"
 > & {
 	value?: string;
 	defaultValue?: string;
 	variant?: TabsVariant;
 	size?: TabsSize;
+	orientation?: TabsOrientation;
 	onValueChange?: (value: string) => void;
 }) {
 	const [internal, setInternal] = useState(defaultValue);
@@ -64,15 +74,23 @@ export function Tabs({
 		[valueProp, onValueChange],
 	);
 
-	const ctx = useMemo(() => ({ value, variant, size }), [value, variant, size]);
+	const ctx = useMemo(
+		() => ({ value, variant, size, orientation }),
+		[value, variant, size, orientation],
+	);
 
 	return (
 		<TabsCtx.Provider value={ctx}>
 			<TabsPrimitive.Root
 				data-slot="tabs"
 				value={value}
+				orientation={orientation}
 				onValueChange={(next) => setValue(String(next ?? ""))}
-				className={cn("flex flex-col", className)}
+				className={cn(
+					"flex",
+					orientation === "vertical" ? "flex-row items-start gap-4" : "flex-col",
+					className,
+				)}
 				{...props}
 			>
 				{children}
@@ -86,19 +104,26 @@ export function TabsList({ className, children, ...props }: ComponentProps<"div"
 	const { list: listClass, indicator: indicatorClass } = tabsFrame({
 		variant: tabs.variant,
 		size: tabs.size,
+		orientation: tabs.orientation,
 	});
 	const root = useRef<HTMLDivElement>(null);
 	const viewport = useRef<HTMLDivElement>(null);
 	const list = useRef<HTMLDivElement>(null);
-	const [rects, setRects] = useState<Record<string, { left: number; width: number }>>({});
+	const [rects, setRects] = useState<Record<string, Rect>>({});
 	const [edges, setEdges] = useState({ overflow: false, left: false, right: false });
 
 	const measure = useCallback(() => {
 		if (!list.current || !viewport.current || !root.current) return;
-		const next: Record<string, { left: number; width: number }> = {};
+		const next: Record<string, Rect> = {};
 		for (const el of list.current.querySelectorAll<HTMLElement>("[data-tab]")) {
 			const id = el.dataset.tab;
-			if (id) next[id] = { left: el.offsetLeft, width: el.offsetWidth };
+			if (id)
+				next[id] = {
+					left: el.offsetLeft,
+					top: el.offsetTop,
+					width: el.offsetWidth,
+					height: el.offsetHeight,
+				};
 		}
 		setRects(next);
 
@@ -130,7 +155,8 @@ export function TabsList({ className, children, ...props }: ComponentProps<"div"
 		};
 	}, [measure]);
 
-	const indicatorRects = rects[tabs.value] ?? { left: 0, width: 0 };
+	const indicatorRects = rects[tabs.value] ?? { left: 0, top: 0, width: 0, height: 0 };
+	const vertical = tabs.orientation === "vertical";
 
 	/** Keep the selected tab clear of the arrows that overlay the faded edges. */
 	useEffect(() => {
@@ -165,6 +191,7 @@ export function TabsList({ className, children, ...props }: ComponentProps<"div"
 			ref={root}
 			className={cn(
 				"relative isolate flex w-full min-w-0 max-w-full items-center",
+				vertical && "w-auto shrink-0",
 				edges.overflow && tabs.variant === "pill" && "rounded-full bg-card",
 				edges.overflow && tabs.variant === "segment" && "rounded-lg bg-card",
 			)}
@@ -208,10 +235,20 @@ export function TabsList({ className, children, ...props }: ComponentProps<"div"
 				>
 					<span
 						aria-hidden
-						style={{
-							transform: `translateX(${indicatorRects.left}px)`,
-							width: indicatorRects.width,
-						}}
+						style={
+							vertical
+								? {
+										transform: `translate(${indicatorRects.left}px, ${indicatorRects.top}px)`,
+										width: indicatorRects.width,
+										height: indicatorRects.height,
+										top: 0,
+										bottom: "auto",
+									}
+								: {
+										transform: `translateX(${indicatorRects.left}px)`,
+										width: indicatorRects.width,
+									}
+						}
 						className={indicatorClass()}
 					/>
 					{children}
@@ -247,7 +284,11 @@ export function TabsTrigger({
 	...props
 }: ComponentProps<typeof TabsPrimitive.Tab> & { value: string }) {
 	const tabs = useTabs();
-	const { trigger } = tabsFrame({ variant: tabs.variant, size: tabs.size });
+	const { trigger } = tabsFrame({
+		variant: tabs.variant,
+		size: tabs.size,
+		orientation: tabs.orientation,
+	});
 
 	return (
 		<TabsPrimitive.Tab
@@ -265,12 +306,16 @@ export function TabsContent({
 	value,
 	...props
 }: ComponentProps<typeof TabsPrimitive.Panel> & { value: string }) {
+	const tabs = useTabs();
 	return (
 		<TabsPrimitive.Panel
 			data-slot="tabs-content"
 			value={value}
 			keepMounted
-			className={cn("mt-4", className)}
+			className={cn(
+				tabs.orientation === "vertical" ? "min-w-0 flex-1" : "mt-4",
+				className,
+			)}
 			{...props}
 		/>
 	);

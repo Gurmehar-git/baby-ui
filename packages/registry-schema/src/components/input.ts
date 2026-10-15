@@ -6,7 +6,7 @@ export const input = defineComponent({
 	description: "Text field with invalid and disabled states that stay legible together.",
 	category: "base",
 	status: "stable",
-	variants: { size: ["xs", "sm", "default", "lg", "xl"] },
+	variants: { size: ["xs", "sm", "default", "lg", "xl"], variant: ["outline", "ring"] },
 	props: [
 		{
 			name: "size",
@@ -14,6 +14,13 @@ export const input = defineComponent({
 			description: "Height and horizontal padding.",
 			default: "default",
 			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
+		},
+		{
+			name: "variant",
+			type: '"outline" | "ring"',
+			description: "Focus shows as the border alone, or `ring` adds a soft halo.",
+			default: "outline",
+			control: { kind: "select", options: ["outline", "ring"] },
 		},
 		{
 			name: "invalid",

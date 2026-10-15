@@ -1,0 +1,54 @@
+{
+	"name": "@baby-ui/cli",
+	"version": "0.1.0",
+	"description": "Add Baby UI and shadcn registry components to React and Svelte projects",
+	"license": "Apache-2.0",
+	"homepage": "https://baby-ui.nexonauts.com",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kanakkholwal/baby-ui.git",
+		"directory": "packages/cli"
+	},
+	"bugs": "https://github.com/kanakkholwal/baby-ui/issues",
+	"type": "module",
+	"bin": {
+		"baby-ui": "./bin.mjs"
+	},
+	"exports": {
+		".": "./dist/index.js",
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"bin.mjs",
+		"dist"
+	],
+	"engines": {
+		"node": ">=22.12.0"
+	},
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch",
+		"check": "tsc --noEmit && vitest run",
+		"test": "vitest run",
+		"smoke": "node scripts/smoke.mjs",
+		"prepublishOnly": "pnpm build && pnpm test"
+	},
+	"dependencies": {
+		"oxc-parser": "^0.154.0"
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"commander": "^15.0.0",
+		"magic-string": "^1.4.3",
+		"postcss": "^8.5.30",
+		"tinyglobby": "^0.2.17",
+		"tsdown": "^0.23.1",
+		"typescript": "catalog:",
+		"vitest": "^5.0.4",
+		"yaml": "^2.9.1",
+		"zod": "catalog:"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

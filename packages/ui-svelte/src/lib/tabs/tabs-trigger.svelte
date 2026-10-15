@@ -7,7 +7,9 @@ import { tabsFrame } from "./variants";
 let { children, value, class: classProp, ...rest }: TabsPrimitive.TriggerProps = $props();
 
 const tabs = getTabs();
-const frame = $derived(tabsFrame({ variant: tabs.variant, size: tabs.size }));
+const frame = $derived(
+	tabsFrame({ variant: tabs.variant, size: tabs.size, orientation: tabs.orientation }),
+);
 </script>
 
 <TabsPrimitive.Trigger

@@ -16,8 +16,8 @@ export const controlSize = tv({
 
 export type ControlSize = NonNullable<VariantProps<typeof controlSize>["size"]>;
 
-/** One frame for every field. Text entry gets the focus halo; a trigger (Select, Combobox) stays
- * calm: a ring border on keyboard focus only, and a neutral border while its popup is open. */
+/** One frame for every field. Focus is a ring-coloured border, no halo; a trigger (Select,
+ * Combobox) also takes a neutral border while its popup is open. */
 export const fieldFrame = tv({
 	base: [
 		"border border-input bg-(--field) text-foreground outline-none",
@@ -27,10 +27,7 @@ export const fieldFrame = tv({
 	],
 	variants: {
 		kind: {
-			input: [
-				"focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/20",
-				"aria-invalid:ring-destructive/20",
-			],
+			input: "focus-visible:border-ring",
 			trigger: [
 				"focus-visible:border-ring",
 				"data-[popup-open]:border-border-strong data-[state=open]:border-border-strong",
@@ -38,6 +35,11 @@ export const fieldFrame = tv({
 		},
 	},
 	defaultVariants: { kind: "input" },
+});
+
+/** The opt-in soft halo around a focused text field: Input and Textarea's `ring` variant. */
+export const fieldHalo = tv({
+	base: "focus-visible:ring-3 focus-visible:ring-ring/20 aria-invalid:ring-destructive/20",
 });
 
 /** iOS zooms the page into a focused field under 16px, so text entry reads 16px below `md`. */

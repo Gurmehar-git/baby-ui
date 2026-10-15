@@ -29,7 +29,7 @@
 	--neon: oklch(80% 0.22 145);
 	--violet: oklch(68% 0.22 295);
 	/* Status fills are too light for 4.5:1 text on white, so text uses -strong: fill mixed toward ink.
-	   Destructive is the exception: it carries a white label, 4.74:1. */
+	   Destructive and info carry a white label instead, 4.74:1 and 4.56:1. */
 	--destructive: oklch(58% 0.2 25);
 	--destructive-strong: color-mix(in oklab, var(--destructive) 64%, var(--foreground));
 	--success: oklch(73.29% 0.1935 150.81);
@@ -38,7 +38,7 @@
 	--warning: oklch(78.19% 0.1585 72.33);
 	--warning-strong: color-mix(in oklab, var(--warning) 53%, var(--foreground));
 	--warning-foreground: oklch(21.03% 0.0059 285.89);
-	--info: oklch(62.04% 0.195 253.83);
+	--info: oklch(56% 0.195 253.83);
 	--info-strong: color-mix(in oklab, var(--info) 70%, var(--foreground));
 	--info-foreground: oklch(99.11% 0 0);
 	--glass-bg: oklch(100% 0 0 / 0.55);
@@ -121,7 +121,7 @@
 	--warning: oklch(82.03% 0.1388 76.34);
 	--warning-strong: color-mix(in oklab, var(--warning) 73%, var(--foreground));
 	--warning-foreground: oklch(21.03% 0.0059 285.89);
-	--info: oklch(62.04% 0.195 253.83);
+	--info: oklch(56% 0.195 253.83);
 	--info-strong: color-mix(in oklab, var(--info) 73%, var(--foreground));
 	--info-foreground: oklch(99.11% 0 0);
 	--glass-bg: oklch(17% 0.002 265 / 0.55);

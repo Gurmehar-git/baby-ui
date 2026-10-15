@@ -1,11 +1,11 @@
-export type UploadStatus = "queued" | "uploading" | "done" | "error";
+import type { FileUploadStatus } from "./variants";
 
 /** One file the parent is tracking. The parent owns uploading and updates `progress` (0-100). */
 export interface UploadFile {
 	id: string;
 	file: File;
 	progress: number;
-	status: UploadStatus;
+	status: FileUploadStatus;
 	error?: string;
 }
 
@@ -141,3 +141,7 @@ export function uploadSummary(files: UploadFile[], labels: FileUploadLabels): st
 }
 
 export const isImage = (file: File) => file.type.startsWith("image/");
+
+/** The label key for a status: `error` reads as `failed`. */
+export const statusLabel = (status: FileUploadStatus) =>
+	status === "error" ? "failed" : status;

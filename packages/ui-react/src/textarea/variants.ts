@@ -1,5 +1,5 @@
 import { tv, type VariantProps } from "tailwind-variants";
-import { fieldFrame, fieldText } from "../lib/control";
+import { fieldFrame, fieldHalo, fieldText } from "../lib/control";
 
 export const textarea = tv({
 	base: [fieldFrame(), "w-full leading-relaxed placeholder:text-muted-foreground"],
@@ -15,6 +15,8 @@ export const textarea = tv({
 		variant: {
 			outline: "",
 			soft: "border-transparent bg-card hover:border-transparent",
+			// The outline look plus a soft focus halo.
+			ring: fieldHalo(),
 		},
 		autoGrow: {
 			true: "resize-none overflow-y-hidden",

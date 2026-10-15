@@ -7,22 +7,32 @@ import { tabsFrame } from "./variants";
 let { children, class: classProp, ...rest }: TabsPrimitive.ListProps = $props();
 
 const tabs = getTabs();
-const frame = $derived(tabsFrame({ variant: tabs.variant, size: tabs.size }));
+const frame = $derived(
+	tabsFrame({ variant: tabs.variant, size: tabs.size, orientation: tabs.orientation }),
+);
 
 let root = $state<HTMLDivElement>();
 let viewport = $state<HTMLDivElement>();
 let list = $state<HTMLDivElement | null>(null);
-let rects = $state<Record<string, { left: number; width: number }>>({});
+type Rect = { left: number; top: number; width: number; height: number };
+let rects = $state<Record<string, Rect>>({});
 let edges = $state({ overflow: false, left: false, right: false });
 
-const indicator = $derived(rects[tabs.value] ?? { left: 0, width: 0 });
+const indicator = $derived(rects[tabs.value] ?? { left: 0, top: 0, width: 0, height: 0 });
+const vertical = $derived(tabs.orientation === "vertical");
 
 function measure() {
 	if (!list || !viewport || !root) return;
-	const next: Record<string, { left: number; width: number }> = {};
+	const next: Record<string, Rect> = {};
 	for (const el of list.querySelectorAll<HTMLElement>("[data-tab]")) {
 		const id = el.dataset.tab;
-		if (id) next[id] = { left: el.offsetLeft, width: el.offsetWidth };
+		if (id)
+			next[id] = {
+				left: el.offsetLeft,
+				top: el.offsetTop,
+				width: el.offsetWidth,
+				height: el.offsetHeight,
+			};
 	}
 	rects = next;
 
@@ -86,6 +96,7 @@ const ARROW =
 	bind:this={root}
 	class={cn(
 		"relative isolate flex w-full min-w-0 max-w-full items-center",
+		vertical && "w-auto shrink-0",
 		edges.overflow && tabs.variant === "pill" && "rounded-full bg-card",
 		edges.overflow && tabs.variant === "segment" && "rounded-lg bg-card",
 	)}
@@ -121,8 +132,13 @@ const ARROW =
 		>
 			<span
 				aria-hidden="true"
-				style:transform="translateX({indicator.left}px)"
+				style:transform={vertical
+					? `translate(${indicator.left}px, ${indicator.top}px)`
+					: `translateX(${indicator.left}px)`}
 				style:width="{indicator.width}px"
+				style:height={vertical ? `${indicator.height}px` : undefined}
+				style:top={vertical ? "0" : undefined}
+				style:bottom={vertical ? "auto" : undefined}
 				class={frame.indicator()}
 			></span>
 

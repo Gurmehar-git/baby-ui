@@ -3,14 +3,16 @@
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import { useId } from "react";
 import { cn } from "../lib/cn";
-import { type CheckboxSize, checkbox } from "./variants";
+import { type CheckboxSize, type CheckboxVariant, checkbox } from "./variants";
 
-export type { CheckboxSize };
+export type { CheckboxSize, CheckboxVariant };
 
 export interface CheckboxProps {
 	checked?: boolean;
 	indeterminate?: boolean;
 	disabled?: boolean;
+	/** `default` square, `circle` for task lists, or `card`: the labelled tile is the hit area. */
+	variant?: CheckboxVariant;
 	size?: CheckboxSize;
 	label?: string;
 	description?: string;
@@ -25,6 +27,7 @@ export function Checkbox({
 	checked,
 	indeterminate = false,
 	disabled = false,
+	variant = "default",
 	size = "default",
 	label,
 	description,
@@ -34,7 +37,7 @@ export function Checkbox({
 	onCheckedChange,
 }: CheckboxProps) {
 	const id = useId();
-	const frame = checkbox({ size });
+	const frame = checkbox({ variant, size });
 
 	const control = (
 		<CheckboxPrimitive.Root
@@ -46,6 +49,7 @@ export function Checkbox({
 			onCheckedChange={onCheckedChange}
 			aria-label={label ? undefined : ariaLabel}
 			data-slot="checkbox"
+			data-variant={variant}
 			className={cn(frame.box(), !label && !description && className)}
 		>
 			<CheckboxPrimitive.Indicator
@@ -77,15 +81,9 @@ export function Checkbox({
 	if (!label && !description) return control;
 
 	return (
-		<div
-			className={cn(
-				"inline-flex items-start gap-2.5",
-				disabled && "opacity-50",
-				className,
-			)}
-		>
+		<div className={cn(frame.root(), disabled && "opacity-50", className)}>
 			{control}
-			<label htmlFor={id} className="cursor-pointer select-none">
+			<label htmlFor={id} className={frame.label()}>
 				{label ? <span className={frame.text()}>{label}</span> : null}
 				{description ? (
 					<span className="block text-muted-foreground text-xs leading-relaxed">

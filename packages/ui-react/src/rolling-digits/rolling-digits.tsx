@@ -271,6 +271,7 @@ export function RollingDigits({
 			<span
 				ref={rootRef}
 				data-slot="rolling-digits"
+				data-motion="explanatory"
 				data-variant={variant}
 				className={cn(styles.root(), className)}
 				style={{ "--rd-duration": `${duration}ms` } as CSSProperties}
@@ -327,6 +328,7 @@ export function RollingDigits({
 		<span
 			ref={rootRef}
 			data-slot="rolling-digits"
+			data-motion="explanatory"
 			data-variant={variant}
 			className={cn(styles.root(), className)}
 		>

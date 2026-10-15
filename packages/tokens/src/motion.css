@@ -2289,33 +2289,38 @@
 	}
 }
 
-/* Slider: thumb and fill glide to each new value on a 180/26 spring, sampled into
-   linear(); position properties cover both Base UI (inset-inline) and bits-ui (left/right). */
+/* Slider: thumb and fill glide to a clicked or keyed value on the snappy spring; position
+   properties cover both Base UI (inset-inline) and bits-ui (left/right). */
 .slider-glide {
-	--slider-spring: linear(0, 0.054, 0.166, 0.296, 0.422, 0.535, 0.631, 0.71, 0.774, 0.826, 0.866, 0.898, 0.922, 0.941, 0.955, 0.966, 0.974, 0.981, 0.985, 0.989, 0.992, 0.994, 0.995, 0.996, 1);
+	--slider-glide: var(--duration-spring-snappy);
 	transition-property: inset-inline-start, left, right, width, scale, box-shadow;
-	transition-duration: 611ms, 611ms, 611ms, 611ms, var(--duration-press), var(--duration-press);
+	transition-duration:
+		var(--slider-glide), var(--slider-glide), var(--slider-glide), var(--slider-glide),
+		var(--duration-press), var(--duration-press);
 	transition-timing-function:
-		var(--slider-spring), var(--slider-spring), var(--slider-spring), var(--slider-spring),
-		var(--ease-ui-out), var(--ease-ui-out);
+		var(--ease-spring-snappy), var(--ease-spring-snappy), var(--ease-spring-snappy),
+		var(--ease-spring-snappy), var(--ease-ui-out), var(--ease-ui-out);
 }
 
 .slider-glide[data-orientation="vertical"] {
 	transition-property: inset-block-end, bottom, top, height, scale, box-shadow;
 }
 
-/* Progress: the fill scales on a soft 84/18 spring; the sweep is a glossy band. */
+/* A held thumb stays with the pointer; bits-ui only marks the thumb, hence :has(). */
+.group\/slider:has([data-slot="slider-thumb"]:is([data-active], [data-dragging])) .slider-glide {
+	--slider-glide: var(--duration-instant);
+}
+
+/* Progress: the fill scales on the snappy spring, like the slider; the sweep is a glossy band. */
 .progress-fill {
 	transform-origin: left center;
-	transition: transform 761ms
-		linear(0, 0.032, 0.109, 0.206, 0.312, 0.415, 0.513, 0.599, 0.674, 0.74, 0.794, 0.839, 0.875, 0.904, 0.928, 0.946, 0.96, 0.971, 0.979, 0.986, 0.99, 0.994, 0.996, 0.998, 1);
+	transition: transform var(--duration-spring-snappy) var(--ease-spring-snappy);
 }
 
 .progress-ring {
-	--progress-spring: linear(0, 0.032, 0.109, 0.206, 0.312, 0.415, 0.513, 0.599, 0.674, 0.74, 0.794, 0.839, 0.875, 0.904, 0.928, 0.946, 0.96, 0.971, 0.979, 0.986, 0.99, 0.994, 0.996, 0.998, 1);
 	transition:
-		stroke-dasharray 761ms var(--progress-spring),
-		transform 761ms var(--progress-spring);
+		stroke-dasharray var(--duration-spring-snappy) var(--ease-spring-snappy),
+		transform var(--duration-spring-snappy) var(--ease-spring-snappy);
 }
 
 .progress-gloss {

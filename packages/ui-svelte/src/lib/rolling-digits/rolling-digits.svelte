@@ -195,6 +195,7 @@ $effect(() => {
 	<span
 		bind:this={root}
 		data-slot="rolling-digits"
+		data-motion="explanatory"
 		data-variant={variant}
 		class={cn(styles.root(), classProp)}
 		style:--rd-duration="{duration}ms"
@@ -222,7 +223,7 @@ $effect(() => {
 		{/if}
 	</span>
 {:else}
-<span bind:this={root} data-slot="rolling-digits" data-variant={variant} class={cn(styles.root(), classProp)}>
+<span bind:this={root} data-slot="rolling-digits" data-motion="explanatory" data-variant={variant} class={cn(styles.root(), classProp)}>
 	<span aria-live="polite" class={styles.srOnly()}>{target}</span>
 	<span aria-hidden="true" class={styles.cells()}>
 		{#each rendered as cell (cell.key)}

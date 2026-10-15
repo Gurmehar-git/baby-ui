@@ -10,7 +10,12 @@ let value = $state("overview");
 </script>
 
 <div class="w-full max-w-96">
-	<Tabs bind:value variant={p.variant ?? "pill"} size={p.size ?? "default"}>
+	<Tabs
+		bind:value
+		variant={p.variant ?? "pill"}
+		size={p.size ?? "default"}
+		orientation={p.orientation ?? "horizontal"}
+	>
 		<TabsList>
 			<TabsTrigger value="overview">Overview</TabsTrigger>
 			<TabsTrigger value="activity">Activity</TabsTrigger>

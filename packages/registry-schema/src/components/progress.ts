@@ -102,7 +102,7 @@ export const progress = defineComponent({
 		reducedMotion:
 			"The indeterminate sweep stops and the track shows a static partial fill.",
 		behaviour: [
-			"The fill scales on a soft 84/18 spring, sampled into a CSS linear() easing over 761ms, so a jump from 10 to 90 reads as progress.",
+			"The fill scales on the snappy spring token (400ms), so a jump from 10 to 90 reads as progress.",
 			"The indeterminate bar sweeps a glossy band across every 1.55s, fading in over the first 14% and out over the last 16%.",
 			"The ring's fill and its gapped track glide together on the same spring; an indeterminate ring spins a 28% arc every 1.15s.",
 		],

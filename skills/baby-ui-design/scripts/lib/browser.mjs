@@ -9,15 +9,18 @@ const CANDIDATES = {
 		"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
 		"C:/Program Files/Microsoft/Edge/Application/msedge.exe",
 		"C:/Program Files/Google/Chrome/Application/chrome.exe",
+		"C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe",
 	],
 	darwin: [
 		"/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
 		"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+		"/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
 		"/Applications/Chromium.app/Contents/MacOS/Chromium",
 	],
 	linux: [
 		"/usr/bin/microsoft-edge",
 		"/usr/bin/google-chrome",
+		"/usr/bin/brave-browser",
 		"/usr/bin/chromium",
 		"/usr/bin/chromium-browser",
 	],

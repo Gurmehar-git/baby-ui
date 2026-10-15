@@ -1,18 +1,34 @@
-import { FileUpload, MultiSelect, NumberInput, type UploadFile } from "@baby-ui/react";
+import {
+	FileUpload,
+	FileUploadDropzone,
+	FileUploadError,
+	FileUploadItem,
+	FileUploadList,
+	MultiSelect,
+	NumberInput,
+	type UploadFile,
+} from "@baby-ui/react";
 import { type ComponentProps, useEffect, useRef, useState } from "react";
 import { controlProps } from "../data/preview-props";
-import { AVATAR_MAX_BYTES, TEAM_MEMBERS, UPLOAD_TICK_MS } from "../data/utility-inputs";
+import {
+	AVATAR_MAX_BYTES,
+	sampleUploads,
+	TEAM_MEMBERS,
+	UPLOAD_TICK_MS,
+} from "../data/utility-inputs";
 
 type Props = Record<string, unknown>;
 
 export function FileUploadDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof FileUpload>>(props);
-	const [files, setFiles] = useState<UploadFile[]>([]);
+	const [files, setFiles] = useState<UploadFile[]>(sampleUploads);
 	const timers = useRef(new Map<string, ReturnType<typeof setInterval>>());
 	const retried = useRef(new Set<string>());
 
+	// Once on mount: start the queued samples.
 	useEffect(() => {
 		const map = timers.current;
+		for (const f of sampleUploads()) if (f.status === "queued") upload(f.id);
 		return () => {
 			for (const timer of map.values()) clearInterval(timer);
 		};
@@ -47,10 +63,11 @@ export function FileUploadDemo({ props }: { props: Props }) {
 		<div className="w-full max-w-md">
 			<FileUpload
 				files={files}
-				accept="image/*,.pdf"
+				accept="image/*,.pdf,.csv"
 				maxSize={AVATAR_MAX_BYTES}
-				maxFiles={4}
-				compactAt={2}
+				maxFiles={5}
+				compactAt={3}
+				variant={p.variant ?? "default"}
 				size={p.size ?? "default"}
 				disabled={p.disabled ?? false}
 				onFilesAdded={(added) => {
@@ -63,15 +80,26 @@ export function FileUploadDemo({ props }: { props: Props }) {
 					setFiles((list) => [...list, ...next]);
 					for (const item of next) upload(item.id);
 				}}
-				onRetry={(id) => {
-					retried.current.add(id);
-					upload(id);
-				}}
-				onRemove={(id) => {
-					clearInterval(timers.current.get(id));
-					setFiles((list) => list.filter((f) => f.id !== id));
-				}}
-			/>
+			>
+				<FileUploadDropzone />
+				<FileUploadError />
+				<FileUploadList>
+					{files.map((file) => (
+						<FileUploadItem
+							key={file.id}
+							file={file}
+							onRetry={() => {
+								retried.current.add(file.id);
+								upload(file.id);
+							}}
+							onRemove={() => {
+								clearInterval(timers.current.get(file.id));
+								setFiles((list) => list.filter((f) => f.id !== file.id));
+							}}
+						/>
+					))}
+				</FileUploadList>
+			</FileUpload>
 		</div>
 	);
 }

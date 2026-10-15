@@ -16,6 +16,7 @@ $effect(() => {
 });
 
 const granted = $derived(scopes.filter(Boolean).length);
+const variant = $derived(p.variant ?? "default");
 </script>
 
 <div class="flex w-full max-w-72 flex-col gap-3">
@@ -24,15 +25,17 @@ const granted = $derived(scopes.filter(Boolean).length);
 			() => granted === SCOPES.length, (next) => (scopes = SCOPES.map(() => next))
 		}
 		indeterminate={granted > 0 && granted < SCOPES.length}
+		{variant}
 		label="All permissions"
 	/>
-	<div class="flex flex-col gap-3 border-border border-l pl-4">
+	<div class={variant === "card" ? "flex flex-col gap-2" : "flex flex-col gap-3 border-border border-l pl-4"}>
 		{#each SCOPES as scope, i (scope)}
-			<Checkbox bind:checked={scopes[i]} label={scope} />
+			<Checkbox bind:checked={scopes[i]} {variant} label={scope} />
 		{/each}
 	</div>
 	<Checkbox
 		bind:checked
+		{variant}
 		disabled={p.disabled ?? false}
 		indeterminate={p.indeterminate ?? false}
 		size={p.size ?? "default"}

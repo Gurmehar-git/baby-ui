@@ -1,5 +1,12 @@
 <script lang="ts">
-import { FileUpload, type UploadFile } from "@baby-ui/svelte";
+import {
+	FileUpload,
+	FileUploadDropzone,
+	FileUploadError,
+	FileUploadItem,
+	FileUploadList,
+	type UploadFile,
+} from "@baby-ui/svelte";
 
 let files = $state<UploadFile[]>([]);
 </script>
@@ -14,5 +21,12 @@ let files = $state<UploadFile[]>([]);
 			...added.map((file) => ({ id: crypto.randomUUID(), file, progress: 0, status: "queued" as const })),
 		];
 	}}
-	onRemove={(id) => (files = files.filter((f) => f.id !== id))}
-/>
+>
+	<FileUploadDropzone />
+	<FileUploadError />
+	<FileUploadList>
+		{#each files as file (file.id)}
+			<FileUploadItem {file} onRemove={() => (files = files.filter((f) => f.id !== file.id))} />
+		{/each}
+	</FileUploadList>
+</FileUpload>

@@ -49,6 +49,11 @@ Any agent (Claude Code, Codex, Cursor, Copilot) should read this file first.
 
 - Base components are shadcn drop-ins: shadcn part names, `data-slot` values, `type` /
   `collapsible` / `value` style props. Check the shadcn API before designing one.
+- **HARD RULE:** every component is composed from parts, the way Empty and Card are:
+  - a root holds shared state in context, and named parts (`FileUploadDropzone`, `FileUploadItem`) carry layout, copy and actions;
+  - never one wrapper that lays everything out from props;
+  - data arrays (files, rows) may be props, but what renders them is a part;
+  - Svelte uses one file per part plus `context.ts`.
 - **HARD RULE (P1):** every base component with a real interaction engine (open/closed state,
   focus management, keyboard nav, selection — not just menus) is built on `@base-ui/react`
   (React — package renamed from `@base-ui-components/react`, which is deprecated) / `bits-ui`

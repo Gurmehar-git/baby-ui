@@ -7,7 +7,7 @@ export const toggle = defineComponent({
 	category: "base",
 	status: "stable",
 	variants: {
-		variant: ["default", "outline"],
+		variant: ["default", "outline", "primary"],
 		size: ["xs", "sm", "default", "lg", "xl"],
 	},
 	props: [
@@ -20,11 +20,11 @@ export const toggle = defineComponent({
 		},
 		{
 			name: "variant",
-			type: '"default" | "outline"',
+			type: '"default" | "outline" | "primary"',
 			description:
-				"`outline` keeps a field-style border at rest, so the toggle reads as a button.",
+				"`outline` keeps a field-style border at rest, so the toggle reads as a button; `primary` shows the pressed state in the brand tint, for toolbar emphasis.",
 			default: "default",
-			control: { kind: "select", options: ["default", "outline"] },
+			control: { kind: "select", options: ["default", "outline", "primary"] },
 		},
 		{
 			name: "size",

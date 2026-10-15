@@ -8,7 +8,7 @@ export const tabsFrame = tv({
 			"relative z-10 inline-flex shrink-0 items-center justify-center whitespace-nowrap font-medium text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring [&_svg]:pointer-events-none [&_svg]:shrink-0",
 		// The sliding marker, measured from the active trigger.
 		indicator:
-			"pointer-events-none absolute left-0 transition-[transform,scale,translate,width] duration-(--duration-slow) ease-[var(--ease-drawer)] motion-reduce:transition-none",
+			"pointer-events-none absolute left-0 transition-[transform,scale,translate,width,height] duration-(--duration-slow) ease-[var(--ease-drawer)] motion-reduce:transition-none",
 	},
 	variants: {
 		variant: {
@@ -51,8 +51,25 @@ export const tabsFrame = tv({
 			lg: { list: "h-10", trigger: "gap-2 px-3.5 text-sm [&_svg]:size-4" },
 			xl: { list: "h-12", trigger: "gap-2 px-4 text-base [&_svg]:size-4.5" },
 		},
+		// Vertical lists grow with their triggers; the marker follows on both axes.
+		orientation: {
+			horizontal: {},
+			vertical: { list: "h-auto w-full flex-col", trigger: "justify-start" },
+		},
 	},
 	compoundVariants: [
+		// An edge rule has no vertical form, so selection reads from the trigger text alone.
+		{
+			variant: ["underline", "enclosed"],
+			orientation: "vertical",
+			class: { list: "border-b-0", indicator: "hidden" },
+		},
+		// Stacked triggers take the ladder height the horizontal list gives them by stretching.
+		{ orientation: "vertical", size: "xs", class: { trigger: "h-6" } },
+		{ orientation: "vertical", size: "sm", class: { trigger: "h-8" } },
+		{ orientation: "vertical", size: "default", class: { trigger: "h-9" } },
+		{ orientation: "vertical", size: "lg", class: { trigger: "h-10" } },
+		{ orientation: "vertical", size: "xl", class: { trigger: "h-12" } },
 		// Small pills keep a slimmer rim so the trigger still has room.
 		{
 			variant: "pill",
@@ -138,8 +155,9 @@ export const tabsFrame = tv({
 			class: { trigger: "rounded-t-xl", indicator: "rounded-t-xl" },
 		},
 	],
-	defaultVariants: { variant: "pill", size: "default" },
+	defaultVariants: { variant: "pill", size: "default", orientation: "horizontal" },
 });
 
 export type TabsVariant = NonNullable<VariantProps<typeof tabsFrame>["variant"]>;
 export type TabsSize = NonNullable<VariantProps<typeof tabsFrame>["size"]>;
+export type TabsOrientation = NonNullable<VariantProps<typeof tabsFrame>["orientation"]>;

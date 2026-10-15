@@ -15,6 +15,7 @@ let value = $state("");
 		id="demo-input"
 		bind:value
 		size={p.size ?? "default"}
+		variant={p.variant ?? "outline"}
 		invalid={p.invalid ?? false}
 		disabled={p.disabled ?? false}
 		placeholder={p.placeholder || "Enter a value"}

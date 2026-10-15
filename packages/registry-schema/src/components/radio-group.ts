@@ -6,7 +6,10 @@ export const radioGroup = defineComponent({
 	description: "Single-choice group with roving focus and an indicator that scales in.",
 	category: "base",
 	status: "stable",
-	variants: { orientation: ["vertical", "horizontal", "grid"] },
+	variants: {
+		variant: ["default", "solid", "card", "list"],
+		orientation: ["vertical", "horizontal", "grid"],
+	},
 	props: [
 		{
 			name: "value",
@@ -23,10 +26,11 @@ export const radioGroup = defineComponent({
 		},
 		{
 			name: "variant",
-			type: '"default" | "card" | "list"',
-			description: "Bare rows, or each option in its own bordered card.",
+			type: '"default" | "solid" | "card" | "list"',
+			description:
+				"Bare rows; `solid` fills the checked ring so selection reads at small sizes; `card` puts each option in a bordered tile; `list` tints the checked row.",
 			default: "default",
-			control: { kind: "select", options: ["default", "card", "list"] },
+			control: { kind: "select", options: ["default", "solid", "card", "list"] },
 		},
 		{
 			name: "orientation",

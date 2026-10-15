@@ -35,6 +35,14 @@ export const tabs = defineComponent({
 			default: "default",
 			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},
+		{
+			name: "orientation",
+			type: '"horizontal" | "vertical"',
+			description:
+				"Vertical stacks the triggers, grows the list with them and moves arrow keys to up and down. Underline and enclosed drop their edge marker when vertical.",
+			default: "horizontal",
+			control: { kind: "select", options: ["horizontal", "vertical"] },
+		},
 	],
 	motion: {
 		springs: [],

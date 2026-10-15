@@ -23,10 +23,10 @@ export const textarea = defineComponent({
 		},
 		{
 			name: "variant",
-			type: '"outline" | "soft"',
-			description: "Field treatment.",
+			type: '"outline" | "soft" | "ring"',
+			description: "Field treatment; `ring` adds a soft focus halo to the outline look.",
 			default: "outline",
-			control: { kind: "select", options: ["outline", "soft"] },
+			control: { kind: "select", options: ["outline", "soft", "ring"] },
 		},
 		{
 			name: "label",

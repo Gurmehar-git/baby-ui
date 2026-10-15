@@ -1,6 +1,8 @@
 ---
 name: baby-ui-verify
-description: Run every baby-ui gate and the headless-Edge checks before reporting work as done. Use after any change to packages/ui-*, packages/demos, packages/registry-*, packages/tokens or apps/site.
+description: Run every baby-ui gate and the headless-browser checks before reporting work as done. Use after any change to packages/ui-*, packages/demos, packages/registry-*, packages/tokens, pro/ or apps/site.
+metadata:
+  internal: true
 ---
 
 # baby-ui verify
@@ -57,10 +59,18 @@ Repo scripts, no scratchpad copies (they serve the last build unless `--url` is 
 - Motion timelines (exits mirror entrances) still need a one-off probe built on
   `scripts/probe/browser.mjs`; keep any reusable one in `scripts/probe/`.
 
-## 4. Visual check
+## 4. Design and premium audit (skills/baby-ui-design, skills/baby-ui-premium)
 
-Screenshot the touched page(s) with playwright-core (`channel: "msedge"`) and read the
-image before claiming a layout is right.
+```bash
+node skills/baby-ui-design/scripts/scan-source.mjs <changed ui-react/ui-svelte/pro folders>
+pnpm design:audit <slug ...> --url=http://localhost:<dev port>     # light, dark, 390px
+pnpm design:premium <slug ...> --url=http://localhost:<dev port>   # new or reworked components
+```
+
+- Blockers fail the report.
+- A premium Block on a new or reworked component fails it too.
+- Score purpose, UX laws and cohesion by hand with `--manual` and evidence.
+- No screenshots: measurements only. The owner reviews visuals.
 
 ## 5. Report
 

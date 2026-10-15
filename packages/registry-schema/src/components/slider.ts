@@ -122,7 +122,7 @@ export const slider = defineComponent({
 		reducedMotion:
 			"Thumb, fill and ruler jump straight to the value; the bubble only fades and the wave holds flat bars.",
 		behaviour: [
-			"The thumb and fill glide to each new value on a 180/26 spring, sampled into a CSS linear() easing over 611ms, so steps and key presses slide instead of jumping.",
+			"The thumb and fill glide to a clicked or keyed value on the snappy spring token (400ms); a held thumb follows the pointer within 100ms.",
 			"The thumb scales to 1.08 on hover and 1.15 while dragging; the track thickens by 2px on hover, over 140ms.",
 			"`track` and `inline` stretch their pill handle 1.35x while dragging; `inline` parts it into two dots where it crosses the label or value.",
 			"`bubble` pops a value bubble out of the thumb while it's dragged; `fluid` presses to 1.03 and inverts its text under the fill.",

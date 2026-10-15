@@ -4,9 +4,12 @@ export const radioGroup = tv({
 	slots: {
 		root: "flex gap-2",
 		label: "inline-flex cursor-pointer items-start gap-2.5 text-foreground",
+		// The ring is the primitive itself: Base UI marks it data-checked, bits-ui data-state.
 		ring: [
-			"mt-0.5 grid shrink-0 place-items-center rounded-full border-2 border-muted-foreground/75 bg-background transition-colors",
-			"peer-aria-invalid:border-destructive peer-checked:border-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-background",
+			"mt-0.5 grid shrink-0 place-items-center rounded-full border-2 border-muted-foreground/75 bg-background outline-none",
+			"transition-[background-color,border-color] duration-(--duration-fast) ease-(--ease-ui-out) hover:border-muted-foreground motion-reduce:transition-none",
+			"aria-invalid:border-destructive data-checked:border-primary data-[state=checked]:border-primary",
+			"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 		],
 		dot: "radio-dot rounded-full bg-primary",
 		pill: "hidden",
@@ -14,9 +17,14 @@ export const radioGroup = tv({
 	variants: {
 		variant: {
 			default: {},
+			// Checked, the ring fills and the dot turns to the label colour: reads at the smallest size.
+			solid: {
+				ring: "data-checked:bg-primary data-[state=checked]:bg-primary",
+				dot: "bg-primary-foreground",
+			},
 			card: {
 				label:
-					"rounded-xl border border-border bg-card px-3.5 py-3 transition-colors hover:border-border-strong has-checked:border-primary",
+					"rounded-xl border border-border bg-card px-3.5 py-3 transition-[border-color,scale] duration-(--duration-press) ease-(--ease-ui-out) active:scale-(--press-scale-lg) motion-reduce:transition-none hover:border-border-strong has-checked:border-primary",
 			},
 			// Menu-style rows: the checked row is tinted, for pickers inside a popover.
 			// One highlight glides to the checked row instead of each row tinting itself.

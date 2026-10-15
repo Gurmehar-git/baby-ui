@@ -6,6 +6,10 @@ export const checkbox = defineComponent({
 	description: "Checkbox with an animated tick and a real indeterminate state.",
 	category: "base",
 	status: "stable",
+	variants: {
+		variant: ["default", "circle", "card"],
+		size: ["sm", "default", "lg", "xl"],
+	},
 	props: [
 		{
 			name: "checked",
@@ -13,6 +17,14 @@ export const checkbox = defineComponent({
 			description: "Checked state. Bindable.",
 			default: false,
 			control: { kind: "boolean" },
+		},
+		{
+			name: "variant",
+			type: '"default" | "circle" | "card"',
+			description:
+				"`default`: a square box; `circle`: a round box, for task lists; `card`: the whole labelled tile is the hit area and edges in the primary colour once checked.",
+			default: "default",
+			control: { kind: "select", options: ["default", "circle", "card"] },
 		},
 		{
 			name: "size",

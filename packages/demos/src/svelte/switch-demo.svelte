@@ -14,6 +14,7 @@ $effect(() => {
 });
 
 const size = $derived(p.size ?? "default");
+const variant = $derived(p.variant ?? "default");
 
 // Switch renders its own label; reversing the row puts the text first without a second one.
 const ROW = "flex w-full flex-row-reverse items-center justify-between gap-6";
@@ -23,6 +24,7 @@ const ROW = "flex w-full flex-row-reverse items-center justify-between gap-6";
 	<div class="px-4 py-3">
 		<Switch
 			bind:checked
+			{variant}
 			{size}
 			disabled={p.disabled ?? false}
 			label={p.label || "Push notifications"}
@@ -30,9 +32,9 @@ const ROW = "flex w-full flex-row-reverse items-center justify-between gap-6";
 		/>
 	</div>
 	<div class="px-4 py-3">
-		<Switch bind:checked={digest} label="Weekly digest" class={ROW} />
+		<Switch bind:checked={digest} {variant} label="Weekly digest" class={ROW} />
 	</div>
 	<div class="px-4 py-3">
-		<Switch checked={false} disabled label="SMS alerts" class={ROW} />
+		<Switch checked={false} {variant} disabled label="SMS alerts" class={ROW} />
 	</div>
 </div>

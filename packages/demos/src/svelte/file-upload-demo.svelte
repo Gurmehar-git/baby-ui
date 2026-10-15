@@ -1,18 +1,31 @@
 <script lang="ts">
-import { FileUpload, type UploadFile } from "@baby-ui/svelte";
-import type { ComponentProps } from "svelte";
+import {
+	FileUpload,
+	FileUploadDropzone,
+	FileUploadError,
+	FileUploadItem,
+	FileUploadList,
+	type UploadFile,
+} from "@baby-ui/svelte";
+import { type ComponentProps, untrack } from "svelte";
 import { controlProps } from "../data/preview-props";
-import { AVATAR_MAX_BYTES, UPLOAD_TICK_MS } from "../data/utility-inputs";
+import { AVATAR_MAX_BYTES, sampleUploads, UPLOAD_TICK_MS } from "../data/utility-inputs";
 
 let { props = {} }: { props?: Record<string, unknown> } = $props();
 const p = $derived(controlProps<ComponentProps<typeof FileUpload>>(props));
 
-let files = $state<UploadFile[]>([]);
+let files = $state<UploadFile[]>(sampleUploads());
 const timers = new Map<string, ReturnType<typeof setInterval>>();
 const retried = new Set<string>();
 
-$effect(() => () => {
-	for (const timer of timers.values()) clearInterval(timer);
+// Once on mount: start the queued samples; untracked so progress ticks don't rerun it.
+$effect(() => {
+	untrack(() => {
+		for (const f of files) if (f.status === "queued") upload(f.id);
+	});
+	return () => {
+		for (const timer of timers.values()) clearInterval(timer);
+	};
 });
 
 function patch(id: string, next: (f: UploadFile) => UploadFile) {
@@ -42,10 +55,11 @@ function upload(id: string) {
 <div class="w-full max-w-md">
 	<FileUpload
 		{files}
-		accept="image/*,.pdf"
+		accept="image/*,.pdf,.csv"
 		maxSize={AVATAR_MAX_BYTES}
-		maxFiles={4}
-		compactAt={2}
+		maxFiles={5}
+		compactAt={3}
+		variant={p.variant ?? "default"}
 		size={p.size ?? "default"}
 		disabled={p.disabled ?? false}
 		onFilesAdded={(added) => {
@@ -58,13 +72,23 @@ function upload(id: string) {
 			files = [...files, ...next];
 			for (const item of next) upload(item.id);
 		}}
-		onRetry={(id) => {
-			retried.add(id);
-			upload(id);
-		}}
-		onRemove={(id) => {
-			clearInterval(timers.get(id));
-			files = files.filter((f) => f.id !== id);
-		}}
-	/>
+	>
+		<FileUploadDropzone />
+		<FileUploadError />
+		<FileUploadList>
+			{#each files as file (file.id)}
+				<FileUploadItem
+					{file}
+					onRetry={() => {
+						retried.add(file.id);
+						upload(file.id);
+					}}
+					onRemove={() => {
+						clearInterval(timers.get(file.id));
+						files = files.filter((f) => f.id !== file.id);
+					}}
+				/>
+			{/each}
+		</FileUploadList>
+	</FileUpload>
 </div>

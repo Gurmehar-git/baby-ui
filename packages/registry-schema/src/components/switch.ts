@@ -6,8 +6,19 @@ export const switchComponent = defineComponent({
 	description: "On/off control whose thumb travels rather than teleports.",
 	category: "base",
 	status: "stable",
-	variants: { size: ["sm", "default", "lg", "xl"] },
+	variants: {
+		variant: ["default", "round", "marked"],
+		size: ["sm", "default", "lg", "xl"],
+	},
 	props: [
+		{
+			name: "variant",
+			type: '"default" | "round" | "marked"',
+			description:
+				"`default`: a pill thumb; `round`: a circular thumb; `marked`: round, with an on bar and an off ring in the free half of the track, so state never rests on colour alone.",
+			default: "default",
+			control: { kind: "select", options: ["default", "round", "marked"] },
+		},
 		{
 			name: "checked",
 			type: "boolean",
@@ -41,8 +52,9 @@ export const switchComponent = defineComponent({
 		springs: [],
 		reducedMotion: "The thumb jumps to its position; the track still changes colour.",
 		behaviour: [
-			"The thumb travels over 140ms with an ease-out curve, the same duration as a button press.",
-			"The track colour changes over the same duration so the two land together.",
+			"The thumb travels over 300ms on the drawer curve; the track colour changes alongside it.",
+			"Pressed, the thumb stretches 15% toward its travel and eases back on release.",
+			"Marked: the on bar and off ring cross-fade over 150ms as the thumb leaves their half.",
 		],
 	},
 	a11y: {

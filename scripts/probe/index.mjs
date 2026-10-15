@@ -1,5 +1,5 @@
 import { availableParallelism } from "node:os";
-import { launch, openPage } from "./browser.mjs";
+import { launch, openPage } from "../../skills/baby-ui-design/scripts/lib/browser.mjs";
 import { serveBuild } from "./serve.mjs";
 
 const HELP = `Usage: pnpm probe [slug ...] [options]

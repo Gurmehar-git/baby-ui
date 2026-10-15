@@ -186,6 +186,7 @@ export function TabsDemo({ props }: { props: Props }) {
 				onValueChange={setValue}
 				variant={p.variant ?? "pill"}
 				size={p.size ?? "default"}
+				orientation={p.orientation ?? "horizontal"}
 			>
 				<TabsList>
 					{TABS.map((tab) => (

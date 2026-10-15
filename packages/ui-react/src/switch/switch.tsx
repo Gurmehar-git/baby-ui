@@ -3,13 +3,20 @@
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
 import { useId } from "react";
 import { cn } from "../lib/cn";
-import { type SwitchSize, switchThumb, switchTrack } from "./variants";
+import {
+	type SwitchSize,
+	type SwitchVariant,
+	switchThumb,
+	switchTrack,
+} from "./variants";
 
-export type { SwitchSize };
+export type { SwitchSize, SwitchVariant };
 
 export interface SwitchProps {
 	checked?: boolean;
 	disabled?: boolean;
+	/** `default` pill thumb, `round` thumb, or `marked`: round with on/off marks. */
+	variant?: SwitchVariant;
 	size?: SwitchSize;
 	label?: string;
 	/** Accessible name when there is no visible `label`. */
@@ -21,6 +28,7 @@ export interface SwitchProps {
 export function Switch({
 	checked,
 	disabled = false,
+	variant = "default",
 	size = "default",
 	label,
 	"aria-label": ariaLabel,
@@ -37,9 +45,10 @@ export function Switch({
 			onCheckedChange={onCheckedChange}
 			data-slot="switch"
 			aria-label={label ? undefined : (ariaLabel ?? "Toggle")}
-			className={cn(switchTrack({ size }), !label && className)}
+			data-variant={variant}
+			className={cn(switchTrack({ variant, size }), !label && className)}
 		>
-			<SwitchPrimitive.Thumb className={switchThumb({ size })} />
+			<SwitchPrimitive.Thumb className={switchThumb({ variant, size })} />
 		</SwitchPrimitive.Root>
 	);
 

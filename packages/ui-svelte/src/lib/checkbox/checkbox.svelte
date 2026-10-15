@@ -1,12 +1,14 @@
 <script lang="ts">
 import { Checkbox as CheckboxPrimitive } from "bits-ui";
 import { cn } from "../lib/cn";
-import { type CheckboxSize, checkbox } from "./variants";
+import { type CheckboxSize, type CheckboxVariant, checkbox } from "./variants";
 
 type Props = {
 	checked?: boolean;
 	indeterminate?: boolean;
 	disabled?: boolean;
+	/** `default` square, `circle` for task lists, or `card`: the labelled tile is the hit area. */
+	variant?: CheckboxVariant;
 	size?: CheckboxSize;
 	label?: string;
 	description?: string;
@@ -19,6 +21,7 @@ let {
 	checked = $bindable(false),
 	indeterminate = $bindable(false),
 	disabled = false,
+	variant = "default",
 	size = "default",
 	label,
 	description,
@@ -27,7 +30,7 @@ let {
 	name,
 }: Props = $props();
 
-const frame = $derived(checkbox({ size }));
+const frame = $derived(checkbox({ variant, size }));
 const id = $props.id();
 </script>
 
@@ -40,6 +43,7 @@ const id = $props.id();
 		bind:indeterminate
 		aria-label={label ? undefined : ariaLabel}
 		data-slot="checkbox"
+		data-variant={variant}
 		class={cn(frame.box(), !label && !description && classProp)}
 	>
 		{#snippet children({ checked: isChecked, indeterminate: isIndeterminate })}
@@ -66,9 +70,9 @@ const id = $props.id();
 
 <!-- Bare, so this can replace a shadcn checkbox; the wrapper only appears with a label. -->
 {#if label || description}
-	<div class={cn("inline-flex items-start gap-2.5", disabled && "opacity-50", classProp)}>
+	<div class={cn(frame.root(), disabled && "opacity-50", classProp)}>
 		{@render control()}
-		<label for={id} class="cursor-pointer select-none">
+		<label for={id} class={frame.label()}>
 			{#if label}<span class={frame.text()}>{label}</span>{/if}
 			{#if description}
 				<span class="block text-muted-foreground text-xs leading-relaxed">{description}</span>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Known-bad fixture</title>
+		<style>
+			body { background: #ffffff; font: 14px sans-serif; }
+			.faint { color: #c8c8c8; }
+			.slow { transition: all 900ms ease-in; }
+			button { outline: none; }
+			.tiny { width: 12px; height: 12px; padding: 0; }
+		</style>
+	</head>
+	<body>
+		<main id="scope">
+			<p class="faint">This text is far too light to read on white.</p>
+			<button type="button" class="tiny"></button><button type="button" class="tiny" aria-label="Crowded"></button>
+			<div class="slow">Moves with everything, slowly, on ease-in.</div>
+			<button type="button">Plain button with no focus style</button>
+		</main>
+	</body>
+</html>
