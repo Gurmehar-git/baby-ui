@@ -11,6 +11,7 @@ import {
 import { cssFor } from "./component-css";
 import { FRAMEWORK, REGISTRY_URL, SITE_URL } from "./config";
 import type { InstallLayout } from "./layout";
+import { readSource, sourcePath } from "./sources";
 import { bareVars, tokenLayerUrls, tokensUrl } from "./theme";
 import { jsPath, toJavaScript } from "./tojs";
 
@@ -159,13 +160,11 @@ export async function buildItem(
 	const impl = spec.impl[framework];
 	if (!impl) return null;
 
-	const { srcDir } = FRAMEWORK[framework];
 	const files = await Promise.all(
 		impl.files.map(async (file) => {
-			const abs = resolve(srcDir, file.path);
-			const raw = await readFile(abs, "utf8").catch(() => {
+			const raw = await readSource(framework, file.path).catch(() => {
 				throw new Error(
-					`${spec.slug} (${framework}): spec lists ${file.path}, which does not exist at ${abs}`,
+					`${spec.slug} (${framework}): spec lists ${file.path}, which does not exist at ${sourcePath(framework, file.path)}`,
 				);
 			});
 			return {

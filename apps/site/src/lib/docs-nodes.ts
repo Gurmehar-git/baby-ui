@@ -1,3 +1,4 @@
+import { exampleSources } from "./examples";
 import themeCss from "./generated/theme-css.json";
 import { highlight } from "./highlight";
 import type { PmKind } from "./pm";
@@ -94,16 +95,41 @@ async function block(node: Node): Promise<Node> {
 	};
 }
 
+const EXAMPLE_PORTS = [
+	{ framework: "react", label: "React", lang: "tsx" },
+	{ framework: "svelte", label: "Svelte", lang: "svelte" },
+] as const;
+
+/** `::example{name="loading"}`: the page's component, its example live and as code tabs. */
+async function example(node: Node, slug: string | undefined): Promise<Node> {
+	const name = String(node.props?.name ?? "");
+	const sources = slug ? await exampleSources(slug, name) : {};
+	const panels: Panel[] = [];
+	for (const port of EXAMPLE_PORTS) {
+		const source = sources[port.framework];
+		if (!source) continue;
+		panels.push({
+			id: `${node.id ?? "example"}-${port.framework}`,
+			label: port.label,
+			lang: port.lang,
+			code: source.ts,
+			html: await highlight(source.ts, port.lang),
+		});
+	}
+	return { ...node, hydrate: true, props: { slug, name, panels } };
+}
+
 // Fences arrive as <pre class="docvia-code-block"><code data-lang>, unhighlighted. A run
 // of adjacent fences becomes one tabbed group; a lone one becomes a CodeBlock.
-async function swap(node: Node): Promise<Node> {
+async function swap(node: Node, slug?: string): Promise<Node> {
+	if (node.kind === "component" && node.name === "example") return example(node, slug);
 	if (!node.children) return node;
 	const out: Node[] = [];
 	const kids = node.children;
 	for (let i = 0; i < kids.length; i++) {
 		const child = kids[i] as Node;
 		if (!isFence(child)) {
-			out.push(await swap(child));
+			out.push(await swap(child, slug));
 			continue;
 		}
 		const run = [child];
@@ -135,13 +161,19 @@ async function swap(node: Node): Promise<Node> {
 const isOutlined = (depth: number): depth is Heading["depth"] =>
 	depth === 2 || depth === 3;
 
-/** Rewrites code fences to site components and keeps docvia's h2/h3 headings for an outline. */
-export async function prepare<T>(page: {
-	content: T;
-	headings: { depth: number; text: string; id: string }[];
-}): Promise<{ content: T; headings: Heading[] }> {
+/**
+ * Rewrites code fences to site components, fills `::example` with the page component's
+ * sources (`slug`), and keeps docvia's h2/h3 headings for an outline.
+ */
+export async function prepare<T>(
+	page: {
+		content: T;
+		headings: { depth: number; text: string; id: string }[];
+	},
+	slug?: string,
+): Promise<{ content: T; headings: Heading[] }> {
 	const headings = page.headings.flatMap(({ depth, text, id }) =>
 		isOutlined(depth) ? [{ id, label: text, depth }] : [],
 	);
-	return { content: (await swap(page.content as Node)) as T, headings };
+	return { content: (await swap(page.content as Node, slug)) as T, headings };
 }

@@ -28,6 +28,8 @@ blur you see two stacked labels sliding past each other; with it, you see one la
 changing. The spinner is paused rather than unmounted when idle, so it never restarts
 mid-rotation.
 
+::example{name="loading"}
+
 While loading, the button stays focusable and refuses activation. Removing it from the
 tab order would move focus somewhere unpredictable at the exact moment the user is
 waiting on the thing they just clicked.

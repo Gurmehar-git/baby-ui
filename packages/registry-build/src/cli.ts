@@ -20,6 +20,7 @@ import {
 	REPO_ROOT,
 	SITE_URL,
 } from "./config";
+import { buildExamples } from "./examples";
 import { type InstallLayout, installLayout } from "./layout";
 import { buildThirdPartyLicenses } from "./licenses";
 import { buildLlmsTxt } from "./llms";
@@ -46,7 +47,9 @@ const GENERATED = resolve(REPO_ROOT, "apps/site/src/lib/generated");
 // the per-component folders written below are pruned.
 const outputs = createOutputs([
 	...FRAMEWORKS.map((f) => resolve(OUT_DIR, FRAMEWORK[f].routePrefix)),
-	...(ISOLATED ? [] : ["sources", "css", "usage"].map((dir) => resolve(GENERATED, dir))),
+	...(ISOLATED
+		? []
+		: ["sources", "css", "usage", "examples"].map((dir) => resolve(GENERATED, dir))),
 ]);
 
 const json = (value: unknown) => `${JSON.stringify(value, null, 2)}\n`;
@@ -222,6 +225,8 @@ async function main() {
 			if (snippet) perFramework[framework] = snippet;
 		}
 		await writeGenerated(`usage/${spec.slug}.json`, perFramework);
+		const examples = await buildExamples(spec, layouts);
+		if (examples) await writeGenerated(`examples/${spec.slug}.json`, examples);
 	}
 
 	if (!ISOLATED) {

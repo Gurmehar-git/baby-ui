@@ -360,6 +360,9 @@ importers:
 
   apps/site:
     dependencies:
+      '@baby-ui/components':
+        specifier: workspace:*
+        version: link:../../components
       '@baby-ui/demos':
         specifier: workspace:*
         version: link:../../packages/demos

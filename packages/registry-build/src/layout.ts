@@ -1,7 +1,8 @@
 import { existsSync, statSync } from "node:fs";
-import { basename, posix, resolve } from "node:path";
+import { basename, posix } from "node:path";
 import { type ComponentSpec, type Framework, installDir } from "@baby-ui/registry-schema";
 import { FRAMEWORK } from "./config";
+import { sourcePath } from "./sources";
 
 /** Where a framework's installed files land and how shipped files import each other. */
 export interface InstallLayout {
@@ -26,7 +27,6 @@ export function installLayout(
 	specs: readonly ComponentSpec[],
 ): InstallLayout {
 	const {
-		srcDir,
 		uiTarget,
 		libTarget,
 		uiAlias,
@@ -36,14 +36,14 @@ export function installLayout(
 		aliasRelativeTargets,
 		aliasExtensions,
 	} = FRAMEWORK[framework];
-	// Sources sit one folder deep, so `../x/y` always means `<srcDir>/x/y`.
+	// Imports arrive one folder deep (`../x/y`), whichever layout the file was read from.
 	const isFolder = (rest: string) => {
-		const abs = resolve(srcDir, rest);
+		const abs = sourcePath(framework, rest);
 		return existsSync(abs) && statSync(abs).isDirectory();
 	};
 	const withExtension = (rest: string) => {
 		if (isFolder(rest)) return `${rest}/index.js`;
-		return existsSync(resolve(srcDir, rest)) ? rest : `${rest}.js`;
+		return existsSync(sourcePath(framework, rest)) ? rest : `${rest}.js`;
 	};
 	// shadcn resolves an import with no exact file by basename, turning `chart` into `chart/chart`.
 	const toBarrel = (rest: string) => (isFolder(rest) ? `${rest}/index` : rest);

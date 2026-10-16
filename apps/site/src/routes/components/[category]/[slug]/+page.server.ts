@@ -67,7 +67,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	const email = spec.category === "emails" ? await emailRender(spec.slug) : null;
 
-	const prose = doc ? await prepare(doc) : null;
+	const prose = doc ? await prepare(doc, spec.slug) : null;
 	// "Use X instead" picks lead the related list, then the rest of the category.
 	const instead = spec.guidance.whenNot.flatMap((w) => (w.use ? [w.use] : []));
 	const related = [

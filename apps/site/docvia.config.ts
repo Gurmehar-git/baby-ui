@@ -37,6 +37,11 @@ export default defineConfig({
 			path: "./src/lib/components/code-group.svelte",
 			hydrate: true,
 		},
+		// `::example{name="…"}` in a component's docs: the live example plus its code tabs.
+		example: {
+			path: "./src/lib/components/example-preview.svelte",
+			hydrate: true,
+		},
 	},
 	// docs-nodes.ts swaps fences for CodeBlock/CodeGroup, so they can't merge into static html.
 	renderer: createSvelteRenderer({ staticHtml: { keepTags: ["pre"] } }),

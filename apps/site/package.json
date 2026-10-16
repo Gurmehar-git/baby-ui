@@ -34,6 +34,7 @@
 		"yaml": "^2.9.1"
 	},
 	"dependencies": {
+		"@baby-ui/components": "workspace:*",
 		"@baby-ui/demos": "workspace:*",
 		"@baby-ui/icons": "workspace:*",
 		"@baby-ui/registry-schema": "workspace:*",

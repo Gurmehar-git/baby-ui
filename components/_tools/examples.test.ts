@@ -2,8 +2,8 @@ import { expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { specs } from "@baby-ui/registry-schema/components";
+import { readerText } from "../../packages/registry-build/src/examples";
 import { installLayout } from "../../packages/registry-build/src/layout";
-import { readerText } from "./examples";
 
 const read = (file: string) => readFileSync(resolve(import.meta.dir, "..", file), "utf8");
 
