@@ -32,6 +32,8 @@ node scripts/states-probe.mjs <url>      # rest vs hover vs press vs focus
 The script scores what it can measure. You score purpose, UX laws and cohesion with evidence,
 using [references/profiles.md](references/profiles.md) for the component type and
 [references/laws.md](references/laws.md). Until those are in, the verdict is Pending.
+For a Pro component, run the [value bar](references/value-bar.md) after Approve: it decides
+Pro, Free, Rework or Cut, and tier moves wait for the owner.
 
 ## The bar
 
