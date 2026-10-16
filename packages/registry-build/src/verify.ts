@@ -8,7 +8,7 @@ import {
 } from "@baby-ui/registry-schema";
 import { type SpringName, spring } from "@baby-ui/tokens";
 import { parse as parseYaml } from "yaml";
-import { FRAMEWORK } from "./config";
+import { readSource, sourcePath } from "./sources";
 
 const ENTRY = /\b(snappy|gentle|bouncy)\s*:\s*\{([^}]*)\}/g;
 const FIELD = /(\w+)\s*:\s*(-?[\d.]+)/g;
@@ -22,14 +22,13 @@ export async function verifySprings(
 	framework: Framework,
 ): Promise<string[]> {
 	const errors: string[] = [];
-	const { srcDir } = FRAMEWORK[framework];
 
 	for (const spec of specs) {
 		const impl = spec.impl[framework];
 		if (!impl) continue;
 
 		for (const file of impl.files) {
-			const source = await readFile(resolve(srcDir, file.path), "utf8").catch(() => null);
+			const source = await readSource(framework, file.path).catch(() => null);
 			if (!source) continue;
 
 			for (const [, name, body] of source.matchAll(ENTRY)) {
@@ -61,7 +60,6 @@ export async function verifyRegistryDependencies(
 	framework: Framework,
 ): Promise<string[]> {
 	const errors: string[] = [];
-	const { srcDir } = FRAMEWORK[framework];
 	// A folder belongs to the spec named after it; other specs that list its files only borrow them.
 	const owner = new Map<string, string>();
 	for (const spec of specs)
@@ -78,14 +76,14 @@ export async function verifyRegistryDependencies(
 		const shippedFiles = new Set(impl.files.map((f) => f.path));
 		const declared = new Set(impl.registryDependencies ?? []);
 		for (const file of impl.files) {
-			const source = await readFile(resolve(srcDir, file.path), "utf8").catch(() => "");
+			const source = await readSource(framework, file.path).catch(() => "");
 			const dir = file.path.split("/").slice(0, -1).join("/");
 			for (const [, name = ""] of source.matchAll(LOCAL_IMPORT)) {
 				const candidates = LOCAL_EXTENSIONS.map((ext) =>
 					dir ? `${dir}/${name}${ext}` : `${name}${ext}`,
 				);
 				if (candidates.some((path) => shippedFiles.has(path))) continue;
-				const onDisk = candidates.find((path) => existsSync(resolve(srcDir, path)));
+				const onDisk = candidates.find((path) => existsSync(sourcePath(framework, path)));
 				if (onDisk)
 					errors.push(
 						`${spec.slug} (${framework}) ${file.path}: imports ./${name}, so files needs "${onDisk}"`,

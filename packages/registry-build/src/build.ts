@@ -11,7 +11,7 @@ import {
 import { cssFor } from "./component-css";
 import { FRAMEWORK, REGISTRY_URL, SITE_URL } from "./config";
 import type { InstallLayout } from "./layout";
-import { readSource, sourcePath } from "./sources";
+import { COMPONENTS_DIR, readSource, sourcePath } from "./sources";
 import { bareVars, tokenLayerUrls, tokensUrl } from "./theme";
 import { jsPath, toJavaScript } from "./tojs";
 
@@ -23,35 +23,55 @@ function resolveRegistryDep(framework: Framework, dep: string): string {
 		: `${REGISTRY_URL}/${FRAMEWORK[framework].routePrefix}/${dep}.json`;
 }
 
-const EXPORT_FROM = /export\s+(?:type\s+)?\{[^}]*\}\s+from\s+"\.\/([^"]+)";/g;
+const EXPORT_LINE = /export\s+\{([^}]*)\}\s+from\s+"\.\/([^"]+)";/g;
+const FACADE_LINE =
+	/export\s+\{([^}]*)\}\s+from\s+"@baby-ui\/components\/(?:react|svelte)\/([a-z0-9-]+)";/g;
 
-// Every item's barrel reads the same package index; one read per framework per build.
-const packageIndexes = new Map<Framework, Promise<string>>();
-function packageIndex(framework: Framework): Promise<string> {
-	const index =
-		packageIndexes.get(framework) ??
-		readFile(resolve(FRAMEWORK[framework].srcDir, "index.ts"), "utf8");
-	packageIndexes.set(framework, index);
-	return index;
+/** `type Foo` and `default as Foo` both export `Foo`. */
+const exportedName = (spec: string) =>
+	spec.replace(/^type\s+/, "").replace(/^default\s+as\s+/, "");
+
+// The package barrel gives a name two folders both export to one of them; item barrels keep
+// that choice, so they export exactly what the package barrel credits to their folder.
+const owners = new Map<Framework, Promise<Map<string, Set<string>>>>();
+function packageOwners(framework: Framework): Promise<Map<string, Set<string>>> {
+	const found =
+		owners.get(framework) ??
+		readFile(resolve(FRAMEWORK[framework].srcDir, "index.ts"), "utf8").then((text) => {
+			const byFolder = new Map<string, Set<string>>();
+			for (const [, list = "", folder = ""] of text.matchAll(FACADE_LINE)) {
+				const names = byFolder.get(folder) ?? new Set<string>();
+				for (const spec of list.split(",")) names.add(exportedName(spec.trim()));
+				byFolder.set(folder, names);
+			}
+			return byFolder;
+		});
+	owners.set(framework, found);
+	return found;
 }
 
-/**
- * An `index.ts` for the item's own folder, re-exporting what the package index exports from
- * it, so `@/components/<dir>/<slug>` resolves. Only files this item ships are re-exported.
- */
+/** The item folder's `index.ts`: its `components/<folder>/<framework>/index.ts` barrel, limited
+ * to files this item ships, so `@/components/<dir>/<slug>` resolves. */
 async function barrelFor(
 	framework: Framework,
 	folder: string,
 	shipped: Set<string>,
 ): Promise<string | null> {
-	const index = await packageIndex(framework);
+	const index = await readFile(
+		resolve(COMPONENTS_DIR, folder, framework, "index.ts"),
+		"utf8",
+	).catch(() => "");
+	const owned = (await packageOwners(framework)).get(folder) ?? new Set<string>();
 	const lines: string[] = [];
-	for (const match of index.matchAll(EXPORT_FROM)) {
-		const module = match[1] as string;
-		if (!module.startsWith(`${folder}/`)) continue;
-		const file = [module, `${module}.ts`, `${module}.tsx`].find((f) => shipped.has(f));
-		if (!file) continue;
-		lines.push(match[0].replace(`"./${folder}/`, '"./').replace(/\s+/g, " "));
+	for (const match of index.matchAll(EXPORT_LINE)) {
+		const [, list = "", file = ""] = match;
+		const module = `${folder}/${file}`;
+		if (![module, `${module}.ts`, `${module}.tsx`].some((f) => shipped.has(f))) continue;
+		const specs = list
+			.split(",")
+			.map((s) => s.trim())
+			.filter((s) => owned.has(exportedName(s)));
+		if (specs.length) lines.push(`export { ${specs.join(", ")} } from "./${file}";`);
 	}
 	if (!lines.length) return null;
 	const compat = [

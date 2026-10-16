@@ -30,6 +30,7 @@
 		"check": "svelte-check --tsconfig ./tsconfig.json"
 	},
 	"dependencies": {
+		"@baby-ui/components": "workspace:*",
 		"@better-svelte-email/components": "catalog:",
 		"@docvia/markdown": "catalog:",
 		"@internationalized/date": "catalog:",

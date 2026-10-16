@@ -2,17 +2,14 @@
 @import "@fontsource-variable/jetbrains-mono";
 @import "@fontsource-variable/newsreader";
 @import "@baby-ui/tokens/theme.css";
-@source "../../../../packages/ui-svelte/src/lib";
-/* Shared .ts files (variants, cores) are generated into ui-svelte and gitignored there, which
-   Tailwind honours; scan the React sources they are copied from instead. */
-@source "../../../../packages/ui-react/src/**/*.ts";
+/* Both ports per component. Svelte's shared .ts files are generated copies and gitignored,
+   which Tailwind honours; their React sources sit in the same folder and are scanned. */
+@source "../../../../components";
 @source "../../../../pro/packages/react/src/**/*.ts";
 /* Only what the site renders: React demos and usage snippets appear as code, never as markup. */
 @source "../../../../packages/demos/src/svelte";
 @source "../../../../packages/demos/src/controls";
 @source "../../../../packages/demos/src/data";
-/* Per-component folders: Svelte sources and the examples the docs render live. */
-@source "../../../../components";
 /* The private Pro submodule; Tailwind skips these paths when it is not checked out. */
 @source "../../../../pro/packages/svelte/src";
 @source "../../../../pro/packages/demos/src/svelte";

@@ -1,10 +1,14 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "./core.mjs";
 import { exportsOf } from "./exports.mjs";
 
-const REACT = join(ROOT, "packages/ui-react/src");
-const SVELTE = join(ROOT, "packages/ui-svelte/src/lib");
+const COMPONENTS = join(ROOT, "components");
+/** The `@baby-ui/react` / `@baby-ui/svelte` packages: generated facades over `components/`. */
+const FACADE = {
+	react: join(ROOT, "packages/ui-react/src"),
+	svelte: join(ROOT, "packages/ui-svelte/src/lib"),
+};
 const SPECS = join(ROOT, "packages/registry-schema/src/components");
 const DEMOS_REACT = join(ROOT, "packages/demos/src/react");
 const DEMOS_SVELTE = join(ROOT, "packages/demos/src/svelte");
@@ -41,6 +45,9 @@ const dirs = (root) =>
 		.map((d) => d.name)
 		.sort();
 const isTs = (f) => f.endsWith(".ts") && !f.endsWith(".d.ts") && f !== "index.ts";
+/** Folders under `components/` with a port for `framework` (`lib` included; `_tools` has none). */
+const portDirs = (framework) =>
+	dirs(COMPONENTS).filter((dir) => existsSync(join(COMPONENTS, dir, framework)));
 
 /** Primary file first (`<dir>.<ext>`), then the rest alphabetically. */
 function ordered(dir, files, ext) {
@@ -51,11 +58,14 @@ function ordered(dir, files, ext) {
 	});
 }
 
+/** A facade re-exports a component's barrel, where a Svelte default export already has its name. */
+const facadeSpec = (n) => (n.isDefault ? n.name : n.spec);
+
 /**
  * Explicit named re-exports, so a duplicate name is resolved here and never becomes an ambiguous
  * `export *`. The file that declares a name wins over files that only re-export it.
  */
-function reexports(modules, from, external = []) {
+function reexports(modules, from, external = [], specOf = (n) => n.spec) {
 	const owner = new Map();
 	for (const [index, mod] of modules.entries()) {
 		for (const n of mod.names) {
@@ -68,9 +78,7 @@ function reexports(modules, from, external = []) {
 	const collisions = [];
 	let text = external.map((line) => `${line}\n`).join("");
 	for (const [index, mod] of modules.entries()) {
-		const specs = mod.names
-			.filter((n) => owner.get(n.name)?.index === index)
-			.map((n) => n.spec);
+		const specs = mod.names.filter((n) => owner.get(n.name)?.index === index).map(specOf);
 		for (const n of mod.names) {
 			const won = owner.get(n.name);
 			if (won?.index !== index && n.declared && won?.declared)
@@ -81,11 +89,15 @@ function reexports(modules, from, external = []) {
 	return { text, collisions };
 }
 
-/** The package barrel plus one index per item folder, which `<pkg>/<item>` resolves to. */
-function uiIndex({ root, componentExts, defaults, external }) {
+/**
+ * One port's barrels: each component's own (`components/<dir>/<fw>/index.ts`), and the package
+ * facade that re-exports them by name from `@baby-ui/components/<fw>/<dir>`.
+ */
+function uiIndex({ framework, componentExts, defaults, external }) {
+	const folderOf = (dir) => join(COMPONENTS, dir, framework);
 	const modules = [];
-	for (const dir of dirs(root)) {
-		const files = readdirSync(join(root, dir));
+	for (const dir of portDirs(framework)) {
+		const files = readdirSync(folderOf(dir));
 		const pick = dir === "lib" ? (f) => LIB_PUBLIC.includes(f) : () => true;
 		if (defaults) {
 			for (const file of ordered(
@@ -107,7 +119,7 @@ function uiIndex({ root, componentExts, defaults, external }) {
 							declared: true,
 							isDefault: true,
 						})),
-						...exportsOf(join(root, dir, file)).map((n) => ({
+						...exportsOf(join(folderOf(dir), file)).map((n) => ({
 							...n,
 							spec: n.type ? `type ${n.name}` : n.name,
 						})),
@@ -125,7 +137,7 @@ function uiIndex({ root, componentExts, defaults, external }) {
 			modules.push({
 				dir,
 				file: file.replace(/\.tsx?$/, ""),
-				names: exportsOf(join(root, dir, file)).map((n) => ({
+				names: exportsOf(join(folderOf(dir), file)).map((n) => ({
 					...n,
 					spec: n.type ? `type ${n.name}` : n.name,
 				})),
@@ -133,38 +145,78 @@ function uiIndex({ root, componentExts, defaults, external }) {
 		}
 	}
 
-	const barrel = reexports(modules, (m) => `./${m.dir}/${m.file}`, external);
+	const facadeFrom = (m) =>
+		m.dir === "lib"
+			? `@baby-ui/components/lib/${framework}/${m.file}`
+			: `@baby-ui/components/${framework}/${m.dir}`;
+	const barrel = reexports(modules, facadeFrom, external, facadeSpec);
 	const folders = new Map();
+	const facades = new Map();
 	for (const dir of new Set(modules.map((m) => m.dir))) {
 		if (dir === "lib") continue;
-		folders.set(
-			dir,
-			reexports(
-				modules.filter((m) => m.dir === dir),
-				(m) => `./${m.file}`,
-			).text,
-		);
+		const own = modules.filter((m) => m.dir === dir);
+		folders.set(dir, reexports(own, (m) => `./${m.file}`).text);
+		facades.set(dir, reexports(own, facadeFrom, [], facadeSpec).text);
 	}
-	return { ...barrel, folders };
+	return { ...barrel, folders, facades };
 }
 
+/** Every `lib/` file, so `@baby-ui/<fw>/lib/<file>` keeps resolving (Pro uses them directly). */
+function libFacades(framework) {
+	const dir = join(COMPONENTS, "lib", framework);
+	return readdirSync(dir)
+		.filter(isTs)
+		.map((file) => {
+			const base = file.replace(/\.ts$/, "");
+			const names = exportsOf(join(dir, file)).map((n) =>
+				n.type ? `type ${n.name}` : n.name,
+			);
+			return [
+				file,
+				`export { ${names.join(", ")} } from "@baby-ui/components/lib/${framework}/${base}";\n`,
+			];
+		});
+}
+
+// Package export subpaths outside `<item>/index.ts`; each gets a facade file of its own.
+const EXTRA_ENTRIES = [["data-table", "worker"]];
+
 export function indexes(output, report) {
-	const react = uiIndex({
-		root: REACT,
-		componentExts: [".tsx"],
-		external: EXTERNAL.react,
-	});
-	output.add(join(REACT, "index.ts"), react.text);
-	for (const [dir, text] of react.folders) output.add(join(REACT, dir, "index.ts"), text);
-	const svelte = uiIndex({
-		root: SVELTE,
-		componentExts: [],
-		defaults: true,
-		external: EXTERNAL.svelte,
-	});
-	output.add(join(SVELTE, "index.ts"), svelte.text);
-	for (const [dir, text] of svelte.folders)
-		output.add(join(SVELTE, dir, "index.ts"), text);
+	const ports = {
+		react: uiIndex({
+			framework: "react",
+			componentExts: [".tsx"],
+			external: EXTERNAL.react,
+		}),
+		svelte: uiIndex({
+			framework: "svelte",
+			componentExts: [],
+			defaults: true,
+			external: EXTERNAL.svelte,
+		}),
+	};
+	for (const [framework, port] of Object.entries(ports)) {
+		const facade = FACADE[framework];
+		output.add(join(facade, "index.ts"), port.text);
+		for (const [dir, text] of port.folders) {
+			output.add(join(COMPONENTS, dir, framework, "index.ts"), text);
+			output.add(join(facade, dir, "index.ts"), port.facades.get(dir));
+		}
+		for (const [file, text] of libFacades(framework)) {
+			output.add(join(facade, "lib", file), text);
+		}
+		for (const [dir, entry] of EXTRA_ENTRIES) {
+			// Read from React: the Svelte file is its generated copy and may not be on disk yet.
+			const names = exportsOf(join(COMPONENTS, dir, "react", `${entry}.ts`)).map((n) =>
+				n.type ? `type ${n.name}` : n.name,
+			);
+			output.add(
+				join(facade, dir, `${entry}.ts`),
+				`export { ${names.join(", ")} } from "@baby-ui/components/${framework}/${dir}/${entry}";\n`,
+			);
+		}
+	}
+	const { react, svelte } = ports;
 	report.collisions.push(
 		...react.collisions.map((c) => `react ${c}`),
 		...svelte.collisions.map((c) => `svelte ${c}`),

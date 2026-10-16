@@ -146,6 +146,6 @@ export function emailTheme(output) {
 		"};",
 		"",
 	].join("\n");
-	output.add(join(ROOT, "packages/ui-react/src/lib/email-theme.ts"), body);
-	output.add(join(ROOT, "packages/ui-svelte/src/lib/lib/email-theme.ts"), body);
+	output.add(join(ROOT, "components/lib/react/email-theme.ts"), body);
+	output.add(join(ROOT, "components/lib/svelte/email-theme.ts"), body);
 }

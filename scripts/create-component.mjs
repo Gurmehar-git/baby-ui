@@ -176,10 +176,10 @@ TODO: write the docs prose for ${title}.
 `;
 
 async function main() {
-	const reactDir = resolve(REPO_ROOT, `packages/ui-react/src/${slug}`);
-	const svelteDir = resolve(REPO_ROOT, `packages/ui-svelte/src/lib/${slug}`);
+	const reactDir = resolve(REPO_ROOT, `components/${slug}/react`);
+	const svelteDir = resolve(REPO_ROOT, `components/${slug}/svelte`);
 	if (await exists(resolve(reactDir, `${slug}.tsx`))) {
-		console.error(`packages/ui-react/src/${slug}/${slug}.tsx already exists`);
+		console.error(`components/${slug}/react/${slug}.tsx already exists`);
 		process.exit(1);
 	}
 
@@ -213,7 +213,7 @@ you still need to:
     only when the preview needs state or composition (a hand-written file always wins).
   - Write the docs prose in apps/site/src/docs/components/${slug}.md.
   - Run the gate suite: node scripts/check-comments.mjs --all, biome check --write .,
-    tsc --noEmit (ui-react), svelte-check (ui-svelte/demos/site), pnpm turbo check.
+    pnpm --filter @baby-ui/components check, then demos and site checks one at a time.
 `);
 }
 

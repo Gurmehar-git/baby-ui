@@ -50,8 +50,8 @@ for (const slug of slugs) {
 	const selector = "[data-demo-canvas]";
 	if (mode === "audit") {
 		const sources = [
-			`packages/ui-react/src/${slug}`,
-			`packages/ui-svelte/src/lib/${slug}`,
+			`components/${slug}/react`,
+			`components/${slug}/svelte`,
 			`pro/packages/react/src/${slug}`,
 			`pro/packages/svelte/src/lib/${slug}`,
 		];

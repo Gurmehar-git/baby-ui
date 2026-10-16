@@ -1,0 +1,18 @@
+<script lang="ts">
+import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
+import { cn } from "../../lib/svelte/cn";
+import { navigationMenu } from "./variants";
+
+let {
+	ref = $bindable(null),
+	class: classProp,
+	...rest
+}: NavigationMenuPrimitive.ListProps = $props();
+</script>
+
+<NavigationMenuPrimitive.List
+	bind:ref
+	data-slot="navigation-menu-list"
+	class={cn(navigationMenu().list(), classProp)}
+	{...rest}
+/>

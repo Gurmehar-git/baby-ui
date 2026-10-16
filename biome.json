@@ -67,7 +67,7 @@
 			}
 		},
 		{
-			"includes": ["packages/ui-react/src/**"],
+			"includes": ["components/*/react/**", "components/*/examples/*.tsx"],
 			"linter": {
 				"domains": {
 					"react": "recommended"

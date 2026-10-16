@@ -1,4 +1,4 @@
-import type { NotificationItem } from "../../../ui-react/src/notification-center/inbox";
+import type { NotificationItem } from "../../../../components/notification-center/react/inbox";
 
 /** An inbox for the notification-center demo. */
 export const NOTIFICATIONS: NotificationItem[] = [

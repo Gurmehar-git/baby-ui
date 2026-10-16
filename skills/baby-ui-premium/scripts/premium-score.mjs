@@ -61,8 +61,8 @@ export function score(findings, manual = {}) {
 function sourcesFor(url) {
 	const slug = new URL(url).pathname.split("/").filter(Boolean).at(-1) ?? "";
 	return [
-		`packages/ui-react/src/${slug}`,
-		`packages/ui-svelte/src/lib/${slug}`,
+		`components/${slug}/react`,
+		`components/${slug}/svelte`,
 		`pro/packages/react/src/${slug}`,
 		`pro/packages/svelte/src/lib/${slug}`,
 	].filter((dir) => existsSync(dir));

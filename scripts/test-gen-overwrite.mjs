@@ -6,7 +6,7 @@ import { flush, Output, ROOT } from "./gen/core.mjs";
 
 const ROOT_REL = "node_modules/.gen-overwrite-test";
 const root = join(ROOT, ROOT_REL);
-const source = join(ROOT, "packages/ui-react/src/x/copy.ts");
+const source = join(ROOT, "components/x/react/copy.ts");
 
 function run() {
 	const output = new Output([ROOT_REL]);
@@ -26,10 +26,7 @@ test("a hand edit to a generated file is reported once, naming the file to edit"
 
 	const reported = run();
 	assert.equal(reported.length, 2);
-	assert.match(
-		reported[0],
-		/copied from packages\/ui-react\/src\/x\/copy\.ts, edit that/,
-	);
+	assert.match(reported[0], /copied from components\/x\/react\/copy\.ts, edit that/);
 	assert.match(reported[1], /plain\.ts was edited by hand; it is generated/);
 	assert.deepEqual(run(), []);
 });

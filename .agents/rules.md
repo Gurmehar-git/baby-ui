@@ -30,16 +30,16 @@ Any agent (Claude Code, Codex, Cursor, Copilot) should read this file first.
   shipped component as a default value. Data-shaped props (`chunks`, `rows`, items arrays) are
   required, no default — the component only owns structural/behavioural config (status→style
   maps, enum-to-tone lookups), never invented business data. Sample data lives only in
-  `packages/demos/src/*` (and usage snippets), never in `packages/ui-react/src` /
-  `packages/ui-svelte/src/lib`. A real installer must not receive a fake dataset baked into
+  `packages/demos/src/*` (and usage snippets), never in
+  `components/<slug>/{react,svelte}`. A real installer must not receive a fake dataset baked into
   their component.
 - **HARD RULE:** when porting reference code (e.g. `.scratchpad/beautifului`), the source is
   raw behavior/visual reference only, never architecture to copy. Compose existing registry
   components instead of hand-rolling an equivalent (e.g. a status pill uses `Badge`, not a
   local `Record` of raw Tailwind classes) — extend the existing component's `variants.ts` with
   a missing tone/variant if needed, rather than working around the gap locally. Cross-component
-  reuse inside `ui-react`/`ui-svelte` always imports the relative sibling path
-  (`../badge/badge`, `../badge/badge.svelte`), never the package alias (`@baby-ui/react`/
+  reuse inside `components/` always imports the relative sibling path
+  (`../../badge/react/badge`, `../../badge/svelte/badge.svelte`), never the package alias (`@baby-ui/react`/
   `@baby-ui/svelte`). Any interactive-looking control (tab, icon button, menu trigger) needs
   real behavior in the port even if the source left it decorative — a button that visually
   invites a click and does nothing is not acceptable in a shipped registry component, "the
@@ -96,7 +96,7 @@ Any agent (Claude Code, Codex, Cursor, Copilot) should read this file first.
   state stays limited to pure UI concerns (open/closed, hover, focus, manual override of an
   auto-computed value) and CSS motion timing (stagger/duration). Any scripted narrative (a
   task failing then succeeding) is the DEMO's own `useState`/`$state` + timer, never baked
-  into `ui-react`/`ui-svelte`. A callback-driven action (retry, dismiss) only renders as a
+  into the component source. A callback-driven action (retry, dismiss) only renders as a
   real control when its handler prop is passed, never as always-on decoration. See
   `controlled-components-no-internal-fake-state-hard-rule` memory (caught on `TaskRows`,
   which auto-advanced a `status: "sequence"` row through a canned pending → failed →

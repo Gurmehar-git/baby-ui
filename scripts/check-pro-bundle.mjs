@@ -52,10 +52,11 @@ const folders = (dir) =>
 		? readdirSync(dir).filter((n) => n !== "lib" && statSync(join(dir, n)).isDirectory())
 		: [];
 // A slug the public packages also ship is public, whatever Pro builds on it.
-const publicSlugs = new Set([
-	...folders(join(ROOT, "packages/ui-svelte/src/lib")),
-	...folders(join(ROOT, "packages/ui-react/src")),
-]);
+const publicSlugs = new Set(
+	folders(join(ROOT, "components")).filter((n) =>
+		["react", "svelte"].some((f) => existsSync(join(ROOT, "components", n, f))),
+	),
+);
 const proSlugs = [
 	...new Set([
 		...folders(join(PRO, "svelte/src/lib")),

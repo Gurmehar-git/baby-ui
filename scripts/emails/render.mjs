@@ -13,8 +13,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { build } from "esbuild";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
-const REACT_SRC = join(ROOT, "packages/ui-react/src");
-const SVELTE_SRC = join(ROOT, "packages/ui-svelte/src/lib");
+const COMPONENTS = join(ROOT, "components");
 const PREVIEW_PROPS = join(ROOT, "packages/demos/src/data/preview-props.ts");
 const TEMPLATES = join(ROOT, "apps/site/src/lib/server/templates.ts");
 const SPECS = join(ROOT, "packages/registry-schema/src/components/index.ts");
@@ -32,20 +31,21 @@ const PRO = join(ROOT, "pro/packages");
 const OUT_PRO = join(ROOT, "apps/site/src/lib/generated/emails-pro");
 
 /** Every template folder: public ones, plus Pro ones when the private submodule is present. */
-function discover(reactSrc, svelteSrc, pro) {
-	if (!existsSync(reactSrc)) return [];
-	return readdirSync(reactSrc)
+function discover(dir, pro, paths) {
+	if (!existsSync(dir)) return [];
+	return readdirSync(dir)
 		.filter((d) => d.startsWith("email-") && d !== "email-kit")
-		.map((slug) => ({
-			slug,
-			pro,
-			react: join(reactSrc, slug, slug),
-			svelte: join(svelteSrc, slug, `${slug}.svelte`),
-		}));
+		.map((slug) => ({ slug, pro, ...paths(slug) }));
 }
 const templates = [
-	...discover(REACT_SRC, SVELTE_SRC, false),
-	...discover(join(PRO, "react/src"), join(PRO, "svelte/src/lib"), true),
+	...discover(COMPONENTS, false, (slug) => ({
+		react: join(COMPONENTS, slug, "react", slug),
+		svelte: join(COMPONENTS, slug, "svelte", `${slug}.svelte`),
+	})),
+	...discover(join(PRO, "react/src"), true, (slug) => ({
+		react: join(PRO, "react/src", slug, slug),
+		svelte: join(PRO, "svelte/src/lib", slug, `${slug}.svelte`),
+	})),
 ];
 const slugs = templates.map((t) => t.slug);
 
@@ -89,7 +89,7 @@ async function renderReact(props) {
 	const external = ["react", "react-dom", "react-email"];
 	const mod = await bundle(
 		entry,
-		REACT_SRC,
+		COMPONENTS,
 		join(REACT_CACHE, "render.mjs"),
 		[],
 		external,
@@ -97,7 +97,7 @@ async function renderReact(props) {
 	return mod.default(props);
 }
 
-const { compile } = createRequire(join(SVELTE_SRC, "index.ts"))("svelte/compiler");
+const { compile } = createRequire(join(COMPONENTS, "package.json"))("svelte/compiler");
 
 const sveltePlugin = {
 	name: "svelte-server",
@@ -118,7 +118,7 @@ const sveltePlugin = {
 async function renderSvelte(props) {
 	const entry = [
 		'import { Renderer, pixelBasedPreset } from "@better-svelte-email/server";',
-		'import { emailTailwindConfig } from "./lib/email-theme";',
+		'import { emailTailwindConfig } from "./lib/svelte/email-theme";',
 		...templates.map((t) => `import ${pascal(t.slug)} from ${str(posix(t.svelte))};`),
 		"export default async function run(props) {",
 		"\tconst tailwindConfig = { ...emailTailwindConfig, presets: [pixelBasedPreset] };",
@@ -133,7 +133,7 @@ async function renderSvelte(props) {
 	const external = ["svelte", "svelte/*", "@better-svelte-email/server"];
 	const mod = await bundle(
 		entry,
-		SVELTE_SRC,
+		COMPONENTS,
 		join(SVELTE_CACHE, "render.mjs"),
 		[sveltePlugin],
 		external,

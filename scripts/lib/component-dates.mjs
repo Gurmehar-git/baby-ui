@@ -8,6 +8,7 @@ const REPOS = [
 		dir: ".",
 		prefix: "",
 		roots: [
+			"components",
 			"packages/ui-react/src",
 			"packages/ui-svelte/src/lib",
 			"packages/registry-schema/src/components",
@@ -29,15 +30,29 @@ const SWEEP_SHARE = 0.25;
 
 const day = (iso) => iso.slice(0, 10);
 
-/** `root/<folder>` for component sources, `root/<file>` for specs; null for shared `lib/`. */
+// Public ports moved to components/<slug>/<fw>; history before the move keys the same way.
+const LEGACY = {
+	"packages/ui-react/src": "react",
+	"packages/ui-svelte/src/lib": "svelte",
+};
+
+/** `components/<slug>/<fw>` for public ports, `root/<folder>` for Pro, `root/<file>` for specs. */
 function keyOf(path, roots) {
 	const root = roots.find((r) => path.startsWith(`${r}/`));
 	if (!root) return null;
-	const head = path.slice(root.length + 1).split("/")[0];
-	return head === "lib" ? null : `${root}/${head}`;
+	const [head, port] = path.slice(root.length + 1).split("/");
+	if (head === "lib") return null;
+	if (LEGACY[root]) return `components/${head}/${LEGACY[root]}`;
+	if (root === "components") {
+		return port === "react" || port === "svelte" ? `components/${head}/${port}` : null;
+	}
+	return `${root}/${head}`;
 }
 
-const nameOf = (key) => key.slice(key.lastIndexOf("/") + 1).replace(/\.ts$/, "");
+const nameOf = (key) =>
+	key.startsWith("components/")
+		? key.split("/")[1]
+		: key.slice(key.lastIndexOf("/") + 1).replace(/\.ts$/, "");
 
 function git(cwd, args) {
 	return execFileSync("git", args, {

@@ -26,8 +26,7 @@
 			"inputs": [
 				"scripts/emails/**",
 				"packages/tokens/src/**",
-				"packages/ui-react/src/email-*/**",
-				"packages/ui-svelte/src/lib/email-*/**",
+				"components/email-*/**",
 				"packages/demos/src/data/email-samples.ts",
 				"pro/packages/react/src/email-*/**",
 				"pro/packages/svelte/src/lib/email-*/**",
@@ -60,8 +59,7 @@
 				"src/**",
 				"../tokens/src/**",
 				"../registry-schema/src/**",
-				"../ui-react/src/**",
-				"../ui-svelte/src/**",
+				"../../components/**",
 				"../../apps/site/src/docs/**",
 				"../../pro/packages/schema/src/**"
 			],

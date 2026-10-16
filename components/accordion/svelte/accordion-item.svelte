@@ -1,0 +1,19 @@
+<script lang="ts">
+import { Accordion as AccordionPrimitive } from "bits-ui";
+import type { Snippet } from "svelte";
+import { cn } from "../../lib/svelte/cn";
+
+let {
+	children,
+	class: classProp,
+	...rest
+}: Omit<AccordionPrimitive.ItemProps, "children" | "child" | "class"> & {
+	children?: Snippet;
+	value: string;
+	class?: string;
+} = $props();
+</script>
+
+<AccordionPrimitive.Item {...rest} data-slot="accordion-item" class={cn(classProp)}>
+	{@render children?.()}
+</AccordionPrimitive.Item>

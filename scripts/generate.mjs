@@ -6,16 +6,12 @@ import { autoDemos } from "./gen/demos.mjs";
 import { emailTheme } from "./gen/email-theme.mjs";
 import { indexes } from "./gen/indexes.mjs";
 import { HAS_PRO } from "./gen/roots.mjs";
-import { sharedFiles } from "./gen/shared.mjs";
+import { componentSharedFiles, sharedFiles } from "./gen/shared.mjs";
 import { usageFiles } from "./gen/usage.mjs";
 
-/** React is the source for every shared .ts; the Svelte port gets generated copies. */
+/** React is the source for every shared .ts; the Svelte port gets generated copies. Public
+ * components live in `components/<slug>/{react,svelte}`; Pro still uses the package layout. */
 export const TARGETS = [
-	{
-		name: "public",
-		react: "packages/ui-react/src",
-		svelte: "packages/ui-svelte/src/lib",
-	},
 	{
 		name: "pro",
 		react: "pro/packages/react/src",
@@ -25,6 +21,7 @@ export const TARGETS = [
 
 // Every generated file sits under one of these, and each keeps a .gitignore listing its own.
 const PUBLIC_ROOTS = [
+	"components",
 	"packages/ui-react/src",
 	"packages/ui-svelte/src/lib",
 	"packages/registry-schema/src/components",
@@ -43,6 +40,7 @@ export function generate({ check = false, quiet = false } = {}) {
 	const report = { collisions: [], unmatched: [], demoless: [] };
 	// Written before the shared step so its Svelte copy is generated in the same run.
 	emailTheme(output);
+	componentSharedFiles(output);
 	for (const target of TARGETS) {
 		sharedFiles(output, target);
 	}

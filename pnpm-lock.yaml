@@ -478,21 +478,93 @@ importers:
       '@base-ui/react':
         specifier: 'catalog:'
         version: 1.8.0(@date-fns/tz@1.5.0)(@types/react@19.3.0)(date-fns@4.4.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@better-svelte-email/components':
+        specifier: 'catalog:'
+        version: 2.3.0(svelte@5.57.1)
+      '@docvia/markdown':
+        specifier: 'catalog:'
+        version: 3.0.0(react@19.3.0)(svelte@5.57.1)
+      '@internationalized/date':
+        specifier: 'catalog:'
+        version: 3.12.4
+      '@tanstack/react-form':
+        specifier: 'catalog:'
+        version: 1.33.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tanstack/store':
+        specifier: 'catalog:'
+        version: 0.11.2
+      '@tanstack/svelte-form':
+        specifier: 'catalog:'
+        version: 1.33.5(svelte@5.57.1)
+      '@tanstack/table-core':
+        specifier: 'catalog:'
+        version: 9.2.4
+      '@tanstack/virtual-core':
+        specifier: 'catalog:'
+        version: 3.17.11
       bits-ui:
         specifier: 'catalog:'
         version: 2.19.2(@internationalized/date@3.12.4)(svelte@5.57.1)
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
+      cmdk:
+        specifier: 'catalog:'
+        version: 1.1.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      d3-array:
+        specifier: 'catalog:'
+        version: 3.2.4
+      d3-geo:
+        specifier: 'catalog:'
+        version: 3.1.1
+      d3-sankey:
+        specifier: 'catalog:'
+        version: 0.12.3
+      d3-scale:
+        specifier: 'catalog:'
+        version: 4.0.2
+      d3-shape:
+        specifier: 'catalog:'
+        version: 3.2.0
+      hls.js:
+        specifier: 'catalog:'
+        version: 1.7.3
+      input-otp:
+        specifier: 'catalog:'
+        version: 1.5.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      media-chrome:
+        specifier: 'catalog:'
+        version: 4.19.3(react@19.3.0)
+      react-day-picker:
+        specifier: 'catalog:'
+        version: 9.14.0(react@19.3.0)
+      react-email:
+        specifier: 'catalog:'
+        version: 6.11.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      sonner:
+        specifier: 'catalog:'
+        version: 2.0.8(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       svelte:
         specifier: 'catalog:'
         version: 5.57.1
+      svelte-sonner:
+        specifier: 'catalog:'
+        version: 1.2.1(svelte@5.57.1)
+      swapy:
+        specifier: 'catalog:'
+        version: 1.0.5
       tailwind-merge:
         specifier: 'catalog:'
         version: 3.7.0
       tailwind-variants:
         specifier: 'catalog:'
         version: 3.3.1(tailwind-merge@3.7.0)(tailwindcss@4.3.3)
+      vaul:
+        specifier: 'catalog:'
+        version: 1.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      vaul-svelte:
+        specifier: 'catalog:'
+        version: 1.0.0-next.7(svelte@5.57.1)
     devDependencies:
       '@baby-ui/registry-schema':
         specifier: workspace:*
@@ -500,6 +572,24 @@ importers:
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
         version: 7.3.0(svelte@5.57.1)(vite@8.3.0(@types/node@26.6.2)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+      '@types/d3-array':
+        specifier: 'catalog:'
+        version: 3.2.2
+      '@types/d3-geo':
+        specifier: 'catalog:'
+        version: 3.1.1
+      '@types/d3-sankey':
+        specifier: 'catalog:'
+        version: 0.12.5
+      '@types/d3-scale':
+        specifier: 'catalog:'
+        version: 4.0.9
+      '@types/d3-shape':
+        specifier: 'catalog:'
+        version: 3.2.0
+      '@types/geojson':
+        specifier: 'catalog:'
+        version: 7946.0.16
       '@types/react':
         specifier: 'catalog:'
         version: 19.3.0
@@ -518,6 +608,9 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
+      vite:
+        specifier: 'catalog:'
+        version: 8.3.0(@types/node@26.6.2)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
 
   packages/cli:
     dependencies:
@@ -687,6 +780,9 @@ importers:
 
   packages/ui-react:
     dependencies:
+      '@baby-ui/components':
+        specifier: workspace:*
+        version: link:../../components
       '@base-ui/react':
         specifier: 'catalog:'
         version: 1.8.0(@date-fns/tz@1.5.0)(@types/react@19.3.0)(date-fns@4.4.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -790,6 +886,9 @@ importers:
 
   packages/ui-svelte:
     dependencies:
+      '@baby-ui/components':
+        specifier: workspace:*
+        version: link:../../components
       '@better-svelte-email/components':
         specifier: 'catalog:'
         version: 2.3.0(svelte@5.57.1)

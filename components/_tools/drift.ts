@@ -6,13 +6,13 @@ import { axesOf } from "./derive";
 // Read-only scan: each spec's hand-listed axes against the tv() named after its slug.
 const camel = (slug: string) =>
 	slug.replace(/-([a-z0-9])/g, (_m, c: string) => c.toUpperCase());
-const SRC = resolve(import.meta.dir, "../../packages/ui-react/src");
+const SRC = resolve(import.meta.dir, "..");
 
 let compared = 0;
 const drifted: string[] = [];
 for (const spec of specs) {
 	const axes = Object.keys(spec.variants);
-	const file = resolve(SRC, spec.slug, "variants.ts");
+	const file = resolve(SRC, spec.slug, "react", "variants.ts");
 	if (!axes.length || !existsSync(file)) continue;
 	const mod: Record<string, unknown> = await import(file);
 	const tvFn = mod[camel(spec.slug)];

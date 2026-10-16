@@ -32,12 +32,15 @@ const recent = (date?: string) =>
 /** The spec's own folder in each port, plus the spec file; shared `lib/` never dates a component. */
 function datedPaths(spec: ComponentSpec) {
 	const pro = proSlugs.has(spec.slug);
-	const roots = pro
-		? { react: "pro/packages/react/src", svelte: "pro/packages/svelte/src/lib" }
-		: { react: "packages/ui-react/src", svelte: "packages/ui-svelte/src/lib" };
 	const folders = FRAMEWORKS.flatMap((f) => {
 		const folder = spec.impl[f]?.files[0]?.path.split("/")[0];
-		return folder && folder !== "lib" ? [`${roots[f]}/${folder}`] : [];
+		if (!folder || folder === "lib") return [];
+		// Public ports live in components/<folder>/<f>; Pro keeps its package layout.
+		return [
+			pro
+				? `${f === "react" ? "pro/packages/react/src" : "pro/packages/svelte/src/lib"}/${folder}`
+				: `components/${folder}/${f}`,
+		];
 	});
 	const schema = pro
 		? "pro/packages/schema/src/components"

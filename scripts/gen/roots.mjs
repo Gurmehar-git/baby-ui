@@ -8,8 +8,7 @@ export const HAS_PRO = existsSync(join(ROOT, "pro/packages/react/src"));
 /** Folders whose edits can change generated output. */
 export function sourceRoots() {
 	return [
-		"packages/ui-react/src",
-		"packages/ui-svelte/src/lib",
+		"components",
 		"packages/registry-schema/src/components",
 		"packages/demos/src",
 		// tokens.css feeds the generated email theme.

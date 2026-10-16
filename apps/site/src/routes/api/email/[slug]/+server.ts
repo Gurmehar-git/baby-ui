@@ -1,4 +1,5 @@
 import { defaultProps } from "@baby-ui/registry-schema";
+import { emailTailwindConfig } from "@baby-ui/svelte/lib/email-theme";
 import { pixelBasedPreset, Renderer } from "@better-svelte-email/server";
 import { error } from "@sveltejs/kit";
 import { proEmailSample, proEmailTemplates } from "#lib/pro.js";
@@ -13,7 +14,6 @@ import {
 	previewProps,
 	withSiteAssets,
 } from "../../../../../../../packages/demos/src/data/preview-props";
-import { emailTailwindConfig } from "../../../../../../../packages/ui-svelte/src/lib/lib/email-theme";
 import type { RequestHandler } from "./$types";
 
 // Re-renders the Svelte port as controls change; the build-time render covers the defaults.
@@ -21,7 +21,7 @@ export const prerender = false;
 
 const loader = templateLoader({
 	...import.meta.glob<TemplateModule>(
-		"../../../../../../../packages/ui-svelte/src/lib/email-*/email-*.svelte",
+		"../../../../../../../components/email-*/svelte/email-*.svelte",
 	),
 	...proEmailTemplates,
 });

@@ -14,22 +14,22 @@ registerHooks({
 	},
 });
 
-const src = "../packages/ui-react/src";
-const { button } = await import(`${src}/button/variants.ts`);
-const { selectTrigger } = await import(`${src}/select/variants.ts`);
-const { input } = await import(`${src}/input/variants.ts`);
-const { nativeSelect } = await import(`${src}/native-select/variants.ts`);
-const { inputGroup } = await import(`${src}/input-group/variants.ts`);
-const { combobox } = await import(`${src}/combobox/variants.ts`);
-const { toggleButton } = await import(`${src}/toggle/variants.ts`);
-const { toggleGroup } = await import(`${src}/toggle-group/variants.ts`);
-const { multiSelect } = await import(`${src}/multi-select/variants.ts`);
-const { tagInput } = await import(`${src}/tag-input/variants.ts`);
-const { dateField } = await import(`${src}/date-field/variants.ts`);
-const { numberInput } = await import(`${src}/number-input/variants.ts`);
-const { inputOtp } = await import(`${src}/input-otp/variants.ts`);
-const { tabsFrame } = await import(`${src}/tabs/variants.ts`);
-const { pagination } = await import(`${src}/pagination/variants.ts`);
+const src = "../components";
+const { button } = await import(`${src}/button/react/variants.ts`);
+const { selectTrigger } = await import(`${src}/select/react/variants.ts`);
+const { input } = await import(`${src}/input/react/variants.ts`);
+const { nativeSelect } = await import(`${src}/native-select/react/variants.ts`);
+const { inputGroup } = await import(`${src}/input-group/react/variants.ts`);
+const { combobox } = await import(`${src}/combobox/react/variants.ts`);
+const { toggleButton } = await import(`${src}/toggle/react/variants.ts`);
+const { toggleGroup } = await import(`${src}/toggle-group/react/variants.ts`);
+const { multiSelect } = await import(`${src}/multi-select/react/variants.ts`);
+const { tagInput } = await import(`${src}/tag-input/react/variants.ts`);
+const { dateField } = await import(`${src}/date-field/react/variants.ts`);
+const { numberInput } = await import(`${src}/number-input/react/variants.ts`);
+const { inputOtp } = await import(`${src}/input-otp/react/variants.ts`);
+const { tabsFrame } = await import(`${src}/tabs/react/variants.ts`);
+const { pagination } = await import(`${src}/pagination/react/variants.ts`);
 
 // DESIGN.md "Control scale": every control of one size shares height and radius.
 const LADDER = {

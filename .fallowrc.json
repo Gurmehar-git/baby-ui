@@ -1,8 +1,9 @@
 {
 	"$schema": "https://fallow.tools/schema.json",
 	"entry": [
-		"packages/ui-react/src/*/*.{ts,tsx}",
-		"packages/ui-svelte/src/lib/*/*.{ts,svelte}",
+		"components/*/react/*.{ts,tsx}",
+		"components/*/svelte/*.{ts,svelte}",
+		"components/*/examples/*.{tsx,svelte}",
 		"packages/registry-schema/src/components/*.ts",
 		"packages/demos/src/**/*.{ts,tsx,svelte}",
 		"scripts/**/*.mjs",
@@ -30,7 +31,7 @@
 	],
 	"overrides": [
 		{
-			"files": ["packages/ui-svelte/src/lib/chart/time-series-chart.svelte"],
+			"files": ["components/chart/svelte/time-series-chart.svelte"],
 			"rules": {
 				"unprovided-inject": "off"
 			}
@@ -38,7 +39,7 @@
 		{
 			"files": [
 				"packages/demos/src/svelte/**",
-				"packages/ui-svelte/src/lib/scroll-progress/scroll-progress.svelte"
+				"components/scroll-progress/svelte/scroll-progress.svelte"
 			],
 			"rules": {
 				"unused-component-prop": "off"
