@@ -1,0 +1,44 @@
+{
+	"name": "@baby-ui/components",
+	"version": "0.0.0",
+	"private": true,
+	"license": "Apache-2.0",
+	"type": "module",
+	"sideEffects": [
+		"**/*.css"
+	],
+	"exports": {
+		"./react/*": "./*/react/index.ts",
+		"./svelte/*": {
+			"svelte": "./*/svelte/index.ts",
+			"types": "./*/svelte/index.ts"
+		},
+		"./lib/react/*": "./lib/react/*.ts",
+		"./lib/svelte/*": {
+			"svelte": "./lib/svelte/*.ts",
+			"types": "./lib/svelte/*.ts"
+		}
+	},
+	"scripts": {
+		"check": "tsc --noEmit -p tsconfig.react.json && svelte-check --tsconfig ./tsconfig.json",
+		"spike": "node --test _tools/*.test.mjs"
+	},
+	"dependencies": {
+		"@base-ui/react": "catalog:",
+		"bits-ui": "catalog:",
+		"clsx": "catalog:",
+		"svelte": "catalog:",
+		"tailwind-merge": "catalog:",
+		"tailwind-variants": "catalog:"
+	},
+	"devDependencies": {
+		"@baby-ui/registry-schema": "workspace:*",
+		"@sveltejs/vite-plugin-svelte": "catalog:",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:",
+		"svelte-check": "catalog:",
+		"typescript": "catalog:"
+	}
+}

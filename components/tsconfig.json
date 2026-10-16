@@ -1,0 +1,12 @@
+{
+	"extends": "../tsconfig.base.json",
+	"compilerOptions": {
+		// One config for both ports: JSX only affects .tsx, so .svelte and .ts read it harmlessly.
+		"jsx": "react-jsx",
+		"allowJs": true,
+		"checkJs": true,
+		"noUnusedLocals": false
+	},
+	"include": ["**/*.ts", "**/*.tsx", "**/*.svelte"],
+	"exclude": ["node_modules", "_tools"]
+}

@@ -2,6 +2,7 @@ packages:
   - "apps/*"
   - "apps/playground/*"
   - "packages/*"
+  - "components"
 
 # pnpm writes these as a placeholder and then refuses the install until they are
 # booleans. esbuild links its platform binary here; workerd is what wrangler runs;
