@@ -26,8 +26,15 @@ const RESERVED = new Set([
 
 const [command, rawName, ...rest] = process.argv.slice(2);
 
+if (command === "check" && rawName) {
+	const { checkComponent } = await import("./component-check.mjs");
+	process.exit(await checkComponent(rawName, rest));
+}
+
 if (command !== "create" || !rawName) {
-	console.error("Usage: pnpm component create <name> [--category=base]");
+	console.error(
+		"Usage: pnpm component create <name> [--category=base]\n       pnpm component check <name> [--types]",
+	);
 	process.exit(1);
 }
 

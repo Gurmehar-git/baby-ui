@@ -31,6 +31,7 @@
 		"verify:quick": "node scripts/verify.mjs --quick",
 		"verify:full": "node scripts/verify.mjs --full",
 		"probe": "node scripts/probe/index.mjs",
+		"parity": "node scripts/parity/index.mjs",
 		"design:audit": "node scripts/design.mjs audit",
 		"design:premium": "node scripts/design.mjs premium",
 		"test": "node --test scripts/test-*.mjs skills/*/tests/*.test.mjs && pnpm --filter @baby-ui/registry-build test && pnpm --filter @baby-ui/components test",

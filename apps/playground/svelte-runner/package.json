@@ -23,6 +23,7 @@
 		"@tailwindcss/vite": "catalog:",
 		"svelte": "catalog:",
 		"svelte-check": "catalog:",
+		"tailwindcss": "catalog:",
 		"typescript": "catalog:",
 		"vite": "catalog:"
 	}

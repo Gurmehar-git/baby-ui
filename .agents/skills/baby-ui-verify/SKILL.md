@@ -56,6 +56,10 @@ Repo scripts, no scratchpad copies (they serve the last build unless `--url` is 
   demo overflowing its frame, no horizontal page scroll. Add `--width=390` and `--dark`.
 - `pnpm probe <slug ...> --dials`: every select and switch changes the demo DOM, or is a known
   interaction-only prop.
+- `pnpm parity <slug ...>` (or `--all`): both ports render the same parts with the same ARIA and
+  styles, at rest and after their first trigger opens; new errors fail, known ones live in
+  `scripts/parity/baseline.json` (`--update` after fixing one). Uses running runners or starts its own.
+- `pnpm component check <slug>`: the per-component gate set (spec, lint, comments, gen, parity).
 - Motion timelines (exits mirror entrances) still need a one-off probe built on
   `scripts/probe/browser.mjs`; keep any reusable one in `scripts/probe/`.
 

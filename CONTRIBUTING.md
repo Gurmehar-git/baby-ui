@@ -63,6 +63,8 @@ process logs its memory when it moves by 10%, and every registry rebuild prints 
 | `pnpm verify:full` | Everything CI and Deploy run, plus a browser sweep of every component page |
 | `pnpm probe <slug ...>` | Opens component pages headless: no console errors, demo renders in its frame, no sideways scroll |
 | `pnpm probe <slug> --dials` | Also operates every select and switch control and flags any that change nothing |
+| `pnpm parity <slug ...>` (or `--all`) | Renders the demo in both runners and compares parts, ARIA, styles, sizes and console errors, at rest and after opening the first trigger; errors in `scripts/parity/baseline.json` are known |
+| `pnpm component check <slug>` | One component's gates in seconds: spec validates, lint, comments, generated files, parity (`--types` adds the package type checks) |
 
 `pnpm verify` runs in stages (gates, then tests and type checks, then build, then build checks);
 steps inside a stage run in parallel, as many as free cores and memory allow (`--jobs=N` to
