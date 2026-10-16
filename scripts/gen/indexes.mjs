@@ -250,43 +250,39 @@ export function indexes(output, report) {
 	const reactFiles = readdirSync(DEMOS_REACT)
 		.filter((f) => f.endsWith(".tsx") && f !== "index.tsx")
 		.sort();
-	const imports = [];
 	const entries = new Map();
 	for (const file of reactFiles) {
 		const names = exportsOf(join(DEMOS_REACT, file))
 			.filter((n) => !n.type && n.name.endsWith("Demo"))
 			.map((n) => n.name);
-		const used = [];
 		for (const name of names) {
 			const slug = bySlugKey.get(name.toLowerCase());
 			if (!slug) {
 				report.unmatched.push(`${file}: ${name}`);
 				continue;
 			}
-			entries.set(slug, name);
-			used.push(name);
+			entries.set(slug, [name, `./${file.replace(/\.tsx$/, "")}`]);
 		}
-		if (used.length)
-			imports.push(
-				`import { ${used.sort().join(", ")} } from "./${file.replace(/\.tsx$/, "")}";`,
-			);
 	}
 	for (const [slug, name, from] of report.autoReact ?? []) {
-		if (entries.has(slug)) continue;
-		entries.set(slug, name);
-		imports.push(`import { ${name} } from "${from}";`);
+		if (!entries.has(slug)) entries.set(slug, [name, from]);
 	}
 	output.add(
 		join(DEMOS_REACT, "index.tsx"),
 		[
-			...imports,
+			'import type { ComponentType } from "react";',
 			"",
-			"type Props = Record<string, unknown>;",
+			"export type DemoComponent = ComponentType<{ props: Record<string, unknown> }>;",
+			"export type DemoLoader = () => Promise<{ default: DemoComponent }>;",
 			"",
-			"export const demos: Record<string, (p: { props: Props }) => React.ReactElement> = {",
+			"/** One dynamic import per slug, so a runner fetches only the demo it shows. */",
+			"export const demos: Record<string, DemoLoader> = {",
 			...[...entries]
 				.sort(([a], [b]) => a.localeCompare(b))
-				.map(([slug, name]) => `\t${quote(slug)}: ${name},`),
+				.map(
+					([slug, [name, from]]) =>
+						`\t${quote(slug)}: () => import("${from}").then((m) => ({ default: m.${name} })),`,
+				),
 			"};",
 			"",
 		].join("\n"),

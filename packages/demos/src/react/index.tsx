@@ -1,505 +1,295 @@
-import { ActionButtonDemo } from "./action-button";
-import { BreadcrumbDemo, MessageDemo, RadioGroupDemo, ReasoningDemo, SliderDemo, TabsDemo, TaskStepsDemo } from "./agentic";
-import { AnimatedGradientDemo } from "./animated-gradient";
-import { AnnouncementBarDemo } from "./announcement-bar";
-import { AreaChartDemo } from "./area-chart";
-import { AsciiEffectDemo } from "./ascii-effect";
-import { AuroraFlowDemo } from "./aurora-flow";
-import { AuthFormDemo } from "./auth-form";
-import { BarChartDemo } from "./bar-chart";
-import { BillingToggleDemo } from "./billing-toggle";
-import { BlogGridDemo } from "./blog-grid";
-import { ButtonGroupDemo } from "./button-group";
-import { CandlestickChartDemo } from "./candlestick-chart";
-import { CardStackDemo } from "./card-stack";
-import { CarouselDemo } from "./carousel";
-import { ChangelogFeedDemo } from "./changelog-feed";
-import { ChartBrushDemo } from "./chart-brush";
-import { ChartMarkersDemo } from "./chart-markers";
-import { ChartSeriesDemo } from "./chart-series";
-import { ChartDemo, LineChartDemo } from "./charts";
-import { ChatComposerDemo } from "./chat-composer";
-import { ChoroplethChartDemo } from "./choropleth-chart";
-import { ChromaticWaveDemo } from "./chromatic-wave";
-import { ClosingPlasmaDemo } from "./closing-plasma";
-import { CommentThreadDemo } from "./comment-thread";
-import { ComparisonTableDemo } from "./comparison-table";
-import { ComposedChartDemo } from "./composed-chart";
-import { ConfirmMorphDemo } from "./confirm-morph";
-import { AttachmentDemo, ColorPickerDemo, ComposerDemo, ConversationDemo, CopyButtonDemo, FileDiffDemo, MarkdownDemo, QuestionDemo, TagInputDemo, ToolDemo } from "./content";
-import { CountdownDemo } from "./countdown";
-import { CtaBannerDemo } from "./cta-banner";
-import { CtaSectionDemo } from "./cta-section";
-import { DataTableDemo } from "./data-table";
-import { CalendarDemo, InputOTPDemo, RangeCalendarDemo } from "./dates";
-import { AlertDialogDemo, CommandDemo, DialogDemo, DrawerDemo, FullscreenNavDemo, SheetDemo, ToastDemo } from "./dialogs";
-import { DiffTableDemo } from "./diff-table";
-import { DitherGradientDemo } from "./dither-gradient";
-import { DocsNavDemo } from "./docs-nav";
-import { DotMatrixGlowDemo } from "./dot-matrix-glow";
-import { EmptyDemo } from "./empty";
-import { ErrorBoundaryDemo } from "./error-boundary";
-import { ExpandableCardDemo } from "./expandable-card";
-import { ExpandingButtonGroupDemo } from "./expanding-button-group";
-import { ExpandingSearchDemo } from "./expanding-search";
-import { FaqSectionDemo } from "./faq-section";
-import { FillButtonDemo } from "./fill-button";
-import { FineTuneCardDemo } from "./fine-tune-card";
-import { FlightStatusCardDemo } from "./flight-status-card";
-import { FloatingButtonGroupDemo } from "./floating-button-group";
-import { FlowchartDemo } from "./flowchart";
-import { FooterDemo } from "./footer";
-import { FieldDemo, FormDemo, NativeSelectDemo, SeparatorDemo } from "./forms";
-import { BentoGridDemo, ButtonDemo, FileTreeDemo, MorphingModalDemo } from "./foundations";
-import { FunnelChartDemo } from "./funnel-chart";
-import { GaugeChartDemo } from "./gauge-chart";
-import { GithubStatsDemo } from "./github-stats";
-import { GrainGradientDemo } from "./grain-gradient";
-import { HeatmapChartDemo } from "./heatmap-chart";
-import { HeroStageDemo } from "./hero-stage";
-import { HoldToConfirmDemo } from "./hold-to-confirm";
-import { HoverTransitionDemo } from "./hover-transition";
-import { IconMorphDemo } from "./icon-morph";
-import { ImageCompareDemo } from "./image-compare";
-import { ImageTrailDemo } from "./image-trail";
-import { InlineEditDemo } from "./inline-edit";
-import { InputGroupDemo } from "./input-group";
-import { InvoiceListDemo } from "./invoice-list";
-import { IridescentFoldDemo } from "./iridescent-fold";
-import { LetterMorphDemo } from "./letter-morph";
-import { LightCausticsDemo } from "./light-caustics";
-import { LiquidChromeDemo } from "./liquid-chrome";
-import { LiveLineChartDemo } from "./live-line-chart";
-import { LoadingScreenDemo } from "./loading-screen";
-import { LoadingStateDemo } from "./loading-state";
-import { LogoCarouselDemo } from "./logo-carousel";
-import { MarkerDemo } from "./marker";
-import { MegaNavbarDemo } from "./mega-navbar";
-import { MentionInputDemo } from "./mention-input";
-import { MoneyInputDemo } from "./money-input";
-import { MorphSelectDemo } from "./morph-select";
-import { MusicPlayerDemo } from "./music-player";
-import { NavigationMenuDemo } from "./navigation-menu";
-import { NewsletterSignupDemo } from "./newsletter-signup";
-import { NotchedShelfDemo } from "./notched-shelf";
-import { NotificationCenterDemo } from "./notification-center";
-import { NpmStatsDemo } from "./npm-stats";
-import { ClickSparkDemo, DraggableMarqueeDemo, TextReelDemo } from "./obsidian";
-import { OgNewsletterIssueDemo } from "./og-newsletter-issue";
-import { OrbitHeroDemo } from "./orbit-hero";
-import { ComboboxDemo, ContextMenuDemo, DropdownMenuDemo, HoverCardDemo, PopoverDemo, SelectDemo, TooltipDemo } from "./overlays";
-import { OverviewCardDemo } from "./overview-card";
-import { PageHeaderDemo } from "./page-header";
-import { PasswordInputDemo } from "./password-input";
-import { PhoneInputDemo } from "./phone-input";
-import { DateFieldDemo, DatePickerDemo, DateRangePickerDemo, TimePickerDemo } from "./pickers";
-import { PieChartDemo } from "./pie-chart";
-import { PixelCanvasDemo } from "./pixel-canvas";
-import { PixelImageTrailDemo } from "./pixel-image-trail";
-import { Pricing01Demo } from "./pricing-01";
-import { Pricing02Demo } from "./pricing-02";
-import { AccordionDemo, AlertDemo, AvatarDemo, BadgeDemo, CardDemo, CheckboxDemo, InputDemo, LabelDemo, ProgressDemo, SkeletonDemo, SwitchDemo, TextareaDemo } from "./primitives";
-import { CollapsibleDemo, PaginationDemo, ScrollAreaDemo, ShortcutDemo, ShowMoreDemo, SpinnerDemo, ToggleDemo, ToggleGroupDemo, TypographyDemo } from "./primitives2";
-import { ProjectionLineDemo } from "./projection-line";
-import { PropertyPanelDemo } from "./property-panel";
-import { RadarChartDemo } from "./radar-chart";
-import { RecommendationCardDemo } from "./recommendation-card";
-import { RecordsTableDemo } from "./records-table";
-import { ResizableDemo } from "./resizable";
-import { ResponsiveDialogDemo } from "./responsive-dialog";
-import { RidgelineChartDemo } from "./ridgeline-chart";
-import { RingChartDemo } from "./ring-chart";
-import { RippleTransitionDemo } from "./ripple-transition";
-import { SankeyChartDemo } from "./sankey-chart";
-import { ScatterChartDemo } from "./scatter-chart";
-import { ScoreCardDemo } from "./score-card";
-import { ScrollProgressDemo } from "./scroll-progress";
-import { ScrollTiltedGridDemo } from "./scroll-tilted-grid";
-import { SearchInputDemo } from "./search-input";
-import { ShortcutRecorderDemo } from "./shortcut-recorder";
-import { ShowcaseGridDemo } from "./showcase-grid";
-import { SidebarNavDemo } from "./sidebar-nav";
-import { SignaturePadDemo } from "./signature-pad";
-import { SignatureDemo } from "./signature";
-import { SlopeChartDemo } from "./slope-chart";
-import { SlotTextDemo } from "./slot-text";
-import { SparklineDemo } from "./sparkline";
-import { SpectralRibbonDemo } from "./spectral-ribbon";
-import { SplitButtonDemo } from "./split-button";
-import { SplitFlapDisplayDemo } from "./split-flap-display";
-import { StarHistoryDemo } from "./star-history";
-import { StatsBandDemo } from "./stats-band";
-import { StepperDemo } from "./stepper";
-import { StickyScrollCardsDemo } from "./sticky-scroll-cards";
-import { StreamgraphChartDemo } from "./streamgraph-chart";
-import { StreamingTextDemo } from "./streaming-text";
-import { SunburstChartDemo } from "./sunburst-chart";
-import { SwappableDemo } from "./swappable";
-import { SwipeActionsDemo } from "./swipe-actions";
-import { TableOfContentsDemo } from "./table-of-contents";
-import { TableDemo } from "./table";
-import { DiaTextDemo, MorphTextDemo, RevealTextDemo, RollingDigitsDemo, ShimmerTextDemo, TextLoopDemo } from "./text-motion";
-import { TextRepelDemo } from "./text-repel";
-import { AnimatedGradientTextDemo, GibberishTextDemo, GlitchTextDemo, MirrorTextDemo, RollTextDemo, TextTransitionDemo, TypingTextDemo, UnderlineHoverTextDemo } from "./text";
-import { ThemeToggleDemo } from "./theme-toggle";
-import { TimelineDemo } from "./timeline";
-import { ToolChipsDemo } from "./tool-chips";
-import { TreemapChartDemo } from "./treemap-chart";
-import { UserMenuDemo } from "./user-menu";
-import { FileUploadDemo, MultiSelectDemo, NumberInputDemo } from "./utility-inputs";
-import { VideoPlayerDemo } from "./video-player";
-import { WaffleChartDemo } from "./waffle-chart";
-import { WebglLiquidDemo } from "./webgl-liquid";
-import { WeekCalendarDemo } from "./week-calendar";
-import { WheelCarouselDemo } from "./wheel-carousel";
-import { WheelPickerDemo } from "./wheel-picker";
-import { AgentScreenDemo } from "./auto/agent-screen";
-import { BoldCopyDemo } from "./auto/bold-copy";
-import { CaseStudyFlipStackDemo } from "./auto/case-study-flip-stack";
-import { CircuitBoardDemo } from "./auto/circuit-board";
-import { CircularTextDemo } from "./auto/circular-text";
-import { CodeBlockDemo } from "./auto/code-block";
-import { CollabCardDemo } from "./auto/collab-card";
-import { CollectionSurferDemo } from "./auto/collection-surfer";
-import { ContextCardsDemo } from "./auto/context-cards";
-import { CubeTextDemo } from "./auto/cube-text";
-import { DitheredLogoDemo } from "./auto/dithered-logo";
-import { FilterTableDemo } from "./auto/filter-table";
-import { GithubCalendarDemo } from "./auto/github-calendar";
-import { GradientHero01Demo } from "./auto/gradient-hero-01";
-import { InfiniteImageFieldDemo } from "./auto/infinite-image-field";
-import { MagnetLinesDemo } from "./auto/magnet-lines";
-import { MaskTextDemo } from "./auto/mask-text";
-import { OgAppIconDemo } from "./auto/og-app-icon";
-import { OgAppTileDemo } from "./auto/og-app-tile";
-import { OgBigIconDemo } from "./auto/og-big-icon";
-import { OgBlogPostDemo } from "./auto/og-blog-post";
-import { OgChangelogDemo } from "./auto/og-changelog";
-import { OgCtaPillDemo } from "./auto/og-cta-pill";
-import { OgDocsPageDemo } from "./auto/og-docs-page";
-import { OgEditorialBioDemo } from "./auto/og-editorial-bio";
-import { OgGithubRepoDemo } from "./auto/og-github-repo";
-import { OgGuidesDemo } from "./auto/og-guides";
-import { OgHairlinesDemo } from "./auto/og-hairlines";
-import { OgHaloDemo } from "./auto/og-halo";
-import { OgJobPostingDemo } from "./auto/og-job-posting";
-import { OgPaperWindowDemo } from "./auto/og-paper-window";
-import { OgPodcastEpisodeDemo } from "./auto/og-podcast-episode";
-import { OgPricingDemo } from "./auto/og-pricing";
-import { OgProductLaunchDemo } from "./auto/og-product-launch";
-import { OgProductShopDemo } from "./auto/og-product-shop";
-import { OgPromptDemo } from "./auto/og-prompt";
-import { OgPromptPhotoDemo } from "./auto/og-prompt-photo";
-import { OgScatterDemo } from "./auto/og-scatter";
-import { OgShowcaseDemo } from "./auto/og-showcase";
-import { OgSoftFocusDemo } from "./auto/og-soft-focus";
-import { OgSplitDemo } from "./auto/og-split";
-import { OgSpotlightDemo } from "./auto/og-spotlight";
-import { OgStatementDemo } from "./auto/og-statement";
-import { OgStatsMetricsDemo } from "./auto/og-stats-metrics";
-import { OgTaglineDemo } from "./auto/og-tagline";
-import { OgTestimonialDemo } from "./auto/og-testimonial";
-import { OgTiltedScreenDemo } from "./auto/og-tilted-screen";
-import { OgWordmarkDemo } from "./auto/og-wordmark";
-import { OrbitCardStackDemo } from "./auto/orbit-card-stack";
-import { ParticleTextDemo } from "./auto/particle-text";
-import { ScrollChoreographyDemo } from "./auto/scroll-choreography";
-import { ScrollRevealDemo } from "./auto/scroll-reveal";
-import { ScrollSplitCardDemo } from "./auto/scroll-split-card";
-import { SplitTextDemo } from "./auto/split-text";
-import { StatCardDemo } from "./auto/stat-card";
-import { StatCardMapDemo } from "./auto/stat-card-map";
-import { StatusMonitorDemo } from "./auto/status-monitor";
-import { UsageCardDemo } from "./auto/usage-card";
+import type { ComponentType } from "react";
 
-type Props = Record<string, unknown>;
+export type DemoComponent = ComponentType<{ props: Record<string, unknown> }>;
+export type DemoLoader = () => Promise<{ default: DemoComponent }>;
 
-export const demos: Record<string, (p: { props: Props }) => React.ReactElement> = {
-	accordion: AccordionDemo,
-	"action-button": ActionButtonDemo,
-	"agent-screen": AgentScreenDemo,
-	alert: AlertDemo,
-	"alert-dialog": AlertDialogDemo,
-	"animated-gradient": AnimatedGradientDemo,
-	"animated-gradient-text": AnimatedGradientTextDemo,
-	"announcement-bar": AnnouncementBarDemo,
-	"area-chart": AreaChartDemo,
-	"ascii-effect": AsciiEffectDemo,
-	attachment: AttachmentDemo,
-	"aurora-flow": AuroraFlowDemo,
-	"auth-form": AuthFormDemo,
-	avatar: AvatarDemo,
-	badge: BadgeDemo,
-	"bar-chart": BarChartDemo,
-	"bento-grid": BentoGridDemo,
-	"billing-toggle": BillingToggleDemo,
-	"blog-grid": BlogGridDemo,
-	"bold-copy": BoldCopyDemo,
-	breadcrumb: BreadcrumbDemo,
-	button: ButtonDemo,
-	"button-group": ButtonGroupDemo,
-	calendar: CalendarDemo,
-	"candlestick-chart": CandlestickChartDemo,
-	card: CardDemo,
-	"card-stack": CardStackDemo,
-	carousel: CarouselDemo,
-	"case-study-flip-stack": CaseStudyFlipStackDemo,
-	"changelog-feed": ChangelogFeedDemo,
-	chart: ChartDemo,
-	"chart-brush": ChartBrushDemo,
-	"chart-markers": ChartMarkersDemo,
-	"chart-series": ChartSeriesDemo,
-	"chat-composer": ChatComposerDemo,
-	checkbox: CheckboxDemo,
-	"choropleth-chart": ChoroplethChartDemo,
-	"chromatic-wave": ChromaticWaveDemo,
-	"circuit-board": CircuitBoardDemo,
-	"circular-text": CircularTextDemo,
-	"click-spark": ClickSparkDemo,
-	"closing-plasma": ClosingPlasmaDemo,
-	"code-block": CodeBlockDemo,
-	"collab-card": CollabCardDemo,
-	collapsible: CollapsibleDemo,
-	"collection-surfer": CollectionSurferDemo,
-	"color-picker": ColorPickerDemo,
-	combobox: ComboboxDemo,
-	command: CommandDemo,
-	"comment-thread": CommentThreadDemo,
-	"comparison-table": ComparisonTableDemo,
-	"composed-chart": ComposedChartDemo,
-	composer: ComposerDemo,
-	"confirm-morph": ConfirmMorphDemo,
-	"context-cards": ContextCardsDemo,
-	"context-menu": ContextMenuDemo,
-	conversation: ConversationDemo,
-	"copy-button": CopyButtonDemo,
-	countdown: CountdownDemo,
-	"cta-banner": CtaBannerDemo,
-	"cta-section": CtaSectionDemo,
-	"cube-text": CubeTextDemo,
-	"data-table": DataTableDemo,
-	"date-field": DateFieldDemo,
-	"date-picker": DatePickerDemo,
-	"date-range-picker": DateRangePickerDemo,
-	"dia-text": DiaTextDemo,
-	dialog: DialogDemo,
-	"diff-table": DiffTableDemo,
-	"dither-gradient": DitherGradientDemo,
-	"dithered-logo": DitheredLogoDemo,
-	"docs-nav": DocsNavDemo,
-	"dot-matrix-glow": DotMatrixGlowDemo,
-	"draggable-marquee": DraggableMarqueeDemo,
-	drawer: DrawerDemo,
-	"dropdown-menu": DropdownMenuDemo,
-	empty: EmptyDemo,
-	"error-boundary": ErrorBoundaryDemo,
-	"expandable-card": ExpandableCardDemo,
-	"expanding-button-group": ExpandingButtonGroupDemo,
-	"expanding-search": ExpandingSearchDemo,
-	"faq-section": FaqSectionDemo,
-	field: FieldDemo,
-	"file-diff": FileDiffDemo,
-	"file-tree": FileTreeDemo,
-	"file-upload": FileUploadDemo,
-	"fill-button": FillButtonDemo,
-	"filter-table": FilterTableDemo,
-	"fine-tune-card": FineTuneCardDemo,
-	"flight-status-card": FlightStatusCardDemo,
-	"floating-button-group": FloatingButtonGroupDemo,
-	flowchart: FlowchartDemo,
-	footer: FooterDemo,
-	form: FormDemo,
-	"fullscreen-nav": FullscreenNavDemo,
-	"funnel-chart": FunnelChartDemo,
-	"gauge-chart": GaugeChartDemo,
-	"gibberish-text": GibberishTextDemo,
-	"github-calendar": GithubCalendarDemo,
-	"github-stats": GithubStatsDemo,
-	"glitch-text": GlitchTextDemo,
-	"gradient-hero-01": GradientHero01Demo,
-	"grain-gradient": GrainGradientDemo,
-	"heatmap-chart": HeatmapChartDemo,
-	"hero-stage": HeroStageDemo,
-	"hold-to-confirm": HoldToConfirmDemo,
-	"hover-card": HoverCardDemo,
-	"hover-transition": HoverTransitionDemo,
-	"icon-morph": IconMorphDemo,
-	"image-compare": ImageCompareDemo,
-	"image-trail": ImageTrailDemo,
-	"infinite-image-field": InfiniteImageFieldDemo,
-	"inline-edit": InlineEditDemo,
-	input: InputDemo,
-	"input-group": InputGroupDemo,
-	"input-otp": InputOTPDemo,
-	"invoice-list": InvoiceListDemo,
-	"iridescent-fold": IridescentFoldDemo,
-	label: LabelDemo,
-	"letter-morph": LetterMorphDemo,
-	"light-caustics": LightCausticsDemo,
-	"line-chart": LineChartDemo,
-	"liquid-chrome": LiquidChromeDemo,
-	"live-line-chart": LiveLineChartDemo,
-	"loading-screen": LoadingScreenDemo,
-	"loading-state": LoadingStateDemo,
-	"logo-carousel": LogoCarouselDemo,
-	"magnet-lines": MagnetLinesDemo,
-	markdown: MarkdownDemo,
-	marker: MarkerDemo,
-	"mask-text": MaskTextDemo,
-	"mega-navbar": MegaNavbarDemo,
-	"mention-input": MentionInputDemo,
-	message: MessageDemo,
-	"mirror-text": MirrorTextDemo,
-	"money-input": MoneyInputDemo,
-	"morph-select": MorphSelectDemo,
-	"morph-text": MorphTextDemo,
-	"morphing-modal": MorphingModalDemo,
-	"multi-select": MultiSelectDemo,
-	"music-player": MusicPlayerDemo,
-	"native-select": NativeSelectDemo,
-	"navigation-menu": NavigationMenuDemo,
-	"newsletter-signup": NewsletterSignupDemo,
-	"notched-shelf": NotchedShelfDemo,
-	"notification-center": NotificationCenterDemo,
-	"npm-stats": NpmStatsDemo,
-	"number-input": NumberInputDemo,
-	"og-app-icon": OgAppIconDemo,
-	"og-app-tile": OgAppTileDemo,
-	"og-big-icon": OgBigIconDemo,
-	"og-blog-post": OgBlogPostDemo,
-	"og-changelog": OgChangelogDemo,
-	"og-cta-pill": OgCtaPillDemo,
-	"og-docs-page": OgDocsPageDemo,
-	"og-editorial-bio": OgEditorialBioDemo,
-	"og-github-repo": OgGithubRepoDemo,
-	"og-guides": OgGuidesDemo,
-	"og-hairlines": OgHairlinesDemo,
-	"og-halo": OgHaloDemo,
-	"og-job-posting": OgJobPostingDemo,
-	"og-newsletter-issue": OgNewsletterIssueDemo,
-	"og-paper-window": OgPaperWindowDemo,
-	"og-podcast-episode": OgPodcastEpisodeDemo,
-	"og-pricing": OgPricingDemo,
-	"og-product-launch": OgProductLaunchDemo,
-	"og-product-shop": OgProductShopDemo,
-	"og-prompt": OgPromptDemo,
-	"og-prompt-photo": OgPromptPhotoDemo,
-	"og-scatter": OgScatterDemo,
-	"og-showcase": OgShowcaseDemo,
-	"og-soft-focus": OgSoftFocusDemo,
-	"og-split": OgSplitDemo,
-	"og-spotlight": OgSpotlightDemo,
-	"og-statement": OgStatementDemo,
-	"og-stats-metrics": OgStatsMetricsDemo,
-	"og-tagline": OgTaglineDemo,
-	"og-testimonial": OgTestimonialDemo,
-	"og-tilted-screen": OgTiltedScreenDemo,
-	"og-wordmark": OgWordmarkDemo,
-	"orbit-card-stack": OrbitCardStackDemo,
-	"orbit-hero": OrbitHeroDemo,
-	"overview-card": OverviewCardDemo,
-	"page-header": PageHeaderDemo,
-	pagination: PaginationDemo,
-	"particle-text": ParticleTextDemo,
-	"password-input": PasswordInputDemo,
-	"phone-input": PhoneInputDemo,
-	"pie-chart": PieChartDemo,
-	"pixel-canvas": PixelCanvasDemo,
-	"pixel-image-trail": PixelImageTrailDemo,
-	popover: PopoverDemo,
-	"pricing-01": Pricing01Demo,
-	"pricing-02": Pricing02Demo,
-	progress: ProgressDemo,
-	"projection-line": ProjectionLineDemo,
-	"property-panel": PropertyPanelDemo,
-	question: QuestionDemo,
-	"radar-chart": RadarChartDemo,
-	"radio-group": RadioGroupDemo,
-	"range-calendar": RangeCalendarDemo,
-	reasoning: ReasoningDemo,
-	"recommendation-card": RecommendationCardDemo,
-	"records-table": RecordsTableDemo,
-	resizable: ResizableDemo,
-	"responsive-dialog": ResponsiveDialogDemo,
-	"reveal-text": RevealTextDemo,
-	"ridgeline-chart": RidgelineChartDemo,
-	"ring-chart": RingChartDemo,
-	"ripple-transition": RippleTransitionDemo,
-	"roll-text": RollTextDemo,
-	"rolling-digits": RollingDigitsDemo,
-	"sankey-chart": SankeyChartDemo,
-	"scatter-chart": ScatterChartDemo,
-	"score-card": ScoreCardDemo,
-	"scroll-area": ScrollAreaDemo,
-	"scroll-choreography": ScrollChoreographyDemo,
-	"scroll-progress": ScrollProgressDemo,
-	"scroll-reveal": ScrollRevealDemo,
-	"scroll-split-card": ScrollSplitCardDemo,
-	"scroll-tilted-grid": ScrollTiltedGridDemo,
-	"search-input": SearchInputDemo,
-	select: SelectDemo,
-	separator: SeparatorDemo,
-	sheet: SheetDemo,
-	"shimmer-text": ShimmerTextDemo,
-	shortcut: ShortcutDemo,
-	"shortcut-recorder": ShortcutRecorderDemo,
-	"show-more": ShowMoreDemo,
-	"showcase-grid": ShowcaseGridDemo,
-	"sidebar-nav": SidebarNavDemo,
-	signature: SignatureDemo,
-	"signature-pad": SignaturePadDemo,
-	skeleton: SkeletonDemo,
-	slider: SliderDemo,
-	"slope-chart": SlopeChartDemo,
-	"slot-text": SlotTextDemo,
-	sparkline: SparklineDemo,
-	"spectral-ribbon": SpectralRibbonDemo,
-	spinner: SpinnerDemo,
-	"split-button": SplitButtonDemo,
-	"split-flap-display": SplitFlapDisplayDemo,
-	"split-text": SplitTextDemo,
-	"star-history": StarHistoryDemo,
-	"stat-card": StatCardDemo,
-	"stat-card-map": StatCardMapDemo,
-	"stats-band": StatsBandDemo,
-	"status-monitor": StatusMonitorDemo,
-	stepper: StepperDemo,
-	"sticky-scroll-cards": StickyScrollCardsDemo,
-	"streamgraph-chart": StreamgraphChartDemo,
-	"streaming-text": StreamingTextDemo,
-	"sunburst-chart": SunburstChartDemo,
-	swappable: SwappableDemo,
-	"swipe-actions": SwipeActionsDemo,
-	switch: SwitchDemo,
-	table: TableDemo,
-	"table-of-contents": TableOfContentsDemo,
-	tabs: TabsDemo,
-	"tag-input": TagInputDemo,
-	"task-steps": TaskStepsDemo,
-	"text-loop": TextLoopDemo,
-	"text-reel": TextReelDemo,
-	"text-repel": TextRepelDemo,
-	"text-transition": TextTransitionDemo,
-	textarea: TextareaDemo,
-	"theme-toggle": ThemeToggleDemo,
-	"time-picker": TimePickerDemo,
-	timeline: TimelineDemo,
-	toast: ToastDemo,
-	toggle: ToggleDemo,
-	"toggle-group": ToggleGroupDemo,
-	tool: ToolDemo,
-	"tool-chips": ToolChipsDemo,
-	tooltip: TooltipDemo,
-	"treemap-chart": TreemapChartDemo,
-	"typing-text": TypingTextDemo,
-	typography: TypographyDemo,
-	"underline-hover-text": UnderlineHoverTextDemo,
-	"usage-card": UsageCardDemo,
-	"user-menu": UserMenuDemo,
-	"video-player": VideoPlayerDemo,
-	"waffle-chart": WaffleChartDemo,
-	"webgl-liquid": WebglLiquidDemo,
-	"week-calendar": WeekCalendarDemo,
-	"wheel-carousel": WheelCarouselDemo,
-	"wheel-picker": WheelPickerDemo,
+/** One dynamic import per slug, so a runner fetches only the demo it shows. */
+export const demos: Record<string, DemoLoader> = {
+	accordion: () => import("./primitives").then((m) => ({ default: m.AccordionDemo })),
+	"action-button": () => import("./action-button").then((m) => ({ default: m.ActionButtonDemo })),
+	"agent-screen": () => import("./auto/agent-screen").then((m) => ({ default: m.AgentScreenDemo })),
+	alert: () => import("./primitives").then((m) => ({ default: m.AlertDemo })),
+	"alert-dialog": () => import("./dialogs").then((m) => ({ default: m.AlertDialogDemo })),
+	"animated-gradient": () => import("./animated-gradient").then((m) => ({ default: m.AnimatedGradientDemo })),
+	"animated-gradient-text": () => import("./text").then((m) => ({ default: m.AnimatedGradientTextDemo })),
+	"announcement-bar": () => import("./announcement-bar").then((m) => ({ default: m.AnnouncementBarDemo })),
+	"area-chart": () => import("./area-chart").then((m) => ({ default: m.AreaChartDemo })),
+	"ascii-effect": () => import("./ascii-effect").then((m) => ({ default: m.AsciiEffectDemo })),
+	attachment: () => import("./content").then((m) => ({ default: m.AttachmentDemo })),
+	"aurora-flow": () => import("./aurora-flow").then((m) => ({ default: m.AuroraFlowDemo })),
+	"auth-form": () => import("./auth-form").then((m) => ({ default: m.AuthFormDemo })),
+	avatar: () => import("./primitives").then((m) => ({ default: m.AvatarDemo })),
+	badge: () => import("./primitives").then((m) => ({ default: m.BadgeDemo })),
+	"bar-chart": () => import("./bar-chart").then((m) => ({ default: m.BarChartDemo })),
+	"bento-grid": () => import("./foundations").then((m) => ({ default: m.BentoGridDemo })),
+	"billing-toggle": () => import("./billing-toggle").then((m) => ({ default: m.BillingToggleDemo })),
+	"blog-grid": () => import("./blog-grid").then((m) => ({ default: m.BlogGridDemo })),
+	"bold-copy": () => import("./auto/bold-copy").then((m) => ({ default: m.BoldCopyDemo })),
+	breadcrumb: () => import("./agentic").then((m) => ({ default: m.BreadcrumbDemo })),
+	button: () => import("./foundations").then((m) => ({ default: m.ButtonDemo })),
+	"button-group": () => import("./button-group").then((m) => ({ default: m.ButtonGroupDemo })),
+	calendar: () => import("./dates").then((m) => ({ default: m.CalendarDemo })),
+	"candlestick-chart": () => import("./candlestick-chart").then((m) => ({ default: m.CandlestickChartDemo })),
+	card: () => import("./primitives").then((m) => ({ default: m.CardDemo })),
+	"card-stack": () => import("./card-stack").then((m) => ({ default: m.CardStackDemo })),
+	carousel: () => import("./carousel").then((m) => ({ default: m.CarouselDemo })),
+	"case-study-flip-stack": () => import("./auto/case-study-flip-stack").then((m) => ({ default: m.CaseStudyFlipStackDemo })),
+	"changelog-feed": () => import("./changelog-feed").then((m) => ({ default: m.ChangelogFeedDemo })),
+	chart: () => import("./charts").then((m) => ({ default: m.ChartDemo })),
+	"chart-brush": () => import("./chart-brush").then((m) => ({ default: m.ChartBrushDemo })),
+	"chart-markers": () => import("./chart-markers").then((m) => ({ default: m.ChartMarkersDemo })),
+	"chart-series": () => import("./chart-series").then((m) => ({ default: m.ChartSeriesDemo })),
+	"chat-composer": () => import("./chat-composer").then((m) => ({ default: m.ChatComposerDemo })),
+	checkbox: () => import("./primitives").then((m) => ({ default: m.CheckboxDemo })),
+	"choropleth-chart": () => import("./choropleth-chart").then((m) => ({ default: m.ChoroplethChartDemo })),
+	"chromatic-wave": () => import("./chromatic-wave").then((m) => ({ default: m.ChromaticWaveDemo })),
+	"circuit-board": () => import("./auto/circuit-board").then((m) => ({ default: m.CircuitBoardDemo })),
+	"circular-text": () => import("./auto/circular-text").then((m) => ({ default: m.CircularTextDemo })),
+	"click-spark": () => import("./obsidian").then((m) => ({ default: m.ClickSparkDemo })),
+	"closing-plasma": () => import("./closing-plasma").then((m) => ({ default: m.ClosingPlasmaDemo })),
+	"code-block": () => import("./auto/code-block").then((m) => ({ default: m.CodeBlockDemo })),
+	"collab-card": () => import("./auto/collab-card").then((m) => ({ default: m.CollabCardDemo })),
+	collapsible: () => import("./primitives2").then((m) => ({ default: m.CollapsibleDemo })),
+	"collection-surfer": () => import("./auto/collection-surfer").then((m) => ({ default: m.CollectionSurferDemo })),
+	"color-picker": () => import("./content").then((m) => ({ default: m.ColorPickerDemo })),
+	combobox: () => import("./overlays").then((m) => ({ default: m.ComboboxDemo })),
+	command: () => import("./dialogs").then((m) => ({ default: m.CommandDemo })),
+	"comment-thread": () => import("./comment-thread").then((m) => ({ default: m.CommentThreadDemo })),
+	"comparison-table": () => import("./comparison-table").then((m) => ({ default: m.ComparisonTableDemo })),
+	"composed-chart": () => import("./composed-chart").then((m) => ({ default: m.ComposedChartDemo })),
+	composer: () => import("./content").then((m) => ({ default: m.ComposerDemo })),
+	"confirm-morph": () => import("./confirm-morph").then((m) => ({ default: m.ConfirmMorphDemo })),
+	"context-cards": () => import("./auto/context-cards").then((m) => ({ default: m.ContextCardsDemo })),
+	"context-menu": () => import("./overlays").then((m) => ({ default: m.ContextMenuDemo })),
+	conversation: () => import("./content").then((m) => ({ default: m.ConversationDemo })),
+	"copy-button": () => import("./content").then((m) => ({ default: m.CopyButtonDemo })),
+	countdown: () => import("./countdown").then((m) => ({ default: m.CountdownDemo })),
+	"cta-banner": () => import("./cta-banner").then((m) => ({ default: m.CtaBannerDemo })),
+	"cta-section": () => import("./cta-section").then((m) => ({ default: m.CtaSectionDemo })),
+	"cube-text": () => import("./auto/cube-text").then((m) => ({ default: m.CubeTextDemo })),
+	"data-table": () => import("./data-table").then((m) => ({ default: m.DataTableDemo })),
+	"date-field": () => import("./pickers").then((m) => ({ default: m.DateFieldDemo })),
+	"date-picker": () => import("./pickers").then((m) => ({ default: m.DatePickerDemo })),
+	"date-range-picker": () => import("./pickers").then((m) => ({ default: m.DateRangePickerDemo })),
+	"dia-text": () => import("./text-motion").then((m) => ({ default: m.DiaTextDemo })),
+	dialog: () => import("./dialogs").then((m) => ({ default: m.DialogDemo })),
+	"diff-table": () => import("./diff-table").then((m) => ({ default: m.DiffTableDemo })),
+	"dither-gradient": () => import("./dither-gradient").then((m) => ({ default: m.DitherGradientDemo })),
+	"dithered-logo": () => import("./auto/dithered-logo").then((m) => ({ default: m.DitheredLogoDemo })),
+	"docs-nav": () => import("./docs-nav").then((m) => ({ default: m.DocsNavDemo })),
+	"dot-matrix-glow": () => import("./dot-matrix-glow").then((m) => ({ default: m.DotMatrixGlowDemo })),
+	"draggable-marquee": () => import("./obsidian").then((m) => ({ default: m.DraggableMarqueeDemo })),
+	drawer: () => import("./dialogs").then((m) => ({ default: m.DrawerDemo })),
+	"dropdown-menu": () => import("./overlays").then((m) => ({ default: m.DropdownMenuDemo })),
+	empty: () => import("./empty").then((m) => ({ default: m.EmptyDemo })),
+	"error-boundary": () => import("./error-boundary").then((m) => ({ default: m.ErrorBoundaryDemo })),
+	"expandable-card": () => import("./expandable-card").then((m) => ({ default: m.ExpandableCardDemo })),
+	"expanding-button-group": () => import("./expanding-button-group").then((m) => ({ default: m.ExpandingButtonGroupDemo })),
+	"expanding-search": () => import("./expanding-search").then((m) => ({ default: m.ExpandingSearchDemo })),
+	"faq-section": () => import("./faq-section").then((m) => ({ default: m.FaqSectionDemo })),
+	field: () => import("./forms").then((m) => ({ default: m.FieldDemo })),
+	"file-diff": () => import("./content").then((m) => ({ default: m.FileDiffDemo })),
+	"file-tree": () => import("./foundations").then((m) => ({ default: m.FileTreeDemo })),
+	"file-upload": () => import("./utility-inputs").then((m) => ({ default: m.FileUploadDemo })),
+	"fill-button": () => import("./fill-button").then((m) => ({ default: m.FillButtonDemo })),
+	"filter-table": () => import("./auto/filter-table").then((m) => ({ default: m.FilterTableDemo })),
+	"fine-tune-card": () => import("./fine-tune-card").then((m) => ({ default: m.FineTuneCardDemo })),
+	"flight-status-card": () => import("./flight-status-card").then((m) => ({ default: m.FlightStatusCardDemo })),
+	"floating-button-group": () => import("./floating-button-group").then((m) => ({ default: m.FloatingButtonGroupDemo })),
+	flowchart: () => import("./flowchart").then((m) => ({ default: m.FlowchartDemo })),
+	footer: () => import("./footer").then((m) => ({ default: m.FooterDemo })),
+	form: () => import("./forms").then((m) => ({ default: m.FormDemo })),
+	"fullscreen-nav": () => import("./dialogs").then((m) => ({ default: m.FullscreenNavDemo })),
+	"funnel-chart": () => import("./funnel-chart").then((m) => ({ default: m.FunnelChartDemo })),
+	"gauge-chart": () => import("./gauge-chart").then((m) => ({ default: m.GaugeChartDemo })),
+	"gibberish-text": () => import("./text").then((m) => ({ default: m.GibberishTextDemo })),
+	"github-calendar": () => import("./auto/github-calendar").then((m) => ({ default: m.GithubCalendarDemo })),
+	"github-stats": () => import("./github-stats").then((m) => ({ default: m.GithubStatsDemo })),
+	"glitch-text": () => import("./text").then((m) => ({ default: m.GlitchTextDemo })),
+	"gradient-hero-01": () => import("./auto/gradient-hero-01").then((m) => ({ default: m.GradientHero01Demo })),
+	"grain-gradient": () => import("./grain-gradient").then((m) => ({ default: m.GrainGradientDemo })),
+	"heatmap-chart": () => import("./heatmap-chart").then((m) => ({ default: m.HeatmapChartDemo })),
+	"hero-stage": () => import("./hero-stage").then((m) => ({ default: m.HeroStageDemo })),
+	"hold-to-confirm": () => import("./hold-to-confirm").then((m) => ({ default: m.HoldToConfirmDemo })),
+	"hover-card": () => import("./overlays").then((m) => ({ default: m.HoverCardDemo })),
+	"hover-transition": () => import("./hover-transition").then((m) => ({ default: m.HoverTransitionDemo })),
+	"icon-morph": () => import("./icon-morph").then((m) => ({ default: m.IconMorphDemo })),
+	"image-compare": () => import("./image-compare").then((m) => ({ default: m.ImageCompareDemo })),
+	"image-trail": () => import("./image-trail").then((m) => ({ default: m.ImageTrailDemo })),
+	"infinite-image-field": () => import("./auto/infinite-image-field").then((m) => ({ default: m.InfiniteImageFieldDemo })),
+	"inline-edit": () => import("./inline-edit").then((m) => ({ default: m.InlineEditDemo })),
+	input: () => import("./primitives").then((m) => ({ default: m.InputDemo })),
+	"input-group": () => import("./input-group").then((m) => ({ default: m.InputGroupDemo })),
+	"input-otp": () => import("./dates").then((m) => ({ default: m.InputOTPDemo })),
+	"invoice-list": () => import("./invoice-list").then((m) => ({ default: m.InvoiceListDemo })),
+	"iridescent-fold": () => import("./iridescent-fold").then((m) => ({ default: m.IridescentFoldDemo })),
+	label: () => import("./primitives").then((m) => ({ default: m.LabelDemo })),
+	"letter-morph": () => import("./letter-morph").then((m) => ({ default: m.LetterMorphDemo })),
+	"light-caustics": () => import("./light-caustics").then((m) => ({ default: m.LightCausticsDemo })),
+	"line-chart": () => import("./charts").then((m) => ({ default: m.LineChartDemo })),
+	"liquid-chrome": () => import("./liquid-chrome").then((m) => ({ default: m.LiquidChromeDemo })),
+	"live-line-chart": () => import("./live-line-chart").then((m) => ({ default: m.LiveLineChartDemo })),
+	"loading-screen": () => import("./loading-screen").then((m) => ({ default: m.LoadingScreenDemo })),
+	"loading-state": () => import("./loading-state").then((m) => ({ default: m.LoadingStateDemo })),
+	"logo-carousel": () => import("./logo-carousel").then((m) => ({ default: m.LogoCarouselDemo })),
+	"magnet-lines": () => import("./auto/magnet-lines").then((m) => ({ default: m.MagnetLinesDemo })),
+	markdown: () => import("./content").then((m) => ({ default: m.MarkdownDemo })),
+	marker: () => import("./marker").then((m) => ({ default: m.MarkerDemo })),
+	"mask-text": () => import("./auto/mask-text").then((m) => ({ default: m.MaskTextDemo })),
+	"mega-navbar": () => import("./mega-navbar").then((m) => ({ default: m.MegaNavbarDemo })),
+	"mention-input": () => import("./mention-input").then((m) => ({ default: m.MentionInputDemo })),
+	message: () => import("./agentic").then((m) => ({ default: m.MessageDemo })),
+	"mirror-text": () => import("./text").then((m) => ({ default: m.MirrorTextDemo })),
+	"money-input": () => import("./money-input").then((m) => ({ default: m.MoneyInputDemo })),
+	"morph-select": () => import("./morph-select").then((m) => ({ default: m.MorphSelectDemo })),
+	"morph-text": () => import("./text-motion").then((m) => ({ default: m.MorphTextDemo })),
+	"morphing-modal": () => import("./foundations").then((m) => ({ default: m.MorphingModalDemo })),
+	"multi-select": () => import("./utility-inputs").then((m) => ({ default: m.MultiSelectDemo })),
+	"music-player": () => import("./music-player").then((m) => ({ default: m.MusicPlayerDemo })),
+	"native-select": () => import("./forms").then((m) => ({ default: m.NativeSelectDemo })),
+	"navigation-menu": () => import("./navigation-menu").then((m) => ({ default: m.NavigationMenuDemo })),
+	"newsletter-signup": () => import("./newsletter-signup").then((m) => ({ default: m.NewsletterSignupDemo })),
+	"notched-shelf": () => import("./notched-shelf").then((m) => ({ default: m.NotchedShelfDemo })),
+	"notification-center": () => import("./notification-center").then((m) => ({ default: m.NotificationCenterDemo })),
+	"npm-stats": () => import("./npm-stats").then((m) => ({ default: m.NpmStatsDemo })),
+	"number-input": () => import("./utility-inputs").then((m) => ({ default: m.NumberInputDemo })),
+	"og-app-icon": () => import("./auto/og-app-icon").then((m) => ({ default: m.OgAppIconDemo })),
+	"og-app-tile": () => import("./auto/og-app-tile").then((m) => ({ default: m.OgAppTileDemo })),
+	"og-big-icon": () => import("./auto/og-big-icon").then((m) => ({ default: m.OgBigIconDemo })),
+	"og-blog-post": () => import("./auto/og-blog-post").then((m) => ({ default: m.OgBlogPostDemo })),
+	"og-changelog": () => import("./auto/og-changelog").then((m) => ({ default: m.OgChangelogDemo })),
+	"og-cta-pill": () => import("./auto/og-cta-pill").then((m) => ({ default: m.OgCtaPillDemo })),
+	"og-docs-page": () => import("./auto/og-docs-page").then((m) => ({ default: m.OgDocsPageDemo })),
+	"og-editorial-bio": () => import("./auto/og-editorial-bio").then((m) => ({ default: m.OgEditorialBioDemo })),
+	"og-github-repo": () => import("./auto/og-github-repo").then((m) => ({ default: m.OgGithubRepoDemo })),
+	"og-guides": () => import("./auto/og-guides").then((m) => ({ default: m.OgGuidesDemo })),
+	"og-hairlines": () => import("./auto/og-hairlines").then((m) => ({ default: m.OgHairlinesDemo })),
+	"og-halo": () => import("./auto/og-halo").then((m) => ({ default: m.OgHaloDemo })),
+	"og-job-posting": () => import("./auto/og-job-posting").then((m) => ({ default: m.OgJobPostingDemo })),
+	"og-newsletter-issue": () => import("./og-newsletter-issue").then((m) => ({ default: m.OgNewsletterIssueDemo })),
+	"og-paper-window": () => import("./auto/og-paper-window").then((m) => ({ default: m.OgPaperWindowDemo })),
+	"og-podcast-episode": () => import("./auto/og-podcast-episode").then((m) => ({ default: m.OgPodcastEpisodeDemo })),
+	"og-pricing": () => import("./auto/og-pricing").then((m) => ({ default: m.OgPricingDemo })),
+	"og-product-launch": () => import("./auto/og-product-launch").then((m) => ({ default: m.OgProductLaunchDemo })),
+	"og-product-shop": () => import("./auto/og-product-shop").then((m) => ({ default: m.OgProductShopDemo })),
+	"og-prompt": () => import("./auto/og-prompt").then((m) => ({ default: m.OgPromptDemo })),
+	"og-prompt-photo": () => import("./auto/og-prompt-photo").then((m) => ({ default: m.OgPromptPhotoDemo })),
+	"og-scatter": () => import("./auto/og-scatter").then((m) => ({ default: m.OgScatterDemo })),
+	"og-showcase": () => import("./auto/og-showcase").then((m) => ({ default: m.OgShowcaseDemo })),
+	"og-soft-focus": () => import("./auto/og-soft-focus").then((m) => ({ default: m.OgSoftFocusDemo })),
+	"og-split": () => import("./auto/og-split").then((m) => ({ default: m.OgSplitDemo })),
+	"og-spotlight": () => import("./auto/og-spotlight").then((m) => ({ default: m.OgSpotlightDemo })),
+	"og-statement": () => import("./auto/og-statement").then((m) => ({ default: m.OgStatementDemo })),
+	"og-stats-metrics": () => import("./auto/og-stats-metrics").then((m) => ({ default: m.OgStatsMetricsDemo })),
+	"og-tagline": () => import("./auto/og-tagline").then((m) => ({ default: m.OgTaglineDemo })),
+	"og-testimonial": () => import("./auto/og-testimonial").then((m) => ({ default: m.OgTestimonialDemo })),
+	"og-tilted-screen": () => import("./auto/og-tilted-screen").then((m) => ({ default: m.OgTiltedScreenDemo })),
+	"og-wordmark": () => import("./auto/og-wordmark").then((m) => ({ default: m.OgWordmarkDemo })),
+	"orbit-card-stack": () => import("./auto/orbit-card-stack").then((m) => ({ default: m.OrbitCardStackDemo })),
+	"orbit-hero": () => import("./orbit-hero").then((m) => ({ default: m.OrbitHeroDemo })),
+	"overview-card": () => import("./overview-card").then((m) => ({ default: m.OverviewCardDemo })),
+	"page-header": () => import("./page-header").then((m) => ({ default: m.PageHeaderDemo })),
+	pagination: () => import("./primitives2").then((m) => ({ default: m.PaginationDemo })),
+	"particle-text": () => import("./auto/particle-text").then((m) => ({ default: m.ParticleTextDemo })),
+	"password-input": () => import("./password-input").then((m) => ({ default: m.PasswordInputDemo })),
+	"phone-input": () => import("./phone-input").then((m) => ({ default: m.PhoneInputDemo })),
+	"pie-chart": () => import("./pie-chart").then((m) => ({ default: m.PieChartDemo })),
+	"pixel-canvas": () => import("./pixel-canvas").then((m) => ({ default: m.PixelCanvasDemo })),
+	"pixel-image-trail": () => import("./pixel-image-trail").then((m) => ({ default: m.PixelImageTrailDemo })),
+	popover: () => import("./overlays").then((m) => ({ default: m.PopoverDemo })),
+	"pricing-01": () => import("./pricing-01").then((m) => ({ default: m.Pricing01Demo })),
+	"pricing-02": () => import("./pricing-02").then((m) => ({ default: m.Pricing02Demo })),
+	progress: () => import("./primitives").then((m) => ({ default: m.ProgressDemo })),
+	"projection-line": () => import("./projection-line").then((m) => ({ default: m.ProjectionLineDemo })),
+	"property-panel": () => import("./property-panel").then((m) => ({ default: m.PropertyPanelDemo })),
+	question: () => import("./content").then((m) => ({ default: m.QuestionDemo })),
+	"radar-chart": () => import("./radar-chart").then((m) => ({ default: m.RadarChartDemo })),
+	"radio-group": () => import("./agentic").then((m) => ({ default: m.RadioGroupDemo })),
+	"range-calendar": () => import("./dates").then((m) => ({ default: m.RangeCalendarDemo })),
+	reasoning: () => import("./agentic").then((m) => ({ default: m.ReasoningDemo })),
+	"recommendation-card": () => import("./recommendation-card").then((m) => ({ default: m.RecommendationCardDemo })),
+	"records-table": () => import("./records-table").then((m) => ({ default: m.RecordsTableDemo })),
+	resizable: () => import("./resizable").then((m) => ({ default: m.ResizableDemo })),
+	"responsive-dialog": () => import("./responsive-dialog").then((m) => ({ default: m.ResponsiveDialogDemo })),
+	"reveal-text": () => import("./text-motion").then((m) => ({ default: m.RevealTextDemo })),
+	"ridgeline-chart": () => import("./ridgeline-chart").then((m) => ({ default: m.RidgelineChartDemo })),
+	"ring-chart": () => import("./ring-chart").then((m) => ({ default: m.RingChartDemo })),
+	"ripple-transition": () => import("./ripple-transition").then((m) => ({ default: m.RippleTransitionDemo })),
+	"roll-text": () => import("./text").then((m) => ({ default: m.RollTextDemo })),
+	"rolling-digits": () => import("./text-motion").then((m) => ({ default: m.RollingDigitsDemo })),
+	"sankey-chart": () => import("./sankey-chart").then((m) => ({ default: m.SankeyChartDemo })),
+	"scatter-chart": () => import("./scatter-chart").then((m) => ({ default: m.ScatterChartDemo })),
+	"score-card": () => import("./score-card").then((m) => ({ default: m.ScoreCardDemo })),
+	"scroll-area": () => import("./primitives2").then((m) => ({ default: m.ScrollAreaDemo })),
+	"scroll-choreography": () => import("./auto/scroll-choreography").then((m) => ({ default: m.ScrollChoreographyDemo })),
+	"scroll-progress": () => import("./scroll-progress").then((m) => ({ default: m.ScrollProgressDemo })),
+	"scroll-reveal": () => import("./auto/scroll-reveal").then((m) => ({ default: m.ScrollRevealDemo })),
+	"scroll-split-card": () => import("./auto/scroll-split-card").then((m) => ({ default: m.ScrollSplitCardDemo })),
+	"scroll-tilted-grid": () => import("./scroll-tilted-grid").then((m) => ({ default: m.ScrollTiltedGridDemo })),
+	"search-input": () => import("./search-input").then((m) => ({ default: m.SearchInputDemo })),
+	select: () => import("./overlays").then((m) => ({ default: m.SelectDemo })),
+	separator: () => import("./forms").then((m) => ({ default: m.SeparatorDemo })),
+	sheet: () => import("./dialogs").then((m) => ({ default: m.SheetDemo })),
+	"shimmer-text": () => import("./text-motion").then((m) => ({ default: m.ShimmerTextDemo })),
+	shortcut: () => import("./primitives2").then((m) => ({ default: m.ShortcutDemo })),
+	"shortcut-recorder": () => import("./shortcut-recorder").then((m) => ({ default: m.ShortcutRecorderDemo })),
+	"show-more": () => import("./primitives2").then((m) => ({ default: m.ShowMoreDemo })),
+	"showcase-grid": () => import("./showcase-grid").then((m) => ({ default: m.ShowcaseGridDemo })),
+	"sidebar-nav": () => import("./sidebar-nav").then((m) => ({ default: m.SidebarNavDemo })),
+	signature: () => import("./signature").then((m) => ({ default: m.SignatureDemo })),
+	"signature-pad": () => import("./signature-pad").then((m) => ({ default: m.SignaturePadDemo })),
+	skeleton: () => import("./primitives").then((m) => ({ default: m.SkeletonDemo })),
+	slider: () => import("./agentic").then((m) => ({ default: m.SliderDemo })),
+	"slope-chart": () => import("./slope-chart").then((m) => ({ default: m.SlopeChartDemo })),
+	"slot-text": () => import("./slot-text").then((m) => ({ default: m.SlotTextDemo })),
+	sparkline: () => import("./sparkline").then((m) => ({ default: m.SparklineDemo })),
+	"spectral-ribbon": () => import("./spectral-ribbon").then((m) => ({ default: m.SpectralRibbonDemo })),
+	spinner: () => import("./primitives2").then((m) => ({ default: m.SpinnerDemo })),
+	"split-button": () => import("./split-button").then((m) => ({ default: m.SplitButtonDemo })),
+	"split-flap-display": () => import("./split-flap-display").then((m) => ({ default: m.SplitFlapDisplayDemo })),
+	"split-text": () => import("./auto/split-text").then((m) => ({ default: m.SplitTextDemo })),
+	"star-history": () => import("./star-history").then((m) => ({ default: m.StarHistoryDemo })),
+	"stat-card": () => import("./auto/stat-card").then((m) => ({ default: m.StatCardDemo })),
+	"stat-card-map": () => import("./auto/stat-card-map").then((m) => ({ default: m.StatCardMapDemo })),
+	"stats-band": () => import("./stats-band").then((m) => ({ default: m.StatsBandDemo })),
+	"status-monitor": () => import("./auto/status-monitor").then((m) => ({ default: m.StatusMonitorDemo })),
+	stepper: () => import("./stepper").then((m) => ({ default: m.StepperDemo })),
+	"sticky-scroll-cards": () => import("./sticky-scroll-cards").then((m) => ({ default: m.StickyScrollCardsDemo })),
+	"streamgraph-chart": () => import("./streamgraph-chart").then((m) => ({ default: m.StreamgraphChartDemo })),
+	"streaming-text": () => import("./streaming-text").then((m) => ({ default: m.StreamingTextDemo })),
+	"sunburst-chart": () => import("./sunburst-chart").then((m) => ({ default: m.SunburstChartDemo })),
+	swappable: () => import("./swappable").then((m) => ({ default: m.SwappableDemo })),
+	"swipe-actions": () => import("./swipe-actions").then((m) => ({ default: m.SwipeActionsDemo })),
+	switch: () => import("./primitives").then((m) => ({ default: m.SwitchDemo })),
+	table: () => import("./table").then((m) => ({ default: m.TableDemo })),
+	"table-of-contents": () => import("./table-of-contents").then((m) => ({ default: m.TableOfContentsDemo })),
+	tabs: () => import("./agentic").then((m) => ({ default: m.TabsDemo })),
+	"tag-input": () => import("./content").then((m) => ({ default: m.TagInputDemo })),
+	"task-steps": () => import("./agentic").then((m) => ({ default: m.TaskStepsDemo })),
+	"text-loop": () => import("./text-motion").then((m) => ({ default: m.TextLoopDemo })),
+	"text-reel": () => import("./obsidian").then((m) => ({ default: m.TextReelDemo })),
+	"text-repel": () => import("./text-repel").then((m) => ({ default: m.TextRepelDemo })),
+	"text-transition": () => import("./text").then((m) => ({ default: m.TextTransitionDemo })),
+	textarea: () => import("./primitives").then((m) => ({ default: m.TextareaDemo })),
+	"theme-toggle": () => import("./theme-toggle").then((m) => ({ default: m.ThemeToggleDemo })),
+	"time-picker": () => import("./pickers").then((m) => ({ default: m.TimePickerDemo })),
+	timeline: () => import("./timeline").then((m) => ({ default: m.TimelineDemo })),
+	toast: () => import("./dialogs").then((m) => ({ default: m.ToastDemo })),
+	toggle: () => import("./primitives2").then((m) => ({ default: m.ToggleDemo })),
+	"toggle-group": () => import("./primitives2").then((m) => ({ default: m.ToggleGroupDemo })),
+	tool: () => import("./content").then((m) => ({ default: m.ToolDemo })),
+	"tool-chips": () => import("./tool-chips").then((m) => ({ default: m.ToolChipsDemo })),
+	tooltip: () => import("./overlays").then((m) => ({ default: m.TooltipDemo })),
+	"treemap-chart": () => import("./treemap-chart").then((m) => ({ default: m.TreemapChartDemo })),
+	"typing-text": () => import("./text").then((m) => ({ default: m.TypingTextDemo })),
+	typography: () => import("./primitives2").then((m) => ({ default: m.TypographyDemo })),
+	"underline-hover-text": () => import("./text").then((m) => ({ default: m.UnderlineHoverTextDemo })),
+	"usage-card": () => import("./auto/usage-card").then((m) => ({ default: m.UsageCardDemo })),
+	"user-menu": () => import("./user-menu").then((m) => ({ default: m.UserMenuDemo })),
+	"video-player": () => import("./video-player").then((m) => ({ default: m.VideoPlayerDemo })),
+	"waffle-chart": () => import("./waffle-chart").then((m) => ({ default: m.WaffleChartDemo })),
+	"webgl-liquid": () => import("./webgl-liquid").then((m) => ({ default: m.WebglLiquidDemo })),
+	"week-calendar": () => import("./week-calendar").then((m) => ({ default: m.WeekCalendarDemo })),
+	"wheel-carousel": () => import("./wheel-carousel").then((m) => ({ default: m.WheelCarouselDemo })),
+	"wheel-picker": () => import("./wheel-picker").then((m) => ({ default: m.WheelPickerDemo })),
 };
