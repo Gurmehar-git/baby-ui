@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 import { Output, ROOT } from "./gen/core.mjs";
@@ -38,6 +39,16 @@ test("a bare folder import names that component, not the components root", () =>
 
 test("a types-only package installs as its @types package", () => {
 	assert.ok(derive("choropleth-chart", "react").dependencies.includes("@types/geojson"));
+});
+
+const PRO = join(ROOT, "pro/components");
+test("Pro's kit imports ship public lib files and depend on public components", {
+	skip: !existsSync(PRO) && "pro/ is not checked out",
+}, () => {
+	const out = derivePort(new Output(["components"]), PRO, "agent-trace", "react");
+	assert.ok(out.files.some((f) => f.path === "lib/cn.ts" && f.type === "registry:lib"));
+	assert.ok(out.registryDependencies.includes("badge"));
+	assert.ok(!out.dependencies.some((d) => d.startsWith("@baby-ui/")));
 });
 
 test("listed extras join what was derived, and a pin replaces the bare name", () => {

@@ -249,7 +249,7 @@ export function proIndexes(output, report) {
 	}
 	output.add(
 		join(PRO.root, "specs.ts"),
-		specsIndex(specFiles("pro/components"), "proSpecs"),
+		specsIndex(specFiles("pro/components"), "proSpecs", deriveAll(output, PRO.root)),
 	);
 }
 

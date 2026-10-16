@@ -74,6 +74,17 @@ export function derivePort(output, root, slug, port) {
 		if (files.has(path)) continue;
 		files.set(path, inLib ? "registry:lib" : "registry:ui");
 		for (const spec of specifiers(read(file), file)) {
+			// Pro reaches the public kit by package: a lib file ships, a component is a dependency.
+			const kit = /^@baby-ui\/(?:react|svelte)\/(?:lib\/(.+)|([a-z0-9-]+))$/.exec(spec);
+			if (kit?.[1]) {
+				const target = resolveLocal(join(lib, "index.ts"), `./${kit[1]}`, exists);
+				if (target) queue.push(target);
+				continue;
+			}
+			if (kit?.[2]) {
+				registryDependencies.add(kit[2]);
+				continue;
+			}
 			if (!spec.startsWith(".")) {
 				const name = packageOf(spec);
 				if (!RUNTIMES.has(name)) dependencies.add(installable(name, nodeModules));
