@@ -1,0 +1,196 @@
+import { defineComponent } from "@baby-ui/registry-schema";
+
+export const emailTeamInvite = defineComponent({
+	slug: "email-team-invite",
+	name: "Team Invite",
+	description:
+		"An invitation to join a team, showing who sent it, the role and their personal note.",
+	category: "emails",
+	status: "beta",
+	variants: {
+		surface: ["card", "plain"],
+	},
+	props: [
+		{
+			name: "productName",
+			type: "string",
+			description: "Shown in the header, heading and preview line.",
+			control: {
+				kind: "text",
+			},
+			required: true,
+			default: "Acme",
+		},
+		{
+			name: "inviterName",
+			type: "string",
+			description: "Who sent the invitation.",
+			control: {
+				kind: "text",
+			},
+			required: true,
+			default: "Grace Hopper",
+		},
+		{
+			name: "teamName",
+			type: "string",
+			description: "The team or workspace being joined.",
+			control: {
+				kind: "text",
+			},
+			required: true,
+			default: "Analytical Engines",
+		},
+		{
+			name: "acceptUrl",
+			type: "string",
+			description: "One-time link that joins the team.",
+			control: {
+				kind: "none",
+			},
+			required: true,
+		},
+		{
+			name: "inviterEmail",
+			type: "string",
+			description: "Shown under the inviter's name.",
+			control: {
+				kind: "none",
+			},
+		},
+		{
+			name: "inviterAvatarUrl",
+			type: "string",
+			description: "Absolute URL of the inviter's photo; initials show without it.",
+			control: {
+				kind: "none",
+			},
+		},
+		{
+			name: "role",
+			type: "string",
+			description: 'Role the invitee joins with, e.g. "Editor".',
+			control: {
+				kind: "text",
+			},
+			default: "Editor",
+		},
+		{
+			name: "message",
+			type: "string",
+			description: "A personal note from the inviter, shown quoted.",
+			control: {
+				kind: "none",
+			},
+		},
+		{
+			name: "expiresIn",
+			type: "string",
+			description: 'Pre-formatted lifetime, e.g. "7 days".',
+			control: {
+				kind: "none",
+			},
+		},
+		{
+			name: "heading, intro, lead, actionLabel, closingText, fallbackLabel",
+			type: "string",
+			description: "Copy overrides for translation or tone.",
+			control: {
+				kind: "none",
+			},
+		},
+		{
+			name: "companyLines",
+			type: "string[]",
+			description: "Sender name and postal address, one line each, in the footer.",
+			control: {
+				kind: "none",
+			},
+			required: true,
+		},
+		{
+			name: "logoUrl",
+			type: "string",
+			description:
+				"Absolute PNG URL of a square mark, set beside the product name in the header and footer.",
+			control: {
+				kind: "none",
+			},
+		},
+		{
+			name: "footerLinks",
+			type: "{ label: string; href: string }[]",
+			description: "Footer links such as notification settings or the privacy policy.",
+			control: {
+				kind: "none",
+			},
+		},
+		{
+			name: "reason",
+			type: "string",
+			description: "Footer line saying why the email arrived.",
+			control: {
+				kind: "none",
+			},
+		},
+		{
+			name: "preview",
+			type: "string",
+			description: "Inbox preview line; the default is built from the other props.",
+			control: {
+				kind: "none",
+			},
+		},
+		{
+			name: "surface",
+			type: '"card" | "plain"',
+			description: "A bordered card on a quiet page, or content straight on the page.",
+			control: {
+				kind: "select",
+				options: ["card", "plain"],
+			},
+			default: "card",
+		},
+	],
+	a11y: {
+		keyboard: [],
+		notes: [
+			"Leads with a person, not the product: invitations from a named colleague are the ones people open.",
+			"The raw link is repeated under the button for clients that block buttons.",
+			"Ships a plain-text part next to the HTML; send both.",
+		],
+	},
+	impl: {
+		react: {
+			entry: "EmailTeamInvite",
+			files: [
+				{
+					path: "email-team-invite/email-team-invite.tsx",
+					type: "registry:ui",
+				},
+				{
+					path: "email-team-invite/variants.ts",
+					type: "registry:ui",
+				},
+			],
+			dependencies: ["react-email", "tailwind-variants"],
+			registryDependencies: ["email-kit"],
+		},
+		svelte: {
+			entry: "EmailTeamInvite",
+			files: [
+				{
+					path: "email-team-invite/email-team-invite.svelte",
+					type: "registry:ui",
+				},
+				{
+					path: "email-team-invite/variants.ts",
+					type: "registry:ui",
+				},
+			],
+			dependencies: ["@better-svelte-email/components", "tailwind-variants"],
+			registryDependencies: ["email-kit"],
+		},
+	},
+	keywords: ["email", "invite", "team", "workspace", "collaboration"],
+});

@@ -13,6 +13,7 @@
 		"test": "bun test"
 	},
 	"dependencies": {
+		"@baby-ui/components": "workspace:*",
 		"@baby-ui/registry-schema": "workspace:*",
 		"@baby-ui/tokens": "workspace:*",
 		"detype": "^2.0.8",

@@ -7,8 +7,9 @@ export default defineConfig({
 	outDir: ".docvia",
 	collections: [
 		{
+			// Each component's prose is `components/<slug>/index.md`, so its slug is the folder.
 			name: "components",
-			sourceDir: "src/docs/components",
+			sourceDir: "../../components",
 			baseUrl: "/components",
 			frontmatter: ComponentDocRequiredSchema,
 		},

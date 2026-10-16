@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
-import { getSpec } from "@baby-ui/registry-schema/components";
 import { button } from "../button/react/variants";
 import { fullscreenNav } from "../fullscreen-nav/react/variants";
+import { getSpec } from "../specs";
 import { axesOf, derivePort, type Port } from "./derive";
 
 const sortPaths = (files: Array<{ path: string; type: string }>) =>

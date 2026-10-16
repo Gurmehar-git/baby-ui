@@ -2,6 +2,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "./core.mjs";
 import { exportsOf } from "./exports.mjs";
+import { specFiles } from "./specs.mjs";
 
 const COMPONENTS = join(ROOT, "components");
 /** The `@baby-ui/react` / `@baby-ui/svelte` packages: generated facades over `components/`. */
@@ -9,7 +10,6 @@ const FACADE = {
 	react: join(ROOT, "packages/ui-react/src"),
 	svelte: join(ROOT, "packages/ui-svelte/src/lib"),
 };
-const SPECS = join(ROOT, "packages/registry-schema/src/components");
 const DEMOS_REACT = join(ROOT, "packages/demos/src/react");
 const DEMOS_SVELTE = join(ROOT, "packages/demos/src/svelte");
 
@@ -222,25 +222,23 @@ export function indexes(output, report) {
 		...svelte.collisions.map((c) => `svelte ${c}`),
 	);
 
-	const specFiles = readdirSync(SPECS)
-		.filter((f) => f.endsWith(".ts") && f !== "index.ts")
-		.sort();
+	const manifests = specFiles();
 	// A file may define several related specs (chart.ts holds chart and line-chart).
-	const specNames = specFiles.map((file) => {
-		const text = readFileSync(join(SPECS, file), "utf8");
+	const specNames = manifests.map(([slug, file]) => {
+		const text = readFileSync(file, "utf8");
 		const names = [...text.matchAll(/export const (\w+)\s*=\s*defineComponent\(/g)].map(
 			(m) => m[1],
 		);
 		if (!names.length)
-			throw new Error(`gen: ${file} has no \`export const x = defineComponent(\``);
-		return [file.replace(/\.ts$/, ""), names];
+			throw new Error(`gen: ${slug}.ts has no \`export const x = defineComponent(\``);
+		return [slug, names];
 	});
 	output.add(
-		join(SPECS, "index.ts"),
+		join(COMPONENTS, "specs.ts"),
 		[
-			'import type { ComponentSpec } from "../index.ts";',
+			'import type { ComponentSpec } from "@baby-ui/registry-schema";',
 			...specNames.map(
-				([file, names]) => `import { ${names.join(", ")} } from "./${file}.ts";`,
+				([slug, names]) => `import { ${names.join(", ")} } from "./${slug}/${slug}";`,
 			),
 			"",
 			"export const specs: ComponentSpec[] = [",
@@ -254,10 +252,10 @@ export function indexes(output, report) {
 		].join("\n"),
 	);
 
-	const slugs = specFiles.flatMap((file) =>
-		[
-			...readFileSync(join(SPECS, file), "utf8").matchAll(/\bslug:\s*"([a-z0-9-]+)"/g),
-		].map((m) => m[1]),
+	const slugs = manifests.flatMap(([, file]) =>
+		[...readFileSync(file, "utf8").matchAll(/\bslug:\s*"([a-z0-9-]+)"/g)].map(
+			(m) => m[1],
+		),
 	);
 	const bySlugKey = new Map(
 		slugs.map((slug) => [`${pascal(slug)}Demo`.toLowerCase(), slug]),

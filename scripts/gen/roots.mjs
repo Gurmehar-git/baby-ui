@@ -9,7 +9,6 @@ export const HAS_PRO = existsSync(join(ROOT, "pro/packages/react/src"));
 export function sourceRoots() {
 	return [
 		"components",
-		"packages/registry-schema/src/components",
 		"packages/demos/src",
 		// tokens.css feeds the generated email theme.
 		"packages/tokens/src",

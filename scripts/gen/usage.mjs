@@ -1,20 +1,16 @@
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { previousFor, ROOT } from "./core.mjs";
 import { autoSpecs } from "./demos.mjs";
+import { specFiles } from "./specs.mjs";
 
 const USAGE = join(ROOT, "packages/demos/src/usage");
-const SPECS = join(ROOT, "packages/registry-schema/src/components");
 
 /** Each spec block by slug, read once per run. */
 function specBlocks() {
 	const blocks = new Map();
-	for (const file of readdirSync(SPECS).filter(
-		(f) => f.endsWith(".ts") && f !== "index.ts",
-	)) {
-		for (const block of readFileSync(join(SPECS, file), "utf8")
-			.split("defineComponent(")
-			.slice(1)) {
+	for (const [, file] of specFiles()) {
+		for (const block of readFileSync(file, "utf8").split("defineComponent(").slice(1)) {
 			const slug = block.match(/\bslug:\s*"([a-z0-9-]+)"/)?.[1];
 			if (slug && !blocks.has(slug)) blocks.set(slug, block);
 		}

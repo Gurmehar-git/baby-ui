@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
-import { specs } from "@baby-ui/registry-schema/components";
+import { specs } from "../specs";
 import { axesOf } from "./derive";
 
 // Read-only scan: each spec's hand-listed axes against the tv() named after its slug.

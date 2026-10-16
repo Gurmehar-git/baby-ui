@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { specs } from "@baby-ui/components/specs";
 import {
 	type ComponentSpec,
 	FRAMEWORKS,
@@ -8,7 +9,6 @@ import {
 	PREVIEW_CATEGORIES,
 	type RegistryItem,
 } from "@baby-ui/registry-schema";
-import { specs } from "@baby-ui/registry-schema/components";
 import { buildItem, toJsItem } from "./build";
 import { cssText } from "./component-css";
 import {
@@ -87,10 +87,7 @@ async function loadProSpecs(): Promise<ComponentSpec[]> {
 }
 
 async function main() {
-	const docs = await verifyComponentDocs(
-		[...specs],
-		resolve(REPO_ROOT, "apps/site/src/docs/components"),
-	);
+	const docs = await verifyComponentDocs([...specs]);
 	const errors = [
 		...(await Promise.all(FRAMEWORKS.map((f) => verifySprings([...specs], f)))).flat(),
 		...(

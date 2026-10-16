@@ -3,20 +3,16 @@ import { join } from "node:path";
 import { ROOT } from "./core.mjs";
 import { exportsOf } from "./exports.mjs";
 import { pascal } from "./indexes.mjs";
+import { specFiles } from "./specs.mjs";
 
-const SPECS = join(ROOT, "packages/registry-schema/src/components");
 const DEMOS = join(ROOT, "packages/demos/src");
 const SAMPLES = join(DEMOS, "data/samples.ts");
 
 /** Every spec that opted into `demo: { mode: "auto" }`, with its entry names and frame. */
 export function autoSpecs() {
 	const out = [];
-	for (const file of readdirSync(SPECS).filter(
-		(f) => f.endsWith(".ts") && f !== "index.ts",
-	)) {
-		for (const block of readFileSync(join(SPECS, file), "utf8")
-			.split("defineComponent(")
-			.slice(1)) {
+	for (const [, file] of specFiles()) {
+		for (const block of readFileSync(file, "utf8").split("defineComponent(").slice(1)) {
 			const slug = block.match(/\bslug:\s*"([a-z0-9-]+)"/)?.[1];
 			const demo = block.match(/\bdemo:\s*\{\s*mode:\s*"auto"(?:,\s*frame:\s*"(\w+)")?/);
 			if (!slug || !demo) continue;

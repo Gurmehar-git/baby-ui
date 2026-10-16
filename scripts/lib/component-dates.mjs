@@ -30,21 +30,27 @@ const SWEEP_SHARE = 0.25;
 
 const day = (iso) => iso.slice(0, 10);
 
-// Public ports moved to components/<slug>/<fw>; history before the move keys the same way.
+// Public ports and specs moved into components/<slug>/; history before the move keys the same way.
 const LEGACY = {
 	"packages/ui-react/src": "react",
 	"packages/ui-svelte/src/lib": "svelte",
 };
+const LEGACY_SPECS = "packages/registry-schema/src/components";
 
-/** `components/<slug>/<fw>` for public ports, `root/<folder>` for Pro, `root/<file>` for specs. */
+/** `components/<slug>/<fw>` or `components/<slug>/<slug>.ts` for public items, `root/<entry>` for Pro. */
 function keyOf(path, roots) {
 	const root = roots.find((r) => path.startsWith(`${r}/`));
 	if (!root) return null;
-	const [head, port] = path.slice(root.length + 1).split("/");
+	const [head = "", port] = path.slice(root.length + 1).split("/");
 	if (head === "lib") return null;
 	if (LEGACY[root]) return `components/${head}/${LEGACY[root]}`;
+	if (root === LEGACY_SPECS) {
+		const slug = head.replace(/\.ts$/, "");
+		return slug === "index" ? null : `components/${slug}/${slug}.ts`;
+	}
 	if (root === "components") {
-		return port === "react" || port === "svelte" ? `components/${head}/${port}` : null;
+		if (port === "react" || port === "svelte") return `components/${head}/${port}`;
+		return port === `${head}.ts` ? `components/${head}/${port}` : null;
 	}
 	return `${root}/${head}`;
 }

@@ -16,10 +16,11 @@ through [portless](https://portless.sh), so they get named `*.baby-ui.localhost`
 
 ## Layout
 
-- `components/<slug>/{react,svelte,examples}`: one folder per component, both ports side by
-  side. React is the source for shared `.ts` (variants, logic); the Svelte copies are generated.
+- `components/<slug>/`: one folder per component. `<slug>.ts` is the spec (props, files,
+  dependencies), `index.md` the docs, `react/` and `svelte/` the ports, `examples/` the
+  copy-ready examples. React is the source for shared `.ts`; the Svelte copies are generated.
 - `packages/ui-react`, `packages/ui-svelte`: generated facades re-exporting `components/`.
-- `packages/registry-schema`: one spec per component (props, files, dependencies).
+- `packages/registry-schema`: the spec schema and `defineComponent`.
 - `packages/demos`: demos and usage snippets for both ports.
 - `packages/registry-build`: turns specs and sources into the shadcn registry JSON.
 - `apps/site`: the docs site (SvelteKit). `apps/registry` serves the JSON.

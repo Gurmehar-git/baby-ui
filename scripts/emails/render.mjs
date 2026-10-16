@@ -16,7 +16,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const COMPONENTS = join(ROOT, "components");
 const PREVIEW_PROPS = join(ROOT, "packages/demos/src/data/preview-props.ts");
 const TEMPLATES = join(ROOT, "apps/site/src/lib/server/templates.ts");
-const SPECS = join(ROOT, "packages/registry-schema/src/components/index.ts");
+const SPECS = join(ROOT, "components/specs.ts");
 const OUT = join(ROOT, "apps/site/src/lib/generated/emails");
 // Bundles land inside each port's node_modules so bare imports resolve to that port's deps.
 const REACT_CACHE = join(ROOT, "packages/ui-react/node_modules/.cache/baby-ui-emails");

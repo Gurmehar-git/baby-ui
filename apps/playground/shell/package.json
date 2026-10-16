@@ -13,6 +13,7 @@
 		"script": "dev:app"
 	},
 	"dependencies": {
+		"@baby-ui/components": "workspace:*",
 		"@baby-ui/demos": "workspace:*",
 		"@baby-ui/registry-schema": "workspace:*",
 		"@baby-ui/tokens": "workspace:*"

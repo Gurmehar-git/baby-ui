@@ -1,18 +1,15 @@
 // One-off local generator for the README cover: no Vite/SvelteKit dependency, so it
 // runs standalone with `node scripts/generate-cover.mjs`. Re-run whenever the pitch changes.
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { render } from "takumi-js";
 import { googleFonts } from "takumi-js/helpers";
+import { specFiles } from "./gen/specs.mjs";
 
 const root = resolve(import.meta.dirname, "..");
-const specDir = resolve(root, "packages/registry-schema/src/components");
-const specFiles = (await readdir(specDir)).filter(
-	(f) => f.endsWith(".ts") && f !== "index.ts",
-);
 // Retired specs still ship to the registry but no longer count as the library.
 const specs = (
-	await Promise.all(specFiles.map((f) => readFile(resolve(specDir, f), "utf8")))
+	await Promise.all(specFiles().map(([, file]) => readFile(file, "utf8")))
 ).filter((src) => !/^\s*retired: true,/m.test(src));
 const svg = (w, h, body) =>
 	`data:image/svg+xml;base64,${Buffer.from(

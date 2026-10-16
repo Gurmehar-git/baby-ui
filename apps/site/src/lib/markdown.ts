@@ -5,7 +5,7 @@ import { CATEGORY_LABEL, specHref } from "./registry";
 import { installCommand } from "./registry-items";
 import { usageSnippet } from "./usage";
 
-const RAW = import.meta.glob("../docs/**/*.md", {
+const RAW = import.meta.glob(["../docs/**/*.md", "../../../../components/*/index.md"], {
 	query: "?raw",
 	eager: true,
 	import: "default",
@@ -93,7 +93,7 @@ export async function componentMarkdown(
 		]);
 	}
 
-	const prose = body(`../docs/components/${spec.slug}.md`).trim();
+	const prose = body(`../../../../components/${spec.slug}/index.md`).trim();
 	if (prose) out.push(prose, "");
 
 	section(

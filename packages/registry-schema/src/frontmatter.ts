@@ -3,7 +3,7 @@ import { CategorySchema } from "./spec.ts";
 
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
-/** What a file under docs/components/ must have: docvia's per-collection schema for components. */
+/** What a `components/<slug>/index.md` must have: docvia's per-collection schema for components. */
 export const ComponentDocRequiredSchema = z.object({
 	title: z.string().min(1),
 	description: z.string().min(1),

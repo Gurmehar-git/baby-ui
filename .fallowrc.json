@@ -4,7 +4,7 @@
 		"components/*/react/*.{ts,tsx}",
 		"components/*/svelte/*.{ts,svelte}",
 		"components/*/examples/*.{tsx,svelte}",
-		"packages/registry-schema/src/components/*.ts",
+		"components/*/*.ts",
 		"packages/demos/src/**/*.{ts,tsx,svelte}",
 		"scripts/**/*.mjs",
 		"**/svelte.config.js"

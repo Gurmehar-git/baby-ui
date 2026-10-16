@@ -1,6 +1,6 @@
 <script lang="ts">
+import { specs } from "@baby-ui/components/specs";
 import SpecDials from "@baby-ui/demos/controls";
-import { specs } from "@baby-ui/registry-schema/components";
 import { broadcast, RUNNERS } from "./runners";
 
 let slug = $state(specs[0]?.slug ?? "button");

@@ -1,4 +1,5 @@
 import gitDates from "virtual:component-dates";
+import { specs as publicSpecs } from "@baby-ui/components/specs";
 import {
 	CATEGORIES,
 	type Category,
@@ -6,7 +7,6 @@ import {
 	FRAMEWORKS,
 	PREVIEW_CATEGORIES,
 } from "@baby-ui/registry-schema";
-import { specs as publicSpecs } from "@baby-ui/registry-schema/components";
 import {
 	type AdjacentComponent,
 	CATEGORY_LABEL,
@@ -42,10 +42,10 @@ function datedPaths(spec: ComponentSpec) {
 				: `components/${folder}/${f}`,
 		];
 	});
-	const schema = pro
-		? "pro/packages/schema/src/components"
-		: "packages/registry-schema/src/components";
-	return { folders, file: `${schema}/${spec.slug}.ts` };
+	const file = pro
+		? `pro/packages/schema/src/components/${spec.slug}.ts`
+		: `components/${spec.slug}/${spec.slug}.ts`;
+	return { folders, file };
 }
 
 type Freshness = "new" | "updated" | null;

@@ -8,7 +8,7 @@ import {
 } from "@baby-ui/registry-schema";
 import { type SpringName, spring } from "@baby-ui/tokens";
 import { parse as parseYaml } from "yaml";
-import { readSource, sourcePath } from "./sources";
+import { COMPONENTS_DIR, readSource, sourcePath } from "./sources";
 
 const ENTRY = /\b(snappy|gentle|bouncy)\s*:\s*\{([^}]*)\}/g;
 const FIELD = /(\w+)\s*:\s*(-?[\d.]+)/g;
@@ -122,49 +122,50 @@ export function verifyGuidance(specs: ComponentSpec[]): string[] {
  * exists or agrees). `missing` lists specs with no page yet. */
 export async function verifyComponentDocs(
 	specs: ComponentSpec[],
-	docsDir: string,
 ): Promise<{ errors: string[]; missing: string[] }> {
 	const errors: string[] = [];
 	const missing: string[] = [];
 	const known = new Set(specs.map((s) => s.slug));
 	const seen = new Set<string>();
 
-	const files = await readdir(docsDir).catch(() => [] as string[]);
-	for (const file of files.filter((f) => f.endsWith(".md"))) {
-		const raw = await readFile(resolve(docsDir, file), "utf8");
+	const dirs = await readdir(COMPONENTS_DIR).catch(() => [] as string[]);
+	for (const dir of dirs) {
+		const file = `components/${dir}/index.md`;
+		const raw = await readFile(resolve(COMPONENTS_DIR, dir, "index.md"), "utf8").catch(
+			() => null,
+		);
+		if (raw === null) continue;
 		const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
 		if (!match?.[1]) {
-			errors.push(`docs/components/${file}: no frontmatter`);
+			errors.push(`${file}: no frontmatter`);
 			continue;
 		}
 
 		const parsed = ComponentDocRequiredSchema.safeParse(parseYaml(match[1]));
 		if (!parsed.success) {
 			for (const issue of parsed.error.issues) {
-				errors.push(
-					`docs/components/${file}: ${issue.path.join(".") || "(root)"} ${issue.message}`,
-				);
+				errors.push(`${file}: ${issue.path.join(".") || "(root)"} ${issue.message}`);
 			}
 			continue;
 		}
 
 		const { component, category } = parsed.data;
 		seen.add(component);
+		// docvia takes the page slug from the folder, so the two must agree.
+		if (component !== dir) errors.push(`${file}: component is "${component}"`);
 		if (!known.has(component)) {
-			errors.push(`docs/components/${file}: no spec for component "${component}"`);
+			errors.push(`${file}: no spec for component "${component}"`);
 			continue;
 		}
 		const spec = specs.find((s) => s.slug === component);
 		if (spec && spec.category !== category) {
-			errors.push(
-				`docs/components/${file}: category is "${category}", spec says "${spec.category}"`,
-			);
+			errors.push(`${file}: category is "${category}", spec says "${spec.category}"`);
 		}
 	}
 
 	for (const spec of specs) {
 		if (!seen.has(spec.slug))
-			missing.push(`${spec.slug}: no doc page at docs/components/${spec.slug}.md`);
+			missing.push(`${spec.slug}: no doc page at components/${spec.slug}/index.md`);
 	}
 	return { errors, missing };
 }

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
+import { getSpec, specs } from "@baby-ui/components/specs";
 import type { Framework } from "@baby-ui/registry-schema";
-import { getSpec, specs } from "@baby-ui/registry-schema/components";
 import { buildItem } from "./build";
 import { installLayout } from "./layout";
 import { assertAdditive, buildThemeItems, tailwindThemeKeys } from "./theme";

@@ -24,7 +24,6 @@ const PUBLIC_ROOTS = [
 	"components",
 	"packages/ui-react/src",
 	"packages/ui-svelte/src/lib",
-	"packages/registry-schema/src/components",
 	"packages/demos/src/react",
 	"packages/demos/src/svelte",
 	"packages/demos/src/usage",
