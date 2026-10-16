@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { form as formVariants } from "./react/variants";
 
 export const form = defineComponent({
 	slug: "form",
@@ -7,7 +8,7 @@ export const form = defineComponent({
 		"Field parts wired to TanStack Form: label, control, description and errors linked by id, with invalid state and submit handled for you.",
 	category: "base",
 	status: "beta",
-	variants: { spacing: ["compact", "comfortable"] },
+	variants: variantsOf(formVariants, ["spacing"]),
 	props: [
 		{
 			name: "spacing",
@@ -50,40 +51,9 @@ export const form = defineComponent({
 	impl: {
 		react: {
 			entry: "FormField",
-			files: [
-				{ path: "form/form.tsx", type: "registry:ui" },
-				{ path: "form/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"clsx",
-				"tailwind-merge",
-				"tailwind-variants",
-				"@tanstack/react-form",
-			],
-			registryDependencies: ["field", "button"],
 		},
 		svelte: {
 			entry: "FormField",
-			files: [
-				{ path: "form/form.svelte", type: "registry:ui" },
-				{ path: "form/form-button.svelte", type: "registry:ui" },
-				{ path: "form/form-control.svelte", type: "registry:ui" },
-				{ path: "form/form-description.svelte", type: "registry:ui" },
-				{ path: "form/form-field-errors.svelte", type: "registry:ui" },
-				{ path: "form/form-field.svelte", type: "registry:ui" },
-				{ path: "form/form-label.svelte", type: "registry:ui" },
-				{ path: "form/context.ts", type: "registry:ui" },
-				{ path: "form/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"clsx",
-				"tailwind-merge",
-				"tailwind-variants",
-				"@tanstack/svelte-form",
-			],
-			registryDependencies: ["field", "button"],
 		},
 	},
 	keywords: ["form", "tanstack form", "validation", "zod", "standard schema", "field"],

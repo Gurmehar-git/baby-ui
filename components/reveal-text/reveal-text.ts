@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { revealText as revealTextVariants } from "./react/variants";
 
 const SIZES = ["inherit", "sm", "md", "lg"];
 const VARIANTS = ["default", "tracking", "wipe"];
@@ -14,14 +15,14 @@ export const revealText = defineComponent({
 		"Words or letters rise out of a blur one after another, on mount or in view.",
 	category: "text",
 	status: "stable",
-	variants: {
-		variant: VARIANTS,
-		split: SPLITS,
-		trigger: TRIGGERS,
-		direction: DIRECTIONS,
-		staggerFrom: ORIGINS,
-		size: SIZES,
-	},
+	variants: variantsOf(revealTextVariants, [
+		"variant",
+		"split",
+		"trigger",
+		"direction",
+		"staggerFrom",
+		"size",
+	]),
 	props: [
 		{
 			name: "text",
@@ -152,21 +153,9 @@ export const revealText = defineComponent({
 	impl: {
 		react: {
 			entry: "RevealText",
-			files: [
-				{ path: "reveal-text/reveal-text.tsx", type: "registry:ui" },
-				{ path: "reveal-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "RevealText",
-			files: [
-				{ path: "reveal-text/reveal-text.svelte", type: "registry:ui" },
-				{ path: "reveal-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["reveal", "stagger", "blur", "scroll", "words", "letters"],

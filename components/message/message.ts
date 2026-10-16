@@ -70,28 +70,9 @@ export const message = defineComponent({
 	impl: {
 		react: {
 			entry: "Message",
-			files: [
-				{ path: "message/message.tsx", type: "registry:ui" },
-				{ path: "message/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Message",
-			files: [
-				{ path: "message/message.svelte", type: "registry:ui" },
-				{ path: "message/message-group.svelte", type: "registry:ui" },
-				{ path: "message/message-avatar.svelte", type: "registry:ui" },
-				{ path: "message/message-content.svelte", type: "registry:ui" },
-				{ path: "message/message-bubble.svelte", type: "registry:ui" },
-				{ path: "message/message-header.svelte", type: "registry:ui" },
-				{ path: "message/message-footer.svelte", type: "registry:ui" },
-				{ path: "message/message-typing.svelte", type: "registry:ui" },
-				{ path: "message/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["message", "chat", "ai", "transcript", "bubble"],

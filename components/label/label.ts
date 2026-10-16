@@ -39,19 +39,9 @@ export const label = defineComponent({
 	impl: {
 		react: {
 			entry: "Label",
-			files: [
-				{ path: "label/label.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
 		},
 		svelte: {
 			entry: "Label",
-			files: [
-				{ path: "label/label.svelte", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
 		},
 	},
 	keywords: ["label", "form", "field"],

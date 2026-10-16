@@ -1,16 +1,9 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { floatingButtonGroup as floatingButtonGroupVariants } from "./react/variants";
 
 const SIZES = ["sm", "default"];
 const VARIANTS = ["default", "floating"];
 const ORIENTATIONS = ["horizontal", "vertical"];
-
-const files = (main: string) => [
-	{ path: `floating-button-group/${main}`, type: "registry:ui" as const },
-	{ path: "floating-button-group/tray.ts", type: "registry:ui" as const },
-	{ path: "floating-button-group/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/pill.ts", type: "registry:lib" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const floatingButtonGroup = defineComponent({
 	slug: "floating-button-group",
@@ -19,7 +12,7 @@ export const floatingButtonGroup = defineComponent({
 		"Soft buttons in a quiet tray with one shared highlight that glides to whichever button the pointer or keyboard is on.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(floatingButtonGroupVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "items",
@@ -137,15 +130,9 @@ export const floatingButtonGroup = defineComponent({
 	impl: {
 		react: {
 			entry: "FloatingButtonGroup",
-			files: files("floating-button-group.tsx"),
-			dependencies: ["@base-ui/react", "clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["tooltip"],
 		},
 		svelte: {
 			entry: "FloatingButtonGroup",
-			files: files("floating-button-group.svelte"),
-			dependencies: ["bits-ui", "clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["tooltip"],
 		},
 	},
 	keywords: ["toolbar", "actions", "highlight", "tray", "icon buttons"],

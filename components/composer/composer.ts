@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { composer as composerVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const composer = defineComponent({
 		"Chat input that grows with content, sends on Enter, and composes a model picker and an actions menu.",
 	category: "agents",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(composerVariants, ["size"]),
 	props: [
 		{
 			name: "value",
@@ -105,24 +106,9 @@ export const composer = defineComponent({
 	impl: {
 		react: {
 			entry: "Composer",
-			files: [
-				{ path: "composer/composer.tsx", type: "registry:ui" },
-				{ path: "composer/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["dropdown-menu", "select"],
 		},
 		svelte: {
 			entry: "Composer",
-			files: [
-				{ path: "composer/composer.svelte", type: "registry:ui" },
-				{ path: "composer/types.ts", type: "registry:ui" },
-				{ path: "composer/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["dropdown-menu", "select"],
 		},
 	},
 	keywords: ["composer", "prompt", "chat", "input"],

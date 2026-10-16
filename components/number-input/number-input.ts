@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { numberInput as numberInputVariants } from "./react/variants";
 
 export const numberInput = defineComponent({
 	slug: "number-input",
@@ -7,7 +8,7 @@ export const numberInput = defineComponent({
 		"A stepper with hold-to-repeat buttons, keyboard steps, Intl formatting and a label you can drag to scrub, or a compact inline scrub field.",
 	category: "base",
 	status: "beta",
-	variants: { variant: ["default", "scrub"], size: ["xs", "sm", "default", "lg", "xl"] },
+	variants: variantsOf(numberInputVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "value",
@@ -114,23 +115,9 @@ export const numberInput = defineComponent({
 	impl: {
 		react: {
 			entry: "NumberInput",
-			files: [
-				{ path: "number-input/number-input.tsx", type: "registry:ui" },
-				{ path: "number-input/limit.ts", type: "registry:ui" },
-				{ path: "number-input/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "NumberInput",
-			files: [
-				{ path: "number-input/number-input.svelte", type: "registry:ui" },
-				{ path: "number-input/limit.ts", type: "registry:ui" },
-				{ path: "number-input/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["number input", "stepper", "spinbutton", "quantity", "currency", "scrub"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { textRepel as textRepelVariants } from "./react/variants";
 
 const MODES = ["repel", "attract", "inertia"];
 const SIZES = ["inherit", "sm", "md", "lg"];
@@ -10,7 +11,7 @@ export const textRepel = defineComponent({
 		"Letters shy away from, lean toward, or get flicked by the pointer, then spring back.",
 	category: "text",
 	status: "stable",
-	variants: { mode: MODES, size: SIZES },
+	variants: variantsOf(textRepelVariants, ["mode", "size"]),
 	props: [
 		{
 			name: "text",
@@ -74,21 +75,9 @@ export const textRepel = defineComponent({
 	impl: {
 		react: {
 			entry: "TextRepel",
-			files: [
-				{ path: "text-repel/text-repel.tsx", type: "registry:ui" },
-				{ path: "text-repel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "TextRepel",
-			files: [
-				{ path: "text-repel/text-repel.svelte", type: "registry:ui" },
-				{ path: "text-repel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "cursor", "repel", "attract", "letters", "hover"],

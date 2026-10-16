@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogWordmark as ogWordmarkVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogWordmark = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogWordmarkVariants, ["mode"]),
 	props: [
 		{
 			name: "name",
@@ -55,21 +56,9 @@ export const ogWordmark = defineComponent({
 	impl: {
 		react: {
 			entry: "OgWordmark",
-			files: [
-				{ path: "og-wordmark/og-wordmark.tsx", type: "registry:ui" },
-				{ path: "og-wordmark/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgWordmark",
-			files: [
-				{ path: "og-wordmark/og-wordmark.svelte", type: "registry:ui" },
-				{ path: "og-wordmark/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

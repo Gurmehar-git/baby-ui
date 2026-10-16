@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { reasoning as reasoningVariants } from "./react/variants";
 
 const VARIANTS = ["outline", "card", "inline"];
 
@@ -9,7 +10,7 @@ export const reasoning = defineComponent({
 		"Collapsible chain-of-thought panel with steps, sources, images or trace rows; opens while thinking and closes when done.",
 	category: "agents",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(reasoningVariants, ["variant"]),
 	props: [
 		{
 			name: "thinking",
@@ -99,31 +100,9 @@ export const reasoning = defineComponent({
 	impl: {
 		react: {
 			entry: "Reasoning",
-			files: [
-				{ path: "reasoning/reasoning.tsx", type: "registry:ui" },
-				{ path: "reasoning/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["@base-ui/react", "clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "collapsible"],
 		},
 		svelte: {
 			entry: "Reasoning",
-			files: [
-				{ path: "reasoning/reasoning.svelte", type: "registry:ui" },
-				{ path: "reasoning/reasoning-steps.svelte", type: "registry:ui" },
-				{ path: "reasoning/reasoning-step.svelte", type: "registry:ui" },
-				{ path: "reasoning/reasoning-step-details.svelte", type: "registry:ui" },
-				{ path: "reasoning/reasoning-step-sources.svelte", type: "registry:ui" },
-				{ path: "reasoning/reasoning-step-source.svelte", type: "registry:ui" },
-				{ path: "reasoning/reasoning-step-image.svelte", type: "registry:ui" },
-				{ path: "reasoning/reasoning-rows.svelte", type: "registry:ui" },
-				{ path: "reasoning/context.ts", type: "registry:ui" },
-				{ path: "reasoning/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["bits-ui", "clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "collapsible"],
 		},
 	},
 	keywords: [

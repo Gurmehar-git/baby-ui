@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { flowchartCanvas as flowchartCanvasVariants } from "./react/variants";
 
 const BACKGROUNDS = ["dots", "grid", "none"];
 
@@ -9,7 +10,7 @@ export const flowchart = defineComponent({
 		"A workflow canvas: draggable nodes joined by a measured bezier connector.",
 	category: "advanced",
 	status: "stable",
-	variants: { background: BACKGROUNDS },
+	variants: variantsOf(flowchartCanvasVariants, ["background"]),
 	props: [
 		{
 			name: "steps",
@@ -62,25 +63,9 @@ export const flowchart = defineComponent({
 	impl: {
 		react: {
 			entry: "Flowchart",
-			files: [
-				{ path: "flowchart/flowchart.tsx", type: "registry:ui" },
-				{ path: "flowchart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "select"],
 		},
 		svelte: {
 			entry: "Flowchart",
-			files: [
-				{ path: "flowchart/flowchart.svelte", type: "registry:ui" },
-				{ path: "flowchart/condition-chip.svelte", type: "registry:ui" },
-				{ path: "flowchart/types.ts", type: "registry:ui" },
-				{ path: "flowchart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "select"],
 		},
 	},
 	keywords: ["flowchart", "workflow", "canvas", "diagram", "agent"],

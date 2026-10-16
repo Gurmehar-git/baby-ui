@@ -78,42 +78,9 @@ export const chartBrush = defineComponent({
 	},
 
 	impl: {
-		react: {
-			entry: "ChartBrush",
-			files: [
-				{ path: "chart-brush/chart-brush.tsx", type: "registry:ui" },
-				{ path: "chart-brush/geometry.ts", type: "registry:ui" },
-				{ path: "chart-brush/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"clsx",
-				"tailwind-merge",
-				"tailwind-variants",
-				"d3-array",
-				"d3-scale",
-				"d3-shape",
-			],
-			registryDependencies: ["chart", "line-chart"],
-		},
-		svelte: {
-			entry: "ChartBrush",
-			files: [
-				{ path: "chart-brush/chart-brush.svelte", type: "registry:ui" },
-				{ path: "chart-brush/geometry.ts", type: "registry:ui" },
-				{ path: "chart-brush/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"clsx",
-				"tailwind-merge",
-				"tailwind-variants",
-				"d3-array",
-				"d3-scale",
-				"d3-shape",
-			],
-			registryDependencies: ["chart", "line-chart"],
-		},
+		// The usage brushes a LineChart.
+		react: { entry: "ChartBrush", registryDependencies: ["line-chart"] },
+		svelte: { entry: "ChartBrush", registryDependencies: ["line-chart"] },
 	},
 	keywords: ["brush", "range", "zoom", "overview", "chart", "slider"],
 });

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { fullscreenNav as fullscreenNavVariants } from "./react/variants";
 
 const VARIANTS = ["fade", "slide", "clip"];
 const ALIGNS = ["start", "center"];
@@ -11,7 +12,7 @@ export const fullscreenNav = defineComponent({
 		"Full-viewport navigation overlay with staggered links, a current-page mark and an optional footer.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS, align: ALIGNS, size: SIZES },
+	variants: variantsOf(fullscreenNavVariants, ["variant", "align", "size"]),
 	props: [
 		{
 			name: "open",
@@ -112,23 +113,9 @@ export const fullscreenNav = defineComponent({
 	impl: {
 		react: {
 			entry: "FullscreenNav",
-			files: [
-				{ path: "fullscreen-nav/fullscreen-nav.tsx", type: "registry:ui" },
-				{ path: "fullscreen-nav/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["@base-ui/react", "clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button"],
 		},
 		svelte: {
 			entry: "FullscreenNav",
-			files: [
-				{ path: "fullscreen-nav/fullscreen-nav.svelte", type: "registry:ui" },
-				{ path: "fullscreen-nav/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["bits-ui", "clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button"],
 		},
 	},
 	keywords: ["fullscreen", "nav"],

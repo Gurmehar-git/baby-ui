@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "./core.mjs";
+import { deriveAll } from "./derive.mjs";
 import { exportsIn, exportsOf, filesIn } from "./exports.mjs";
 import { specFiles } from "./specs.mjs";
 
@@ -201,8 +202,11 @@ function libFacades(output, framework) {
 		});
 }
 
-/** `import`s of every manifest and one `name` array of their specs, in file-name order. */
-function specsIndex(manifests, name) {
+/**
+ * Every manifest completed with the impl fields derived from its ports (`derived`, by slug), as
+ * one `name` array in file-name order.
+ */
+function specsIndex(manifests, name, derived = {}) {
 	// A file may define several related specs (chart.ts holds chart and line-chart).
 	const specNames = manifests.map(([slug, file]) => {
 		const text = readFileSync(file, "utf8");
@@ -214,14 +218,21 @@ function specsIndex(manifests, name) {
 		return [slug, names];
 	});
 	return [
-		'import type { ComponentSpec } from "@baby-ui/registry-schema";',
+		'import { type ComponentSpec, completeSpec, type DerivedImpl } from "@baby-ui/registry-schema";',
 		...specNames.map(
 			([slug, names]) => `import { ${names.join(", ")} } from "./${slug}/${slug}";`,
 		),
 		"",
+		"/** What each port ships, read from its imports by `pnpm gen`. */",
+		'const derived: Record<string, Partial<Record<"react" | "svelte", DerivedImpl>>> = {',
+		...Object.entries(derived).map(
+			([slug, ports]) => `\t${quote(slug)}: ${JSON.stringify(ports)},`,
+		),
+		"};",
+		"",
 		`export const ${name}: ComponentSpec[] = [`,
 		...specNames.flatMap(([, names]) => names.map((n) => `\t${n},`)),
-		"];",
+		"].map((manifest) => completeSpec(manifest, derived[manifest.slug]));",
 		"",
 	].join("\n");
 }
@@ -291,7 +302,7 @@ export function indexes(output, report) {
 	output.add(
 		join(COMPONENTS, "specs.ts"),
 		[
-			specsIndex(manifests, "specs"),
+			specsIndex(manifests, "specs", deriveAll(output)),
 			"export function getSpec(slug: string): ComponentSpec | undefined {",
 			"\treturn specs.find((s) => s.slug === slug);",
 			"}",

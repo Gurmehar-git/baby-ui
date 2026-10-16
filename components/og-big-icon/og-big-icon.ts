@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogBigIcon as ogBigIconVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogBigIcon = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogBigIconVariants, ["mode"]),
 	props: [
 		{
 			name: "name",
@@ -86,21 +87,9 @@ export const ogBigIcon = defineComponent({
 	impl: {
 		react: {
 			entry: "OgBigIcon",
-			files: [
-				{ path: "og-big-icon/og-big-icon.tsx", type: "registry:ui" },
-				{ path: "og-big-icon/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgBigIcon",
-			files: [
-				{ path: "og-big-icon/og-big-icon.svelte", type: "registry:ui" },
-				{ path: "og-big-icon/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "icons", "icon library", "takumi"],

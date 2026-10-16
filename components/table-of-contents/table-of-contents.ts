@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { tableOfContents as tableOfContentsVariants } from "./react/variants";
 
 export const tableOfContents = defineComponent({
 	slug: "table-of-contents",
@@ -7,7 +8,7 @@ export const tableOfContents = defineComponent({
 		"An on-this-page outline whose rail bends between heading depths and lights the headings in view.",
 	category: "advanced",
 	status: "beta",
-	variants: { variant: ["curve", "straight"] },
+	variants: variantsOf(tableOfContentsVariants, ["variant"]),
 	props: [
 		{
 			name: "items",
@@ -90,23 +91,9 @@ export const tableOfContents = defineComponent({
 	impl: {
 		react: {
 			entry: "TableOfContents",
-			files: [
-				{ path: "table-of-contents/table-of-contents.tsx", type: "registry:ui" },
-				{ path: "table-of-contents/toc-core.ts", type: "registry:ui" },
-				{ path: "table-of-contents/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "TableOfContents",
-			files: [
-				{ path: "table-of-contents/table-of-contents.svelte", type: "registry:ui" },
-				{ path: "table-of-contents/toc-core.ts", type: "registry:ui" },
-				{ path: "table-of-contents/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

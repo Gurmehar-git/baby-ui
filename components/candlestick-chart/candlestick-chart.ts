@@ -94,26 +94,9 @@ export const candlestickChart = defineComponent({
 	impl: {
 		react: {
 			entry: "CandlestickChart",
-			files: [
-				{ path: "candlestick-chart/candlestick-chart.tsx", type: "registry:ui" },
-				{ path: "candlestick-chart/geometry.ts", type: "registry:ui" },
-				{ path: "candlestick-chart/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["tailwind-variants", "d3-array", "d3-scale"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "CandlestickChart",
-			files: [
-				{ path: "candlestick-chart/candlestick-chart.svelte", type: "registry:ui" },
-				{ path: "candlestick-chart/candlestick-plot.svelte", type: "registry:ui" },
-				{ path: "candlestick-chart/candlestick.svelte", type: "registry:ui" },
-				{ path: "candlestick-chart/context.ts", type: "registry:ui" },
-				{ path: "candlestick-chart/geometry.ts", type: "registry:ui" },
-				{ path: "candlestick-chart/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["tailwind-variants", "d3-array", "d3-scale"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["candlestick", "ohlc", "chart", "finance", "stock"],

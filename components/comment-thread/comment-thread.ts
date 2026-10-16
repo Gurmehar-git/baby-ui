@@ -1,14 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { commentThread as commentThreadVariants } from "./react/variants";
 
 const VARIANTS = ["default", "flat"];
-
-const files = (main: string) => [
-	{ path: `comment-thread/${main}`, type: "registry:ui" as const },
-	{ path: "comment-thread/thread.ts", type: "registry:ui" as const },
-	{ path: "comment-thread/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-const deps = ["avatar", "button", "collapsible", "mention-input", "rolling-digits"];
 
 export const commentThread = defineComponent({
 	slug: "comment-thread",
@@ -17,7 +10,7 @@ export const commentThread = defineComponent({
 		"A threaded discussion with nested replies, reactions, inline edit and delete, @mentions, and a resolve state that folds it into a chip.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(commentThreadVariants, ["variant"]),
 	props: [
 		{
 			name: "comments",
@@ -123,15 +116,9 @@ export const commentThread = defineComponent({
 	impl: {
 		react: {
 			entry: "CommentThread",
-			files: files("comment-thread.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 		svelte: {
 			entry: "CommentThread",
-			files: files("comment-thread.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 	},
 	keywords: [

@@ -119,39 +119,9 @@ export const choroplethChart = defineComponent({
 	impl: {
 		react: {
 			entry: "ChoroplethChart",
-			files: [
-				{ path: "choropleth-chart/choropleth-chart.tsx", type: "registry:ui" },
-				{ path: "choropleth-chart/geometry.ts", type: "registry:ui" },
-				{ path: "choropleth-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"clsx",
-				"tailwind-merge",
-				"tailwind-variants",
-				"d3-geo",
-				"@types/geojson",
-			],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "ChoroplethChart",
-			files: [
-				{ path: "choropleth-chart/choropleth-chart.svelte", type: "registry:ui" },
-				{ path: "choropleth-chart/choropleth-plot.svelte", type: "registry:ui" },
-				{ path: "choropleth-chart/choropleth-legend.svelte", type: "registry:ui" },
-				{ path: "choropleth-chart/geometry.ts", type: "registry:ui" },
-				{ path: "choropleth-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"clsx",
-				"tailwind-merge",
-				"tailwind-variants",
-				"d3-geo",
-				"@types/geojson",
-			],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["map", "choropleth", "geo", "world", "region", "chart"],

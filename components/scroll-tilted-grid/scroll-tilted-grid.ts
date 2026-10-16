@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { scrollTiltedGrid as scrollTiltedGridVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg", "auto"];
 const ASPECTS = ["portrait", "square", "landscape"];
@@ -11,7 +12,7 @@ export const scrollTiltedGrid = defineComponent({
 		"A two-column image grid whose tiles tilt, blur and dim in 3D as they scroll in and out of view.",
 	category: "animated",
 	status: "stable",
-	variants: { size: SIZES, aspect: ASPECTS, radius: RADII },
+	variants: variantsOf(scrollTiltedGridVariants, ["size", "aspect", "radius"]),
 	props: [
 		{
 			name: "image",
@@ -110,23 +111,9 @@ export const scrollTiltedGrid = defineComponent({
 	impl: {
 		react: {
 			entry: "ScrollTiltedGrid",
-			files: [
-				{ path: "scroll-tilted-grid/scroll-tilted-grid.tsx", type: "registry:ui" },
-				{ path: "scroll-tilted-grid/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/image.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ScrollTiltedGrid",
-			files: [
-				{ path: "scroll-tilted-grid/scroll-tilted-grid.svelte", type: "registry:ui" },
-				{ path: "scroll-tilted-grid/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/image.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["scroll", "gallery", "3d", "tilt", "parallax", "images"],

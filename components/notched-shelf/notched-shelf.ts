@@ -91,21 +91,9 @@ export const notchedShelf = defineComponent({
 	impl: {
 		react: {
 			entry: "NotchedShelf",
-			files: [
-				{ path: "notched-shelf/notched-shelf.tsx", type: "registry:ui" },
-				{ path: "notched-shelf/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "NotchedShelf",
-			files: [
-				{ path: "notched-shelf/notched-shelf.svelte", type: "registry:ui" },
-				{ path: "notched-shelf/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

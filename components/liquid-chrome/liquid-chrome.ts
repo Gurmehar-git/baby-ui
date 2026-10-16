@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { liquidChrome as liquidChromeVariants } from "./react/variants";
 
 const TONES = ["chrome", "chart", "accent"];
 const SPEEDS = ["slow", "normal", "fast"];
@@ -11,7 +12,7 @@ export const liquidChrome = defineComponent({
 		"Domain-warped liquid metal with silver and specular bands, drawn in WebGL from theme tokens.",
 	category: "backgrounds",
 	status: "stable",
-	variants: { tone: TONES, speed: SPEEDS, position: POSITIONS },
+	variants: variantsOf(liquidChromeVariants, ["tone", "speed", "position"]),
 	props: [
 		{
 			name: "tone",
@@ -79,29 +80,9 @@ export const liquidChrome = defineComponent({
 	impl: {
 		react: {
 			entry: "LiquidChrome",
-			files: [
-				{ path: "liquid-chrome/liquid-chrome.tsx", type: "registry:ui" },
-				{ path: "liquid-chrome/chrome.ts", type: "registry:ui" },
-				{ path: "liquid-chrome/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/use-canvas-engine.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "LiquidChrome",
-			files: [
-				{ path: "liquid-chrome/liquid-chrome.svelte", type: "registry:ui" },
-				{ path: "liquid-chrome/chrome.ts", type: "registry:ui" },
-				{ path: "liquid-chrome/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/canvas-engine.svelte.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "chrome", "metal", "liquid", "webgl", "shader"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { selectTrigger as selectTriggerVariants } from "./react/variants";
 
 export const select = defineComponent({
 	slug: "select",
@@ -7,7 +8,7 @@ export const select = defineComponent({
 		"Listbox at least as wide as its trigger that grows to fit its longest option, keeps the selected option in view and flips when needed.",
 	category: "base",
 	status: "stable",
-	variants: { variant: ["default", "ghost"], size: ["xs", "sm", "default", "lg", "xl"] },
+	variants: variantsOf(selectTriggerVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "variant",
@@ -110,34 +111,9 @@ export const select = defineComponent({
 	impl: {
 		react: {
 			entry: "Select",
-			files: [
-				{ path: "select/select.tsx", type: "registry:ui" },
-				{ path: "select/variants.ts", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/menu.ts", type: "registry:lib" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Select",
-			files: [
-				{ path: "select/select.svelte", type: "registry:ui" },
-				{ path: "select/select-trigger.svelte", type: "registry:ui" },
-				{ path: "select/select-value.svelte", type: "registry:ui" },
-				{ path: "select/select-content.svelte", type: "registry:ui" },
-				{ path: "select/select-item.svelte", type: "registry:ui" },
-				{ path: "select/select-group.svelte", type: "registry:ui" },
-				{ path: "select/select-label.svelte", type: "registry:ui" },
-				{ path: "select/select-separator.svelte", type: "registry:ui" },
-				{ path: "select/variants.ts", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/menu.ts", type: "registry:lib" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "bits-ui"],
 			// select-separator.svelte is still a plain <hr>: bits-ui's Select module has no
 			// Select-scoped Separator (unlike Base UI's), and this repo has no standalone one yet.
 		},

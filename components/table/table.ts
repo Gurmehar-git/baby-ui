@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { table as tableVariants } from "./react/variants";
 
 const DENSITIES = ["comfortable", "compact"];
 const VARIANTS = ["default", "framed"];
@@ -10,7 +11,7 @@ export const table = defineComponent({
 		"Styled semantic table primitives: Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption.",
 	category: "base",
 	status: "stable",
-	variants: { variant: VARIANTS, density: DENSITIES },
+	variants: variantsOf(tableVariants, ["variant", "density"]),
 	props: [
 		{
 			name: "variant",
@@ -45,29 +46,9 @@ export const table = defineComponent({
 	impl: {
 		react: {
 			entry: "Table",
-			files: [
-				{ path: "table/table.tsx", type: "registry:ui" },
-				{ path: "table/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Table",
-			files: [
-				{ path: "table/table.svelte", type: "registry:ui" },
-				{ path: "table/table-header.svelte", type: "registry:ui" },
-				{ path: "table/table-body.svelte", type: "registry:ui" },
-				{ path: "table/table-footer.svelte", type: "registry:ui" },
-				{ path: "table/table-row.svelte", type: "registry:ui" },
-				{ path: "table/table-head.svelte", type: "registry:ui" },
-				{ path: "table/table-cell.svelte", type: "registry:ui" },
-				{ path: "table/table-caption.svelte", type: "registry:ui" },
-				{ path: "table/context.ts", type: "registry:ui" },
-				{ path: "table/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["table", "data", "grid", "rows", "columns"],

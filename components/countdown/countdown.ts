@@ -1,13 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { countdown as countdownVariants } from "./react/variants";
 
 const VARIANTS = ["default", "compact", "inline"];
-
-const files = (main: string) => [
-	{ path: `countdown/${main}`, type: "registry:ui" as const },
-	{ path: "countdown/clock.ts", type: "registry:ui" as const },
-	{ path: "countdown/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const countdown = defineComponent({
 	slug: "countdown",
@@ -16,7 +10,7 @@ export const countdown = defineComponent({
 		"Counts down to a launch, live event or deadline; digits roll each second and give way to a live label at zero.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(countdownVariants, ["variant"]),
 	props: [
 		{
 			name: "target",
@@ -104,15 +98,9 @@ export const countdown = defineComponent({
 	impl: {
 		react: {
 			entry: "Countdown",
-			files: files("countdown.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["rolling-digits"],
 		},
 		svelte: {
 			entry: "Countdown",
-			files: files("countdown.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["rolling-digits"],
 		},
 	},
 	keywords: ["countdown", "timer", "launch", "event", "deadline", "clock"],

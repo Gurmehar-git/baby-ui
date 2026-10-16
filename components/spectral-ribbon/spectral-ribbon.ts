@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { spectralRibbon as spectralRibbonVariants } from "./react/variants";
 
 const TONES = ["spectrum", "chart", "mono"];
 const SPEEDS = ["slow", "normal", "fast"];
@@ -11,7 +12,7 @@ export const spectralRibbon = defineComponent({
 		"A soft light trail with a prismatic fringe, drawn in WebGL from theme tokens.",
 	category: "backgrounds",
 	status: "stable",
-	variants: { tone: TONES, speed: SPEEDS, position: POSITIONS },
+	variants: variantsOf(spectralRibbonVariants, ["tone", "speed", "position"]),
 	props: [
 		{
 			name: "tone",
@@ -86,29 +87,9 @@ export const spectralRibbon = defineComponent({
 	impl: {
 		react: {
 			entry: "SpectralRibbon",
-			files: [
-				{ path: "spectral-ribbon/spectral-ribbon.tsx", type: "registry:ui" },
-				{ path: "spectral-ribbon/ribbon.ts", type: "registry:ui" },
-				{ path: "spectral-ribbon/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/use-canvas-engine.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "SpectralRibbon",
-			files: [
-				{ path: "spectral-ribbon/spectral-ribbon.svelte", type: "registry:ui" },
-				{ path: "spectral-ribbon/ribbon.ts", type: "registry:ui" },
-				{ path: "spectral-ribbon/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/canvas-engine.svelte.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "ribbon", "prism", "webgl", "shader", "hero"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { streamingText as streamingTextVariants } from "./react/variants";
 
 const LAYOUTS = ["inline", "card"];
 const SIZES = ["sm", "default", "lg"];
@@ -10,7 +11,7 @@ export const streamingText = defineComponent({
 		"Word-by-word answer reveal, plain or with inline citation chips, then actions, sources and follow-ups once it settles.",
 	category: "agents",
 	status: "stable",
-	variants: { layout: LAYOUTS, size: SIZES },
+	variants: variantsOf(streamingTextVariants, ["layout", "size"]),
 	props: [
 		{
 			name: "layout",
@@ -111,24 +112,9 @@ export const streamingText = defineComponent({
 	impl: {
 		react: {
 			entry: "StreamingText",
-			files: [
-				{ path: "streaming-text/streaming-text.tsx", type: "registry:ui" },
-				{ path: "streaming-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["markdown"],
 		},
 		svelte: {
 			entry: "StreamingText",
-			files: [
-				{ path: "streaming-text/streaming-text.svelte", type: "registry:ui" },
-				{ path: "streaming-text/types.ts", type: "registry:ui" },
-				{ path: "streaming-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["markdown"],
 		},
 	},
 	keywords: ["streaming", "answer", "citations", "sources", "follow-ups", "agent"],

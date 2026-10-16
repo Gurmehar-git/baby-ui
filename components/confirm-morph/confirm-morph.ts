@@ -1,18 +1,10 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { confirmMorph as confirmMorphVariants } from "./react/variants";
 
 const VARIANTS = ["destructive", "default"];
 const SIZES = ["sm", "default", "lg"];
 const MODES = ["press", "hold", "countdown"];
 const STATES = ["idle", "confirming", "pending", "done", "error"];
-
-const files = (main: string) => [
-	{ path: `confirm-morph/${main}`, type: "registry:ui" as const },
-	{ path: "confirm-morph/confirm.ts", type: "registry:ui" as const },
-	{ path: "confirm-morph/variants.ts", type: "registry:ui" as const },
-	{ path: "button/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/morph.ts", type: "registry:lib" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const confirmMorph = defineComponent({
 	slug: "confirm-morph",
@@ -21,7 +13,7 @@ export const confirmMorph = defineComponent({
 		"A button that asks in place: the pill morphs into a question with Cancel and Confirm, then a spinner, then a result with Undo.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(confirmMorphVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "label",
@@ -184,15 +176,9 @@ export const confirmMorph = defineComponent({
 	impl: {
 		react: {
 			entry: "ConfirmMorph",
-			files: files("confirm-morph.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["hold-to-confirm", "rolling-digits", "spinner"],
 		},
 		svelte: {
 			entry: "ConfirmMorph",
-			files: files("confirm-morph.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["hold-to-confirm", "rolling-digits", "spinner"],
 		},
 	},
 	keywords: ["confirm", "inline", "delete", "undo", "morph", "destructive"],

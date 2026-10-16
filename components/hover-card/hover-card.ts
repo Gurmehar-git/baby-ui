@@ -60,23 +60,9 @@ export const hoverCard = defineComponent({
 	impl: {
 		react: {
 			entry: "HoverCard",
-			files: [
-				{ path: "hover-card/hover-card.tsx", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "HoverCard",
-			files: [
-				{ path: "hover-card/hover-card.svelte", type: "registry:ui" },
-				{ path: "hover-card/hover-card-trigger.svelte", type: "registry:ui" },
-				{ path: "hover-card/hover-card-content.svelte", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "bits-ui"],
 		},
 	},
 	keywords: ["hover", "card", "overlay"],

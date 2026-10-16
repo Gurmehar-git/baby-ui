@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { emailWelcome as emailWelcomeVariants } from "./react/variants";
 
 const DENSITIES = ["comfortable", "compact"];
 
@@ -9,7 +10,7 @@ export const emailWelcome = defineComponent({
 		"Sent right after sign-up: greets the user, lists their first few actions and links to the product.",
 	category: "emails",
 	status: "beta",
-	variants: { density: DENSITIES },
+	variants: variantsOf(emailWelcomeVariants, ["density"]),
 	props: [
 		{
 			name: "heroImageUrl, heroImageAlt",
@@ -138,21 +139,9 @@ export const emailWelcome = defineComponent({
 	impl: {
 		react: {
 			entry: "EmailWelcome",
-			files: [
-				{ path: "email-welcome/email-welcome.tsx", type: "registry:ui" },
-				{ path: "email-welcome/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["react-email", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 		svelte: {
 			entry: "EmailWelcome",
-			files: [
-				{ path: "email-welcome/email-welcome.svelte", type: "registry:ui" },
-				{ path: "email-welcome/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["@better-svelte-email/components", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 	},
 	keywords: ["email", "welcome", "onboarding", "sign up", "transactional"],

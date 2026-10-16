@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { tabsFrame as tabsFrameVariants } from "./react/variants";
 
 export const tabs = defineComponent({
 	slug: "tabs",
@@ -7,10 +8,7 @@ export const tabs = defineComponent({
 		"Panel switcher with a sliding indicator and a list that scrolls when it overflows.",
 	category: "base",
 	status: "stable",
-	variants: {
-		variant: ["pill", "underline", "segment", "soft", "outline", "enclosed"],
-		size: ["xs", "sm", "default", "lg", "xl"],
-	},
+	variants: variantsOf(tabsFrameVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "value",
@@ -99,25 +97,9 @@ export const tabs = defineComponent({
 	impl: {
 		react: {
 			entry: "Tabs",
-			files: [
-				{ path: "tabs/tabs.tsx", type: "registry:ui" },
-				{ path: "tabs/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Tabs",
-			files: [
-				{ path: "tabs/tabs.svelte", type: "registry:ui" },
-				{ path: "tabs/tabs-list.svelte", type: "registry:ui" },
-				{ path: "tabs/tabs-trigger.svelte", type: "registry:ui" },
-				{ path: "tabs/tabs-content.svelte", type: "registry:ui" },
-				{ path: "tabs/context.ts", type: "registry:ui" },
-				{ path: "tabs/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["tabs", "navigation", "segmented"],

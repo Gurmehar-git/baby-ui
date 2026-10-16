@@ -97,33 +97,9 @@ export const radarChart = defineComponent({
 	impl: {
 		react: {
 			entry: "RadarChart",
-			files: [
-				{ path: "radar-chart/radar-chart.tsx", type: "registry:ui" },
-				{ path: "radar-chart/geometry.ts", type: "registry:ui" },
-				{ path: "radar-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-scale"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "RadarChart",
-			files: [
-				{ path: "radar-chart/radar-chart.svelte", type: "registry:ui" },
-				{ path: "radar-chart/radar-plot.svelte", type: "registry:ui" },
-				{ path: "radar-chart/radar-grid.svelte", type: "registry:ui" },
-				{ path: "radar-chart/radar-axis.svelte", type: "registry:ui" },
-				{ path: "radar-chart/radar-labels.svelte", type: "registry:ui" },
-				{ path: "radar-chart/radar-area.svelte", type: "registry:ui" },
-				{ path: "radar-chart/radar-tooltip.svelte", type: "registry:ui" },
-				{ path: "radar-chart/context.ts", type: "registry:ui" },
-				{ path: "radar-chart/enter.svelte.ts", type: "registry:ui" },
-				{ path: "radar-chart/geometry.ts", type: "registry:ui" },
-				{ path: "radar-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-scale"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["radar", "spider", "chart", "comparison", "metrics"],

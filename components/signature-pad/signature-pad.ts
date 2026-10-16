@@ -1,15 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { signaturePad as signaturePadVariants } from "./react/variants";
 
 const VARIANTS = ["default", "line"];
-
-const files = (main: string) => [
-	{ path: `signature-pad/${main}`, type: "registry:ui" as const },
-	{ path: "signature-pad/ink.ts", type: "registry:ui" as const },
-	{ path: "signature-pad/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
-const deps = ["button", "toggle-group"];
 
 export const signaturePad = defineComponent({
 	slug: "signature-pad",
@@ -18,7 +10,7 @@ export const signaturePad = defineComponent({
 		"A signature field with real ink: width follows pen pressure or speed, ends taper, with three inks, undo, redo, a time-true replay, a wiping clear and cropped PNG or SVG export.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(signaturePadVariants, ["variant"]),
 	props: [
 		{
 			name: "value",
@@ -117,15 +109,9 @@ export const signaturePad = defineComponent({
 	impl: {
 		react: {
 			entry: "SignaturePad",
-			files: files("signature-pad.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 		svelte: {
 			entry: "SignaturePad",
-			files: files("signature-pad.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 	},
 	keywords: ["signature", "sign", "pad", "draw", "ink", "pen", "form"],

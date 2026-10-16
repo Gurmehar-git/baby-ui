@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { cardFrame as cardFrameVariants } from "./react/variants";
 
 export const card = defineComponent({
 	slug: "card",
@@ -6,7 +7,7 @@ export const card = defineComponent({
 	description: "Content surface with header, body and footer slots.",
 	category: "base",
 	status: "stable",
-	variants: { variant: ["default", "secondary", "ghost", "framed", "well"] },
+	variants: variantsOf(cardFrameVariants, ["variant"]),
 	props: [
 		{
 			name: "interactive",
@@ -79,28 +80,9 @@ export const card = defineComponent({
 	impl: {
 		react: {
 			entry: "Card",
-			files: [
-				{ path: "card/card.tsx", type: "registry:ui" },
-				{ path: "card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Card",
-			files: [
-				{ path: "card/card.svelte", type: "registry:ui" },
-				{ path: "card/card-header.svelte", type: "registry:ui" },
-				{ path: "card/card-title.svelte", type: "registry:ui" },
-				{ path: "card/card-description.svelte", type: "registry:ui" },
-				{ path: "card/card-action.svelte", type: "registry:ui" },
-				{ path: "card/card-content.svelte", type: "registry:ui" },
-				{ path: "card/card-footer.svelte", type: "registry:ui" },
-				{ path: "card/context.ts", type: "registry:ui" },
-				{ path: "card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["card", "surface", "panel", "container"],

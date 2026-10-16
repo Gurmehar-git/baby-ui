@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { slopeChart as slopeChartVariants } from "./react/variants";
 
 const VARIANTS = ["default", "minimal"];
 
@@ -9,7 +10,7 @@ export const slopeChart = defineComponent({
 		"How several items changed between exactly two moments, and how their order changed, with rank movement beside each end.",
 	category: "charts",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(slopeChartVariants, ["variant"]),
 	props: [
 		{
 			name: "data",
@@ -86,26 +87,9 @@ export const slopeChart = defineComponent({
 	impl: {
 		react: {
 			entry: "SlopeChart",
-			files: [
-				{ path: "slope-chart/slope-chart.tsx", type: "registry:ui" },
-				{ path: "slope-chart/geometry.ts", type: "registry:ui" },
-				{ path: "slope-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "SlopeChart",
-			files: [
-				{ path: "slope-chart/slope-chart.svelte", type: "registry:ui" },
-				{ path: "slope-chart/slope-plot.svelte", type: "registry:ui" },
-				{ path: "slope-chart/geometry.ts", type: "registry:ui" },
-				{ path: "slope-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["slope", "before after", "rank", "comparison", "chart"],

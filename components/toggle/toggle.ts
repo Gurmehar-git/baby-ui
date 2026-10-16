@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { toggleButton as toggleButtonVariants } from "./react/variants";
 
 export const toggle = defineComponent({
 	slug: "toggle",
@@ -6,10 +7,7 @@ export const toggle = defineComponent({
 	description: "Two-state button that stays pressed, for formatting and view switches.",
 	category: "base",
 	status: "stable",
-	variants: {
-		variant: ["default", "outline", "primary"],
-		size: ["xs", "sm", "default", "lg", "xl"],
-	},
+	variants: variantsOf(toggleButtonVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "pressed",
@@ -72,23 +70,9 @@ export const toggle = defineComponent({
 	impl: {
 		react: {
 			entry: "Toggle",
-			files: [
-				{ path: "toggle/toggle.tsx", type: "registry:ui" },
-				{ path: "toggle/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Toggle",
-			files: [
-				{ path: "toggle/toggle.svelte", type: "registry:ui" },
-				{ path: "toggle/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["toggle"],

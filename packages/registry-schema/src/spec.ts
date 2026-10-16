@@ -39,6 +39,18 @@ export const ImplSchema = z.object({
 });
 
 export type Impl = z.infer<typeof ImplSchema>;
+export type DerivedImpl = Pick<Impl, "files" | "dependencies" | "registryDependencies">;
+
+/** A manifest's port: `pnpm gen` derives what the code imports, so these list only extras. */
+export const ManifestImplSchema = z.object({
+	entry: z.string().min(1),
+	/** Files the code never imports but the install needs (a lib the consumer wires up). */
+	files: z.array(SpecFileSchema).optional(),
+	/** Peers and pins (`name@range`) beyond the imported packages. */
+	dependencies: z.array(z.string()).optional(),
+	/** Components the usage composes with but the code never imports. */
+	registryDependencies: z.array(z.string()).optional(),
+});
 
 /** Attribution for a ported component. Drives THIRD_PARTY_LICENSES generation. */
 export const LicenseOriginSchema = z.object({
@@ -141,7 +153,19 @@ export const ComponentSpecSchema = z.object({
 });
 
 export type ComponentSpec = z.infer<typeof ComponentSpecSchema>;
-export type ComponentSpecInput = z.input<typeof ComponentSpecSchema>;
+
+/** What a `components/<slug>/<slug>.ts` states; `completeSpec` adds the derived impl fields. */
+export const ComponentManifestSchema = ComponentSpecSchema.extend({
+	impl: z
+		.object({
+			react: ManifestImplSchema.optional(),
+			svelte: ManifestImplSchema.optional(),
+		})
+		.refine((v) => v.react || v.svelte, "at least one implementation required"),
+});
+
+export type ComponentManifest = z.infer<typeof ComponentManifestSchema>;
+export type ComponentSpecInput = z.input<typeof ComponentManifestSchema>;
 
 export function installDir(spec: Pick<ComponentSpec, "category" | "installDir">): string {
 	return spec.installDir ?? CATEGORY[spec.category].installDir;
@@ -161,6 +185,55 @@ export function defaultProps(
 }
 
 /** Authoring helper: validates at module load so a bad spec fails the build, not a request. */
-export function defineComponent(spec: ComponentSpecInput): ComponentSpec {
-	return ComponentSpecSchema.parse(spec);
+export function defineComponent(spec: ComponentSpecInput): ComponentManifest {
+	return ComponentManifestSchema.parse(spec);
+}
+
+/** A manifest's `variants` read from its `tv()`: each named axis with the options the code has. */
+export function variantsOf(
+	config: { variants: Record<string, object | undefined> },
+	axes: readonly string[],
+): Record<string, string[]> {
+	const out: Record<string, string[]> = {};
+	for (const axis of axes) {
+		const options = config.variants[axis];
+		if (!options) throw new Error(`variantsOf: the tv() has no "${axis}" axis`);
+		out[axis] = Object.keys(options);
+	}
+	return out;
+}
+
+const unpinned = (dep: string) => dep.replace(/(.)@.*$/, "$1");
+
+/** A manifest plus what `pnpm gen` derived from its ports' imports; listed extras are added. */
+export function completeSpec(
+	manifest: ComponentManifest,
+	derived: Partial<Record<Framework, DerivedImpl>> = {},
+): ComponentSpec {
+	const impl: Partial<Record<Framework, Impl>> = {};
+	for (const framework of FRAMEWORKS) {
+		const own = manifest.impl[framework];
+		if (!own) continue;
+		const from = derived[framework];
+		const files = [...(from?.files ?? [])];
+		for (const file of own.files ?? [])
+			if (!files.some((f) => f.path === file.path)) files.push(file);
+		const extra = own.dependencies ?? [];
+		// A pin (`vaul-svelte@^1.0.0-next.7`) replaces the bare name the import gave.
+		const imported = (from?.dependencies ?? []).filter(
+			(dep) => !extra.some((e) => unpinned(e) === dep),
+		);
+		impl[framework] = {
+			entry: own.entry,
+			files,
+			dependencies: [...new Set([...imported, ...extra])].sort(),
+			registryDependencies: [
+				...new Set([
+					...(from?.registryDependencies ?? []),
+					...(own.registryDependencies ?? []),
+				]),
+			].sort(),
+		};
+	}
+	return ComponentSpecSchema.parse({ ...manifest, impl });
 }

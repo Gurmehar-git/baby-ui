@@ -73,21 +73,9 @@ export const imageTrail = defineComponent({
 	impl: {
 		react: {
 			entry: "ImageTrail",
-			files: [
-				{ path: "image-trail/image-trail.tsx", type: "registry:ui" },
-				{ path: "image-trail/trail.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ImageTrail",
-			files: [
-				{ path: "image-trail/image-trail.svelte", type: "registry:ui" },
-				{ path: "image-trail/trail.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["images", "trail", "cursor", "pointer", "gallery", "interactive"],

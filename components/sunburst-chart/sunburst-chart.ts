@@ -101,24 +101,9 @@ export const sunburstChart = defineComponent({
 	impl: {
 		react: {
 			entry: "SunburstChart",
-			files: [
-				{ path: "sunburst-chart/sunburst-chart.tsx", type: "registry:ui" },
-				{ path: "sunburst-chart/geometry.ts", type: "registry:ui" },
-				{ path: "sunburst-chart/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "SunburstChart",
-			files: [
-				{ path: "sunburst-chart/sunburst-chart.svelte", type: "registry:ui" },
-				{ path: "sunburst-chart/sunburst-plot.svelte", type: "registry:ui" },
-				{ path: "sunburst-chart/geometry.ts", type: "registry:ui" },
-				{ path: "sunburst-chart/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["sunburst", "hierarchy", "tree", "drill down", "chart"],

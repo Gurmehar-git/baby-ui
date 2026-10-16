@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { gradientHero01 as gradientHero01Variants } from "./react/variants";
 
 const TONES = ["chart", "spectrum", "primary"];
 const SIZES = ["screen", "section"];
@@ -12,7 +13,7 @@ export const gradientHero01 = defineComponent({
 	status: "stable",
 	retired: true,
 	demo: { mode: "auto", frame: "none" },
-	variants: { tone: TONES, size: SIZES },
+	variants: variantsOf(gradientHero01Variants, ["tone", "size"]),
 	props: [
 		{
 			name: "headline",
@@ -92,25 +93,9 @@ export const gradientHero01 = defineComponent({
 	impl: {
 		react: {
 			entry: "GradientHero01",
-			files: [
-				{ path: "gradient-hero-01/gradient-hero-01.tsx", type: "registry:ui" },
-				{ path: "gradient-hero-01/types.ts", type: "registry:ui" },
-				{ path: "gradient-hero-01/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "button", "copy-button"],
 		},
 		svelte: {
 			entry: "GradientHero01",
-			files: [
-				{ path: "gradient-hero-01/gradient-hero-01.svelte", type: "registry:ui" },
-				{ path: "gradient-hero-01/types.ts", type: "registry:ui" },
-				{ path: "gradient-hero-01/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "button", "copy-button"],
 		},
 	},
 	keywords: ["hero", "landing", "gradient", "glow", "headline", "cta"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { gradientText as gradientTextVariants } from "./react/variants";
 
 const TONES = ["primary", "muted"];
 
@@ -8,7 +9,7 @@ export const animatedGradientText = defineComponent({
 	description: "Text filled with a gradient that sweeps back and forth.",
 	category: "text",
 	status: "stable",
-	variants: { tone: TONES },
+	variants: variantsOf(gradientTextVariants, ["tone"]),
 	props: [
 		{
 			name: "children",
@@ -55,27 +56,9 @@ export const animatedGradientText = defineComponent({
 	impl: {
 		react: {
 			entry: "AnimatedGradientText",
-			files: [
-				{
-					path: "animated-gradient-text/animated-gradient-text.tsx",
-					type: "registry:ui",
-				},
-				{ path: "animated-gradient-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "AnimatedGradientText",
-			files: [
-				{
-					path: "animated-gradient-text/animated-gradient-text.svelte",
-					type: "registry:ui",
-				},
-				{ path: "animated-gradient-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "gradient", "animated", "heading"],

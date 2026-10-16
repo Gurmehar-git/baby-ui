@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { stickyScrollCards as stickyScrollCardsVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg", "auto"];
 const VARIANTS = ["polaroid", "plain"];
@@ -10,7 +11,7 @@ export const stickyScrollCards = defineComponent({
 		"Photo cards that pin as they scroll in and shrink back into a tilted stack as later ones land.",
 	category: "animated",
 	status: "stable",
-	variants: { size: SIZES, variant: VARIANTS },
+	variants: variantsOf(stickyScrollCardsVariants, ["size", "variant"]),
 	props: [
 		{
 			name: "image",
@@ -88,23 +89,9 @@ export const stickyScrollCards = defineComponent({
 	impl: {
 		react: {
 			entry: "StickyScrollCards",
-			files: [
-				{ path: "sticky-scroll-cards/sticky-scroll-cards.tsx", type: "registry:ui" },
-				{ path: "sticky-scroll-cards/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/image.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "StickyScrollCards",
-			files: [
-				{ path: "sticky-scroll-cards/sticky-scroll-cards.svelte", type: "registry:ui" },
-				{ path: "sticky-scroll-cards/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/image.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["scroll", "sticky", "stack", "cards", "photos"],

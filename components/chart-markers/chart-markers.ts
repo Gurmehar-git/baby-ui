@@ -73,34 +73,9 @@ export const chartMarkers = defineComponent({
 		copyright: "Copyright (c) 2026 uixmat",
 	},
 	impl: {
-		react: {
-			entry: "ChartMarkers",
-			files: [
-				{ path: "chart-markers/chart-markers.tsx", type: "registry:ui" },
-				{ path: "chart-markers/geometry.ts", type: "registry:ui" },
-				{ path: "chart-markers/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "line-chart"],
-		},
-		svelte: {
-			entry: "ChartMarkers",
-			files: [
-				{ path: "chart-markers/chart-markers.svelte", type: "registry:ui" },
-				{ path: "chart-markers/chart-marker-layer.svelte", type: "registry:ui" },
-				{ path: "chart-markers/chart-marker-group.svelte", type: "registry:ui" },
-				{ path: "chart-markers/chart-marker-fan-item.svelte", type: "registry:ui" },
-				{ path: "chart-markers/chart-marker-disc.svelte", type: "registry:ui" },
-				{ path: "chart-markers/chart-marker-tooltip.svelte", type: "registry:ui" },
-				{ path: "chart-markers/types.ts", type: "registry:ui" },
-				{ path: "chart-markers/geometry.ts", type: "registry:ui" },
-				{ path: "chart-markers/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "line-chart"],
-		},
+		// The usage marks a LineChart.
+		react: { entry: "ChartMarkers", registryDependencies: ["line-chart"] },
+		svelte: { entry: "ChartMarkers", registryDependencies: ["line-chart"] },
 	},
 	keywords: ["markers", "events", "annotations", "chart", "timeline"],
 });

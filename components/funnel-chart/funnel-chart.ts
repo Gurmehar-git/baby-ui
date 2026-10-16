@@ -125,27 +125,9 @@ export const funnelChart = defineComponent({
 	impl: {
 		react: {
 			entry: "FunnelChart",
-			files: [
-				{ path: "funnel-chart/funnel-chart.tsx", type: "registry:ui" },
-				{ path: "funnel-chart/geometry.ts", type: "registry:ui" },
-				{ path: "funnel-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "FunnelChart",
-			files: [
-				{ path: "funnel-chart/funnel-chart.svelte", type: "registry:ui" },
-				{ path: "funnel-chart/funnel-plot.svelte", type: "registry:ui" },
-				{ path: "funnel-chart/funnel-ring.svelte", type: "registry:ui" },
-				{ path: "funnel-chart/geometry.ts", type: "registry:ui" },
-				{ path: "funnel-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["funnel", "conversion", "drop-off", "stages", "chart"],

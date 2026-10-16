@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogStatement as ogStatementVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogStatement = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogStatementVariants, ["mode"]),
 	props: [
 		{
 			name: "title",
@@ -48,21 +49,9 @@ export const ogStatement = defineComponent({
 	impl: {
 		react: {
 			entry: "OgStatement",
-			files: [
-				{ path: "og-statement/og-statement.tsx", type: "registry:ui" },
-				{ path: "og-statement/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgStatement",
-			files: [
-				{ path: "og-statement/og-statement.svelte", type: "registry:ui" },
-				{ path: "og-statement/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "statement", "headline", "takumi"],

@@ -1,15 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { scrollSplitCard as scrollSplitCardVariants } from "./react/variants";
 
 const TONES = ["card", "inverse", "chart"];
 const SIZES = ["sm", "md", "lg"];
-
-const files = (ext: string) => [
-	{ path: `scroll-split-card/scroll-split-card.${ext}`, type: "registry:ui" as const },
-	{ path: "scroll-split-card/types.ts", type: "registry:ui" as const },
-	{ path: "scroll-split-card/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/scroll-frame.ts", type: "registry:lib" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const scrollSplitCard = defineComponent({
 	slug: "scroll-split-card",
@@ -19,7 +12,7 @@ export const scrollSplitCard = defineComponent({
 	category: "animated",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { tone: TONES, size: SIZES },
+	variants: variantsOf(scrollSplitCardVariants, ["tone", "size"]),
 	props: [
 		{
 			name: "image",
@@ -107,15 +100,9 @@ export const scrollSplitCard = defineComponent({
 	impl: {
 		react: {
 			entry: "ScrollSplitCard",
-			files: files("tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["card"],
 		},
 		svelte: {
 			entry: "ScrollSplitCard",
-			files: files("svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["card"],
 		},
 	},
 	keywords: ["scroll", "flip", "split", "cards", "3d"],

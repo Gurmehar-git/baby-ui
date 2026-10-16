@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { field as fieldVariants } from "./react/variants";
 
 export const field = defineComponent({
 	slug: "field",
@@ -7,10 +8,7 @@ export const field = defineComponent({
 		"Label, control, description and error laid out as one accessible unit, with shadcn's exact part names.",
 	category: "base",
 	status: "stable",
-	variants: {
-		orientation: ["vertical", "horizontal", "responsive"],
-		size: ["default", "sm"],
-	},
+	variants: variantsOf(fieldVariants, ["orientation", "size"]),
 	props: [
 		{
 			name: "orientation",
@@ -53,32 +51,9 @@ export const field = defineComponent({
 	impl: {
 		react: {
 			entry: "Field",
-			files: [
-				{ path: "field/field.tsx", type: "registry:ui" },
-				{ path: "field/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["label", "separator"],
 		},
 		svelte: {
 			entry: "Field",
-			files: [
-				{ path: "field/field.svelte", type: "registry:ui" },
-				{ path: "field/field-content.svelte", type: "registry:ui" },
-				{ path: "field/field-description.svelte", type: "registry:ui" },
-				{ path: "field/field-error.svelte", type: "registry:ui" },
-				{ path: "field/field-group.svelte", type: "registry:ui" },
-				{ path: "field/field-label.svelte", type: "registry:ui" },
-				{ path: "field/field-legend.svelte", type: "registry:ui" },
-				{ path: "field/field-separator.svelte", type: "registry:ui" },
-				{ path: "field/field-set.svelte", type: "registry:ui" },
-				{ path: "field/field-title.svelte", type: "registry:ui" },
-				{ path: "field/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["label", "separator"],
 		},
 	},
 	keywords: ["field", "form", "label", "error", "validation", "fieldset"],

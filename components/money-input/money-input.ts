@@ -3,13 +3,6 @@ import { defineComponent } from "@baby-ui/registry-schema";
 const VARIANTS = ["default", "start"];
 const SIZES = ["xs", "sm", "default", "lg", "xl"];
 
-const files = (main: string) => [
-	{ path: `money-input/${main}`, type: "registry:ui" as const },
-	{ path: "money-input/money.ts", type: "registry:ui" as const },
-	{ path: "money-input/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
 export const moneyInput = defineComponent({
 	slug: "money-input",
 	name: "Money Input",
@@ -133,15 +126,9 @@ export const moneyInput = defineComponent({
 	impl: {
 		react: {
 			entry: "MoneyInput",
-			files: files("money-input.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["input-group", "select", "button"],
 		},
 		svelte: {
 			entry: "MoneyInput",
-			files: files("money-input.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["input-group", "select", "button"],
 		},
 	},
 	keywords: ["money", "currency", "amount", "price", "input", "form"],

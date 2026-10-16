@@ -124,30 +124,9 @@ export const heatmapChart = defineComponent({
 	impl: {
 		react: {
 			entry: "HeatmapChart",
-			files: [
-				{ path: "heatmap-chart/heatmap-chart.tsx", type: "registry:ui" },
-				{ path: "heatmap-chart/calendar.ts", type: "registry:ui" },
-				{ path: "heatmap-chart/shimmer.ts", type: "registry:ui" },
-				{ path: "heatmap-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "HeatmapChart",
-			files: [
-				{ path: "heatmap-chart/heatmap-chart.svelte", type: "registry:ui" },
-				{ path: "heatmap-chart/heatmap-plot.svelte", type: "registry:ui" },
-				{ path: "heatmap-chart/heatmap-legend.svelte", type: "registry:ui" },
-				{ path: "heatmap-chart/pattern-defs.svelte", type: "registry:ui" },
-				{ path: "heatmap-chart/calendar.ts", type: "registry:ui" },
-				{ path: "heatmap-chart/shimmer.ts", type: "registry:ui" },
-				{ path: "heatmap-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["heatmap", "calendar", "contributions", "activity", "chart"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogSoftFocus as ogSoftFocusVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogSoftFocus = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogSoftFocusVariants, ["mode"]),
 	props: [
 		{
 			name: "name",
@@ -56,21 +57,9 @@ export const ogSoftFocus = defineComponent({
 	impl: {
 		react: {
 			entry: "OgSoftFocus",
-			files: [
-				{ path: "og-soft-focus/og-soft-focus.tsx", type: "registry:ui" },
-				{ path: "og-soft-focus/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgSoftFocus",
-			files: [
-				{ path: "og-soft-focus/og-soft-focus.svelte", type: "registry:ui" },
-				{ path: "og-soft-focus/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

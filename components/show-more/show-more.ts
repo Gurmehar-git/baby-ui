@@ -69,19 +69,9 @@ export const showMore = defineComponent({
 	impl: {
 		react: {
 			entry: "ShowMore",
-			files: [
-				{ path: "show-more/show-more.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
 		},
 		svelte: {
 			entry: "ShowMore",
-			files: [
-				{ path: "show-more/show-more.svelte", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
 		},
 	},
 	keywords: ["show", "more"],

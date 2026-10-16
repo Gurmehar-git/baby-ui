@@ -71,14 +71,6 @@ const shadcn = {
 	copyright: "Copyright (c) 2023 shadcn",
 };
 
-const svelteDeps = [
-	"clsx",
-	"tailwind-merge",
-	"tailwind-variants",
-	"bits-ui",
-	"@internationalized/date",
-];
-
 export const dateField = defineComponent({
 	slug: "date-field",
 	name: "Date Field",
@@ -128,26 +120,9 @@ export const dateField = defineComponent({
 	impl: {
 		react: {
 			entry: "DateField",
-			files: [
-				{ path: "date-field/date-field.tsx", type: "registry:ui" },
-				{ path: "date-field/segments.tsx", type: "registry:ui" },
-				{ path: "date-field/core.ts", type: "registry:ui" },
-				{ path: "date-field/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["field"],
 		},
 		svelte: {
 			entry: "DateField",
-			files: [
-				{ path: "date-field/date-field.svelte", type: "registry:ui" },
-				{ path: "date-field/core.ts", type: "registry:ui" },
-				{ path: "date-field/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: svelteDeps,
-			registryDependencies: ["field"],
 		},
 	},
 	keywords: ["date field", "date input", "segmented date", "birthday", "form"],
@@ -224,25 +199,9 @@ export const datePicker = defineComponent({
 	impl: {
 		react: {
 			entry: "DatePicker",
-			files: [
-				{ path: "date-picker/date-picker.tsx", type: "registry:ui" },
-				{ path: "date-picker/core.ts", type: "registry:ui" },
-				{ path: "date-picker/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "react-day-picker"],
-			registryDependencies: ["date-field", "calendar", "popover", "field", "button"],
 		},
 		svelte: {
 			entry: "DatePicker",
-			files: [
-				{ path: "date-picker/date-picker.svelte", type: "registry:ui" },
-				{ path: "date-picker/core.ts", type: "registry:ui" },
-				{ path: "date-picker/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: svelteDeps,
-			registryDependencies: ["date-field", "calendar", "popover", "field", "button"],
 		},
 	},
 	keywords: ["date picker", "datepicker", "calendar popover", "date input", "form"],
@@ -307,43 +266,9 @@ export const dateRangePicker = defineComponent({
 	impl: {
 		react: {
 			entry: "DateRangePicker",
-			files: [
-				{ path: "date-range-picker/date-range-picker.tsx", type: "registry:ui" },
-				{ path: "date-range-picker/core.ts", type: "registry:ui" },
-				{ path: "date-range-picker/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/pill.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "react-day-picker"],
-			registryDependencies: [
-				"date-field",
-				"range-calendar",
-				"popover",
-				"field",
-				"button",
-			],
 		},
 		svelte: {
 			entry: "DateRangePicker",
-			files: [
-				{ path: "date-range-picker/date-range-picker.svelte", type: "registry:ui" },
-				{
-					path: "date-range-picker/date-range-picker-presets.svelte",
-					type: "registry:ui",
-				},
-				{ path: "date-range-picker/core.ts", type: "registry:ui" },
-				{ path: "date-range-picker/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/pill.ts", type: "registry:lib" },
-			],
-			dependencies: svelteDeps,
-			registryDependencies: [
-				"date-field",
-				"range-calendar",
-				"popover",
-				"field",
-				"button",
-			],
 		},
 	},
 	keywords: ["date range picker", "range", "presets", "report filter", "booking", "form"],
@@ -428,26 +353,9 @@ export const timePicker = defineComponent({
 	impl: {
 		react: {
 			entry: "TimePicker",
-			files: [
-				{ path: "time-picker/time-picker.tsx", type: "registry:ui" },
-				{ path: "time-picker/core.ts", type: "registry:ui" },
-				{ path: "time-picker/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["date-field", "field", "button"],
 		},
 		svelte: {
 			entry: "TimePicker",
-			files: [
-				{ path: "time-picker/time-picker.svelte", type: "registry:ui" },
-				{ path: "time-picker/time-picker-clock.svelte", type: "registry:ui" },
-				{ path: "time-picker/core.ts", type: "registry:ui" },
-				{ path: "time-picker/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: svelteDeps,
-			registryDependencies: ["date-field", "field", "button"],
 		},
 	},
 	keywords: ["time picker", "time field", "time input", "clock", "booking", "form"],

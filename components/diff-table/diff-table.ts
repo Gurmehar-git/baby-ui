@@ -1,6 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
-
-const CHANGES = ["removed", "added"];
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { diffRow as diffRowVariants } from "./react/variants";
 
 export const diffTable = defineComponent({
 	slug: "diff-table",
@@ -9,7 +8,7 @@ export const diffTable = defineComponent({
 		"A proposed edit as a table; each changed row is its own include/exclude toggle.",
 	category: "advanced",
 	status: "stable",
-	variants: { change: CHANGES },
+	variants: variantsOf(diffRowVariants, ["change"]),
 	props: [
 		{
 			name: "title",
@@ -87,24 +86,9 @@ export const diffTable = defineComponent({
 	impl: {
 		react: {
 			entry: "DiffTable",
-			files: [
-				{ path: "diff-table/diff-table.tsx", type: "registry:ui" },
-				{ path: "diff-table/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "button"],
 		},
 		svelte: {
 			entry: "DiffTable",
-			files: [
-				{ path: "diff-table/diff-table.svelte", type: "registry:ui" },
-				{ path: "diff-table/types.ts", type: "registry:ui" },
-				{ path: "diff-table/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "button"],
 		},
 	},
 	keywords: ["diff", "table", "review", "changes"],

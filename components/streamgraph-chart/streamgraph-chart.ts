@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { streamgraphChart as streamgraphChartVariants } from "./react/variants";
 
 const VARIANTS = ["wiggle", "silhouette", "zero"];
 
@@ -9,7 +10,7 @@ export const streamgraphChart = defineComponent({
 		"How the mix of several parts changes over time: layers stack around a flowing baseline and thin out when hidden from the legend.",
 	category: "charts",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(streamgraphChartVariants, ["variant"]),
 	props: [
 		{
 			name: "data",
@@ -82,26 +83,9 @@ export const streamgraphChart = defineComponent({
 	impl: {
 		react: {
 			entry: "StreamgraphChart",
-			files: [
-				{ path: "streamgraph-chart/streamgraph-chart.tsx", type: "registry:ui" },
-				{ path: "streamgraph-chart/stream.ts", type: "registry:ui" },
-				{ path: "streamgraph-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-shape"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "StreamgraphChart",
-			files: [
-				{ path: "streamgraph-chart/streamgraph-chart.svelte", type: "registry:ui" },
-				{ path: "streamgraph-chart/stream-plot.svelte", type: "registry:ui" },
-				{ path: "streamgraph-chart/stream.ts", type: "registry:ui" },
-				{ path: "streamgraph-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-shape"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["streamgraph", "stacked area", "stream", "mix", "time series", "chart"],

@@ -99,21 +99,9 @@ export const particleText = defineComponent({
 	impl: {
 		react: {
 			entry: "ParticleText",
-			files: [
-				{ path: "particle-text/particle-text.tsx", type: "registry:ui" },
-				{ path: "particle-text/particles.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ParticleText",
-			files: [
-				{ path: "particle-text/particle-text.svelte", type: "registry:ui" },
-				{ path: "particle-text/particles.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["particles", "canvas", "text", "cursor", "interactive"],

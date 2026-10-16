@@ -68,23 +68,9 @@ export const scoreCard = defineComponent({
 	impl: {
 		react: {
 			entry: "ScoreCard",
-			files: [
-				{ path: "score-card/score-card.tsx", type: "registry:ui" },
-				{ path: "score-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["gauge-chart", "card", "badge"],
 		},
 		svelte: {
 			entry: "ScoreCard",
-			files: [
-				{ path: "score-card/score-card.svelte", type: "registry:ui" },
-				{ path: "score-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["gauge-chart", "card", "badge"],
 		},
 	},
 	keywords: ["score", "gauge", "health score", "nps", "uptime", "card"],

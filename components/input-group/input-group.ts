@@ -44,30 +44,9 @@ export const inputGroup = defineComponent({
 	impl: {
 		react: {
 			entry: "InputGroup",
-			files: [
-				{ path: "input-group/input-group.tsx", type: "registry:ui" },
-				{ path: "input-group/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "input", "textarea"],
 		},
 		svelte: {
 			entry: "InputGroup",
-			files: [
-				{ path: "input-group/input-group.svelte", type: "registry:ui" },
-				{ path: "input-group/input-group-addon.svelte", type: "registry:ui" },
-				{ path: "input-group/input-group-button.svelte", type: "registry:ui" },
-				{ path: "input-group/input-group-input.svelte", type: "registry:ui" },
-				{ path: "input-group/input-group-text.svelte", type: "registry:ui" },
-				{ path: "input-group/input-group-textarea.svelte", type: "registry:ui" },
-				{ path: "input-group/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "input", "textarea"],
 		},
 	},
 	keywords: ["input group", "addon", "prefix", "suffix", "input", "icon"],

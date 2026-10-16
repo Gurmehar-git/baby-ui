@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { animatedGradient as animatedGradientVariants } from "./react/variants";
 
 const TONES = ["spectrum", "cool", "warm", "mono"];
 const POSITIONS = ["absolute", "fixed"];
@@ -10,7 +11,7 @@ export const animatedGradient = defineComponent({
 		"A full-bleed background of soft token-coloured blobs drifting on a CSS-only loop.",
 	category: "backgrounds",
 	status: "stable",
-	variants: { tone: TONES, position: POSITIONS },
+	variants: variantsOf(animatedGradientVariants, ["tone", "position"]),
 	props: [
 		{
 			name: "tone",
@@ -64,21 +65,9 @@ export const animatedGradient = defineComponent({
 	impl: {
 		react: {
 			entry: "AnimatedGradient",
-			files: [
-				{ path: "animated-gradient/animated-gradient.tsx", type: "registry:ui" },
-				{ path: "animated-gradient/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "AnimatedGradient",
-			files: [
-				{ path: "animated-gradient/animated-gradient.svelte", type: "registry:ui" },
-				{ path: "animated-gradient/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "gradient", "mesh", "aurora", "css"],

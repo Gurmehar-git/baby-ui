@@ -119,23 +119,9 @@ export const fileTree = defineComponent({
 	impl: {
 		react: {
 			entry: "FileTree",
-			files: [
-				{ path: "file-tree/file-tree.tsx", type: "registry:ui" },
-				{ path: "file-tree/types.ts", type: "registry:ui" },
-				{ path: "file-tree/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "FileTree",
-			files: [
-				{ path: "file-tree/file-tree.svelte", type: "registry:ui" },
-				{ path: "file-tree/types.ts", type: "registry:ui" },
-				{ path: "file-tree/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 

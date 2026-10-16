@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { flightStatusCard as flightStatusCardVariants } from "./react/variants";
 
 const STATUSES = ["scheduled", "boarding", "departed", "delayed", "landed", "cancelled"];
 const TONES = ["neutral", "info", "success", "warning", "destructive"];
@@ -11,7 +12,7 @@ export const flightStatusCard = defineComponent({
 		"A flight's route in dot-matrix airport codes, its status badge and a progress track with a plane riding the fill.",
 	category: "blocks",
 	status: "stable",
-	variants: { tone: TONES, display: DISPLAYS },
+	variants: variantsOf(flightStatusCardVariants, ["tone", "display"]),
 	props: [
 		{
 			name: "departureCode",
@@ -148,25 +149,9 @@ export const flightStatusCard = defineComponent({
 	impl: {
 		react: {
 			entry: "FlightStatusCard",
-			files: [
-				{ path: "flight-status-card/flight-status-card.tsx", type: "registry:ui" },
-				{ path: "flight-status-card/types.ts", type: "registry:ui" },
-				{ path: "flight-status-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "card"],
 		},
 		svelte: {
 			entry: "FlightStatusCard",
-			files: [
-				{ path: "flight-status-card/flight-status-card.svelte", type: "registry:ui" },
-				{ path: "flight-status-card/types.ts", type: "registry:ui" },
-				{ path: "flight-status-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "card"],
 		},
 	},
 	keywords: ["flight", "travel", "status", "progress", "dot matrix", "card"],

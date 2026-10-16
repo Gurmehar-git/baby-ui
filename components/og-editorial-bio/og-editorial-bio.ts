@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogEditorialBio as ogEditorialBioVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -11,7 +12,7 @@ export const ogEditorialBio = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogEditorialBioVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "name",
@@ -60,21 +61,9 @@ export const ogEditorialBio = defineComponent({
 	impl: {
 		react: {
 			entry: "OgEditorialBio",
-			files: [
-				{ path: "og-editorial-bio/og-editorial-bio.tsx", type: "registry:ui" },
-				{ path: "og-editorial-bio/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgEditorialBio",
-			files: [
-				{ path: "og-editorial-bio/og-editorial-bio.svelte", type: "registry:ui" },
-				{ path: "og-editorial-bio/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

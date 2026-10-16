@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogTiltedScreen as ogTiltedScreenVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -11,7 +12,7 @@ export const ogTiltedScreen = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogTiltedScreenVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "title",
@@ -81,21 +82,9 @@ export const ogTiltedScreen = defineComponent({
 	impl: {
 		react: {
 			entry: "OgTiltedScreen",
-			files: [
-				{ path: "og-tilted-screen/og-tilted-screen.tsx", type: "registry:ui" },
-				{ path: "og-tilted-screen/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgTiltedScreen",
-			files: [
-				{ path: "og-tilted-screen/og-tilted-screen.svelte", type: "registry:ui" },
-				{ path: "og-tilted-screen/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

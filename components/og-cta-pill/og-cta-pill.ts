@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogCtaPill as ogCtaPillVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["chart", "primary", "success"];
@@ -11,7 +12,7 @@ export const ogCtaPill = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogCtaPillVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "label",
@@ -60,21 +61,9 @@ export const ogCtaPill = defineComponent({
 	impl: {
 		react: {
 			entry: "OgCtaPill",
-			files: [
-				{ path: "og-cta-pill/og-cta-pill.tsx", type: "registry:ui" },
-				{ path: "og-cta-pill/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgCtaPill",
-			files: [
-				{ path: "og-cta-pill/og-cta-pill.svelte", type: "registry:ui" },
-				{ path: "og-cta-pill/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "cta", "button", "glow", "takumi"],

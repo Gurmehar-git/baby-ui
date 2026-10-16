@@ -1,19 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { scrollChoreography as scrollChoreographyVariants } from "./react/variants";
 
 const VARIANTS = ["expand", "stack"];
 const SIZES = ["sm", "md", "lg"];
-
-const files = (ext: string) => [
-	{
-		path: `scroll-choreography/scroll-choreography.${ext}`,
-		type: "registry:ui" as const,
-	},
-	{ path: "scroll-choreography/types.ts", type: "registry:ui" as const },
-	{ path: "scroll-choreography/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/scroll-frame.ts", type: "registry:lib" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-	{ path: "lib/image.ts", type: "registry:lib" as const },
-];
 
 export const scrollChoreography = defineComponent({
 	slug: "scroll-choreography",
@@ -23,7 +12,7 @@ export const scrollChoreography = defineComponent({
 	category: "animated",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(scrollChoreographyVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "image",
@@ -93,13 +82,9 @@ export const scrollChoreography = defineComponent({
 	impl: {
 		react: {
 			entry: "ScrollChoreography",
-			files: files("tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ScrollChoreography",
-			files: files("svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["scroll", "images", "gallery", "choreography", "expand"],

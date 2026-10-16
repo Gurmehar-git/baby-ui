@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogTagline as ogTaglineVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["success", "primary", "info", "warning"];
@@ -11,7 +12,7 @@ export const ogTagline = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogTaglineVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "name",
@@ -72,21 +73,9 @@ export const ogTagline = defineComponent({
 	impl: {
 		react: {
 			entry: "OgTagline",
-			files: [
-				{ path: "og-tagline/og-tagline.tsx", type: "registry:ui" },
-				{ path: "og-tagline/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgTagline",
-			files: [
-				{ path: "og-tagline/og-tagline.svelte", type: "registry:ui" },
-				{ path: "og-tagline/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "brand", "tagline", "headline", "takumi"],

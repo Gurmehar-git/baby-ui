@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { splitFlap as splitFlapVariants } from "./react/variants";
 
 const VARIANTS = ["solid", "card"];
 const SIZES = ["sm", "md", "lg"];
@@ -13,7 +14,7 @@ export const splitFlapDisplay = defineComponent({
 		"A departures-board display whose cells flip through the character drum to each new value.",
 	category: "animated",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES, indicator: INDICATORS },
+	variants: variantsOf(splitFlapVariants, ["variant", "size", "indicator"]),
 	props: [
 		{
 			name: "value",
@@ -107,24 +108,9 @@ export const splitFlapDisplay = defineComponent({
 	impl: {
 		react: {
 			entry: "SplitFlapDisplay",
-			files: [
-				{ path: "split-flap-display/split-flap-display.tsx", type: "registry:ui" },
-				{ path: "split-flap-display/flap.ts", type: "registry:ui" },
-				{ path: "split-flap-display/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "SplitFlapDisplay",
-			files: [
-				{ path: "split-flap-display/split-flap-display.svelte", type: "registry:ui" },
-				{ path: "split-flap-display/split-flap-cell.svelte", type: "registry:ui" },
-				{ path: "split-flap-display/flap.ts", type: "registry:ui" },
-				{ path: "split-flap-display/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["split flap", "solari", "departures", "board", "flip", "airport"],

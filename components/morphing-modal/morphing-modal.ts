@@ -82,23 +82,9 @@ export const morphingModal = defineComponent({
 	impl: {
 		react: {
 			entry: "MorphingModal",
-			files: [
-				{ path: "morphing-modal/morphing-modal.tsx", type: "registry:ui" },
-				{ path: "morphing-modal/use-morph.ts", type: "registry:ui" },
-				{ path: "morphing-modal/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "MorphingModal",
-			files: [
-				{ path: "morphing-modal/morphing-modal.svelte", type: "registry:ui" },
-				{ path: "morphing-modal/morph.ts", type: "registry:ui" },
-				{ path: "morphing-modal/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 

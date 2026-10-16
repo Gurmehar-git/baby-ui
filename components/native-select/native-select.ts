@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { nativeSelect as nativeSelectVariants } from "./react/variants";
 
 export const nativeSelect = defineComponent({
 	slug: "native-select",
@@ -7,7 +8,7 @@ export const nativeSelect = defineComponent({
 		"The platform select, styled to match: native pickers on mobile, autofill and form posting for free.",
 	category: "base",
 	status: "stable",
-	variants: { size: ["xs", "sm", "default", "lg", "xl"] },
+	variants: variantsOf(nativeSelectVariants, ["size"]),
 	props: [
 		{
 			name: "size",
@@ -39,25 +40,9 @@ export const nativeSelect = defineComponent({
 	impl: {
 		react: {
 			entry: "NativeSelect",
-			files: [
-				{ path: "native-select/native-select.tsx", type: "registry:ui" },
-				{ path: "native-select/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "NativeSelect",
-			files: [
-				{ path: "native-select/native-select.svelte", type: "registry:ui" },
-				{ path: "native-select/native-select-opt-group.svelte", type: "registry:ui" },
-				{ path: "native-select/native-select-option.svelte", type: "registry:ui" },
-				{ path: "native-select/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["select", "native select", "dropdown", "form"],

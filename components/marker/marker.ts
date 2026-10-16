@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { marker as markerVariants } from "./react/variants";
 
 const VARIANTS = [
 	"wavy",
@@ -32,7 +33,7 @@ export const marker = defineComponent({
 		"Hand-drawn annotations that ink themselves around text as it scrolls into view.",
 	category: "text",
 	status: "stable",
-	variants: { variant: VARIANTS, tone: TONES },
+	variants: variantsOf(markerVariants, ["variant", "tone"]),
 	props: [
 		{
 			name: "variant",
@@ -99,21 +100,9 @@ export const marker = defineComponent({
 	impl: {
 		react: {
 			entry: "Marker",
-			files: [
-				{ path: "marker/marker.tsx", type: "registry:ui" },
-				{ path: "marker/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Marker",
-			files: [
-				{ path: "marker/marker.svelte", type: "registry:ui" },
-				{ path: "marker/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

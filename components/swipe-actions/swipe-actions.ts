@@ -1,17 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { swipeActions as swipeActionsVariants } from "./react/variants";
 
 const SIZES = ["sm", "default"];
 const VARIANTS = ["default", "ghost"];
-
-const files = (main: string[]) => [
-	...main.map((path) => ({
-		path: `swipe-actions/${path}`,
-		type: "registry:ui" as const,
-	})),
-	{ path: "swipe-actions/swipe.ts", type: "registry:ui" as const },
-	{ path: "swipe-actions/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const swipeActions = defineComponent({
 	slug: "swipe-actions",
@@ -20,7 +11,7 @@ export const swipeActions = defineComponent({
 		"A list whose rows reveal actions on a horizontal swipe, like a mail inbox, with a menu on every row for keyboard and screen reader users.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(swipeActionsVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "label",
@@ -106,15 +97,9 @@ export const swipeActions = defineComponent({
 	impl: {
 		react: {
 			entry: "SwipeActions",
-			files: files(["swipe-actions.tsx"]),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["dropdown-menu"],
 		},
 		svelte: {
 			entry: "SwipeActions",
-			files: files(["swipe-actions.svelte", "swipe-actions-row.svelte", "context.ts"]),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["dropdown-menu"],
 		},
 	},
 	keywords: ["swipe", "list", "gesture", "inbox", "actions", "triage"],

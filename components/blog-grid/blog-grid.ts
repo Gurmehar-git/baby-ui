@@ -1,16 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { blogGrid as blogGridVariants } from "./react/variants";
 
 const VARIANTS = ["featured", "grid"];
-
-const files = (main: string) => [
-	{ path: `blog-grid/${main}`, type: "registry:ui" as const },
-	{ path: "blog-grid/posts.ts", type: "registry:ui" as const },
-	{ path: "blog-grid/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-	{ path: "lib/image.ts", type: "registry:lib" as const },
-];
-
-const deps = ["avatar", "button", "pagination", "toggle-group"];
 
 export const blogGrid = defineComponent({
 	slug: "blog-grid",
@@ -19,7 +10,7 @@ export const blogGrid = defineComponent({
 		"A blog index with category filters, a featured post and paged cards, plus an in-place reader whose image morphs out of its card.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(blogGridVariants, ["variant"]),
 	props: [
 		{
 			name: "image",
@@ -119,15 +110,9 @@ export const blogGrid = defineComponent({
 	impl: {
 		react: {
 			entry: "BlogGrid",
-			files: files("blog-grid.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 		svelte: {
 			entry: "BlogGrid",
-			files: files("blog-grid.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 	},
 	keywords: ["blog", "posts", "articles", "grid", "journal", "pagination", "filter"],

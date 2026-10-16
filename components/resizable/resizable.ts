@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { resizable as resizableVariants } from "./react/variants";
 
 const VARIANTS = ["default", "bordered"];
 
@@ -9,7 +10,7 @@ export const resizable = defineComponent({
 		"A horizontal split view: dividers follow the pointer, resist past limits, and snap collapsible panes closed.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(resizableVariants, ["variant"]),
 	props: [
 		{
 			name: "onLayoutChange",
@@ -96,27 +97,9 @@ export const resizable = defineComponent({
 	impl: {
 		react: {
 			entry: "ResizablePanelGroup",
-			files: [
-				{ path: "resizable/resizable.tsx", type: "registry:ui" },
-				{ path: "resizable/split.ts", type: "registry:ui" },
-				{ path: "resizable/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [],
 		},
 		svelte: {
 			entry: "ResizablePanelGroup",
-			files: [
-				{ path: "resizable/resizable-panel-group.svelte", type: "registry:ui" },
-				{ path: "resizable/resizable-panel.svelte", type: "registry:ui" },
-				{ path: "resizable/resizable-handle.svelte", type: "registry:ui" },
-				{ path: "resizable/split.ts", type: "registry:ui" },
-				{ path: "resizable/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [],
 		},
 	},
 	keywords: ["resizable", "split", "panes", "splitter", "layout", "panels"],

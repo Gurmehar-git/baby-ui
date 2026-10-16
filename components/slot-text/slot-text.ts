@@ -1,14 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { slotText as slotTextVariants } from "./react/variants";
 
 const SIZES = ["inherit", "sm", "default", "lg"];
 const VARIANTS = ["default", "mono"];
-
-const files = (main: string) => [
-	{ path: `slot-text/${main}`, type: "registry:ui" as const },
-	{ path: "slot-text/slot.ts", type: "registry:ui" as const },
-	{ path: "slot-text/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const slotText = defineComponent({
 	slug: "slot-text",
@@ -17,7 +11,7 @@ export const slotText = defineComponent({
 		"Text and numbers that spin into their new value like slot machine reels: digits count the way the number moved, letters shuffle, and reels land left to right.",
 	category: "text",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(slotTextVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "value",
@@ -124,13 +118,9 @@ export const slotText = defineComponent({
 	impl: {
 		react: {
 			entry: "SlotText",
-			files: files("slot-text.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "SlotText",
-			files: files("slot-text.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["slot", "reel", "number", "counter", "price", "text animation"],

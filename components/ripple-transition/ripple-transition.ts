@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { rippleTransition as rippleTransitionVariants } from "./react/variants";
 
 const RINGS = ["none", "single", "echo"];
 const RADII = ["none", "md", "xl"];
@@ -10,7 +11,7 @@ export const rippleTransition = defineComponent({
 	description: "An image stack where the next image ripples open from the click point.",
 	category: "animated",
 	status: "stable",
-	variants: { rings: RINGS, radius: RADII },
+	variants: variantsOf(rippleTransitionVariants, ["rings", "radius"]),
 	props: [
 		{
 			name: "images",
@@ -97,23 +98,9 @@ export const rippleTransition = defineComponent({
 	impl: {
 		react: {
 			entry: "RippleTransition",
-			files: [
-				{ path: "ripple-transition/ripple-transition.tsx", type: "registry:ui" },
-				{ path: "ripple-transition/ripple.ts", type: "registry:ui" },
-				{ path: "ripple-transition/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "RippleTransition",
-			files: [
-				{ path: "ripple-transition/ripple-transition.svelte", type: "registry:ui" },
-				{ path: "ripple-transition/ripple.ts", type: "registry:ui" },
-				{ path: "ripple-transition/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

@@ -1,28 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { videoPlayer as videoPlayerVariants } from "./react/variants";
 
 const VARIANTS = ["default", "overlay", "cinema", "minimal"];
-const PARTS = [
-	"video-player",
-	"video-player-viewport",
-	"video-player-content",
-	"video-player-control-bar",
-	"video-player-play-button",
-	"video-player-seek-backward-button",
-	"video-player-seek-forward-button",
-	"video-player-time-range",
-	"video-player-time-display",
-	"video-player-mute-button",
-	"video-player-speaker",
-	"video-player-volume",
-	"video-player-playback-rate",
-	"video-player-quality",
-	"video-player-loop-button",
-	"video-player-pip-button",
-	"video-player-fullscreen-button",
-	"video-player-loading-indicator",
-	"video-player-error",
-	"video-player-end-screen",
-];
 
 export const videoPlayer = defineComponent({
 	slug: "video-player",
@@ -31,7 +10,7 @@ export const videoPlayer = defineComponent({
 		"A composable video player on media-chrome with HLS, speed, quality and volume menus, buffering and error states, and every playback value controllable.",
 	category: "base",
 	status: "beta",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(videoPlayerVariants, ["variant"]),
 	props: [
 		{
 			name: "variant",
@@ -187,41 +166,9 @@ export const videoPlayer = defineComponent({
 	impl: {
 		react: {
 			entry: "VideoPlayer",
-			files: [
-				{ path: "video-player/video-player.tsx", type: "registry:ui" },
-				{ path: "video-player/types.ts", type: "registry:ui" },
-				{ path: "video-player/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"clsx",
-				"tailwind-merge",
-				"tailwind-variants",
-				"media-chrome",
-				"hls.js",
-			],
-			registryDependencies: ["button", "card", "popover", "radio-group"],
 		},
 		svelte: {
 			entry: "VideoPlayer",
-			files: [
-				...PARTS.map((part) => ({
-					path: `video-player/${part}.svelte`,
-					type: "registry:ui" as const,
-				})),
-				{ path: "video-player/context.ts", type: "registry:ui" },
-				{ path: "video-player/types.ts", type: "registry:ui" },
-				{ path: "video-player/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"clsx",
-				"tailwind-merge",
-				"tailwind-variants",
-				"media-chrome",
-				"hls.js",
-			],
-			registryDependencies: ["button", "card", "popover", "radio-group"],
 		},
 	},
 	keywords: ["video", "player", "media", "playback", "hls", "scrubber", "media-chrome"],

@@ -133,25 +133,9 @@ export const colorPicker = defineComponent({
 	impl: {
 		react: {
 			entry: "ColorPicker",
-			files: [
-				{ path: "color-picker/color-picker.tsx", type: "registry:ui" },
-				{ path: "color-picker/variants.ts", type: "registry:ui" },
-				{ path: "lib/color.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["popover", "input-group"],
 		},
 		svelte: {
 			entry: "ColorPicker",
-			files: [
-				{ path: "color-picker/color-picker.svelte", type: "registry:ui" },
-				{ path: "color-picker/variants.ts", type: "registry:ui" },
-				{ path: "lib/color.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["popover", "input-group"],
 		},
 	},
 	keywords: [

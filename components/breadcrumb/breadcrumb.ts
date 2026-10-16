@@ -61,28 +61,9 @@ export const breadcrumb = defineComponent({
 	impl: {
 		react: {
 			entry: "Breadcrumb",
-			files: [
-				{ path: "breadcrumb/breadcrumb.tsx", type: "registry:ui" },
-				{ path: "breadcrumb/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Breadcrumb",
-			files: [
-				{ path: "breadcrumb/breadcrumb.svelte", type: "registry:ui" },
-				{ path: "breadcrumb/breadcrumb-list.svelte", type: "registry:ui" },
-				{ path: "breadcrumb/breadcrumb-item.svelte", type: "registry:ui" },
-				{ path: "breadcrumb/breadcrumb-link.svelte", type: "registry:ui" },
-				{ path: "breadcrumb/breadcrumb-page.svelte", type: "registry:ui" },
-				{ path: "breadcrumb/breadcrumb-separator.svelte", type: "registry:ui" },
-				{ path: "breadcrumb/breadcrumb-ellipsis.svelte", type: "registry:ui" },
-				{ path: "breadcrumb/context.ts", type: "registry:ui" },
-				{ path: "breadcrumb/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["breadcrumb", "navigation", "trail", "ellipsis", "dropdown"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { magnetLines as magnetLinesVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 const TONES = ["muted", "foreground", "primary", "chart"];
@@ -11,7 +12,7 @@ export const magnetLines = defineComponent({
 	category: "animated",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { size: SIZES, tone: TONES },
+	variants: variantsOf(magnetLinesVariants, ["size", "tone"]),
 	props: [
 		{
 			name: "rows",
@@ -71,23 +72,9 @@ export const magnetLines = defineComponent({
 	impl: {
 		react: {
 			entry: "MagnetLines",
-			files: [
-				{ path: "magnet-lines/magnet-lines.tsx", type: "registry:ui" },
-				{ path: "magnet-lines/magnet.ts", type: "registry:ui" },
-				{ path: "magnet-lines/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "MagnetLines",
-			files: [
-				{ path: "magnet-lines/magnet-lines.svelte", type: "registry:ui" },
-				{ path: "magnet-lines/magnet.ts", type: "registry:ui" },
-				{ path: "magnet-lines/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["pointer", "grid", "lines", "magnet", "cursor", "follow"],

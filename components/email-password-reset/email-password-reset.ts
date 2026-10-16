@@ -141,27 +141,9 @@ export const emailPasswordReset = defineComponent({
 	impl: {
 		react: {
 			entry: "EmailPasswordReset",
-			files: [
-				{
-					path: "email-password-reset/email-password-reset.tsx",
-					type: "registry:ui",
-				},
-				{ path: "email-password-reset/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["react-email", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 		svelte: {
 			entry: "EmailPasswordReset",
-			files: [
-				{
-					path: "email-password-reset/email-password-reset.svelte",
-					type: "registry:ui",
-				},
-				{ path: "email-password-reset/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["@better-svelte-email/components", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 	},
 	keywords: ["email", "password", "reset", "forgot password", "security"],

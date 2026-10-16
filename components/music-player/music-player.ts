@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { musicPlayer as musicPlayerVariants } from "./react/variants";
 
 const LAYOUTS = ["vinyl", "compact"];
 
@@ -9,7 +10,7 @@ export const musicPlayer = defineComponent({
 		"A record-deck player: the cover spins as a vinyl disc under a tonearm, with seek, transport and volume controls.",
 	category: "blocks",
 	status: "stable",
-	variants: { layout: LAYOUTS },
+	variants: variantsOf(musicPlayerVariants, ["layout"]),
 	props: [
 		{
 			name: "image",
@@ -143,27 +144,9 @@ export const musicPlayer = defineComponent({
 	impl: {
 		react: {
 			entry: "MusicPlayer",
-			files: [
-				{ path: "music-player/music-player.tsx", type: "registry:ui" },
-				{ path: "music-player/types.ts", type: "registry:ui" },
-				{ path: "music-player/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/image.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "slider"],
 		},
 		svelte: {
 			entry: "MusicPlayer",
-			files: [
-				{ path: "music-player/music-player.svelte", type: "registry:ui" },
-				{ path: "music-player/types.ts", type: "registry:ui" },
-				{ path: "music-player/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/image.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "slider"],
 		},
 	},
 	keywords: ["music", "audio", "player", "vinyl", "record", "media"],

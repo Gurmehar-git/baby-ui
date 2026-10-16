@@ -1,13 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { timeline as timelineVariants } from "./react/variants";
 
 const VARIANTS = ["default", "card"];
-
-const files = (main: string) => [
-	{ path: `timeline/${main}`, type: "registry:ui" as const },
-	{ path: "timeline/feed.ts", type: "registry:ui" as const },
-	{ path: "timeline/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const timeline = defineComponent({
 	slug: "timeline",
@@ -16,7 +10,7 @@ export const timeline = defineComponent({
 		"A vertical activity feed grouped by day: pinned day labels, a line that draws as rows scroll in, rows that expand in place.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(timelineVariants, ["variant"]),
 	props: [
 		{
 			name: "events",
@@ -125,15 +119,9 @@ export const timeline = defineComponent({
 	impl: {
 		react: {
 			entry: "Timeline",
-			files: files("timeline.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["avatar", "collapsible", "rolling-digits", "slot-text"],
 		},
 		svelte: {
 			entry: "Timeline",
-			files: files("timeline.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["avatar", "collapsible", "rolling-digits", "slot-text"],
 		},
 	},
 	keywords: ["timeline", "activity", "feed", "history", "audit", "log", "changelog"],

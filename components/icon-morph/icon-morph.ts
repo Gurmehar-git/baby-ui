@@ -1,15 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { iconMorph as iconMorphVariants } from "./react/variants";
 
 const SIZES = ["sm", "default", "lg"];
 const NAMES = ["menu", "play", "plus", "copy", "theme", "chevron", "bell", "heart"];
-
-const files = (main: string) => [
-	{ path: `icon-morph/${main}`, type: "registry:ui" as const },
-	{ path: "icon-morph/engine.ts", type: "registry:ui" as const },
-	{ path: "icon-morph/icons.ts", type: "registry:ui" as const },
-	{ path: "icon-morph/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const iconMorph = defineComponent({
 	slug: "icon-morph",
@@ -18,7 +11,7 @@ export const iconMorph = defineComponent({
 		"Icons that morph between two looks instead of swapping: menu to close, play to pause, plus to check, sun to moon, a ringing bell and a bursting heart.",
 	category: "animated",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(iconMorphVariants, ["size"]),
 	props: [
 		{
 			name: "name",
@@ -107,13 +100,9 @@ export const iconMorph = defineComponent({
 	impl: {
 		react: {
 			entry: "IconMorph",
-			files: files("icon-morph.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "IconMorph",
-			files: files("icon-morph.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["icon", "morph", "toggle", "menu", "play", "heart", "bell", "animated"],

@@ -78,46 +78,9 @@ export const responsiveDialog = defineComponent({
 	impl: {
 		react: {
 			entry: "ResponsiveDialog",
-			files: [
-				{ path: "responsive-dialog/responsive-dialog.tsx", type: "registry:ui" },
-				{ path: "lib/use-is-mobile.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
-			registryDependencies: ["dialog", "drawer"],
 		},
 		svelte: {
 			entry: "ResponsiveDialog",
-			files: [
-				{ path: "responsive-dialog/responsive-dialog.svelte", type: "registry:ui" },
-				{
-					path: "responsive-dialog/responsive-dialog-trigger.svelte",
-					type: "registry:ui",
-				},
-				{
-					path: "responsive-dialog/responsive-dialog-content.svelte",
-					type: "registry:ui",
-				},
-				{
-					path: "responsive-dialog/responsive-dialog-header.svelte",
-					type: "registry:ui",
-				},
-				{
-					path: "responsive-dialog/responsive-dialog-footer.svelte",
-					type: "registry:ui",
-				},
-				{ path: "responsive-dialog/responsive-dialog-title.svelte", type: "registry:ui" },
-				{
-					path: "responsive-dialog/responsive-dialog-description.svelte",
-					type: "registry:ui",
-				},
-				{ path: "responsive-dialog/responsive-dialog-close.svelte", type: "registry:ui" },
-				{ path: "responsive-dialog/context.ts", type: "registry:ui" },
-				{ path: "lib/use-is-mobile.svelte.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "vaul-svelte@^1.0.0-next.7", "bits-ui"],
-			registryDependencies: ["dialog", "drawer"],
 		},
 	},
 	keywords: ["responsive", "dialog", "drawer", "modal", "sheet"],

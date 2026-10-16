@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ridgelineChart as ridgelineChartVariants } from "./react/variants";
 
 const VARIANTS = ["tint", "series"];
 
@@ -9,7 +10,7 @@ export const ridgelineChart = defineComponent({
 		"Compares the shape of many distributions at once: each series is a smoothed density on one shared axis, stacked with overlap.",
 	category: "charts",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(ridgelineChartVariants, ["variant"]),
 	props: [
 		{
 			name: "series",
@@ -93,26 +94,9 @@ export const ridgelineChart = defineComponent({
 	impl: {
 		react: {
 			entry: "RidgelineChart",
-			files: [
-				{ path: "ridgeline-chart/ridgeline-chart.tsx", type: "registry:ui" },
-				{ path: "ridgeline-chart/density.ts", type: "registry:ui" },
-				{ path: "ridgeline-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "RidgelineChart",
-			files: [
-				{ path: "ridgeline-chart/ridgeline-chart.svelte", type: "registry:ui" },
-				{ path: "ridgeline-chart/ridgeline-plot.svelte", type: "registry:ui" },
-				{ path: "ridgeline-chart/density.ts", type: "registry:ui" },
-				{ path: "ridgeline-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["ridgeline", "joyplot", "distribution", "density", "chart"],

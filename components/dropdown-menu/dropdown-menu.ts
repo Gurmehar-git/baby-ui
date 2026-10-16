@@ -87,33 +87,9 @@ export const dropdownMenu = defineComponent({
 	impl: {
 		react: {
 			entry: "DropdownMenu",
-			files: [
-				{ path: "dropdown-menu/dropdown-menu.tsx", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/menu.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "DropdownMenu",
-			files: [
-				{ path: "dropdown-menu/dropdown-menu.svelte", type: "registry:ui" },
-				{ path: "dropdown-menu/dropdown-menu-trigger.svelte", type: "registry:ui" },
-				{ path: "dropdown-menu/dropdown-menu-content.svelte", type: "registry:ui" },
-				{ path: "dropdown-menu/dropdown-menu-item.svelte", type: "registry:ui" },
-				{ path: "dropdown-menu/dropdown-menu-checkbox-item.svelte", type: "registry:ui" },
-				{ path: "dropdown-menu/dropdown-menu-label.svelte", type: "registry:ui" },
-				{ path: "dropdown-menu/dropdown-menu-separator.svelte", type: "registry:ui" },
-				{ path: "dropdown-menu/dropdown-menu-shortcut.svelte", type: "registry:ui" },
-				{ path: "dropdown-menu/dropdown-menu-sub.svelte", type: "registry:ui" },
-				{ path: "dropdown-menu/dropdown-menu-sub-content.svelte", type: "registry:ui" },
-				{ path: "dropdown-menu/dropdown-menu-sub-trigger.svelte", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/menu.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["dropdown", "menu", "overlay"],

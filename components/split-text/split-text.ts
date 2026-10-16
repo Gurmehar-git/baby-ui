@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { splitText as splitTextVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -10,7 +11,7 @@ export const splitText = defineComponent({
 	category: "text",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { size: SIZES },
+	variants: variantsOf(splitTextVariants, ["size"]),
 	props: [
 		{
 			name: "text",
@@ -50,21 +51,9 @@ export const splitText = defineComponent({
 	impl: {
 		react: {
 			entry: "SplitText",
-			files: [
-				{ path: "split-text/split-text.tsx", type: "registry:ui" },
-				{ path: "split-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "SplitText",
-			files: [
-				{ path: "split-text/split-text.svelte", type: "registry:ui" },
-				{ path: "split-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "split", "hover", "hero"],

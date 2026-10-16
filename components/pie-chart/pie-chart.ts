@@ -107,27 +107,9 @@ export const pieChart = defineComponent({
 	impl: {
 		react: {
 			entry: "PieChart",
-			files: [
-				{ path: "pie-chart/pie-chart.tsx", type: "registry:ui" },
-				{ path: "pie-chart/geometry.ts", type: "registry:ui" },
-				{ path: "pie-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-shape"],
-			registryDependencies: ["chart", "rolling-digits"],
 		},
 		svelte: {
 			entry: "PieChart",
-			files: [
-				{ path: "pie-chart/pie-chart.svelte", type: "registry:ui" },
-				{ path: "pie-chart/pie-plot.svelte", type: "registry:ui" },
-				{ path: "pie-chart/pie-slice.svelte", type: "registry:ui" },
-				{ path: "pie-chart/geometry.ts", type: "registry:ui" },
-				{ path: "pie-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-shape"],
-			registryDependencies: ["chart", "rolling-digits"],
 		},
 	},
 	keywords: ["pie", "donut", "chart", "share", "proportion"],

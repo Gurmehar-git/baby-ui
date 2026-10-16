@@ -1,14 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { inlineEdit as inlineEditVariants } from "./react/variants";
 
 const VARIANTS = ["title", "body"];
 const SIZES = ["sm", "default", "lg"];
-
-const files = (main: string) => [
-	{ path: `inline-edit/${main}`, type: "registry:ui" as const },
-	{ path: "inline-edit/edit.ts", type: "registry:ui" as const },
-	{ path: "inline-edit/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const inlineEdit = defineComponent({
 	slug: "inline-edit",
@@ -17,7 +11,7 @@ export const inlineEdit = defineComponent({
 		"Text that edits in place: click to put the caret where you clicked, Enter or blur saves, Escape cancels, and a failed save rolls back.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(inlineEditVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "value",
@@ -123,15 +117,9 @@ export const inlineEdit = defineComponent({
 	impl: {
 		react: {
 			entry: "InlineEdit",
-			files: files("inline-edit.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["spinner"],
 		},
 		svelte: {
 			entry: "InlineEdit",
-			files: files("inline-edit.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["spinner"],
 		},
 	},
 	keywords: ["inline", "edit", "rename", "editable", "text", "in place"],

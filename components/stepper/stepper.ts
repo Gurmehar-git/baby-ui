@@ -1,14 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { stepper as stepperVariants } from "./react/variants";
 
 const ORIENTATIONS = ["horizontal", "vertical"];
 const DETAILS = ["all", "current"];
-
-const files = (main: string) => [
-	{ path: `stepper/${main}`, type: "registry:ui" as const },
-	{ path: "stepper/steps.ts", type: "registry:ui" as const },
-	{ path: "stepper/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const stepper = defineComponent({
 	slug: "stepper",
@@ -17,7 +11,7 @@ export const stepper = defineComponent({
 		"A steps indicator for onboarding, checkout and setup flows, with connectors that fill in turn and a check that draws in.",
 	category: "advanced",
 	status: "stable",
-	variants: { orientation: ORIENTATIONS },
+	variants: variantsOf(stepperVariants, ["orientation"]),
 	props: [
 		{
 			name: "steps",
@@ -116,15 +110,9 @@ export const stepper = defineComponent({
 	impl: {
 		react: {
 			entry: "Stepper",
-			files: files("stepper.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [],
 		},
 		svelte: {
 			entry: "Stepper",
-			files: files("stepper.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [],
 		},
 	},
 	keywords: ["stepper", "steps", "wizard", "progress", "checkout", "onboarding"],

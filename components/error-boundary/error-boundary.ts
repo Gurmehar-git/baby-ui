@@ -69,24 +69,9 @@ export const errorBoundary = defineComponent({
 	impl: {
 		react: {
 			entry: "ErrorBoundary",
-			files: [
-				{ path: "error-boundary/error-boundary.tsx", type: "registry:ui" },
-				{ path: "error-boundary/core.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
-			registryDependencies: ["empty", "button"],
 		},
 		svelte: {
 			entry: "ErrorBoundary",
-			files: [
-				{ path: "error-boundary/error-boundary.svelte", type: "registry:ui" },
-				{ path: "error-boundary/error-boundary-fallback.svelte", type: "registry:ui" },
-				{ path: "error-boundary/core.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
-			registryDependencies: ["empty", "button"],
 		},
 	},
 	keywords: ["error", "error boundary", "fallback", "crash", "retry"],

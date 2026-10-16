@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogStatsMetrics as ogStatsMetricsVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -12,7 +13,7 @@ export const ogStatsMetrics = defineComponent({
 	category: "og-images",
 	demo: { mode: "auto", frame: "og" },
 	status: "stable",
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogStatsMetricsVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "headline",
@@ -88,23 +89,9 @@ export const ogStatsMetrics = defineComponent({
 	impl: {
 		react: {
 			entry: "OgStatsMetrics",
-			files: [
-				{ path: "og-stats-metrics/og-stats-metrics.tsx", type: "registry:ui" },
-				{ path: "og-stats-metrics/sparkline.ts", type: "registry:ui" },
-				{ path: "og-stats-metrics/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgStatsMetrics",
-			files: [
-				{ path: "og-stats-metrics/og-stats-metrics.svelte", type: "registry:ui" },
-				{ path: "og-stats-metrics/sparkline.ts", type: "registry:ui" },
-				{ path: "og-stats-metrics/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

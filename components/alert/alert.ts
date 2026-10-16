@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { alert as alertVariants } from "./react/variants";
 
 export const alert = defineComponent({
 	slug: "alert",
@@ -6,7 +7,7 @@ export const alert = defineComponent({
 	description: "Inline status message with a semantic tone and an optional dismiss.",
 	category: "base",
 	status: "stable",
-	variants: { variant: ["info", "success", "warning", "destructive"] },
+	variants: variantsOf(alertVariants, ["variant"]),
 	props: [
 		{
 			name: "variant",
@@ -54,23 +55,9 @@ export const alert = defineComponent({
 	impl: {
 		react: {
 			entry: "Alert",
-			files: [
-				{ path: "alert/alert.tsx", type: "registry:ui" },
-				{ path: "alert/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Alert",
-			files: [
-				{ path: "alert/alert.svelte", type: "registry:ui" },
-				{ path: "alert/alert-title.svelte", type: "registry:ui" },
-				{ path: "alert/alert-description.svelte", type: "registry:ui" },
-				{ path: "alert/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["alert", "callout", "banner", "notice"],

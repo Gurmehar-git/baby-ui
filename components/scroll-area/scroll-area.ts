@@ -45,19 +45,9 @@ export const scrollArea = defineComponent({
 	impl: {
 		react: {
 			entry: "ScrollArea",
-			files: [
-				{ path: "scroll-area/scroll-area.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "ScrollArea",
-			files: [
-				{ path: "scroll-area/scroll-area.svelte", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "bits-ui"],
 		},
 	},
 	keywords: ["scroll", "area"],

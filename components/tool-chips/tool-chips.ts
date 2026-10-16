@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { toolChips as toolChipsVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const toolChips = defineComponent({
 		"An agent run as compact rows: tool calls with inline chips, then file-diff chips.",
 	category: "agents",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(toolChipsVariants, ["size"]),
 	props: [
 		{
 			name: "steps",
@@ -82,24 +83,9 @@ export const toolChips = defineComponent({
 	impl: {
 		react: {
 			entry: "ToolChips",
-			files: [
-				{ path: "tool-chips/tool-chips.tsx", type: "registry:ui" },
-				{ path: "tool-chips/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["hover-card"],
 		},
 		svelte: {
 			entry: "ToolChips",
-			files: [
-				{ path: "tool-chips/tool-chips.svelte", type: "registry:ui" },
-				{ path: "tool-chips/types.ts", type: "registry:ui" },
-				{ path: "tool-chips/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["hover-card"],
 		},
 	},
 	keywords: ["tool", "diff", "agent", "run"],

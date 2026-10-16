@@ -79,33 +79,10 @@ export const alertDialog = defineComponent({
 	impl: {
 		react: {
 			entry: "AlertDialog",
-			files: [
-				{ path: "button/variants.ts", type: "registry:ui" },
-				{ path: "alert-dialog/alert-dialog.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "@base-ui/react", "clsx", "tailwind-merge"],
 			// Reuses Dialog's dialogFrame (backdrop, popup) and DialogVariant type.
-			registryDependencies: ["dialog"],
 		},
 		svelte: {
 			entry: "AlertDialog",
-			files: [
-				{ path: "button/variants.ts", type: "registry:ui" },
-				{ path: "alert-dialog/alert-dialog.svelte", type: "registry:ui" },
-				{ path: "alert-dialog/alert-dialog-trigger.svelte", type: "registry:ui" },
-				{ path: "alert-dialog/alert-dialog-content.svelte", type: "registry:ui" },
-				{ path: "alert-dialog/alert-dialog-header.svelte", type: "registry:ui" },
-				{ path: "alert-dialog/alert-dialog-title.svelte", type: "registry:ui" },
-				{ path: "alert-dialog/alert-dialog-description.svelte", type: "registry:ui" },
-				{ path: "alert-dialog/alert-dialog-footer.svelte", type: "registry:ui" },
-				{ path: "alert-dialog/alert-dialog-cancel.svelte", type: "registry:ui" },
-				{ path: "alert-dialog/alert-dialog-action.svelte", type: "registry:ui" },
-				{ path: "alert-dialog/context.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "bits-ui", "clsx", "tailwind-merge"],
-			registryDependencies: ["dialog"],
 		},
 	},
 	keywords: ["alert", "dialog"],

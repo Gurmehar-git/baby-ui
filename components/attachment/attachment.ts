@@ -1,16 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { attachment as attachmentVariants } from "./react/variants";
 
 const VARIANTS = ["chip", "card", "tile"];
 const STATUSES = ["uploading", "ready", "error"];
-const SVELTE_PARTS = [
-	"preview",
-	"content",
-	"name",
-	"meta",
-	"progress",
-	"remove",
-	"retry",
-];
 
 export const attachment = defineComponent({
 	slug: "attachment",
@@ -19,7 +11,7 @@ export const attachment = defineComponent({
 		"Composable file attachments for chat: chips in a scrolling composer row, full rows or image tiles, with an upload ring, a file-type badge, retry and a remove that folds the chip away.",
 	category: "agents",
 	status: "stable",
-	variants: { variant: VARIANTS, status: STATUSES },
+	variants: variantsOf(attachmentVariants, ["variant", "status"]),
 	props: [
 		{
 			name: "variant",
@@ -116,31 +108,9 @@ export const attachment = defineComponent({
 	impl: {
 		react: {
 			entry: "Attachment",
-			files: [
-				{ path: "attachment/attachment.tsx", type: "registry:ui" },
-				{ path: "attachment/variants.ts", type: "registry:ui" },
-				{ path: "attachment/labels.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/motion.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge"],
 		},
 		svelte: {
 			entry: "Attachment",
-			files: [
-				{ path: "attachment/attachment.svelte", type: "registry:ui" },
-				{ path: "attachment/attachments.svelte", type: "registry:ui" },
-				...SVELTE_PARTS.map((part) => ({
-					path: `attachment/attachment-${part}.svelte`,
-					type: "registry:ui" as const,
-				})),
-				{ path: "attachment/context.ts", type: "registry:ui" },
-				{ path: "attachment/variants.ts", type: "registry:ui" },
-				{ path: "attachment/labels.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/motion.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge"],
 		},
 	},
 	keywords: ["attachment", "chat", "composer", "file chip", "upload progress"],

@@ -1,13 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ctaSection as ctaSectionVariants } from "./react/variants";
 
 const VARIANTS = ["centered", "split", "banner"];
-
-const files = (main: string) => [
-	{ path: `cta-section/${main}`, type: "registry:ui" as const },
-	{ path: "cta-section/types.ts", type: "registry:ui" as const },
-	{ path: "cta-section/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const ctaSection = defineComponent({
 	slug: "cta-section",
@@ -16,7 +10,7 @@ export const ctaSection = defineComponent({
 		"A call to action as a centred closing section, a split layout beside a visual, or a one-line banner that folds away when dismissed.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(ctaSectionVariants, ["variant"]),
 	props: [
 		{
 			name: "title",
@@ -123,15 +117,9 @@ export const ctaSection = defineComponent({
 	impl: {
 		react: {
 			entry: "CtaSection",
-			files: files("cta-section.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["avatar", "button"],
 		},
 		svelte: {
 			entry: "CtaSection",
-			files: files("cta-section.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["avatar", "button"],
 		},
 	},
 	keywords: ["cta", "call to action", "banner", "marketing", "landing", "section"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogPromptPhoto as ogPromptPhotoVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogPromptPhoto = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogPromptPhotoVariants, ["mode"]),
 	props: [
 		{
 			name: "title",
@@ -63,21 +64,9 @@ export const ogPromptPhoto = defineComponent({
 	impl: {
 		react: {
 			entry: "OgPromptPhoto",
-			files: [
-				{ path: "og-prompt-photo/og-prompt-photo.tsx", type: "registry:ui" },
-				{ path: "og-prompt-photo/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgPromptPhoto",
-			files: [
-				{ path: "og-prompt-photo/og-prompt-photo.svelte", type: "registry:ui" },
-				{ path: "og-prompt-photo/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "ai", "prompt", "photo", "takumi"],

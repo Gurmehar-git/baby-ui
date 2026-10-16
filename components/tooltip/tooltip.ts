@@ -87,24 +87,9 @@ export const tooltip = defineComponent({
 	impl: {
 		react: {
 			entry: "Tooltip",
-			files: [
-				{ path: "tooltip/tooltip.tsx", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Tooltip",
-			files: [
-				{ path: "tooltip/tooltip.svelte", type: "registry:ui" },
-				{ path: "tooltip/tooltip-trigger.svelte", type: "registry:ui" },
-				{ path: "tooltip/tooltip-content.svelte", type: "registry:ui" },
-				{ path: "tooltip/tooltip-provider.svelte", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "bits-ui"],
 		},
 	},
 	keywords: ["tooltip", "overlay"],

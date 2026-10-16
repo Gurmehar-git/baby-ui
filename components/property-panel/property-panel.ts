@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { propertyPanel as propertyPanelVariants } from "./react/variants";
 
 export const propertyPanel = defineComponent({
 	slug: "property-panel",
@@ -7,7 +8,7 @@ export const propertyPanel = defineComponent({
 		"A dense inspector for settings and tweak panels: compose labelled groups of compact rows by hand, or hand PropertyPanelControls a DialKit-style config and get baby-ui sliders, selects, switches and pickers.",
 	category: "advanced",
 	status: "experimental",
-	variants: { variant: ["default", "card"] },
+	variants: variantsOf(propertyPanelVariants, ["variant"]),
 	props: [
 		{
 			name: "mode",
@@ -96,64 +97,9 @@ export const propertyPanel = defineComponent({
 	impl: {
 		react: {
 			entry: "PropertyPanel",
-			files: [
-				{ path: "property-panel/property-panel.tsx", type: "registry:ui" },
-				{ path: "property-panel/property-panel-controls.tsx", type: "registry:ui" },
-				{ path: "property-panel/schema.ts", type: "registry:ui" },
-				{ path: "property-panel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"collapsible",
-				"field",
-				"slider",
-				"number-input",
-				"switch",
-				"color-picker",
-				"input",
-				"select",
-				"combobox",
-				"toggle-group",
-				"button",
-			],
 		},
 		svelte: {
 			entry: "PropertyPanel",
-			files: [
-				{ path: "property-panel/property-panel.svelte", type: "registry:ui" },
-				{ path: "property-panel/property-panel-group.svelte", type: "registry:ui" },
-				{ path: "property-panel/property-panel-group-label.svelte", type: "registry:ui" },
-				{
-					path: "property-panel/property-panel-group-action.svelte",
-					type: "registry:ui",
-				},
-				{
-					path: "property-panel/property-panel-group-content.svelte",
-					type: "registry:ui",
-				},
-				{ path: "property-panel/property-panel-controls.svelte", type: "registry:ui" },
-				{ path: "property-panel/property-panel-row.svelte", type: "registry:ui" },
-				{ path: "property-panel/schema.ts", type: "registry:ui" },
-				{ path: "property-panel/context.ts", type: "registry:ui" },
-				{ path: "property-panel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
-			registryDependencies: [
-				"collapsible",
-				"field",
-				"slider",
-				"number-input",
-				"switch",
-				"color-picker",
-				"input",
-				"select",
-				"combobox",
-				"toggle-group",
-				"button",
-				"command",
-			],
 		},
 	},
 	keywords: [

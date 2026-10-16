@@ -1,19 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { caseStudyFlipStack as caseStudyFlipStackVariants } from "./react/variants";
 
 const TONES = ["card", "inverse", "chart"];
 const SIZES = ["sm", "md", "lg"];
-
-const files = (ext: string) => [
-	{
-		path: `case-study-flip-stack/case-study-flip-stack.${ext}`,
-		type: "registry:ui" as const,
-	},
-	{ path: "case-study-flip-stack/types.ts", type: "registry:ui" as const },
-	{ path: "case-study-flip-stack/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/scroll-frame.ts", type: "registry:lib" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-	{ path: "lib/image.ts", type: "registry:lib" as const },
-];
 
 export const caseStudyFlipStack = defineComponent({
 	slug: "case-study-flip-stack",
@@ -23,7 +12,7 @@ export const caseStudyFlipStack = defineComponent({
 	category: "animated",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { tone: TONES, size: SIZES },
+	variants: variantsOf(caseStudyFlipStackVariants, ["tone", "size"]),
 	props: [
 		{
 			name: "image",
@@ -132,15 +121,9 @@ export const caseStudyFlipStack = defineComponent({
 	impl: {
 		react: {
 			entry: "CaseStudyFlipStack",
-			files: files("tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["card"],
 		},
 		svelte: {
 			entry: "CaseStudyFlipStack",
-			files: files("svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["card"],
 		},
 	},
 	keywords: ["scroll", "cards", "stack", "flip", "case study", "portfolio"],

@@ -40,21 +40,9 @@ export const collapsible = defineComponent({
 	impl: {
 		react: {
 			entry: "Collapsible",
-			files: [
-				{ path: "collapsible/collapsible.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Collapsible",
-			files: [
-				{ path: "collapsible/collapsible.svelte", type: "registry:ui" },
-				{ path: "collapsible/collapsible-trigger.svelte", type: "registry:ui" },
-				{ path: "collapsible/collapsible-content.svelte", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "bits-ui"],
 		},
 	},
 	keywords: ["collapsible"],

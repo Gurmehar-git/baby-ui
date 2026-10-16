@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { cardStack as cardStackVariants } from "./react/variants";
 
 const SIZES = ["sm", "default", "lg"];
 const VARIANTS = ["stack", "fan", "flat"];
@@ -10,7 +11,7 @@ export const cardStack = defineComponent({
 		"A deck reviewed one card at a time: drag or flick the top card left or right, with undo that flies it back.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(cardStackVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "items",
@@ -154,25 +155,9 @@ export const cardStack = defineComponent({
 	impl: {
 		react: {
 			entry: "CardStack",
-			files: [
-				{ path: "card-stack/card-stack.tsx", type: "registry:ui" },
-				{ path: "card-stack/deck.ts", type: "registry:ui" },
-				{ path: "card-stack/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button"],
 		},
 		svelte: {
 			entry: "CardStack",
-			files: [
-				{ path: "card-stack/card-stack.svelte", type: "registry:ui" },
-				{ path: "card-stack/deck.ts", type: "registry:ui" },
-				{ path: "card-stack/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button"],
 		},
 	},
 	keywords: ["card", "stack", "swipe", "deck", "triage", "media"],

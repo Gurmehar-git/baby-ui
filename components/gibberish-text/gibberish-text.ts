@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { gibberishText as gibberishTextVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const gibberishText = defineComponent({
 		"Each character scrambles through random letters, then resolves to the real one.",
 	category: "text",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(gibberishTextVariants, ["size"]),
 	props: [
 		{
 			name: "text",
@@ -50,21 +51,9 @@ export const gibberishText = defineComponent({
 	impl: {
 		react: {
 			entry: "GibberishText",
-			files: [
-				{ path: "gibberish-text/gibberish-text.tsx", type: "registry:ui" },
-				{ path: "gibberish-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "GibberishText",
-			files: [
-				{ path: "gibberish-text/gibberish-text.svelte", type: "registry:ui" },
-				{ path: "gibberish-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "scramble", "decrypt", "reveal"],

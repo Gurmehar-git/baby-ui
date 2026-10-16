@@ -69,23 +69,9 @@ export const heroStage = defineComponent({
 	impl: {
 		react: {
 			entry: "HeroStage",
-			files: [
-				{ path: "hero-stage/hero-stage.tsx", type: "registry:ui" },
-				{ path: "hero-stage/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "HeroStage",
-			files: [
-				{ path: "hero-stage/hero-stage.svelte", type: "registry:ui" },
-				{ path: "hero-stage/hero-stage-slot.svelte", type: "registry:ui" },
-				{ path: "hero-stage/context.ts", type: "registry:ui" },
-				{ path: "hero-stage/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["hero", "landing", "scroll", "parallax", "dashboard", "marketing", "stage"],

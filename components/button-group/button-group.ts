@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { buttonGroup as buttonGroupVariants } from "./react/variants";
 
 const ORIENTATIONS = ["horizontal", "vertical"];
 
@@ -9,7 +10,7 @@ export const buttonGroup = defineComponent({
 		"Buttons, inputs and selects joined into one control: inner corners square off and shared borders merge.",
 	category: "base",
 	status: "stable",
-	variants: { orientation: ORIENTATIONS },
+	variants: variantsOf(buttonGroupVariants, ["orientation"]),
 	props: [
 		{
 			name: "orientation",
@@ -71,25 +72,9 @@ export const buttonGroup = defineComponent({
 	impl: {
 		react: {
 			entry: "ButtonGroup",
-			files: [
-				{ path: "button-group/button-group.tsx", type: "registry:ui" },
-				{ path: "button-group/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["@base-ui/react", "clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["separator"],
 		},
 		svelte: {
 			entry: "ButtonGroup",
-			files: [
-				{ path: "button-group/button-group.svelte", type: "registry:ui" },
-				{ path: "button-group/button-group-text.svelte", type: "registry:ui" },
-				{ path: "button-group/button-group-separator.svelte", type: "registry:ui" },
-				{ path: "button-group/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["separator"],
 		},
 	},
 	keywords: ["button", "group", "segmented", "toolbar", "attached"],

@@ -3,13 +3,6 @@ import { defineComponent } from "@baby-ui/registry-schema";
 const VARIANTS = ["default", "flag"];
 const SIZES = ["xs", "sm", "default", "lg", "xl"];
 
-const files = (main: string) => [
-	{ path: `phone-input/${main}`, type: "registry:ui" as const },
-	{ path: "phone-input/phone.ts", type: "registry:ui" as const },
-	{ path: "phone-input/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
 export const phoneInput = defineComponent({
 	slug: "phone-input",
 	name: "Phone Input",
@@ -117,15 +110,9 @@ export const phoneInput = defineComponent({
 	impl: {
 		react: {
 			entry: "PhoneInput",
-			files: files("phone-input.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["input-group", "combobox", "command"],
 		},
 		svelte: {
 			entry: "PhoneInput",
-			files: files("phone-input.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["input-group", "combobox", "command"],
 		},
 	},
 	keywords: ["phone", "tel", "telephone", "country", "e164", "input", "form"],

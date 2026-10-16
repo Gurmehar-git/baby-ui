@@ -1,15 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { authForm as authFormVariants } from "./react/variants";
 
 const VARIANTS = ["card", "plain"];
-
-const files = (main: string) => [
-	{ path: `auth-form/${main}`, type: "registry:ui" as const },
-	{ path: "auth-form/auth.ts", type: "registry:ui" as const },
-	{ path: "auth-form/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
-const deps = ["button", "checkbox", "field", "input", "input-otp", "password-input"];
 
 export const authForm = defineComponent({
 	slug: "auth-form",
@@ -18,7 +10,7 @@ export const authForm = defineComponent({
 		"Sign in or sign up with providers, a passkey, or email and a one-time code; every step and status comes from your props.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(authFormVariants, ["variant"]),
 	props: [
 		{
 			name: "onSubmit",
@@ -119,15 +111,9 @@ export const authForm = defineComponent({
 	impl: {
 		react: {
 			entry: "AuthForm",
-			files: files("auth-form.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 		svelte: {
 			entry: "AuthForm",
-			files: files("auth-form.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 	},
 	keywords: ["auth", "sign in", "sign up", "login", "otp", "passkey", "sso", "form"],

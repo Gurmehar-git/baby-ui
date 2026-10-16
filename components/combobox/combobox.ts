@@ -52,27 +52,9 @@ export const combobox = defineComponent({
 	impl: {
 		react: {
 			entry: "Combobox",
-			files: [
-				{ path: "combobox/combobox.tsx", type: "registry:ui" },
-				{ path: "combobox/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["popover", "command"],
 		},
 		svelte: {
 			entry: "Combobox",
-			files: [
-				{ path: "combobox/combobox.svelte", type: "registry:ui" },
-				{ path: "combobox/combobox-trigger.svelte", type: "registry:ui" },
-				{ path: "combobox/combobox-content.svelte", type: "registry:ui" },
-				{ path: "combobox/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["popover", "command"],
 		},
 	},
 	keywords: ["combobox", "overlay"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { signature as signatureVariants } from "./react/variants";
 
 const VARIANTS = ["ink", "outline"];
 
@@ -9,7 +10,7 @@ export const signature = defineComponent({
 		"Text that writes itself: each glyph's outline strokes in left to right, then fills, in whatever font the element inherits.",
 	category: "animated",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(signatureVariants, ["variant"]),
 	props: [
 		{
 			name: "text",
@@ -88,21 +89,9 @@ export const signature = defineComponent({
 	impl: {
 		react: {
 			entry: "Signature",
-			files: [
-				{ path: "signature/signature.tsx", type: "registry:ui" },
-				{ path: "signature/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Signature",
-			files: [
-				{ path: "signature/signature.svelte", type: "registry:ui" },
-				{ path: "signature/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["signature", "handwriting", "svg", "stroke", "text", "draw"],

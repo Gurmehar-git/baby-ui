@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { orbitCardStack as orbitCardStackVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 const LAYOUTS = ["arc", "row", "grid"];
@@ -11,7 +12,7 @@ export const orbitCardStack = defineComponent({
 	category: "animated",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { size: SIZES, layout: LAYOUTS },
+	variants: variantsOf(orbitCardStackVariants, ["size", "layout"]),
 	props: [
 		{
 			name: "image",
@@ -134,25 +135,9 @@ export const orbitCardStack = defineComponent({
 	impl: {
 		react: {
 			entry: "OrbitCardStack",
-			files: [
-				{ path: "orbit-card-stack/orbit-card-stack.tsx", type: "registry:ui" },
-				{ path: "orbit-card-stack/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/image.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "button"],
 		},
 		svelte: {
 			entry: "OrbitCardStack",
-			files: [
-				{ path: "orbit-card-stack/orbit-card-stack.svelte", type: "registry:ui" },
-				{ path: "orbit-card-stack/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/image.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "button"],
 		},
 	},
 	keywords: ["stack", "cards", "profiles", "team", "fan", "hover"],

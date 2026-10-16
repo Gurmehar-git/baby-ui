@@ -83,7 +83,7 @@ export type ${pascal}Variant = NonNullable<VariantProps<typeof ${camel}>["varian
 `;
 
 const reactComponentTemplate = () => `import type { ComponentProps } from "react";
-import { cn } from "../lib/cn";
+import { cn } from "../../lib/react/cn";
 import { type ${pascal}Variant, ${camel} } from "./variants";
 
 export interface ${pascal}Props extends ComponentProps<"div"> {
@@ -104,7 +104,7 @@ export function ${pascal}({ className, variant, ...props }: ${pascal}Props) {
 
 const svelteComponentTemplate = () => `<script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../lib/cn";
+import { cn } from "../../lib/svelte/cn";
 import { type ${pascal}Variant, ${camel} } from "./variants";
 
 type Props = HTMLAttributes<HTMLDivElement> & {
@@ -118,7 +118,8 @@ let { class: classProp, variant, ...rest }: Props = $props();
 `;
 
 const registrySchemaTemplate =
-	() => `import { defineComponent } from "@baby-ui/registry-schema";
+	() => `import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ${camel} as ${camel}Variants } from "./react/variants";
 
 export const ${camel} = defineComponent({
 	slug: "${slug}",
@@ -127,7 +128,7 @@ export const ${camel} = defineComponent({
 	category: "${category}",
 	status: "experimental",
 	demo: { mode: "auto" },
-	variants: { variant: ["default"] },
+	variants: variantsOf(${camel}Variants, ["variant"]),
 	props: [
 		{
 			name: "variant",
@@ -141,25 +142,10 @@ export const ${camel} = defineComponent({
 		keyboard: [],
 		notes: [],
 	},
+	// Files, npm and registry dependencies are derived from each port's imports by pnpm gen.
 	impl: {
-		react: {
-			entry: "${pascal}",
-			files: [
-				{ path: "${slug}/${slug}.tsx", type: "registry:ui" },
-				{ path: "${slug}/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-		},
-		svelte: {
-			entry: "${pascal}",
-			files: [
-				{ path: "${slug}/${slug}.svelte", type: "registry:ui" },
-				{ path: "${slug}/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-		},
+		react: { entry: "${pascal}" },
+		svelte: { entry: "${pascal}" },
 	},
 	keywords: ["${slug}"],
 });

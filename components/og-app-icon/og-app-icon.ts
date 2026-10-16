@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogAppIcon as ogAppIconVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogAppIcon = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogAppIconVariants, ["mode"]),
 	props: [
 		{
 			name: "logo",
@@ -50,21 +51,9 @@ export const ogAppIcon = defineComponent({
 	impl: {
 		react: {
 			entry: "OgAppIcon",
-			files: [
-				{ path: "og-app-icon/og-app-icon.tsx", type: "registry:ui" },
-				{ path: "og-app-icon/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgAppIcon",
-			files: [
-				{ path: "og-app-icon/og-app-icon.svelte", type: "registry:ui" },
-				{ path: "og-app-icon/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "app icon", "brand", "takumi"],

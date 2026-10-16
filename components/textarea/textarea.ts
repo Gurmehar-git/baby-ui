@@ -101,25 +101,9 @@ export const textarea = defineComponent({
 	impl: {
 		react: {
 			entry: "Textarea",
-			files: [
-				{ path: "textarea/textarea.tsx", type: "registry:ui" },
-				{ path: "textarea/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["rolling-digits"],
 		},
 		svelte: {
 			entry: "Textarea",
-			files: [
-				{ path: "textarea/textarea.svelte", type: "registry:ui" },
-				{ path: "textarea/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["rolling-digits"],
 		},
 	},
 	keywords: ["textarea", "form", "multiline"],

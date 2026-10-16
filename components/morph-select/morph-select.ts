@@ -1,16 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { morphSelect as morphSelectVariants } from "./react/variants";
 
 const SIZES = ["sm", "default", "lg"];
 const VARIANTS = ["default", "ghost"];
-
-const files = (main: string) => [
-	{ path: `morph-select/${main}`, type: "registry:ui" as const },
-	{ path: "morph-select/options.ts", type: "registry:ui" as const },
-	{ path: "lib/glide.ts", type: "registry:lib" as const },
-	{ path: "morph-select/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/morph.ts", type: "registry:lib" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const morphSelect = defineComponent({
 	slug: "morph-select",
@@ -19,7 +11,7 @@ export const morphSelect = defineComponent({
 		"A select whose trigger is the list: opening grows the trigger into the options surface, a highlight glides between rows, and the chosen label rolls into the trigger.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(morphSelectVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "label",
@@ -139,13 +131,9 @@ export const morphSelect = defineComponent({
 	impl: {
 		react: {
 			entry: "MorphSelect",
-			files: files("morph-select.tsx"),
-			dependencies: ["@base-ui/react", "clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "MorphSelect",
-			files: files("morph-select.svelte"),
-			dependencies: ["bits-ui", "clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["select", "listbox", "dropdown", "morph", "picker"],

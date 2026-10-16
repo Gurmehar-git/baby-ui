@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { textLoop as textLoopVariants } from "./react/variants";
 
 const SIZES = ["inherit", "sm", "md", "lg"];
 const VARIANTS = ["slide", "fade", "roll"];
@@ -11,7 +12,7 @@ export const textLoop = defineComponent({
 		"Loops through items on an interval: sliding through a window, blurring in place, or rolling like a flip counter.",
 	category: "text",
 	status: "stable",
-	variants: { variant: VARIANTS, direction: DIRECTIONS, size: SIZES },
+	variants: variantsOf(textLoopVariants, ["variant", "direction", "size"]),
 	props: [
 		{
 			name: "items",
@@ -93,21 +94,9 @@ export const textLoop = defineComponent({
 	impl: {
 		react: {
 			entry: "TextLoop",
-			files: [
-				{ path: "text-loop/text-loop.tsx", type: "registry:ui" },
-				{ path: "text-loop/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "TextLoop",
-			files: [
-				{ path: "text-loop/text-loop.svelte", type: "registry:ui" },
-				{ path: "text-loop/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "loop", "rotate", "slide", "cycle"],

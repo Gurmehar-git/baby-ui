@@ -129,27 +129,9 @@ export const emailMagicLink = defineComponent({
 	impl: {
 		react: {
 			entry: "EmailMagicLink",
-			files: [
-				{
-					path: "email-magic-link/email-magic-link.tsx",
-					type: "registry:ui",
-				},
-				{ path: "email-magic-link/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["react-email", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 		svelte: {
 			entry: "EmailMagicLink",
-			files: [
-				{
-					path: "email-magic-link/email-magic-link.svelte",
-					type: "registry:ui",
-				},
-				{ path: "email-magic-link/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["@better-svelte-email/components", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 	},
 	keywords: ["email", "magic link", "otp", "sign in", "passwordless", "security"],

@@ -1,27 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ctaBanner as ctaBannerVariants } from "./react/variants";
 
 const VARIANTS = ["grain", "ticker", "spotlight"];
 const SIZES = ["sm", "default", "lg"];
-
-const PARTS = [
-	"content",
-	"badge",
-	"eyebrow",
-	"title",
-	"description",
-	"actions",
-	"note",
-	"grain",
-	"floater",
-	"ticker",
-	"spotlight",
-];
-
-const shared = [
-	{ path: "cta-banner/banner.ts", type: "registry:ui" as const },
-	{ path: "cta-banner/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const ctaBanner = defineComponent({
 	slug: "cta-banner",
@@ -30,7 +11,7 @@ export const ctaBanner = defineComponent({
 		"A closing call to action built from parts: a grain surface with drifting icons, inclined rows of a running wordmark, or a dark card lit around the pointer.",
 	category: "blocks",
 	status: "beta",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(ctaBannerVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "title",
@@ -200,21 +181,9 @@ export const ctaBanner = defineComponent({
 	impl: {
 		react: {
 			entry: "CtaBanner",
-			files: [{ path: "cta-banner/cta-banner.tsx", type: "registry:ui" }, ...shared],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "CtaBanner",
-			files: [
-				{ path: "cta-banner/cta-banner.svelte", type: "registry:ui" },
-				...PARTS.map((part) => ({
-					path: `cta-banner/cta-banner-${part}.svelte`,
-					type: "registry:ui" as const,
-				})),
-				{ path: "cta-banner/context.ts", type: "registry:ui" },
-				...shared,
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

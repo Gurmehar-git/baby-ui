@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ditherGradient as ditherGradientVariants } from "./react/variants";
 
 const TONES = ["spectrum", "cool", "warm", "mono"];
 const MATRICES = ["bayer2", "bayer4", "bayer8"];
@@ -11,7 +12,7 @@ export const ditherGradient = defineComponent({
 		"A full-bleed token-coloured gradient drawn with ordered Bayer dithering on a canvas.",
 	category: "backgrounds",
 	status: "stable",
-	variants: { tone: TONES, matrix: MATRICES, position: POSITIONS },
+	variants: variantsOf(ditherGradientVariants, ["tone", "matrix", "position"]),
 	props: [
 		{
 			name: "tone",
@@ -86,23 +87,9 @@ export const ditherGradient = defineComponent({
 	impl: {
 		react: {
 			entry: "DitherGradient",
-			files: [
-				{ path: "dither-gradient/dither-gradient.tsx", type: "registry:ui" },
-				{ path: "dither-gradient/dither.ts", type: "registry:ui" },
-				{ path: "dither-gradient/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "DitherGradient",
-			files: [
-				{ path: "dither-gradient/dither-gradient.svelte", type: "registry:ui" },
-				{ path: "dither-gradient/dither.ts", type: "registry:ui" },
-				{ path: "dither-gradient/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "gradient", "dither", "bayer", "retro", "canvas"],

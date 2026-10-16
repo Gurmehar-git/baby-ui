@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { sidebarNav as sidebarNavVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const sidebarNav = defineComponent({
 		"A collapsible workspace sidebar: switcher, primary nav, searchable recents, and a footer action.",
 	category: "advanced",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(sidebarNavVariants, ["size"]),
 	props: [
 		{
 			name: "workspace",
@@ -112,26 +113,9 @@ export const sidebarNav = defineComponent({
 	impl: {
 		react: {
 			entry: "SidebarNav",
-			files: [
-				{ path: "sidebar-nav/sidebar-nav.tsx", type: "registry:ui" },
-				{ path: "sidebar-nav/variants.ts", type: "registry:ui" },
-				{ path: "sidebar-nav/labels.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["avatar", "dropdown-menu"],
 		},
 		svelte: {
 			entry: "SidebarNav",
-			files: [
-				{ path: "sidebar-nav/sidebar-nav.svelte", type: "registry:ui" },
-				{ path: "sidebar-nav/types.ts", type: "registry:ui" },
-				{ path: "sidebar-nav/variants.ts", type: "registry:ui" },
-				{ path: "sidebar-nav/labels.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["avatar", "dropdown-menu"],
 		},
 	},
 	keywords: ["sidebar", "navigation", "workspace", "chat"],

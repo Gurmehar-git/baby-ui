@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { taskSteps as taskStepsVariants } from "./react/variants";
 
 export const taskSteps = defineComponent({
 	slug: "task-steps",
@@ -7,7 +8,7 @@ export const taskSteps = defineComponent({
 		"Ordered agent plan where each step shows pending, active, done or failed, as a timeline or expandable rows.",
 	category: "agents",
 	status: "stable",
-	variants: { variant: ["timeline", "capsules", "list"] },
+	variants: variantsOf(taskStepsVariants, ["variant"]),
 	props: [
 		{
 			name: "steps",
@@ -95,25 +96,9 @@ export const taskSteps = defineComponent({
 	impl: {
 		react: {
 			entry: "TaskSteps",
-			files: [
-				{ path: "task-steps/task-steps.tsx", type: "registry:ui" },
-				{ path: "task-steps/rows.tsx", type: "registry:ui" },
-				{ path: "task-steps/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge"],
 		},
 		svelte: {
 			entry: "TaskSteps",
-			files: [
-				{ path: "task-steps/task-steps.svelte", type: "registry:ui" },
-				{ path: "task-steps/task-step-rows.svelte", type: "registry:ui" },
-				{ path: "task-steps/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge"],
 		},
 	},
 	keywords: ["tasks", "steps", "agent", "plan", "progress"],

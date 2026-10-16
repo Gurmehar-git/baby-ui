@@ -1,17 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { newsletterSignup as newsletterSignupVariants } from "./react/variants";
 
 const VARIANTS = ["inline", "card"];
 const STATUSES = ["idle", "submitting", "success", "error"];
-
-const files = (main: string) => [
-	{ path: `newsletter-signup/${main}`, type: "registry:ui" as const },
-	{ path: "newsletter-signup/signup.ts", type: "registry:ui" as const },
-	{ path: "newsletter-signup/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-	{ path: "lib/image.ts", type: "registry:lib" as const },
-];
-
-const deps = ["avatar", "button", "input-group", "rolling-digits", "spinner"];
 
 export const newsletterSignup = defineComponent({
 	slug: "newsletter-signup",
@@ -20,7 +11,7 @@ export const newsletterSignup = defineComponent({
 		"An email signup framed by the newsletter itself: subscribing drops the next issue, addressed to the reader, onto a stack of recent ones.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(newsletterSignupVariants, ["variant"]),
 	props: [
 		{
 			name: "image",
@@ -141,15 +132,9 @@ export const newsletterSignup = defineComponent({
 	impl: {
 		react: {
 			entry: "NewsletterSignup",
-			files: files("newsletter-signup.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 		svelte: {
 			entry: "NewsletterSignup",
-			files: files("newsletter-signup.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 	},
 	keywords: ["newsletter", "signup", "subscribe", "email", "form", "marketing"],

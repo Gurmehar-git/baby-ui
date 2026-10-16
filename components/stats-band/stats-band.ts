@@ -1,13 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { statsBand as statsBandVariants } from "./react/variants";
 
 const VARIANTS = ["plain", "divided"];
-
-const files = (main: string) => [
-	{ path: `stats-band/${main}`, type: "registry:ui" as const },
-	{ path: "stats-band/stats.ts", type: "registry:ui" as const },
-	{ path: "stats-band/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const statsBand = defineComponent({
 	slug: "stats-band",
@@ -16,7 +10,7 @@ export const statsBand = defineComponent({
 		"Three or four headline numbers that count up once seen, each with an optional tiny visual: a trend, an uptime strip, a histogram or a dotted world.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(statsBandVariants, ["variant"]),
 	props: [
 		{
 			name: "stats",
@@ -93,15 +87,9 @@ export const statsBand = defineComponent({
 	impl: {
 		react: {
 			entry: "StatsBand",
-			files: files("stats-band.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["rolling-digits", "sparkline"],
 		},
 		svelte: {
 			entry: "StatsBand",
-			files: files("stats-band.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["rolling-digits", "sparkline"],
 		},
 	},
 	keywords: ["stats", "numbers", "metrics", "kpi", "marketing", "band", "section"],

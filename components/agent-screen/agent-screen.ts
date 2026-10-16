@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { agentScreen as agentScreenVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -10,7 +11,7 @@ export const agentScreen = defineComponent({
 	category: "agents",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { size: SIZES },
+	variants: variantsOf(agentScreenVariants, ["size"]),
 	props: [
 		{
 			name: "agentName",
@@ -76,23 +77,9 @@ export const agentScreen = defineComponent({
 	impl: {
 		react: {
 			entry: "AgentScreen",
-			files: [
-				{ path: "agent-screen/agent-screen.tsx", type: "registry:ui" },
-				{ path: "agent-screen/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "dialog", "spinner"],
 		},
 		svelte: {
 			entry: "AgentScreen",
-			files: [
-				{ path: "agent-screen/agent-screen.svelte", type: "registry:ui" },
-				{ path: "agent-screen/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "dialog", "spinner"],
 		},
 	},
 	keywords: ["agent", "screen", "viewer", "recording"],

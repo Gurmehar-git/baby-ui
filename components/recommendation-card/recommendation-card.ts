@@ -59,22 +59,9 @@ export const recommendationCard = defineComponent({
 	impl: {
 		react: {
 			entry: "RecommendationCard",
-			files: [
-				{ path: "recommendation-card/recommendation-card.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
-			registryDependencies: ["button"],
 		},
 		svelte: {
 			entry: "RecommendationCard",
-			files: [
-				{ path: "recommendation-card/recommendation-card.svelte", type: "registry:ui" },
-				{ path: "recommendation-card/types.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
-			registryDependencies: ["button"],
 		},
 	},
 	keywords: ["recommendation", "confidence", "agent", "suggestion"],

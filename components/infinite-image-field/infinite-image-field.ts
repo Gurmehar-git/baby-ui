@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { infiniteImageField as infiniteImageFieldVariants } from "./react/variants";
 
 const VARIANTS = ["drift", "fisheye", "gallery"];
 const SHAPES = ["square", "rounded"];
@@ -13,7 +14,12 @@ export const infiniteImageField = defineComponent({
 	category: "animated",
 	status: "stable",
 	demo: { mode: "auto", frame: "lg" },
-	variants: { variant: VARIANTS, shape: SHAPES, layout: LAYOUTS, size: SIZES },
+	variants: variantsOf(infiniteImageFieldVariants, [
+		"variant",
+		"shape",
+		"layout",
+		"size",
+	]),
 	props: [
 		{
 			name: "items",
@@ -179,38 +185,9 @@ export const infiniteImageField = defineComponent({
 	impl: {
 		react: {
 			entry: "InfiniteImageField",
-			files: [
-				{ path: "infinite-image-field/infinite-image-field.tsx", type: "registry:ui" },
-				{ path: "infinite-image-field/field.ts", type: "registry:ui" },
-				{ path: "infinite-image-field/fisheye.ts", type: "registry:ui" },
-				{ path: "infinite-image-field/gallery.ts", type: "registry:ui" },
-				{ path: "infinite-image-field/labels.ts", type: "registry:ui" },
-				{ path: "infinite-image-field/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["spinner"],
 		},
 		svelte: {
 			entry: "InfiniteImageField",
-			files: [
-				{
-					path: "infinite-image-field/infinite-image-field.svelte",
-					type: "registry:ui",
-				},
-				{ path: "infinite-image-field/drift-field.svelte", type: "registry:ui" },
-				{ path: "infinite-image-field/fisheye-field.svelte", type: "registry:ui" },
-				{ path: "infinite-image-field/gallery-field.svelte", type: "registry:ui" },
-				{ path: "infinite-image-field/item-list.svelte", type: "registry:ui" },
-				{ path: "infinite-image-field/field.ts", type: "registry:ui" },
-				{ path: "infinite-image-field/fisheye.ts", type: "registry:ui" },
-				{ path: "infinite-image-field/gallery.ts", type: "registry:ui" },
-				{ path: "infinite-image-field/labels.ts", type: "registry:ui" },
-				{ path: "infinite-image-field/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["spinner"],
 		},
 	},
 	keywords: [

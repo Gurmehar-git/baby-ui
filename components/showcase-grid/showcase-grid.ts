@@ -55,22 +55,9 @@ export const showcaseGrid = defineComponent({
 	impl: {
 		react: {
 			entry: "ShowcaseGrid",
-			files: [
-				{ path: "showcase-grid/showcase-grid.tsx", type: "registry:ui" },
-				{ path: "showcase-grid/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ShowcaseGrid",
-			files: [
-				{ path: "showcase-grid/showcase-grid.svelte", type: "registry:ui" },
-				{ path: "showcase-grid/showcase-panel.svelte", type: "registry:ui" },
-				{ path: "showcase-grid/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

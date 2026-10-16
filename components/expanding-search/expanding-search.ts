@@ -1,16 +1,9 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { expandingSearch as expandingSearchVariants } from "./react/variants";
 
 const SIZES = ["sm", "default", "lg"];
 const VARIANTS = ["default", "ghost"];
 const ANCHORS = ["end", "start"];
-
-const files = (main: string) => [
-	{ path: `expanding-search/${main}`, type: "registry:ui" as const },
-	{ path: "expanding-search/search.ts", type: "registry:ui" as const },
-	{ path: "expanding-search/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/glide.ts", type: "registry:lib" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const expandingSearch = defineComponent({
 	slug: "expanding-search",
@@ -19,7 +12,7 @@ export const expandingSearch = defineComponent({
 		"A search that waits as an icon button: it morphs into the field, results unfold beneath it, and Escape, choosing a result or leaving it empty folds it back.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(expandingSearchVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "label",
@@ -159,13 +152,9 @@ export const expandingSearch = defineComponent({
 	impl: {
 		react: {
 			entry: "ExpandingSearch",
-			files: files("expanding-search.tsx"),
-			dependencies: ["@base-ui/react", "clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ExpandingSearch",
-			files: files("expanding-search.svelte"),
-			dependencies: ["bits-ui", "clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["search", "combobox", "expand", "toolbar", "morph"],

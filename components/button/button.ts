@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { button as buttonVariants } from "./react/variants";
 
 export const button = defineComponent({
 	slug: "button",
@@ -8,45 +9,7 @@ export const button = defineComponent({
 	category: "base",
 	status: "stable",
 
-	variants: {
-		variant: [
-			"default",
-			"default_soft",
-			"secondary",
-			"outline",
-			"ghost",
-			"link",
-			"destructive",
-			"destructive_soft",
-			"success",
-			"success_soft",
-			"warning",
-			"warning_soft",
-			"info",
-			"info_soft",
-			"default_surface",
-			"secondary_surface",
-			"destructive_surface",
-			"success_surface",
-			"warning_surface",
-			"info_surface",
-			"dark",
-			"light",
-			"raw",
-		],
-		size: [
-			"xs",
-			"sm",
-			"default",
-			"lg",
-			"xl",
-			"icon-xs",
-			"icon-sm",
-			"icon",
-			"icon-lg",
-			"icon-xl",
-		],
-	},
+	variants: variantsOf(buttonVariants, ["variant", "size"]),
 
 	props: [
 		{
@@ -197,21 +160,9 @@ export const button = defineComponent({
 	impl: {
 		svelte: {
 			entry: "Button",
-			files: [
-				{ path: "button/button.svelte", type: "registry:ui" },
-				{ path: "button/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		react: {
 			entry: "Button",
-			files: [
-				{ path: "button/button.tsx", type: "registry:ui" },
-				{ path: "button/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 

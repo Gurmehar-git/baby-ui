@@ -75,21 +75,9 @@ export const codeBlock = defineComponent({
 	impl: {
 		react: {
 			entry: "CodeBlock",
-			files: [
-				{ path: "code-block/code-block.tsx", type: "registry:ui" },
-				{ path: "copy-button/copy-button.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
 		},
 		svelte: {
 			entry: "CodeBlock",
-			files: [
-				{ path: "code-block/code-block.svelte", type: "registry:ui" },
-				{ path: "copy-button/copy-button.svelte", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
 		},
 	},
 	keywords: ["code", "block"],

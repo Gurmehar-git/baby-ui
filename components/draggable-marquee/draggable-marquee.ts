@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { draggableMarquee as draggableMarqueeVariants } from "./react/variants";
 
 export const draggableMarquee = defineComponent({
 	slug: "draggable-marquee",
@@ -7,7 +8,7 @@ export const draggableMarquee = defineComponent({
 		"An endless drifting row you can grab and throw; it coasts with inertia, then drifts on.",
 	category: "advanced",
 	status: "stable",
-	variants: { gap: ["sm", "md", "lg"], direction: ["left", "right"] },
+	variants: variantsOf(draggableMarqueeVariants, ["gap", "direction"]),
 	props: [
 		{
 			name: "children",
@@ -83,23 +84,9 @@ export const draggableMarquee = defineComponent({
 	impl: {
 		react: {
 			entry: "DraggableMarquee",
-			files: [
-				{ path: "draggable-marquee/draggable-marquee.tsx", type: "registry:ui" },
-				{ path: "draggable-marquee/marquee.ts", type: "registry:ui" },
-				{ path: "draggable-marquee/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "DraggableMarquee",
-			files: [
-				{ path: "draggable-marquee/draggable-marquee.svelte", type: "registry:ui" },
-				{ path: "draggable-marquee/marquee.ts", type: "registry:ui" },
-				{ path: "draggable-marquee/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["marquee", "carousel", "drag", "inertia", "gallery", "infinite", "scroll"],

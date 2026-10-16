@@ -60,20 +60,9 @@ export const loadingState = defineComponent({
 	impl: {
 		react: {
 			entry: "LoadingState",
-			files: [
-				{ path: "loading-state/loading-state.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
 		},
 		svelte: {
 			entry: "LoadingState",
-			files: [
-				{ path: "loading-state/loading-state.svelte", type: "registry:ui" },
-				{ path: "loading-state/types.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
 		},
 	},
 	keywords: ["loading", "loader", "spinner", "progress", "agent"],

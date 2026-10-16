@@ -3,12 +3,6 @@ import { defineComponent } from "@baby-ui/registry-schema";
 const VARIANTS = ["default", "pill"];
 const SIZES = ["xs", "sm", "default", "lg", "xl"];
 
-const files = (main: string) => [
-	{ path: `search-input/${main}`, type: "registry:ui" as const },
-	{ path: "search-input/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
 export const searchInput = defineComponent({
 	slug: "search-input",
 	name: "Search Input",
@@ -103,15 +97,9 @@ export const searchInput = defineComponent({
 	impl: {
 		react: {
 			entry: "SearchInput",
-			files: files("search-input.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["input-group", "shortcut"],
 		},
 		svelte: {
 			entry: "SearchInput",
-			files: files("search-input.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["input-group", "shortcut"],
 		},
 	},
 	keywords: ["search", "input", "filter", "field", "clear"],

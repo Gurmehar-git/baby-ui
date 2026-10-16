@@ -1,6 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
-
-const SVELTE_PARTS = ["dropzone", "error", "list", "item"];
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { fileUpload as fileUploadVariants } from "./react/variants";
 
 export const fileUpload = defineComponent({
 	slug: "file-upload",
@@ -9,7 +8,7 @@ export const fileUpload = defineComponent({
 		"Composable upload: a drop zone with type, size and count checks, and file rows with progress, retry and remove. You own the upload.",
 	category: "base",
 	status: "beta",
-	variants: { variant: ["default", "inline"], size: ["sm", "default"] },
+	variants: variantsOf(fileUploadVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "files",
@@ -132,32 +131,9 @@ export const fileUpload = defineComponent({
 	impl: {
 		react: {
 			entry: "FileUpload",
-			files: [
-				{ path: "file-upload/file-upload.tsx", type: "registry:ui" },
-				{ path: "file-upload/core.ts", type: "registry:ui" },
-				{ path: "file-upload/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/motion.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "field"],
 		},
 		svelte: {
 			entry: "FileUpload",
-			files: [
-				{ path: "file-upload/file-upload.svelte", type: "registry:ui" },
-				...SVELTE_PARTS.map((part) => ({
-					path: `file-upload/file-upload-${part}.svelte`,
-					type: "registry:ui" as const,
-				})),
-				{ path: "file-upload/context.ts", type: "registry:ui" },
-				{ path: "file-upload/core.ts", type: "registry:ui" },
-				{ path: "file-upload/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/motion.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "field"],
 		},
 	},
 	keywords: ["file upload", "dropzone", "drag and drop", "upload", "progress"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { shimmerText as shimmerTextVariants } from "./react/variants";
 
 const SIZES = ["inherit", "sm", "md", "lg"];
 const VARIANTS = ["default", "bell"];
@@ -10,7 +11,7 @@ export const shimmerText = defineComponent({
 		"Muted text with a bright band sweeping across it, for loading and thinking states.",
 	category: "text",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(shimmerTextVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "text",
@@ -81,21 +82,9 @@ export const shimmerText = defineComponent({
 	impl: {
 		react: {
 			entry: "ShimmerText",
-			files: [
-				{ path: "shimmer-text/shimmer-text.tsx", type: "registry:ui" },
-				{ path: "shimmer-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ShimmerText",
-			files: [
-				{ path: "shimmer-text/shimmer-text.svelte", type: "registry:ui" },
-				{ path: "shimmer-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["shimmer", "loading", "thinking", "gradient", "text"],

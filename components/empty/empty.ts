@@ -1,14 +1,5 @@
 import { defineComponent } from "@baby-ui/registry-schema";
 
-const SVELTE_PARTS = [
-	"header",
-	"media",
-	"title",
-	"description",
-	"content",
-	"illustration",
-];
-
 export const empty = defineComponent({
 	slug: "empty",
 	name: "Empty",
@@ -92,30 +83,9 @@ export const empty = defineComponent({
 	impl: {
 		react: {
 			entry: "Empty",
-			files: [
-				{ path: "empty/empty.tsx", type: "registry:ui" },
-				{ path: "empty/empty-illustration.tsx", type: "registry:ui" },
-				{ path: "empty/art.ts", type: "registry:ui" },
-				{ path: "empty/illustration.ts", type: "registry:ui" },
-				{ path: "empty/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Empty",
-			files: [
-				{ path: "empty/empty.svelte", type: "registry:ui" },
-				...SVELTE_PARTS.map((part) => ({
-					path: `empty/empty-${part}.svelte`,
-					type: "registry:ui" as const,
-				})),
-				{ path: "empty/art.ts", type: "registry:ui" },
-				{ path: "empty/illustration.ts", type: "registry:ui" },
-				{ path: "empty/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["empty", "empty state", "blank slate", "no results", "zero state"],

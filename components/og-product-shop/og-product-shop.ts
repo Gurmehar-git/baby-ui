@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogProductShop as ogProductShopVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -12,7 +13,7 @@ export const ogProductShop = defineComponent({
 	category: "og-images",
 	demo: { mode: "auto", frame: "og" },
 	status: "stable",
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogProductShopVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "name",
@@ -123,23 +124,9 @@ export const ogProductShop = defineComponent({
 	impl: {
 		react: {
 			entry: "OgProductShop",
-			files: [
-				{ path: "og-product-shop/og-product-shop.tsx", type: "registry:ui" },
-				{ path: "og-product-shop/stars.ts", type: "registry:ui" },
-				{ path: "og-product-shop/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgProductShop",
-			files: [
-				{ path: "og-product-shop/og-product-shop.svelte", type: "registry:ui" },
-				{ path: "og-product-shop/stars.ts", type: "registry:ui" },
-				{ path: "og-product-shop/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

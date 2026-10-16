@@ -1,14 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { userMenu as userMenuVariants } from "./react/variants";
 
 const SIZES = ["sm", "default"];
-
-const files = (main: string) => [
-	{ path: `user-menu/${main}`, type: "registry:ui" as const },
-	{ path: "user-menu/account.ts", type: "registry:ui" as const },
-	{ path: "user-menu/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-const deps = ["avatar", "badge", "dropdown-menu", "mention-input", "spinner"];
 
 export const userMenu = defineComponent({
 	slug: "user-menu",
@@ -17,7 +10,7 @@ export const userMenu = defineComponent({
 		"The account menu behind a person's avatar: identity, destinations, presence status, theme and sign out.",
 	category: "advanced",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(userMenuVariants, ["size"]),
 	props: [
 		{
 			name: "user",
@@ -104,15 +97,9 @@ export const userMenu = defineComponent({
 	impl: {
 		react: {
 			entry: "UserMenu",
-			files: files("user-menu.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 		svelte: {
 			entry: "UserMenu",
-			files: files("user-menu.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 	},
 	keywords: ["user", "account", "avatar", "profile", "menu", "presence", "sign out"],

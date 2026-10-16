@@ -84,39 +84,9 @@ export const overviewCard = defineComponent({
 	impl: {
 		react: {
 			entry: "OverviewCard",
-			files: [
-				{ path: "overview-card/overview-card.tsx", type: "registry:ui" },
-				{ path: "overview-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"chart",
-				"area-chart",
-				"line-chart",
-				"card",
-				"badge",
-				"rolling-digits",
-				"toggle-group",
-			],
 		},
 		svelte: {
 			entry: "OverviewCard",
-			files: [
-				{ path: "overview-card/overview-card.svelte", type: "registry:ui" },
-				{ path: "overview-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"chart",
-				"area-chart",
-				"line-chart",
-				"card",
-				"badge",
-				"rolling-digits",
-				"toggle-group",
-			],
 		},
 	},
 	keywords: ["overview", "dashboard", "hero metric", "chart", "card"],

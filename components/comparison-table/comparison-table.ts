@@ -1,15 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { comparisonTable as comparisonTableVariants } from "./react/variants";
 
 const VARIANTS = ["plain", "card"];
-
-const files = (main: string) => [
-	{ path: `comparison-table/${main}`, type: "registry:ui" as const },
-	{ path: "comparison-table/compare.ts", type: "registry:ui" as const },
-	{ path: "comparison-table/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
-const deps = ["button", "rolling-digits", "switch", "toggle-group"];
 
 export const comparisonTable = defineComponent({
 	slug: "comparison-table",
@@ -18,7 +10,7 @@ export const comparisonTable = defineComponent({
 		"A feature matrix for plans or products: prices with a billing switch, grouped rows of checks and limits, and a differences-only filter.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(comparisonTableVariants, ["variant"]),
 	props: [
 		{
 			name: "columns",
@@ -109,15 +101,9 @@ export const comparisonTable = defineComponent({
 	impl: {
 		react: {
 			entry: "ComparisonTable",
-			files: files("comparison-table.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 		svelte: {
 			entry: "ComparisonTable",
-			files: files("comparison-table.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 	},
 	keywords: ["comparison", "compare", "plans", "pricing", "features", "matrix", "table"],

@@ -82,26 +82,9 @@ export const scatterChart = defineComponent({
 	impl: {
 		react: {
 			entry: "ScatterChart",
-			files: [
-				{ path: "scatter-chart/scatter-chart.tsx", type: "registry:ui" },
-				{ path: "scatter-chart/geometry.ts", type: "registry:ui" },
-				{ path: "scatter-chart/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["tailwind-variants", "d3-array", "d3-scale"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "ScatterChart",
-			files: [
-				{ path: "scatter-chart/scatter-chart.svelte", type: "registry:ui" },
-				{ path: "scatter-chart/scatter-plot.svelte", type: "registry:ui" },
-				{ path: "scatter-chart/scatter.svelte", type: "registry:ui" },
-				{ path: "scatter-chart/context.ts", type: "registry:ui" },
-				{ path: "scatter-chart/geometry.ts", type: "registry:ui" },
-				{ path: "scatter-chart/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["tailwind-variants", "d3-array", "d3-scale"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["scatter", "chart", "points", "markers", "distribution"],

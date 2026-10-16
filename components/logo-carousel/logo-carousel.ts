@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { logoCarousel as logoCarouselVariants } from "./react/variants";
 
 const DIRECTIONS = ["ltr", "rtl"];
 const VARIANTS = ["columns", "marquee"];
@@ -11,7 +12,7 @@ export const logoCarousel = defineComponent({
 		"Logos that cycle in staggered columns, or drift past in a draggable marquee strip with a pause control.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(logoCarouselVariants, ["variant"]),
 	props: [
 		{
 			name: "variant",
@@ -83,24 +84,9 @@ export const logoCarousel = defineComponent({
 	impl: {
 		react: {
 			entry: "LogoCarousel",
-			files: [
-				{ path: "logo-carousel/logo-carousel.tsx", type: "registry:ui" },
-				{ path: "logo-carousel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "draggable-marquee"],
 		},
 		svelte: {
 			entry: "LogoCarousel",
-			files: [
-				{ path: "logo-carousel/logo-carousel.svelte", type: "registry:ui" },
-				{ path: "logo-carousel/logo-column.svelte", type: "registry:ui" },
-				{ path: "logo-carousel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "draggable-marquee"],
 		},
 	},
 	licenseOrigin: {

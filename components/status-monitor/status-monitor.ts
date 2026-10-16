@@ -81,25 +81,9 @@ export const statusMonitor = defineComponent({
 	impl: {
 		react: {
 			entry: "StatusMonitor",
-			files: [
-				{ path: "status-monitor/status-monitor.tsx", type: "registry:ui" },
-				{ path: "status-monitor/timeline.ts", type: "registry:ui" },
-				{ path: "status-monitor/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["tooltip"],
 		},
 		svelte: {
 			entry: "StatusMonitor",
-			files: [
-				{ path: "status-monitor/status-monitor.svelte", type: "registry:ui" },
-				{ path: "status-monitor/timeline.ts", type: "registry:ui" },
-				{ path: "status-monitor/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["tooltip"],
 		},
 	},
 	keywords: ["status", "uptime", "monitor", "incident", "health", "timeline", "sla"],

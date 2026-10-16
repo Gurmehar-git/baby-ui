@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { grainGradient as grainGradientVariants } from "./react/variants";
 
 const TONES = ["spectrum", "cool", "warm", "mono"];
 const POSITIONS = ["absolute", "fixed"];
@@ -10,7 +11,7 @@ export const grainGradient = defineComponent({
 		"A full-bleed glow and diffused shadow edge that breathe slowly under a static film grain.",
 	category: "backgrounds",
 	status: "stable",
-	variants: { tone: TONES, position: POSITIONS },
+	variants: variantsOf(grainGradientVariants, ["tone", "position"]),
 	props: [
 		{
 			name: "tone",
@@ -84,21 +85,9 @@ export const grainGradient = defineComponent({
 	impl: {
 		react: {
 			entry: "GrainGradient",
-			files: [
-				{ path: "grain-gradient/grain-gradient.tsx", type: "registry:ui" },
-				{ path: "grain-gradient/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "GrainGradient",
-			files: [
-				{ path: "grain-gradient/grain-gradient.svelte", type: "registry:ui" },
-				{ path: "grain-gradient/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "gradient", "grain", "noise", "film"],

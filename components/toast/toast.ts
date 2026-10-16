@@ -79,21 +79,9 @@ export const toast = defineComponent({
 	impl: {
 		react: {
 			entry: "Toaster",
-			files: [
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "toast/toaster.tsx", type: "registry:ui" },
-				{ path: "lib/toast-classes.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-merge", "clsx", "sonner"],
 		},
 		svelte: {
 			entry: "Toaster",
-			files: [
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "toast/toaster.svelte", type: "registry:ui" },
-				{ path: "lib/toast-classes.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-merge", "clsx", "svelte-sonner"],
 		},
 	},
 	keywords: ["toast", "sonner", "notification"],

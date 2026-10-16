@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { pricing02 as pricing02Variants } from "./react/variants";
 
 const VARIANTS = ["soft", "outline"];
 
@@ -10,7 +11,7 @@ export const pricing02 = defineComponent({
 	category: "blocks",
 	status: "stable",
 	retired: true,
-	variants: { variant: VARIANTS },
+	variants: variantsOf(pricing02Variants, ["variant"]),
 	props: [
 		{
 			name: "plans",
@@ -109,25 +110,9 @@ export const pricing02 = defineComponent({
 	impl: {
 		react: {
 			entry: "Pricing02",
-			files: [
-				{ path: "pricing-02/pricing-02.tsx", type: "registry:ui" },
-				{ path: "pricing-02/types.ts", type: "registry:ui" },
-				{ path: "pricing-02/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "card", "toggle-group"],
 		},
 		svelte: {
 			entry: "Pricing02",
-			files: [
-				{ path: "pricing-02/pricing-02.svelte", type: "registry:ui" },
-				{ path: "pricing-02/types.ts", type: "registry:ui" },
-				{ path: "pricing-02/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "card", "toggle-group"],
 		},
 	},
 	keywords: ["pricing", "plans", "billing", "monthly", "yearly", "saas"],

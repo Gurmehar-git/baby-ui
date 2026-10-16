@@ -60,19 +60,9 @@ export const copyButton = defineComponent({
 	impl: {
 		react: {
 			entry: "CopyButton",
-			files: [
-				{ path: "copy-button/copy-button.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
 		},
 		svelte: {
 			entry: "CopyButton",
-			files: [
-				{ path: "copy-button/copy-button.svelte", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
 		},
 	},
 	keywords: ["copy", "button"],

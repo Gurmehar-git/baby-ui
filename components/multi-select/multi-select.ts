@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { multiSelect as multiSelectVariants } from "./react/variants";
 
 export const multiSelect = defineComponent({
 	slug: "multi-select",
@@ -7,7 +8,7 @@ export const multiSelect = defineComponent({
 		"Pick several options from a searchable list; choices show as removable chips, with select all, clear and a +N overflow.",
 	category: "base",
 	status: "beta",
-	variants: { size: ["xs", "sm", "default", "lg", "xl"] },
+	variants: variantsOf(multiSelectVariants, ["size"]),
 	props: [
 		{
 			name: "options",
@@ -61,23 +62,9 @@ export const multiSelect = defineComponent({
 	impl: {
 		react: {
 			entry: "MultiSelect",
-			files: [
-				{ path: "multi-select/multi-select.tsx", type: "registry:ui" },
-				{ path: "multi-select/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "command", "popover", "rolling-digits"],
 		},
 		svelte: {
 			entry: "MultiSelect",
-			files: [
-				{ path: "multi-select/multi-select.svelte", type: "registry:ui" },
-				{ path: "multi-select/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "command", "popover", "rolling-digits"],
 		},
 	},
 	keywords: ["multi select", "multiselect", "chips", "combobox", "tags", "select many"],

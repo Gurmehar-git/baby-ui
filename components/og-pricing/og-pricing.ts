@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogPricing as ogPricingVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -12,7 +13,7 @@ export const ogPricing = defineComponent({
 	category: "og-images",
 	demo: { mode: "auto", frame: "og" },
 	status: "beta",
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogPricingVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "plan",
@@ -107,21 +108,9 @@ export const ogPricing = defineComponent({
 	impl: {
 		react: {
 			entry: "OgPricing",
-			files: [
-				{ path: "og-pricing/og-pricing.tsx", type: "registry:ui" },
-				{ path: "og-pricing/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgPricing",
-			files: [
-				{ path: "og-pricing/og-pricing.svelte", type: "registry:ui" },
-				{ path: "og-pricing/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "pricing", "plan", "takumi", "image"],

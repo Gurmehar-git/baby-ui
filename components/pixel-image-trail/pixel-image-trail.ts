@@ -107,21 +107,9 @@ export const pixelImageTrail = defineComponent({
 	impl: {
 		react: {
 			entry: "PixelImageTrail",
-			files: [
-				{ path: "pixel-image-trail/pixel-image-trail.tsx", type: "registry:ui" },
-				{ path: "pixel-image-trail/pixel-trail.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "PixelImageTrail",
-			files: [
-				{ path: "pixel-image-trail/pixel-image-trail.svelte", type: "registry:ui" },
-				{ path: "pixel-image-trail/pixel-trail.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["image", "pixel", "trail", "reveal", "canvas", "cursor", "interactive"],

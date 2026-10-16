@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { hoverTransition as hoverTransitionVariants } from "./react/variants";
 
 const EFFECTS = [
 	"wipe",
@@ -30,7 +31,7 @@ export const hoverTransition = defineComponent({
 		"A card that swaps its content for a second view on hover or focus, with eight reveal effects.",
 	category: "animated",
 	status: "stable",
-	variants: { effect: EFFECTS, direction: DIRECTIONS },
+	variants: variantsOf(hoverTransitionVariants, ["effect", "direction"]),
 	props: [
 		{
 			name: "children",
@@ -132,23 +133,9 @@ export const hoverTransition = defineComponent({
 	impl: {
 		react: {
 			entry: "HoverTransition",
-			files: [
-				{ path: "hover-transition/hover-transition.tsx", type: "registry:ui" },
-				{ path: "hover-transition/effects.ts", type: "registry:ui" },
-				{ path: "hover-transition/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "HoverTransition",
-			files: [
-				{ path: "hover-transition/hover-transition.svelte", type: "registry:ui" },
-				{ path: "hover-transition/effects.ts", type: "registry:ui" },
-				{ path: "hover-transition/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["hover", "reveal", "card", "wipe", "ripple", "transition", "swap"],

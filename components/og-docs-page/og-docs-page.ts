@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogDocsPage as ogDocsPageVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -12,7 +13,7 @@ export const ogDocsPage = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES, tone: TONES, motif: MOTIFS },
+	variants: variantsOf(ogDocsPageVariants, ["mode", "tone", "motif"]),
 	props: [
 		{
 			name: "title",
@@ -104,21 +105,9 @@ export const ogDocsPage = defineComponent({
 	impl: {
 		react: {
 			entry: "OgDocsPage",
-			files: [
-				{ path: "og-docs-page/og-docs-page.tsx", type: "registry:ui" },
-				{ path: "og-docs-page/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgDocsPage",
-			files: [
-				{ path: "og-docs-page/og-docs-page.svelte", type: "registry:ui" },
-				{ path: "og-docs-page/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

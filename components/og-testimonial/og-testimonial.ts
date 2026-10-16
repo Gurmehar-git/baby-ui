@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogTestimonial as ogTestimonialVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -13,7 +14,7 @@ export const ogTestimonial = defineComponent({
 	category: "og-images",
 	demo: { mode: "auto", frame: "og" },
 	status: "stable",
-	variants: { mode: MODES, tone: TONES, align: ALIGNS },
+	variants: variantsOf(ogTestimonialVariants, ["mode", "tone", "align"]),
 	props: [
 		{
 			name: "quote",
@@ -91,23 +92,9 @@ export const ogTestimonial = defineComponent({
 	impl: {
 		react: {
 			entry: "OgTestimonial",
-			files: [
-				{ path: "og-testimonial/og-testimonial.tsx", type: "registry:ui" },
-				{ path: "og-testimonial/stars.ts", type: "registry:ui" },
-				{ path: "og-testimonial/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgTestimonial",
-			files: [
-				{ path: "og-testimonial/og-testimonial.svelte", type: "registry:ui" },
-				{ path: "og-testimonial/stars.ts", type: "registry:ui" },
-				{ path: "og-testimonial/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

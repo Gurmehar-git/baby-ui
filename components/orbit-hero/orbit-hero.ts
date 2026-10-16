@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { orbitHero as orbitHeroVariants } from "./react/variants";
 
 const VARIANTS = ["panel", "plain"];
 const SIZES = ["screen", "section"];
@@ -11,7 +12,7 @@ export const orbitHero = defineComponent({
 		"A hero whose headline sits over two counter-rotating rings of icons, with a centre dial that swaps the set and its colour.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(orbitHeroVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "headline",
@@ -149,27 +150,9 @@ export const orbitHero = defineComponent({
 	impl: {
 		react: {
 			entry: "OrbitHero",
-			files: [
-				{ path: "orbit-hero/orbit-hero.tsx", type: "registry:ui" },
-				{ path: "orbit-hero/orbit.ts", type: "registry:ui" },
-				{ path: "orbit-hero/types.ts", type: "registry:ui" },
-				{ path: "orbit-hero/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "button"],
 		},
 		svelte: {
 			entry: "OrbitHero",
-			files: [
-				{ path: "orbit-hero/orbit-hero.svelte", type: "registry:ui" },
-				{ path: "orbit-hero/orbit.ts", type: "registry:ui" },
-				{ path: "orbit-hero/types.ts", type: "registry:ui" },
-				{ path: "orbit-hero/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "button"],
 		},
 	},
 	keywords: [

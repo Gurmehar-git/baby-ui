@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogGuides as ogGuidesVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogGuides = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogGuidesVariants, ["mode"]),
 	props: [
 		{
 			name: "title",
@@ -56,21 +57,9 @@ export const ogGuides = defineComponent({
 	impl: {
 		react: {
 			entry: "OgGuides",
-			files: [
-				{ path: "og-guides/og-guides.tsx", type: "registry:ui" },
-				{ path: "og-guides/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgGuides",
-			files: [
-				{ path: "og-guides/og-guides.svelte", type: "registry:ui" },
-				{ path: "og-guides/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "design system", "grid", "takumi"],

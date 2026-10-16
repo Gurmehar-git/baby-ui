@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogBlogPost as ogBlogPostVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -12,7 +13,7 @@ export const ogBlogPost = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { variant: VARIANTS, mode: MODES, tone: TONES },
+	variants: variantsOf(ogBlogPostVariants, ["variant", "mode", "tone"]),
 	props: [
 		{
 			name: "title",
@@ -110,21 +111,9 @@ export const ogBlogPost = defineComponent({
 	impl: {
 		react: {
 			entry: "OgBlogPost",
-			files: [
-				{ path: "og-blog-post/og-blog-post.tsx", type: "registry:ui" },
-				{ path: "og-blog-post/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgBlogPost",
-			files: [
-				{ path: "og-blog-post/og-blog-post.svelte", type: "registry:ui" },
-				{ path: "og-blog-post/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "blog", "cover", "takumi", "image"],

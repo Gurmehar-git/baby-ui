@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { rollingDigits as rollingDigitsVariants } from "./react/variants";
 
 const VARIANTS = ["roll", "odometer", "count"];
 const DIRECTIONS = ["dynamic", "up", "down"];
@@ -11,7 +12,7 @@ export const rollingDigits = defineComponent({
 		"An animated number: changed digits spring in and out, digit strips turn like an odometer, or the value counts up.",
 	category: "text",
 	status: "stable",
-	variants: { variant: VARIANTS, direction: DIRECTIONS, size: SIZES },
+	variants: variantsOf(rollingDigitsVariants, ["variant", "direction", "size"]),
 	props: [
 		{
 			name: "variant",
@@ -132,24 +133,9 @@ export const rollingDigits = defineComponent({
 	impl: {
 		react: {
 			entry: "RollingDigits",
-			files: [
-				{ path: "rolling-digits/rolling-digits.tsx", type: "registry:ui" },
-				{ path: "rolling-digits/format.ts", type: "registry:ui" },
-				{ path: "rolling-digits/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "RollingDigits",
-			files: [
-				{ path: "rolling-digits/rolling-digits.svelte", type: "registry:ui" },
-				{ path: "rolling-digits/rolling-digit.svelte", type: "registry:ui" },
-				{ path: "rolling-digits/format.ts", type: "registry:ui" },
-				{ path: "rolling-digits/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["number", "digits", "counter", "odometer", "spring", "text"],

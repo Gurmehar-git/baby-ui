@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { textTransition as textTransitionVariants } from "./react/variants";
 
 const VARIANTS = [
 	"blur-out-up",
@@ -32,7 +33,7 @@ export const textTransition = defineComponent({
 		"22 named text-reveal presets (per-character, per-word or whole-text) sharing one CSS animation engine.",
 	category: "text",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(textTransitionVariants, ["variant"]),
 	props: [
 		{
 			name: "text",
@@ -86,23 +87,9 @@ export const textTransition = defineComponent({
 	impl: {
 		react: {
 			entry: "TextTransition",
-			files: [
-				{ path: "text-transition/text-transition.tsx", type: "registry:ui" },
-				{ path: "text-transition/presets.ts", type: "registry:ui" },
-				{ path: "text-transition/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "TextTransition",
-			files: [
-				{ path: "text-transition/text-transition.svelte", type: "registry:ui" },
-				{ path: "text-transition/presets.ts", type: "registry:ui" },
-				{ path: "text-transition/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "transition", "reveal", "animated", "preset"],

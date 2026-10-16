@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { underlineHoverText as underlineHoverTextVariants } from "./react/variants";
 
 const VARIANTS = ["sweep", "double", "draw", "bar"];
 const TONES = ["default", "primary", "accent"];
@@ -11,7 +12,7 @@ export const underlineHoverText = defineComponent({
 		"Inline text with a hover underline in four strokes: a centre sweep, a lifting double hairline, a drawn hairline, or a sliding bar.",
 	category: "text",
 	status: "stable",
-	variants: { variant: VARIANTS, tone: TONES, trigger: TRIGGERS },
+	variants: variantsOf(underlineHoverTextVariants, ["variant", "tone", "trigger"]),
 	props: [
 		{
 			name: "children",
@@ -73,21 +74,9 @@ export const underlineHoverText = defineComponent({
 	impl: {
 		react: {
 			entry: "UnderlineHoverText",
-			files: [
-				{ path: "underline-hover-text/underline-hover-text.tsx", type: "registry:ui" },
-				{ path: "underline-hover-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "UnderlineHoverText",
-			files: [
-				{ path: "underline-hover-text/underline-hover-text.svelte", type: "registry:ui" },
-				{ path: "underline-hover-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "underline", "hover", "link", "double underline", "border", "metis"],

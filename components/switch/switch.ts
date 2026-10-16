@@ -77,21 +77,9 @@ export const switchComponent = defineComponent({
 	impl: {
 		react: {
 			entry: "Switch",
-			files: [
-				{ path: "switch/switch.tsx", type: "registry:ui" },
-				{ path: "switch/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Switch",
-			files: [
-				{ path: "switch/switch.svelte", type: "registry:ui" },
-				{ path: "switch/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["switch", "toggle", "form", "setting"],

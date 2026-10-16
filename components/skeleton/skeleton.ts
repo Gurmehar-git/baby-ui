@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { skeleton as skeletonVariants } from "./react/variants";
 
 export const skeleton = defineComponent({
 	slug: "skeleton",
@@ -6,7 +7,7 @@ export const skeleton = defineComponent({
 	description: "Loading placeholder that shimmers along the reading direction.",
 	category: "base",
 	status: "stable",
-	variants: { shape: ["line", "circle", "block"] },
+	variants: variantsOf(skeletonVariants, ["shape"]),
 	props: [
 		{
 			name: "loading",
@@ -61,21 +62,9 @@ export const skeleton = defineComponent({
 	impl: {
 		react: {
 			entry: "Skeleton",
-			files: [
-				{ path: "skeleton/variants.ts", type: "registry:ui" },
-				{ path: "skeleton/skeleton.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge"],
 		},
 		svelte: {
 			entry: "Skeleton",
-			files: [
-				{ path: "skeleton/variants.ts", type: "registry:ui" },
-				{ path: "skeleton/skeleton.svelte", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge"],
 		},
 	},
 	keywords: ["skeleton", "loading", "placeholder", "shimmer"],

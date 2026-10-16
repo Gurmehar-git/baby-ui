@@ -77,22 +77,9 @@ export const accordion = defineComponent({
 	impl: {
 		react: {
 			entry: "Accordion",
-			files: [
-				{ path: "accordion/accordion.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Accordion",
-			files: [
-				{ path: "accordion/accordion.svelte", type: "registry:ui" },
-				{ path: "accordion/accordion-item.svelte", type: "registry:ui" },
-				{ path: "accordion/accordion-trigger.svelte", type: "registry:ui" },
-				{ path: "accordion/accordion-content.svelte", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "bits-ui"],
 		},
 	},
 	keywords: ["accordion", "disclosure", "faq", "collapse"],

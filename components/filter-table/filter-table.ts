@@ -64,22 +64,9 @@ export const filterTable = defineComponent({
 	impl: {
 		react: {
 			entry: "FilterTable",
-			files: [
-				{ path: "filter-table/filter-table.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
-			registryDependencies: ["badge"],
 		},
 		svelte: {
 			entry: "FilterTable",
-			files: [
-				{ path: "filter-table/filter-table.svelte", type: "registry:ui" },
-				{ path: "filter-table/types.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
-			registryDependencies: ["badge"],
 		},
 	},
 	keywords: ["table", "filter", "tasks", "status"],

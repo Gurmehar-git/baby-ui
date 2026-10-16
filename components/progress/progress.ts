@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { progress as progressVariants } from "./react/variants";
 
 export const progress = defineComponent({
 	slug: "progress",
@@ -7,11 +8,7 @@ export const progress = defineComponent({
 		"Bar or ring progress with tones, a spring-filled value and a glossy indeterminate sweep.",
 	category: "base",
 	status: "stable",
-	variants: {
-		size: ["sm", "default", "lg", "xl"],
-		tone: ["default", "info", "success", "destructive"],
-		variant: ["linear", "circular"],
-	},
+	variants: variantsOf(progressVariants, ["size", "tone", "variant"]),
 	props: [
 		{
 			name: "value",
@@ -124,21 +121,9 @@ export const progress = defineComponent({
 	impl: {
 		react: {
 			entry: "Progress",
-			files: [
-				{ path: "progress/progress.tsx", type: "registry:ui" },
-				{ path: "progress/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Progress",
-			files: [
-				{ path: "progress/progress.svelte", type: "registry:ui" },
-				{ path: "progress/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["progress", "loading", "bar"],

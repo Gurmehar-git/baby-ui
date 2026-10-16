@@ -1,16 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { collectionSurfer as collectionSurferVariants } from "./react/variants";
 
 const VARIANTS = ["magnetic", "uplift", "simple"];
 const SIZES = ["sm", "md", "lg"];
-
-const files = (ext: string) => [
-	{ path: `collection-surfer/collection-surfer.${ext}`, type: "registry:ui" as const },
-	{ path: "collection-surfer/types.ts", type: "registry:ui" as const },
-	{ path: "collection-surfer/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/scroll-frame.ts", type: "registry:lib" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-	{ path: "lib/image.ts", type: "registry:lib" as const },
-];
 
 export const collectionSurfer = defineComponent({
 	slug: "collection-surfer",
@@ -20,7 +12,7 @@ export const collectionSurfer = defineComponent({
 	category: "animated",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(collectionSurferVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "image",
@@ -107,13 +99,9 @@ export const collectionSurfer = defineComponent({
 	impl: {
 		react: {
 			entry: "CollectionSurfer",
-			files: files("tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "CollectionSurfer",
-			files: files("svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["scroll", "3d", "gallery", "infinite", "images", "collection"],

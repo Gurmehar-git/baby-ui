@@ -1,13 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { announcementBar as announcementBarVariants } from "./react/variants";
 
 const VARIANTS = ["default", "inverted"];
-
-const files = (main: string) => [
-	{ path: `announcement-bar/${main}`, type: "registry:ui" as const },
-	{ path: "announcement-bar/rotation.ts", type: "registry:ui" as const },
-	{ path: "announcement-bar/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const announcementBar = defineComponent({
 	slug: "announcement-bar",
@@ -16,7 +10,7 @@ export const announcementBar = defineComponent({
 		"A slim bar for the top of a page: rotating messages with a call to action and countdown, and a dismiss that eases the page up.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(announcementBarVariants, ["variant"]),
 	props: [
 		{
 			name: "messages",
@@ -113,15 +107,9 @@ export const announcementBar = defineComponent({
 	impl: {
 		react: {
 			entry: "AnnouncementBar",
-			files: files("announcement-bar.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "countdown"],
 		},
 		svelte: {
 			entry: "AnnouncementBar",
-			files: files("announcement-bar.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "countdown"],
 		},
 	},
 	keywords: ["announcement", "banner", "promo", "bar", "countdown", "marquee"],

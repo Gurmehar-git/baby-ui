@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogScatter as ogScatterVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogScatter = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogScatterVariants, ["mode"]),
 	props: [
 		{
 			name: "name",
@@ -61,21 +62,9 @@ export const ogScatter = defineComponent({
 	impl: {
 		react: {
 			entry: "OgScatter",
-			files: [
-				{ path: "og-scatter/og-scatter.tsx", type: "registry:ui" },
-				{ path: "og-scatter/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgScatter",
-			files: [
-				{ path: "og-scatter/og-scatter.svelte", type: "registry:ui" },
-				{ path: "og-scatter/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

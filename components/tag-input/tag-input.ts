@@ -84,25 +84,9 @@ export const tagInput = defineComponent({
 	impl: {
 		react: {
 			entry: "TagInput",
-			files: [
-				{ path: "tag-input/tag-input.tsx", type: "registry:ui" },
-				{ path: "tag-input/variants.ts", type: "registry:ui" },
-				{ path: "tag-input/arm.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge"],
 		},
 		svelte: {
 			entry: "TagInput",
-			files: [
-				{ path: "tag-input/tag-input.svelte", type: "registry:ui" },
-				{ path: "tag-input/variants.ts", type: "registry:ui" },
-				{ path: "tag-input/arm.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge"],
 		},
 	},
 	keywords: ["tag", "input"],

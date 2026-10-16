@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { typingText as typingTextVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const typingText = defineComponent({
 		"A classic typewriter reveal, with a blinking cursor and optional erase-and-repeat.",
 	category: "text",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(typingTextVariants, ["size"]),
 	props: [
 		{
 			name: "text",
@@ -112,23 +113,9 @@ export const typingText = defineComponent({
 	impl: {
 		react: {
 			entry: "TypingText",
-			files: [
-				{ path: "typing-text/typing-text.tsx", type: "registry:ui" },
-				{ path: "typing-text/stumble.ts", type: "registry:ui" },
-				{ path: "typing-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "TypingText",
-			files: [
-				{ path: "typing-text/typing-text.svelte", type: "registry:ui" },
-				{ path: "typing-text/stumble.ts", type: "registry:ui" },
-				{ path: "typing-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "typing", "typewriter", "cursor"],

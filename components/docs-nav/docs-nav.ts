@@ -98,27 +98,9 @@ export const docsNav = defineComponent({
 	impl: {
 		react: {
 			entry: "DocsNav",
-			files: [
-				{ path: "docs-nav/docs-nav.tsx", type: "registry:ui" },
-				{ path: "docs-nav/scroll.ts", type: "registry:ui" },
-				{ path: "docs-nav/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "collapsible"],
 		},
 		svelte: {
 			entry: "DocsNav",
-			files: [
-				{ path: "docs-nav/docs-nav.svelte", type: "registry:ui" },
-				{ path: "docs-nav/docs-nav-list.svelte", type: "registry:ui" },
-				{ path: "docs-nav/scroll.ts", type: "registry:ui" },
-				{ path: "docs-nav/types.ts", type: "registry:ui" },
-				{ path: "docs-nav/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["badge", "collapsible"],
 		},
 	},
 	keywords: ["docs", "sidebar", "navigation", "table of contents", "tree", "nav"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { holdToConfirm as holdToConfirmVariants } from "./react/variants";
 
 const VARIANTS = ["default", "destructive", "secondary"];
 const SIZES = ["sm", "default", "lg"];
@@ -10,7 +11,7 @@ export const holdToConfirm = defineComponent({
 		"A button that commits only after it is held: the fill tracks the hold, an early release rewinds it, and finishing morphs into a done state.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(holdToConfirmVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "label",
@@ -118,25 +119,9 @@ export const holdToConfirm = defineComponent({
 	impl: {
 		react: {
 			entry: "HoldToConfirm",
-			files: [
-				{ path: "hold-to-confirm/hold-to-confirm.tsx", type: "registry:ui" },
-				{ path: "hold-to-confirm/hold.ts", type: "registry:ui" },
-				{ path: "hold-to-confirm/variants.ts", type: "registry:ui" },
-				{ path: "lib/morph.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "HoldToConfirm",
-			files: [
-				{ path: "hold-to-confirm/hold-to-confirm.svelte", type: "registry:ui" },
-				{ path: "hold-to-confirm/hold.ts", type: "registry:ui" },
-				{ path: "hold-to-confirm/variants.ts", type: "registry:ui" },
-				{ path: "lib/morph.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["hold", "confirm", "press", "destructive", "button", "morph"],

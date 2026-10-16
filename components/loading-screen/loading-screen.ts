@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { loadingScreen as loadingScreenVariants } from "./react/variants";
 
 const INDICATORS = ["bar", "spinner", "dots", "none"];
 const LOGO_MOTIONS = ["breathe", "none"];
@@ -11,7 +12,7 @@ export const loadingScreen = defineComponent({
 		"A full-page or container loading overlay: your logo, an indicator and an optional caption, fading out when done.",
 	category: "blocks",
 	status: "stable",
-	variants: { indicator: INDICATORS, logoMotion: LOGO_MOTIONS, position: POSITIONS },
+	variants: variantsOf(loadingScreenVariants, ["indicator", "logoMotion", "position"]),
 	props: [
 		{
 			name: "logo",
@@ -88,23 +89,9 @@ export const loadingScreen = defineComponent({
 	impl: {
 		react: {
 			entry: "LoadingScreen",
-			files: [
-				{ path: "loading-screen/loading-screen.tsx", type: "registry:ui" },
-				{ path: "loading-screen/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["progress", "spinner"],
 		},
 		svelte: {
 			entry: "LoadingScreen",
-			files: [
-				{ path: "loading-screen/loading-screen.svelte", type: "registry:ui" },
-				{ path: "loading-screen/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["progress", "spinner"],
 		},
 	},
 	keywords: ["loading", "splash", "boot", "overlay", "spinner"],

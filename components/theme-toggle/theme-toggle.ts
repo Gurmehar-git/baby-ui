@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { themeToggle as themeToggleVariants } from "./react/variants";
 
 const VARIANTS = [
 	"rectangle",
@@ -25,7 +26,7 @@ export const themeToggle = defineComponent({
 		"Light/dark toggle that reveals the new theme across the whole page via the View Transition API.",
 	category: "base",
 	status: "stable",
-	variants: { variant: VARIANTS, start: STARTS },
+	variants: variantsOf(themeToggleVariants, ["variant", "start"]),
 	props: [
 		{
 			name: "theme",
@@ -86,23 +87,9 @@ export const themeToggle = defineComponent({
 	impl: {
 		react: {
 			entry: "ThemeToggle",
-			files: [
-				{ path: "theme-toggle/theme-toggle.tsx", type: "registry:ui" },
-				{ path: "theme-toggle/variants.ts", type: "registry:ui" },
-				{ path: "theme-toggle/reveal.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ThemeToggle",
-			files: [
-				{ path: "theme-toggle/theme-toggle.svelte", type: "registry:ui" },
-				{ path: "theme-toggle/variants.ts", type: "registry:ui" },
-				{ path: "theme-toggle/reveal.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["theme", "dark mode", "light mode", "toggle", "view transition"],

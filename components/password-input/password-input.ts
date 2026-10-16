@@ -2,13 +2,6 @@ import { defineComponent } from "@baby-ui/registry-schema";
 
 const SIZES = ["xs", "sm", "default", "lg", "xl"];
 
-const files = (main: string) => [
-	{ path: `password-input/${main}`, type: "registry:ui" as const },
-	{ path: "password-input/strength.ts", type: "registry:ui" as const },
-	{ path: "password-input/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
 export const passwordInput = defineComponent({
 	slug: "password-input",
 	name: "Password Input",
@@ -108,15 +101,9 @@ export const passwordInput = defineComponent({
 	impl: {
 		react: {
 			entry: "PasswordInput",
-			files: files("password-input.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["input-group", "letter-morph"],
 		},
 		svelte: {
 			entry: "PasswordInput",
-			files: files("password-input.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["input-group", "letter-morph"],
 		},
 	},
 	keywords: ["password", "input", "strength", "reveal", "sign up", "form"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { diaText as diaTextVariants } from "./react/variants";
 
 const SIZES = ["inherit", "sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const diaText = defineComponent({
 		"A band of colour sweeps across and leaves the text behind it, like the Dia browser.",
 	category: "text",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(diaTextVariants, ["size"]),
 	props: [
 		{
 			name: "text",
@@ -120,21 +121,9 @@ export const diaText = defineComponent({
 	impl: {
 		react: {
 			entry: "DiaText",
-			files: [
-				{ path: "dia-text/dia-text.tsx", type: "registry:ui" },
-				{ path: "dia-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "DiaText",
-			files: [
-				{ path: "dia-text/dia-text.svelte", type: "registry:ui" },
-				{ path: "dia-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["dia", "gradient", "sweep", "rainbow", "reveal", "text"],

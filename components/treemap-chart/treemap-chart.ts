@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { treemapChart as treemapChartVariants } from "./react/variants";
 
 const VARIANTS = ["default", "flat"];
 
@@ -9,7 +10,7 @@ export const treemapChart = defineComponent({
 		"A zoomable hierarchy of parts: tiles size by value, deepen with a second measure, and zoom into a branch on click or Enter.",
 	category: "charts",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(treemapChartVariants, ["variant"]),
 	props: [
 		{
 			name: "data",
@@ -87,26 +88,9 @@ export const treemapChart = defineComponent({
 	impl: {
 		react: {
 			entry: "TreemapChart",
-			files: [
-				{ path: "treemap-chart/treemap-chart.tsx", type: "registry:ui" },
-				{ path: "treemap-chart/layout.ts", type: "registry:ui" },
-				{ path: "treemap-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "breadcrumb"],
 		},
 		svelte: {
 			entry: "TreemapChart",
-			files: [
-				{ path: "treemap-chart/treemap-chart.svelte", type: "registry:ui" },
-				{ path: "treemap-chart/treemap-plot.svelte", type: "registry:ui" },
-				{ path: "treemap-chart/layout.ts", type: "registry:ui" },
-				{ path: "treemap-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "breadcrumb"],
 		},
 	},
 	keywords: ["treemap", "hierarchy", "chart", "zoom", "drill down", "parts"],

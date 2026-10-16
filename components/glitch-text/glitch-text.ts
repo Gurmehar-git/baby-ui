@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { glitchText as glitchTextVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const glitchText = defineComponent({
 		"RGB-split glitch on text: two coloured ghosts jitter while the label stays sharp on top.",
 	category: "text",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(glitchTextVariants, ["size"]),
 	props: [
 		{
 			name: "text",
@@ -84,21 +85,9 @@ export const glitchText = defineComponent({
 	impl: {
 		react: {
 			entry: "GlitchText",
-			files: [
-				{ path: "glitch-text/glitch-text.tsx", type: "registry:ui" },
-				{ path: "glitch-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "GlitchText",
-			files: [
-				{ path: "glitch-text/glitch-text.svelte", type: "registry:ui" },
-				{ path: "glitch-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "glitch", "rgb", "animated"],

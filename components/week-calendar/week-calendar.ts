@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { weekCalendar as weekCalendarVariants } from "./react/variants";
 
 const VARIANTS = ["card", "plain"];
 
@@ -9,7 +10,7 @@ export const weekCalendar = defineComponent({
 		"A week strip that swipes between weeks and pulls open into the full month.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(weekCalendarVariants, ["variant"]),
 	props: [
 		{
 			name: "selected",
@@ -135,23 +136,9 @@ export const weekCalendar = defineComponent({
 	impl: {
 		react: {
 			entry: "WeekCalendar",
-			files: [
-				{ path: "week-calendar/week-calendar.tsx", type: "registry:ui" },
-				{ path: "week-calendar/dates.ts", type: "registry:ui" },
-				{ path: "week-calendar/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "WeekCalendar",
-			files: [
-				{ path: "week-calendar/week-calendar.svelte", type: "registry:ui" },
-				{ path: "week-calendar/dates.ts", type: "registry:ui" },
-				{ path: "week-calendar/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["calendar", "week", "month", "date", "swipe", "picker"],

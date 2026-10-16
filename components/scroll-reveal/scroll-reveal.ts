@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { scrollReveal as scrollRevealVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const scrollReveal = defineComponent({
 	category: "text",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { size: SIZES },
+	variants: variantsOf(scrollRevealVariants, ["size"]),
 	props: [
 		{
 			name: "text",
@@ -58,21 +59,9 @@ export const scrollReveal = defineComponent({
 	impl: {
 		react: {
 			entry: "ScrollReveal",
-			files: [
-				{ path: "scroll-reveal/scroll-reveal.tsx", type: "registry:ui" },
-				{ path: "scroll-reveal/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ScrollReveal",
-			files: [
-				{ path: "scroll-reveal/scroll-reveal.svelte", type: "registry:ui" },
-				{ path: "scroll-reveal/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "scroll", "reveal", "reading"],

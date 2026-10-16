@@ -132,27 +132,9 @@ export const emailVerify = defineComponent({
 	impl: {
 		react: {
 			entry: "EmailVerify",
-			files: [
-				{
-					path: "email-verify/email-verify.tsx",
-					type: "registry:ui",
-				},
-				{ path: "email-verify/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["react-email", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 		svelte: {
 			entry: "EmailVerify",
-			files: [
-				{
-					path: "email-verify/email-verify.svelte",
-					type: "registry:ui",
-				},
-				{ path: "email-verify/variants.ts", type: "registry:ui" },
-			],
-			dependencies: ["@better-svelte-email/components", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 	},
 	keywords: ["email", "verify", "confirm", "sign up", "transactional"],

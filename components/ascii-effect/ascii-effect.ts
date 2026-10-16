@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { asciiEffect as asciiEffectVariants } from "./react/variants";
 
 const VARIANTS = ["image", "flow", "glitch"];
 const TONES = ["mono", "spectrum", "cool", "warm", "source"];
@@ -13,13 +14,13 @@ export const asciiEffect = defineComponent({
 		"A full-bleed canvas that redraws an image as ASCII glyphs in the element's own font.",
 	category: "backgrounds",
 	status: "stable",
-	variants: {
-		variant: VARIANTS,
-		tone: TONES,
-		dither: DITHERS,
-		fit: FITS,
-		position: POSITIONS,
-	},
+	variants: variantsOf(asciiEffectVariants, [
+		"variant",
+		"tone",
+		"dither",
+		"fit",
+		"position",
+	]),
 	props: [
 		{
 			name: "src",
@@ -146,25 +147,9 @@ export const asciiEffect = defineComponent({
 	impl: {
 		react: {
 			entry: "AsciiEffect",
-			files: [
-				{ path: "ascii-effect/ascii-effect.tsx", type: "registry:ui" },
-				{ path: "ascii-effect/ascii.ts", type: "registry:ui" },
-				{ path: "ascii-effect/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "AsciiEffect",
-			files: [
-				{ path: "ascii-effect/ascii-effect.svelte", type: "registry:ui" },
-				{ path: "ascii-effect/ascii.ts", type: "registry:ui" },
-				{ path: "ascii-effect/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "ascii", "image", "glyphs", "dither", "canvas"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { wheelCarousel as wheelCarouselVariants } from "./react/variants";
 
 export const wheelCarousel = defineComponent({
 	slug: "wheel-carousel",
@@ -7,11 +8,7 @@ export const wheelCarousel = defineComponent({
 		"Labels on a turning wheel beside a crossfading photo; scroll, drag or click to spin it.",
 	category: "advanced",
 	status: "stable",
-	variants: {
-		photoSide: ["left", "right"],
-		aspect: ["3/4", "1/1", "4/3", "3/2"],
-		size: ["sm", "default", "lg"],
-	},
+	variants: variantsOf(wheelCarouselVariants, ["photoSide", "aspect", "size"]),
 	props: [
 		{
 			name: "items",
@@ -129,25 +126,9 @@ export const wheelCarousel = defineComponent({
 	impl: {
 		react: {
 			entry: "WheelCarousel",
-			files: [
-				{ path: "wheel-carousel/wheel-carousel.tsx", type: "registry:ui" },
-				{ path: "wheel-carousel/wheel.ts", type: "registry:ui" },
-				{ path: "wheel-carousel/types.ts", type: "registry:ui" },
-				{ path: "wheel-carousel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "WheelCarousel",
-			files: [
-				{ path: "wheel-carousel/wheel-carousel.svelte", type: "registry:ui" },
-				{ path: "wheel-carousel/wheel.ts", type: "registry:ui" },
-				{ path: "wheel-carousel/types.ts", type: "registry:ui" },
-				{ path: "wheel-carousel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["carousel", "wheel", "picker", "gallery", "scroll", "drag", "rotary"],

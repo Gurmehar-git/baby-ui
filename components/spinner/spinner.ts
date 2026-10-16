@@ -47,21 +47,9 @@ export const spinner = defineComponent({
 	impl: {
 		react: {
 			entry: "Spinner",
-			files: [
-				{ path: "spinner/spinner.tsx", type: "registry:ui" },
-				{ path: "spinner/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Spinner",
-			files: [
-				{ path: "spinner/spinner.svelte", type: "registry:ui" },
-				{ path: "spinner/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["spinner"],

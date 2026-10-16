@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { fineTuneCard as fineTuneCardVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const fineTuneCard = defineComponent({
 		"A compact element inspector on PropertyPanelControls: a layout switch, a slider per number and a type select.",
 	category: "advanced",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(fineTuneCardVariants, ["size"]),
 	props: [
 		{
 			name: "fields",
@@ -96,24 +97,9 @@ export const fineTuneCard = defineComponent({
 	impl: {
 		react: {
 			entry: "FineTuneCard",
-			files: [
-				{ path: "fine-tune-card/fine-tune-card.tsx", type: "registry:ui" },
-				{ path: "fine-tune-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["property-panel"],
 		},
 		svelte: {
 			entry: "FineTuneCard",
-			files: [
-				{ path: "fine-tune-card/fine-tune-card.svelte", type: "registry:ui" },
-				{ path: "fine-tune-card/types.ts", type: "registry:ui" },
-				{ path: "fine-tune-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["property-panel"],
 		},
 	},
 	keywords: ["inspector", "slider", "number", "properties", "editor"],

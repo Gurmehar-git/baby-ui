@@ -116,27 +116,9 @@ export const areaChart = defineComponent({
 	impl: {
 		react: {
 			entry: "AreaChart",
-			files: [
-				{ path: "area-chart/area-chart.tsx", type: "registry:ui" },
-				{ path: "area-chart/geometry.ts", type: "registry:ui" },
-				{ path: "area-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-shape"],
-			registryDependencies: ["chart", "chart-series", "line-chart"],
 		},
 		svelte: {
 			entry: "AreaChart",
-			files: [
-				{ path: "area-chart/area-chart.svelte", type: "registry:ui" },
-				{ path: "area-chart/area.svelte", type: "registry:ui" },
-				{ path: "area-chart/context.ts", type: "registry:ui" },
-				{ path: "area-chart/geometry.ts", type: "registry:ui" },
-				{ path: "area-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-shape"],
-			registryDependencies: ["chart", "chart-series", "line-chart"],
 		},
 	},
 	keywords: ["area", "chart", "stacked", "time series"],

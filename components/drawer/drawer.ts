@@ -81,35 +81,11 @@ export const drawer = defineComponent({
 	impl: {
 		react: {
 			entry: "Drawer",
-			files: [
-				{ path: "drawer/drawer.tsx", type: "registry:ui" },
-				{ path: "drawer/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "vaul"],
 		},
 		svelte: {
 			entry: "Drawer",
-			files: [
-				{ path: "drawer/drawer.svelte", type: "registry:ui" },
-				{ path: "drawer/drawer-trigger.svelte", type: "registry:ui" },
-				{ path: "drawer/drawer-content.svelte", type: "registry:ui" },
-				{ path: "drawer/drawer-header.svelte", type: "registry:ui" },
-				{ path: "drawer/drawer-footer.svelte", type: "registry:ui" },
-				{ path: "drawer/drawer-title.svelte", type: "registry:ui" },
-				{ path: "drawer/drawer-description.svelte", type: "registry:ui" },
-				{ path: "drawer/drawer-close.svelte", type: "registry:ui" },
-				{ path: "drawer/context.ts", type: "registry:ui" },
-				{ path: "drawer/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"tailwind-variants",
-				"vaul-svelte@^1.0.0-next.7",
-				"clsx",
-				"tailwind-merge",
-				"bits-ui",
-			],
+			// vaul-svelte's Svelte 5 build is a prerelease and needs bits-ui as a peer.
+			dependencies: ["bits-ui", "vaul-svelte@^1.0.0-next.7"],
 		},
 	},
 	keywords: ["drawer", "sheet", "bottom sheet", "vaul"],

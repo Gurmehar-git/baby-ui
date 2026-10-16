@@ -126,26 +126,9 @@ export const gaugeChart = defineComponent({
 	impl: {
 		react: {
 			entry: "GaugeChart",
-			files: [
-				{ path: "gauge-chart/gauge-chart.tsx", type: "registry:ui" },
-				{ path: "gauge-chart/geometry.ts", type: "registry:ui" },
-				{ path: "gauge-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "rolling-digits"],
 		},
 		svelte: {
 			entry: "GaugeChart",
-			files: [
-				{ path: "gauge-chart/gauge-chart.svelte", type: "registry:ui" },
-				{ path: "gauge-chart/gauge-notch.svelte", type: "registry:ui" },
-				{ path: "gauge-chart/geometry.ts", type: "registry:ui" },
-				{ path: "gauge-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "rolling-digits"],
 		},
 	},
 	keywords: ["gauge", "meter", "score", "progress", "chart"],

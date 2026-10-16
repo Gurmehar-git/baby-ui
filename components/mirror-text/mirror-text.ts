@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { mirrorText as mirrorTextVariants } from "./react/variants";
 
 const DIRECTIONS = ["up", "down", "left", "right"];
 
@@ -9,7 +10,7 @@ export const mirrorText = defineComponent({
 		"Four clipped copies of the text that stagger apart into a motion trail on hover.",
 	category: "text",
 	status: "stable",
-	variants: { direction: DIRECTIONS },
+	variants: variantsOf(mirrorTextVariants, ["direction"]),
 	props: [
 		{
 			name: "text",
@@ -63,21 +64,9 @@ export const mirrorText = defineComponent({
 	impl: {
 		react: {
 			entry: "MirrorText",
-			files: [
-				{ path: "mirror-text/mirror-text.tsx", type: "registry:ui" },
-				{ path: "mirror-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "MirrorText",
-			files: [
-				{ path: "mirror-text/mirror-text.svelte", type: "registry:ui" },
-				{ path: "mirror-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "mirror", "hover", "trail"],

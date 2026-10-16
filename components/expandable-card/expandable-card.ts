@@ -1,13 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { expandableCard as expandableCardVariants } from "./react/variants";
 
 const SIZES = ["sm", "default"];
 const VARIANTS = ["default", "outline"];
-
-const files = (main: string) => [
-	{ path: `expandable-card/${main}`, type: "registry:ui" as const },
-	{ path: "expandable-card/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const expandableCard = defineComponent({
 	slug: "expandable-card",
@@ -16,7 +11,7 @@ export const expandableCard = defineComponent({
 		"A card that opens in place: width and height grow together, the details fade in once there is room, and Escape closes it back to the header.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(expandableCardVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "title",
@@ -114,15 +109,9 @@ export const expandableCard = defineComponent({
 	impl: {
 		react: {
 			entry: "ExpandableCard",
-			files: files("expandable-card.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["collapsible"],
 		},
 		svelte: {
 			entry: "ExpandableCard",
-			files: files("expandable-card.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["collapsible"],
 		},
 	},
 	keywords: ["card", "expand", "disclosure", "collapsible", "details"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { checkbox as checkboxVariants } from "./react/variants";
 
 export const checkbox = defineComponent({
 	slug: "checkbox",
@@ -6,10 +7,7 @@ export const checkbox = defineComponent({
 	description: "Checkbox with an animated tick and a real indeterminate state.",
 	category: "base",
 	status: "stable",
-	variants: {
-		variant: ["default", "circle", "card"],
-		size: ["sm", "default", "lg", "xl"],
-	},
+	variants: variantsOf(checkboxVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "checked",
@@ -87,21 +85,9 @@ export const checkbox = defineComponent({
 	impl: {
 		react: {
 			entry: "Checkbox",
-			files: [
-				{ path: "checkbox/checkbox.tsx", type: "registry:ui" },
-				{ path: "checkbox/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Checkbox",
-			files: [
-				{ path: "checkbox/checkbox.svelte", type: "registry:ui" },
-				{ path: "checkbox/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["checkbox", "form", "toggle", "selection"],

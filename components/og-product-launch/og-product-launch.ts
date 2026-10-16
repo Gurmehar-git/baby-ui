@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogProductLaunch as ogProductLaunchVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -13,7 +14,7 @@ export const ogProductLaunch = defineComponent({
 	category: "og-images",
 	demo: { mode: "auto", frame: "og" },
 	status: "beta",
-	variants: { mode: MODES, tone: TONES, layout: LAYOUTS },
+	variants: variantsOf(ogProductLaunchVariants, ["mode", "tone", "layout"]),
 	props: [
 		{
 			name: "name",
@@ -102,21 +103,9 @@ export const ogProductLaunch = defineComponent({
 	impl: {
 		react: {
 			entry: "OgProductLaunch",
-			files: [
-				{ path: "og-product-launch/og-product-launch.tsx", type: "registry:ui" },
-				{ path: "og-product-launch/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgProductLaunch",
-			files: [
-				{ path: "og-product-launch/og-product-launch.svelte", type: "registry:ui" },
-				{ path: "og-product-launch/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "launch", "product", "takumi", "image"],

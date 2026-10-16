@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { morphText as morphTextVariants } from "./react/variants";
 
 const SIZES = ["inherit", "sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const morphText = defineComponent({
 		"Display words that melt into one another through a blur and goo threshold.",
 	category: "text",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(morphTextVariants, ["size"]),
 	props: [
 		{
 			name: "words",
@@ -76,21 +77,9 @@ export const morphText = defineComponent({
 	impl: {
 		react: {
 			entry: "MorphText",
-			files: [
-				{ path: "morph-text/morph-text.tsx", type: "registry:ui" },
-				{ path: "morph-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "MorphText",
-			files: [
-				{ path: "morph-text/morph-text.svelte", type: "registry:ui" },
-				{ path: "morph-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["morph", "blur", "goo", "headline", "words"],

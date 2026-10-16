@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { imageCompare as imageCompareVariants } from "./react/variants";
 
 const SIZES = ["sm", "default", "lg"];
 const ORIENTATIONS = ["horizontal", "vertical"];
@@ -11,7 +12,7 @@ export const imageCompare = defineComponent({
 		"Before and after split by a divider you drag anywhere, with rubber-banded edges and a quarter-turn swing between orientations.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(imageCompareVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "before",
@@ -142,23 +143,9 @@ export const imageCompare = defineComponent({
 	impl: {
 		react: {
 			entry: "ImageCompare",
-			files: [
-				{ path: "image-compare/image-compare.tsx", type: "registry:ui" },
-				{ path: "image-compare/compare.ts", type: "registry:ui" },
-				{ path: "image-compare/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ImageCompare",
-			files: [
-				{ path: "image-compare/image-compare.svelte", type: "registry:ui" },
-				{ path: "image-compare/compare.ts", type: "registry:ui" },
-				{ path: "image-compare/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["image", "compare", "before", "after", "slider", "media"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { slider as sliderVariants } from "./react/variants";
 
 const VARIANTS = ["default", "track", "inline", "bubble", "fluid", "wave", "ruler"];
 
@@ -9,7 +10,7 @@ export const slider = defineComponent({
 		"Range input on a spring glide, in seven looks from a classic thumb to a wave, a ruler and a thumbless pill.",
 	category: "base",
 	status: "stable",
-	variants: { variant: VARIANTS, size: ["sm", "default", "lg"] },
+	variants: variantsOf(sliderVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "value",
@@ -150,25 +151,9 @@ export const slider = defineComponent({
 	impl: {
 		react: {
 			entry: "Slider",
-			files: [
-				{ path: "slider/slider.tsx", type: "registry:ui" },
-				{ path: "slider/variants.ts", type: "registry:ui" },
-				{ path: "slider/core.ts", type: "registry:ui" },
-				{ path: "slider/elastic.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Slider",
-			files: [
-				{ path: "slider/slider.svelte", type: "registry:ui" },
-				{ path: "slider/variants.ts", type: "registry:ui" },
-				{ path: "slider/core.ts", type: "registry:ui" },
-				{ path: "slider/elastic.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["slider", "range", "form", "input", "ruler", "wave", "equalizer"],

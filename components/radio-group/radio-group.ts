@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { radioGroup as radioGroupVariants } from "./react/variants";
 
 export const radioGroup = defineComponent({
 	slug: "radio-group",
@@ -6,10 +7,7 @@ export const radioGroup = defineComponent({
 	description: "Single-choice group with roving focus and an indicator that scales in.",
 	category: "base",
 	status: "stable",
-	variants: {
-		variant: ["default", "solid", "card", "list"],
-		orientation: ["vertical", "horizontal", "grid"],
-	},
+	variants: variantsOf(radioGroupVariants, ["variant", "orientation"]),
 	props: [
 		{
 			name: "value",
@@ -76,27 +74,9 @@ export const radioGroup = defineComponent({
 	impl: {
 		react: {
 			entry: "RadioGroup",
-			files: [
-				{ path: "radio-group/radio-group.tsx", type: "registry:ui" },
-				{ path: "radio-group/variants.ts", type: "registry:ui" },
-				{ path: "radio-group/glide.ts", type: "registry:ui" },
-				{ path: "lib/pill.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "RadioGroup",
-			files: [
-				{ path: "radio-group/radio-group.svelte", type: "registry:ui" },
-				{ path: "radio-group/radio-group-item.svelte", type: "registry:ui" },
-				{ path: "radio-group/context.ts", type: "registry:ui" },
-				{ path: "radio-group/variants.ts", type: "registry:ui" },
-				{ path: "radio-group/glide.ts", type: "registry:ui" },
-				{ path: "lib/pill.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["radio", "form", "choice", "selection"],

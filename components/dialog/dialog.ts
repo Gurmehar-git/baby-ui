@@ -94,29 +94,9 @@ export const dialog = defineComponent({
 	impl: {
 		react: {
 			entry: "Dialog",
-			files: [
-				{ path: "dialog/dialog.tsx", type: "registry:ui" },
-				{ path: "dialog/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["@base-ui/react", "clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Dialog",
-			files: [
-				{ path: "dialog/dialog.svelte", type: "registry:ui" },
-				{ path: "dialog/dialog-trigger.svelte", type: "registry:ui" },
-				{ path: "dialog/dialog-content.svelte", type: "registry:ui" },
-				{ path: "dialog/dialog-header.svelte", type: "registry:ui" },
-				{ path: "dialog/dialog-title.svelte", type: "registry:ui" },
-				{ path: "dialog/dialog-description.svelte", type: "registry:ui" },
-				{ path: "dialog/dialog-footer.svelte", type: "registry:ui" },
-				{ path: "dialog/dialog-close.svelte", type: "registry:ui" },
-				{ path: "dialog/context.ts", type: "registry:ui" },
-				{ path: "dialog/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["bits-ui", "clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["dialog", "modal"],

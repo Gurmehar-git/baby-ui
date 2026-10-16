@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { cubeText as cubeTextVariants } from "./react/variants";
 
 export const cubeText = defineComponent({
 	slug: "cube-text",
@@ -8,7 +9,7 @@ export const cubeText = defineComponent({
 	category: "text",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { size: ["sm", "default", "lg"], stagger: ["wave", "together"] },
+	variants: variantsOf(cubeTextVariants, ["size", "stagger"]),
 	props: [
 		{
 			name: "text",
@@ -74,21 +75,9 @@ export const cubeText = defineComponent({
 	impl: {
 		react: {
 			entry: "CubeText",
-			files: [
-				{ path: "cube-text/cube-text.tsx", type: "registry:ui" },
-				{ path: "cube-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "CubeText",
-			files: [
-				{ path: "cube-text/cube-text.svelte", type: "registry:ui" },
-				{ path: "cube-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["flip", "cube", "roll", "3d", "letters", "text animation", "loop"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogGithubRepo as ogGithubRepoVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["chart", "primary", "neutral"];
@@ -11,7 +12,7 @@ export const ogGithubRepo = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogGithubRepoVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "owner",
@@ -111,21 +112,9 @@ export const ogGithubRepo = defineComponent({
 	impl: {
 		react: {
 			entry: "OgGithubRepo",
-			files: [
-				{ path: "og-github-repo/og-github-repo.tsx", type: "registry:ui" },
-				{ path: "og-github-repo/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgGithubRepo",
-			files: [
-				{ path: "og-github-repo/og-github-repo.svelte", type: "registry:ui" },
-				{ path: "og-github-repo/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

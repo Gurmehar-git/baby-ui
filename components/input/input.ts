@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { input as inputVariants } from "./react/variants";
 
 export const input = defineComponent({
 	slug: "input",
@@ -6,7 +7,7 @@ export const input = defineComponent({
 	description: "Text field with invalid and disabled states that stay legible together.",
 	category: "base",
 	status: "stable",
-	variants: { size: ["xs", "sm", "default", "lg", "xl"], variant: ["outline", "ring"] },
+	variants: variantsOf(inputVariants, ["size", "variant"]),
 	props: [
 		{
 			name: "size",
@@ -73,23 +74,9 @@ export const input = defineComponent({
 	impl: {
 		react: {
 			entry: "Input",
-			files: [
-				{ path: "input/input.tsx", type: "registry:ui" },
-				{ path: "input/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Input",
-			files: [
-				{ path: "input/input.svelte", type: "registry:ui" },
-				{ path: "input/variants.ts", type: "registry:ui" },
-				{ path: "lib/control.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["input", "text field", "form"],

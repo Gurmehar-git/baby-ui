@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogHalo as ogHaloVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "primary", "chart"];
@@ -10,7 +11,7 @@ export const ogHalo = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogHaloVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "logo",
@@ -49,21 +50,9 @@ export const ogHalo = defineComponent({
 	impl: {
 		react: {
 			entry: "OgHalo",
-			files: [
-				{ path: "og-halo/og-halo.tsx", type: "registry:ui" },
-				{ path: "og-halo/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgHalo",
-			files: [
-				{ path: "og-halo/og-halo.svelte", type: "registry:ui" },
-				{ path: "og-halo/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "logo", "glow", "halo", "takumi"],

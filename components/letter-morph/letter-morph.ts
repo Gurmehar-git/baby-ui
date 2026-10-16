@@ -1,14 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { letterMorph as letterMorphVariants } from "./react/variants";
 
 const SIZES = ["inherit", "sm", "default", "lg"];
 const VARIANTS = ["default", "mono"];
-
-const files = (main: string) => [
-	{ path: `letter-morph/${main}`, type: "registry:ui" as const },
-	{ path: "letter-morph/letters.ts", type: "registry:ui" as const },
-	{ path: "letter-morph/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const letterMorph = defineComponent({
 	slug: "letter-morph",
@@ -17,7 +11,7 @@ export const letterMorph = defineComponent({
 		"Morphs one short label into the next in place: shared letters glide to their new spots, new ones sharpen in, removed ones blur away, and the width follows.",
 	category: "text",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(letterMorphVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "text",
@@ -90,13 +84,9 @@ export const letterMorph = defineComponent({
 	impl: {
 		react: {
 			entry: "LetterMorph",
-			files: files("letter-morph.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "LetterMorph",
-			files: files("letter-morph.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "morph", "label", "status", "letters", "text animation"],

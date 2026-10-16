@@ -63,29 +63,9 @@ export const pagination = defineComponent({
 	impl: {
 		react: {
 			entry: "Pagination",
-			files: [
-				{ path: "pagination/pagination.tsx", type: "registry:ui" },
-				{ path: "pagination/range.ts", type: "registry:ui" },
-				{ path: "pagination/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Pagination",
-			files: [
-				{ path: "pagination/pagination.svelte", type: "registry:ui" },
-				{ path: "pagination/pagination-content.svelte", type: "registry:ui" },
-				{ path: "pagination/pagination-item.svelte", type: "registry:ui" },
-				{ path: "pagination/pagination-link.svelte", type: "registry:ui" },
-				{ path: "pagination/pagination-previous.svelte", type: "registry:ui" },
-				{ path: "pagination/pagination-next.svelte", type: "registry:ui" },
-				{ path: "pagination/pagination-ellipsis.svelte", type: "registry:ui" },
-				{ path: "pagination/range.ts", type: "registry:ui" },
-				{ path: "pagination/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["pagination"],

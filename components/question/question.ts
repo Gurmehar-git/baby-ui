@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { question as questionVariants } from "./react/variants";
 
 const LAYOUTS = ["card", "inline"];
 
@@ -9,7 +10,7 @@ export const question = defineComponent({
 		"One or more clarifying questions, stepped through with radio/checkbox/custom-text answers and a sliding transition.",
 	category: "agents",
 	status: "stable",
-	variants: { layout: LAYOUTS },
+	variants: variantsOf(questionVariants, ["layout"]),
 	props: [
 		{
 			name: "layout",
@@ -77,25 +78,9 @@ export const question = defineComponent({
 	impl: {
 		react: {
 			entry: "Question",
-			files: [
-				{ path: "question/question.tsx", type: "registry:ui" },
-				{ path: "question/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "checkbox", "input", "radio-group"],
 		},
 		svelte: {
 			entry: "Question",
-			files: [
-				{ path: "question/question.svelte", type: "registry:ui" },
-				{ path: "question/question-options.svelte", type: "registry:ui" },
-				{ path: "question/types.ts", type: "registry:ui" },
-				{ path: "question/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "checkbox", "input", "radio-group"],
 		},
 	},
 	keywords: ["question", "prompt", "form", "agent"],

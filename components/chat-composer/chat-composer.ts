@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { chatComposer as chatComposerVariants } from "./react/variants";
 
 const VARIANTS = ["framed", "outline"];
 const SIZES = ["sm", "md"];
@@ -10,7 +11,7 @@ export const chatComposer = defineComponent({
 		"A controlled chat panel: topic toggles, a scrolling thread and a composer, built from registry parts.",
 	category: "agents",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(chatComposerVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "messages",
@@ -114,37 +115,9 @@ export const chatComposer = defineComponent({
 	impl: {
 		react: {
 			entry: "ChatComposer",
-			files: [
-				{ path: "chat-composer/chat-composer.tsx", type: "registry:ui" },
-				{ path: "chat-composer/types.ts", type: "registry:ui" },
-				{ path: "chat-composer/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"button",
-				"card",
-				"dropdown-menu",
-				"textarea",
-				"toggle-group",
-			],
 		},
 		svelte: {
 			entry: "ChatComposer",
-			files: [
-				{ path: "chat-composer/chat-composer.svelte", type: "registry:ui" },
-				{ path: "chat-composer/types.ts", type: "registry:ui" },
-				{ path: "chat-composer/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"button",
-				"card",
-				"dropdown-menu",
-				"textarea",
-				"toggle-group",
-			],
 		},
 	},
 	keywords: ["chat", "composer", "conversation", "agent"],

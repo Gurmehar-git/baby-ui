@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { markdown as markdownVariants } from "./react/variants";
 
 const VARIANTS = ["default", "muted"];
 const SIZES = ["sm", "default", "lg"];
@@ -11,7 +12,7 @@ export const markdown = defineComponent({
 		"CommonMark and GFM from a string, static or streamed in word by word for AI answers.",
 	category: "base",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(markdownVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "content",
@@ -81,23 +82,9 @@ export const markdown = defineComponent({
 	impl: {
 		react: {
 			entry: "Markdown",
-			files: [
-				{ path: "markdown/markdown.tsx", type: "registry:ui" },
-				{ path: "markdown/motion.ts", type: "registry:ui" },
-				{ path: "markdown/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["@docvia/markdown", "clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Markdown",
-			files: [
-				{ path: "markdown/markdown.svelte", type: "registry:ui" },
-				{ path: "markdown/motion.ts", type: "registry:ui" },
-				{ path: "markdown/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["@docvia/markdown", "clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["markdown", "prose", "streaming", "gfm", "ai"],

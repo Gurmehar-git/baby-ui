@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogPodcastEpisode as ogPodcastEpisodeVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -13,7 +14,7 @@ export const ogPodcastEpisode = defineComponent({
 	category: "og-images",
 	demo: { mode: "auto", frame: "og" },
 	status: "stable",
-	variants: { mode: MODES, tone: TONES, layout: LAYOUTS },
+	variants: variantsOf(ogPodcastEpisodeVariants, ["mode", "tone", "layout"]),
 	props: [
 		{
 			name: "title",
@@ -103,23 +104,9 @@ export const ogPodcastEpisode = defineComponent({
 	impl: {
 		react: {
 			entry: "OgPodcastEpisode",
-			files: [
-				{ path: "og-podcast-episode/og-podcast-episode.tsx", type: "registry:ui" },
-				{ path: "og-podcast-episode/variants.ts", type: "registry:ui" },
-				{ path: "og-podcast-episode/waveform.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgPodcastEpisode",
-			files: [
-				{ path: "og-podcast-episode/og-podcast-episode.svelte", type: "registry:ui" },
-				{ path: "og-podcast-episode/variants.ts", type: "registry:ui" },
-				{ path: "og-podcast-episode/waveform.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

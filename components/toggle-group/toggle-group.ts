@@ -60,27 +60,9 @@ export const toggleGroup = defineComponent({
 	impl: {
 		react: {
 			entry: "ToggleGroup",
-			files: [
-				{ path: "toggle-group/toggle-group.tsx", type: "registry:ui" },
-				{ path: "toggle-group/segment.ts", type: "registry:ui" },
-				{ path: "toggle-group/variants.ts", type: "registry:ui" },
-				{ path: "lib/pill.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "ToggleGroup",
-			files: [
-				{ path: "toggle-group/toggle-group.svelte", type: "registry:ui" },
-				{ path: "toggle-group/toggle-group-item.svelte", type: "registry:ui" },
-				{ path: "toggle-group/context.ts", type: "registry:ui" },
-				{ path: "toggle-group/segment.ts", type: "registry:ui" },
-				{ path: "toggle-group/variants.ts", type: "registry:ui" },
-				{ path: "lib/pill.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["toggle", "group"],

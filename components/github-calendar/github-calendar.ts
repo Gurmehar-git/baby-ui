@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { githubCalendar as githubCalendarVariants } from "./react/variants";
 
 const VARIANTS = ["default", "glow", "minimal"];
 const SHAPES = ["square", "rounded", "circle"];
@@ -13,7 +14,7 @@ export const githubCalendar = defineComponent({
 	category: "blocks",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { variant: VARIANTS, shape: SHAPES, size: SIZES, tone: TONES },
+	variants: variantsOf(githubCalendarVariants, ["variant", "shape", "size", "tone"]),
 	props: [
 		{
 			name: "days",
@@ -139,25 +140,9 @@ export const githubCalendar = defineComponent({
 	impl: {
 		react: {
 			entry: "GithubCalendar",
-			files: [
-				{ path: "github-calendar/github-calendar.tsx", type: "registry:ui" },
-				{ path: "github-calendar/calendar.ts", type: "registry:ui" },
-				{ path: "github-calendar/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["tooltip"],
 		},
 		svelte: {
 			entry: "GithubCalendar",
-			files: [
-				{ path: "github-calendar/github-calendar.svelte", type: "registry:ui" },
-				{ path: "github-calendar/calendar.ts", type: "registry:ui" },
-				{ path: "github-calendar/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["tooltip"],
 		},
 	},
 	keywords: ["github", "contributions", "calendar", "heatmap", "activity", "streak"],

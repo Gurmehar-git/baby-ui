@@ -178,33 +178,9 @@ export const emailReceipt = defineComponent({
 	impl: {
 		react: {
 			entry: "EmailReceipt",
-			files: [
-				{
-					path: "email-receipt/email-receipt.tsx",
-					type: "registry:ui",
-				},
-				{
-					path: "email-receipt/variants.ts",
-					type: "registry:ui",
-				},
-			],
-			dependencies: ["react-email", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 		svelte: {
 			entry: "EmailReceipt",
-			files: [
-				{
-					path: "email-receipt/email-receipt.svelte",
-					type: "registry:ui",
-				},
-				{
-					path: "email-receipt/variants.ts",
-					type: "registry:ui",
-				},
-			],
-			dependencies: ["@better-svelte-email/components", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 	},
 	keywords: ["email", "receipt", "invoice", "payment", "billing"],

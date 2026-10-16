@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ditheredLogo as ditheredLogoVariants } from "./react/variants";
 
 const VARIANTS = ["solid", "inverted"];
 const TONES = ["foreground", "primary", "muted", "chart"];
@@ -12,7 +13,7 @@ export const ditheredLogo = defineComponent({
 	category: "backgrounds",
 	status: "stable",
 	demo: { mode: "auto", frame: "lg" },
-	variants: { variant: VARIANTS, tone: TONES, size: SIZES },
+	variants: variantsOf(ditheredLogoVariants, ["variant", "tone", "size"]),
 	props: [
 		{
 			name: "src",
@@ -125,23 +126,9 @@ export const ditheredLogo = defineComponent({
 	impl: {
 		react: {
 			entry: "DitheredLogo",
-			files: [
-				{ path: "dithered-logo/dithered-logo.tsx", type: "registry:ui" },
-				{ path: "dithered-logo/dither.ts", type: "registry:ui" },
-				{ path: "dithered-logo/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "DitheredLogo",
-			files: [
-				{ path: "dithered-logo/dithered-logo.svelte", type: "registry:ui" },
-				{ path: "dithered-logo/dither.ts", type: "registry:ui" },
-				{ path: "dithered-logo/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["logo", "dither", "dots", "canvas", "halftone", "cursor", "ripple"],

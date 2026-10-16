@@ -121,31 +121,9 @@ export const megaNavbar = defineComponent({
 	impl: {
 		react: {
 			entry: "MegaNavbar",
-			files: [
-				{ path: "mega-navbar/mega-navbar.tsx", type: "registry:ui" },
-				{ path: "mega-navbar/expand-nav.tsx", type: "registry:ui" },
-				{ path: "mega-navbar/variants.ts", type: "registry:ui" },
-				{ path: "mega-navbar/current.ts", type: "registry:ui" },
-				{ path: "mega-navbar/expand.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "@base-ui/react", "tailwind-variants"],
-			registryDependencies: ["collapsible", "sheet", "notched-shelf"],
 		},
 		svelte: {
 			entry: "MegaNavbar",
-			files: [
-				{ path: "mega-navbar/mega-navbar.svelte", type: "registry:ui" },
-				{ path: "mega-navbar/mega-menu.svelte", type: "registry:ui" },
-				{ path: "mega-navbar/mega-navbar-expand.svelte", type: "registry:ui" },
-				{ path: "mega-navbar/variants.ts", type: "registry:ui" },
-				{ path: "mega-navbar/types.ts", type: "registry:ui" },
-				{ path: "mega-navbar/current.ts", type: "registry:ui" },
-				{ path: "mega-navbar/expand.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "bits-ui", "tailwind-variants"],
-			registryDependencies: ["collapsible", "sheet", "notched-shelf"],
 		},
 	},
 	keywords: ["navbar", "header", "mega menu", "navigation", "mobile menu", "marketing"],

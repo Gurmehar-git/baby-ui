@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { pixelCanvas as pixelCanvasVariants } from "./react/variants";
 
 const VARIANTS = ["default", "rounded", "glow"];
 const TONES = ["spectrum", "cool", "warm", "mono"];
@@ -11,7 +12,7 @@ export const pixelCanvas = defineComponent({
 		"A full-bleed pixel grid that lights up in token colours around the pointer and fades behind it.",
 	category: "backgrounds",
 	status: "stable",
-	variants: { variant: VARIANTS, tone: TONES, position: POSITIONS },
+	variants: variantsOf(pixelCanvasVariants, ["variant", "tone", "position"]),
 	props: [
 		{
 			name: "variant",
@@ -88,25 +89,9 @@ export const pixelCanvas = defineComponent({
 	impl: {
 		react: {
 			entry: "PixelCanvas",
-			files: [
-				{ path: "pixel-canvas/pixel-canvas.tsx", type: "registry:ui" },
-				{ path: "pixel-canvas/pixels.ts", type: "registry:ui" },
-				{ path: "pixel-canvas/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "PixelCanvas",
-			files: [
-				{ path: "pixel-canvas/pixel-canvas.svelte", type: "registry:ui" },
-				{ path: "pixel-canvas/pixels.ts", type: "registry:ui" },
-				{ path: "pixel-canvas/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "pixel", "grid", "cursor", "trail", "canvas"],

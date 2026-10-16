@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { chromaticWave as chromaticWaveVariants } from "./react/variants";
 
 const TONES = ["spectrum", "cool", "warm", "mono"];
 const SPEEDS = ["slow", "normal", "fast"];
@@ -12,7 +13,7 @@ export const chromaticWave = defineComponent({
 		"Dozens of fine flowing contour lines with a chromatic gradient along them, drawn in WebGL.",
 	category: "backgrounds",
 	status: "beta",
-	variants: { tone: TONES, speed: SPEEDS, position: POSITIONS },
+	variants: variantsOf(chromaticWaveVariants, ["tone", "speed", "position"]),
 	props: [
 		{
 			name: "tone",
@@ -75,29 +76,9 @@ export const chromaticWave = defineComponent({
 	impl: {
 		react: {
 			entry: "ChromaticWave",
-			files: [
-				{ path: "chromatic-wave/chromatic-wave.tsx", type: "registry:ui" },
-				{ path: "chromatic-wave/wave.ts", type: "registry:ui" },
-				{ path: "chromatic-wave/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/use-canvas-engine.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ChromaticWave",
-			files: [
-				{ path: "chromatic-wave/chromatic-wave.svelte", type: "registry:ui" },
-				{ path: "chromatic-wave/wave.ts", type: "registry:ui" },
-				{ path: "chromatic-wave/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/canvas-engine.svelte.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

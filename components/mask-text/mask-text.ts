@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { maskText as maskTextVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 
@@ -9,7 +10,7 @@ export const maskText = defineComponent({
 	category: "text",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { size: SIZES },
+	variants: variantsOf(maskTextVariants, ["size"]),
 	props: [
 		{
 			name: "revealText",
@@ -63,21 +64,9 @@ export const maskText = defineComponent({
 	impl: {
 		react: {
 			entry: "MaskText",
-			files: [
-				{ path: "mask-text/mask-text.tsx", type: "registry:ui" },
-				{ path: "mask-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "MaskText",
-			files: [
-				{ path: "mask-text/mask-text.svelte", type: "registry:ui" },
-				{ path: "mask-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "mask", "cursor", "hover", "reveal"],

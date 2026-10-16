@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { sheet as sheetVariants } from "./react/variants";
 
 export const sheet = defineComponent({
 	slug: "sheet",
@@ -7,7 +8,7 @@ export const sheet = defineComponent({
 		"Panel that slides in from any edge, with focus moved inside and Escape to close.",
 	category: "base",
 	status: "stable",
-	variants: { variant: ["default", "framed"] },
+	variants: variantsOf(sheetVariants, ["variant"]),
 	props: [
 		{
 			name: "variant",
@@ -58,28 +59,9 @@ export const sheet = defineComponent({
 	impl: {
 		react: {
 			entry: "Sheet",
-			files: [
-				{ path: "sheet/sheet.tsx", type: "registry:ui" },
-				{ path: "sheet/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Sheet",
-			files: [
-				{ path: "sheet/sheet.svelte", type: "registry:ui" },
-				{ path: "sheet/sheet-trigger.svelte", type: "registry:ui" },
-				{ path: "sheet/sheet-content.svelte", type: "registry:ui" },
-				{ path: "sheet/sheet-header.svelte", type: "registry:ui" },
-				{ path: "sheet/sheet-title.svelte", type: "registry:ui" },
-				{ path: "sheet/sheet-description.svelte", type: "registry:ui" },
-				{ path: "sheet/sheet-footer.svelte", type: "registry:ui" },
-				{ path: "sheet/sheet-close.svelte", type: "registry:ui" },
-				{ path: "sheet/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["sheet"],

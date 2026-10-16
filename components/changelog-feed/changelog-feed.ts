@@ -1,16 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { changelogFeed as changelogFeedVariants } from "./react/variants";
 
 const VARIANTS = ["list", "timeline"];
-
-const files = (main: string) => [
-	{ path: `changelog-feed/${main}`, type: "registry:ui" as const },
-	{ path: "changelog-feed/changelog.ts", type: "registry:ui" as const },
-	{ path: "changelog-feed/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-	{ path: "lib/image.ts", type: "registry:lib" as const },
-];
-
-const deps = ["accordion", "badge", "code-block", "rolling-digits", "toggle-group"];
 
 export const changelogFeed = defineComponent({
 	slug: "changelog-feed",
@@ -19,7 +10,7 @@ export const changelogFeed = defineComponent({
 		"Release notes by month with kind filters and counts, sticky month headings, and entries that open into details, a photo or a code snippet.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(changelogFeedVariants, ["variant"]),
 	props: [
 		{
 			name: "image",
@@ -109,15 +100,9 @@ export const changelogFeed = defineComponent({
 	impl: {
 		react: {
 			entry: "ChangelogFeed",
-			files: files("changelog-feed.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 		svelte: {
 			entry: "ChangelogFeed",
-			files: files("changelog-feed.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 	},
 	keywords: ["changelog", "release notes", "updates", "versions", "feed", "timeline"],

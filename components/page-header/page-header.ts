@@ -1,15 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { pageHeader as pageHeaderVariants } from "./react/variants";
 
 const VARIANTS = ["static", "sticky"];
-
-const files = (main: string) => [
-	{ path: `page-header/${main}`, type: "registry:ui" as const },
-	{ path: "page-header/header.ts", type: "registry:ui" as const },
-	{ path: "page-header/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
-const deps = ["avatar", "badge", "breadcrumb", "rolling-digits", "tabs"];
 
 export const pageHeader = defineComponent({
 	slug: "page-header",
@@ -18,7 +10,7 @@ export const pageHeader = defineComponent({
 		"An app page header with breadcrumbs, a title with status and people, actions and counted tabs; the sticky variant condenses as the page scrolls.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(pageHeaderVariants, ["variant"]),
 	props: [
 		{
 			name: "title",
@@ -102,15 +94,9 @@ export const pageHeader = defineComponent({
 	impl: {
 		react: {
 			entry: "PageHeader",
-			files: files("page-header.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 		svelte: {
 			entry: "PageHeader",
-			files: files("page-header.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 	},
 	keywords: ["page header", "header", "breadcrumbs", "tabs", "title", "app", "sticky"],

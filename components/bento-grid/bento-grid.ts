@@ -62,22 +62,9 @@ export const bentoGrid = defineComponent({
 	impl: {
 		react: {
 			entry: "BentoGrid",
-			files: [
-				{ path: "bento-grid/variants.ts", type: "registry:ui" },
-				{ path: "bento-grid/bento-grid.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge"],
 		},
 		svelte: {
 			entry: "BentoGrid",
-			files: [
-				{ path: "bento-grid/variants.ts", type: "registry:ui" },
-				{ path: "bento-grid/bento-grid.svelte", type: "registry:ui" },
-				{ path: "bento-grid/bento-cell.svelte", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge"],
 		},
 	},
 

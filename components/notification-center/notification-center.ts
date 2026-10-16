@@ -1,22 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { notificationCenter as notificationCenterVariants } from "./react/variants";
 
 const SIZES = ["sm", "default"];
-
-const files = (main: string) => [
-	{ path: `notification-center/${main}`, type: "registry:ui" as const },
-	{ path: "notification-center/inbox.ts", type: "registry:ui" as const },
-	{ path: "notification-center/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-const deps = [
-	"avatar",
-	"button",
-	"collapsible",
-	"mention-input",
-	"popover",
-	"rolling-digits",
-	"toggle-group",
-];
 
 export const notificationCenter = defineComponent({
 	slug: "notification-center",
@@ -25,7 +10,7 @@ export const notificationCenter = defineComponent({
 		"A bell with an unread badge that opens an inbox: filter unread, expand an update, mark read, dismiss and clear.",
 	category: "advanced",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(notificationCenterVariants, ["size"]),
 	props: [
 		{
 			name: "notifications",
@@ -104,15 +89,9 @@ export const notificationCenter = defineComponent({
 	impl: {
 		react: {
 			entry: "NotificationCenter",
-			files: files("notification-center.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 		svelte: {
 			entry: "NotificationCenter",
-			files: files("notification-center.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: deps,
 		},
 	},
 	keywords: ["notifications", "inbox", "bell", "alerts", "unread", "popover"],

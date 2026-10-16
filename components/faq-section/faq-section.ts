@@ -1,13 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { faqSection as faqSectionVariants } from "./react/variants";
 
 const VARIANTS = ["accordion", "columns", "search"];
-
-const files = (main: string) => [
-	{ path: `faq-section/${main}`, type: "registry:ui" as const },
-	{ path: "faq-section/faq.ts", type: "registry:ui" as const },
-	{ path: "faq-section/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const faqSection = defineComponent({
 	slug: "faq-section",
@@ -16,7 +10,7 @@ export const faqSection = defineComponent({
 		"Frequently asked questions as one centred accordion, a topic rail beside its questions, or a list that filters and highlights as you type.",
 	category: "blocks",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(faqSectionVariants, ["variant"]),
 	props: [
 		{
 			name: "items",
@@ -106,15 +100,9 @@ export const faqSection = defineComponent({
 	impl: {
 		react: {
 			entry: "FaqSection",
-			files: files("faq-section.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["accordion", "button", "search-input", "toggle-group"],
 		},
 		svelte: {
 			entry: "FaqSection",
-			files: files("faq-section.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["accordion", "button", "search-input", "toggle-group"],
 		},
 	},
 	keywords: ["faq", "questions", "help", "support", "accordion", "search", "section"],

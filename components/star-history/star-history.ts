@@ -90,57 +90,9 @@ export const starHistoryBlock = defineComponent({
 	impl: {
 		react: {
 			entry: "StarHistory",
-			files: [
-				{ path: "star-history/star-history.tsx", type: "registry:ui" },
-				{ path: "star-history/core.ts", type: "registry:ui" },
-				{ path: "star-history/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"clsx",
-				"tailwind-merge",
-				"tailwind-variants",
-				"d3-array",
-				"d3-scale",
-				"d3-shape",
-			],
-			registryDependencies: [
-				"badge",
-				"bar-chart",
-				"card",
-				"chart",
-				"rolling-digits",
-				"empty",
-				"line-chart",
-				"tabs",
-			],
 		},
 		svelte: {
 			entry: "StarHistory",
-			files: [
-				{ path: "star-history/star-history.svelte", type: "registry:ui" },
-				{ path: "star-history/core.ts", type: "registry:ui" },
-				{ path: "star-history/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: [
-				"clsx",
-				"tailwind-merge",
-				"tailwind-variants",
-				"d3-array",
-				"d3-scale",
-				"d3-shape",
-			],
-			registryDependencies: [
-				"badge",
-				"bar-chart",
-				"card",
-				"chart",
-				"rolling-digits",
-				"empty",
-				"line-chart",
-				"tabs",
-			],
 		},
 	},
 

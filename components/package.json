@@ -23,7 +23,8 @@
 		"./specs": "./specs.ts"
 	},
 	"scripts": {
-		"check": "tsc --noEmit -p tsconfig.react.json && svelte-check --tsconfig ./tsconfig.json"
+		"check": "tsc --noEmit -p tsconfig.react.json && svelte-check --tsconfig ./tsconfig.json",
+		"test": "bun test _tools && node --test _tools/paths.test.mjs"
 	},
 	"dependencies": {
 		"@baby-ui/registry-schema": "workspace:*",

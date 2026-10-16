@@ -75,25 +75,9 @@ export const popover = defineComponent({
 	impl: {
 		react: {
 			entry: "Popover",
-			files: [
-				{ path: "popover/popover.tsx", type: "registry:ui" },
-				{ path: "popover/variants.ts", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Popover",
-			files: [
-				{ path: "popover/popover.svelte", type: "registry:ui" },
-				{ path: "popover/popover-trigger.svelte", type: "registry:ui" },
-				{ path: "popover/popover-content.svelte", type: "registry:ui" },
-				{ path: "popover/variants.ts", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["tailwind-variants", "clsx", "tailwind-merge", "bits-ui"],
 		},
 	},
 	keywords: ["popover", "overlay"],

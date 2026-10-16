@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { auroraFlow as auroraFlowVariants } from "./react/variants";
 
 const VARIANTS = ["veil", "silk"];
 const TONES = ["chart", "accent", "ember", "violet", "pearl", "mono"];
@@ -12,7 +13,7 @@ export const auroraFlow = defineComponent({
 		"Silk light drifting through a WebGL field, as layered veils or three sheened ribbons, coloured from theme tokens.",
 	category: "backgrounds",
 	status: "stable",
-	variants: { variant: VARIANTS, tone: TONES, speed: SPEEDS, position: POSITIONS },
+	variants: variantsOf(auroraFlowVariants, ["variant", "tone", "speed", "position"]),
 	props: [
 		{
 			name: "variant",
@@ -102,32 +103,9 @@ export const auroraFlow = defineComponent({
 	impl: {
 		react: {
 			entry: "AuroraFlow",
-			files: [
-				{ path: "aurora-flow/aurora-flow.tsx", type: "registry:ui" },
-				{ path: "aurora-flow/aurora.ts", type: "registry:ui" },
-				{ path: "aurora-flow/silk.ts", type: "registry:ui" },
-				{ path: "aurora-flow/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/use-canvas-engine.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "AuroraFlow",
-			files: [
-				{ path: "aurora-flow/aurora-flow.svelte", type: "registry:ui" },
-				{ path: "aurora-flow/aurora-field.svelte", type: "registry:ui" },
-				{ path: "aurora-flow/aurora.ts", type: "registry:ui" },
-				{ path: "aurora-flow/silk.ts", type: "registry:ui" },
-				{ path: "aurora-flow/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/canvas-engine.svelte.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "aurora", "webgl", "shader", "gradient", "hero"],

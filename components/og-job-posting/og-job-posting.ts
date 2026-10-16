@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogJobPosting as ogJobPostingVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -12,7 +13,7 @@ export const ogJobPosting = defineComponent({
 	category: "og-images",
 	demo: { mode: "auto", frame: "og" },
 	status: "beta",
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogJobPostingVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "title",
@@ -109,21 +110,9 @@ export const ogJobPosting = defineComponent({
 	impl: {
 		react: {
 			entry: "OgJobPosting",
-			files: [
-				{ path: "og-job-posting/og-job-posting.tsx", type: "registry:ui" },
-				{ path: "og-job-posting/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgJobPosting",
-			files: [
-				{ path: "og-job-posting/og-job-posting.svelte", type: "registry:ui" },
-				{ path: "og-job-posting/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

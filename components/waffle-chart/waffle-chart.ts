@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { waffleChart as waffleChartVariants } from "./react/variants";
 
 const VARIANTS = ["mixed", "square", "round"];
 
@@ -9,7 +10,7 @@ export const waffleChart = defineComponent({
 		"A unit chart where every cell is one share of the whole; cells travel between parts when the data or legend changes.",
 	category: "charts",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(waffleChartVariants, ["variant"]),
 	props: [
 		{
 			name: "data",
@@ -87,26 +88,9 @@ export const waffleChart = defineComponent({
 	impl: {
 		react: {
 			entry: "WaffleChart",
-			files: [
-				{ path: "waffle-chart/waffle-chart.tsx", type: "registry:ui" },
-				{ path: "waffle-chart/geometry.ts", type: "registry:ui" },
-				{ path: "waffle-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "WaffleChart",
-			files: [
-				{ path: "waffle-chart/waffle-chart.svelte", type: "registry:ui" },
-				{ path: "waffle-chart/waffle-plot.svelte", type: "registry:ui" },
-				{ path: "waffle-chart/geometry.ts", type: "registry:ui" },
-				{ path: "waffle-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["waffle", "unit chart", "share", "proportion", "grid", "percent"],

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { carousel as carouselVariants } from "./react/variants";
 
 const SIZES = ["sm", "default", "lg"];
 const VARIANTS = ["default", "flat", "inset"];
@@ -11,7 +12,7 @@ export const carousel = defineComponent({
 		"Centred row of slides browsed by drag, flick, trackpad swipe or keys, with neighbours in view and an indicator that travels with them.",
 	category: "base",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(carouselVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "label",
@@ -160,27 +161,9 @@ export const carousel = defineComponent({
 	impl: {
 		react: {
 			entry: "Carousel",
-			files: [
-				{ path: "carousel/carousel.tsx", type: "registry:ui" },
-				{ path: "carousel/track.ts", type: "registry:ui" },
-				{ path: "carousel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button"],
 		},
 		svelte: {
 			entry: "Carousel",
-			files: [
-				{ path: "carousel/carousel.svelte", type: "registry:ui" },
-				{ path: "carousel/carousel-item.svelte", type: "registry:ui" },
-				{ path: "carousel/context.ts", type: "registry:ui" },
-				{ path: "carousel/track.ts", type: "registry:ui" },
-				{ path: "carousel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button"],
 		},
 	},
 	keywords: ["carousel", "slider", "gallery", "slides", "swipe"],

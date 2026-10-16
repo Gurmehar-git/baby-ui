@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { tool as toolVariants } from "./react/variants";
 
 const STATUSES = ["pending", "running", "done", "error"];
 
@@ -8,7 +9,7 @@ export const tool = defineComponent({
 	description: "Collapsible tool invocation showing state, input and output.",
 	category: "agents",
 	status: "stable",
-	variants: { status: STATUSES },
+	variants: variantsOf(toolVariants, ["status"]),
 	props: [
 		{
 			name: "name",
@@ -89,21 +90,9 @@ export const tool = defineComponent({
 	impl: {
 		react: {
 			entry: "Tool",
-			files: [
-				{ path: "tool/tool.tsx", type: "registry:ui" },
-				{ path: "tool/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Tool",
-			files: [
-				{ path: "tool/tool.svelte", type: "registry:ui" },
-				{ path: "tool/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["tool"],

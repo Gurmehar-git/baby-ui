@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogNewsletterIssue as ogNewsletterIssueVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -10,7 +11,7 @@ export const ogNewsletterIssue = defineComponent({
 		"A 1200x630 editorial newsletter cover: a masthead over a hairline rule, one large headline and up to three numbered stories, rendered to PNG with takumi.",
 	category: "og-images",
 	status: "stable",
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogNewsletterIssueVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "publication",
@@ -96,21 +97,9 @@ export const ogNewsletterIssue = defineComponent({
 	impl: {
 		react: {
 			entry: "OgNewsletterIssue",
-			files: [
-				{ path: "og-newsletter-issue/og-newsletter-issue.tsx", type: "registry:ui" },
-				{ path: "og-newsletter-issue/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgNewsletterIssue",
-			files: [
-				{ path: "og-newsletter-issue/og-newsletter-issue.svelte", type: "registry:ui" },
-				{ path: "og-newsletter-issue/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "newsletter", "email", "takumi", "image"],

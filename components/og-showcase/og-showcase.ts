@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogShowcase as ogShowcaseVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogShowcase = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogShowcaseVariants, ["mode"]),
 	props: [
 		{
 			name: "title",
@@ -69,21 +70,9 @@ export const ogShowcase = defineComponent({
 	impl: {
 		react: {
 			entry: "OgShowcase",
-			files: [
-				{ path: "og-showcase/og-showcase.tsx", type: "registry:ui" },
-				{ path: "og-showcase/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgShowcase",
-			files: [
-				{ path: "og-showcase/og-showcase.svelte", type: "registry:ui" },
-				{ path: "og-showcase/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

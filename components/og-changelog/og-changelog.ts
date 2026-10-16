@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogChangelog as ogChangelogVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["neutral", "chart", "primary"];
@@ -11,7 +12,7 @@ export const ogChangelog = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogChangelogVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "version",
@@ -89,21 +90,9 @@ export const ogChangelog = defineComponent({
 	impl: {
 		react: {
 			entry: "OgChangelog",
-			files: [
-				{ path: "og-changelog/og-changelog.tsx", type: "registry:ui" },
-				{ path: "og-changelog/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgChangelog",
-			files: [
-				{ path: "og-changelog/og-changelog.svelte", type: "registry:ui" },
-				{ path: "og-changelog/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { recordsTable as recordsTableVariants } from "./react/variants";
 
 const DENSITIES = ["comfortable", "compact"];
 
@@ -9,7 +10,7 @@ export const recordsTable = defineComponent({
 		"An AI-spreadsheet grid: columns are configurable properties, each with a type, a tool and a prompt.",
 	category: "advanced",
 	status: "stable",
-	variants: { density: DENSITIES },
+	variants: variantsOf(recordsTableVariants, ["density"]),
 	props: [
 		{
 			name: "rows",
@@ -138,50 +139,9 @@ export const recordsTable = defineComponent({
 	impl: {
 		react: {
 			entry: "RecordsTable",
-			files: [
-				{ path: "records-table/records-table.tsx", type: "registry:ui" },
-				{ path: "records-table/config-popover.tsx", type: "registry:ui" },
-				{ path: "records-table/tag-list.tsx", type: "registry:ui" },
-				{ path: "records-table/types.ts", type: "registry:ui" },
-				{ path: "records-table/model.ts", type: "registry:ui" },
-				{ path: "records-table/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"avatar",
-				"checkbox",
-				"dropdown-menu",
-				"popover",
-				"select",
-				"switch",
-				"hover-card",
-				"button",
-			],
 		},
 		svelte: {
 			entry: "RecordsTable",
-			files: [
-				{ path: "records-table/records-table.svelte", type: "registry:ui" },
-				{ path: "records-table/config-popover.svelte", type: "registry:ui" },
-				{ path: "records-table/glyph-icon.svelte", type: "registry:ui" },
-				{ path: "records-table/tag-list.svelte", type: "registry:ui" },
-				{ path: "records-table/types.ts", type: "registry:ui" },
-				{ path: "records-table/model.ts", type: "registry:ui" },
-				{ path: "records-table/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"avatar",
-				"checkbox",
-				"dropdown-menu",
-				"popover",
-				"select",
-				"switch",
-				"hover-card",
-				"button",
-			],
 		},
 	},
 	keywords: ["table", "records", "spreadsheet", "ai", "columns"],

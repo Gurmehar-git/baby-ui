@@ -50,25 +50,9 @@ export const conversation = defineComponent({
 	impl: {
 		react: {
 			entry: "Conversation",
-			files: [
-				{ path: "conversation/conversation.tsx", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
-			registryDependencies: ["scroll-area"],
 		},
 		svelte: {
 			entry: "Conversation",
-			files: [
-				{ path: "conversation/conversation.svelte", type: "registry:ui" },
-				{ path: "conversation/conversation-content.svelte", type: "registry:ui" },
-				{ path: "conversation/conversation-empty.svelte", type: "registry:ui" },
-				{ path: "conversation/conversation-scroll-button.svelte", type: "registry:ui" },
-				{ path: "conversation/context.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge"],
-			registryDependencies: ["scroll-area"],
 		},
 	},
 	keywords: ["conversation", "chat", "transcript", "auto-scroll"],

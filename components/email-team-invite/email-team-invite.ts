@@ -163,33 +163,9 @@ export const emailTeamInvite = defineComponent({
 	impl: {
 		react: {
 			entry: "EmailTeamInvite",
-			files: [
-				{
-					path: "email-team-invite/email-team-invite.tsx",
-					type: "registry:ui",
-				},
-				{
-					path: "email-team-invite/variants.ts",
-					type: "registry:ui",
-				},
-			],
-			dependencies: ["react-email", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 		svelte: {
 			entry: "EmailTeamInvite",
-			files: [
-				{
-					path: "email-team-invite/email-team-invite.svelte",
-					type: "registry:ui",
-				},
-				{
-					path: "email-team-invite/variants.ts",
-					type: "registry:ui",
-				},
-			],
-			dependencies: ["@better-svelte-email/components", "tailwind-variants"],
-			registryDependencies: ["email-kit"],
 		},
 	},
 	keywords: ["email", "invite", "team", "workspace", "collaboration"],

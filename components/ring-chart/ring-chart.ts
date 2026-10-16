@@ -89,27 +89,9 @@ export const ringChart = defineComponent({
 	impl: {
 		react: {
 			entry: "RingChart",
-			files: [
-				{ path: "ring-chart/ring-chart.tsx", type: "registry:ui" },
-				{ path: "ring-chart/geometry.ts", type: "registry:ui" },
-				{ path: "ring-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-shape"],
-			registryDependencies: ["chart", "rolling-digits"],
 		},
 		svelte: {
 			entry: "RingChart",
-			files: [
-				{ path: "ring-chart/ring-chart.svelte", type: "registry:ui" },
-				{ path: "ring-chart/ring-plot.svelte", type: "registry:ui" },
-				{ path: "ring-chart/ring.svelte", type: "registry:ui" },
-				{ path: "ring-chart/geometry.ts", type: "registry:ui" },
-				{ path: "ring-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-shape"],
-			registryDependencies: ["chart", "rolling-digits"],
 		},
 	},
 	keywords: ["ring", "progress", "radial", "goal", "chart"],

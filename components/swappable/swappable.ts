@@ -124,27 +124,9 @@ export const swappable = defineComponent({
 	impl: {
 		react: {
 			entry: "Swappable",
-			files: [
-				{ path: "swappable/swappable.tsx", type: "registry:ui" },
-				{ path: "swappable/core.ts", type: "registry:ui" },
-				{ path: "swappable/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "swapy"],
 		},
 		svelte: {
 			entry: "Swappable",
-			files: [
-				{ path: "swappable/swappable.svelte", type: "registry:ui" },
-				{ path: "swappable/swappable-slot.svelte", type: "registry:ui" },
-				{ path: "swappable/swappable-item.svelte", type: "registry:ui" },
-				{ path: "swappable/swappable-handle.svelte", type: "registry:ui" },
-				{ path: "swappable/context.ts", type: "registry:ui" },
-				{ path: "swappable/core.ts", type: "registry:ui" },
-				{ path: "swappable/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "swapy"],
 		},
 	},
 	keywords: ["swap", "drag", "reorder", "sortable", "kanban", "dashboard", "swapy"],

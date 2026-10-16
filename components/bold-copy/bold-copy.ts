@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { boldCopy as boldCopyVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "xl"];
 
@@ -10,7 +11,7 @@ export const boldCopy = defineComponent({
 	category: "text",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { size: SIZES },
+	variants: variantsOf(boldCopyVariants, ["size"]),
 	props: [
 		{
 			name: "text",
@@ -51,21 +52,9 @@ export const boldCopy = defineComponent({
 	impl: {
 		react: {
 			entry: "BoldCopy",
-			files: [
-				{ path: "bold-copy/bold-copy.tsx", type: "registry:ui" },
-				{ path: "bold-copy/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "BoldCopy",
-			files: [
-				{ path: "bold-copy/bold-copy.svelte", type: "registry:ui" },
-				{ path: "bold-copy/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "bold", "hover", "hero"],

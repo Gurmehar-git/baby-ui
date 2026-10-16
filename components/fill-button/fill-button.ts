@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { fillButton as fillButtonVariants } from "./react/variants";
 
 const TONES = ["soft", "outline"];
 const SIZES = ["sm", "md", "lg"];
@@ -10,7 +11,7 @@ export const fillButton = defineComponent({
 		"A call to action whose icon tile expands into a full fill on hover, swapping the label as it goes.",
 	category: "advanced",
 	status: "stable",
-	variants: { tone: TONES, size: SIZES },
+	variants: variantsOf(fillButtonVariants, ["tone", "size"]),
 	props: [
 		{
 			name: "tone",
@@ -66,21 +67,9 @@ export const fillButton = defineComponent({
 	impl: {
 		react: {
 			entry: "FillButton",
-			files: [
-				{ path: "fill-button/fill-button.tsx", type: "registry:ui" },
-				{ path: "fill-button/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "FillButton",
-			files: [
-				{ path: "fill-button/fill-button.svelte", type: "registry:ui" },
-				{ path: "fill-button/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["button", "cta", "hover", "fill", "arrow"],

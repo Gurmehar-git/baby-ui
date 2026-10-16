@@ -1,13 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { sparkline as sparklineVariants } from "./react/variants";
 
 const VARIANTS = ["default", "success", "warning", "destructive"];
-
-const files = (main: string) => [
-	{ path: `sparkline/${main}`, type: "registry:ui" as const },
-	{ path: "sparkline/spark.ts", type: "registry:ui" as const },
-	{ path: "sparkline/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const sparkline = defineComponent({
 	slug: "sparkline",
@@ -16,7 +10,7 @@ export const sparkline = defineComponent({
 		"A small trend line with a headline that draws in once seen, morphs on new data and scrubs by pointer or keys.",
 	category: "charts",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(sparklineVariants, ["variant"]),
 	props: [
 		{
 			name: "data",
@@ -110,15 +104,9 @@ export const sparkline = defineComponent({
 	impl: {
 		react: {
 			entry: "Sparkline",
-			files: files("sparkline.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-shape"],
-			registryDependencies: ["chart", "slot-text"],
 		},
 		svelte: {
 			entry: "Sparkline",
-			files: files("sparkline.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-shape"],
-			registryDependencies: ["chart", "slot-text"],
 		},
 	},
 	keywords: ["sparkline", "trend", "kpi", "mini chart", "line"],

@@ -1,14 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { expandingButtonGroup as expandingButtonGroupVariants } from "./react/variants";
 
 const SIZES = ["sm", "default"];
 const VARIANTS = ["default", "ghost"];
-
-const files = (main: string) => [
-	{ path: `expanding-button-group/${main}`, type: "registry:ui" as const },
-	{ path: "expanding-button-group/group.ts", type: "registry:ui" as const },
-	{ path: "expanding-button-group/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const expandingButtonGroup = defineComponent({
 	slug: "expanding-button-group",
@@ -17,7 +11,7 @@ export const expandingButtonGroup = defineComponent({
 		"A pill of icon buttons where one action always shows its label: pointing at or focusing another slides the label over, and actions confirm in place.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(expandingButtonGroupVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "items",
@@ -128,13 +122,9 @@ export const expandingButtonGroup = defineComponent({
 	impl: {
 		react: {
 			entry: "ExpandingButtonGroup",
-			files: files("expanding-button-group.tsx"),
-			dependencies: ["@base-ui/react", "clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ExpandingButtonGroup",
-			files: files("expanding-button-group.svelte"),
-			dependencies: ["bits-ui", "clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["toolbar", "actions", "icon buttons", "expand", "morph"],

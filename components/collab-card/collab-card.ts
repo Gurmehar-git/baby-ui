@@ -122,24 +122,9 @@ export const collabCard = defineComponent({
 	impl: {
 		react: {
 			entry: "CollabCard",
-			files: [
-				{ path: "collab-card/collab-card.tsx", type: "registry:ui" },
-				{ path: "collab-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["avatar"],
 		},
 		svelte: {
 			entry: "CollabCard",
-			files: [
-				{ path: "collab-card/collab-card.svelte", type: "registry:ui" },
-				{ path: "collab-card/types.ts", type: "registry:ui" },
-				{ path: "collab-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["avatar"],
 		},
 	},
 	keywords: ["collaboration", "multiplayer", "cursors", "presence", "figma", "bento"],

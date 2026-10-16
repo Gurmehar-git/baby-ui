@@ -1,14 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { mentionInput as mentionInputVariants } from "./react/variants";
 
 const SIZES = ["sm", "default", "lg"];
 const SIDES = ["bottom", "top"];
-
-const files = (main: string) => [
-	{ path: `mention-input/${main}`, type: "registry:ui" as const },
-	{ path: "mention-input/mention.ts", type: "registry:ui" as const },
-	{ path: "mention-input/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const mentionInput = defineComponent({
 	slug: "mention-input",
@@ -17,7 +11,7 @@ export const mentionInput = defineComponent({
 		"A textarea with @ people and # channel mentions that move and delete as single tokens.",
 	category: "advanced",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(mentionInputVariants, ["size"]),
 	props: [
 		{
 			name: "value",
@@ -130,15 +124,9 @@ export const mentionInput = defineComponent({
 	impl: {
 		react: {
 			entry: "MentionInput",
-			files: files("mention-input.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["avatar"],
 		},
 		svelte: {
 			entry: "MentionInput",
-			files: files("mention-input.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["avatar"],
 		},
 	},
 	keywords: ["mention", "tag", "at", "textarea", "comment", "chat", "autocomplete"],

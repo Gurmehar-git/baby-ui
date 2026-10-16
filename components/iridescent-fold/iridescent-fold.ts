@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { iridescentFold as iridescentFoldVariants } from "./react/variants";
 
 const VARIANTS = ["foil", "silk"];
 const TONES = ["holo", "pearl", "opal", "lavender", "spectrum", "cool", "warm", "mono"];
@@ -13,7 +14,7 @@ export const iridescentFold = defineComponent({
 		"Holographic foil or satin: crumpled creases or long draped folds, a pastel thin-film sheen and specular streaks, drawn in WebGL.",
 	category: "backgrounds",
 	status: "beta",
-	variants: { variant: VARIANTS, tone: TONES, speed: SPEEDS, position: POSITIONS },
+	variants: variantsOf(iridescentFoldVariants, ["variant", "tone", "speed", "position"]),
 	props: [
 		{
 			name: "variant",
@@ -86,29 +87,9 @@ export const iridescentFold = defineComponent({
 	impl: {
 		react: {
 			entry: "IridescentFold",
-			files: [
-				{ path: "iridescent-fold/iridescent-fold.tsx", type: "registry:ui" },
-				{ path: "iridescent-fold/fold.ts", type: "registry:ui" },
-				{ path: "iridescent-fold/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/use-canvas-engine.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "IridescentFold",
-			files: [
-				{ path: "iridescent-fold/iridescent-fold.svelte", type: "registry:ui" },
-				{ path: "iridescent-fold/fold.ts", type: "registry:ui" },
-				{ path: "iridescent-fold/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/canvas-engine.svelte.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: [

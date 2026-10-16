@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { navigationMenuTriggerStyle as navigationMenuTriggerStyleVariants } from "./react/variants";
 
 export const navigationMenu = defineComponent({
 	slug: "navigation-menu",
@@ -7,9 +8,7 @@ export const navigationMenu = defineComponent({
 		"Site navigation with hover and focus triggers and one shared panel that resizes and slides between them.",
 	category: "base",
 	status: "beta",
-	variants: {
-		size: ["sm", "default"],
-	},
+	variants: variantsOf(navigationMenuTriggerStyleVariants, ["size"]),
 	props: [
 		{
 			name: "value",
@@ -71,31 +70,9 @@ export const navigationMenu = defineComponent({
 	impl: {
 		react: {
 			entry: "NavigationMenu",
-			files: [
-				{ path: "navigation-menu/navigation-menu.tsx", type: "registry:ui" },
-				{ path: "navigation-menu/variants.ts", type: "registry:ui" },
-				{ path: "lib/anchor.ts", type: "registry:lib" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
-			registryDependencies: ["popover"],
 		},
 		svelte: {
 			entry: "NavigationMenu",
-			files: [
-				{ path: "navigation-menu/navigation-menu.svelte", type: "registry:ui" },
-				{ path: "navigation-menu/navigation-menu-list.svelte", type: "registry:ui" },
-				{ path: "navigation-menu/navigation-menu-item.svelte", type: "registry:ui" },
-				{ path: "navigation-menu/navigation-menu-trigger.svelte", type: "registry:ui" },
-				{ path: "navigation-menu/navigation-menu-content.svelte", type: "registry:ui" },
-				{ path: "navigation-menu/navigation-menu-link.svelte", type: "registry:ui" },
-				{ path: "navigation-menu/navigation-menu-viewport.svelte", type: "registry:ui" },
-				{ path: "navigation-menu/navigation-menu-indicator.svelte", type: "registry:ui" },
-				{ path: "navigation-menu/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
-			registryDependencies: ["popover"],
 		},
 	},
 	keywords: ["navigation", "menu", "navbar", "mega menu", "header", "site nav"],

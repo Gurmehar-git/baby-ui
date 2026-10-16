@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { separator as separatorVariants } from "./react/variants";
 
 export const separator = defineComponent({
 	slug: "separator",
@@ -7,7 +8,7 @@ export const separator = defineComponent({
 		"A hairline between groups of content, horizontal or vertical, solid or dashed.",
 	category: "base",
 	status: "stable",
-	variants: { variant: ["solid", "dashed"] },
+	variants: variantsOf(separatorVariants, ["variant"]),
 	props: [
 		{
 			name: "variant",
@@ -48,21 +49,9 @@ export const separator = defineComponent({
 	impl: {
 		react: {
 			entry: "Separator",
-			files: [
-				{ path: "separator/separator.tsx", type: "registry:ui" },
-				{ path: "separator/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Separator",
-			files: [
-				{ path: "separator/separator.svelte", type: "registry:ui" },
-				{ path: "separator/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["separator", "divider", "hr", "rule"],

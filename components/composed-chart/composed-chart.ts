@@ -91,29 +91,14 @@ export const composedChart = defineComponent({
 		copyright: "Copyright (c) 2026 uixmat",
 	},
 	impl: {
+		// The usage composes line and series layers.
 		react: {
 			entry: "ComposedChart",
-			files: [
-				{ path: "composed-chart/composed-chart.tsx", type: "registry:ui" },
-				{ path: "composed-chart/geometry.ts", type: "registry:ui" },
-				{ path: "composed-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "chart-series", "line-chart", "area-chart"],
+			registryDependencies: ["chart-series", "line-chart"],
 		},
 		svelte: {
 			entry: "ComposedChart",
-			files: [
-				{ path: "composed-chart/composed-chart.svelte", type: "registry:ui" },
-				{ path: "composed-chart/series-bar.svelte", type: "registry:ui" },
-				{ path: "composed-chart/context.ts", type: "registry:ui" },
-				{ path: "composed-chart/geometry.ts", type: "registry:ui" },
-				{ path: "composed-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "chart-series", "line-chart", "area-chart"],
+			registryDependencies: ["chart-series", "line-chart"],
 		},
 	},
 	keywords: ["composed", "combo", "bar", "line", "area", "chart"],

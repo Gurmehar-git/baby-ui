@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogPaperWindow as ogPaperWindowVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogPaperWindow = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogPaperWindowVariants, ["mode"]),
 	props: [
 		{
 			name: "name",
@@ -66,21 +67,9 @@ export const ogPaperWindow = defineComponent({
 	impl: {
 		react: {
 			entry: "OgPaperWindow",
-			files: [
-				{ path: "og-paper-window/og-paper-window.tsx", type: "registry:ui" },
-				{ path: "og-paper-window/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgPaperWindow",
-			files: [
-				{ path: "og-paper-window/og-paper-window.svelte", type: "registry:ui" },
-				{ path: "og-paper-window/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "window", "paper", "serif", "takumi"],

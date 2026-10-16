@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { wheelPicker as wheelPickerVariants } from "./react/variants";
 
 const ROWS = ["3", "5", "7"];
 
@@ -9,7 +10,7 @@ export const wheelPicker = defineComponent({
 		"iOS-style barrel columns that flick, snap and loop, for times, dates and lists.",
 	category: "advanced",
 	status: "stable",
-	variants: { rows: ROWS },
+	variants: variantsOf(wheelPickerVariants, ["rows"]),
 	props: [
 		{
 			name: "rows",
@@ -115,23 +116,9 @@ export const wheelPicker = defineComponent({
 	impl: {
 		react: {
 			entry: "WheelPicker",
-			files: [
-				{ path: "wheel-picker/wheel-picker.tsx", type: "registry:ui" },
-				{ path: "wheel-picker/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "WheelPicker",
-			files: [
-				{ path: "wheel-picker/wheel-picker.svelte", type: "registry:ui" },
-				{ path: "wheel-picker/wheel-picker-column.svelte", type: "registry:ui" },
-				{ path: "wheel-picker/context.ts", type: "registry:ui" },
-				{ path: "wheel-picker/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["wheel", "picker", "time", "barrel", "ios", "scroll", "select"],

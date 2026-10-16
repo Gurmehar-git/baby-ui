@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { textReel as textReelVariants } from "./react/variants";
 
 export const textReel = defineComponent({
 	slug: "text-reel",
@@ -7,7 +8,7 @@ export const textReel = defineComponent({
 		"An endless reel of words, a vertical column or a horizontal marquee, that drifts, then speeds up and reverses with page scroll.",
 	category: "text",
 	status: "stable",
-	variants: { orientation: ["vertical", "horizontal"], size: ["sm", "default", "lg"] },
+	variants: variantsOf(textReelVariants, ["orientation", "size"]),
 	props: [
 		{
 			name: "orientation",
@@ -71,23 +72,9 @@ export const textReel = defineComponent({
 	impl: {
 		react: {
 			entry: "TextReel",
-			files: [
-				{ path: "text-reel/text-reel.tsx", type: "registry:ui" },
-				{ path: "text-reel/reel.ts", type: "registry:ui" },
-				{ path: "text-reel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "TextReel",
-			files: [
-				{ path: "text-reel/text-reel.svelte", type: "registry:ui" },
-				{ path: "text-reel/reel.ts", type: "registry:ui" },
-				{ path: "text-reel/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["reel", "stream", "scroll", "velocity", "words", "loop", "text animation"],

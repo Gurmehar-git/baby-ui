@@ -1,38 +1,5 @@
 import { defineComponent } from "@baby-ui/registry-schema";
 
-const files = (ext: "tsx" | "svelte") =>
-	ext === "tsx"
-		? [
-				{ path: "invoice-list/invoice-list.tsx", type: "registry:ui" as const },
-				{ path: "invoice-list/invoice-core.ts", type: "registry:ui" as const },
-				{ path: "invoice-list/variants.ts", type: "registry:ui" as const },
-				{ path: "lib/cn.ts", type: "registry:lib" as const },
-			]
-		: [
-				...[
-					"invoice-list",
-					"invoice-list-table",
-					"invoice-list-row",
-					"invoice-list-row-skeleton",
-					"invoice-list-cards",
-					"invoice-list-card",
-					"invoice-list-card-skeleton",
-					"invoice-list-status",
-					"invoice-list-downloads",
-					"invoice-list-empty",
-					"invoice-list-footer",
-				].map((name) => ({
-					path: `invoice-list/${name}.svelte`,
-					type: "registry:ui" as const,
-				})),
-				{ path: "invoice-list/context.ts", type: "registry:ui" as const },
-				{ path: "invoice-list/invoice-core.ts", type: "registry:ui" as const },
-				{ path: "invoice-list/variants.ts", type: "registry:ui" as const },
-				{ path: "lib/cn.ts", type: "registry:lib" as const },
-			];
-
-const registryDependencies = ["badge", "skeleton", "table"];
-
 export const invoiceList = defineComponent({
 	slug: "invoice-list",
 	name: "Invoice List",
@@ -95,18 +62,8 @@ export const invoiceList = defineComponent({
 		],
 	},
 	impl: {
-		react: {
-			entry: "InvoiceList",
-			files: files("tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies,
-		},
-		svelte: {
-			entry: "InvoiceList",
-			files: files("svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies,
-		},
+		react: { entry: "InvoiceList" },
+		svelte: { entry: "InvoiceList" },
 	},
 	keywords: [
 		"invoice",

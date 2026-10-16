@@ -73,28 +73,9 @@ export const projectionLine = defineComponent({
 		copyright: "Copyright (c) 2026 uixmat",
 	},
 	impl: {
-		react: {
-			entry: "ProjectionLine",
-			files: [
-				{ path: "projection-line/projection-line.tsx", type: "registry:ui" },
-				{ path: "projection-line/geometry.ts", type: "registry:ui" },
-				{ path: "projection-line/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "line-chart"],
-		},
-		svelte: {
-			entry: "ProjectionLine",
-			files: [
-				{ path: "projection-line/projection-line.svelte", type: "registry:ui" },
-				{ path: "projection-line/geometry.ts", type: "registry:ui" },
-				{ path: "projection-line/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "line-chart"],
-		},
+		// The usage projects inside a LineChart.
+		react: { entry: "ProjectionLine", registryDependencies: ["line-chart"] },
+		svelte: { entry: "ProjectionLine", registryDependencies: ["line-chart"] },
 	},
 	keywords: ["forecast", "projection", "trend", "chart", "line"],
 });

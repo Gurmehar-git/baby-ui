@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { badge as badgeVariants } from "./react/variants";
 
 const VARIANTS = [
 	"default",
@@ -18,7 +19,7 @@ export const badge = defineComponent({
 		"Compact status label with semantic colour variants and an optional leading dot.",
 	category: "base",
 	status: "stable",
-	variants: { variant: VARIANTS, size: ["sm", "default", "lg", "xl"] },
+	variants: variantsOf(badgeVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "variant",
@@ -65,21 +66,9 @@ export const badge = defineComponent({
 	impl: {
 		react: {
 			entry: "Badge",
-			files: [
-				{ path: "badge/badge.tsx", type: "registry:ui" },
-				{ path: "badge/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "Badge",
-			files: [
-				{ path: "badge/badge.svelte", type: "registry:ui" },
-				{ path: "badge/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["badge", "tag", "status", "label", "chip"],

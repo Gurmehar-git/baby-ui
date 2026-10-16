@@ -96,26 +96,9 @@ export const sankeyChart = defineComponent({
 	impl: {
 		react: {
 			entry: "SankeyChart",
-			files: [
-				{ path: "sankey-chart/sankey-chart.tsx", type: "registry:ui" },
-				{ path: "sankey-chart/layout.ts", type: "registry:ui" },
-				{ path: "sankey-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-sankey"],
-			registryDependencies: ["chart"],
 		},
 		svelte: {
 			entry: "SankeyChart",
-			files: [
-				{ path: "sankey-chart/sankey-chart.svelte", type: "registry:ui" },
-				{ path: "sankey-chart/sankey-plot.svelte", type: "registry:ui" },
-				{ path: "sankey-chart/layout.ts", type: "registry:ui" },
-				{ path: "sankey-chart/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "d3-sankey"],
-			registryDependencies: ["chart"],
 		},
 	},
 	keywords: ["sankey", "flow", "funnel", "chart", "journey"],

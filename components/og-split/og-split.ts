@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogSplit as ogSplitVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 
@@ -10,7 +11,7 @@ export const ogSplit = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES },
+	variants: variantsOf(ogSplitVariants, ["mode"]),
 	props: [
 		{
 			name: "name",
@@ -63,21 +64,9 @@ export const ogSplit = defineComponent({
 	impl: {
 		react: {
 			entry: "OgSplit",
-			files: [
-				{ path: "og-split/og-split.tsx", type: "registry:ui" },
-				{ path: "og-split/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgSplit",
-			files: [
-				{ path: "og-split/og-split.svelte", type: "registry:ui" },
-				{ path: "og-split/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "brand", "split", "image", "takumi"],

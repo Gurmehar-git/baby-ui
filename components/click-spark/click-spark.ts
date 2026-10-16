@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { clickSpark as clickSparkVariants } from "./react/variants";
 
 export const clickSpark = defineComponent({
 	slug: "click-spark",
@@ -7,7 +8,7 @@ export const clickSpark = defineComponent({
 		"A burst of short lines wherever the page is pressed, drawn on one fixed canvas.",
 	category: "advanced",
 	status: "stable",
-	variants: { tone: ["foreground", "primary", "muted"], scope: ["page", "parent"] },
+	variants: variantsOf(clickSparkVariants, ["tone", "scope"]),
 	props: [
 		{
 			name: "tone",
@@ -71,23 +72,9 @@ export const clickSpark = defineComponent({
 	impl: {
 		react: {
 			entry: "ClickSpark",
-			files: [
-				{ path: "click-spark/click-spark.tsx", type: "registry:ui" },
-				{ path: "click-spark/sparks.ts", type: "registry:ui" },
-				{ path: "click-spark/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ClickSpark",
-			files: [
-				{ path: "click-spark/click-spark.svelte", type: "registry:ui" },
-				{ path: "click-spark/sparks.ts", type: "registry:ui" },
-				{ path: "click-spark/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["click", "spark", "cursor", "burst", "effect", "canvas", "splash"],

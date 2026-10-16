@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { scrollProgress as scrollProgressVariants } from "./react/variants";
 
 const POSITIONS = ["left", "right", "bottom-left", "bottom-right"];
 
@@ -9,7 +10,7 @@ export const scrollProgress = defineComponent({
 		"A ruler of ticks that fills as the page or a container scrolls, with a live percentage.",
 	category: "blocks",
 	status: "stable",
-	variants: { position: POSITIONS },
+	variants: variantsOf(scrollProgressVariants, ["position"]),
 	props: [
 		{
 			name: "value",
@@ -95,21 +96,9 @@ export const scrollProgress = defineComponent({
 	impl: {
 		react: {
 			entry: "ScrollProgress",
-			files: [
-				{ path: "scroll-progress/scroll-progress.tsx", type: "registry:ui" },
-				{ path: "scroll-progress/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "ScrollProgress",
-			files: [
-				{ path: "scroll-progress/scroll-progress.svelte", type: "registry:ui" },
-				{ path: "scroll-progress/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["scroll", "progress", "ruler", "ticks", "indicator"],

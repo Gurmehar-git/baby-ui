@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { circularText as circularTextVariants } from "./react/variants";
 
 const DIRECTIONS = ["clockwise", "counterclockwise"];
 
@@ -9,7 +10,7 @@ export const circularText = defineComponent({
 	category: "text",
 	status: "stable",
 	demo: { mode: "auto", frame: "none" },
-	variants: { direction: DIRECTIONS },
+	variants: variantsOf(circularTextVariants, ["direction"]),
 	props: [
 		{
 			name: "text",
@@ -63,21 +64,9 @@ export const circularText = defineComponent({
 	impl: {
 		react: {
 			entry: "CircularText",
-			files: [
-				{ path: "circular-text/circular-text.tsx", type: "registry:ui" },
-				{ path: "circular-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "CircularText",
-			files: [
-				{ path: "circular-text/circular-text.svelte", type: "registry:ui" },
-				{ path: "circular-text/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "circular", "spin", "rotate", "logo"],

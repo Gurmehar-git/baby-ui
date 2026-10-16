@@ -3,15 +3,6 @@ import { defineComponent } from "@baby-ui/registry-schema";
 const VARIANTS = ["default", "outline", "chip"];
 const SIZES = ["xs", "sm", "default", "lg", "xl"];
 
-const files = (main: string[]) => [
-	...main.map((path) => ({
-		path: `billing-toggle/${path}`,
-		type: "registry:ui" as const,
-	})),
-	{ path: "billing-toggle/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
 export const billingToggle = defineComponent({
 	slug: "billing-toggle",
 	name: "Billing Toggle",
@@ -95,15 +86,9 @@ export const billingToggle = defineComponent({
 	impl: {
 		react: {
 			entry: "BillingToggle",
-			files: files(["billing-toggle.tsx"]),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["toggle-group", "badge", "slot-text", "letter-morph"],
 		},
 		svelte: {
 			entry: "BillingToggle",
-			files: files(["billing-toggle.svelte", "billing-price.svelte"]),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["toggle-group", "badge", "slot-text", "letter-morph"],
 		},
 	},
 	keywords: ["billing", "pricing", "monthly", "yearly", "toggle", "plan"],

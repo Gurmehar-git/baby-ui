@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { webglLiquid as webglLiquidVariants } from "./react/variants";
 
 const TONES = ["ocean", "ember", "mono"];
 const SPEEDS = ["slow", "normal", "fast"];
@@ -11,7 +12,7 @@ export const webglLiquid = defineComponent({
 		"A rising liquid field that fades up into the surface, drawn in WebGL from theme tokens.",
 	category: "backgrounds",
 	status: "stable",
-	variants: { tone: TONES, speed: SPEEDS, position: POSITIONS },
+	variants: variantsOf(webglLiquidVariants, ["tone", "speed", "position"]),
 	props: [
 		{
 			name: "tone",
@@ -87,29 +88,9 @@ export const webglLiquid = defineComponent({
 	impl: {
 		react: {
 			entry: "WebglLiquid",
-			files: [
-				{ path: "webgl-liquid/webgl-liquid.tsx", type: "registry:ui" },
-				{ path: "webgl-liquid/liquid.ts", type: "registry:ui" },
-				{ path: "webgl-liquid/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/use-canvas-engine.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "WebglLiquid",
-			files: [
-				{ path: "webgl-liquid/webgl-liquid.svelte", type: "registry:ui" },
-				{ path: "webgl-liquid/liquid.ts", type: "registry:ui" },
-				{ path: "webgl-liquid/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/canvas-engine.svelte.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "liquid", "fluid", "webgl", "shader", "hero"],

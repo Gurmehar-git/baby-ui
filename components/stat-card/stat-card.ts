@@ -124,41 +124,9 @@ export const statCard = defineComponent({
 	impl: {
 		react: {
 			entry: "StatCard",
-			files: [
-				{ path: "stat-card/stat-card.tsx", type: "registry:ui" },
-				{ path: "stat-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"chart",
-				"area-chart",
-				"line-chart",
-				"card",
-				"badge",
-				"rolling-digits",
-				"skeleton",
-				"button",
-			],
 		},
 		svelte: {
 			entry: "StatCard",
-			files: [
-				{ path: "stat-card/stat-card.svelte", type: "registry:ui" },
-				{ path: "stat-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"chart",
-				"area-chart",
-				"line-chart",
-				"card",
-				"badge",
-				"rolling-digits",
-				"skeleton",
-				"button",
-			],
 		},
 	},
 	keywords: ["stat", "kpi", "metric", "card", "dashboard"],
@@ -233,35 +201,9 @@ export const statCardMap = defineComponent({
 	impl: {
 		react: {
 			entry: "StatCardMap",
-			files: [
-				{ path: "stat-card-map/stat-card-map.tsx", type: "registry:ui" },
-				{ path: "stat-card-map/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"chart",
-				"choropleth-chart",
-				"card",
-				"badge",
-				"rolling-digits",
-			],
 		},
 		svelte: {
 			entry: "StatCardMap",
-			files: [
-				{ path: "stat-card-map/stat-card-map.svelte", type: "registry:ui" },
-				{ path: "stat-card-map/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: [
-				"chart",
-				"choropleth-chart",
-				"card",
-				"badge",
-				"rolling-digits",
-			],
 		},
 	},
 	keywords: ["stat", "kpi", "map", "choropleth", "card"],

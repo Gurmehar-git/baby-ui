@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { lightCaustics as lightCausticsVariants } from "./react/variants";
 
 const TONES = ["ocean", "lagoon", "ember", "mono"];
 const SPEEDS = ["slow", "normal", "fast"];
@@ -12,7 +13,7 @@ export const lightCaustics = defineComponent({
 		"Rippling underwater caustic filaments over a tinted base, drawn in WebGL from theme tokens.",
 	category: "backgrounds",
 	status: "beta",
-	variants: { tone: TONES, speed: SPEEDS, position: POSITIONS },
+	variants: variantsOf(lightCausticsVariants, ["tone", "speed", "position"]),
 	props: [
 		{
 			name: "tone",
@@ -75,29 +76,9 @@ export const lightCaustics = defineComponent({
 	impl: {
 		react: {
 			entry: "LightCaustics",
-			files: [
-				{ path: "light-caustics/light-caustics.tsx", type: "registry:ui" },
-				{ path: "light-caustics/caustics.ts", type: "registry:ui" },
-				{ path: "light-caustics/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/use-canvas-engine.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "LightCaustics",
-			files: [
-				{ path: "light-caustics/light-caustics.svelte", type: "registry:ui" },
-				{ path: "light-caustics/caustics.ts", type: "registry:ui" },
-				{ path: "light-caustics/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-				{ path: "lib/shader.ts", type: "registry:lib" },
-				{ path: "lib/surface.ts", type: "registry:lib" },
-				{ path: "lib/canvas-engine.svelte.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "caustics", "water", "light", "webgl", "shader", "hero"],

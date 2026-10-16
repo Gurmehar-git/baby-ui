@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { ogAppTile as ogAppTileVariants } from "./react/variants";
 
 const MODES = ["light", "dark"];
 const TONES = ["chart", "primary", "neutral"];
@@ -11,7 +12,7 @@ export const ogAppTile = defineComponent({
 	category: "og-images",
 	status: "stable",
 	demo: { mode: "auto", frame: "og" },
-	variants: { mode: MODES, tone: TONES },
+	variants: variantsOf(ogAppTileVariants, ["mode", "tone"]),
 	props: [
 		{
 			name: "name",
@@ -66,21 +67,9 @@ export const ogAppTile = defineComponent({
 	impl: {
 		react: {
 			entry: "OgAppTile",
-			files: [
-				{ path: "og-app-tile/og-app-tile.tsx", type: "registry:ui" },
-				{ path: "og-app-tile/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "OgAppTile",
-			files: [
-				{ path: "og-app-tile/og-app-tile.svelte", type: "registry:ui" },
-				{ path: "og-app-tile/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["og", "open graph", "social card", "app", "icon", "tile", "takumi"],

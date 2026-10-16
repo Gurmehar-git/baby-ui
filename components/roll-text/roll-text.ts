@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { rollText as rollTextVariants } from "./react/variants";
 
 const SIZES = ["sm", "md", "lg"];
 const MOTIONS = ["slide", "tilt"];
@@ -10,7 +11,7 @@ export const rollText = defineComponent({
 		"A label that rolls on hover like a flip-clock digit, or swaps to a second label on hover and click.",
 	category: "text",
 	status: "stable",
-	variants: { size: SIZES, motion: MOTIONS },
+	variants: variantsOf(rollTextVariants, ["size", "motion"]),
 	props: [
 		{
 			name: "text",
@@ -121,23 +122,9 @@ export const rollText = defineComponent({
 	impl: {
 		react: {
 			entry: "RollText",
-			files: [
-				{ path: "roll-text/roll-text.tsx", type: "registry:ui" },
-				{ path: "roll-text/variants.ts", type: "registry:ui" },
-				{ path: "roll-text/swap.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "RollText",
-			files: [
-				{ path: "roll-text/roll-text.svelte", type: "registry:ui" },
-				{ path: "roll-text/variants.ts", type: "registry:ui" },
-				{ path: "roll-text/swap.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["text", "roll", "hover", "flip", "swap", "toggle"],

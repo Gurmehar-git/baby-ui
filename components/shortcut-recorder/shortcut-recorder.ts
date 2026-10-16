@@ -1,14 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { shortcutRecorder as shortcutRecorderVariants } from "./react/variants";
 
 const SIZES = ["sm", "default", "lg"];
-
-const files = (main: string) => [
-	{ path: `shortcut-recorder/${main}`, type: "registry:ui" as const },
-	{ path: "shortcut-recorder/recorder.ts", type: "registry:ui" as const },
-	{ path: "shortcut-recorder/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/shortcut-keys.ts", type: "registry:lib" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const shortcutRecorder = defineComponent({
 	slug: "shortcut-recorder",
@@ -17,7 +10,7 @@ export const shortcutRecorder = defineComponent({
 		"A field that records a keyboard shortcut and warns before taking a combination that is already bound or kept by the system.",
 	category: "advanced",
 	status: "stable",
-	variants: { size: SIZES },
+	variants: variantsOf(shortcutRecorderVariants, ["size"]),
 	props: [
 		{
 			name: "label",
@@ -110,15 +103,9 @@ export const shortcutRecorder = defineComponent({
 	impl: {
 		react: {
 			entry: "ShortcutRecorder",
-			files: files("shortcut-recorder.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "shortcut"],
 		},
 		svelte: {
 			entry: "ShortcutRecorder",
-			files: files("shortcut-recorder.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "shortcut"],
 		},
 	},
 	keywords: ["shortcut", "hotkey", "keybinding", "keyboard", "record", "settings"],

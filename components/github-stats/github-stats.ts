@@ -1,34 +1,5 @@
 import { defineComponent } from "@baby-ui/registry-schema";
 
-const files = (ext: "tsx" | "svelte") => [
-	{ path: `github-stats/github-stats.${ext}`, type: "registry:ui" as const },
-	{ path: "github-stats/core.ts", type: "registry:ui" as const },
-	{ path: "github-stats/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
-const dependencies = [
-	"clsx",
-	"tailwind-merge",
-	"tailwind-variants",
-	"d3-array",
-	"d3-scale",
-	"d3-shape",
-];
-
-const registryDependencies = [
-	"avatar",
-	"badge",
-	"bar-chart",
-	"card",
-	"chart",
-	"rolling-digits",
-	"empty",
-	"github-calendar",
-	"select",
-	"tabs",
-];
-
 export const githubStatsBlock = defineComponent({
 	slug: "github-stats",
 	name: "GitHub Stats",
@@ -111,18 +82,8 @@ export const githubStatsBlock = defineComponent({
 	},
 
 	impl: {
-		react: {
-			entry: "GithubStats",
-			files: files("tsx"),
-			dependencies,
-			registryDependencies,
-		},
-		svelte: {
-			entry: "GithubStats",
-			files: files("svelte"),
-			dependencies,
-			registryDependencies,
-		},
+		react: { entry: "GithubStats" },
+		svelte: { entry: "GithubStats" },
 	},
 
 	keywords: [

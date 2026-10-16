@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { avatar as avatarVariants } from "./react/variants";
 
 export const avatar = defineComponent({
 	slug: "avatar",
@@ -6,7 +7,7 @@ export const avatar = defineComponent({
 	description: "User image with initials underneath, shown until the image really loads.",
 	category: "base",
 	status: "stable",
-	variants: { size: ["sm", "default", "lg", "xl"], shape: ["circle", "square"] },
+	variants: variantsOf(avatarVariants, ["size", "shape"]),
 	props: [
 		{
 			name: "src",
@@ -54,27 +55,9 @@ export const avatar = defineComponent({
 	impl: {
 		react: {
 			entry: "Avatar",
-			files: [
-				{ path: "avatar/avatar.tsx", type: "registry:ui" },
-				{ path: "avatar/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "@base-ui/react"],
 		},
 		svelte: {
 			entry: "Avatar",
-			files: [
-				{ path: "avatar/avatar.svelte", type: "registry:ui" },
-				{ path: "avatar/avatar-image.svelte", type: "registry:ui" },
-				{ path: "avatar/avatar-fallback.svelte", type: "registry:ui" },
-				{ path: "avatar/avatar-badge.svelte", type: "registry:ui" },
-				{ path: "avatar/avatar-group.svelte", type: "registry:ui" },
-				{ path: "avatar/avatar-group-count.svelte", type: "registry:ui" },
-				{ path: "avatar/context.ts", type: "registry:ui" },
-				{ path: "avatar/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: [

@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { circuitBoard as circuitBoardVariants } from "./react/variants";
 
 const TONES = ["primary", "chart", "foreground"];
 const SPEEDS = ["slow", "normal", "fast"];
@@ -11,7 +12,7 @@ export const circuitBoard = defineComponent({
 	category: "animated",
 	status: "stable",
 	demo: { mode: "auto", frame: "lg" },
-	variants: { tone: TONES, speed: SPEEDS },
+	variants: variantsOf(circuitBoardVariants, ["tone", "speed"]),
 	props: [
 		{
 			name: "nodes",
@@ -111,23 +112,9 @@ export const circuitBoard = defineComponent({
 	impl: {
 		react: {
 			entry: "CircuitBoard",
-			files: [
-				{ path: "circuit-board/circuit-board.tsx", type: "registry:ui" },
-				{ path: "circuit-board/geometry.ts", type: "registry:ui" },
-				{ path: "circuit-board/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "CircuitBoard",
-			files: [
-				{ path: "circuit-board/circuit-board.svelte", type: "registry:ui" },
-				{ path: "circuit-board/geometry.ts", type: "registry:ui" },
-				{ path: "circuit-board/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["circuit", "svg", "traces", "network", "diagram", "pulse"],

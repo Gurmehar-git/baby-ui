@@ -3,13 +3,6 @@ import { defineComponent } from "@baby-ui/registry-schema";
 const VARIANTS = ["default", "secondary", "outline", "ghost", "destructive"];
 const SIZES = ["xs", "sm", "default", "lg", "xl"];
 
-const files = (main: string) => [
-	{ path: `action-button/${main}`, type: "registry:ui" as const },
-	{ path: "action-button/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/morph.ts", type: "registry:lib" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
-
 export const actionButton = defineComponent({
 	slug: "action-button",
 	name: "Action Button",
@@ -105,15 +98,9 @@ export const actionButton = defineComponent({
 	impl: {
 		react: {
 			entry: "ActionButton",
-			files: files("action-button.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button"],
 		},
 		svelte: {
 			entry: "ActionButton",
-			files: files("action-button.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button"],
 		},
 	},
 	keywords: ["button", "async", "loading", "success", "copy", "action"],

@@ -102,27 +102,9 @@ export const usageCard = defineComponent({
 	impl: {
 		react: {
 			entry: "UsageCard",
-			files: [
-				{ path: "usage-card/usage-card.tsx", type: "registry:ui" },
-				{ path: "usage-card/usage-meter.tsx", type: "registry:ui" },
-				{ path: "usage-card/meter.ts", type: "registry:ui" },
-				{ path: "usage-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "ring-chart", "card", "badge", "rolling-digits"],
 		},
 		svelte: {
 			entry: "UsageCard",
-			files: [
-				{ path: "usage-card/usage-card.svelte", type: "registry:ui" },
-				{ path: "usage-card/usage-meter.svelte", type: "registry:ui" },
-				{ path: "usage-card/meter.ts", type: "registry:ui" },
-				{ path: "usage-card/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["chart", "ring-chart", "card", "badge", "rolling-digits"],
 		},
 	},
 	licenseOrigin: {

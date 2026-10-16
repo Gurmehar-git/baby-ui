@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { dotMatrixGlow as dotMatrixGlowVariants } from "./react/variants";
 
 const SHAPES = ["dot", "square", "plus"];
 const SIZES = ["sm", "md", "lg"];
@@ -13,7 +14,7 @@ export const dotMatrixGlow = defineComponent({
 		"A hero dot grid that brightens and swells around the pointer and ripples outward on press.",
 	category: "backgrounds",
 	status: "beta",
-	variants: { shape: SHAPES, size: SIZES, tone: TONES, position: POSITIONS },
+	variants: variantsOf(dotMatrixGlowVariants, ["shape", "size", "tone", "position"]),
 	props: [
 		{
 			name: "shape",
@@ -106,23 +107,9 @@ export const dotMatrixGlow = defineComponent({
 	impl: {
 		react: {
 			entry: "DotMatrixGlow",
-			files: [
-				{ path: "dot-matrix-glow/dot-matrix-glow.tsx", type: "registry:ui" },
-				{ path: "dot-matrix-glow/dots.ts", type: "registry:ui" },
-				{ path: "dot-matrix-glow/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 		svelte: {
 			entry: "DotMatrixGlow",
-			files: [
-				{ path: "dot-matrix-glow/dot-matrix-glow.svelte", type: "registry:ui" },
-				{ path: "dot-matrix-glow/dots.ts", type: "registry:ui" },
-				{ path: "dot-matrix-glow/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
 		},
 	},
 	keywords: ["background", "dot grid", "hero", "cursor", "glow", "ripple", "canvas"],

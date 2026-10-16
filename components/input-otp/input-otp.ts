@@ -74,25 +74,9 @@ export const inputOtp = defineComponent({
 	impl: {
 		react: {
 			entry: "InputOTP",
-			files: [
-				{ path: "input-otp/input-otp.tsx", type: "registry:ui" },
-				{ path: "input-otp/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "input-otp"],
 		},
 		svelte: {
 			entry: "InputOTP",
-			files: [
-				{ path: "input-otp/input-otp.svelte", type: "registry:ui" },
-				{ path: "input-otp/input-otp-group.svelte", type: "registry:ui" },
-				{ path: "input-otp/input-otp-slot.svelte", type: "registry:ui" },
-				{ path: "input-otp/input-otp-separator.svelte", type: "registry:ui" },
-				{ path: "input-otp/context.ts", type: "registry:ui" },
-				{ path: "input-otp/variants.ts", type: "registry:ui" },
-				{ path: "lib/cn.ts", type: "registry:lib" },
-			],
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants", "bits-ui"],
 		},
 	},
 	keywords: ["otp", "one-time code", "2fa", "verification", "pin", "form", "auth"],

@@ -1,13 +1,8 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { splitButton as splitButtonVariants } from "./react/variants";
 
 const VARIANTS = ["default", "secondary", "outline"];
 const SIZES = ["sm", "default", "lg"];
-
-const files = (main: string) => [
-	{ path: `split-button/${main}`, type: "registry:ui" as const },
-	{ path: "split-button/variants.ts", type: "registry:ui" as const },
-	{ path: "lib/cn.ts", type: "registry:lib" as const },
-];
 
 export const splitButton = defineComponent({
 	slug: "split-button",
@@ -16,7 +11,7 @@ export const splitButton = defineComponent({
 		"A primary action with a chevron that opens related actions, built from Button Group and Dropdown Menu.",
 	category: "advanced",
 	status: "stable",
-	variants: { variant: VARIANTS, size: SIZES },
+	variants: variantsOf(splitButtonVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "label",
@@ -105,15 +100,9 @@ export const splitButton = defineComponent({
 	impl: {
 		react: {
 			entry: "SplitButton",
-			files: files("split-button.tsx"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "button-group", "dropdown-menu"],
 		},
 		svelte: {
 			entry: "SplitButton",
-			files: files("split-button.svelte"),
-			dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
-			registryDependencies: ["button", "button-group", "dropdown-menu"],
 		},
 	},
 	keywords: ["split", "button", "menu", "dropdown", "actions"],
