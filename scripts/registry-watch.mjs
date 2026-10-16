@@ -13,9 +13,7 @@ const ROOTS = [
 	"components",
 	"packages/demos/src/usage",
 	"apps/site/src/docs",
-	"pro/packages/schema/src",
-	"pro/packages/react/src",
-	"pro/packages/svelte/src",
+	"pro/components",
 	"pro/packages/demos/src/usage",
 ]
 	.map((path) => join(ROOT, path))

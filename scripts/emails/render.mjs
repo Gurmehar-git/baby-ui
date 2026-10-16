@@ -27,25 +27,24 @@ const pascal = (slug) => slug.replace(/(^|-)(\w)/g, (_, __, c) => c.toUpperCase(
 const posix = (p) => p.split("\\").join("/");
 const str = JSON.stringify;
 
-const PRO = join(ROOT, "pro/packages");
+const PRO = join(ROOT, "pro");
 const OUT_PRO = join(ROOT, "apps/site/src/lib/generated/emails-pro");
 
 /** Every template folder: public ones, plus Pro ones when the private submodule is present. */
-function discover(dir, pro, paths) {
+function discover(dir, pro) {
 	if (!existsSync(dir)) return [];
 	return readdirSync(dir)
 		.filter((d) => d.startsWith("email-") && d !== "email-kit")
-		.map((slug) => ({ slug, pro, ...paths(slug) }));
+		.map((slug) => ({
+			slug,
+			pro,
+			react: join(dir, slug, "react", slug),
+			svelte: join(dir, slug, "svelte", `${slug}.svelte`),
+		}));
 }
 const templates = [
-	...discover(COMPONENTS, false, (slug) => ({
-		react: join(COMPONENTS, slug, "react", slug),
-		svelte: join(COMPONENTS, slug, "svelte", `${slug}.svelte`),
-	})),
-	...discover(join(PRO, "react/src"), true, (slug) => ({
-		react: join(PRO, "react/src", slug, slug),
-		svelte: join(PRO, "svelte/src/lib", slug, `${slug}.svelte`),
-	})),
+	...discover(COMPONENTS, false),
+	...discover(join(PRO, "components"), true),
 ];
 const slugs = templates.map((t) => t.slug);
 
@@ -201,8 +200,8 @@ const shared = await bundle(
 		`export { emailPlainText } from ${str(posix(TEMPLATES))};`,
 		...(templates.some((t) => t.pro)
 			? [
-					`export { proSpecs } from ${str(posix(join(PRO, "schema/src/index.ts")))};`,
-					`export { EMAIL_SAMPLES as PRO_SAMPLES } from ${str(posix(join(PRO, "demos/src/data/email-samples.ts")))};`,
+					`export { proSpecs } from ${str(posix(join(PRO, "components/specs.ts")))};`,
+					`export { EMAIL_SAMPLES as PRO_SAMPLES } from ${str(posix(join(PRO, "packages/demos/src/data/email-samples.ts")))};`,
 				]
 			: []),
 	].join("\n"),

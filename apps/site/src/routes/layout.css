@@ -5,13 +5,12 @@
 /* Both ports per component. Svelte's shared .ts files are generated copies and gitignored,
    which Tailwind honours; their React sources sit in the same folder and are scanned. */
 @source "../../../../components";
-@source "../../../../pro/packages/react/src/**/*.ts";
 /* Only what the site renders: React demos and usage snippets appear as code, never as markup. */
 @source "../../../../packages/demos/src/svelte";
 @source "../../../../packages/demos/src/controls";
 @source "../../../../packages/demos/src/data";
 /* The private Pro submodule; Tailwind skips these paths when it is not checked out. */
-@source "../../../../pro/packages/svelte/src";
+@source "../../../../pro/components";
 @source "../../../../pro/packages/demos/src/svelte";
 @source "../../../../pro/packages/demos/src/screens";
 

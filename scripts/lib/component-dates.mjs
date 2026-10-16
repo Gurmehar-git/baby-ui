@@ -2,57 +2,51 @@ import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 
-/** Where component sources live in each repo; `pro` is a separate checkout with its own history. */
+/**
+ * Where component sources live in each repo; `pro` is a separate checkout with its own history.
+ * `legacy` names the layout before the move into components/<slug>/, so old commits key the same.
+ */
 const REPOS = [
 	{
 		dir: ".",
 		prefix: "",
-		roots: [
-			"components",
-			"packages/ui-react/src",
-			"packages/ui-svelte/src/lib",
-			"packages/registry-schema/src/components",
-		],
+		legacy: {
+			"packages/ui-react/src": "react",
+			"packages/ui-svelte/src/lib": "svelte",
+			"packages/registry-schema/src/components": "spec",
+		},
 	},
 	{
 		dir: "pro",
 		prefix: "pro/",
-		roots: [
-			"packages/react/src",
-			"packages/svelte/src/lib",
-			"packages/schema/src/components",
-		],
+		legacy: {
+			"packages/react/src": "react",
+			"packages/svelte/src/lib": "svelte",
+			"packages/schema/src/components": "spec",
+		},
 	},
 ];
+const rootsOf = (repo) => ["components", ...Object.keys(repo.legacy)];
 
 // A commit touching this share of components is a format or lint sweep, not an update.
 const SWEEP_SHARE = 0.25;
 
 const day = (iso) => iso.slice(0, 10);
 
-// Public ports and specs moved into components/<slug>/; history before the move keys the same way.
-const LEGACY = {
-	"packages/ui-react/src": "react",
-	"packages/ui-svelte/src/lib": "svelte",
-};
-const LEGACY_SPECS = "packages/registry-schema/src/components";
-
-/** `components/<slug>/<fw>` or `components/<slug>/<slug>.ts` for public items, `root/<entry>` for Pro. */
-function keyOf(path, roots) {
-	const root = roots.find((r) => path.startsWith(`${r}/`));
+/** `components/<slug>/<fw>` for a port, `components/<slug>/<slug>.ts` for a spec. */
+function keyOf(path, legacy) {
+	const root = rootsOf({ legacy }).find((r) => path.startsWith(`${r}/`));
 	if (!root) return null;
 	const [head = "", port] = path.slice(root.length + 1).split("/");
 	if (head === "lib") return null;
-	if (LEGACY[root]) return `components/${head}/${LEGACY[root]}`;
-	if (root === LEGACY_SPECS) {
+	const was = legacy[root];
+	if (was === "spec") {
 		const slug = head.replace(/\.ts$/, "");
 		return slug === "index" ? null : `components/${slug}/${slug}.ts`;
 	}
-	if (root === "components") {
-		if (port === "react" || port === "svelte") return `components/${head}/${port}`;
-		return port === `${head}.ts` ? `components/${head}/${port}` : null;
-	}
-	return `${root}/${head}`;
+	if (was) return port ? `components/${head}/${was}` : null;
+	if (port === "react" || port === "svelte") return `components/${head}/${port}`;
+	return port === `${head}.ts` ? `components/${head}/${port}` : null;
 }
 
 const nameOf = (key) =>
@@ -68,8 +62,9 @@ function git(cwd, args) {
 	});
 }
 
-function repoDates({ dir, prefix, roots }, cwd, today) {
+function repoDates({ dir, prefix, legacy }, cwd, today) {
 	const at = join(cwd, dir);
+	const roots = rootsOf({ legacy });
 	if (!existsSync(join(at, ".git"))) return {};
 	// A shallow clone would date every component to the clone's first commit.
 	if (git(at, ["rev-parse", "--is-shallow-repository"]).trim() === "true") {
@@ -87,7 +82,7 @@ function repoDates({ dir, prefix, roots }, cwd, today) {
 		.filter(Boolean)
 		.map((chunk) => {
 			const [date = "", ...paths] = chunk.split("\n");
-			const keys = new Set(paths.map((p) => keyOf(p.trim(), roots)).filter(Boolean));
+			const keys = new Set(paths.map((p) => keyOf(p.trim(), legacy)).filter(Boolean));
 			return { date: day(date), keys, names: new Set([...keys].map(nameOf)) };
 		});
 	const all = new Set(commits.flatMap((c) => [...c.names]));
@@ -110,7 +105,7 @@ function repoDates({ dir, prefix, roots }, cwd, today) {
 		...roots,
 	]);
 	for (const path of untracked.split("\n")) {
-		const key = keyOf(path.trim(), roots);
+		const key = keyOf(path.trim(), legacy);
 		if (key) dates[prefix + key] = { added: today, updated: today };
 	}
 	return dates;

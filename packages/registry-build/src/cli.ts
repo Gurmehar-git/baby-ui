@@ -77,7 +77,7 @@ async function writeGenerated(relative: string, value: unknown) {
 	await outputs.write(resolve(GENERATED, relative), json(value));
 }
 
-const PRO_SCHEMA = resolve(REPO_ROOT, "pro/packages/schema/src/index.ts");
+const PRO_SCHEMA = resolve(REPO_ROOT, "pro/components/specs.ts");
 
 /** Pro specs when the private submodule is checked out; only their usage snippets go public. */
 async function loadProSpecs(): Promise<ComponentSpec[]> {

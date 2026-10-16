@@ -4,20 +4,10 @@ import { isMainThread } from "node:worker_threads";
 import { flush, Output, rel } from "./gen/core.mjs";
 import { autoDemos } from "./gen/demos.mjs";
 import { emailTheme } from "./gen/email-theme.mjs";
-import { indexes } from "./gen/indexes.mjs";
+import { indexes, proIndexes } from "./gen/indexes.mjs";
 import { HAS_PRO } from "./gen/roots.mjs";
-import { componentSharedFiles, sharedFiles } from "./gen/shared.mjs";
+import { componentSharedFiles } from "./gen/shared.mjs";
 import { usageFiles } from "./gen/usage.mjs";
-
-/** React is the source for every shared .ts; the Svelte port gets generated copies. Public
- * components live in `components/<slug>/{react,svelte}`; Pro still uses the package layout. */
-export const TARGETS = [
-	{
-		name: "pro",
-		react: "pro/packages/react/src",
-		svelte: "pro/packages/svelte/src/lib",
-	},
-];
 
 // Every generated file sits under one of these, and each keeps a .gitignore listing its own.
 const PUBLIC_ROOTS = [
@@ -28,7 +18,9 @@ const PUBLIC_ROOTS = [
 	"packages/demos/src/svelte",
 	"packages/demos/src/usage",
 ];
-const PRO_ROOTS = HAS_PRO ? ["pro/packages/svelte/src/lib"] : [];
+const PRO_ROOTS = HAS_PRO
+	? ["pro/components", "pro/packages/react/src", "pro/packages/svelte/src/lib"]
+	: [];
 
 /**
  * Brings generated files up to date. Writes only files whose content changed, so a dev server
@@ -39,13 +31,13 @@ export function generate({ check = false, quiet = false } = {}) {
 	const report = { collisions: [], unmatched: [], demoless: [] };
 	// Written before the shared step so its Svelte copy is generated in the same run.
 	emailTheme(output);
+	// React is the source for every shared .ts; each Svelte port gets generated copies.
 	componentSharedFiles(output);
-	for (const target of TARGETS) {
-		sharedFiles(output, target);
-	}
+	if (HAS_PRO) componentSharedFiles(output, "pro/components");
 	autoDemos(output, report);
 	usageFiles(output, report);
 	indexes(output, report);
+	if (HAS_PRO) proIndexes(output, report);
 	const result = { ...flush(output, { check }), report };
 	if (!quiet) {
 		const verb = check ? "stale" : "updated";

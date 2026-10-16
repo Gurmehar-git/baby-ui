@@ -1,5 +1,5 @@
-import { existsSync, readFileSync, statSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { basename, dirname, resolve } from "node:path";
 import ts from "typescript";
 
 const cache = new Map();
@@ -55,8 +55,8 @@ function resolveModule(from, spec) {
 
 /** Named exports read from syntax alone, fast enough to rerun on every save. `declared` marks
  * names defined here (not re-exported), which picks the owning file when two export one name. */
-export function exportsOf(path, seen = new Set()) {
-	const hit = cache.get(path);
+export function exportsOf(path, seen = new Set(), text) {
+	const hit = text === undefined && cache.get(path);
 	// A hit is stale when any re-exported file changed, not just this one.
 	if (
 		hit &&
@@ -65,7 +65,7 @@ export function exportsOf(path, seen = new Set()) {
 		return hit.names;
 	if (seen.has(path)) return [];
 	seen.add(path);
-	const stamps = new Map([[path, statSync(path).mtimeMs]]);
+	const stamps = new Map(text === undefined ? [[path, statSync(path).mtimeMs]] : []);
 	const follow = (target) => {
 		const found = exportsOf(target, seen);
 		for (const [file, t] of cache.get(target)?.stamps ?? []) stamps.set(file, t);
@@ -75,7 +75,7 @@ export function exportsOf(path, seen = new Set()) {
 	const kind = path.endsWith(".tsx") ? ts.ScriptKind.TSX : ts.ScriptKind.TS;
 	const source = ts.createSourceFile(
 		path,
-		scriptOf(path),
+		text ?? scriptOf(path),
 		ts.ScriptTarget.Latest,
 		false,
 		kind,
@@ -165,6 +165,20 @@ export function exportsOf(path, seen = new Set()) {
 			}
 		}
 	}
-	cache.set(path, { stamps, names });
+	if (text === undefined) cache.set(path, { stamps, names });
 	return names;
+}
+
+/** Exports of a file as this run will leave it: generated text first, else the file on disk. */
+export const exportsIn = (output, path) =>
+	output.files.has(path)
+		? exportsOf(path, new Set(), output.files.get(path))
+		: exportsOf(path);
+
+/** A folder's file names as this run will leave it: on disk plus files it generates there. */
+export function filesIn(output, dir) {
+	const names = new Set(readdirSync(dir));
+	for (const path of output.files.keys())
+		if (dirname(path) === dir) names.add(basename(path));
+	return [...names];
 }

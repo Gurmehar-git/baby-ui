@@ -5,7 +5,7 @@ import { extname, join, relative, resolve } from "node:path";
 // `--expect=hidden` fails if any page, list or registry index shows it, `visible` if none does.
 const ROOT = resolve(import.meta.dirname, "..");
 const SITE = join(ROOT, "apps/site");
-const PRO = join(ROOT, "pro/packages");
+const PRO = join(ROOT, "pro/components");
 const KIT = join(SITE, ".svelte-kit");
 const BUNDLE = [join(KIT, "output/client"), join(KIT, "output/server")];
 // What a visitor or crawler can reach: prerendered pages and the indexes the site serves.
@@ -51,23 +51,18 @@ const folders = (dir) =>
 	existsSync(dir)
 		? readdirSync(dir).filter((n) => n !== "lib" && statSync(join(dir, n)).isDirectory())
 		: [];
+const components = (root) =>
+	folders(root).filter((n) =>
+		["react", "svelte"].some((f) => existsSync(join(root, n, f))),
+	);
 // A slug the public packages also ship is public, whatever Pro builds on it.
-const publicSlugs = new Set(
-	folders(join(ROOT, "components")).filter((n) =>
-		["react", "svelte"].some((f) => existsSync(join(ROOT, "components", n, f))),
-	),
-);
-const proSlugs = [
-	...new Set([
-		...folders(join(PRO, "svelte/src/lib")),
-		...folders(join(PRO, "react/src")),
-	]),
-].filter((slug) => !publicSlugs.has(slug));
+const publicSlugs = new Set(components(join(ROOT, "components")));
+const proSlugs = components(PRO).filter((slug) => !publicSlugs.has(slug));
 
 // Lazy Pro modules are manifest keys; eager ones keep their glob path inside a chunk.
 const bundled = BUNDLE.some((dir) =>
 	[...files(dir, new Set([".js", ".json"]))].some((path) =>
-		readFileSync(path, "utf8").includes("pro/packages/"),
+		/pro\/(components|packages)\//.test(readFileSync(path, "utf8")),
 	),
 );
 if (!bundled) {

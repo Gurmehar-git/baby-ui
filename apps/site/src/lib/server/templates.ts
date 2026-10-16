@@ -7,12 +7,9 @@ type Loader = () => Promise<TemplateModule>;
 /** Finds a template in `import.meta.glob` results: the file named after its own folder, so
  * helper parts in the same folder (the email kit's pieces) are never mistaken for one. */
 export function templateLoader(globs: Record<string, Loader>) {
-	// Public templates sit in components/<slug>/svelte/, Pro's still in <slug>/.
 	return (slug: string): Loader | undefined =>
-		Object.entries(globs).find(
-			([path]) =>
-				path.endsWith(`/${slug}/${slug}.svelte`) ||
-				path.endsWith(`/${slug}/svelte/${slug}.svelte`),
+		Object.entries(globs).find(([path]) =>
+			path.endsWith(`/${slug}/svelte/${slug}.svelte`),
 		)?.[1];
 }
 

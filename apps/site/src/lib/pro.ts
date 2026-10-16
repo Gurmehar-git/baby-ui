@@ -46,10 +46,10 @@ export async function proScreen(name: string) {
 }
 
 export const proEmailTemplates = import.meta.glob<Template>(
-	"../../../../pro/packages/svelte/src/lib/email-*/email-*.svelte",
+	"../../../../pro/components/email-*/svelte/email-*.svelte",
 );
 export const proOgTemplates = import.meta.glob<Template>(
-	"../../../../pro/packages/svelte/src/lib/og-*/og-*.svelte",
+	"../../../../pro/components/og-*/svelte/og-*.svelte",
 );
 
 const emailSamples = import.meta.glob<Samples>(
@@ -62,13 +62,13 @@ const ogSamples = import.meta.glob<Samples>(
 );
 
 const proComponentModules = import.meta.glob<Record<string, unknown>>(
-	"../../../../pro/packages/svelte/src/lib/*/index.ts",
+	"../../../../pro/components/*/svelte/index.ts",
 );
 
 /** Pro components' own modules by slug (their folder), for pages that render one unframed. */
 export const proComponents: Lazy<Record<string, unknown>> = Object.fromEntries(
 	Object.entries(proComponentModules).map(([path, load]) => [
-		path.split("/").at(-2) ?? path,
+		path.split("/").at(-3) ?? path,
 		load,
 	]),
 );

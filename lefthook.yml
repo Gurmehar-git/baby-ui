@@ -18,7 +18,7 @@ pre-commit:
       run: node scripts/check-comments.mjs {staged_files}
       fail_text: "Comments must be 2 lines or fewer, with no banners or blank lines (listed above). Shorten them, then stage and commit again."
     - name: generated files
-      glob: "{packages,pro/packages}/**/*.{ts,tsx,svelte}"
+      glob: "{components,packages,pro/components,pro/packages}/**/*.{ts,tsx,svelte}"
       run: node scripts/generate.mjs --check
       fail_text: "Generated files are stale. Run `pnpm gen`, stage the result and commit again."
 

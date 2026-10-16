@@ -27,28 +27,16 @@ function copyShared(output, dir, reactDir, svelteDir, port = (code) => code) {
 	}
 }
 
-/** `components/<dir>/react/*.ts` copied into `components/<dir>/svelte/` (React-only folders skipped). */
-export function componentSharedFiles(output) {
-	const root = join(ROOT, "components");
-	for (const entry of readdirSync(root, { withFileTypes: true })) {
+/** `<root>/<dir>/react/*.ts` copied into `<root>/<dir>/svelte/` (React-only folders skipped). */
+export function componentSharedFiles(output, root = "components") {
+	const dir = join(ROOT, root);
+	if (!existsSync(dir)) return;
+	for (const entry of readdirSync(dir, { withFileTypes: true })) {
 		if (!entry.isDirectory()) continue;
-		const reactDir = join(root, entry.name, "react");
-		const svelteDir = join(root, entry.name, "svelte");
+		const reactDir = join(dir, entry.name, "react");
+		const svelteDir = join(dir, entry.name, "svelte");
 		if (existsSync(reactDir) && existsSync(svelteDir)) {
 			copyShared(output, entry.name, reactDir, svelteDir, toSveltePort);
 		}
-	}
-}
-
-/** Copies every shared React .ts into the matching Svelte folder (React-only folders are skipped). */
-export function sharedFiles(output, target) {
-	const reactRoot = join(ROOT, target.react);
-	const svelteRoot = join(ROOT, target.svelte);
-	if (!existsSync(reactRoot) || !existsSync(svelteRoot)) return;
-	for (const entry of readdirSync(reactRoot, { withFileTypes: true })) {
-		if (!entry.isDirectory()) continue;
-		const destDir = join(svelteRoot, entry.name);
-		if (existsSync(destDir))
-			copyShared(output, entry.name, join(reactRoot, entry.name), destDir);
 	}
 }

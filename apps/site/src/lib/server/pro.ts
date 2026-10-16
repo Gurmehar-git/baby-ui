@@ -2,7 +2,7 @@ import type { ComponentSpec } from "@baby-ui/registry-schema";
 
 // Eager, so the registry stays synchronous; server-only, so specs never reach the client.
 const specs = import.meta.glob<ComponentSpec[]>(
-	"../../../../../pro/packages/schema/src/index.ts",
+	"../../../../../pro/components/specs.ts",
 	{ eager: true, import: "proSpecs" },
 );
 

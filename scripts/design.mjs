@@ -52,8 +52,8 @@ for (const slug of slugs) {
 		const sources = [
 			`components/${slug}/react`,
 			`components/${slug}/svelte`,
-			`pro/packages/react/src/${slug}`,
-			`pro/packages/svelte/src/lib/${slug}`,
+			`pro/components/${slug}/react`,
+			`pro/components/${slug}/svelte`,
 		];
 		const r = await buildReport({
 			source: sources.filter((s) => existsSync(s)),

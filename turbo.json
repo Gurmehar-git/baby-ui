@@ -28,8 +28,7 @@
 				"packages/tokens/src/**",
 				"components/email-*/**",
 				"packages/demos/src/data/email-samples.ts",
-				"pro/packages/react/src/email-*/**",
-				"pro/packages/svelte/src/lib/email-*/**",
+				"pro/components/email-*/**",
 				"pro/packages/demos/src/data/email-samples.ts"
 			],
 			"outputs": [
@@ -61,7 +60,7 @@
 				"../registry-schema/src/**",
 				"../../components/**",
 				"../../apps/site/src/docs/**",
-				"../../pro/packages/schema/src/**"
+				"../../pro/components/**"
 			],
 			"outputs": [
 				"../../apps/site/static/r/**",
@@ -88,7 +87,11 @@
 				"BABY_UI_REGISTRY_URL",
 				"BABY_UI_SITE_URL"
 			],
-			"inputs": ["$TURBO_DEFAULT$", "../../pro/packages/*/src/**"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"../../pro/components/**",
+				"../../pro/packages/*/src/**"
+			],
 			"outputs": [".svelte-kit/**", "build/**", ".docvia/**"]
 		},
 		"@baby-ui/site#dev": {

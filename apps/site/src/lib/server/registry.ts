@@ -35,17 +35,9 @@ function datedPaths(spec: ComponentSpec) {
 	const folders = FRAMEWORKS.flatMap((f) => {
 		const folder = spec.impl[f]?.files[0]?.path.split("/")[0];
 		if (!folder || folder === "lib") return [];
-		// Public ports live in components/<folder>/<f>; Pro keeps its package layout.
-		return [
-			pro
-				? `${f === "react" ? "pro/packages/react/src" : "pro/packages/svelte/src/lib"}/${folder}`
-				: `components/${folder}/${f}`,
-		];
+		return [`${pro ? "pro/" : ""}components/${folder}/${f}`];
 	});
-	const file = pro
-		? `pro/packages/schema/src/components/${spec.slug}.ts`
-		: `components/${spec.slug}/${spec.slug}.ts`;
-	return { folders, file };
+	return { folders, file: `${pro ? "pro/" : ""}components/${spec.slug}/${spec.slug}.ts` };
 }
 
 type Freshness = "new" | "updated" | null;

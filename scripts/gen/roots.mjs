@@ -3,7 +3,7 @@ import { join, sep } from "node:path";
 import { ROOT } from "./core.mjs";
 
 // The private Pro submodule joins in whenever it is checked out.
-export const HAS_PRO = existsSync(join(ROOT, "pro/packages/react/src"));
+export const HAS_PRO = existsSync(join(ROOT, "pro/components"));
 
 /** Folders whose edits can change generated output. */
 export function sourceRoots() {
@@ -12,7 +12,7 @@ export function sourceRoots() {
 		"packages/demos/src",
 		// tokens.css feeds the generated email theme.
 		"packages/tokens/src",
-		...(HAS_PRO ? ["pro/packages/react/src"] : []),
+		...(HAS_PRO ? ["pro/components"] : []),
 	].map((path) => join(ROOT, path));
 }
 

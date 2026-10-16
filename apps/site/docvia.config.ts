@@ -17,7 +17,7 @@ export default defineConfig({
 		// Pro prose lives in the private submodule; public checkouts get an empty collection.
 		{
 			name: "pro",
-			sourceDir: "../../pro/docs/components",
+			sourceDir: "../../pro/components",
 			baseUrl: "/components",
 			frontmatter: ComponentDocRequiredSchema,
 			optional: true,
