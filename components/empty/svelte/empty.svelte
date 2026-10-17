@@ -22,8 +22,8 @@ let {
 
 <!-- Part names and data-slot values follow shadcn-svelte, so this drops into an existing project. -->
 <div
-	{...rest}
 	data-slot="empty"
+	{...rest}
 	data-layout={layout}
 	data-size={size}
 	class={cn(empty({ variant, layout, size }).root(), classProp)}

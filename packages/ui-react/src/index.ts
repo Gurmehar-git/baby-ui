@@ -149,7 +149,7 @@ export { confirmMorph, type ConfirmMorphVariant, type ConfirmMorphSize } from "@
 export { type ContextChunk, type ContextCardsProps, ContextCards } from "@baby-ui/components/react/context-cards";
 export { contextChunkBadge, type ContextChunkTone } from "@baby-ui/components/react/context-cards";
 export { ContextMenu, ContextMenuSub, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuShortcut, ContextMenuLabel, ContextMenuSeparator, ContextMenuSubTrigger, ContextMenuSubContent, ContextMenuGroup, ContextMenuCheckboxItem, ContextMenuRadioGroup, ContextMenuRadioItem } from "@baby-ui/components/react/context-menu";
-export { type ConversationProps, Conversation, type ConversationContentProps, ConversationContent, type ConversationEmptyProps, ConversationEmpty, type ConversationScrollButtonProps, ConversationScrollButton } from "@baby-ui/components/react/conversation";
+export { type ConversationProps, Conversation, type ConversationContentProps, ConversationContent, ConversationEmpty, type ConversationScrollButtonProps, ConversationScrollButton } from "@baby-ui/components/react/conversation";
 export { type CopyButtonProps, CopyButton } from "@baby-ui/components/react/copy-button";
 export { type CountdownProps, Countdown } from "@baby-ui/components/react/countdown";
 export { type CountdownUnit, COUNTDOWN_UNITS, UNIT_NAMES, toEpoch, sortUnits, countdownParts, spokenCountdown, createCountdownClock } from "@baby-ui/components/react/countdown";

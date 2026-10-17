@@ -11,6 +11,7 @@ import {
 	useRef,
 	useState,
 } from "react";
+import { Empty } from "../../empty/react/empty";
 import { cn } from "../../lib/cn";
 import { ScrollArea } from "../../scroll-area/react/scroll-area";
 
@@ -223,62 +224,15 @@ export function ConversationContent({
 	);
 }
 
-export interface ConversationEmptyProps {
-	icon?: ReactNode;
-	title?: string;
-	description?: string;
-	action?: ReactNode;
-	children?: ReactNode;
-	className?: string;
-}
-
-/** Placeholder shown before the first turn. */
-export function ConversationEmpty({
-	icon,
-	title = "Start a conversation",
-	description = "Ask a question or share what you're working on.",
-	action,
-	children,
-	className,
-}: ConversationEmptyProps) {
+/** Placeholder before the first turn: an Empty, so compose it from EmptyHeader, EmptyTitle and friends. */
+export function ConversationEmpty({ className, ...props }: ComponentProps<typeof Empty>) {
 	return (
-		<div
+		<Empty
 			data-slot="conversation-empty"
-			className={cn(
-				"grid min-h-48 w-full place-items-center px-6 py-10 text-center",
-				className,
-			)}
-		>
-			{children ?? (
-				<div className="flex max-w-sm flex-col items-center">
-					<div className="mb-4 flex size-10 items-center justify-center rounded-xl bg-muted text-muted-foreground">
-						{icon ?? (
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="1.75"
-								aria-hidden
-								className="size-[18px]"
-							>
-								<path
-									d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.9-.95L3 20l1.05-3.55A8.4 8.4 0 0 1 3.5 12 8.5 8.5 0 0 1 12 3.5a8.5 8.5 0 0 1 9 8Z"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-							</svg>
-						)}
-					</div>
-					{title ? <p className="font-medium text-foreground">{title}</p> : null}
-					{description ? (
-						<p className="mt-1 max-w-xs text-muted-foreground text-sm leading-relaxed">
-							{description}
-						</p>
-					) : null}
-					{action ? <div className="mt-4">{action}</div> : null}
-				</div>
-			)}
-		</div>
+			size="sm"
+			className={cn("min-h-48", className)}
+			{...props}
+		/>
 	);
 }
 

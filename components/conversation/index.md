@@ -17,13 +17,23 @@ scroll rounding without feeling loose.
 
 - `Conversation`: the root; owns the follow/detached state.
 - `ConversationContent`: the scrollable transcript itself (`role="log"`, live region).
-- `ConversationEmpty`: placeholder shown before the first turn.
+- `ConversationEmpty`: placeholder shown before the first turn; an `Empty`, so fill it with
+  `EmptyHeader`, `EmptyTitle` and `EmptyDescription`.
 - `ConversationScrollButton`: the jump-to-latest control; appears only once detached.
 
 ```tsx
 <Conversation>
   <ConversationContent>
-    {turns.length === 0 ? <ConversationEmpty /> : turns.map((t) => <Message {...t} />)}
+    {turns.length === 0 ? (
+      <ConversationEmpty>
+        <EmptyHeader>
+          <EmptyTitle>Start a conversation</EmptyTitle>
+          <EmptyDescription>Ask a question or share what you're working on.</EmptyDescription>
+        </EmptyHeader>
+      </ConversationEmpty>
+    ) : (
+      turns.map((t) => <Message {...t} />)
+    )}
   </ConversationContent>
   <ConversationScrollButton />
 </Conversation>
