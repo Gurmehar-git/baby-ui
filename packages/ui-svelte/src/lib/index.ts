@@ -967,6 +967,13 @@ export { type ScatterRootValue, setScatterRoot, useScatterRoot } from "@baby-ui/
 export { POINT_ENTER, POINT_BLUR, POINT_CONCEAL, scatterDomain, type NearestHit, nearestPoint, shapePath } from "@baby-ui/components/svelte/scatter-chart";
 export { scatterPoint, type ScatterSize, type ScatterShape, SCATTER_RADIUS, SCATTER_SHAPES } from "@baby-ui/components/svelte/scatter-chart";
 export { ScoreCard } from "@baby-ui/components/svelte/score-card";
+export { ScoreCardContent } from "@baby-ui/components/svelte/score-card";
+export { ScoreCardDescription } from "@baby-ui/components/svelte/score-card";
+export { ScoreCardGauge } from "@baby-ui/components/svelte/score-card";
+export { ScoreCardHeader } from "@baby-ui/components/svelte/score-card";
+export { ScoreCardTitle } from "@baby-ui/components/svelte/score-card";
+export { ScoreCardTrend } from "@baby-ui/components/svelte/score-card";
+export { type ScoreCardState, setScoreCard, scoreCardState } from "@baby-ui/components/svelte/score-card";
 export { scoreCard, type ScoreCardSize } from "@baby-ui/components/svelte/score-card";
 export { ScrollArea } from "@baby-ui/components/svelte/scroll-area";
 export { ScrollChoreography } from "@baby-ui/components/svelte/scroll-choreography";

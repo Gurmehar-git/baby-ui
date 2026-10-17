@@ -1,7 +1,24 @@
 "use client";
 
-import { ScoreCard } from "@baby-ui/react";
+import {
+	ScoreCard,
+	ScoreCardContent,
+	ScoreCardGauge,
+	ScoreCardHeader,
+	ScoreCardTitle,
+	ScoreCardTrend,
+} from "@baby-ui/react";
 
 export function Example() {
-	return <ScoreCard title="Performance" value={87} trend={4} />;
+	return (
+		<ScoreCard>
+			<ScoreCardHeader>
+				<ScoreCardTitle>Performance</ScoreCardTitle>
+				<ScoreCardTrend value={4} />
+			</ScoreCardHeader>
+			<ScoreCardContent>
+				<ScoreCardGauge value={87} label="Performance" />
+			</ScoreCardContent>
+		</ScoreCard>
+	);
 }

@@ -1,5 +1,20 @@
 <script lang="ts">
-import { ScoreCard } from "@baby-ui/svelte";
+import {
+	ScoreCard,
+	ScoreCardContent,
+	ScoreCardGauge,
+	ScoreCardHeader,
+	ScoreCardTitle,
+	ScoreCardTrend,
+} from "@baby-ui/svelte";
 </script>
 
-<ScoreCard title="Performance" value={87} trend={4} />
+<ScoreCard>
+	<ScoreCardHeader>
+		<ScoreCardTitle>Performance</ScoreCardTitle>
+		<ScoreCardTrend value={4} />
+	</ScoreCardHeader>
+	<ScoreCardContent>
+		<ScoreCardGauge value={87} label="Performance" />
+	</ScoreCardContent>
+</ScoreCard>

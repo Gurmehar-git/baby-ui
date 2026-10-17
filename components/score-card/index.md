@@ -6,6 +6,7 @@ category: blocks
 tags: [score, gauge, health score, nps, uptime, card]
 ---
 
-Composes `card`, `badge` and the gauge chart. `value`/`min`/`max` drive the dial; `trend` is
-optional and shows a signed badge for the change since the last reading. `tone` and `layout`
-pass straight through to the gauge chart.
+Built from parts: `ScoreCardHeader` holds `ScoreCardTitle`, an optional
+`ScoreCardDescription` and an optional `ScoreCardTrend` badge for the change since the last
+reading. `ScoreCardContent` holds `ScoreCardGauge`, which takes every gauge chart prop
+(`value`, `min`, `max`, `label`, `tone`, `layout`). `size` on `ScoreCard` sets the dial width.

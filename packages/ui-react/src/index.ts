@@ -567,7 +567,7 @@ export { sankeyChart, type SankeyOrientation, type SankeyLinkColor } from "@baby
 export { type ScatterChartProps, ScatterChart, type ScatterProps, Scatter } from "@baby-ui/components/react/scatter-chart";
 export { POINT_ENTER, POINT_BLUR, POINT_CONCEAL, scatterDomain, type NearestHit, nearestPoint, shapePath } from "@baby-ui/components/react/scatter-chart";
 export { scatterPoint, type ScatterSize, type ScatterShape, SCATTER_RADIUS, SCATTER_SHAPES } from "@baby-ui/components/react/scatter-chart";
-export { type ScoreCardProps, ScoreCard } from "@baby-ui/components/react/score-card";
+export { type ScoreCardProps, ScoreCard, ScoreCardHeader, ScoreCardTitle, ScoreCardDescription, type ScoreCardTrendProps, ScoreCardTrend, ScoreCardContent, ScoreCardGauge } from "@baby-ui/components/react/score-card";
 export { scoreCard, type ScoreCardSize } from "@baby-ui/components/react/score-card";
 export { type ScrollAreaProps, ScrollArea } from "@baby-ui/components/react/scroll-area";
 export { type ScrollChoreographyProps, ScrollChoreography } from "@baby-ui/components/react/scroll-choreography";
