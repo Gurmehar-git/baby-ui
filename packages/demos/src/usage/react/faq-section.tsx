@@ -1,6 +1,14 @@
 "use client";
 
-import { FaqSection } from "@baby-ui/react";
+import {
+	FaqSection,
+	FaqSectionContact,
+	FaqSectionHeader,
+	FaqSectionList,
+	FaqSectionRail,
+	FaqSectionTitle,
+	FaqSectionTopics,
+} from "@baby-ui/react";
 
 const items = [
 	{
@@ -22,14 +30,17 @@ const items = [
 
 export function Example() {
 	return (
-		<FaqSection
-			items={items}
-			variant="columns"
-			contact={{
-				label: "Still stuck?",
-				description: "Write to support",
-				href: "/support",
-			}}
-		/>
+		<FaqSection items={items} variant="columns">
+			<FaqSectionRail>
+				<FaqSectionHeader>
+					<FaqSectionTitle>Frequently asked questions</FaqSectionTitle>
+				</FaqSectionHeader>
+				<FaqSectionTopics />
+				<FaqSectionContact href="/support" description="Write to support">
+					Still stuck?
+				</FaqSectionContact>
+			</FaqSectionRail>
+			<FaqSectionList />
+		</FaqSection>
 	);
 }

@@ -1,5 +1,13 @@
 <script lang="ts">
-import { FaqSection } from "@baby-ui/svelte";
+import {
+	FaqSection,
+	FaqSectionContact,
+	FaqSectionHeader,
+	FaqSectionList,
+	FaqSectionRail,
+	FaqSectionTitle,
+	FaqSectionTopics,
+} from "@baby-ui/svelte";
 
 const items = [
 	{
@@ -20,8 +28,15 @@ const items = [
 ];
 </script>
 
-<FaqSection
-	{items}
-	variant="columns"
-	contact={{ label: "Still stuck?", description: "Write to support", href: "/support" }}
-/>
+<FaqSection {items} variant="columns">
+	<FaqSectionRail>
+		<FaqSectionHeader>
+			<FaqSectionTitle>Frequently asked questions</FaqSectionTitle>
+		</FaqSectionHeader>
+		<FaqSectionTopics />
+		<FaqSectionContact href="/support" description="Write to support">
+			Still stuck?
+		</FaqSectionContact>
+	</FaqSectionRail>
+	<FaqSectionList />
+</FaqSection>

@@ -228,8 +228,8 @@ export { expandingButtonGroup, type ExpandingButtonGroupVariant, type ExpandingB
 export { type ExpandingSearchProps, ExpandingSearch } from "@baby-ui/components/react/expanding-search";
 export { type ExpandingSearchItem, type ExpandingSearchGroup, rankSearch, groupSearch, splitSearchMatch } from "@baby-ui/components/react/expanding-search";
 export { expandingSearch, type ExpandingSearchSize, type ExpandingSearchVariant } from "@baby-ui/components/react/expanding-search";
-export { type FaqSectionProps, FaqSection } from "@baby-ui/components/react/faq-section";
-export { type FaqItem, type FaqContact, faqKey, faqCategory, faqCategories, faqMatches, highlightParts, faqHint } from "@baby-ui/components/react/faq-section";
+export { type FaqSectionProps, FaqSection, FaqSectionHeader, FaqSectionTitle, FaqSectionDescription, FaqSectionSearch, FaqSectionRail, FaqSectionTopics, FaqSectionList, FaqSectionEmpty, type FaqSectionContactProps, FaqSectionContact } from "@baby-ui/components/react/faq-section";
+export { type FaqItem, faqKey, faqCategory, faqCategories, faqMatches, highlightParts, faqHint } from "@baby-ui/components/react/faq-section";
 export { faqSection, type FaqSectionVariant } from "@baby-ui/components/react/faq-section";
 export { FieldSet, FieldLegend, FieldGroup, Field, FieldContent, FieldLabel, FieldTitle, FieldDescription, FieldSeparator, FieldError } from "@baby-ui/components/react/field";
 export { field, type FieldOrientation, type FieldSize, fieldLegend, type FieldLegendVariant, type FieldErrorEntry, fieldErrorMessages } from "@baby-ui/components/react/field";

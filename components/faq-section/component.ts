@@ -15,7 +15,8 @@ export const faqSection = defineComponent({
 		{
 			name: "items",
 			type: "FaqItem[]",
-			description: "Questions with a plain-text answer and an optional `category`.",
+			description:
+				"FaqSection: questions with a plain-text answer and an optional `category`.",
 			required: true,
 			control: { kind: "none" },
 		},
@@ -53,9 +54,17 @@ export const faqSection = defineComponent({
 			control: { kind: "none" },
 		},
 		{
-			name: "contact",
-			type: "{ label: string; description?: string; href?: string; onClick?: () => void }",
-			description: "A link or button to reach a person, under the list.",
+			name: "children",
+			type: "ReactNode | Snippet",
+			description:
+				"FaqSection: FaqSectionHeader (FaqSectionTitle, FaqSectionDescription), FaqSectionSearch, FaqSectionList, FaqSectionEmpty and FaqSectionContact; columns wraps the header, FaqSectionTopics and contact in FaqSectionRail.",
+			control: { kind: "none" },
+		},
+		{
+			name: "href",
+			type: "string",
+			description:
+				"FaqSectionContact: a link when set, otherwise a button (onClick). `description` adds a second line.",
 			control: { kind: "none" },
 		},
 	],

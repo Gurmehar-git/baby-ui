@@ -8,13 +8,6 @@ export interface FaqItem {
 	category?: string;
 }
 
-export interface FaqContact {
-	label: string;
-	description?: string;
-	href?: string;
-	onClick?: () => void;
-}
-
 export const faqKey = (item: FaqItem) => item.id ?? item.question;
 export const faqCategory = (item: FaqItem) => item.category ?? "General";
 

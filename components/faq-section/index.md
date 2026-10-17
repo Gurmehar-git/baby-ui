@@ -9,6 +9,11 @@ tags: [faq, questions, help, support, accordion, search, section]
 Composes `accordion`, `toggle-group`, `search-input` and `button`. Each item needs a
 `question` and a plain-text `answer`; `category` groups it in the `columns` variant.
 
+Arrange the parts: `FaqSectionHeader` with a title and description, `FaqSectionSearch` for
+the `search` variant, `FaqSectionList`, `FaqSectionEmpty` and `FaqSectionContact`. The
+`columns` variant puts the header, `FaqSectionTopics` and the contact in `FaqSectionRail`
+beside the list.
+
 `search` matches questions and answers while ignoring accents, marks every match, and shows
 a short excerpt under a closed question that only matches in its answer.
 

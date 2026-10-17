@@ -1,6 +1,13 @@
 "use client";
 
-import { useId, useState } from "react";
+import {
+	type ComponentProps,
+	createContext,
+	type ReactNode,
+	useContext,
+	useId,
+	useState,
+} from "react";
 import {
 	Accordion,
 	AccordionContent,
@@ -12,7 +19,6 @@ import { cn } from "../../lib/cn";
 import { SearchInput } from "../../search-input/react/search-input";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
 import {
-	type FaqContact,
 	type FaqItem,
 	faqCategories,
 	faqCategory,
@@ -23,14 +29,36 @@ import {
 } from "../faq";
 import { type FaqSectionVariant, faqSection } from "../variants";
 
-export type { FaqContact, FaqItem, FaqSectionVariant };
+export type { FaqItem, FaqSectionVariant };
 
-export interface FaqSectionProps {
+type FaqSectionState = {
+	items: FaqItem[];
+	variant: FaqSectionVariant;
+	type: "single" | "multiple";
+	titleId: string;
+	categories: string[];
+	open: string[];
+	setOpen: (next: string | string[]) => void;
+	topic: string;
+	setTopic: (next: string | string[]) => void;
+	text: string;
+	setText: (next: string) => void;
+	shown: FaqItem[];
+	styles: ReturnType<typeof faqSection>;
+};
+
+const FaqSectionContext = createContext<FaqSectionState | null>(null);
+
+function useFaqSection() {
+	const state = useContext(FaqSectionContext);
+	if (!state) throw new Error("FaqSection parts must be rendered inside a FaqSection.");
+	return state;
+}
+
+export interface FaqSectionProps extends Omit<ComponentProps<"section">, "children"> {
 	items: FaqItem[];
 	/** `accordion` is one centred list, `columns` adds a topic rail, `search` filters as you type. */
 	variant?: FaqSectionVariant;
-	title?: string;
-	description?: string;
 	/** Several answers open at once. */
 	type?: "single" | "multiple";
 	/** Open item ids (an item's `id`, else its question). */
@@ -42,18 +70,16 @@ export interface FaqSectionProps {
 	/** Search text in the search variant. */
 	query?: string;
 	onQueryChange?: (query: string) => void;
-	/** A way to reach a person when the answer is not listed. */
-	contact?: FaqContact;
-	searchLabel?: string;
-	className?: string;
+	children?: ReactNode;
 }
 
-/** An FAQ section: a centred accordion, a topic rail beside its questions, or a list that filters and highlights as you type. */
+/**
+ * An FAQ section from parts: FaqSectionHeader, FaqSectionSearch, FaqSectionList and
+ * FaqSectionContact; the columns variant puts the header and FaqSectionTopics in FaqSectionRail.
+ */
 export function FaqSection({
 	items,
 	variant = "accordion",
-	title = "Frequently asked questions",
-	description,
 	type = "single",
 	value,
 	onValueChange,
@@ -61,75 +87,213 @@ export function FaqSection({
 	onCategoryChange,
 	query,
 	onQueryChange,
-	contact,
-	searchLabel = "Search questions",
 	className,
+	children,
+	...props
 }: FaqSectionProps) {
-	const id = useId();
-	const s = faqSection({ variant });
+	const titleId = useId();
+	const styles = faqSection({ variant });
 	const categories = faqCategories(items);
 	const [ownOpen, setOwnOpen] = useState<string[]>(() =>
 		items[0] ? [faqKey(items[0])] : [],
 	);
 	const [ownCategory, setOwnCategory] = useState(categories[0] ?? "General");
 	const [ownQuery, setOwnQuery] = useState("");
-	const open = value ?? ownOpen;
-	const topic = category ?? ownCategory;
 	const text = variant === "search" ? (query ?? ownQuery) : "";
-	const setOpen = (next: string | string[]) => {
-		const list = Array.isArray(next) ? next : next ? [next] : [];
-		if (value === undefined) setOwnOpen(list);
-		onValueChange?.(list);
-	};
-	const setTopic = (next: string | string[]) => {
-		const picked = Array.isArray(next) ? next[0] : next;
-		if (!picked) return;
-		if (category === undefined) setOwnCategory(picked);
-		onCategoryChange?.(picked);
-	};
-	const setText = (next: string) => {
-		if (query === undefined) setOwnQuery(next);
-		onQueryChange?.(next);
-	};
-	const shown = items.filter((item) => faqMatches(item, text));
-	const marked = (copy: string) =>
-		highlightParts(copy, text).map((part, index) =>
-			part.match ? (
-				// biome-ignore lint/suspicious/noArrayIndexKey: runs of one string never reorder.
-				<mark key={index} className={s.mark()}>
-					{part.text}
-				</mark>
-			) : (
-				part.text
-			),
-		);
 
-	const list = (entries: FaqItem[], hidden: (item: FaqItem) => boolean = () => false) => (
+	const state: FaqSectionState = {
+		items,
+		variant,
+		type,
+		titleId,
+		categories,
+		open: value ?? ownOpen,
+		setOpen: (next) => {
+			const list = Array.isArray(next) ? next : next ? [next] : [];
+			if (value === undefined) setOwnOpen(list);
+			onValueChange?.(list);
+		},
+		topic: category ?? ownCategory,
+		setTopic: (next) => {
+			const picked = Array.isArray(next) ? next[0] : next;
+			if (!picked) return;
+			if (category === undefined) setOwnCategory(picked);
+			onCategoryChange?.(picked);
+		},
+		text,
+		setText: (next) => {
+			if (query === undefined) setOwnQuery(next);
+			onQueryChange?.(next);
+		},
+		shown: items.filter((item) => faqMatches(item, text)),
+		styles,
+	};
+
+	return (
+		<FaqSectionContext.Provider value={state}>
+			<section
+				data-slot="faq-section"
+				data-variant={variant}
+				aria-labelledby={titleId}
+				className={cn(styles.root(), className)}
+				{...props}
+			>
+				<div className={variant === "columns" ? styles.grid() : styles.stack()}>
+					{children}
+				</div>
+			</section>
+		</FaqSectionContext.Provider>
+	);
+}
+
+export function FaqSectionHeader({ className, ...props }: ComponentProps<"div">) {
+	const { styles } = useFaqSection();
+	return (
+		<div
+			data-slot="faq-section-header"
+			className={cn(styles.intro(), className)}
+			{...props}
+		/>
+	);
+}
+
+/** The heading that names the section. */
+export function FaqSectionTitle({ className, ...props }: ComponentProps<"h2">) {
+	const { titleId, styles } = useFaqSection();
+	return (
+		<h2
+			data-slot="faq-section-title"
+			id={titleId}
+			className={cn(styles.title(), className)}
+			{...props}
+		/>
+	);
+}
+
+export function FaqSectionDescription({ className, ...props }: ComponentProps<"p">) {
+	const { styles } = useFaqSection();
+	return (
+		<p
+			data-slot="faq-section-description"
+			className={cn(styles.description(), className)}
+			{...props}
+		/>
+	);
+}
+
+/** The search field and a live result count; filters FaqSectionList as you type. */
+export function FaqSectionSearch({
+	label = "Search questions",
+	className,
+}: {
+	/** Accessible name; also the placeholder. */
+	label?: string;
+	className?: string;
+}) {
+	const { items, text, setText, shown, styles } = useFaqSection();
+	return (
+		<div data-slot="faq-section-search" className={cn(styles.searchRow(), className)}>
+			<SearchInput label={label} value={text} onValueChange={setText} />
+			<p className={styles.resultCount()} aria-live="polite">
+				{text.trim()
+					? `${shown.length} ${shown.length === 1 ? "answer" : "answers"}`
+					: `${items.length} questions`}
+			</p>
+		</div>
+	);
+}
+
+/** The columns variant's side column: header, FaqSectionTopics and contact. */
+export function FaqSectionRail({ className, ...props }: ComponentProps<"div">) {
+	const { styles } = useFaqSection();
+	return (
+		<div
+			data-slot="faq-section-rail"
+			className={cn(styles.rail(), className)}
+			{...props}
+		/>
+	);
+}
+
+/** A topic switcher built from each item's `category`, with a count per topic. */
+export function FaqSectionTopics({
+	label = "Question topics",
+	className,
+}: {
+	label?: string;
+	className?: string;
+}) {
+	const { items, categories, topic, setTopic, styles } = useFaqSection();
+	return (
+		<ToggleGroup
+			data-slot="faq-section-topics"
+			variant="segmented"
+			orientation="vertical"
+			label={label}
+			value={topic}
+			onValueChange={setTopic}
+			className={cn(styles.topics(), className)}
+		>
+			{categories.map((entry) => (
+				<ToggleGroupItem key={entry} value={entry} className={styles.topic()}>
+					{entry}
+					<span className={styles.count()}>
+						{items.filter((item) => faqCategory(item) === entry).length}
+					</span>
+				</ToggleGroupItem>
+			))}
+		</ToggleGroup>
+	);
+}
+
+function Marked({ copy }: { copy: string }) {
+	const { text, styles } = useFaqSection();
+	return highlightParts(copy, text).map((part, index) =>
+		part.match ? (
+			// biome-ignore lint/suspicious/noArrayIndexKey: runs of one string never reorder.
+			<mark key={index} className={styles.mark()}>
+				{part.text}
+			</mark>
+		) : (
+			part.text
+		),
+	);
+}
+
+function Questions({ entries, filtered }: { entries: FaqItem[]; filtered?: boolean }) {
+	const { type, open, setOpen, text, styles } = useFaqSection();
+	return (
 		<Accordion
 			type={type}
 			value={type === "multiple" ? open : (open[0] ?? "")}
 			onValueChange={setOpen}
-			className={s.list()}
+			className={styles.list()}
 		>
 			{entries.map((item) => {
 				const key = faqKey(item);
 				const hint = faqHint(item, text, open.includes(key));
-				const gone = hidden(item);
+				const gone = Boolean(filtered) && !faqMatches(item, text);
 				return (
 					<AccordionItem
 						key={key}
 						value={key}
 						data-hidden={gone}
 						inert={gone}
-						className={s.row()}
+						className={styles.row()}
 					>
-						<div className={s.rowInner()}>
-							<AccordionTrigger className={s.trigger()}>
-								<span className="min-w-0">{marked(item.question)}</span>
+						<div className={styles.rowInner()}>
+							<AccordionTrigger className={styles.trigger()}>
+								<span className="min-w-0">
+									<Marked copy={item.question} />
+								</span>
 							</AccordionTrigger>
-							{hint ? <p className={s.hint()}>{marked(hint)}</p> : null}
-							<AccordionContent className={s.answer()}>
-								{marked(item.answer)}
+							{hint ? (
+								<p className={styles.hint()}>
+									<Marked copy={hint} />
+								</p>
+							) : null}
+							<AccordionContent className={styles.answer()}>
+								<Marked copy={item.answer} />
 							</AccordionContent>
 						</div>
 					</AccordionItem>
@@ -137,105 +301,74 @@ export function FaqSection({
 			})}
 		</Accordion>
 	);
+}
 
-	const intro = (
-		<div className={s.intro()}>
-			<h2 id={`${id}-title`} className={s.title()}>
-				{title}
-			</h2>
-			{description ? <p className={s.description()}>{description}</p> : null}
-		</div>
-	);
-
-	const reach = contact ? <ContactLink contact={contact} styles={s} /> : null;
-
+/** The questions; one list per topic in the columns variant, filtered rows folded away in search. */
+export function FaqSectionList({ className }: { className?: string }) {
+	const { items, variant, categories, topic, styles } = useFaqSection();
+	if (variant !== "columns")
+		return (
+			<div data-slot="faq-section-list" className={className}>
+				<Questions entries={items} filtered />
+			</div>
+		);
 	return (
-		<section
-			data-slot="faq-section"
-			data-variant={variant}
-			aria-labelledby={`${id}-title`}
-			className={cn(s.root(), className)}
-		>
-			{variant === "columns" ? (
-				<div className={s.grid()}>
-					<div className={s.rail()}>
-						{intro}
-						<ToggleGroup
-							variant="segmented"
-							orientation="vertical"
-							label="Question topics"
-							value={topic}
-							onValueChange={setTopic}
-							className={s.topics()}
-						>
-							{categories.map((entry) => (
-								<ToggleGroupItem key={entry} value={entry} className={s.topic()}>
-									{entry}
-									<span className={s.count()}>
-										{items.filter((item) => faqCategory(item) === entry).length}
-									</span>
-								</ToggleGroupItem>
-							))}
-						</ToggleGroup>
-						{reach}
-					</div>
-					<div className={s.stage()}>
-						{categories.map((entry) => (
-							<div
-								key={entry}
-								data-active={entry === topic}
-								inert={entry !== topic}
-								className={s.panel()}
-							>
-								<div className={s.panelInner()}>
-									{list(items.filter((item) => faqCategory(item) === entry))}
-								</div>
-							</div>
-						))}
+		<div data-slot="faq-section-list" className={cn(styles.stage(), className)}>
+			{categories.map((entry) => (
+				<div
+					key={entry}
+					data-active={entry === topic}
+					inert={entry !== topic}
+					className={styles.panel()}
+				>
+					<div className={styles.panelInner()}>
+						<Questions entries={items.filter((item) => faqCategory(item) === entry)} />
 					</div>
 				</div>
-			) : (
-				<div className={s.stack()}>
-					{intro}
-					{variant === "search" ? (
-						<div className={s.searchRow()}>
-							<SearchInput label={searchLabel} value={text} onValueChange={setText} />
-							<p className={s.resultCount()} aria-live="polite">
-								{text.trim()
-									? `${shown.length} ${shown.length === 1 ? "answer" : "answers"}`
-									: `${items.length} questions`}
-							</p>
-						</div>
-					) : null}
-					{list(items, (item) => !faqMatches(item, text))}
-					{variant === "search" && text.trim() && shown.length === 0 ? (
-						<div className={s.empty()}>
-							<p>No answers mention "{text.trim()}".</p>
-							<Button size="sm" variant="outline" onClick={() => setText("")}>
-								Clear search
-							</Button>
-						</div>
-					) : null}
-					{reach}
-				</div>
-			)}
-		</section>
+			))}
+		</div>
 	);
 }
 
-function ContactLink({
-	contact,
-	styles,
-}: {
-	contact: FaqContact;
-	styles: ReturnType<typeof faqSection>;
-}) {
+/** Shown when a search matches nothing, with a button that clears it. */
+export function FaqSectionEmpty({ className }: { className?: string }) {
+	const { variant, text, setText, shown, styles } = useFaqSection();
+	if (variant !== "search" || !text.trim() || shown.length > 0) return null;
+	return (
+		<div data-slot="faq-section-empty" className={cn(styles.empty(), className)}>
+			<p>No answers mention "{text.trim()}".</p>
+			<Button size="sm" variant="outline" onClick={() => setText("")}>
+				Clear search
+			</Button>
+		</div>
+	);
+}
+
+export interface FaqSectionContactProps {
+	/** A link when set, otherwise a button. */
+	href?: string;
+	onClick?: () => void;
+	/** A second line under the label. */
+	description?: ReactNode;
+	className?: string;
+	children?: ReactNode;
+}
+
+/** A way to reach a person when the answer is not listed. */
+export function FaqSectionContact({
+	href,
+	onClick,
+	description,
+	className,
+	children,
+}: FaqSectionContactProps) {
+	const { styles } = useFaqSection();
 	const inner = (
 		<>
 			<span className={styles.contactText()}>
-				<span className={styles.contactLabel()}>{contact.label}</span>
-				{contact.description ? (
-					<span className={styles.contactDescription()}>{contact.description}</span>
+				<span className={styles.contactLabel()}>{children}</span>
+				{description ? (
+					<span className={styles.contactDescription()}>{description}</span>
 				) : null}
 			</span>
 			<svg
@@ -254,21 +387,21 @@ function ContactLink({
 			</svg>
 		</>
 	);
-	return contact.href ? (
+	return href ? (
 		<a
-			data-slot="faq-contact"
-			href={contact.href}
-			onClick={contact.onClick}
-			className={styles.contact()}
+			data-slot="faq-section-contact"
+			href={href}
+			onClick={onClick}
+			className={cn(styles.contact(), className)}
 		>
 			{inner}
 		</a>
 	) : (
 		<button
-			data-slot="faq-contact"
+			data-slot="faq-section-contact"
 			type="button"
-			onClick={contact.onClick}
-			className={styles.contact()}
+			onClick={onClick}
+			className={cn(styles.contact(), className)}
 		>
 			{inner}
 		</button>
