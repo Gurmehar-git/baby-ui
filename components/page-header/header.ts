@@ -1,10 +1,3 @@
-export interface PageHeaderTab {
-	value: string;
-	label: string;
-	/** Rolls to each new value, e.g. open issues. */
-	count?: number;
-}
-
 /** The nearest ancestor that scrolls vertically, or null for the page itself. */
 export function scrollParent(el: HTMLElement): HTMLElement | null {
 	for (let node = el.parentElement; node; node = node.parentElement) {

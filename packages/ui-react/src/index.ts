@@ -483,8 +483,8 @@ export { type OrbitHeroAction, type OrbitHeroGroup, type OrbitHeroTone, type Orb
 export { orbitHero, type OrbitHeroVariant, type OrbitHeroSize } from "@baby-ui/components/react/orbit-hero";
 export { type OverviewCardPeriod, type OverviewCardProps, OverviewCard } from "@baby-ui/components/react/overview-card";
 export { overviewCard, type OverviewCardSize, type OverviewCardChart } from "@baby-ui/components/react/overview-card";
-export { type PageHeaderProps, PageHeader } from "@baby-ui/components/react/page-header";
-export { type PageHeaderTab, scrollParent, watchCondensed } from "@baby-ui/components/react/page-header";
+export { PageHeader, PageHeaderBar, PageHeaderBreadcrumbs, PageHeaderRow, PageHeaderHeading, PageHeaderTitle, PageHeaderActions, PageHeaderDescription, PageHeaderTabs, PageHeaderTabCount, PageHeaderContent } from "@baby-ui/components/react/page-header";
+export { scrollParent, watchCondensed } from "@baby-ui/components/react/page-header";
 export { pageHeader, type PageHeaderVariant } from "@baby-ui/components/react/page-header";
 export { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from "@baby-ui/components/react/pagination";
 export { paginationRange } from "@baby-ui/components/react/pagination";

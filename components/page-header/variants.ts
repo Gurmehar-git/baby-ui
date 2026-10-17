@@ -4,7 +4,8 @@ export const pageHeader = tv({
 	slots: {
 		root: "@container/page w-full",
 		sentinel: "h-px",
-		bar: "group/bar z-10 bg-background px-4 pt-6 transition-[padding,box-shadow] duration-(--duration-base) ease-(--ease-ui-out) @xl/page:px-8 data-[condensed=true]:pt-3 motion-reduce:transition-none",
+		// Bottom space only without tabs; the tab row sits on the bar's edge.
+		bar: "group/bar z-10 bg-background px-4 pt-6 pb-6 transition-[padding,box-shadow] duration-(--duration-base) ease-(--ease-ui-out) @xl/page:px-8 data-[condensed=true]:pt-3 data-[condensed=true]:pb-3 has-[[data-slot=page-header-tabs]]:pb-0 motion-reduce:transition-none",
 		// Breadcrumbs and description fold away while condensed.
 		fold: "grid grid-rows-[1fr] opacity-100 transition-[grid-template-rows,opacity] duration-(--duration-base) ease-(--ease-ui-out) group-data-[condensed=true]/bar:grid-rows-[0fr] group-data-[condensed=true]/bar:opacity-0 motion-reduce:transition-none",
 		foldInner: "min-h-0 overflow-hidden",
@@ -19,8 +20,6 @@ export const pageHeader = tv({
 		tabs: "mt-4 group-data-[condensed=true]/bar:mt-2",
 		tabList: "w-full justify-start border-b-0",
 		tabCount: "ml-1.5 text-muted-foreground text-xs tabular-nums",
-		spacer:
-			"h-6 transition-[height] duration-(--duration-base) group-data-[condensed=true]/bar:h-3 motion-reduce:transition-none",
 		panels: "px-4 py-6 @xl/page:px-8",
 	},
 	variants: {

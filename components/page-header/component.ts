@@ -7,59 +7,32 @@ export const pageHeader = defineComponent({
 	slug: "page-header",
 	name: "Page Header",
 	description:
-		"An app page header with breadcrumbs, a title with status and people, actions and counted tabs; the sticky variant condenses as the page scrolls.",
+		"An app page header from parts: breadcrumbs, a title with status and people, actions and counted tabs; the sticky variant condenses as the page scrolls.",
 	category: "blocks",
 	status: "stable",
 	variants: variantsOf(pageHeaderVariants, ["variant"]),
 	props: [
 		{
-			name: "title",
-			type: "string",
-			description: "The page's h1.",
-			required: true,
-			control: { kind: "none" },
-		},
-		{
 			name: "variant",
 			type: VARIANTS.map((v) => `"${v}"`).join(" | "),
-			description: "Scrolls away, or pins and condenses once the page scrolls.",
+			description:
+				"PageHeader: scrolls away, or pins PageHeaderBar and condenses it once the page scrolls.",
 			default: "static",
 			control: { kind: "select", options: VARIANTS },
 		},
 		{
-			name: "breadcrumbs",
-			type: "{ label: string; href?: string }[]",
-			description: "Trail to this page; the last crumb is the current page.",
-			control: { kind: "none" },
-		},
-		{
-			name: "status",
-			type: "{ label: string; variant?: BadgeVariant }",
-			description: "A badge beside the title.",
-			control: { kind: "none" },
-		},
-		{
-			name: "avatars",
-			type: "{ src: string; alt?: string }[]",
-			description: "People on the page; four show, the rest count.",
-			control: { kind: "none" },
-		},
-		{
-			name: "actions",
+			name: "children",
 			type: "ReactNode | Snippet",
-			description: "Buttons on the right.",
+			description:
+				"PageHeader: PageHeaderBar and PageHeaderContent, inside a Tabs root when the page has tabs.",
 			control: { kind: "none" },
 		},
 		{
-			name: "tabs",
-			type: "{ value: string; label: string; count?: number }[]",
-			description: "Underline tabs; counts roll to new values. Pass panels as children.",
-			control: { kind: "none" },
-		},
-		{
-			name: "tab",
-			type: "string",
-			description: "Active tab. Controlled with onTabChange; bindable in Svelte.",
+			name: "value",
+			type: "number",
+			description:
+				"PageHeaderTabCount: the count beside a tab label; rolls to each new value.",
+			required: true,
 			control: { kind: "none" },
 		},
 	],
