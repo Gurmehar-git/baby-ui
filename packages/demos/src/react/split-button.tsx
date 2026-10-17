@@ -1,6 +1,13 @@
 "use client";
 
-import { SplitButton } from "@baby-ui/react";
+import {
+	SplitButton,
+	SplitButtonAction,
+	SplitButtonContent,
+	SplitButtonItem,
+	SplitButtonMenu,
+	SplitButtonTrigger,
+} from "@baby-ui/react";
 import { type ComponentProps, useState } from "react";
 import { controlProps } from "../data/preview-props";
 
@@ -11,21 +18,23 @@ export function SplitButtonDemo({ props }: { props: Props }) {
 	const [last, setLast] = useState("");
 	return (
 		<div className="flex flex-col items-center gap-3">
-			<SplitButton
-				label={p.label || "Merge"}
-				variant={p.variant}
-				size={p.size}
-				onClick={() => setLast("Merged")}
-				actions={[
-					{ label: "Squash and merge", onSelect: () => setLast("Squashed and merged") },
-					{ label: "Rebase and merge", onSelect: () => setLast("Rebased and merged") },
-					{
-						label: "Close pull request",
-						destructive: true,
-						onSelect: () => setLast("Closed"),
-					},
-				]}
-			/>
+			<SplitButton variant={p.variant} size={p.size}>
+				<SplitButtonAction onClick={() => setLast("Merged")}>Merge</SplitButtonAction>
+				<SplitButtonMenu>
+					<SplitButtonTrigger />
+					<SplitButtonContent>
+						<SplitButtonItem onClick={() => setLast("Squashed and merged")}>
+							Squash and merge
+						</SplitButtonItem>
+						<SplitButtonItem onClick={() => setLast("Rebased and merged")}>
+							Rebase and merge
+						</SplitButtonItem>
+						<SplitButtonItem destructive onClick={() => setLast("Closed")}>
+							Close pull request
+						</SplitButtonItem>
+					</SplitButtonContent>
+				</SplitButtonMenu>
+			</SplitButton>
 			<p className="h-4 text-muted-foreground text-xs">{last}</p>
 		</div>
 	);

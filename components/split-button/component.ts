@@ -14,31 +14,24 @@ export const splitButton = defineComponent({
 	variants: variantsOf(splitButtonVariants, ["variant", "size"]),
 	props: [
 		{
-			name: "label",
-			type: "string",
-			description: "The primary action's label.",
-			required: true,
-			control: { kind: "text" },
-		},
-		{
-			name: "onClick",
-			type: "() => void",
-			description: "Runs the primary action (`onclick` in Svelte).",
-			control: { kind: "none" },
-		},
-		{
-			name: "actions",
-			type: "SplitButtonAction[]",
+			name: "children",
+			type: "ReactNode | Snippet",
 			description:
-				"Related actions: `{ label, onSelect, icon?, destructive?, disabled? }`.",
-			required: true,
+				"SplitButton: SplitButtonAction, then SplitButtonMenu with SplitButtonTrigger and SplitButtonContent of SplitButtonItems.",
 			control: { kind: "none" },
 		},
 		{
-			name: "menuLabel",
+			name: "aria-label",
 			type: "string",
-			description: "Accessible name of the chevron.",
+			description: "SplitButtonTrigger: accessible name of the chevron.",
 			default: "More options",
+			control: { kind: "none" },
+		},
+		{
+			name: "destructive",
+			type: "boolean",
+			description: "SplitButtonItem: marks an irreversible alternative.",
+			default: false,
 			control: { kind: "none" },
 		},
 		{
@@ -52,7 +45,7 @@ export const splitButton = defineComponent({
 		{
 			name: "size",
 			type: SIZES.map((v) => `"${v}"`).join(" | "),
-			description: "Button size for both segments.",
+			description: "SplitButton: button size for both segments.",
 			default: "default",
 			control: { kind: "select", options: SIZES },
 		},
@@ -73,7 +66,7 @@ export const splitButton = defineComponent({
 			{ keys: ["ArrowDown", "ArrowUp"], action: "Move through the menu" },
 		],
 		notes: [
-			"Two real buttons in a group; the chevron is named by `menuLabel` and owns a menu.",
+			"Two real buttons in a group; the chevron is named by its `aria-label` and owns a menu.",
 		],
 	},
 	guidance: {
@@ -87,8 +80,8 @@ export const splitButton = defineComponent({
 		responsive: ["Keeps its natural width."],
 		performance: ["The menu mounts only while open."],
 		ai: [
-			"Keep the label to the most common action and put alternatives in `actions`.",
-			"Mark irreversible alternatives `destructive: true`.",
+			"Keep SplitButtonAction to the most common action and put alternatives in SplitButtonItems.",
+			"Mark irreversible alternatives `destructive`.",
 		],
 	},
 	licenseOrigin: {

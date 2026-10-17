@@ -1061,7 +1061,13 @@ export { type SpectralRibbonOptions, mountSpectralRibbon } from "@baby-ui/compon
 export { spectralRibbon, type SpectralRibbonTone, type SpectralRibbonSpeed, type SpectralRibbonPosition, SPECTRAL_RIBBON_COLORS, SPECTRAL_RIBBON_SPEED } from "@baby-ui/components/svelte/spectral-ribbon";
 export { Spinner } from "@baby-ui/components/svelte/spinner";
 export { spinnerIcon, type SpinnerSize } from "@baby-ui/components/svelte/spinner";
-export { SplitButton, type SplitButtonAction } from "@baby-ui/components/svelte/split-button";
+export { SplitButton } from "@baby-ui/components/svelte/split-button";
+export { SplitButtonAction } from "@baby-ui/components/svelte/split-button";
+export { SplitButtonContent } from "@baby-ui/components/svelte/split-button";
+export { SplitButtonItem } from "@baby-ui/components/svelte/split-button";
+export { SplitButtonMenu } from "@baby-ui/components/svelte/split-button";
+export { SplitButtonTrigger } from "@baby-ui/components/svelte/split-button";
+export { type SplitButtonState, setSplitButton, splitButtonState } from "@baby-ui/components/svelte/split-button";
 export { splitButton, type SplitButtonVariant, type SplitButtonSize } from "@baby-ui/components/svelte/split-button";
 export { SplitFlapDisplay } from "@baby-ui/components/svelte/split-flap-display";
 export { SplitFlapCell } from "@baby-ui/components/svelte/split-flap-display";

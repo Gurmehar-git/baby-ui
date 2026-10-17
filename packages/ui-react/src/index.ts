@@ -628,7 +628,7 @@ export { type SpectralRibbonOptions, mountSpectralRibbon } from "@baby-ui/compon
 export { spectralRibbon, type SpectralRibbonTone, type SpectralRibbonSpeed, type SpectralRibbonPosition, SPECTRAL_RIBBON_COLORS, SPECTRAL_RIBBON_SPEED } from "@baby-ui/components/react/spectral-ribbon";
 export { type SpinnerProps, Spinner } from "@baby-ui/components/react/spinner";
 export { spinnerIcon, type SpinnerSize } from "@baby-ui/components/react/spinner";
-export { type SplitButtonAction, type SplitButtonProps, SplitButton } from "@baby-ui/components/react/split-button";
+export { type SplitButtonProps, SplitButton, SplitButtonAction, SplitButtonMenu, SplitButtonTrigger, SplitButtonContent, SplitButtonItem } from "@baby-ui/components/react/split-button";
 export { splitButton, type SplitButtonVariant, type SplitButtonSize } from "@baby-ui/components/react/split-button";
 export { type SplitFlapDisplayProps, SplitFlapDisplay } from "@baby-ui/components/react/split-flap-display";
 export { SPLIT_FLAP_CHARACTERS, flapSteps, flapColumns, flapRows } from "@baby-ui/components/react/split-flap-display";

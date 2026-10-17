@@ -6,5 +6,6 @@ category: advanced
 tags: [button, menu, actions]
 ---
 
-The label runs the most common action; the chevron opens the alternatives. Both segments take the
-same `variant` and `size`.
+`SplitButtonAction` runs the most common action; `SplitButtonTrigger` is the chevron that opens
+`SplitButtonContent`, a dropdown of `SplitButtonItem` alternatives inside `SplitButtonMenu`.
+`variant`, `size` and `disabled` on `SplitButton` apply to both segments.
