@@ -1,7 +1,6 @@
 <script lang="ts">
 import type { HTMLTextareaAttributes } from "svelte/elements";
 import { cn } from "../../lib/cn";
-import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import { type TextareaSize, type TextareaVariant, textarea } from "../variants";
 
 type Props = {
@@ -13,13 +12,9 @@ type Props = {
 	autoGrow?: boolean;
 	maxRows?: number;
 	invalid?: boolean;
-	label?: string;
-	description?: string;
-	maxlength?: number;
-	showCount?: boolean;
 	/** Bindable: the `<textarea>` element. */
 	ref?: HTMLTextAreaElement | null;
-} & Omit<HTMLTextareaAttributes, "rows" | "value" | "class" | "maxlength">;
+} & Omit<HTMLTextareaAttributes, "rows" | "value" | "class">;
 
 let {
 	value = $bindable(""),
@@ -31,16 +26,8 @@ let {
 	autoGrow = false,
 	maxRows = 10,
 	invalid = false,
-	label,
-	description,
-	maxlength,
-	showCount = false,
 	...rest
 }: Props = $props();
-
-const autoId = $props.id();
-const id = $derived(rest.id ?? autoId);
-const wrapped = $derived(Boolean(label || description || showCount));
 
 // Height follows content, never eases: easing lags behind the character just typed.
 $effect(() => {
@@ -53,54 +40,13 @@ $effect(() => {
 });
 </script>
 
-{#snippet field()}
-	<textarea
-		data-slot="textarea"
-		{...rest}
-		{id}
-		{maxlength}
-		bind:this={ref}
-		bind:value
-		{rows}
-		aria-invalid={invalid || rest["aria-invalid"] || undefined}
-		aria-describedby={description ? `${id}-description` : rest["aria-describedby"]}
-		class={cn(textarea({ size, variant, autoGrow }), classProp)}
-	></textarea>
-{/snippet}
-
-<!-- Bare, so this can replace a shadcn textarea; the wrapper only appears with a label. -->
-{#if wrapped}
-	<div data-slot="textarea-field" class="flex w-full flex-col gap-1.5">
-		{#if label}
-			<label data-slot="textarea-label" for={id} class="font-medium text-foreground text-sm">
-				{label}
-			</label>
-		{/if}
-
-		{@render field()}
-
-		{#if description || showCount}
-			<div data-slot="textarea-footer" class="flex items-start justify-between gap-3">
-				{#if description}
-					<p
-						data-slot="textarea-description"
-						id="{id}-description"
-						class="text-muted-foreground text-xs leading-relaxed"
-					>
-						{description}
-					</p>
-				{/if}
-				{#if showCount}
-					<p
-						data-slot="textarea-count"
-						class="ml-auto shrink-0 font-mono text-muted-foreground text-xs tabular-nums"
-					>
-						<RollingDigits value={value.length} startOnView={false} />{maxlength ? `/${maxlength}` : ""}
-					</p>
-				{/if}
-			</div>
-		{/if}
-	</div>
-{:else}
-	{@render field()}
-{/if}
+<!-- A bare textarea, so it can replace a shadcn one; label it with Field, FieldLabel and FieldDescription. -->
+<textarea
+	data-slot="textarea"
+	{...rest}
+	bind:this={ref}
+	bind:value
+	{rows}
+	aria-invalid={invalid || rest["aria-invalid"] || undefined}
+	class={cn(textarea({ size, variant, autoGrow }), classProp)}
+></textarea>

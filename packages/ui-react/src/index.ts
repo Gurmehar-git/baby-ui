@@ -692,7 +692,7 @@ export { textRepel, type TextRepelMode, type TextRepelSize, type RepelOffset, re
 export { type TextTransitionProps, TextTransition } from "@baby-ui/components/react/text-transition";
 export { type TextTransitionTarget, type TextTransitionPreset, TEXT_TRANSITION_PRESETS, TEXT_TRANSITION_VARIANTS } from "@baby-ui/components/react/text-transition";
 export { textTransition, type TextTransitionVariant } from "@baby-ui/components/react/text-transition";
-export { type TextareaProps, Textarea } from "@baby-ui/components/react/textarea";
+export { type TextareaProps, Textarea, type TextareaCountProps, TextareaCount } from "@baby-ui/components/react/textarea";
 export { textarea, type TextareaSize, type TextareaVariant } from "@baby-ui/components/react/textarea";
 export { type ThemeToggleProps, ThemeToggle } from "@baby-ui/components/react/theme-toggle";
 export { RECT_FROM, CIRCLE_ORIGIN, ensureRevealStyle, supportsViewTransition, runThemeReveal } from "@baby-ui/components/react/theme-toggle";

@@ -1,7 +1,7 @@
 "use client";
 
-import type { TextareaHTMLAttributes } from "react";
-import { useId, useLayoutEffect, useRef } from "react";
+import type { ComponentProps, TextareaHTMLAttributes } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { type TextareaSize, type TextareaVariant, textarea } from "../variants";
@@ -15,11 +15,9 @@ export interface TextareaProps
 	autoGrow?: boolean;
 	maxRows?: number;
 	invalid?: boolean;
-	label?: string;
-	description?: string;
-	showCount?: boolean;
 }
 
+/** A bare textarea, so it can replace a shadcn one; label it with Field, FieldLabel and FieldDescription. */
 export function Textarea({
 	className,
 	rows = 3,
@@ -28,16 +26,9 @@ export function Textarea({
 	autoGrow = false,
 	maxRows = 10,
 	invalid = false,
-	label,
-	description,
-	showCount = false,
-	maxLength,
 	value,
-	id: idProp,
 	...rest
 }: TextareaProps) {
-	const autoId = useId();
-	const id = idProp ?? autoId;
 	const ref = useRef<HTMLTextAreaElement>(null);
 
 	// Layout effect, no easing: height must match the text before paint and never lag a keystroke.
@@ -50,63 +41,39 @@ export function Textarea({
 		el.style.height = `${Math.min(el.scrollHeight, line * maxRows)}px`;
 	}, [autoGrow, maxRows, value]);
 
-	const field = (
+	return (
 		<textarea
 			data-slot="textarea"
 			{...rest}
-			id={id}
 			ref={ref}
 			rows={rows}
 			value={value}
-			maxLength={maxLength}
 			aria-invalid={invalid || rest["aria-invalid"] || undefined}
-			aria-describedby={description ? `${id}-description` : rest["aria-describedby"]}
 			className={cn(textarea({ size, variant, autoGrow }), className)}
 		/>
 	);
+}
 
-	// Bare, so this can replace a shadcn textarea; the wrapper only appears with a label.
-	if (!label && !description && !showCount) return field;
+export interface TextareaCountProps extends Omit<ComponentProps<"p">, "children"> {
+	/** Characters typed so far. */
+	value: number;
+	/** The textarea's `maxLength`, printed after the count. */
+	max?: number;
+}
 
+/** A rolling character count for under a Textarea. */
+export function TextareaCount({ value, max, className, ...props }: TextareaCountProps) {
 	return (
-		<div data-slot="textarea-field" className="flex w-full flex-col gap-1.5">
-			{label ? (
-				<label
-					data-slot="textarea-label"
-					htmlFor={id}
-					className="font-medium text-foreground text-sm"
-				>
-					{label}
-				</label>
-			) : null}
-
-			{field}
-
-			{description || showCount ? (
-				<div
-					data-slot="textarea-footer"
-					className="flex items-start justify-between gap-3"
-				>
-					{description ? (
-						<p
-							data-slot="textarea-description"
-							id={`${id}-description`}
-							className="text-muted-foreground text-xs leading-relaxed"
-						>
-							{description}
-						</p>
-					) : null}
-					{showCount ? (
-						<p
-							data-slot="textarea-count"
-							className="ml-auto shrink-0 font-mono text-muted-foreground text-xs tabular-nums"
-						>
-							<RollingDigits value={String(value ?? "").length} startOnView={false} />
-							{maxLength ? `/${maxLength}` : ""}
-						</p>
-					) : null}
-				</div>
-			) : null}
-		</div>
+		<p
+			data-slot="textarea-count"
+			className={cn(
+				"ml-auto shrink-0 font-mono text-muted-foreground text-xs tabular-nums",
+				className,
+			)}
+			{...props}
+		>
+			<RollingDigits value={value} startOnView={false} />
+			{max ? `/${max}` : ""}
+		</p>
 	);
 }

@@ -6,6 +6,10 @@ category: base
 tags: [textarea, form, multiline]
 ---
 
+`Textarea` is one bare element, so it drops in for a shadcn textarea. Label it with `Field`,
+`FieldLabel` and `FieldDescription`, and put `TextareaCount` under it for a rolling character
+count against `maxLength`.
+
 With `autoGrow`, height follows `scrollHeight` on every input event, up to `maxRows`.
 Past that it scrolls, because a field that grows without limit pushes the submit button
 off the screen.
