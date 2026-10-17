@@ -44,6 +44,15 @@ export interface IconMorphProps
 const camel = (key: string) =>
 	key.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
 
+// The shared icon data uses SVG attribute names (`stroke-width`); React wants `strokeWidth`.
+const jsxAttrs = (attrs: Record<string, string | number>) =>
+	Object.fromEntries(
+		Object.entries(attrs).map(([key, value]) => [
+			/^(data|aria)-/.test(key) ? key : camel(key),
+			value,
+		]),
+	);
+
 function renderNodes(nodes: MorphNode[], on: boolean, id: string): ReactNode[] {
 	return nodes.map((node) => {
 		const { attrs, style } = paint(node, rest(node, on));
@@ -54,8 +63,8 @@ function renderNodes(nodes: MorphNode[], on: boolean, id: string): ReactNode[] {
 			{
 				key: node.i,
 				"data-m": node.i,
-				...staticAttrs(node, id),
-				...attrs,
+				...jsxAttrs(staticAttrs(node, id)),
+				...jsxAttrs(attrs),
 				style: css satisfies CSSProperties,
 			},
 			node.children && renderNodes(node.children, on, id),

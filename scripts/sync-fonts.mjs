@@ -6,7 +6,6 @@ import { resolve } from "node:path";
 const SOURCE = resolve("packages/tokens/fonts");
 const TARGETS = [
 	"apps/site/static/fonts",
-	"apps/playground/shell/public/fonts",
 	"apps/playground/react-runner/public/fonts",
 	"apps/playground/svelte-runner/public/fonts",
 ];

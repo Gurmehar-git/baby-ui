@@ -23,9 +23,13 @@ export function FileDiff({
 
 	return (
 		<div
+			data-slot="file-diff"
 			className={cn("overflow-hidden rounded-xl border border-border bg-card", className)}
 		>
-			<div className="flex items-center justify-between gap-3 border-border border-b bg-background/60 px-4 py-2.5">
+			<div
+				data-slot="file-diff-header"
+				className="flex items-center justify-between gap-3 border-border border-b bg-background/60 px-4 py-2.5"
+			>
 				<span className="truncate font-mono text-foreground text-xs">{filename}</span>
 				<span className="flex shrink-0 items-center gap-2 font-mono text-xs">
 					<span className="text-success-strong">+{added}</span>
@@ -33,10 +37,18 @@ export function FileDiff({
 				</span>
 			</div>
 
-			<div className="overflow-x-auto font-mono text-sm leading-relaxed">
+			<div
+				data-slot="file-diff-content"
+				className="overflow-x-auto font-mono text-sm leading-relaxed"
+			>
 				{lines.map((line, i) => (
-					// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
-					<div key={i} className={diffRow({ kind: line.kind })}>
+					<div
+						// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
+						key={i}
+						data-slot="file-diff-line"
+						data-kind={line.kind}
+						className={diffRow({ kind: line.kind })}
+					>
 						{showLineNumbers ? (
 							<span
 								aria-hidden

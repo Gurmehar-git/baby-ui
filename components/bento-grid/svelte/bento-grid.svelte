@@ -20,6 +20,7 @@ let {
 </script>
 
 <div
+	data-slot="bento-grid"
 	style:--bento-columns={columns}
 	style:gap="{gap}px"
 	style:grid-auto-rows="{rowHeight}px"

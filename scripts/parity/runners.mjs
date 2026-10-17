@@ -2,6 +2,7 @@ import { spawn } from "node:child_process";
 import { createServer } from "node:net";
 import { join } from "node:path";
 import { ROOT } from "../gen/core.mjs";
+import { routeUrl } from "../lib/portless.mjs";
 
 const APPS = {
 	react: { dir: "apps/playground/react-runner", host: "react-runner.baby-ui.localhost" },
@@ -44,8 +45,8 @@ export async function runners(overrides = {}) {
 	const started = [];
 	const urls = {};
 	for (const [framework, app] of Object.entries(APPS)) {
-		const running = overrides[framework] ?? `http://${app.host}`;
-		if (await reachable(running)) {
+		const running = overrides[framework] ?? routeUrl(app.host);
+		if (running && (await reachable(running))) {
 			urls[framework] = running.replace(/\/$/, "");
 			continue;
 		}

@@ -168,7 +168,7 @@ const side = $derived(`calc(${count} * 2rem + ${Math.max(count - 1, 0)} * 0.125r
 						aria-label={total > 1 ? `${position + 1} of ${total}` : undefined}
 						class={s.face()}
 					>
-						<p class={s.message()}>
+						<div class={s.message()}>
 							<span class="min-w-0"
 								>{#if typeof announcement.message === "string"}{announcement.message}{:else}{@render announcement.message()}{/if}</span
 							>
@@ -195,7 +195,7 @@ const side = $derived(`calc(${count} * 2rem + ${Math.max(count - 1, 0)} * 0.125r
 									>
 								{/if}
 							{/if}
-						</p>
+						</div>
 					</div>
 				{/each}
 			</div>

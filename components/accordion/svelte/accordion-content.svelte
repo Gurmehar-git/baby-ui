@@ -2,18 +2,24 @@
 import { Accordion as AccordionPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
 import { cn } from "../../lib/cn";
+import { accordionItem } from "./context";
 
 let {
 	children,
 	class: classProp,
 	...rest
 }: { children?: Snippet; class?: string } = $props();
+
+const ids = accordionItem();
 </script>
 
 <AccordionPrimitive.Content {...rest} forceMount>
 	{#snippet child({ props, open })}
 		<div
 			{...props}
+			id={ids?.content}
+			role="region"
+			aria-labelledby={ids?.trigger}
 			inert={!open}
 			data-slot="accordion-content"
 			class="group/accordion-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-out-quad)] data-[state=open]:grid-rows-[1fr] data-[state=open]:duration-[var(--duration-collapse)] motion-reduce:transition-none"

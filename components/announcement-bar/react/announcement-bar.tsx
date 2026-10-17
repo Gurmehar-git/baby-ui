@@ -199,7 +199,7 @@ export function AnnouncementBar({
 									aria-label={total > 1 ? `${position + 1} of ${total}` : undefined}
 									className={s.face()}
 								>
-									<p className={s.message()}>
+									<div className={s.message()}>
 										<span className="min-w-0">{announcement.message}</span>
 										{countdown && (
 											<span className="inline-flex items-baseline gap-1.5 whitespace-nowrap">
@@ -227,7 +227,7 @@ export function AnnouncementBar({
 													{arrow}
 												</button>
 											))}
-									</p>
+									</div>
 								</div>
 							);
 						})}

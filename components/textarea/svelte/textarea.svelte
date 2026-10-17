@@ -55,6 +55,7 @@ $effect(() => {
 
 {#snippet field()}
 	<textarea
+		data-slot="textarea"
 		{...rest}
 		{id}
 		{maxlength}
@@ -69,22 +70,31 @@ $effect(() => {
 
 <!-- Bare, so this can replace a shadcn textarea; the wrapper only appears with a label. -->
 {#if wrapped}
-	<div class="flex w-full flex-col gap-1.5">
+	<div data-slot="textarea-field" class="flex w-full flex-col gap-1.5">
 		{#if label}
-			<label for={id} class="font-medium text-foreground text-sm">{label}</label>
+			<label data-slot="textarea-label" for={id} class="font-medium text-foreground text-sm">
+				{label}
+			</label>
 		{/if}
 
 		{@render field()}
 
 		{#if description || showCount}
-			<div class="flex items-start justify-between gap-3">
+			<div data-slot="textarea-footer" class="flex items-start justify-between gap-3">
 				{#if description}
-					<p id="{id}-description" class="text-muted-foreground text-xs leading-relaxed">
+					<p
+						data-slot="textarea-description"
+						id="{id}-description"
+						class="text-muted-foreground text-xs leading-relaxed"
+					>
 						{description}
 					</p>
 				{/if}
 				{#if showCount}
-					<p class="ml-auto shrink-0 font-mono text-muted-foreground text-xs tabular-nums">
+					<p
+						data-slot="textarea-count"
+						class="ml-auto shrink-0 font-mono text-muted-foreground text-xs tabular-nums"
+					>
 						<RollingDigits value={value.length} startOnView={false} />{maxlength ? `/${maxlength}` : ""}
 					</p>
 				{/if}

@@ -88,6 +88,8 @@ export function AlertDialogContent({
 			<AlertDialogPrimitive.Popup
 				data-slot="alert-dialog-content"
 				data-variant={dialog.variant}
+				// Base UI marks the page inert but omits aria-modal, which screen readers expect.
+				aria-modal="true"
 				initialFocus={dialog.cancelRef}
 				className={cn(
 					styles.popup(),

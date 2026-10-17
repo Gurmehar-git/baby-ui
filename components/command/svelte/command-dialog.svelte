@@ -45,6 +45,7 @@ setCommandDialogState({
 	<DialogPrimitive.Portal>
 		<DialogPrimitive.Overlay
 			data-slot="command-dialog-backdrop"
+			aria-hidden="true"
 			class={cn(dialogFrame().backdrop(), "backdrop-blur-md backdrop-saturate-150")}
 		/>
 		<DialogPrimitive.Content

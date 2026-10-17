@@ -63,6 +63,7 @@ export function DrawerContent({
 			<Vaul.Content
 				data-slot="drawer-content"
 				data-variant={variant}
+				aria-modal="true"
 				className={cn(frame.panel(), className)}
 				{...props}
 			>

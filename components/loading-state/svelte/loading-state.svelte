@@ -73,21 +73,29 @@ const elapsed = $derived.by(() => {
 {/snippet}
 
 {#snippet labelText()}
-	<span class="reasoning-shimmer font-medium text-sm">{resolvedLabel}</span>
+	<span data-slot="loading-state-label" class="reasoning-shimmer font-medium text-sm">
+		{resolvedLabel}
+	</span>
 {/snippet}
 
 {#snippet elapsedText()}
-	<span class="font-mono text-xs text-muted-foreground tabular-nums">{elapsed}</span>
+	<span data-slot="loading-state-elapsed" class="font-mono text-xs text-muted-foreground tabular-nums">
+		{elapsed}
+	</span>
 {/snippet}
 
 {#if surfer}
-	<div role="status" class="flex w-fit flex-col items-start">
+	<div data-slot="loading-state" role="status" class="flex w-fit flex-col items-start">
 		<div class="flex items-center gap-2.5">
 			{@render grid(PATTERNS.drive)}
 			{@render labelText()}
 			{@render elapsedText()}
 		</div>
-		<div class="pop-in mt-2 w-56 overflow-hidden rounded-[10px] shadow-2xl" style="transform-origin: top left">
+		<div
+			data-slot="loading-state-preview"
+			class="pop-in mt-2 w-56 overflow-hidden rounded-[10px] shadow-2xl"
+			style="transform-origin: top left"
+		>
 			<div class="relative aspect-video w-full bg-muted">
 				{#if videoOk && videoSrc}
 					<!-- svelte-ignore a11y_media_has_caption -- decorative loading-state loop, no meaningful audio -->
@@ -112,7 +120,7 @@ const elapsed = $derived.by(() => {
 		</div>
 	</div>
 {:else}
-	<div role="status" class="flex w-fit items-center gap-2.5">
+	<div data-slot="loading-state" role="status" class="flex w-fit items-center gap-2.5">
 		{@render grid(pattern)}
 		{@render labelText()}
 		{@render elapsedText()}

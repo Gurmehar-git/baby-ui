@@ -11,6 +11,7 @@ export function Label({ children, className, required, disabled, ...rest }: Labe
 	return (
 		// biome-ignore lint/a11y/noLabelWithoutControl: htmlFor is supplied by the caller
 		<label
+			data-slot="label"
 			{...rest}
 			className={cn(
 				"inline-flex items-center gap-1 font-medium text-foreground text-sm",

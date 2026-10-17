@@ -12,7 +12,7 @@ const styles = $derived(dialogFrame({ variant: dialog.variant }));
 </script>
 
 <DialogPrimitive.Portal>
-	<DialogPrimitive.Overlay data-slot="dialog-backdrop" class={styles.backdrop()} />
+	<DialogPrimitive.Overlay data-slot="dialog-backdrop" aria-hidden="true" class={styles.backdrop()} />
 	<DialogPrimitive.Content
 		data-slot="dialog-content"
 		data-variant={dialog.variant}

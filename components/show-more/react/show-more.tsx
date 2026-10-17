@@ -81,9 +81,14 @@ export function ShowMore({
 	}
 
 	return (
-		<div className={cn("w-full text-foreground", className)}>
+		<div
+			data-slot="show-more"
+			data-state={open ? "open" : "closed"}
+			className={cn("w-full text-foreground", className)}
+		>
 			<div className="relative">
 				<div
+					data-slot="show-more-content"
 					ref={region}
 					id={`${uid}-region`}
 					{...regionRole}
@@ -98,6 +103,7 @@ export function ShowMore({
 					<div ref={content}>{children}</div>
 				</div>
 				<div
+					data-slot="show-more-fade"
 					aria-hidden
 					data-on={veiled}
 					className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent opacity-0 transition-opacity duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none data-[on=true]:opacity-100"
@@ -106,6 +112,7 @@ export function ShowMore({
 
 			{expandable ? (
 				<button
+					data-slot="show-more-trigger"
 					type="button"
 					onClick={toggle}
 					aria-expanded={open}

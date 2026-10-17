@@ -119,7 +119,12 @@ $effect(() => {
 const thumb = $derived(track && range ? thumbStyle(track, range, up) : "");
 </script>
 
-<nav aria-label={label} bind:this={list} class={cn(styles.root(), className)}>
+<nav
+	data-slot="table-of-contents"
+	aria-label={label}
+	bind:this={list}
+	class={cn(styles.root(), className)}
+>
 	{#if track}
 		<div
 			aria-hidden="true"
@@ -140,6 +145,7 @@ const thumb = $derived(track && range ? thumbStyle(track, range, up) : "");
 		{@const r = itemRail(items, i, curve)}
 		{@const current = range !== null && i >= range[0] && i <= range[1]}
 		<a
+			data-slot="table-of-contents-link"
 			href="#{item.id}"
 			aria-current={current ? "location" : undefined}
 			class={[styles.link(), i === 0 && "pt-0", i === items.length - 1 && "pb-0"]}

@@ -249,8 +249,8 @@ runs without workerd. Add it to dev again if a route ever reads `platform`.
 
 Every app's `dev` script runs through `portless` (root devDependency): no more hand-picked
 ports, no port collisions between `apps/site` and the playgrounds. Named routes, not ports,
-under one `baby-ui` subdomain: `site.baby-ui.localhost`, `shell.baby-ui.localhost`,
-`react-runner.baby-ui.localhost`, `svelte-runner.baby-ui.localhost`.
+under one `baby-ui` subdomain: `site.baby-ui.localhost`, `react-runner.baby-ui.localhost`,
+`svelte-runner.baby-ui.localhost` (the runners render one demo by `?slug=`; `pnpm parity` drives them).
 `pnpm dev:list` (`portless list`) shows what's actually running and its PID; `pnpm dev:stop`
 (`portless prune`) kills dev-server processes left behind by a session that ended without a
 clean shutdown: the real fix for stray `vite`/`wrangler` processes piling up across turns,

@@ -126,7 +126,12 @@ export function TableOfContents({
 		track && range ? cssVars(thumbStyle(track, range, spied?.up ?? false)) : {};
 
 	return (
-		<nav ref={listRef} aria-label={label} className={cn(styles.root(), className)}>
+		<nav
+			data-slot="table-of-contents"
+			ref={listRef}
+			aria-label={label}
+			className={cn(styles.root(), className)}
+		>
 			{track ? (
 				<div
 					aria-hidden="true"
@@ -155,6 +160,7 @@ export function TableOfContents({
 				return (
 					<a
 						key={item.id}
+						data-slot="table-of-contents-link"
 						href={`#${item.id}`}
 						aria-current={current ? "location" : undefined}
 						className={cn(

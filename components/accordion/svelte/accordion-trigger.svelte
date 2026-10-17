@@ -2,16 +2,21 @@
 import { Accordion as AccordionPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
 import { cn } from "../../lib/cn";
+import { accordionItem } from "./context";
 
 let {
 	children,
 	class: classProp,
 	...rest
 }: { children?: Snippet; class?: string } = $props();
+
+const ids = accordionItem();
 </script>
 
 <AccordionPrimitive.Header level={3} data-slot="accordion-header" class="flex">
 	<AccordionPrimitive.Trigger
+		id={ids?.trigger}
+		aria-controls={ids?.content}
 		{...rest}
 		data-slot="accordion-trigger"
 		class={cn(

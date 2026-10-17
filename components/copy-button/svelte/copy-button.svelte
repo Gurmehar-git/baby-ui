@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { HTMLButtonAttributes } from "svelte/elements";
 import { cn } from "../../lib/cn";
 
 let {
@@ -7,12 +8,13 @@ let {
 	copiedLabel = "Copied",
 	iconOnly = false,
 	class: classProp,
-}: {
+	onclick,
+	...rest
+}: Omit<HTMLButtonAttributes, "children" | "type"> & {
 	text: string;
 	label?: string;
 	copiedLabel?: string;
 	iconOnly?: boolean;
-	class?: string;
 } = $props();
 
 let copied = $state(false);
@@ -37,8 +39,14 @@ async function copy() {
 </script>
 
 <button
+	data-slot="copy-button"
+	data-state={copied ? "copied" : "idle"}
+	{...rest}
 	type="button"
-	onclick={copy}
+	onclick={(event) => {
+		copy();
+		onclick?.(event);
+	}}
 	aria-label={iconOnly ? (copied ? copiedLabel : label) : undefined}
 	class={cn(
 		"inline-flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-border bg-card font-medium text-muted-foreground text-xs transition-[color,transform,scale,translate] duration-[var(--duration-press)] ease-[var(--ease-ui-out)] hover:text-foreground active:scale-[var(--press-scale)]",

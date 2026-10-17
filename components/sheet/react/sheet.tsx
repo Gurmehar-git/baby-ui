@@ -41,6 +41,7 @@ export function SheetContent({
 				data-slot="sheet-content"
 				data-side={side}
 				data-variant={variant}
+				aria-modal="true"
 				className={cn(styles.panel(), className)}
 				{...props}
 			>

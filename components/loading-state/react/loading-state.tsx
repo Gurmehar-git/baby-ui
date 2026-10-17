@@ -76,23 +76,36 @@ export function LoadingState({ label, variant = "drive", videoSrc }: LoadingStat
 	const pattern = PATTERNS[surfer ? "drive" : variant];
 
 	const labelEl = (
-		<span className="reasoning-shimmer font-medium text-sm">{resolvedLabel}</span>
+		<span
+			data-slot="loading-state-label"
+			className="reasoning-shimmer font-medium text-sm"
+		>
+			{resolvedLabel}
+		</span>
 	);
 	const elapsedEl = (
-		<span className="font-mono text-xs text-muted-foreground tabular-nums">
+		<span
+			data-slot="loading-state-elapsed"
+			className="font-mono text-xs text-muted-foreground tabular-nums"
+		>
 			{elapsed}
 		</span>
 	);
 
 	if (surfer) {
 		return (
-			<div role="status" className="flex w-fit flex-col items-start">
+			<div
+				data-slot="loading-state"
+				role="status"
+				className="flex w-fit flex-col items-start"
+			>
 				<div className="flex items-center gap-2.5">
 					<LoaderGrid {...PATTERNS.drive} />
 					{labelEl}
 					{elapsedEl}
 				</div>
 				<div
+					data-slot="loading-state-preview"
 					className="pop-in mt-2 w-56 overflow-hidden rounded-[10px] shadow-2xl"
 					style={{ transformOrigin: "top left" }}
 				>
@@ -122,7 +135,11 @@ export function LoadingState({ label, variant = "drive", videoSrc }: LoadingStat
 	}
 
 	return (
-		<div role="status" className="flex w-fit items-center gap-2.5">
+		<div
+			data-slot="loading-state"
+			role="status"
+			className="flex w-fit items-center gap-2.5"
+		>
 			<LoaderGrid {...pattern} />
 			{labelEl}
 			{elapsedEl}

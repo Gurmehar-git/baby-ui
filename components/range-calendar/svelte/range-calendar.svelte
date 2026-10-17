@@ -82,7 +82,8 @@ const days = $derived(chooser.view === "days");
 	{locale}
 	{minValue}
 	{maxValue}
-	data-slot="range-calendar"
+	data-slot="calendar"
+	data-mode="range"
 	data-calendar-motion={chooser.motion}
 	class={cn(calendar({ size }).root(), classProp)}
 	{...rest}

@@ -19,6 +19,7 @@ export function Input({
 }: InputProps) {
 	return (
 		<input
+			data-slot="input"
 			{...rest}
 			aria-invalid={invalid || rest["aria-invalid"] || undefined}
 			className={cn(input({ size, variant }), className)}

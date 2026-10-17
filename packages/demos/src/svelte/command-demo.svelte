@@ -1,5 +1,6 @@
 <script lang="ts">
 import {
+	Button,
 	Command,
 	CommandBar,
 	CommandDialog,
@@ -50,11 +51,7 @@ function run(id: string) {
 {/snippet}
 
 <div class="flex flex-col items-center gap-3">
-	<button
-		type="button"
-		class="inline-flex h-9 items-center rounded-lg border border-border bg-card px-3 font-medium text-foreground text-sm"
-		onclick={() => (open = true)}>Open palette</button
-	>
+	<Button variant="outline" onclick={() => (open = true)}>Open palette</Button>
 	{#if last}<p class="text-muted-foreground text-xs">Ran: {last}</p>{/if}
 </div>
 

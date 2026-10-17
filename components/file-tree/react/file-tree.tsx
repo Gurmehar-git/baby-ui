@@ -63,6 +63,8 @@ function TreeRow({
 	return (
 		<>
 			<div
+				data-slot="file-tree-item"
+				data-kind={isFolder ? "folder" : "file"}
 				role="treeitem"
 				aria-level={depth + 1}
 				aria-selected={shared.selected === id}
@@ -99,6 +101,7 @@ function TreeRow({
 			{isFolder && node.children ? (
 				// biome-ignore lint/a11y/useSemanticElements: role="group" nests a treeitem's children per the WAI-ARIA tree pattern, not a form fieldset
 				<div
+					data-slot="file-tree-group"
 					role="group"
 					inert={!expanded}
 					{...(expanded ? { "data-open": "" } : {})}
@@ -240,6 +243,7 @@ export function FileTree({
 
 	return (
 		<div
+			data-slot="file-tree"
 			ref={root}
 			role="tree"
 			aria-label="Files"

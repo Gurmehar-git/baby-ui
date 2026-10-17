@@ -72,10 +72,15 @@ function toggle() {
 }
 </script>
 
-<div class={cn("w-full text-foreground", classProp)}>
+<div
+	data-slot="show-more"
+	data-state={open ? "open" : "closed"}
+	class={cn("w-full text-foreground", classProp)}
+>
 	<div class="relative">
 		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 		<div
+			data-slot="show-more-content"
 			bind:this={region}
 			id="{uid}-region"
 			role={scrollable ? "region" : undefined}
@@ -90,6 +95,7 @@ function toggle() {
 			<div bind:this={content}>{@render children()}</div>
 		</div>
 		<div
+			data-slot="show-more-fade"
 			aria-hidden="true"
 			data-on={veiled}
 			class="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent opacity-0 transition-opacity duration-[var(--duration-press)] ease-[var(--ease-ui-out)] motion-reduce:transition-none data-[on=true]:opacity-100"
@@ -98,6 +104,7 @@ function toggle() {
 
 	{#if expandable}
 		<button
+			data-slot="show-more-trigger"
 			type="button"
 			onclick={toggle}
 			aria-expanded={open}

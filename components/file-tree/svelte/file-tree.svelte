@@ -135,6 +135,8 @@ function onkeydown(event: KeyboardEvent, id: string) {
 	{@const expanded = isFolder ? (expandedIds[id] ?? defaultExpanded) : false}
 	{@const styles = fileTree({ size, selected: selected === id, guide: showGuides && depth > 0 })}
 	<div
+		data-slot="file-tree-item"
+		data-kind={isFolder ? "folder" : "file"}
 		role="treeitem"
 		aria-level={depth + 1}
 		aria-selected={selected === id}
@@ -164,6 +166,7 @@ function onkeydown(event: KeyboardEvent, id: string) {
 	</div>
 	{#if isFolder && node.children}
 		<div
+			data-slot="file-tree-group"
 			role="group"
 			inert={!expanded}
 			data-open={expanded ? "" : undefined}
@@ -179,6 +182,7 @@ function onkeydown(event: KeyboardEvent, id: string) {
 {/snippet}
 
 <div
+	data-slot="file-tree"
 	bind:this={root}
 	role="tree"
 	aria-label="Files"

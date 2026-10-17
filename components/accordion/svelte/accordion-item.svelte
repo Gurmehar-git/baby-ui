@@ -2,6 +2,7 @@
 import { Accordion as AccordionPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
 import { cn } from "../../lib/cn";
+import { setAccordionItem } from "./context";
 
 let {
 	children,
@@ -12,6 +13,9 @@ let {
 	value: string;
 	class?: string;
 } = $props();
+
+const uid = $props.id();
+setAccordionItem({ trigger: `${uid}-trigger`, content: `${uid}-content` });
 </script>
 
 <AccordionPrimitive.Item {...rest} data-slot="accordion-item" class={cn(classProp)}>

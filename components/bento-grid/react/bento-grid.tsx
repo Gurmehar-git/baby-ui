@@ -27,6 +27,7 @@ export function BentoGrid({
 
 	return (
 		<div
+			data-slot="bento-grid"
 			style={style}
 			className={cn(
 				"grid grid-cols-1 md:grid-cols-[repeat(var(--bento-columns),minmax(0,1fr))]",
@@ -54,14 +55,27 @@ export function BentoCell({
 	description,
 }: BentoCellProps) {
 	return (
-		<div className={cn(bentoCell({ span }), className)}>
-			{title ? <h3 className="font-medium text-foreground text-sm">{title}</h3> : null}
+		<div
+			data-slot="bento-cell"
+			data-span={span}
+			className={cn(bentoCell({ span }), className)}
+		>
+			{title ? (
+				<h3 data-slot="bento-cell-title" className="font-medium text-foreground text-sm">
+					{title}
+				</h3>
+			) : null}
 			{description ? (
-				<p className="mt-1 text-muted-foreground text-xs leading-relaxed">
+				<p
+					data-slot="bento-cell-description"
+					className="mt-1 text-muted-foreground text-xs leading-relaxed"
+				>
 					{description}
 				</p>
 			) : null}
-			<div className="min-h-0 flex-1">{children}</div>
+			<div data-slot="bento-cell-content" className="min-h-0 flex-1">
+				{children}
+			</div>
 		</div>
 	);
 }

@@ -3,6 +3,7 @@ import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 import { cn } from "../../lib/cn";
 import { menu } from "../../lib/menu";
 import { ANCHORED, stagger } from "../../lib/svelte/anchor";
+import { dropdownMenuTrigger } from "./context";
 
 let {
 	class: classProp,
@@ -22,6 +23,7 @@ $effect(() => {
 		bind:ref
 		{sideOffset}
 		{align}
+		aria-labelledby={dropdownMenuTrigger()}
 		{...rest}
 		data-slot="dropdown-menu-content"
 		class={cn(ANCHORED, "static", menu().surface(), classProp)}

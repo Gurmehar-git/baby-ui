@@ -97,6 +97,8 @@ export function DialogContent({
 			<DialogPrimitive.Popup
 				data-slot="dialog-content"
 				data-variant={dialog.variant}
+				// Base UI marks the page inert but omits aria-modal, which screen readers expect.
+				aria-modal="true"
 				className={cn(
 					styles.popup(),
 					styles.panel(),

@@ -69,11 +69,15 @@ function defaultProps() {
 	return JSON.parse(out.stdout);
 }
 
+// A trigger part, else the demo's own Button (a controlled dialog has no Trigger part).
 const TRIGGER = `(() => {
-	const el = [...document.querySelectorAll('[data-slot$="trigger"]')].find((t) => {
+	const shown = (t) => {
 		const r = t.getBoundingClientRect();
 		return r.width > 0 && r.height > 0;
-	});
+	};
+	const el =
+		[...document.querySelectorAll('[data-slot$="trigger"]')].find(shown) ??
+		[...document.querySelectorAll('[data-slot="button"]')].find(shown);
 	if (!el) return null;
 	const r = el.getBoundingClientRect();
 	return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
@@ -95,6 +99,15 @@ async function settle(page, timeout = 20000) {
 	return Math.max(last, 0);
 }
 
+/** After an action: waits for the part count to move off `from` (or 1.5s), then for motion to end. */
+async function changed(page, from) {
+	for (const end = Date.now() + 1500; Date.now() < end; ) {
+		if ((await page.evaluate(PARTS).catch(() => from)) !== from) break;
+		await page.wait(100);
+	}
+	await page.wait(450);
+}
+
 /** A cold dev server optimizes deps on first load and reloads the page; take that hit once here. */
 async function warm(port, urls) {
 	for (const url of Object.values(urls)) {
@@ -114,11 +127,26 @@ async function capture(page, url) {
 	const states = { rest: await page.evaluate(SNAPSHOT) };
 	const trigger = parts > 0 ? await page.evaluate(TRIGGER) : null;
 	if (trigger) {
-		await page.click(trigger.x, trigger.y);
-		await page.wait(700);
+		// Rendered is not yet interactive: effects and primitives' listeners attach just after.
+		await page.wait(600);
+		// Held like a real click: some primitives open on pointerdown and act again on a fast pointerup.
+		const mouse = (type) =>
+			page.send("Input.dispatchMouseEvent", {
+				type,
+				x: trigger.x,
+				y: trigger.y,
+				button: "left",
+				clickCount: 1,
+			});
+		await mouse("mouseMoved");
+		await mouse("mousePressed");
+		await page.wait(80);
+		await mouse("mouseReleased");
+		await changed(page, parts);
 		states.open = await page.evaluate(SNAPSHOT);
+		const open = await page.evaluate(PARTS);
 		await page.key("Escape", "Escape", 27);
-		await page.wait(700);
+		await changed(page, open);
 		states.closed = await page.evaluate(SNAPSHOT);
 	}
 	const elements = parts ? 0 : await page.evaluate(ELEMENTS).catch(() => 0);
@@ -131,6 +159,8 @@ async function check(port, urls, slug, props = {}) {
 	const results = {};
 	for (const framework of ["react", "svelte"]) {
 		const page = await openPage(port);
+		// Tabs run side by side and only one has real focus; focus-aware primitives need every one to.
+		await page.send("Emulation.setFocusEmulationEnabled", { enabled: true });
 		try {
 			results[framework] = await capture(page, `${urls[framework]}${query}`);
 		} finally {

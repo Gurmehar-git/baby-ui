@@ -34,17 +34,42 @@ export const SNAPSHOT = `(() => {
 		const s = getComputedStyle(el);
 		return r.width > 0 && r.height > 0 && s.visibility !== "hidden" && s.display !== "none";
 	};
+	const INTERACTIVE = 'button, a[href], input:not([type=hidden]), select, textarea, [role=button], [role=link], [role=tab], [role=menuitem], [role=checkbox], [role=radio], [role=switch], [role=slider], [role=combobox], [role=option]';
+	const nameOf = (el) => {
+		const by = el.getAttribute("aria-labelledby");
+		const labelled = by ? by.split(/\\s+/).map((id) => document.getElementById(id)?.textContent ?? "").join(" ") : "";
+		const label = el.id ? document.querySelector('label[for="' + CSS.escape(el.id) + '"]')?.textContent ?? "" : "";
+		const wrap = el.closest("label")?.textContent ?? "";
+		const alt = [...el.querySelectorAll("img[alt], svg[aria-label]")].map((i) => i.getAttribute("alt") ?? i.getAttribute("aria-label")).join(" ");
+		return [el.getAttribute("aria-label"), labelled, label, wrap, el.textContent, el.getAttribute("title"), el.getAttribute("placeholder"), alt]
+			.map((t) => (t ?? "").trim())
+			.find(Boolean) ?? "";
+	};
+	const FIELD = 'input:not([type=hidden]), select, textarea, [role=checkbox], [role=switch], [role=slider], [role=combobox], [role=textbox], [role=radio]';
 	const IMPLICIT = { button: "button", nav: "navigation", ul: "list", ol: "list", li: "listitem", dialog: "dialog", table: "table", hr: "separator", progress: "progressbar" };
+	// "false" is these attributes' default, so it says nothing that leaving them out doesn't.
+	const DEFAULT_FALSE = /^aria-(disabled|required|readonly|invalid|busy|hidden|multiselectable)$/;
+	const ORIENTATION = { menu: "vertical", listbox: "vertical", tablist: "horizontal", toolbar: "horizontal", slider: "horizontal", separator: "horizontal", menubar: "horizontal" };
+	// The name a screen reader announces; aria-label and a linked label are two ways to one name.
+	const NAMED = /^aria-(label|labelledby)$/;
 	// Semantics, not markup: <h3> and <div role="heading" aria-level="3"> are the same thing.
 	const semantics = (el) => {
 		const tag = el.tagName.toLowerCase();
 		const heading = /^h([1-6])$/.exec(tag);
 		const out = {};
 		const role = el.getAttribute("role") ?? (heading ? "heading" : tag === "a" && el.hasAttribute("href") ? "link" : IMPLICIT[tag]);
-		if (role) out.role = role;
+		const hidden = el.getAttribute("aria-hidden") === "true";
+		if (role && !(hidden && (role === "presentation" || role === "none"))) out.role = role;
 		if (heading) out["aria-level"] = heading[1];
-		for (const a of el.attributes)
-			if (a.name.startsWith("aria-")) out[a.name] = REF.test(a.name) ? "<ref>" : a.value;
+		for (const a of el.attributes) {
+			if (!a.name.startsWith("aria-") || NAMED.test(a.name)) continue;
+			if (DEFAULT_FALSE.test(a.name) && a.value === "false") continue;
+			if (a.name === "aria-orientation" && ORIENTATION[role] === a.value) continue;
+			out[a.name] = REF.test(a.name) ? "<ref>" : a.value;
+		}
+		// Labels only: a button's or day's text is demo copy, and date libraries word days differently.
+		if (el.hasAttribute("aria-label") || el.hasAttribute("aria-labelledby") || el.matches(FIELD))
+			out.name = nameOf(el).replace(/\\s+/g, "");
 		return out;
 	};
 	const canvas = document.createElement("canvas").getContext("2d");
@@ -64,17 +89,6 @@ export const SNAPSHOT = `(() => {
 		for (const p of PROPS) style[p] = colour(s.getPropertyValue(p));
 		return { slot: el.dataset.slot, tag: el.tagName.toLowerCase(), aria, w: Math.round(r.width), h: Math.round(r.height), style };
 	});
-	const INTERACTIVE = 'button, a[href], input:not([type=hidden]), select, textarea, [role=button], [role=link], [role=tab], [role=menuitem], [role=checkbox], [role=radio], [role=switch], [role=slider], [role=combobox], [role=option]';
-	const nameOf = (el) => {
-		const by = el.getAttribute("aria-labelledby");
-		const labelled = by ? by.split(/\\s+/).map((id) => document.getElementById(id)?.textContent ?? "").join(" ") : "";
-		const label = el.id ? document.querySelector('label[for="' + CSS.escape(el.id) + '"]')?.textContent ?? "" : "";
-		const wrap = el.closest("label")?.textContent ?? "";
-		const alt = [...el.querySelectorAll("img[alt], svg[aria-label]")].map((i) => i.getAttribute("alt") ?? i.getAttribute("aria-label")).join(" ");
-		return [el.getAttribute("aria-label"), labelled, label, wrap, el.textContent, el.getAttribute("title"), el.getAttribute("placeholder"), alt]
-			.map((t) => (t ?? "").trim())
-			.find(Boolean) ?? "";
-	};
 	const unnamed = [...document.querySelectorAll(INTERACTIVE)]
 		.filter((el) => shown(el) && !el.closest("[aria-hidden=true], [inert]") && !nameOf(el))
 		.map((el) => el.dataset.slot ?? el.getAttribute("role") ?? el.tagName.toLowerCase());

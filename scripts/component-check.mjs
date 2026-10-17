@@ -2,8 +2,18 @@ import { spawnSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { ROOT } from "./gen/core.mjs";
+import { routeUrl } from "./lib/portless.mjs";
 
 const posix = (path) => relative(ROOT, path).replaceAll("\\", "/");
+// The docs site `pnpm dev` serves; the design audit and premium score read its component pages.
+const SITE = routeUrl("site.baby-ui.localhost") ?? "http://localhost:5173";
+const option = (args, name) =>
+	args.find((a) => a.startsWith(`--${name}=`))?.slice(name.length + 3);
+const reachable = (url) =>
+	fetch(url, { signal: AbortSignal.timeout(3000) }).then(
+		(r) => r.ok,
+		() => false,
+	);
 
 function files(dir) {
 	return readdirSync(dir).flatMap((name) => {
@@ -29,8 +39,8 @@ function run(label, command, args, { stream = false, cwd = ROOT } = {}) {
 	return ok;
 }
 
-/** One component's gates in seconds: spec, lint, comments, generated files and port parity.
- * `--types` adds the package's type checks, which take minutes. */
+/** One component's gates: spec, lint, comments, gen, design rules, parity. `--design` adds the
+ * page audit and premium score (needs the site), `--types` the package type checks. */
 export async function checkComponent(slug, args) {
 	const pro =
 		!existsSync(join(ROOT, "components", slug)) &&
@@ -85,6 +95,39 @@ export async function checkComponent(slug, args) {
 		run("comments", "node", ["scripts/check-comments.mjs", ...sources.map(posix)]),
 	);
 	results.push(run("generated files", "node", ["scripts/generate.mjs", "--check"]));
+	// The design system's source rules (composition, tokens, sizing); blockers fail it.
+	results.push(
+		run(
+			"design rules",
+			"node",
+			["skills/baby-ui-design/scripts/scan-source.mjs", posix(folder)],
+			{ stream: true },
+		),
+	);
+	if (args.includes("--design")) {
+		const url = option(args, "url") ?? SITE;
+		if (await reachable(url)) {
+			const page = ["scripts/design.mjs"];
+			results.push(
+				run("design audit", "node", [...page, "audit", slug, `--url=${url}`], {
+					stream: true,
+				}),
+			);
+			// The premium bar gates Pro; on a free component it is advice, not a failure.
+			const premium = run(
+				"premium score",
+				"node",
+				[...page, "premium", slug, `--url=${url}`],
+				{
+					stream: true,
+				},
+			);
+			if (pro) results.push(premium);
+			else if (!premium)
+				console.log("     (premium bar is advisory for free components)");
+		} else
+			console.log(`skip design audit (no site at ${url}; run pnpm dev or pass --url=)`);
+	}
 	if (pro) console.log("skip parity (Pro demos are not in the runners)");
 	else if (ports.length === 2)
 		results.push(

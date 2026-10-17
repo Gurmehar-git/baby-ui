@@ -3,6 +3,7 @@ export { Accordion } from "@baby-ui/components/svelte/accordion";
 export { AccordionContent } from "@baby-ui/components/svelte/accordion";
 export { AccordionItem } from "@baby-ui/components/svelte/accordion";
 export { AccordionTrigger } from "@baby-ui/components/svelte/accordion";
+export { type AccordionItemIds, setAccordionItem, accordionItem } from "@baby-ui/components/svelte/accordion";
 export { ActionButton } from "@baby-ui/components/svelte/action-button";
 export { actionButton } from "@baby-ui/components/svelte/action-button";
 export { AgentScreen } from "@baby-ui/components/svelte/agent-screen";
@@ -406,6 +407,7 @@ export { DropdownMenuSubContent } from "@baby-ui/components/svelte/dropdown-menu
 export { DropdownMenuSubTrigger } from "@baby-ui/components/svelte/dropdown-menu";
 export { DropdownMenuSub } from "@baby-ui/components/svelte/dropdown-menu";
 export { DropdownMenuTrigger } from "@baby-ui/components/svelte/dropdown-menu";
+export { setDropdownMenu, dropdownMenuTrigger } from "@baby-ui/components/svelte/dropdown-menu";
 export { EmailBadge } from "@baby-ui/components/svelte/email-kit";
 export { EmailButton } from "@baby-ui/components/svelte/email-kit";
 export { EmailCallout } from "@baby-ui/components/svelte/email-kit";

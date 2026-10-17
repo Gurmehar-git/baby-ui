@@ -113,6 +113,7 @@ export function CommandDialog({
 				<DialogPrimitive.Popup
 					data-slot="command-dialog"
 					data-variant={variant}
+					aria-modal="true"
 					className={cn(styles.popup(), styles.panel(), className)}
 				>
 					{/* Matches shadcn's own CommandDialog: a real Title/Description carries the
@@ -332,6 +333,7 @@ export function CommandList({
 		<CommandPrimitive.List
 			ref={el}
 			data-slot="command-list"
+			aria-label="Suggestions"
 			className={cn(styles.list(), className)}
 			onPointerMove={() => setGlide(true)}
 			{...props}

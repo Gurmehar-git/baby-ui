@@ -33,7 +33,7 @@ if (command === "check" && rawName) {
 
 if (command !== "create" || !rawName) {
 	console.error(
-		"Usage: pnpm component create <name> [--category=base]\n       pnpm component check <name> [--types]",
+		"Usage: pnpm component create <name> [--category=base]\n       pnpm component check <name> [--design] [--url=SITE] [--types]",
 	);
 	process.exit(1);
 }

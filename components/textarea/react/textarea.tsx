@@ -52,6 +52,7 @@ export function Textarea({
 
 	const field = (
 		<textarea
+			data-slot="textarea"
 			{...rest}
 			id={id}
 			ref={ref}
@@ -68,9 +69,13 @@ export function Textarea({
 	if (!label && !description && !showCount) return field;
 
 	return (
-		<div className="flex w-full flex-col gap-1.5">
+		<div data-slot="textarea-field" className="flex w-full flex-col gap-1.5">
 			{label ? (
-				<label htmlFor={id} className="font-medium text-foreground text-sm">
+				<label
+					data-slot="textarea-label"
+					htmlFor={id}
+					className="font-medium text-foreground text-sm"
+				>
 					{label}
 				</label>
 			) : null}
@@ -78,9 +83,13 @@ export function Textarea({
 			{field}
 
 			{description || showCount ? (
-				<div className="flex items-start justify-between gap-3">
+				<div
+					data-slot="textarea-footer"
+					className="flex items-start justify-between gap-3"
+				>
 					{description ? (
 						<p
+							data-slot="textarea-description"
 							id={`${id}-description`}
 							className="text-muted-foreground text-xs leading-relaxed"
 						>
@@ -88,7 +97,10 @@ export function Textarea({
 						</p>
 					) : null}
 					{showCount ? (
-						<p className="ml-auto shrink-0 font-mono text-muted-foreground text-xs tabular-nums">
+						<p
+							data-slot="textarea-count"
+							className="ml-auto shrink-0 font-mono text-muted-foreground text-xs tabular-nums"
+						>
 							<RollingDigits value={String(value ?? "").length} startOnView={false} />
 							{maxLength ? `/${maxLength}` : ""}
 						</p>

@@ -20,6 +20,7 @@ let {
 	<PopoverPrimitive.Content
 		{sideOffset}
 		{align}
+		role="dialog"
 		{...rest}
 		data-slot="popover-content"
 		class={cn(ANCHORED, "static", popover().surface(), popover().content(), classProp)}

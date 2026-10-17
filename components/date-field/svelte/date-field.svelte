@@ -80,6 +80,7 @@ function set(next: DateValue | undefined) {
 				</svg>
 			</span>
 			<DateFieldPrimitive.Input
+				data-slot="date-segments"
 				{id}
 				{name}
 				aria-label={ariaLabel ?? labels.group}

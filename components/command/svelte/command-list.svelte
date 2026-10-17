@@ -28,6 +28,7 @@ $effect(() => {
 <CommandPrimitive.List
 	bind:ref={el}
 	data-slot="command-list"
+	aria-label="Suggestions"
 	class={cn(command.styles.list(), classProp)}
 	onpointermove={() => (glide = true)}
 	{...rest}

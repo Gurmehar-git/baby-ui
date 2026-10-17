@@ -329,9 +329,9 @@ export function CommandDemo({ props }: { props: Props }) {
 
 	return (
 		<div className="flex flex-col items-center gap-3">
-			<button type="button" className={BTN} onClick={() => setOpen(true)}>
+			<Button variant="outline" onClick={() => setOpen(true)}>
 				Open palette
-			</button>
+			</Button>
 			{last ? <p className="text-muted-foreground text-xs">Ran: {last}</p> : null}
 			<CommandDialog open={open} onOpenChange={setOpen} variant={variant}>
 				<Command>
