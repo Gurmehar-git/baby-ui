@@ -638,7 +638,7 @@ export { splitText, type SplitTextSize } from "@baby-ui/components/react/split-t
 export { type StarHistoryProps, StarHistory, StarIcon } from "@baby-ui/components/react/star-history";
 export { type StarDatum, type StarHistoryData, type StarHistoryLabels, STAR_HISTORY_LABELS, STAR_MILESTONES, dailyGains, gainSeries, firstStarDate, lastStarDate, currentStars, averagePerDay, recentGain, bestDay, type StarMilestones, starMilestones, formatDate } from "@baby-ui/components/react/star-history";
 export { starHistory, type StarHistoryVariant, type StarHistoryMode, STAR_HISTORY_LAYOUT } from "@baby-ui/components/react/star-history";
-export { type StatCardProps, StatCard } from "@baby-ui/components/react/stat-card";
+export { type StatCardProps, StatCard, StatCardHeader, StatCardTitle, StatCardTrend, StatCardContent, StatCardValue, StatCardDescription, StatCardEmpty, StatCardError, StatCardChart } from "@baby-ui/components/react/stat-card";
 export { statCard, type StatCardSize, type StatCardChartKind, type StatCardStatus, type StatCardPositive, periodTrend, type TrendTone, trendTone, trendPath, trendSentence, statSummary } from "@baby-ui/components/react/stat-card";
 export { type StatCardMapProps, StatCardMap } from "@baby-ui/components/react/stat-card-map";
 export { statCardMap, type StatCardMapSize } from "@baby-ui/components/react/stat-card-map";

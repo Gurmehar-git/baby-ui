@@ -1,6 +1,14 @@
 "use client";
 
-import { StatCard } from "@baby-ui/react";
+import {
+	StatCard,
+	StatCardChart,
+	StatCardContent,
+	StatCardHeader,
+	StatCardTitle,
+	StatCardTrend,
+	StatCardValue,
+} from "@baby-ui/react";
 
 const data = [
 	{ date: new Date("2026-01-15"), revenue: 48200 },
@@ -18,7 +26,7 @@ const usd = new Intl.NumberFormat("en-US", {
 export function Example() {
 	return (
 		<StatCard
-			title="Total revenue"
+			name="Total revenue"
 			data={data}
 			dataKey="revenue"
 			value={51950}
@@ -26,6 +34,15 @@ export function Example() {
 			trend={18.9}
 			comparisonLabel="vs last quarter"
 			formatValue={usd}
-		/>
+		>
+			<StatCardHeader>
+				<StatCardTitle>Total revenue</StatCardTitle>
+				<StatCardTrend />
+			</StatCardHeader>
+			<StatCardContent>
+				<StatCardValue />
+				<StatCardChart />
+			</StatCardContent>
+		</StatCard>
 	);
 }

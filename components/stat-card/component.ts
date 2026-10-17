@@ -11,31 +11,39 @@ export const statCard = defineComponent({
 	slug: "stat-card",
 	name: "Stat Card",
 	description:
-		"A KPI card whose headline, caption and trend follow the point under the chart.",
+		"A KPI card from parts whose headline, caption and trend follow the point under the chart.",
 	category: "blocks",
 	status: "stable",
-	demo: { mode: "auto", frame: "sm" },
 	props: [
+		{
+			name: "name",
+			type: "string",
+			description:
+				"StatCard: what the metric is; the chart's accessible name and the live announcement's lead.",
+			required: true,
+			control: { kind: "none" },
+		},
 		{
 			name: "data",
 			type: "Record<string, unknown>[]",
 			description:
-				'Rows with a date under xKey and a number under dataKey. Optional with chart "none".',
+				'StatCard: rows with a date under xKey and a number under dataKey. Optional with chart "none".',
 			control: { kind: "none" },
 		},
 		{
 			name: "value",
 			type: "number",
-			description: "Headline at rest, e.g. the period average.",
+			description: "StatCard: headline at rest, e.g. the period average.",
 			required: true,
 			control: { kind: "none" },
 		},
 		{
-			name: "description",
+			name: "label",
 			type: "string",
 			description:
-				"Context line under the headline; hidden in the empty and error states.",
-			control: { kind: "text" },
+				'StatCard: caption under the headline at rest, e.g. "Monthly average".',
+			required: true,
+			control: { kind: "none" },
 		},
 		{
 			name: "trend",
@@ -64,14 +72,15 @@ export const statCard = defineComponent({
 			name: "status",
 			type: '"loading" | "ready" | "empty" | "error"',
 			description:
-				"Loading skeletons the headline and badge; empty and error replace the chart with a message.",
+				"StatCard: loading skeletons StatCardValue and StatCardTrend; empty and error show StatCardEmpty or StatCardError instead.",
 			default: "ready",
 			control: { kind: "select", options: ["loading", "ready", "empty", "error"] },
 		},
 		{
-			name: "onRetry",
-			type: "() => void",
-			description: "Shows a Retry button in the error state.",
+			name: "children",
+			type: "ReactNode | Snippet",
+			description:
+				"StatCard: StatCardHeader (StatCardTitle, StatCardTrend) and StatCardContent (StatCardValue, StatCardDescription, StatCardEmpty, StatCardError, StatCardChart).",
 			control: { kind: "none" },
 		},
 		{

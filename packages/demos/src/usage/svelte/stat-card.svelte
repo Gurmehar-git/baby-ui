@@ -1,5 +1,13 @@
 <script lang="ts">
-import { StatCard } from "@baby-ui/svelte";
+import {
+	StatCard,
+	StatCardChart,
+	StatCardContent,
+	StatCardHeader,
+	StatCardTitle,
+	StatCardTrend,
+	StatCardValue,
+} from "@baby-ui/svelte";
 
 const data = [
 	{ date: new Date("2026-01-15"), revenue: 48200 },
@@ -16,7 +24,7 @@ const usd = new Intl.NumberFormat("en-US", {
 </script>
 
 <StatCard
-	title="Total revenue"
+	name="Total revenue"
 	{data}
 	dataKey="revenue"
 	value={51950}
@@ -24,4 +32,13 @@ const usd = new Intl.NumberFormat("en-US", {
 	trend={18.9}
 	comparisonLabel="vs last quarter"
 	formatValue={usd}
-/>
+>
+	<StatCardHeader>
+		<StatCardTitle>Total revenue</StatCardTitle>
+		<StatCardTrend />
+	</StatCardHeader>
+	<StatCardContent>
+		<StatCardValue />
+		<StatCardChart />
+	</StatCardContent>
+</StatCard>

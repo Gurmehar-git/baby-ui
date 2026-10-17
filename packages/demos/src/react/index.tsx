@@ -249,7 +249,7 @@ export const demos: Record<string, DemoLoader> = {
 	"split-flap-display": () => import("./split-flap-display").then((m) => ({ default: m.SplitFlapDisplayDemo })),
 	"split-text": () => import("./auto/split-text").then((m) => ({ default: m.SplitTextDemo })),
 	"star-history": () => import("./star-history").then((m) => ({ default: m.StarHistoryDemo })),
-	"stat-card": () => import("./auto/stat-card").then((m) => ({ default: m.StatCardDemo })),
+	"stat-card": () => import("./stat-card").then((m) => ({ default: m.StatCardDemo })),
 	"stat-card-map": () => import("./auto/stat-card-map").then((m) => ({ default: m.StatCardMapDemo })),
 	"stats-band": () => import("./stats-band").then((m) => ({ default: m.StatsBandDemo })),
 	"status-monitor": () => import("./auto/status-monitor").then((m) => ({ default: m.StatusMonitorDemo })),
