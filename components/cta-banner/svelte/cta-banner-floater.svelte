@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { bannerPace } from "./banner";
+import { cn } from "../../lib/cn";
+import { bannerPace } from "../banner";
 import { ctaBannerStyles } from "./context";
 
 let {

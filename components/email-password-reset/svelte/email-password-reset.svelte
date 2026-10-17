@@ -13,8 +13,8 @@ import EmailKeyValue, {
 } from "../../email-kit/svelte/email-key-value.svelte";
 import EmailShell from "../../email-kit/svelte/email-shell.svelte";
 import EmailText from "../../email-kit/svelte/email-text.svelte";
-import { type EmailShellSurface, emailLayout } from "../../email-kit/svelte/variants";
-import { emailPasswordReset } from "./variants";
+import { type EmailShellSurface, emailLayout } from "../../email-kit/variants";
+import { emailPasswordReset } from "../variants";
 
 let {
 	productName,

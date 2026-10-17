@@ -2,7 +2,7 @@
 
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 
 type AccordionType = "single" | "multiple";
 

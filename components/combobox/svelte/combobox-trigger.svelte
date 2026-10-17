@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { ComponentProps } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import PopoverTrigger from "../../popover/svelte/popover-trigger.svelte";
-import { type ComboboxSize, combobox } from "./variants";
+import { type ComboboxSize, combobox } from "../variants";
 
 let {
 	children,

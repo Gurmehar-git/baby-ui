@@ -1,14 +1,14 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type MessageAlign,
 	type MessageBubbleVariant,
 	type MessageMotion,
 	message,
 	messageBubble,
-} from "./variants";
+} from "../variants";
 
 export type { MessageAlign, MessageBubbleVariant, MessageMotion };
 

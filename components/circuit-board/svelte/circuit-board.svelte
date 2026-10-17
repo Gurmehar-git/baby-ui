@@ -1,17 +1,17 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	buildTraces,
 	type CircuitConnection,
 	type CircuitNode,
 	circuitDelay,
-} from "./geometry";
+} from "../geometry";
 import {
 	type CircuitBoardSpeed,
 	type CircuitBoardTone,
 	circuitBoard,
 	circuitNode,
-} from "./variants";
+} from "../variants";
 
 let {
 	nodes,

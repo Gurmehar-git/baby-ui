@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { OG_SPOTLIGHT_TILES, type OgSpotlightMode, ogSpotlight } from "./variants";
+import { cn } from "../../lib/cn";
+import { OG_SPOTLIGHT_TILES, type OgSpotlightMode, ogSpotlight } from "../variants";
 
 let {
 	title,

@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
-import { type BentoSpan, bentoCell } from "./variants";
+import { cn } from "../../lib/cn";
+import { type BentoSpan, bentoCell } from "../variants";
 
 export type { BentoSpan };
 

@@ -1,10 +1,10 @@
 <script lang="ts">
 import { Time } from "@internationalized/date";
 import { TimeField } from "bits-ui";
-import { stepMinute } from "../../date-field/svelte/core";
-import { dateField } from "../../date-field/svelte/variants";
+import { stepMinute } from "../../date-field/core";
+import { dateField } from "../../date-field/variants";
 import FieldError from "../../field/svelte/field-error.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	formatTime,
 	nowAsTimeValue,
@@ -13,9 +13,9 @@ import {
 	type TimePickerLabels,
 	type TimeValue,
 	timeOutOfRange,
-} from "./core";
+} from "../core";
+import { type TimePickerSize, timePicker } from "../variants";
 import TimePickerClock from "./time-picker-clock.svelte";
-import { type TimePickerSize, timePicker } from "./variants";
 
 let {
 	value = $bindable(null),

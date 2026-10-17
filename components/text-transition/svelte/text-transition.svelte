@@ -1,7 +1,7 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { TEXT_TRANSITION_PRESETS, type TextTransitionPreset } from "./presets";
-import { type TextTransitionVariant, textTransition } from "./variants";
+import { cn } from "../../lib/cn";
+import { TEXT_TRANSITION_PRESETS, type TextTransitionPreset } from "../presets";
+import { type TextTransitionVariant, textTransition } from "../variants";
 
 let {
 	text,

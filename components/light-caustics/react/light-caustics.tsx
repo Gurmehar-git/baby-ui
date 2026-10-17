@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { useCanvasEngine } from "../../lib/react/use-canvas-engine";
-import { type LightCausticsOptions, mountLightCaustics } from "./caustics";
+import { type LightCausticsOptions, mountLightCaustics } from "../caustics";
 import {
 	LIGHT_CAUSTICS_COLORS,
 	LIGHT_CAUSTICS_SPEED,
@@ -11,7 +11,7 @@ import {
 	type LightCausticsSpeed,
 	type LightCausticsTone,
 	lightCaustics,
-} from "./variants";
+} from "../variants";
 
 export type { LightCausticsPosition, LightCausticsSpeed, LightCausticsTone };
 

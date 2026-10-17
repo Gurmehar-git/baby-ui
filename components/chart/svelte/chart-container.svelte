@@ -1,11 +1,11 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { createFormatters } from "../core";
+import { type ChartAspect, chart } from "../variants";
 import ChartStyle from "./chart-style.svelte";
 import { type ChartConfig, setChart } from "./context";
-import { createFormatters } from "./core";
-import { type ChartAspect, chart } from "./variants";
 
 let {
 	id,

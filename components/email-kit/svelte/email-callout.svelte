@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Section, Text } from "@better-svelte-email/components";
 import type { Snippet } from "svelte";
-import { type EmailCalloutTone, emailCallout } from "./variants";
+import { type EmailCalloutTone, emailCallout } from "../variants";
 
 let {
 	children,

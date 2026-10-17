@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgSplitMode, ogSplit } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgSplitMode, ogSplit } from "../variants";
 
 export type { OgSplitMode };
 

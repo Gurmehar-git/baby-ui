@@ -2,7 +2,7 @@
 
 <script lang="ts">
 import { untrack } from "svelte";
-import { CHART_DURATION, type Playback, Spring, tween } from "../../chart/svelte/motion";
+import { CHART_DURATION, type Playback, Spring, tween } from "../../chart/motion";
 import {
 	EXPAND_FROM,
 	expandDelay,
@@ -13,7 +13,7 @@ import {
 	type RingRow,
 	ringPath,
 	sweepDelay,
-} from "./geometry";
+} from "../geometry";
 
 let {
 	row,

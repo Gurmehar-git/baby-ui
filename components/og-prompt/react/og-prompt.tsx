@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgPromptMode, type OgPromptTone, ogPrompt } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgPromptMode, type OgPromptTone, ogPrompt } from "../variants";
 
 export type { OgPromptMode, OgPromptTone };
 

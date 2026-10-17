@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
 import CollapsibleTrigger from "../../collapsible/svelte/collapsible-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { propertyPanel } from "../variants";
 import { getPropertyPanelGroup } from "./context";
-import { propertyPanel } from "./variants";
 
 let { class: classProp, children, ...rest }: HTMLAttributes<HTMLDivElement> = $props();
 

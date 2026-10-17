@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { type FieldLegendVariant, fieldLegend } from "./variants";
+import { cn } from "../../lib/cn";
+import { type FieldLegendVariant, fieldLegend } from "../variants";
 
 let {
 	ref = $bindable(null),

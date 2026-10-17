@@ -1,8 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { setFileUpload } from "./context";
+import { cn } from "../../lib/cn";
 import {
 	FILE_UPLOAD_LABELS,
 	type FileRejection,
@@ -12,8 +11,9 @@ import {
 	type UploadFile,
 	uploadHint,
 	uploadSummary,
-} from "./core";
-import { type FileUploadSize, type FileUploadVariant, fileUpload } from "./variants";
+} from "../core";
+import { type FileUploadSize, type FileUploadVariant, fileUpload } from "../variants";
+import { setFileUpload } from "./context";
 
 let {
 	files,

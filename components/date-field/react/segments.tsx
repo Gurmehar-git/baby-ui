@@ -10,7 +10,7 @@ import {
 	segmentText,
 	stepSegment,
 	typeDigit,
-} from "./core";
+} from "../core";
 
 /**
  * Keeps a half-typed draft beside a controlled value. A value changed from outside replaces

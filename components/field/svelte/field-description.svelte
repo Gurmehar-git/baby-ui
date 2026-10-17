@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { field } from "./variants";
+import { cn } from "../../lib/cn";
+import { field } from "../variants";
 
 let {
 	ref = $bindable(null),

@@ -1,17 +1,17 @@
 <script lang="ts">
 import type { DateValue } from "@internationalized/date";
 import { DateField } from "bits-ui";
-import { button } from "../../button/svelte/variants";
+import { button } from "../../button/variants";
 import Calendar from "../../calendar/svelte/calendar.svelte";
-import type { CalendarCaptionLayout } from "../../calendar/svelte/variants";
-import { dateField } from "../../date-field/svelte/variants";
+import type { CalendarCaptionLayout } from "../../calendar/variants";
+import { dateField } from "../../date-field/variants";
 import FieldError from "../../field/svelte/field-error.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Popover from "../../popover/svelte/popover.svelte";
 import PopoverContent from "../../popover/svelte/popover-content.svelte";
 import PopoverTrigger from "../../popover/svelte/popover-trigger.svelte";
-import { DATE_PICKER_LABELS, type DatePickerLabels } from "./core";
-import type { DatePickerSize } from "./variants";
+import { DATE_PICKER_LABELS, type DatePickerLabels } from "../core";
+import type { DatePickerSize } from "../variants";
 
 let {
 	value = $bindable(),

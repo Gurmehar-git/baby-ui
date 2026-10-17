@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { PropertyPanelControls } from "../../property-panel/react/property-panel-controls";
-import type { PropertySchema, PropertyValues } from "../../property-panel/react/schema";
-import { type FineTuneCardSize, fineTuneCard } from "./variants";
+import type { PropertySchema, PropertyValues } from "../../property-panel/schema";
+import { type FineTuneCardSize, fineTuneCard } from "../variants";
 
 export type { FineTuneCardSize };
 

@@ -1,7 +1,5 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import ChartMarkerDisc from "./chart-marker-disc.svelte";
-import ChartMarkerFanItem from "./chart-marker-fan-item.svelte";
+import { cn } from "../../lib/cn";
 import {
 	discStyle,
 	FAN_RADIUS,
@@ -9,14 +7,16 @@ import {
 	MARKER_SPRING,
 	type MarkerGroup,
 	popStyle,
-} from "./geometry";
-import { assign, type ChartMarker, spring } from "./types";
+} from "../geometry";
 import {
 	type ChartMarkerAppearance,
 	type ChartMarkerSize,
 	chartMarkers,
 	MARKER_PX,
-} from "./variants";
+} from "../variants";
+import ChartMarkerDisc from "./chart-marker-disc.svelte";
+import ChartMarkerFanItem from "./chart-marker-fan-item.svelte";
+import { assign, type ChartMarker, spring } from "./types";
 
 let {
 	group,

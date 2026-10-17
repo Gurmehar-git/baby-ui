@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { cn } from "../../lib/cn";
 import { canvasEngine } from "../../lib/svelte/canvas-engine.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { mountWebglLiquid, type WebglLiquidOptions } from "./liquid";
+import { mountWebglLiquid, type WebglLiquidOptions } from "../liquid";
 import {
 	WEBGL_LIQUID_COLORS,
 	WEBGL_LIQUID_SPEED,
@@ -10,7 +10,7 @@ import {
 	type WebglLiquidSpeed,
 	type WebglLiquidTone,
 	webglLiquid,
-} from "./variants";
+} from "../variants";
 
 let {
 	tone = "ocean",

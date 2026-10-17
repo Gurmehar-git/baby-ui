@@ -1,5 +1,5 @@
 import { getContext, setContext } from "svelte";
-import type { WheelPickerRows } from "./variants";
+import type { WheelPickerRows } from "../variants";
 
 export type WheelContext = { itemHeight: number; rows: WheelPickerRows; lens: boolean };
 

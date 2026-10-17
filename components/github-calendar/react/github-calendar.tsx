@@ -9,7 +9,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	Tooltip,
 	TooltipContent,
@@ -24,7 +24,7 @@ import {
 	type GithubCalendarLevel,
 	type GithubCalendarWeekStart,
 	moveIndex,
-} from "./calendar";
+} from "../calendar";
 import {
 	type GithubCalendarShape,
 	type GithubCalendarSize,
@@ -33,7 +33,7 @@ import {
 	githubCalendar,
 	TONE_FILL,
 	WEEK_TRACK,
-} from "./variants";
+} from "../variants";
 
 export type {
 	GithubCalendarDay,

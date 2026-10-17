@@ -1,4 +1,4 @@
-import type { ChangelogEntry } from "../../../../components/changelog-feed/react/changelog";
+import type { ChangelogEntry } from "../../../../components/changelog-feed/changelog";
 import { photo } from "./media";
 
 const WEBHOOK = `import { verifyWebhook } from "@acme/node";

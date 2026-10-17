@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type SplitTextSize, splitText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type SplitTextSize, splitText } from "../variants";
 
 let {
 	text,

@@ -2,16 +2,16 @@
 import type { RowData } from "@tanstack/table-core";
 import type { HTMLAttributes } from "svelte/elements";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Select from "../../select/svelte/select.svelte";
 import SelectContent from "../../select/svelte/select-content.svelte";
 import SelectItem from "../../select/svelte/select-item.svelte";
 import SelectTrigger from "../../select/svelte/select-trigger.svelte";
 import SelectValue from "../../select/svelte/select-value.svelte";
+import { DATA_TABLE_ICONS, type DataTableInstance, rangeLabel } from "../core";
+import { dataTable } from "../variants";
 import { getDataTableStatus } from "./context";
-import { DATA_TABLE_ICONS, type DataTableInstance, rangeLabel } from "./core";
 import Icon from "./data-table-icon.svelte";
-import { dataTable } from "./variants";
 
 let {
 	table,

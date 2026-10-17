@@ -1,9 +1,9 @@
 <script lang="ts">
 import { DateFormatter, getLocalTimeZone, today } from "@internationalized/date";
-import { cn } from "../../lib/svelte/cn";
-import { CHOICE_STEP, choiceDelay, yearPage } from "./chooser";
+import { cn } from "../../lib/cn";
+import { CHOICE_STEP, choiceDelay, yearPage } from "../chooser";
+import { calendar } from "../variants";
 import { getCalendarChooser } from "./chooser-state.svelte";
-import { calendar } from "./variants";
 
 let { class: classProp }: { class?: string } = $props();
 

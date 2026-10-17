@@ -3,7 +3,7 @@
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 import type { ComponentProps, ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 
 export interface ScrollAreaProps extends ComponentProps<typeof ScrollAreaPrimitive.Root> {
 	children: ReactNode;

@@ -2,7 +2,7 @@
 
 import { Fragment, useId, useState } from "react";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { Switch } from "../../switch/react/switch";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
@@ -16,8 +16,8 @@ import {
 	comparisonCell,
 	hasBilling,
 	rowIsShared,
-} from "./compare";
-import { type ComparisonTableVariant, comparisonTable } from "./variants";
+} from "../compare";
+import { type ComparisonTableVariant, comparisonTable } from "../variants";
 
 export type {
 	ComparisonBilling,

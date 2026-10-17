@@ -6,16 +6,16 @@ import CardContent from "../../card/svelte/card-content.svelte";
 import CardDescription from "../../card/svelte/card-description.svelte";
 import CardHeader from "../../card/svelte/card-header.svelte";
 import CardTitle from "../../card/svelte/card-title.svelte";
+import type { Datum } from "../../chart/core";
 import ChartContainer from "../../chart/svelte/chart-container.svelte";
 import ChartLegendContent from "../../chart/svelte/chart-legend-content.svelte";
 import type { ChartConfig } from "../../chart/svelte/context";
-import type { Datum } from "../../chart/svelte/core";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RingChart from "../../ring-chart/svelte/ring-chart.svelte";
-import type { RingCap } from "../../ring-chart/svelte/variants";
-import { meterLayout, meterNumber, meterTone } from "./meter";
+import type { RingCap } from "../../ring-chart/variants";
+import { meterLayout, meterNumber, meterTone } from "../meter";
+import { type UsageCardLayout, usageCard } from "../variants";
 import UsageMeter from "./usage-meter.svelte";
-import { type UsageCardLayout, usageCard } from "./variants";
 
 let {
 	title,

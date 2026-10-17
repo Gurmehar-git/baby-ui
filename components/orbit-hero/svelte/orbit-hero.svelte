@@ -4,7 +4,7 @@ import { untrack } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
 import Badge from "../../badge/svelte/badge.svelte";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	ORBIT_HERO_LABELS,
 	ORBIT_HERO_TONES,
@@ -13,14 +13,14 @@ import {
 	orbitDelay,
 	orbitPlace,
 	spinOrbits,
-} from "./orbit";
+} from "../orbit";
 import type {
 	OrbitHeroAction,
 	OrbitHeroGroup,
 	OrbitHeroLabels,
 	OrbitHeroTone,
-} from "./types";
-import { type OrbitHeroSize, type OrbitHeroVariant, orbitHero } from "./variants";
+} from "../types";
+import { type OrbitHeroSize, type OrbitHeroVariant, orbitHero } from "../variants";
 
 type Props = Omit<HTMLAttributes<HTMLElement>, "title"> & {
 	headline: string;

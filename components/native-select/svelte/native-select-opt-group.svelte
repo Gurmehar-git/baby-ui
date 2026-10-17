@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { HTMLOptgroupAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { nativeSelect } from "./variants";
+import { cn } from "../../lib/cn";
+import { nativeSelect } from "../variants";
 
 let {
 	ref = $bindable(null),

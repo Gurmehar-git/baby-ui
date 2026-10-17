@@ -3,12 +3,6 @@ import { extent } from "d3-array";
 import { scaleLinear, scaleTime } from "d3-scale";
 import type { Snippet } from "svelte";
 import {
-	setActivePoint,
-	setPlot,
-	type TickScale,
-	useChart,
-} from "../../chart/svelte/context";
-import {
 	type ActivePoint,
 	type ChartPhase,
 	type Datum,
@@ -19,9 +13,15 @@ import {
 	nearestIndex,
 	type TooltipRow,
 	toDate,
-} from "../../chart/svelte/core";
+} from "../../chart/core";
+import {
+	setActivePoint,
+	setPlot,
+	type TickScale,
+	useChart,
+} from "../../chart/svelte/context";
+import { readOhlc } from "../geometry";
 import { setCandleRoot } from "./context";
-import { readOhlc } from "./geometry";
 
 let {
 	frame,

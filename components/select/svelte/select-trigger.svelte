@@ -1,11 +1,11 @@
 <script lang="ts">
 import { Select as SelectPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type SelectTriggerSize,
 	type SelectTriggerVariant,
 	selectTrigger,
-} from "./variants";
+} from "../variants";
 
 let {
 	class: classProp,

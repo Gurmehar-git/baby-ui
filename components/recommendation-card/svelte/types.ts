@@ -1,5 +1,5 @@
 import type { Snippet } from "svelte";
-import type { ButtonVariant } from "../../button/svelte/variants";
+import type { ButtonVariant } from "../../button/variants";
 
 export type RecommendationOption = {
 	key: string;

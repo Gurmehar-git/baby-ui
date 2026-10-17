@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type EmptyPhase,
 	type EmptyScene,
 	SCENE_FRAMES,
 	SCENE_VIEW,
 	SHAPE_KINDS,
-} from "./art";
-import { createIllustration, initialShapes } from "./illustration";
-import { type EmptyIllustrationSize, emptyIllustration } from "./variants";
+} from "../art";
+import { createIllustration, initialShapes } from "../illustration";
+import { type EmptyIllustrationSize, emptyIllustration } from "../variants";
 
 export type { EmptyIllustrationSize, EmptyPhase, EmptyScene };
 

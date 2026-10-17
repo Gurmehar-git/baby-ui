@@ -27,17 +27,17 @@ export type FloatingButtonGroupItem =
 
 <script lang="ts">
 import { Toolbar } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Tooltip from "../../tooltip/svelte/tooltip.svelte";
 import TooltipContent from "../../tooltip/svelte/tooltip-content.svelte";
 import TooltipProvider from "../../tooltip/svelte/tooltip-provider.svelte";
 import TooltipTrigger from "../../tooltip/svelte/tooltip-trigger.svelte";
-import { createTray } from "./tray";
+import { createTray } from "../tray";
 import {
 	type FloatingButtonGroupSize,
 	type FloatingButtonGroupVariant,
 	floatingButtonGroup,
-} from "./variants";
+} from "../variants";
 
 let {
 	items,

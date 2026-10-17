@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type EmptyLayout,
 	type EmptyMediaTone,
@@ -8,7 +8,7 @@ import {
 	type EmptyVariant,
 	empty,
 	emptyMedia,
-} from "./variants";
+} from "../variants";
 
 export type { EmptyLayout, EmptyMediaTone, EmptyMediaVariant, EmptySize, EmptyVariant };
 

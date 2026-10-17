@@ -1,7 +1,7 @@
 <script lang="ts">
+import type { Margin } from "../../chart/core";
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import type { Margin } from "../../chart/svelte/core";
 import {
 	type LaidLink,
 	layoutSankey,
@@ -9,9 +9,9 @@ import {
 	SANKEY_TEXT,
 	type SankeyData,
 	type SankeyText,
-} from "./layout";
+} from "../layout";
+import type { SankeyLinkColor, SankeyOrientation } from "../variants";
 import SankeyPlot from "./sankey-plot.svelte";
-import type { SankeyLinkColor, SankeyOrientation } from "./variants";
 
 let {
 	data,

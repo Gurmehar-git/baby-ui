@@ -1,6 +1,6 @@
 <script lang="ts">
 import { tick, untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	addDays,
 	addMonths,
@@ -12,7 +12,7 @@ import {
 	startOfDay,
 	startOfWeek,
 	type WeekStartsOn,
-} from "./dates";
+} from "../dates";
 import {
 	HANDLE_DRAG_PX,
 	ROW_STAGGER_MS,
@@ -22,7 +22,7 @@ import {
 	type WeekCalendarLabels,
 	type WeekCalendarVariant,
 	weekCalendar,
-} from "./variants";
+} from "../variants";
 
 let {
 	selected = $bindable(),

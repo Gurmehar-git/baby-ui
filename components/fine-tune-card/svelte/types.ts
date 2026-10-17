@@ -1,4 +1,4 @@
-import type { PropertySchema } from "../../property-panel/svelte/schema";
+import type { PropertySchema } from "../../property-panel/schema";
 
 /** A tunable number; its `key` doubles as the row label ("cornerRadius" reads "Corner radius"). */
 export type FineTuneField = {

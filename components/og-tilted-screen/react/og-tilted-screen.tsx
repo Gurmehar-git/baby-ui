@@ -1,9 +1,9 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type OgTiltedScreenMode,
 	type OgTiltedScreenTone,
 	ogTiltedScreen,
-} from "./variants";
+} from "../variants";
 
 export type { OgTiltedScreenMode, OgTiltedScreenTone };
 

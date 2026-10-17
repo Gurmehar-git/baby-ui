@@ -19,8 +19,8 @@ import {
 	type MonthCaptionProps,
 	type NavProps,
 } from "react-day-picker";
-import { type ButtonVariant, button } from "../../button/react/variants";
-import { cn } from "../../lib/react/cn";
+import { type ButtonVariant, button } from "../../button/variants";
+import { cn } from "../../lib/cn";
 import {
 	type CalendarMotion,
 	type CalendarView,
@@ -29,8 +29,8 @@ import {
 	YEAR_PAGE,
 	yearPage,
 	yearPageStart,
-} from "./chooser";
-import { type CalendarSize, calendar } from "./variants";
+} from "../chooser";
+import { type CalendarSize, calendar } from "../variants";
 
 export type CalendarProps = ComponentProps<typeof DayPicker> & {
 	/** Variant of the previous/next month buttons. */

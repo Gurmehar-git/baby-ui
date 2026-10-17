@@ -1,10 +1,10 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_PAPER_WINDOW_LIGHTS,
 	type OgPaperWindowMode,
 	ogPaperWindow,
 	ogPaperWindowLight,
-} from "./variants";
+} from "../variants";
 
 export type { OgPaperWindowMode };
 

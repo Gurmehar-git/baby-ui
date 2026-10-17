@@ -6,7 +6,6 @@ import { autoDemos } from "./gen/demos.mjs";
 import { emailTheme } from "./gen/email-theme.mjs";
 import { indexes, proIndexes } from "./gen/indexes.mjs";
 import { HAS_PRO } from "./gen/roots.mjs";
-import { componentSharedFiles } from "./gen/shared.mjs";
 import { usageFiles } from "./gen/usage.mjs";
 
 // Every generated file sits under one of these, and each keeps a .gitignore listing its own.
@@ -29,11 +28,7 @@ const PRO_ROOTS = HAS_PRO
 export function generate({ check = false, quiet = false } = {}) {
 	const output = new Output([...PUBLIC_ROOTS, ...PRO_ROOTS]);
 	const report = { collisions: [], unmatched: [], demoless: [] };
-	// Written before the shared step so its Svelte copy is generated in the same run.
 	emailTheme(output);
-	// React is the source for every shared .ts; each Svelte port gets generated copies.
-	componentSharedFiles(output);
-	if (HAS_PRO) componentSharedFiles(output, "pro/components");
 	autoDemos(output, report);
 	usageFiles(output, report);
 	indexes(output, report);

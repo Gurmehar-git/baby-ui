@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Spinner } from "../../spinner/react/spinner";
-import { type FieldOptions, mountField } from "./field";
-import { type FisheyeOptions, mountFisheye } from "./fisheye";
-import { createGallery } from "./gallery";
-import { INFINITE_IMAGE_FIELD_LABELS, type InfiniteImageFieldLabels } from "./labels";
+import { type FieldOptions, mountField } from "../field";
+import { type FisheyeOptions, mountFisheye } from "../fisheye";
+import { createGallery } from "../gallery";
+import { INFINITE_IMAGE_FIELD_LABELS, type InfiniteImageFieldLabels } from "../labels";
 import {
 	DEFAULT_LENS,
 	type InfiniteImageFieldLayout,
@@ -15,7 +15,7 @@ import {
 	type InfiniteImageFieldVariant,
 	type InfiniteImageItem,
 	infiniteImageField,
-} from "./variants";
+} from "../variants";
 
 export type {
 	InfiniteImageFieldLabels,

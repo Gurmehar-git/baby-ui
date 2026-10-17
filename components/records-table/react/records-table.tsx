@@ -15,9 +15,8 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "../../dropdown-menu/react/dropdown-menu";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover/react/popover";
-import { ConfigPopover, GlyphIcon, Icon } from "./config-popover";
 import {
 	ACTIONS_WIDTH,
 	COLUMN_ORDER,
@@ -33,8 +32,7 @@ import {
 	TYPE_GLYPHS,
 	toggleIn,
 	updateColumn,
-} from "./model";
-import { TagList } from "./tag-list";
+} from "../model";
 import type {
 	ColumnKey,
 	RecordRow,
@@ -42,8 +40,10 @@ import type {
 	RecordSortKey,
 	RecordsTableConfig,
 	RecordsTableLabels,
-} from "./types";
-import { type RecordsDensity, recordsTable, strengthDot } from "./variants";
+} from "../types";
+import { type RecordsDensity, recordsTable, strengthDot } from "../variants";
+import { ConfigPopover, GlyphIcon, Icon } from "./config-popover";
+import { TagList } from "./tag-list";
 
 export type {
 	ColumnKey,
@@ -58,8 +58,8 @@ export type {
 	RecordsTableConfig,
 	RecordsTableLabels,
 	RecordsToolKind,
-} from "./types";
-export type { RecordStrength, RecordsDensity } from "./variants";
+} from "../types";
+export type { RecordStrength, RecordsDensity } from "../variants";
 
 /** Value from `value` when controlled, else local state; `set` always reports through `onChange`. */
 function useControllable<T>(

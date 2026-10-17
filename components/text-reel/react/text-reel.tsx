@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { createReel } from "./reel";
-import { type TextReelOrientation, type TextReelSize, textReel } from "./variants";
+import { cn } from "../../lib/cn";
+import { createReel } from "../reel";
+import { type TextReelOrientation, type TextReelSize, textReel } from "../variants";
 
 export type { TextReelOrientation, TextReelSize };
 

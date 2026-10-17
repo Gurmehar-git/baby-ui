@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgSoftFocusMode, ogSoftFocus } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgSoftFocusMode, ogSoftFocus } from "../variants";
 
 export type { OgSoftFocusMode };
 

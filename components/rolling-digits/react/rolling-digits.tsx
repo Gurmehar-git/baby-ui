@@ -1,20 +1,20 @@
 "use client";
 
 import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	formatRollingDigits,
 	type RollingDigitCell,
 	type RollingDigitsLocale,
 	rollingDigitCells,
 	rollsUp,
-} from "./format";
+} from "../format";
 import {
 	type RollingDigitsDirection,
 	type RollingDigitsSize,
 	type RollingDigitsVariant,
 	rollingDigits,
-} from "./variants";
+} from "../variants";
 
 export type {
 	RollingDigitsDirection,

@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { type MorphTextSize, morphText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type MorphTextSize, morphText } from "../variants";
 
 export type { MorphTextSize };
 

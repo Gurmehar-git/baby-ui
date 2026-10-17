@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { ImageSlotProps } from "../../lib/svelte/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import {
 	type ScrollTiltedGridAspect,
 	type ScrollTiltedGridImage,
@@ -9,7 +9,7 @@ import {
 	type ScrollTiltedGridSize,
 	scrollTiltedGrid,
 	scrubTiles,
-} from "./variants";
+} from "../variants";
 
 let {
 	images,

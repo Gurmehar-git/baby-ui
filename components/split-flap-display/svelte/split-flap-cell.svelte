@@ -1,8 +1,8 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { flapSteps, prefersReducedMotion } from "./flap";
-import type { splitFlap } from "./variants";
+import { cn } from "../../lib/cn";
+import { flapSteps, prefersReducedMotion } from "../flap";
+import type { splitFlap } from "../variants";
 
 let {
 	char,

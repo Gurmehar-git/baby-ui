@@ -1,9 +1,9 @@
 "use client";
 
 import { type CSSProperties, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { createSlotText } from "./slot";
-import { type SlotTextSize, type SlotTextVariant, slotText } from "./variants";
+import { cn } from "../../lib/cn";
+import { createSlotText } from "../slot";
+import { type SlotTextSize, type SlotTextVariant, slotText } from "../variants";
 
 export type { SlotTextSize, SlotTextVariant };
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 import Badge from "../../badge/svelte/badge.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { armKey } from "./arm";
-import { TAG_INPUT_CHIP, type TagInputSize, tagInput } from "./variants";
+import { cn } from "../../lib/cn";
+import { armKey } from "../arm";
+import { TAG_INPUT_CHIP, type TagInputSize, tagInput } from "../variants";
 
 let {
 	tags = $bindable<string[]>([]),

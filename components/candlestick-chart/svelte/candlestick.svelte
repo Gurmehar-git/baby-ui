@@ -2,9 +2,8 @@
 
 <script lang="ts">
 import { untrack } from "svelte";
+import { EASE_OUT, prefersReducedMotion, Spring, tween } from "../../chart/motion";
 import { useActivePoint, useChart, usePlot } from "../../chart/svelte/context";
-import { EASE_OUT, prefersReducedMotion, Spring, tween } from "../../chart/svelte/motion";
-import { useCandleRoot } from "./context";
 import {
 	CANDLE_CONCEAL,
 	CANDLE_FADE,
@@ -12,8 +11,9 @@ import {
 	candleColor,
 	candleGeometry,
 	candleStagger,
-} from "./geometry";
-import { CANDLE_BODY, type CandlestickSize, candlestick } from "./variants";
+} from "../geometry";
+import { CANDLE_BODY, type CandlestickSize, candlestick } from "../variants";
+import { useCandleRoot } from "./context";
 
 let {
 	size = "regular",

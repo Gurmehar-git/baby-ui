@@ -9,8 +9,8 @@ import {
 } from "../../accordion/react/accordion";
 import { Badge } from "../../badge/react/badge";
 import { CodeBlock } from "../../code-block/react/code-block";
-import { cn } from "../../lib/react/cn";
-import type { ImageSlotProps } from "../../lib/react/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
 import {
@@ -23,8 +23,8 @@ import {
 	kindBadge,
 	kindCount,
 	kindShown,
-} from "./changelog";
-import { type ChangelogFeedVariant, changelogFeed } from "./variants";
+} from "../changelog";
+import { type ChangelogFeedVariant, changelogFeed } from "../variants";
 
 export type { ChangelogEntry, ChangelogFeedVariant, ChangelogKind, ChangelogMedia };
 

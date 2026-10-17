@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type BoldCopySize, boldCopy } from "./variants";
+import { cn } from "../../lib/cn";
+import { type BoldCopySize, boldCopy } from "../variants";
 
 let {
 	text,

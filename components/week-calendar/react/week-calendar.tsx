@@ -9,7 +9,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	addDays,
 	addMonths,
@@ -21,7 +21,7 @@ import {
 	startOfDay,
 	startOfWeek,
 	type WeekStartsOn,
-} from "./dates";
+} from "../dates";
 import {
 	HANDLE_DRAG_PX,
 	ROW_STAGGER_MS,
@@ -31,7 +31,7 @@ import {
 	type WeekCalendarLabels,
 	type WeekCalendarVariant,
 	weekCalendar,
-} from "./variants";
+} from "../variants";
 
 export type { WeekCalendarLabels, WeekCalendarVariant, WeekStartsOn };
 

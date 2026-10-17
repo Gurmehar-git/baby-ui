@@ -5,9 +5,9 @@ import AvatarFallback from "../../avatar/svelte/avatar-fallback.svelte";
 import AvatarGroup from "../../avatar/svelte/avatar-group.svelte";
 import AvatarImage from "../../avatar/svelte/avatar-image.svelte";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { CtaAction } from "./types";
-import { type CtaSectionVariant, ctaSection } from "./variants";
+import { cn } from "../../lib/cn";
+import type { CtaAction } from "../types";
+import { type CtaSectionVariant, ctaSection } from "../variants";
 
 let {
 	title,

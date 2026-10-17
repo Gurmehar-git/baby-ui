@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { type EmptyLayout, type EmptySize, type EmptyVariant, empty } from "./variants";
+import { cn } from "../../lib/cn";
+import { type EmptyLayout, type EmptySize, type EmptyVariant, empty } from "../variants";
 
 let {
 	variant = "default",

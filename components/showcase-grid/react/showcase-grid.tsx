@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	DOT_CORNERS,
 	HATCH_MARKS,
@@ -8,7 +8,7 @@ import {
 	type ShowcaseSpan,
 	showcaseGrid,
 	showcasePanel,
-} from "./variants";
+} from "../variants";
 
 export type { ShowcaseFrame, ShowcaseSpan };
 

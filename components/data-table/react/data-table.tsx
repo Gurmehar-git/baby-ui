@@ -16,7 +16,7 @@ import {
 	useState,
 } from "react";
 import { Button } from "../../button/react/button";
-import { button } from "../../button/react/variants";
+import { button } from "../../button/variants";
 import { Checkbox } from "../../checkbox/react/checkbox";
 import {
 	DropdownMenu,
@@ -40,7 +40,7 @@ import {
 	InputGroupAddon,
 	InputGroupInput,
 } from "../../input-group/react/input-group";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	Select,
 	SelectContent,
@@ -58,7 +58,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "../../table/react/table";
-import type { TableVariant } from "../../table/react/variants";
+import type { TableVariant } from "../../table/variants";
 import {
 	ariaSort,
 	type ColumnDrop,
@@ -91,13 +91,13 @@ import {
 	statusMessage,
 	subscribeDataTable,
 	virtualPadding,
-} from "./core";
+} from "../core";
 import {
 	DATA_TABLE_ALIGN,
 	DATA_TABLE_ROW_ESTIMATE,
 	type DataTableDensity,
 	dataTable,
-} from "./variants";
+} from "../variants";
 
 type DataTableStatus = {
 	loading: boolean;

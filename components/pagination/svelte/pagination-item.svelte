@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLLiAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 
 let {
 	children,

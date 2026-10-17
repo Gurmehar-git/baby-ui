@@ -5,8 +5,8 @@ import type { Snippet } from "svelte";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { useActivePoint } from "../../chart/svelte/context";
+import { seriesPoints } from "../geometry";
 import { useRadar } from "./context";
-import { seriesPoints } from "./geometry";
 
 let { content, class: className }: { content?: Snippet; class?: string } = $props();
 

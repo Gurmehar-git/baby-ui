@@ -12,8 +12,8 @@ import Button from "../../button/svelte/button.svelte";
 import InputGroup from "../../input-group/svelte/input-group.svelte";
 import InputGroupAddon from "../../input-group/svelte/input-group-addon.svelte";
 import InputGroupInput from "../../input-group/svelte/input-group-input.svelte";
-import type { InputGroupSize } from "../../input-group/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import type { InputGroupSize } from "../../input-group/variants";
+import { cn } from "../../lib/cn";
 import Select from "../../select/svelte/select.svelte";
 import SelectContent from "../../select/svelte/select-content.svelte";
 import SelectItem from "../../select/svelte/select-item.svelte";
@@ -27,8 +27,8 @@ import {
 	groupAmount,
 	significantBefore,
 	toMinor,
-} from "./money";
-import { type MoneyInputVariant, moneyInput } from "./variants";
+} from "../money";
+import { type MoneyInputVariant, moneyInput } from "../variants";
 
 let {
 	label,

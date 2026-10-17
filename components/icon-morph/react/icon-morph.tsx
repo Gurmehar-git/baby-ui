@@ -12,8 +12,8 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
-import { createIconMorph } from "./engine";
+import { cn } from "../../lib/cn";
+import { createIconMorph } from "../engine";
 import {
 	type IconMorphName,
 	type IconTreeOptions,
@@ -22,8 +22,8 @@ import {
 	paint,
 	rest,
 	staticAttrs,
-} from "./icons";
-import { type IconMorphSize, iconMorph } from "./variants";
+} from "../icons";
+import { type IconMorphSize, iconMorph } from "../variants";
 
 export type { IconMorphName, IconMorphSize };
 

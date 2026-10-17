@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
 import { registerHooks } from "node:module";
 import { test } from "node:test";
 
@@ -25,43 +24,8 @@ import {
 	nextPhase,
 	resolveDomain,
 	shouldTweenDomain,
-} from "../components/chart/react/core.ts";
-import { cubicBezier, Spring, tween } from "../components/chart/react/motion.ts";
-import { toSveltePort } from "./gen/shared.mjs";
-
-const SHARED = ["core.ts", "motion.ts"];
-const port = (framework, dir, file) => `components/${dir}/${framework}/${file}`;
-
-test("shared chart files are byte-identical across ports", async () => {
-	for (const file of SHARED) {
-		const react = await readFile(port("react", "chart", file), "utf8");
-		const svelte = await readFile(port("svelte", "chart", file), "utf8");
-		assert.equal(svelte, toSveltePort(react), file);
-	}
-});
-
-test("every chart family's shared .ts files are byte-identical across ports", async () => {
-	const { readdir } = await import("node:fs/promises");
-	const dirs = (await readdir("components")).filter(
-		(d) =>
-			d === "chart" ||
-			d.startsWith("chart-") ||
-			d.endsWith("-chart") ||
-			d === "projection-line",
-	);
-	let compared = 0;
-	for (const dir of dirs) {
-		for (const file of await readdir(`components/${dir}/react`)) {
-			if (!file.endsWith(".ts") || file === "index.ts") continue;
-			const svelte = await readFile(port("svelte", dir, file), "utf8").catch(() => null);
-			if (svelte === null) continue;
-			const react = await readFile(port("react", dir, file), "utf8");
-			assert.equal(svelte, toSveltePort(react), `${dir}/${file}`);
-			compared++;
-		}
-	}
-	assert.ok(compared >= 40, `compared ${compared} files`);
-});
+} from "../components/chart/core.ts";
+import { cubicBezier, Spring, tween } from "../components/chart/motion.ts";
 
 test("cubicBezier matches the CSS curve at its endpoints and midpoint", () => {
 	const ease = cubicBezier(0.85, 0, 0.15, 1);
@@ -178,15 +142,8 @@ test("chartStyleCss scopes light and dark colours to the chart id", () => {
 	assert.match(css, /\.dark \[data-chart=c1\] \{[^}]*--color-profit: #fff;/);
 });
 
-test("sunburst and funnel geometry are shared verbatim and lay out correctly", async () => {
-	for (const dir of ["sunburst-chart", "funnel-chart"]) {
-		for (const file of ["geometry.ts", "variants.ts"]) {
-			const react = await readFile(port("react", dir, file), "utf8");
-			const svelte = await readFile(port("svelte", dir, file), "utf8");
-			assert.equal(svelte, toSveltePort(react), `${dir}/${file}`);
-		}
-	}
-	const sb = await import("../components/sunburst-chart/react/geometry.ts");
+test("sunburst and funnel geometry lay out correctly", async () => {
+	const sb = await import("../components/sunburst-chart/geometry.ts");
 	const tree = {
 		name: "root",
 		children: [
@@ -223,7 +180,7 @@ test("sunburst and funnel geometry are shared verbatim and lay out correctly", a
 		0.5,
 	);
 	assert.ok(Math.abs(mid.a0 + mid.a1) > 6, "lerps the short way across pi");
-	const fn = await import("../components/funnel-chart/react/geometry.ts");
+	const fn = await import("../components/funnel-chart/geometry.ts");
 	const cells = fn.funnelCells(
 		[
 			{ label: "x", value: 100 },
@@ -248,19 +205,8 @@ test("sunburst and funnel geometry are shared verbatim and lay out correctly", a
 	);
 });
 
-test("heatmap calendar and sankey layout are shared verbatim and lay out correctly", async () => {
-	for (const [dir, file] of [
-		["heatmap-chart", "calendar.ts"],
-		["heatmap-chart", "shimmer.ts"],
-		["heatmap-chart", "variants.ts"],
-		["sankey-chart", "layout.ts"],
-		["sankey-chart", "variants.ts"],
-	]) {
-		const react = await readFile(port("react", dir, file), "utf8");
-		const svelte = await readFile(port("svelte", dir, file), "utf8");
-		assert.equal(svelte, toSveltePort(react), `${dir}/${file}`);
-	}
-	const hm = await import("../components/heatmap-chart/react/calendar.ts");
+test("heatmap calendar and sankey layout lay out correctly", async () => {
+	const hm = await import("../components/heatmap-chart/calendar.ts");
 	const data = [
 		{ date: "2026-03-04", value: 8 },
 		{ date: "2026-03-06", value: 2 },
@@ -292,7 +238,7 @@ test("heatmap calendar and sankey layout are shared verbatim and lay out correct
 	assert.equal(hm.heatmapNext("loading", "status-ready"), "revealing");
 	assert.equal(hm.heatmapNext("revealing", "done"), "ready");
 
-	const sk = await import("../components/sankey-chart/react/layout.ts");
+	const sk = await import("../components/sankey-chart/layout.ts");
 	const flows = {
 		nodes: [{ name: "a" }, { name: "b" }, { name: "c" }],
 		links: [
@@ -322,7 +268,7 @@ test("heatmap calendar and sankey layout are shared verbatim and lay out correct
 });
 
 test("bar depth faces and pulse mirror across orientation and sign", async () => {
-	const bar = await import("../components/bar-chart/react/bar-core.ts");
+	const bar = await import("../components/bar-chart/bar-core.ts");
 	const opts = { center: 100, step: 40, bandwidth: 30, base: 200 };
 	const up = bar.depthFaces(
 		{ x: 10, y: 80, width: 30, height: 120 },
@@ -381,7 +327,7 @@ test("bar depth faces and pulse mirror across orientation and sign", async () =>
 });
 
 test("small plots get fewer ticks, labels that would collide are dropped", async () => {
-	const core = await import("../components/chart/react/core.ts");
+	const core = await import("../components/chart/core.ts");
 	assert.equal(
 		core.fitTickCount(8, 400, core.Y_TICK_GAP),
 		8,
@@ -395,7 +341,7 @@ test("small plots get fewer ticks, labels that would collide are dropped", async
 	assert.equal(core.fitTickCount(5, 10, core.Y_TICK_GAP), 2, "never fewer than two");
 	assert.equal(core.fitTickCount(40, 9999, 1), 10, "never more than ten");
 
-	const sb = await import("../components/sunburst-chart/react/geometry.ts");
+	const sb = await import("../components/sunburst-chart/geometry.ts");
 	const ring = { a0: 0, a1: 1, innerR: 40, outerR: 110 };
 	assert.ok(sb.labelFits(ring, "Team"), "short name fits a 70px ring");
 	assert.ok(!sb.labelFits(ring, "United States of America"), "long name does not");
@@ -404,7 +350,7 @@ test("small plots get fewer ticks, labels that would collide are dropped", async
 		"a sliver has no room for the line",
 	);
 
-	const sk = await import("../components/sankey-chart/react/layout.ts");
+	const sk = await import("../components/sankey-chart/layout.ts");
 	const node = (index, value, y0, y1) => ({
 		index,
 		name: `n${index}`,

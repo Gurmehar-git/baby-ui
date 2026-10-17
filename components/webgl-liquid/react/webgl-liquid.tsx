@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { useCanvasEngine } from "../../lib/react/use-canvas-engine";
-import { mountWebglLiquid, type WebglLiquidOptions } from "./liquid";
+import { mountWebglLiquid, type WebglLiquidOptions } from "../liquid";
 import {
 	WEBGL_LIQUID_COLORS,
 	WEBGL_LIQUID_SPEED,
@@ -11,7 +11,7 @@ import {
 	type WebglLiquidSpeed,
 	type WebglLiquidTone,
 	webglLiquid,
-} from "./variants";
+} from "../variants";
 
 export type { WebglLiquidPosition, WebglLiquidSpeed, WebglLiquidTone };
 

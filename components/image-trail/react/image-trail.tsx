@@ -1,14 +1,14 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type ImageTrailOptions,
 	type ImageTrailSize,
 	type ImageTrailVariant,
 	imageTrail,
 	mountImageTrail,
-} from "./trail";
+} from "../trail";
 
 export type { ImageTrailSize, ImageTrailVariant };
 

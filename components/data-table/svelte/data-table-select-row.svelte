@@ -1,8 +1,8 @@
 <script lang="ts" generics="TData extends RowData">
 import type { RowData } from "@tanstack/table-core";
 import Checkbox from "../../checkbox/svelte/checkbox.svelte";
+import type { DataTableRow } from "../core";
 import { getDataTableStatus } from "./context";
-import type { DataTableRow } from "./core";
 
 let { row }: { row: DataTableRow<TData> } = $props();
 

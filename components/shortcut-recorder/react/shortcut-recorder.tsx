@@ -7,9 +7,9 @@ import {
 	useState,
 } from "react";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
-import { isApplePlatform, parseShortcut } from "../../lib/react/shortcut-keys";
-import { shortcutCap } from "../../shortcut/react/variants";
+import { cn } from "../../lib/cn";
+import { isApplePlatform, parseShortcut } from "../../lib/shortcut-keys";
+import { shortcutCap } from "../../shortcut/variants";
 import {
 	comboFromEvent,
 	comboKey,
@@ -18,8 +18,8 @@ import {
 	heldModifiers,
 	RESERVED_SHORTCUTS,
 	type ShortcutBinding,
-} from "./recorder";
-import { type ShortcutRecorderSize, shortcutRecorder } from "./variants";
+} from "../recorder";
+import { type ShortcutRecorderSize, shortcutRecorder } from "../variants";
 
 export type { ShortcutBinding, ShortcutRecorderSize };
 

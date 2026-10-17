@@ -1,5 +1,5 @@
 /** Sample data for the file-upload, number-input and multi-select demos. */
-import type { UploadFile } from "../../../../components/file-upload/react/core";
+import type { UploadFile } from "../../../../components/file-upload/core";
 
 export const TEAM_MEMBERS = [
 	{ value: "ana", label: "Ana Ruiz", keywords: "design" },

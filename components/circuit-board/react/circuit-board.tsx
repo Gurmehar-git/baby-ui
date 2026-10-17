@@ -1,20 +1,20 @@
 "use client";
 
 import { type CSSProperties, useId } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	buildTraces,
 	type CircuitConnection,
 	type CircuitNode,
 	circuitDelay,
-} from "./geometry";
+} from "../geometry";
 import {
 	type CircuitBoardSpeed,
 	type CircuitBoardTone,
 	type CircuitNodeStatus,
 	circuitBoard,
 	circuitNode,
-} from "./variants";
+} from "../variants";
 
 export type {
 	CircuitBoardSpeed,

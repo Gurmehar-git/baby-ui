@@ -1,12 +1,12 @@
 <script lang="ts">
 import Button from "../../button/svelte/button.svelte";
-import { button } from "../../button/svelte/variants";
+import { button } from "../../button/variants";
 import Dialog from "../../dialog/svelte/dialog.svelte";
 import DialogClose from "../../dialog/svelte/dialog-close.svelte";
 import DialogContent from "../../dialog/svelte/dialog-content.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Spinner from "../../spinner/svelte/spinner.svelte";
-import { type AgentScreenSize, agentScreen } from "./variants";
+import { type AgentScreenSize, agentScreen } from "../variants";
 
 const VIDEO_EXT = /\.(mp4|webm|mov|m4v)(\?|$)/i;
 

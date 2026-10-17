@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type ReasoningStepStatus, reasoningStep } from "../variants";
 import { useReasoning } from "./context";
-import { type ReasoningStepStatus, reasoningStep } from "./variants";
 
 let {
 	label,

@@ -135,6 +135,7 @@ function nextLock(
 	lock: LockFile,
 	decisions: Decision[],
 	ownsStyles: boolean,
+	adopt: boolean,
 ): LockFile {
 	const owned = new Set(
 		decisions.filter((d) => d.write || d.action === "identical").map((d) => d.file.path),
@@ -148,6 +149,8 @@ function nextLock(
 		for (const file of here) {
 			if (owned.has(file.path)) files[relativeTo(root, file.path)] = sha256(file.content);
 		}
+		// A same-named stock component (shadcn's flat `card.tsx`) is not ours to adopt.
+		if (adopt && here.length && !Object.keys(files).length) continue;
 		const key = canonicalUrl(url);
 		const previous = lock.items[key];
 		const entry: LockItem = {
@@ -307,7 +310,14 @@ export async function installInto(
 		ops.push({ path: pkg, content: readFileSync(pkg, "utf8") });
 	const styleRoot = plan.css?.root ?? workspace?.project.root ?? root;
 	for (const [lockRoot, lock] of locks) {
-		const next = nextLock(plan, lockRoot, lock, decisions, lockRoot === styleRoot);
+		const next = nextLock(
+			plan,
+			lockRoot,
+			lock,
+			decisions,
+			lockRoot === styleRoot,
+			options.mode === "adopt",
+		);
 		ops.push({ path: lockPath(lockRoot), content: serializeLock(next) });
 	}
 

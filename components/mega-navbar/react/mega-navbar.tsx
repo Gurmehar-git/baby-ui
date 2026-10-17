@@ -3,13 +3,13 @@
 import type { ReactNode } from "react";
 import { useEffect, useId, useRef, useState } from "react";
 import { Collapsible, CollapsibleContent } from "../../collapsible/react/collapsible";
-import { cn } from "../../lib/react/cn";
-import { pillStyle } from "../../lib/react/pill";
+import { cn } from "../../lib/cn";
+import { pillStyle } from "../../lib/pill";
 import { NotchedShelf } from "../../notched-shelf/react/notched-shelf";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../../sheet/react/sheet";
-import { capsuleBox, currentHref, groupHrefs, isCurrentSection } from "./current";
+import { capsuleBox, currentHref, groupHrefs, isCurrentSection } from "../current";
+import { type MegaNavbarVariant, megaNavbar } from "../variants";
 import { MegaNavbarExpand } from "./expand-nav";
-import { type MegaNavbarVariant, megaNavbar } from "./variants";
 
 export type { MegaNavbarVariant };
 

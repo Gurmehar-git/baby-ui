@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	mountParticles,
 	type ParticleOptions,
 	type ParticleTextShape,
 	type ParticleTextSize,
 	particleText,
-} from "./particles";
+} from "../particles";
 
 export type { ParticleTextShape, ParticleTextSize };
 

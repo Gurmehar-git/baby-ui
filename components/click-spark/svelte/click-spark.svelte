@@ -1,8 +1,8 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { createSparks } from "./sparks";
-import { type ClickSparkScope, type ClickSparkTone, clickSpark } from "./variants";
+import { cn } from "../../lib/cn";
+import { createSparks } from "../sparks";
+import { type ClickSparkScope, type ClickSparkTone, clickSpark } from "../variants";
 
 let {
 	tone = "foreground",

@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type WheelPickerRows, wheelPicker } from "../variants";
 import { setWheelContext } from "./context";
-import { type WheelPickerRows, wheelPicker } from "./variants";
 
 let {
 	children,

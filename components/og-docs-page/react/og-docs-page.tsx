@@ -1,11 +1,11 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_DOCS_PAGE_BONES,
 	type OgDocsPageMode,
 	type OgDocsPageMotif,
 	type OgDocsPageTone,
 	ogDocsPage,
-} from "./variants";
+} from "../variants";
 
 export type { OgDocsPageMode, OgDocsPageMotif, OgDocsPageTone };
 

@@ -1,8 +1,8 @@
 "use client";
 
 import { type CSSProperties, useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { type SignatureVariant, signature, signatureTiming } from "./variants";
+import { cn } from "../../lib/cn";
+import { type SignatureVariant, signature, signatureTiming } from "../variants";
 
 export type { SignatureVariant };
 

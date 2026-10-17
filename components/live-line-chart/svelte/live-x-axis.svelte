@@ -1,13 +1,13 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { fitTickCount } from "../../chart/core";
 import { useActivePoint, usePlot } from "../../chart/svelte/context";
-import { fitTickCount } from "../../chart/svelte/core";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { crosshairFade } from "../live";
+import { liveAxis } from "../variants";
 import { useLive } from "./context";
-import { crosshairFade } from "./live";
 import LiveTimePill from "./live-time-pill.svelte";
-import { liveAxis } from "./variants";
 
 let {
 	numTicks = 5,

@@ -1,4 +1,4 @@
-import type { DiffRowChange } from "./variants";
+import type { DiffRowChange } from "../variants";
 
 export type DiffRow = {
 	key: string;

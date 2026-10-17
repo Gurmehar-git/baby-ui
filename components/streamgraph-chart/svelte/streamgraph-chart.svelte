@@ -1,10 +1,10 @@
 <script lang="ts">
+import type { Datum } from "../../chart/core";
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import type { Datum } from "../../chart/svelte/core";
-import { streamLayers } from "./stream";
+import { streamLayers } from "../stream";
+import type { StreamgraphVariant } from "../variants";
 import StreamPlot from "./stream-plot.svelte";
-import type { StreamgraphVariant } from "./variants";
 
 let {
 	data,

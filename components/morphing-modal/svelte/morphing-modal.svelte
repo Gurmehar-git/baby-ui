@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { prefersReducedMotion } from "svelte/motion";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type MorphingModalSize, morphingModal } from "../variants";
 import { invert, MORPH_EASE, MORPH_MS, type MorphSpring } from "./morph";
-import { type MorphingModalSize, morphingModal } from "./variants";
 
 type Props = {
 	trigger: Snippet;

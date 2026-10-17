@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLButtonAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { type PaginationSize, pagination } from "./variants";
+import { cn } from "../../lib/cn";
+import { type PaginationSize, pagination } from "../variants";
 
 let {
 	children,

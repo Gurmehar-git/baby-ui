@@ -1,19 +1,19 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	layerState,
 	placeRipple,
 	type RipplePoint,
 	type RippleTransitionImage,
 	wrapIndex,
-} from "./ripple";
+} from "../ripple";
 import {
 	RIPPLE_TRANSITION_RING_COUNT,
 	type RippleTransitionRadius,
 	type RippleTransitionRings,
 	rippleTransition,
-} from "./variants";
+} from "../variants";
 
 let {
 	images,

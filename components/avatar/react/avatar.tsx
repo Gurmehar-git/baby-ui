@@ -2,8 +2,8 @@
 
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
-import { type AvatarShape, type AvatarSize, avatar, avatarGroup } from "./variants";
+import { cn } from "../../lib/cn";
+import { type AvatarShape, type AvatarSize, avatar, avatarGroup } from "../variants";
 
 export type { AvatarShape, AvatarSize };
 

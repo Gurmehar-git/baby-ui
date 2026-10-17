@@ -1,12 +1,12 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Markdown from "../../markdown/svelte/markdown.svelte";
-import type { StreamingSource, StreamingToken } from "./types";
 import {
 	type StreamingTextLayout,
 	type StreamingTextSize,
 	streamingText,
-} from "./variants";
+} from "../variants";
+import type { StreamingSource, StreamingToken } from "./types";
 
 const WORD_DELAY = 55;
 

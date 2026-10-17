@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { propertyPanel } from "./variants";
+import { cn } from "../../lib/cn";
+import { propertyPanel } from "../variants";
 
 let { class: classProp, children, ...rest }: HTMLAttributes<HTMLDivElement> = $props();
 </script>

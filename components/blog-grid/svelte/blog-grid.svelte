@@ -5,8 +5,8 @@ import Avatar from "../../avatar/svelte/avatar.svelte";
 import AvatarFallback from "../../avatar/svelte/avatar-fallback.svelte";
 import AvatarImage from "../../avatar/svelte/avatar-image.svelte";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { ImageSlotProps } from "../../lib/svelte/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import Pagination from "../../pagination/svelte/pagination.svelte";
 import PaginationContent from "../../pagination/svelte/pagination-content.svelte";
 import PaginationItem from "../../pagination/svelte/pagination-item.svelte";
@@ -23,8 +23,8 @@ import {
 	easeHeight,
 	formatPostDate,
 	withViewTransition,
-} from "./posts";
-import { type BlogGridVariant, blogGrid } from "./variants";
+} from "../posts";
+import { type BlogGridVariant, blogGrid } from "../variants";
 
 let {
 	posts,

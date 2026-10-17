@@ -2,7 +2,7 @@
 
 import { type KeyboardEvent, useEffect, useRef, useState } from "react";
 import { Button } from "../../button/react/button";
-import { button } from "../../button/react/variants";
+import { button } from "../../button/variants";
 import { Card } from "../../card/react/card";
 import {
 	DropdownMenu,
@@ -11,7 +11,7 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuTrigger,
 } from "../../dropdown-menu/react/dropdown-menu";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Textarea } from "../../textarea/react/textarea";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
 import {
@@ -22,12 +22,12 @@ import {
 	type ChatTopic,
 	promptHistory,
 	resolvingIndex,
-} from "./types";
+} from "../types";
 import {
 	type ChatComposerSize,
 	type ChatComposerVariant,
 	chatComposer,
-} from "./variants";
+} from "../variants";
 
 export type {
 	ChatComposerLabels,

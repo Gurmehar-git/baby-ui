@@ -2,8 +2,8 @@
 
 import { Separator as SeparatorPrimitive } from "@base-ui/react/separator";
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
-import { type SeparatorVariant, separator } from "./variants";
+import { cn } from "../../lib/cn";
+import { type SeparatorVariant, separator } from "../variants";
 
 export type { SeparatorVariant };
 

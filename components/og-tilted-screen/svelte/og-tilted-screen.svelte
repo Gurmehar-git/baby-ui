@@ -1,10 +1,10 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type OgTiltedScreenMode,
 	type OgTiltedScreenTone,
 	ogTiltedScreen,
-} from "./variants";
+} from "../variants";
 
 let {
 	title,

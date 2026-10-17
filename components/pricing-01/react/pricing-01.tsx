@@ -10,15 +10,15 @@ import {
 	CardFooter,
 	CardHeader,
 } from "../../card/react/card";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
 import {
 	PRICING_01_LABELS,
 	type Pricing01Labels,
 	type Pricing01Period,
 	type Pricing01Plan,
-} from "./types";
-import { type Pricing01Variant, pricing01 } from "./variants";
+} from "../types";
+import { type Pricing01Variant, pricing01 } from "../variants";
 
 export type { Pricing01Labels, Pricing01Period, Pricing01Plan, Pricing01Variant };
 

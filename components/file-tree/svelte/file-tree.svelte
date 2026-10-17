@@ -1,6 +1,6 @@
 <script lang="ts">
-import { type FileTreeNode, flatten } from "./types";
-import { type FileTreeSize, fileTree, ROW_INSET } from "./variants";
+import { type FileTreeNode, flatten } from "../types";
+import { type FileTreeSize, fileTree, ROW_INSET } from "../variants";
 
 type Props = {
 	tree: FileTreeNode[];

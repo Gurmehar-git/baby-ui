@@ -1,20 +1,20 @@
 "use client";
 
 import { type CSSProperties, useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	flapColumns,
 	flapRows,
 	flapSteps,
 	prefersReducedMotion,
 	SPLIT_FLAP_CHARACTERS,
-} from "./flap";
+} from "../flap";
 import {
 	type SplitFlapIndicator,
 	type SplitFlapSize,
 	type SplitFlapVariant,
 	splitFlap,
-} from "./variants";
+} from "../variants";
 
 export type { SplitFlapIndicator, SplitFlapSize, SplitFlapVariant };
 

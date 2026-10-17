@@ -1,8 +1,8 @@
 "use client";
 
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
-import { type FillButtonSize, type FillButtonTone, fillButton } from "./variants";
+import { cn } from "../../lib/cn";
+import { type FillButtonSize, type FillButtonTone, fillButton } from "../variants";
 
 export type { FillButtonSize, FillButtonTone };
 

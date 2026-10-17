@@ -4,13 +4,13 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import type { ComponentProps, ReactNode } from "react";
 import { createContext, useContext, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type DialogSize,
 	type DialogVariant,
 	dialogFrame,
 	dialogWidth,
-} from "./variants";
+} from "../variants";
 
 export type { DialogSize, DialogVariant };
 

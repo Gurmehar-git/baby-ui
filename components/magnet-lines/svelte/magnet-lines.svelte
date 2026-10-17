@@ -1,8 +1,8 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type MagnetLinesOptions, mountMagnetLines } from "./magnet";
-import { type MagnetLinesSize, type MagnetLinesTone, magnetLines } from "./variants";
+import { cn } from "../../lib/cn";
+import { type MagnetLinesOptions, mountMagnetLines } from "../magnet";
+import { type MagnetLinesSize, type MagnetLinesTone, magnetLines } from "../variants";
 
 let {
 	rows = 9,

@@ -1,8 +1,8 @@
 "use client";
 
 import { type CSSProperties, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { type ScrollRevealSize, scrollReveal } from "./variants";
+import { cn } from "../../lib/cn";
+import { type ScrollRevealSize, scrollReveal } from "../variants";
 
 export type { ScrollRevealSize };
 

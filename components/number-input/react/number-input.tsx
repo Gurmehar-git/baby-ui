@@ -2,15 +2,15 @@
 
 import { NumberField } from "@base-ui/react/number-field";
 import { useEffect, useId, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	LIMIT_HINT_MS,
 	limitHit,
 	limitMessage,
 	type NumberLimitEdge,
 	nudge,
-} from "./limit";
-import { type NumberInputSize, type NumberInputVariant, numberInput } from "./variants";
+} from "../limit";
+import { type NumberInputSize, type NumberInputVariant, numberInput } from "../variants";
 
 export type { NumberInputSize, NumberInputVariant, NumberLimitEdge };
 

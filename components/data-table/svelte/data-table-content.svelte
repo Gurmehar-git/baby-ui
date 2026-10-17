@@ -9,7 +9,7 @@ import EmptyDescription from "../../empty/svelte/empty-description.svelte";
 import EmptyHeader from "../../empty/svelte/empty-header.svelte";
 import EmptyMedia from "../../empty/svelte/empty-media.svelte";
 import EmptyTitle from "../../empty/svelte/empty-title.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Skeleton from "../../skeleton/svelte/skeleton.svelte";
 import Spinner from "../../spinner/svelte/spinner.svelte";
 import Table from "../../table/svelte/table.svelte";
@@ -18,7 +18,6 @@ import TableCell from "../../table/svelte/table-cell.svelte";
 import TableHead from "../../table/svelte/table-head.svelte";
 import TableHeader from "../../table/svelte/table-header.svelte";
 import TableRow from "../../table/svelte/table-row.svelte";
-import { getDataTableStatus } from "./context";
 import {
 	ariaSort,
 	type ColumnDrop,
@@ -39,10 +38,11 @@ import {
 	scrollRootFor,
 	statusMessage,
 	virtualPadding,
-} from "./core";
+} from "../core";
+import { DATA_TABLE_ALIGN, DATA_TABLE_ROW_ESTIMATE, dataTable } from "../variants";
+import { getDataTableStatus } from "./context";
 import Icon from "./data-table-icon.svelte";
 import Render from "./data-table-render.svelte";
-import { DATA_TABLE_ALIGN, DATA_TABLE_ROW_ESTIMATE, dataTable } from "./variants";
 
 let {
 	table,

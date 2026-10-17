@@ -1,13 +1,13 @@
 <script lang="ts">
+import type { ActivePoint, Datum } from "../../chart/core";
+import { CHART_DURATION, tween } from "../../chart/motion";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum } from "../../chart/svelte/core";
-import { CHART_DURATION, tween } from "../../chart/svelte/motion";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
-import { bisector, LABEL_MIN_SPAN, type PieSlice, sliceDelay } from "./geometry";
+import { bisector, LABEL_MIN_SPAN, type PieSlice, sliceDelay } from "../geometry";
+import { PIE_INNER_RATIO, type PieHover, type PieVariant, pieChart } from "../variants";
 import PieSliceShape from "./pie-slice.svelte";
-import { PIE_INNER_RATIO, type PieHover, type PieVariant, pieChart } from "./variants";
 
 let {
 	frame,

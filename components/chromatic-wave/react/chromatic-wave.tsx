@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { useCanvasEngine } from "../../lib/react/use-canvas-engine";
 import {
 	CHROMATIC_WAVE_COLORS,
@@ -10,8 +10,8 @@ import {
 	type ChromaticWaveSpeed,
 	type ChromaticWaveTone,
 	chromaticWave,
-} from "./variants";
-import { type ChromaticWaveOptions, mountChromaticWave } from "./wave";
+} from "../variants";
+import { type ChromaticWaveOptions, mountChromaticWave } from "../wave";
 
 export type { ChromaticWavePosition, ChromaticWaveSpeed, ChromaticWaveTone };
 

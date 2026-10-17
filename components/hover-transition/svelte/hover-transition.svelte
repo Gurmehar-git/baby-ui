@@ -1,12 +1,12 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { baseVars, hoverLayers, styleString } from "./effects";
+import { cn } from "../../lib/cn";
+import { baseVars, hoverLayers, styleString } from "../effects";
 import {
 	type HoverTransitionDirection,
 	type HoverTransitionEffect,
 	hoverTransition,
-} from "./variants";
+} from "../variants";
 
 let {
 	children,

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	isApplePlatform,
 	joinCaps,
@@ -7,8 +7,8 @@ import {
 	parseShortcut,
 	shortcutBlocked,
 	shortcutOwner,
-} from "../../lib/svelte/shortcut-keys";
-import { type ShortcutSize, type ShortcutVariant, shortcutCap } from "./variants";
+} from "../../lib/shortcut-keys";
+import { type ShortcutSize, type ShortcutVariant, shortcutCap } from "../variants";
 
 let {
 	shortcut,

@@ -10,13 +10,13 @@ import {
 	useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
+import { type ActivePoint, type Datum, toDate } from "../core";
+import { CHART_SPRING, Spring, type SpringConfig } from "../motion";
+import { type ChartTooltipIndicator, chartTooltip } from "../variants";
 import { useChart } from "./chart";
-import { type ActivePoint, type Datum, toDate } from "./core";
 import { ActivePointProvider, useActivePoint } from "./frame";
-import { CHART_SPRING, Spring, type SpringConfig } from "./motion";
 import { usePlot } from "./time-series";
-import { type ChartTooltipIndicator, chartTooltip } from "./variants";
 
 const TICKER_ROW = 24;
 const COMPACT_TICKER = 60;

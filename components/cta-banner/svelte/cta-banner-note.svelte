@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import { ctaBannerStyles } from "./context";
 
 // A <strong> inside becomes an emphasised second line.

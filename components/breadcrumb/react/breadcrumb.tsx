@@ -1,6 +1,6 @@
 import { type ComponentProps, createContext, useContext } from "react";
-import { cn } from "../../lib/react/cn";
-import { type BreadcrumbSize, type BreadcrumbVariant, breadcrumb } from "./variants";
+import { cn } from "../../lib/cn";
+import { type BreadcrumbSize, type BreadcrumbVariant, breadcrumb } from "../variants";
 
 export type { BreadcrumbSize, BreadcrumbVariant };
 

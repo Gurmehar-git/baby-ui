@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Avatar as AvatarPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import { getAvatar } from "./context";
 
 let { src, alt = "", class: classProp, ...rest }: AvatarPrimitive.ImageProps = $props();

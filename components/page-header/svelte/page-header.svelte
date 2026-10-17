@@ -6,20 +6,20 @@ import AvatarGroup from "../../avatar/svelte/avatar-group.svelte";
 import AvatarGroupCount from "../../avatar/svelte/avatar-group-count.svelte";
 import AvatarImage from "../../avatar/svelte/avatar-image.svelte";
 import Badge from "../../badge/svelte/badge.svelte";
-import type { BadgeVariant } from "../../badge/svelte/variants";
+import type { BadgeVariant } from "../../badge/variants";
 import Breadcrumb from "../../breadcrumb/svelte/breadcrumb.svelte";
 import BreadcrumbItem from "../../breadcrumb/svelte/breadcrumb-item.svelte";
 import BreadcrumbLink from "../../breadcrumb/svelte/breadcrumb-link.svelte";
 import BreadcrumbList from "../../breadcrumb/svelte/breadcrumb-list.svelte";
 import BreadcrumbPage from "../../breadcrumb/svelte/breadcrumb-page.svelte";
 import BreadcrumbSeparator from "../../breadcrumb/svelte/breadcrumb-separator.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import Tabs from "../../tabs/svelte/tabs.svelte";
 import TabsList from "../../tabs/svelte/tabs-list.svelte";
 import TabsTrigger from "../../tabs/svelte/tabs-trigger.svelte";
-import { type PageHeaderTab, watchCondensed } from "./header";
-import { type PageHeaderVariant, pageHeader } from "./variants";
+import { type PageHeaderTab, watchCondensed } from "../header";
+import { type PageHeaderVariant, pageHeader } from "../variants";
 
 let {
 	title,

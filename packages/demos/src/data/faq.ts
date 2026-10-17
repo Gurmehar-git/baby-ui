@@ -1,4 +1,4 @@
-import type { FaqItem } from "../../../../components/faq-section/react/faq";
+import type { FaqItem } from "../../../../components/faq-section/faq";
 
 /** Sample questions for the FAQ section demos, grouped into three topics. */
 export const FAQ_ITEMS: FaqItem[] = [

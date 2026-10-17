@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Heading } from "@better-svelte-email/components";
 import type { Snippet } from "svelte";
-import { type EmailHeadingAlign, type EmailHeadingSize, emailHeading } from "./variants";
+import { type EmailHeadingAlign, type EmailHeadingSize, emailHeading } from "../variants";
 
 let {
 	children,

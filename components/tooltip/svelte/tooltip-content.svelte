@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Tooltip as TooltipPrimitive } from "bits-ui";
+import { cn } from "../../lib/cn";
 import { ANCHORED } from "../../lib/svelte/anchor";
-import { cn } from "../../lib/svelte/cn";
 
 let {
 	class: classProp,

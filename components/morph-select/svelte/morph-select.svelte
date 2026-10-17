@@ -1,11 +1,11 @@
 <script lang="ts">
 import { Select as SelectPrimitive } from "bits-ui";
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { glideHighlight } from "../../lib/svelte/glide";
-import { trackActiveWidth } from "../../lib/svelte/morph";
-import { flatOptions, type MorphSelectItem, sections } from "./options";
-import { type MorphSelectSize, type MorphSelectVariant, morphSelect } from "./variants";
+import { cn } from "../../lib/cn";
+import { glideHighlight } from "../../lib/glide";
+import { trackActiveWidth } from "../../lib/morph";
+import { flatOptions, type MorphSelectItem, sections } from "../options";
+import { type MorphSelectSize, type MorphSelectVariant, morphSelect } from "../variants";
 
 let {
 	label,

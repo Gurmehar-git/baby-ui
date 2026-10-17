@@ -1,12 +1,12 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { CHART_DURATION, CHART_EASE } from "../../chart/motion";
 import { useChart } from "../../chart/svelte/context";
-import { CHART_DURATION, CHART_EASE } from "../../chart/svelte/motion";
+import { RADAR_SPRING, RADAR_TIMING, ringPath } from "../geometry";
+import { radar } from "../variants";
 import { useRadar } from "./context";
 import { enterSpring, enterTween } from "./enter.svelte";
-import { RADAR_SPRING, RADAR_TIMING, ringPath } from "./geometry";
-import { radar } from "./variants";
 
 let {
 	showLevels = true,

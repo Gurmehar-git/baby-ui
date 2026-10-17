@@ -11,14 +11,14 @@ import {
 	useMemo,
 	useRef,
 } from "react";
-import { cn } from "../../lib/react/cn";
-import { attachRadioPill } from "./glide";
+import { cn } from "../../lib/cn";
+import { attachRadioPill } from "../glide";
 import {
 	type RadioOrientation,
 	type RadioSize,
 	type RadioVariant,
 	radioGroup,
-} from "./variants";
+} from "../variants";
 
 export type { RadioOrientation, RadioSize, RadioVariant };
 

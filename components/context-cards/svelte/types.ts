@@ -1,6 +1,6 @@
-import type { ContextChunkTone } from "./variants";
+import type { ContextChunkTone } from "../variants";
 
-export type { ContextChunkTone } from "./variants";
+export type { ContextChunkTone } from "../variants";
 
 export type ContextChunk = {
 	title: string;

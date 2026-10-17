@@ -2,9 +2,9 @@
 
 import type { TextareaHTMLAttributes } from "react";
 import { useId, useLayoutEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
-import { type TextareaSize, type TextareaVariant, textarea } from "./variants";
+import { type TextareaSize, type TextareaVariant, textarea } from "../variants";
 
 export type { TextareaSize, TextareaVariant };
 

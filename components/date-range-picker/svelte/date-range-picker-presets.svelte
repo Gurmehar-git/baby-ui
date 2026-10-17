@@ -1,8 +1,13 @@
 <script lang="ts">
 import { tick } from "svelte";
-import { type PillBox, pillCss, pressedBox } from "../../lib/svelte/pill";
-import { type DateRangeParts, type DateRangePreset, sameRange, todayParts } from "./core";
-import { dateRangePicker } from "./variants";
+import { type PillBox, pillCss, pressedBox } from "../../lib/pill";
+import {
+	type DateRangeParts,
+	type DateRangePreset,
+	sameRange,
+	todayParts,
+} from "../core";
+import { dateRangePicker } from "../variants";
 
 let {
 	presets,

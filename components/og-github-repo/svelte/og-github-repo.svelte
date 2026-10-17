@@ -1,5 +1,5 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_GITHUB_REPO_ICONS,
 	OG_GITHUB_REPO_WEEKS,
@@ -7,7 +7,7 @@ import {
 	type OgGithubRepoTone,
 	ogGithubRepo,
 	ogGithubRepoCell,
-} from "./variants";
+} from "../variants";
 
 let {
 	owner,

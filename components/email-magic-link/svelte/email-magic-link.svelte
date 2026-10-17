@@ -14,8 +14,8 @@ import EmailKeyValue, {
 import EmailPanel from "../../email-kit/svelte/email-panel.svelte";
 import EmailShell from "../../email-kit/svelte/email-shell.svelte";
 import EmailText from "../../email-kit/svelte/email-text.svelte";
-import { type EmailShellSurface, emailLayout } from "../../email-kit/svelte/variants";
-import { emailMagicLink } from "./variants";
+import { type EmailShellSurface, emailLayout } from "../../email-kit/variants";
+import { emailMagicLink } from "../variants";
 
 let {
 	productName,

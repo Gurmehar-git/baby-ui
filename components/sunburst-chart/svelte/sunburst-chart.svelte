@@ -9,9 +9,9 @@ import {
 	focusTrail,
 	type SunburstNode,
 	visibleArcs,
-} from "./geometry";
+} from "../geometry";
+import { type SunburstVariant, sunburstChart } from "../variants";
 import SunburstPlot from "./sunburst-plot.svelte";
-import { type SunburstVariant, sunburstChart } from "./variants";
 
 let {
 	data,

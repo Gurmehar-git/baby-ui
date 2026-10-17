@@ -2,7 +2,7 @@
 
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import { useId } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { type CheckboxSize, type CheckboxVariant, checkbox } from "./variants";
 
 export type { CheckboxSize, CheckboxVariant };

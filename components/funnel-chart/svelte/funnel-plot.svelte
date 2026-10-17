@@ -1,12 +1,11 @@
 <script lang="ts">
 import { untrack } from "svelte";
+import type { ActivePoint, Datum } from "../../chart/core";
+import { CHART_DURATION, CHART_EASE, EASE_OUT, tween } from "../../chart/motion";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum } from "../../chart/svelte/core";
-import { CHART_DURATION, CHART_EASE, EASE_OUT, tween } from "../../chart/svelte/motion";
-import { cn } from "../../lib/svelte/cn";
-import FunnelRingShape from "./funnel-ring.svelte";
+import { cn } from "../../lib/cn";
 import {
 	type FunnelCell,
 	type FunnelStage,
@@ -15,7 +14,7 @@ import {
 	LABEL_FADE,
 	STAGE_STAGGER,
 	stageColor,
-} from "./geometry";
+} from "../geometry";
 import {
 	FUNNEL_PATTERN_TILE,
 	type FunnelEdges,
@@ -24,7 +23,8 @@ import {
 	type FunnelPattern,
 	funnelChart,
 	funnelEdges,
-} from "./variants";
+} from "../variants";
+import FunnelRingShape from "./funnel-ring.svelte";
 
 let {
 	frame,

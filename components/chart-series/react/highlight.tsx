@@ -1,11 +1,11 @@
 "use client";
 
 import { useId, useLayoutEffect, useRef } from "react";
+import { CHART_SPRING, Spring } from "../../chart/motion";
 import { useActivePoint } from "../../chart/react/frame";
-import { CHART_SPRING, Spring } from "../../chart/react/motion";
 import { usePlot } from "../../chart/react/time-series";
-import { cn } from "../../lib/react/cn";
-import { highlightBounds } from "./core";
+import { cn } from "../../lib/cn";
+import { highlightBounds } from "../core";
 
 /** Kernel spring that writes straight to the DOM; stops on unmount. */
 export function useDomSpring(

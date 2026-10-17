@@ -1,6 +1,11 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type CubeTextSize, type CubeTextStagger, cubeText, cubeWords } from "./variants";
+import { cn } from "../../lib/cn";
+import {
+	type CubeTextSize,
+	type CubeTextStagger,
+	cubeText,
+	cubeWords,
+} from "../variants";
 
 let {
 	text,

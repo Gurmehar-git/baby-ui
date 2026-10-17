@@ -10,9 +10,9 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "../../dropdown-menu/react/dropdown-menu";
-import { cn } from "../../lib/react/cn";
-import { SIDEBAR_NAV_LABELS, type SidebarNavLabels } from "./labels";
-import { type SidebarNavSize, sidebarNav } from "./variants";
+import { cn } from "../../lib/cn";
+import { SIDEBAR_NAV_LABELS, type SidebarNavLabels } from "../labels";
+import { type SidebarNavSize, sidebarNav } from "../variants";
 
 export type { SidebarNavSize };
 

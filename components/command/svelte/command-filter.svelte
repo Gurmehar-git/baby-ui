@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import ToggleGroupItem from "../../toggle-group/svelte/toggle-group-item.svelte";
 import Tooltip from "../../tooltip/svelte/tooltip.svelte";
 import TooltipContent from "../../tooltip/svelte/tooltip-content.svelte";

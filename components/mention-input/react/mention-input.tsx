@@ -10,7 +10,7 @@ import {
 	useState,
 } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../../avatar/react/avatar";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	EMPTY_MENTIONS,
 	findTrigger,
@@ -24,8 +24,8 @@ import {
 	reconcileMentions,
 	snapOutOfMentions,
 	suggestMentions,
-} from "./mention";
-import { type MentionInputSize, mentionInput } from "./variants";
+} from "../mention";
+import { type MentionInputSize, mentionInput } from "../variants";
 
 export type {
 	Mention,

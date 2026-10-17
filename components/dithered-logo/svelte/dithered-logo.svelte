@@ -1,13 +1,13 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type DitherOptions, mountDither } from "./dither";
+import { cn } from "../../lib/cn";
+import { type DitherOptions, mountDither } from "../dither";
 import {
 	type DitheredLogoSize,
 	type DitheredLogoTone,
 	type DitheredLogoVariant,
 	ditheredLogo,
-} from "./variants";
+} from "../variants";
 
 let {
 	src,

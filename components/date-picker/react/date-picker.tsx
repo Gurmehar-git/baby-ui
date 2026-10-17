@@ -2,7 +2,7 @@
 
 import { useId, useMemo, useState } from "react";
 import type { Matcher } from "react-day-picker";
-import { button } from "../../button/react/variants";
+import { button } from "../../button/variants";
 import { Calendar, type CalendarProps } from "../../calendar/react/calendar";
 import {
 	type DateParts,
@@ -14,14 +14,14 @@ import {
 	isOutsideRange,
 	isoDate,
 	toDateParts,
-} from "../../date-field/react/core";
+} from "../../date-field/core";
 import { DateSegments, useFieldDraft } from "../../date-field/react/segments";
-import { dateField } from "../../date-field/react/variants";
+import { dateField } from "../../date-field/variants";
 import { FieldError } from "../../field/react/field";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover/react/popover";
-import { DATE_PICKER_LABELS, type DatePickerLabels } from "./core";
-import type { DatePickerSize } from "./variants";
+import { DATE_PICKER_LABELS, type DatePickerLabels } from "../core";
+import type { DatePickerSize } from "../variants";
 
 export type { DatePickerLabels, DatePickerSize };
 

@@ -1,13 +1,13 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { type CompareOrientation, createImageCompare } from "./compare";
+import { cn } from "../../lib/cn";
+import { type CompareOrientation, createImageCompare } from "../compare";
 import {
 	type ImageCompareSize,
 	type ImageCompareVariant,
 	imageCompare,
-} from "./variants";
+} from "../variants";
 
 export type { CompareOrientation, ImageCompareSize, ImageCompareVariant };
 

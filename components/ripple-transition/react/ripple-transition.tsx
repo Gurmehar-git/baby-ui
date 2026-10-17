@@ -10,20 +10,20 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	layerState,
 	placeRipple,
 	type RipplePoint,
 	type RippleTransitionImage,
 	wrapIndex,
-} from "./ripple";
+} from "../ripple";
 import {
 	RIPPLE_TRANSITION_RING_COUNT,
 	type RippleTransitionRadius,
 	type RippleTransitionRings,
 	rippleTransition,
-} from "./variants";
+} from "../variants";
 
 export type { RippleTransitionImage, RippleTransitionRadius, RippleTransitionRings };
 

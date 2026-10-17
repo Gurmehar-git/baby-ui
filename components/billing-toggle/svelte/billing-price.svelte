@@ -1,8 +1,8 @@
 <script lang="ts">
 import LetterMorph from "../../letter-morph/svelte/letter-morph.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import SlotText from "../../slot-text/svelte/slot-text.svelte";
-import { billingToggle } from "./variants";
+import { billingToggle } from "../variants";
 
 let {
 	amount,

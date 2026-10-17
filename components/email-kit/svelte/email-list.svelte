@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Column, Img, Row, Section, Text } from "@better-svelte-email/components";
-import { type EmailListMarker, emailList } from "./variants";
+import { type EmailListMarker, emailList } from "../variants";
 
 export interface EmailListItem {
 	title?: string;

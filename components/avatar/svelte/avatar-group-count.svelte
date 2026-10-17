@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { type AvatarShape, type AvatarSize, avatar, avatarGroup } from "./variants";
+import { cn } from "../../lib/cn";
+import { type AvatarShape, type AvatarSize, avatar, avatarGroup } from "../variants";
 
 let {
 	size = "default",

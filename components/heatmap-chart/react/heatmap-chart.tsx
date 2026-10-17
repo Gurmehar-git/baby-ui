@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import type { ActivePoint, ChartStatus, Datum } from "../../chart/core";
+import { prefersReducedMotion, tween } from "../../chart/motion";
 import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, ChartStatus, Datum } from "../../chart/react/core";
 import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
-import { prefersReducedMotion, tween } from "../../chart/react/motion";
 import { useActiveIndex } from "../../chart/react/time-series";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	buildCalendar,
 	enterDelay,
@@ -22,15 +22,15 @@ import {
 	heatmapNext,
 	LEVEL_PATTERN,
 	localeWeekStart,
-} from "./calendar";
-import { runShimmer } from "./shimmer";
+} from "../calendar";
+import { runShimmer } from "../shimmer";
 import {
 	type HeatmapLegendAlign,
 	type HeatmapShape,
 	heatmapChart,
 	levelFill,
 	SHAPE_RADIUS,
-} from "./variants";
+} from "../variants";
 
 export interface HeatmapChartProps {
 	data: Datum[];

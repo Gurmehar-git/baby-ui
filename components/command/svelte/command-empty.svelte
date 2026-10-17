@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Command as CommandPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import { getCommand } from "./context";
 
 let { children, class: classProp, ...rest }: CommandPrimitive.EmptyProps = $props();

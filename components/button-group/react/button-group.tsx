@@ -3,9 +3,9 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Separator } from "../../separator/react/separator";
-import { type ButtonGroupOrientation, buttonGroup } from "./variants";
+import { type ButtonGroupOrientation, buttonGroup } from "../variants";
 
 export type { ButtonGroupOrientation };
 

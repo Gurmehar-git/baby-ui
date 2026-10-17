@@ -10,19 +10,19 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../../card/react/card";
+import type { Datum } from "../../chart/core";
 import {
 	type ChartConfig,
 	ChartContainer,
 	ChartLegend,
 	ChartLegendContent,
 } from "../../chart/react/chart";
-import type { Datum } from "../../chart/react/core";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RingChart } from "../../ring-chart/react/ring-chart";
-import type { RingCap } from "../../ring-chart/react/variants";
-import { meterLayout, meterNumber, meterTone } from "./meter";
+import type { RingCap } from "../../ring-chart/variants";
+import { meterLayout, meterNumber, meterTone } from "../meter";
+import { type UsageCardLayout, usageCard } from "../variants";
 import { UsageMeter } from "./usage-meter";
-import { type UsageCardLayout, usageCard } from "./variants";
 
 export type { UsageCardLayout };
 

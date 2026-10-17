@@ -1,16 +1,16 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
-import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
-import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum } from "../../chart/svelte/core";
+import type { ActivePoint, Datum } from "../../chart/core";
 import {
 	CHART_DURATION,
 	CHART_EASE,
 	cubicBezier,
 	type Playback,
 	tween,
-} from "../../chart/svelte/motion";
+} from "../../chart/motion";
+import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
+import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
+import { setActivePoint, useChart } from "../../chart/svelte/context";
 import {
 	type ArcDatum,
 	applyHoverGrow,
@@ -35,8 +35,8 @@ import {
 	SUNBURST_CURVE,
 	transitionGeometry,
 	ZOOM_MS,
-} from "./geometry";
-import { SUNBURST_HUB, type SunburstVariant, sunburstChart } from "./variants";
+} from "../geometry";
+import { SUNBURST_HUB, type SunburstVariant, sunburstChart } from "../variants";
 
 const SUNBURST_EASE = cubicBezier(...SUNBURST_CURVE);
 

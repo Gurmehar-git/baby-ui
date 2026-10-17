@@ -1,12 +1,12 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import AuroraField from "./aurora-field.svelte";
 import type {
 	AuroraFlowPosition,
 	AuroraFlowSpeed,
 	AuroraFlowTone,
 	AuroraFlowVariant,
-} from "./variants";
+} from "../variants";
+import AuroraField from "./aurora-field.svelte";
 
 let {
 	variant = "veil",

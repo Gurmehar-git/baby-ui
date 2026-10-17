@@ -5,7 +5,7 @@ import CardAction from "../../card/svelte/card-action.svelte";
 import CardContent from "../../card/svelte/card-content.svelte";
 import CardHeader from "../../card/svelte/card-header.svelte";
 import CardTitle from "../../card/svelte/card-title.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	clampProgress,
 	FLIGHT_STATUS_LABELS,
@@ -15,14 +15,14 @@ import {
 	MATRIX_HEIGHT,
 	MATRIX_WIDTH,
 	matrixDots,
-} from "./types";
+} from "../types";
 import {
 	FLIGHT_STATUS_TONE,
 	FLIGHT_TONE_BADGE,
 	type FlightStatusDisplay,
 	type FlightStatusTone,
 	flightStatusCard,
-} from "./variants";
+} from "../variants";
 
 let {
 	departureCode,

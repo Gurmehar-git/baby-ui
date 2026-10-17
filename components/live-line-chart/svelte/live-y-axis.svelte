@@ -3,9 +3,9 @@
 <script lang="ts">
 import { untrack } from "svelte";
 import { useChart, usePlot } from "../../chart/svelte/context";
-import { edgeOpacity, niceInterval, tickValues } from "./live";
+import { edgeOpacity, niceInterval, tickValues } from "../live";
+import { type LiveAxisPosition, liveAxis } from "../variants";
 import LiveYTick from "./live-y-tick.svelte";
-import { type LiveAxisPosition, liveAxis } from "./variants";
 
 let {
 	minGap = 36,

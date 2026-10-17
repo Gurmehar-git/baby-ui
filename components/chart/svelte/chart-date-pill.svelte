@@ -1,9 +1,9 @@
 <script lang="ts">
+import { toDate } from "../core";
+import { CHART_SPRING, Spring } from "../motion";
+import { chartTooltip } from "../variants";
 import { portal, useActivePoint, useChart, usePlot } from "./context";
-import { toDate } from "./core";
 import { follow } from "./follow.svelte";
-import { CHART_SPRING, Spring } from "./motion";
-import { chartTooltip } from "./variants";
 
 let { target }: { target: HTMLElement } = $props();
 

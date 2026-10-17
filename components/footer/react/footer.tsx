@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { NotchedShelf } from "../../notched-shelf/react/notched-shelf";
-import { type FooterLayout, footer } from "./variants";
+import { type FooterLayout, footer } from "../variants";
 
 export type { FooterLayout };
 

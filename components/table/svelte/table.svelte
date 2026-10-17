@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type TableDensity, type TableVariant, table } from "../variants";
 import { setTableStyle } from "./context";
-import { type TableDensity, type TableVariant, table } from "./variants";
 
 let {
 	ref = $bindable(null),

@@ -1,13 +1,13 @@
 "use client";
 
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import type { ActivePoint, Datum } from "../../chart/core";
+import { CHART_DURATION, type Playback, Spring, tween } from "../../chart/motion";
 import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, Datum } from "../../chart/react/core";
 import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
-import { CHART_DURATION, type Playback, Spring, tween } from "../../chart/react/motion";
 import { useActiveIndex } from "../../chart/react/time-series";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import {
 	arcPath,
@@ -18,8 +18,8 @@ import {
 	pieRows,
 	pieSlices,
 	sliceDelay,
-} from "./geometry";
-import { PIE_INNER_RATIO, type PieHover, type PieVariant, pieChart } from "./variants";
+} from "../geometry";
+import { PIE_INNER_RATIO, type PieHover, type PieVariant, pieChart } from "../variants";
 
 export interface PieChartProps {
 	data: Datum[];

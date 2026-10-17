@@ -1,19 +1,19 @@
 "use client";
 
 import { type CSSProperties, type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import type { ImageSlotProps } from "../../lib/react/image";
-import { bindScrollProgress } from "../../lib/react/scroll-frame";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
+import { bindScrollProgress } from "../../lib/scroll-frame";
 import {
 	CHOREOGRAPHY_SLOTS,
 	type ScrollChoreographyImage,
 	type ScrollChoreographyImages,
-} from "./types";
+} from "../types";
 import {
 	type ScrollChoreographySize,
 	type ScrollChoreographyVariant,
 	scrollChoreography,
-} from "./variants";
+} from "../variants";
 
 export type {
 	ScrollChoreographyImage,

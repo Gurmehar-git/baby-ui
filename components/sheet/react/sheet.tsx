@@ -2,7 +2,7 @@
 
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import type { ComponentProps, ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { type SheetSide, type SheetVariant, sheet } from "./variants";
 
 export type { SheetSide, SheetVariant };

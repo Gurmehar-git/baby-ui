@@ -2,7 +2,7 @@
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type CardDecision,
 	createCardDeck,
@@ -11,8 +11,8 @@ import {
 	type DeckPoint,
 	type DeckReturn,
 	VISIBLE,
-} from "./deck";
-import { type CardStackSize, type CardStackVariant, cardStack } from "./variants";
+} from "../deck";
+import { type CardStackSize, type CardStackVariant, cardStack } from "../variants";
 
 let {
 	items,

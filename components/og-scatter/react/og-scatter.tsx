@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { OG_SCATTER_TILES, type OgScatterMode, ogScatter } from "./variants";
+import { cn } from "../../lib/cn";
+import { OG_SCATTER_TILES, type OgScatterMode, ogScatter } from "../variants";
 
 export type { OgScatterMode };
 

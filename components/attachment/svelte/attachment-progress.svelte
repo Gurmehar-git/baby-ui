@@ -1,7 +1,7 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { attachment } from "../variants";
 import { attachmentState } from "./context";
-import { attachment } from "./variants";
 
 let { class: classProp }: { class?: string } = $props();
 

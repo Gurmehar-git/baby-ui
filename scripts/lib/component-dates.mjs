@@ -33,20 +33,25 @@ const SWEEP_SHARE = 0.25;
 
 const day = (iso) => iso.slice(0, 10);
 
-/** `components/<slug>/<fw>` for a port, `components/<slug>/<slug>.ts` for a spec. */
+/**
+ * `components/<slug>/<fw>` for a port, `components/<slug>/shared` for the code both ports
+ * import, `components/<slug>/component.ts` for the spec (once `<slug>.ts`, before that elsewhere).
+ */
 function keyOf(path, legacy) {
 	const root = rootsOf({ legacy }).find((r) => path.startsWith(`${r}/`));
 	if (!root) return null;
-	const [head = "", port] = path.slice(root.length + 1).split("/");
+	const [head = "", port = ""] = path.slice(root.length + 1).split("/");
 	if (head === "lib") return null;
 	const was = legacy[root];
 	if (was === "spec") {
 		const slug = head.replace(/\.ts$/, "");
-		return slug === "index" ? null : `components/${slug}/${slug}.ts`;
+		return slug === "index" ? null : `components/${slug}/component.ts`;
 	}
 	if (was) return port ? `components/${head}/${was}` : null;
 	if (port === "react" || port === "svelte") return `components/${head}/${port}`;
-	return port === `${head}.ts` ? `components/${head}/${port}` : null;
+	if (port === "component.ts" || port === `${head}.ts`)
+		return `components/${head}/component.ts`;
+	return port.endsWith(".ts") ? `components/${head}/shared` : null;
 }
 
 const nameOf = (key) =>

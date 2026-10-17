@@ -2,15 +2,15 @@
 
 import { type MouseEvent, type PointerEvent, useEffect, useRef, useState } from "react";
 import { Badge } from "../../badge/react/badge";
-import type { BadgeVariant } from "../../badge/react/variants";
+import type { BadgeVariant } from "../../badge/variants";
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "../../collapsible/react/collapsible";
-import { cn } from "../../lib/react/cn";
-import { revealCurrent } from "./scroll";
-import { type DocsNavConnector, docsNav, markerWidth, rowState } from "./variants";
+import { cn } from "../../lib/cn";
+import { revealCurrent } from "../scroll";
+import { type DocsNavConnector, docsNav, markerWidth, rowState } from "../variants";
 
 export type { DocsNavConnector };
 

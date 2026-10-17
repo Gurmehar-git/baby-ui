@@ -2,9 +2,9 @@
 import HoverCard from "../../hover-card/svelte/hover-card.svelte";
 import HoverCardContent from "../../hover-card/svelte/hover-card-content.svelte";
 import HoverCardTrigger from "../../hover-card/svelte/hover-card-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type ToolChipsSize, toolChips } from "../variants";
 import type { ToolChipsLabels, ToolDiff, ToolStep } from "./types";
-import { type ToolChipsSize, toolChips } from "./variants";
 
 let {
 	steps,

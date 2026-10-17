@@ -1,8 +1,8 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { Spring } from "../../chart/svelte/motion";
-import type { FunnelRing } from "./geometry";
+import { Spring } from "../../chart/motion";
+import type { FunnelRing } from "../geometry";
 
 let {
 	ring,

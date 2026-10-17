@@ -1,8 +1,8 @@
 "use client";
 
 import { type CSSProperties, type RefObject, useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { type ScrollProgressPosition, scrollPercent, scrollProgress } from "./variants";
+import { cn } from "../../lib/cn";
+import { type ScrollProgressPosition, scrollPercent, scrollProgress } from "../variants";
 
 export type { ScrollProgressPosition };
 

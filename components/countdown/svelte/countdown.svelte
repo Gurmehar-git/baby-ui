@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import {
 	type CountdownUnit,
@@ -10,8 +10,8 @@ import {
 	spokenCountdown,
 	toEpoch,
 	UNIT_NAMES,
-} from "./clock";
-import { type CountdownVariant, countdown } from "./variants";
+} from "../clock";
+import { type CountdownVariant, countdown } from "../variants";
 
 let {
 	target,

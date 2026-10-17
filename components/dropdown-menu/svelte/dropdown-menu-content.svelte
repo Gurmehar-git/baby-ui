@@ -1,8 +1,8 @@
 <script lang="ts">
 import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
+import { cn } from "../../lib/cn";
+import { menu } from "../../lib/menu";
 import { ANCHORED, stagger } from "../../lib/svelte/anchor";
-import { cn } from "../../lib/svelte/cn";
-import { menu } from "../../lib/svelte/menu";
 
 let {
 	class: classProp,

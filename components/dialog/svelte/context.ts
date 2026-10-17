@@ -1,5 +1,5 @@
 import { createContext, type Snippet } from "svelte";
-import type { DialogSize, DialogVariant } from "./variants";
+import type { DialogSize, DialogVariant } from "../variants";
 
 export type { DialogSize, DialogVariant };
 

@@ -1,8 +1,8 @@
 import type { ScaleBand, ScaleLinear } from "d3-scale";
 import { getContext, setContext } from "svelte";
-import type { ChartPhase, Datum, Margin, SeriesConfig } from "../../chart/svelte/core";
-import type { BarRect, Rect } from "./bar-core";
-import type { BarEntrance, BarOrientationVariant, BarVariant } from "./variants";
+import type { ChartPhase, Datum, Margin, SeriesConfig } from "../../chart/core";
+import type { BarRect, Rect } from "../bar-core";
+import type { BarEntrance, BarOrientationVariant, BarVariant } from "../variants";
 
 export interface DisplayedBar {
 	target: BarRect;

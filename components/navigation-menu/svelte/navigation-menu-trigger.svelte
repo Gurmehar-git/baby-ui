@@ -1,11 +1,11 @@
 <script lang="ts">
 import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type NavigationMenuSize,
 	navigationMenu,
 	navigationMenuTriggerStyle,
-} from "./variants";
+} from "../variants";
 
 let {
 	ref = $bindable(null),

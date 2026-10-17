@@ -11,7 +11,7 @@ import {
 	CommandList,
 	CommandSeparator,
 } from "../../command/react/command";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover/react/popover";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import {
@@ -22,7 +22,7 @@ import {
 	type MultiSelectSize,
 	multiSelect,
 	toggleValue,
-} from "./variants";
+} from "../variants";
 
 export type { MultiSelectLabels, MultiSelectOption, MultiSelectSize };
 

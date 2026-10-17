@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { HATCH_MARKS, RULE_MARKS, type ShowcaseFrame, showcaseGrid } from "./variants";
+import { cn } from "../../lib/cn";
+import { HATCH_MARKS, RULE_MARKS, type ShowcaseFrame, showcaseGrid } from "../variants";
 
 type Props = {
 	children: Snippet;

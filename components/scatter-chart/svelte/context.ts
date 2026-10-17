@@ -1,5 +1,5 @@
 import { getContext, setContext } from "svelte";
-import type { ScatterShape } from "./variants";
+import type { ScatterShape } from "../variants";
 
 export interface ScatterRootValue {
 	/** Series under the pointer; null when the keyboard selects a whole row. */

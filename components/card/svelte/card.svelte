@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type CardVariant, cardFrame } from "../variants";
 import { type CardWellFooter, setCardWell } from "./context";
-import { type CardVariant, cardFrame } from "./variants";
 
 // Slot names and class shape follow shadcn-svelte, so this drops into an existing project.
 let {

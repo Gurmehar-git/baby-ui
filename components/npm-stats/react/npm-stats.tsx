@@ -5,7 +5,7 @@ import {
 	EmptyHeader,
 	EmptyTitle,
 } from "../../empty/react/empty";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react";
 import {
@@ -20,16 +20,16 @@ import {
 	npmFacts,
 	rangeTrend,
 	trailingSum,
-} from "./core";
-import { NpmDownloadsChart } from "./downloads-chart";
-import { NpmPackageBreakdown } from "./package-breakdown";
-import { TrendBadge } from "./trend-badge";
+} from "../core";
 import {
 	NPM_STATS_LAYOUT,
 	type NpmStatsRange,
 	type NpmStatsVariant,
 	npmStats,
-} from "./variants";
+} from "../variants";
+import { NpmDownloadsChart } from "./downloads-chart";
+import { NpmPackageBreakdown } from "./package-breakdown";
+import { TrendBadge } from "./trend-badge";
 
 export type { NpmPackage, NpmStatsLabels, NpmStatsRange, NpmStatsVariant };
 

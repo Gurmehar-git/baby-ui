@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Column, Img, Link, Row, Section, Text } from "@better-svelte-email/components";
-import { type EmailFooterAlign, type EmailFooterLayout, emailFooter } from "./variants";
+import { type EmailFooterAlign, type EmailFooterLayout, emailFooter } from "../variants";
 
 export interface EmailFooterLink {
 	label: string;

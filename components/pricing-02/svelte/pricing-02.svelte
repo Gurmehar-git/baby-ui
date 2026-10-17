@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from "svelte/elements";
 import Button from "../../button/svelte/button.svelte";
 import Card from "../../card/svelte/card.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
 import ToggleGroupItem from "../../toggle-group/svelte/toggle-group-item.svelte";
 import {
@@ -11,8 +11,8 @@ import {
 	type Pricing02Labels,
 	type Pricing02Period,
 	type Pricing02Plan,
-} from "./types";
-import { type Pricing02Variant, pricing02 } from "./variants";
+} from "../types";
+import { type Pricing02Variant, pricing02 } from "../variants";
 
 type Props = Omit<HTMLAttributes<HTMLElement>, "title"> & {
 	plans: Pricing02Plan[];

@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { cn } from "../../lib/cn";
 import { type CanvasEngine, canvasEngine } from "../../lib/svelte/canvas-engine.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type AuroraFlowOptions, mountAuroraFlow } from "./aurora";
-import { mountSilkAurora } from "./silk";
+import { type AuroraFlowOptions, mountAuroraFlow } from "../aurora";
+import { mountSilkAurora } from "../silk";
 import {
 	AURORA_FLOW_GRAIN,
 	AURORA_FLOW_SPEED,
@@ -13,7 +13,7 @@ import {
 	type AuroraFlowVariant,
 	auroraColors,
 	auroraFlow,
-} from "./variants";
+} from "../variants";
 
 let {
 	variant,

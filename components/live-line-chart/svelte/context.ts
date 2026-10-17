@@ -1,5 +1,5 @@
 import { getContext, setContext } from "svelte";
-import type { LiveFrame } from "./live";
+import type { LiveFrame } from "../live";
 
 export interface LiveContextValue {
 	readonly frame: LiveFrame;

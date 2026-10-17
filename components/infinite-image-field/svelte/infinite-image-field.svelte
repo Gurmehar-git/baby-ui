@@ -1,15 +1,15 @@
 <script lang="ts">
-import DriftField from "./drift-field.svelte";
-import FisheyeField from "./fisheye-field.svelte";
-import GalleryField from "./gallery-field.svelte";
-import type { InfiniteImageFieldLabels } from "./labels";
+import type { InfiniteImageFieldLabels } from "../labels";
 import type {
 	InfiniteImageFieldLayout,
 	InfiniteImageFieldShape,
 	InfiniteImageFieldSize,
 	InfiniteImageFieldVariant,
 	InfiniteImageItem,
-} from "./variants";
+} from "../variants";
+import DriftField from "./drift-field.svelte";
+import FisheyeField from "./fisheye-field.svelte";
+import GalleryField from "./gallery-field.svelte";
 
 let {
 	variant = "drift",

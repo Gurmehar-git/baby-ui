@@ -2,14 +2,14 @@
 
 import { Badge } from "../../badge/react/badge";
 import { LetterMorph } from "../../letter-morph/react/letter-morph";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { SlotText } from "../../slot-text/react/slot-text";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
 import type {
 	ToggleGroupSize,
 	ToggleGroupVariant,
 } from "../../toggle-group/react/variants";
-import { billingToggle } from "./variants";
+import { billingToggle } from "../variants";
 
 export type BillingToggleOption = {
 	value: string;

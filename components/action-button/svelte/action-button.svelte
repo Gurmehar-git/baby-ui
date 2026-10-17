@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { ComponentProps, Snippet } from "svelte";
 import Button from "../../button/svelte/button.svelte";
-import type { ButtonSize, ButtonVariant } from "../../button/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
-import { morph, trackActiveWidth } from "../../lib/svelte/morph";
-import { actionButton } from "./variants";
+import type { ButtonSize, ButtonVariant } from "../../button/variants";
+import { cn } from "../../lib/cn";
+import { morph, trackActiveWidth } from "../../lib/morph";
+import { actionButton } from "../variants";
 
 let {
 	label,

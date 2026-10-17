@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type OgCtaPillMode, type OgCtaPillTone, ogCtaPill } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgCtaPillMode, type OgCtaPillTone, ogCtaPill } from "../variants";
 
 let {
 	label,

@@ -1,13 +1,13 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { createMarquee } from "./marquee";
+import { cn } from "../../lib/cn";
+import { createMarquee } from "../marquee";
 import {
 	type DraggableMarqueeDirection,
 	type DraggableMarqueeGap,
 	draggableMarquee,
-} from "./variants";
+} from "../variants";
 
 export type { DraggableMarqueeDirection, DraggableMarqueeGap };
 

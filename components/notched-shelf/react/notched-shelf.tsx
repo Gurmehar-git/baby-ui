@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	NOTCHED_SHELF_PATHS,
 	type NotchedShelfAlign,
@@ -8,7 +8,7 @@ import {
 	type NotchedShelfSize,
 	type NotchedShelfVariant,
 	notchedShelf,
-} from "./variants";
+} from "../variants";
 
 export type {
 	NotchedShelfAlign,

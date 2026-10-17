@@ -1,7 +1,7 @@
 import type { AnyFieldApi, AnyFormApi } from "@tanstack/svelte-form";
 import { createContext } from "svelte";
-import type { FieldErrorEntry } from "../../field/svelte/variants";
-import type { formFieldIds } from "./variants";
+import type { FieldErrorEntry } from "../../field/variants";
+import type { formFieldIds } from "../variants";
 
 /** Getters, so every part reads the field's live state rather than a snapshot. */
 export type FormFieldContext = {

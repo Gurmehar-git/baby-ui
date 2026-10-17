@@ -1,16 +1,16 @@
 <script lang="ts" generics="TData extends RowData">
 import type { RowData } from "@tanstack/table-core";
-import { button } from "../../button/svelte/variants";
+import { button } from "../../button/variants";
 import DropdownMenu from "../../dropdown-menu/svelte/dropdown-menu.svelte";
 import DropdownMenuCheckboxItem from "../../dropdown-menu/svelte/dropdown-menu-checkbox-item.svelte";
 import DropdownMenuContent from "../../dropdown-menu/svelte/dropdown-menu-content.svelte";
 import DropdownMenuLabel from "../../dropdown-menu/svelte/dropdown-menu-label.svelte";
 import DropdownMenuTrigger from "../../dropdown-menu/svelte/dropdown-menu-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { columnLabel, DATA_TABLE_ICONS, type DataTableInstance } from "../core";
+import { dataTable } from "../variants";
 import { getDataTableStatus } from "./context";
-import { columnLabel, DATA_TABLE_ICONS, type DataTableInstance } from "./core";
 import Icon from "./data-table-icon.svelte";
-import { dataTable } from "./variants";
 
 let { table, class: classProp }: { table: DataTableInstance<TData>; class?: string } =
 	$props();

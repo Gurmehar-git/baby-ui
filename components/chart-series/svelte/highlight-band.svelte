@@ -1,10 +1,10 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { CHART_SPRING, Spring } from "../../chart/motion";
 import { useActivePoint, usePlot } from "../../chart/svelte/context";
-import { CHART_SPRING, Spring } from "../../chart/svelte/motion";
-import { cn } from "../../lib/svelte/cn";
-import { highlightBounds } from "./core";
+import { cn } from "../../lib/cn";
+import { highlightBounds } from "../core";
 
 let {
 	d,

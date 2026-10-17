@@ -1,4 +1,4 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_GITHUB_REPO_ICONS,
 	OG_GITHUB_REPO_WEEKS,
@@ -6,7 +6,7 @@ import {
 	type OgGithubRepoTone,
 	ogGithubRepo,
 	ogGithubRepoCell,
-} from "./variants";
+} from "../variants";
 
 export type { OgGithubRepoMode, OgGithubRepoTone };
 

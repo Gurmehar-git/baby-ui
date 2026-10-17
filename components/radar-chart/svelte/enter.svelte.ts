@@ -6,7 +6,7 @@ import {
 	Spring,
 	type SpringConfig,
 	tween,
-} from "../../chart/svelte/motion";
+} from "../../chart/motion";
 
 type Apply = (node: SVGElement, progress: number) => void;
 

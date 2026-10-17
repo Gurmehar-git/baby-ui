@@ -1,8 +1,8 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { type AsciiOptions, mountAscii } from "./ascii";
+import { cn } from "../../lib/cn";
+import { type AsciiOptions, mountAscii } from "../ascii";
 import {
 	type AsciiEffectDither,
 	type AsciiEffectFit,
@@ -10,7 +10,7 @@ import {
 	type AsciiEffectTone,
 	type AsciiEffectVariant,
 	asciiEffect,
-} from "./variants";
+} from "../variants";
 
 export type {
 	AsciiEffectDither,

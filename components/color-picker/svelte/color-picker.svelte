@@ -2,7 +2,7 @@
 import InputGroup from "../../input-group/svelte/input-group.svelte";
 import InputGroupAddon from "../../input-group/svelte/input-group-addon.svelte";
 import InputGroupInput from "../../input-group/svelte/input-group-input.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	hexKeyStep,
 	hexToHsl,
@@ -14,7 +14,7 @@ import {
 	parseHex,
 	rgbToHex,
 	stepHex,
-} from "../../lib/svelte/color";
+} from "../../lib/color";
 import Popover from "../../popover/svelte/popover.svelte";
 import PopoverContent from "../../popover/svelte/popover-content.svelte";
 import PopoverTrigger from "../../popover/svelte/popover-trigger.svelte";
@@ -25,7 +25,7 @@ import {
 	colorPicker,
 	hasEyeDropper,
 	pickScreenColor,
-} from "./variants";
+} from "../variants";
 
 export type ColorFormat = "hsv" | "hsl" | "rgb";
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type ScrollProgressPosition, scrollPercent, scrollProgress } from "./variants";
+import { cn } from "../../lib/cn";
+import { type ScrollProgressPosition, scrollPercent, scrollProgress } from "../variants";
 
 let {
 	value: valueProp,

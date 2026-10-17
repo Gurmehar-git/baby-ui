@@ -6,8 +6,8 @@ import AccordionItem from "../../accordion/svelte/accordion-item.svelte";
 import AccordionTrigger from "../../accordion/svelte/accordion-trigger.svelte";
 import Badge from "../../badge/svelte/badge.svelte";
 import CodeBlock from "../../code-block/svelte/code-block.svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { ImageSlotProps } from "../../lib/svelte/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
 import ToggleGroupItem from "../../toggle-group/svelte/toggle-group-item.svelte";
@@ -20,8 +20,8 @@ import {
 	kindBadge,
 	kindCount,
 	kindShown,
-} from "./changelog";
-import { type ChangelogFeedVariant, changelogFeed } from "./variants";
+} from "../changelog";
+import { type ChangelogFeedVariant, changelogFeed } from "../variants";
 
 let {
 	entries,

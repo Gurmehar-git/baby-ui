@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { cn } from "../../lib/cn";
 import { canvasEngine } from "../../lib/svelte/canvas-engine.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type ClosingPlasmaOptions, mountClosingPlasma } from "./plasma";
+import { type ClosingPlasmaOptions, mountClosingPlasma } from "../plasma";
 import {
 	CLOSING_PLASMA_COLORS,
 	CLOSING_PLASMA_SPEED,
@@ -10,7 +10,7 @@ import {
 	type ClosingPlasmaSpeed,
 	type ClosingPlasmaTone,
 	closingPlasma,
-} from "./variants";
+} from "../variants";
 
 let {
 	tone = "chart",

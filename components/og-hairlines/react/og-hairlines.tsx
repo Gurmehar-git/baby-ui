@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgHairlinesMode, ogHairlines } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgHairlinesMode, ogHairlines } from "../variants";
 
 export type { OgHairlinesMode };
 

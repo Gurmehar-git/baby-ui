@@ -1,11 +1,11 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { ogProductStars } from "./stars";
+import { cn } from "../../lib/cn";
+import { ogProductStars } from "../stars";
 import {
 	type OgProductShopMode,
 	type OgProductShopTone,
 	ogProductShop,
-} from "./variants";
+} from "../variants";
 
 let {
 	name,

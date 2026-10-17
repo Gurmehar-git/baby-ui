@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { type DitherOptions, mountDither } from "./dither";
+import { cn } from "../../lib/cn";
+import { type DitherOptions, mountDither } from "../dither";
 import {
 	type DitheredLogoSize,
 	type DitheredLogoTone,
 	type DitheredLogoVariant,
 	ditheredLogo,
-} from "./variants";
+} from "../variants";
 
 export type { DitheredLogoSize, DitheredLogoTone, DitheredLogoVariant };
 

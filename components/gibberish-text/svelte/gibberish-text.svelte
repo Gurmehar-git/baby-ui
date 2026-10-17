@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type GibberishTextSize, gibberishText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type GibberishTextSize, gibberishText } from "../variants";
 
 let {
 	text,

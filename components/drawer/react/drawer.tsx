@@ -2,8 +2,8 @@
 
 import type { ComponentProps } from "react";
 import { Drawer as Vaul } from "vaul";
-import { cn } from "../../lib/react/cn";
-import { type DrawerVariant, drawerFrame } from "./variants";
+import { cn } from "../../lib/cn";
+import { type DrawerVariant, drawerFrame } from "../variants";
 
 export type { DrawerVariant };
 

@@ -14,7 +14,6 @@ import {
 	useMemo,
 	useRef,
 } from "react";
-import { useChart } from "../../chart/react/chart";
 import {
 	type ActivePoint,
 	announceRows,
@@ -27,7 +26,9 @@ import {
 	nearestIndex,
 	type TooltipRow,
 	toDate,
-} from "../../chart/react/core";
+} from "../../chart/core";
+import { EASE_OUT, prefersReducedMotion, Spring, tween } from "../../chart/motion";
+import { useChart } from "../../chart/react/chart";
 import {
 	ActivePointProvider,
 	CartesianProvider,
@@ -35,7 +36,6 @@ import {
 	type TickScale,
 	useActivePoint,
 } from "../../chart/react/frame";
-import { EASE_OUT, prefersReducedMotion, Spring, tween } from "../../chart/react/motion";
 import {
 	type PlotContextValue,
 	PlotProvider,
@@ -53,8 +53,8 @@ import {
 	candleStagger,
 	ohlcDomain,
 	readOhlc,
-} from "./geometry";
-import { CANDLE_BODY, type CandlestickSize, candlestick } from "./variants";
+} from "../geometry";
+import { CANDLE_BODY, type CandlestickSize, candlestick } from "../variants";
 
 interface CandleRootValue {
 	advance: (event: "done") => void;

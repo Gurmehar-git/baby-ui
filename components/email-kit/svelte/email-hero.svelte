@@ -12,7 +12,7 @@ import {
 	type EmailHeroSize,
 	type EmailHeroTone,
 	emailHero,
-} from "./variants";
+} from "../variants";
 
 /** A tinted opening panel: eyebrow and date, a large headline, a line of text and an image. */
 let {

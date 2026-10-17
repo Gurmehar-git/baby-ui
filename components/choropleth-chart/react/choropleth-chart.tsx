@@ -10,13 +10,13 @@ import {
 	useRef,
 	useState,
 } from "react";
+import type { ActivePoint, Datum } from "../../chart/core";
+import { CHART_DURATION, prefersReducedMotion, tween } from "../../chart/motion";
 import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, Datum } from "../../chart/react/core";
 import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
-import { CHART_DURATION, prefersReducedMotion, tween } from "../../chart/react/motion";
 import { useActiveIndex } from "../../chart/react/time-series";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	clampZoom,
 	DIM_TRANSITION,
@@ -34,8 +34,8 @@ import {
 	type ZoomState,
 	zoomAt,
 	zoomTransform,
-} from "./geometry";
-import { type ChoroplethProjection, choroplethChart } from "./variants";
+} from "../geometry";
+import { type ChoroplethProjection, choroplethChart } from "../variants";
 
 export interface ChoroplethLabels {
 	value: string;

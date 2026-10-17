@@ -1,11 +1,11 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_APP_ICON_DOODLES,
 	type OgAppIconMode,
 	ogAppIcon,
 	ogAppIconDoodle,
-} from "./variants";
+} from "../variants";
 
 let {
 	logo,

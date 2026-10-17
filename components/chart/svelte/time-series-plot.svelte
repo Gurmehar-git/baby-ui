@@ -2,7 +2,6 @@
 import { extent } from "d3-array";
 import { scaleLinear, scaleTime } from "d3-scale";
 import type { Snippet } from "svelte";
-import { setActivePoint, setPlot, type TickScale, useChart } from "./context";
 import {
 	type ActivePoint,
 	type ChartPhase,
@@ -17,7 +16,8 @@ import {
 	selectionBetween,
 	type TooltipRow,
 	toDate,
-} from "./core";
+} from "../core";
+import { setActivePoint, setPlot, type TickScale, useChart } from "./context";
 import { createRevealClip } from "./lifecycle.svelte";
 
 let {

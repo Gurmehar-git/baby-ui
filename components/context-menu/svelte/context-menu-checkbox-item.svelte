@@ -1,8 +1,8 @@
 <script lang="ts">
 import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { menu } from "../../lib/svelte/menu";
+import { cn } from "../../lib/cn";
+import { menu } from "../../lib/menu";
 
 let {
 	class: classProp,

@@ -18,7 +18,7 @@ import {
 	type ErrorBoundaryLabels,
 	errorMessage,
 	resetKeysChanged,
-} from "./core";
+} from "../core";
 
 export type { ErrorBoundaryLabels };
 

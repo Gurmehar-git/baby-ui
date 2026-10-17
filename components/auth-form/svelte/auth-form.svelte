@@ -10,7 +10,7 @@ import Input from "../../input/svelte/input.svelte";
 import InputOTP from "../../input-otp/svelte/input-otp.svelte";
 import InputOTPGroup from "../../input-otp/svelte/input-otp-group.svelte";
 import InputOTPSlot from "../../input-otp/svelte/input-otp-slot.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import PasswordInput from "../../password-input/svelte/password-input.svelte";
 import {
 	AUTH_COPY,
@@ -21,8 +21,8 @@ import {
 	type AuthStep,
 	authProblems,
 	resendSeconds,
-} from "./auth";
-import { type AuthFormVariant, authForm } from "./variants";
+} from "../auth";
+import { type AuthFormVariant, authForm } from "../variants";
 
 let {
 	onSubmit,

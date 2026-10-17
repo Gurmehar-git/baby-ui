@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Tabs as TabsPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import { getTabs } from "./context";
 
 let { children, value, class: classProp, ...rest }: TabsPrimitive.ContentProps = $props();

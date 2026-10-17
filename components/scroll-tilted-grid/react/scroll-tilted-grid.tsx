@@ -1,8 +1,8 @@
 "use client";
 
 import { type CSSProperties, type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import type { ImageSlotProps } from "../../lib/react/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import {
 	type ScrollTiltedGridAspect,
 	type ScrollTiltedGridImage,
@@ -10,7 +10,7 @@ import {
 	type ScrollTiltedGridSize,
 	scrollTiltedGrid,
 	scrubTiles,
-} from "./variants";
+} from "../variants";
 
 export type {
 	ScrollTiltedGridAspect,

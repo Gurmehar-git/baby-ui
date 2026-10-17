@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 
 // overflow-x-clip (not hidden) swallows a row's sideways entrance travel without
 // creating a scroll container.

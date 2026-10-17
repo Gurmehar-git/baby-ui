@@ -9,7 +9,7 @@ import {
 	EmailShell,
 	EmailText,
 } from "../../email-kit/react/email-kit";
-import { type EmailWelcomeDensity, emailWelcome } from "./variants";
+import { type EmailWelcomeDensity, emailWelcome } from "../variants";
 
 export type { EmailWelcomeDensity };
 

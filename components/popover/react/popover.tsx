@@ -2,9 +2,9 @@
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import type { ComponentProps } from "react";
+import { cn } from "../../lib/cn";
 import { ANCHORED } from "../../lib/react/anchor";
-import { cn } from "../../lib/react/cn";
-import { popover } from "./variants";
+import { popover } from "../variants";
 
 export const Popover = PopoverPrimitive.Root;
 

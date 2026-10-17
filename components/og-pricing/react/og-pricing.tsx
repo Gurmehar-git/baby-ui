@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgPricingMode, type OgPricingTone, ogPricing } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgPricingMode, type OgPricingTone, ogPricing } from "../variants";
 
 export type { OgPricingMode, OgPricingTone };
 

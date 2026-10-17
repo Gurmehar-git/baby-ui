@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { cn } from "../../lib/cn";
 import { canvasEngine } from "../../lib/svelte/canvas-engine.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type LiquidChromeOptions, mountLiquidChrome } from "./chrome";
+import { type LiquidChromeOptions, mountLiquidChrome } from "../chrome";
 import {
 	LIQUID_CHROME_COLORS,
 	LIQUID_CHROME_SPEED,
@@ -10,7 +10,7 @@ import {
 	type LiquidChromeSpeed,
 	type LiquidChromeTone,
 	liquidChrome,
-} from "./variants";
+} from "../variants";
 
 let {
 	tone = "chrome",

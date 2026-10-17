@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
 import Badge from "../../badge/svelte/badge.svelte";
-import type { BadgeVariant } from "../../badge/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import type { BadgeVariant } from "../../badge/variants";
+import { cn } from "../../lib/cn";
 import type { FilterRow, FilterRowStatus, FilterTableLabels } from "./types";
 
 const FILTERS: { key: "all" | FilterRowStatus; label: string; tone?: string }[] = [

@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { OG_SPOTLIGHT_TILES, type OgSpotlightMode, ogSpotlight } from "./variants";
+import { cn } from "../../lib/cn";
+import { OG_SPOTLIGHT_TILES, type OgSpotlightMode, ogSpotlight } from "../variants";
 
 export type { OgSpotlightMode };
 

@@ -2,10 +2,10 @@
 
 <script lang="ts">
 import type { CurveFactory } from "d3-shape";
+import { fadeStops, linePath } from "../../chart/core";
+import { type Playback, prefersReducedMotion, tween } from "../../chart/motion";
 import { useCartesian } from "../../chart/svelte/context";
-import { fadeStops, linePath } from "../../chart/svelte/core";
-import { type Playback, prefersReducedMotion, tween } from "../../chart/svelte/motion";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	PULSE_CLIP_PAD,
 	PULSE_CYCLE,
@@ -13,9 +13,9 @@ import {
 	pulseClip,
 	pulseExitPlan,
 	pulseSkeleton,
-} from "./core";
+} from "../core";
+import { seriesLoading } from "../variants";
 import { createLoadingMode, silhouette } from "./loading-mode.svelte";
-import { seriesLoading } from "./variants";
 
 let {
 	curve,

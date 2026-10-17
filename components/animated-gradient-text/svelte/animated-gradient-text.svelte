@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type GradientTextTone, gradientText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type GradientTextTone, gradientText } from "../variants";
 
 let {
 	children,

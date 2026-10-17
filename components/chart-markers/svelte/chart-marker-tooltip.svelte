@@ -1,10 +1,10 @@
 <script lang="ts">
+import { toDate } from "../../chart/core";
 import { useActivePoint, usePlot } from "../../chart/svelte/context";
-import { toDate } from "../../chart/svelte/core";
-import { cn } from "../../lib/svelte/cn";
-import { dayKey } from "./geometry";
+import { cn } from "../../lib/cn";
+import { dayKey } from "../geometry";
+import { chartMarkers } from "../variants";
 import type { ChartMarker } from "./types";
-import { chartMarkers } from "./variants";
 
 let {
 	items,

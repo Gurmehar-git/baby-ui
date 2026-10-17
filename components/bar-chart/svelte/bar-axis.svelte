@@ -1,12 +1,12 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { fittedTicks, X_TICK_GAP, Y_TICK_GAP } from "../../chart/core";
+import { CHART_DURATION, CHART_EASE_CSS } from "../../chart/motion";
 import { useChart } from "../../chart/svelte/context";
-import { fittedTicks, X_TICK_GAP, Y_TICK_GAP } from "../../chart/svelte/core";
-import { CHART_DURATION, CHART_EASE_CSS } from "../../chart/svelte/motion";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { barChart } from "../variants";
 import { useBarChart } from "./context";
-import { barChart } from "./variants";
 
 let {
 	side,

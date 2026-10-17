@@ -1,13 +1,13 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { createMarquee } from "./marquee";
+import { cn } from "../../lib/cn";
+import { createMarquee } from "../marquee";
 import {
 	type DraggableMarqueeDirection,
 	type DraggableMarqueeGap,
 	draggableMarquee,
-} from "./variants";
+} from "../variants";
 
 let {
 	children,

@@ -2,14 +2,14 @@
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
 import type { HTMLButtonAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { morph, trackActiveWidth } from "../../lib/svelte/morph";
-import { createHold } from "./hold";
+import { cn } from "../../lib/cn";
+import { morph, trackActiveWidth } from "../../lib/morph";
+import { createHold } from "../hold";
 import {
 	type HoldToConfirmSize,
 	type HoldToConfirmVariant,
 	holdToConfirm,
-} from "./variants";
+} from "../variants";
 
 let {
 	label,

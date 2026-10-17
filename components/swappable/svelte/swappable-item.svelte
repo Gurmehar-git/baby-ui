@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { swappable } from "../variants";
 import { getSwappable } from "./context";
-import { swappable } from "./variants";
 
 let {
 	id,

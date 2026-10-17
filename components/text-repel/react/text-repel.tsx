@@ -1,7 +1,7 @@
 "use client";
 
 import { type PointerEvent, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	createInertia,
 	letterOrigins,
@@ -9,7 +9,7 @@ import {
 	type TextRepelMode,
 	type TextRepelSize,
 	textRepel,
-} from "./variants";
+} from "../variants";
 
 export type { TextRepelMode, TextRepelSize };
 

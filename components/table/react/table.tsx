@@ -1,8 +1,8 @@
 "use client";
 
 import { type ComponentProps, createContext, useContext, useMemo } from "react";
-import { cn } from "../../lib/react/cn";
-import { type TableDensity, type TableVariant, table } from "./variants";
+import { cn } from "../../lib/cn";
+import { type TableDensity, type TableVariant, table } from "../variants";
 
 const TableContext = createContext<{ variant: TableVariant; density: TableDensity }>({
 	variant: "default",

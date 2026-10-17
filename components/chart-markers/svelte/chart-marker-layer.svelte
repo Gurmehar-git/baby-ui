@@ -1,9 +1,9 @@
 <script lang="ts">
 import { portal } from "../../chart/svelte/context";
+import type { MarkerGroup } from "../geometry";
+import type { ChartMarkerAppearance, ChartMarkerSize } from "../variants";
 import ChartMarkerGroup from "./chart-marker-group.svelte";
-import type { MarkerGroup } from "./geometry";
 import type { ChartMarker } from "./types";
-import type { ChartMarkerAppearance, ChartMarkerSize } from "./variants";
 
 let {
 	target,

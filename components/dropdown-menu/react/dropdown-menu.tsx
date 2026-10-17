@@ -2,9 +2,9 @@
 
 import { Menu } from "@base-ui/react/menu";
 import type { ComponentProps } from "react";
+import { cn } from "../../lib/cn";
+import { type MenuItemVariant, menu } from "../../lib/menu";
 import { ANCHORED } from "../../lib/react/anchor";
-import { cn } from "../../lib/react/cn";
-import { type MenuItemVariant, menu } from "../../lib/react/menu";
 
 export const DropdownMenu = Menu.Root;
 export const DropdownMenuSub = Menu.SubmenuRoot;

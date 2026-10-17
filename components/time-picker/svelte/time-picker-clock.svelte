@@ -1,6 +1,6 @@
 <script lang="ts">
-import { type ClockHands, clockHands, nearestTurn, type TimeValue } from "./core";
-import { timePicker } from "./variants";
+import { type ClockHands, clockHands, nearestTurn, type TimeValue } from "../core";
+import { timePicker } from "../variants";
 
 let { value }: { value: TimeValue | null } = $props();
 

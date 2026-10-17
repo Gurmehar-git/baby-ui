@@ -1,5 +1,5 @@
 import type { RowData } from "@tanstack/table-core";
-import { type DataTableColumnDef, SELECT_COLUMN } from "./core";
+import { type DataTableColumnDef, SELECT_COLUMN } from "../core";
 import SelectAll from "./data-table-select-all.svelte";
 import SelectRow from "./data-table-select-row.svelte";
 import { renderComponent } from "./render";

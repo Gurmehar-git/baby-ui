@@ -6,8 +6,8 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "../../collapsible/react/collapsible";
-import { cn } from "../../lib/react/cn";
-import { type PropertyPanelVariant, propertyPanel } from "./variants";
+import { cn } from "../../lib/cn";
+import { type PropertyPanelVariant, propertyPanel } from "../variants";
 
 const GroupContext = createContext(false);
 

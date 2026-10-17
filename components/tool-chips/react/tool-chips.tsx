@@ -7,8 +7,8 @@ import {
 	HoverCardContent,
 	HoverCardTrigger,
 } from "../../hover-card/react/hover-card";
-import { cn } from "../../lib/react/cn";
-import { type ToolChipsSize, toolChips } from "./variants";
+import { cn } from "../../lib/cn";
+import { type ToolChipsSize, toolChips } from "../variants";
 
 export type { ToolChipsSize };
 

@@ -1,16 +1,16 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Spinner from "../../spinner/svelte/spinner.svelte";
-import { createGallery } from "./gallery";
-import ItemList from "./item-list.svelte";
-import { INFINITE_IMAGE_FIELD_LABELS, type InfiniteImageFieldLabels } from "./labels";
+import { createGallery } from "../gallery";
+import { INFINITE_IMAGE_FIELD_LABELS, type InfiniteImageFieldLabels } from "../labels";
 import {
 	DEFAULT_LENS,
 	type InfiniteImageFieldSize,
 	type InfiniteImageItem,
 	infiniteImageField,
-} from "./variants";
+} from "../variants";
+import ItemList from "./item-list.svelte";
 
 let {
 	items,

@@ -8,7 +8,7 @@ import {
 	type EmailButtonVariant,
 	type EmailButtonWidth,
 	emailButton,
-} from "./variants";
+} from "../variants";
 
 let {
 	href,

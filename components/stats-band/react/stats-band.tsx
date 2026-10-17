@@ -1,7 +1,7 @@
 "use client";
 
 import { type CSSProperties, useEffect, useId, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { Sparkline } from "../../sparkline/react/sparkline";
 import {
@@ -13,8 +13,8 @@ import {
 	uptimeBars,
 	WORLD,
 	worldDots,
-} from "./stats";
-import { type StatsBandVariant, statsBand } from "./variants";
+} from "../stats";
+import { type StatsBandVariant, statsBand } from "../variants";
 
 export type { Stat, StatsBandVariant, StatVisual };
 

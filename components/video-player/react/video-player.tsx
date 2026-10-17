@@ -29,9 +29,9 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { button } from "../../button/react/variants";
-import { cardFrame } from "../../card/react/variants";
-import { cn } from "../../lib/react/cn";
+import { button } from "../../button/variants";
+import { cardFrame } from "../../card/variants";
+import { cn } from "../../lib/cn";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover/react/popover";
 import { RadioGroup, RadioGroupItem } from "../../radio-group/react/radio-group";
 import {
@@ -53,14 +53,14 @@ import {
 	type VideoPlayerScreenTrigger,
 	type VideoPlayerVolumeLevel,
 	volumeLevel,
-} from "./types";
+} from "../types";
 import {
 	VIDEO_PLAYER_CARD,
 	type VideoPlayerButtonSize,
 	type VideoPlayerVariant,
 	videoPlayer,
 	videoPlayerButton,
-} from "./variants";
+} from "../variants";
 
 export type {
 	VideoPlayerButtonSize,

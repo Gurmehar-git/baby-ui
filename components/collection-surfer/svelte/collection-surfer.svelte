@@ -1,19 +1,19 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { ImageSlotProps } from "../../lib/svelte/image";
-import { onScrollFrame } from "../../lib/svelte/scroll-frame";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
+import { onScrollFrame } from "../../lib/scroll-frame";
 import {
 	type CollectionSurferItem,
 	surfNearness,
 	surfShift,
 	wrapSurfScroll,
-} from "./types";
+} from "../types";
 import {
 	type CollectionSurferSize,
 	type CollectionSurferVariant,
 	collectionSurfer,
-} from "./variants";
+} from "../variants";
 
 let {
 	items,

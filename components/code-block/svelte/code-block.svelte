@@ -1,6 +1,6 @@
 <script lang="ts">
 import CopyButton from "../../copy-button/svelte/copy-button.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 
 let {
 	code,

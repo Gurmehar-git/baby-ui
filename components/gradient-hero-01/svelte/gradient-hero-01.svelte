@@ -4,13 +4,13 @@ import type { HTMLAttributes } from "svelte/elements";
 import Badge from "../../badge/svelte/badge.svelte";
 import Button from "../../button/svelte/button.svelte";
 import CopyButton from "../../copy-button/svelte/copy-button.svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { GradientHero01Action } from "./types";
+import { cn } from "../../lib/cn";
+import type { GradientHero01Action } from "../types";
 import {
 	type GradientHero01Size,
 	type GradientHero01Tone,
 	gradientHero01,
-} from "./variants";
+} from "../variants";
 
 type Props = Omit<HTMLAttributes<HTMLElement>, "title"> & {
 	headline: string;

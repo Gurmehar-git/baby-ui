@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { ALERT_ROLE, type AlertVariant, alert, alertCollapse } from "./variants";
+import { cn } from "../../lib/cn";
+import { ALERT_ROLE, type AlertVariant, alert, alertCollapse } from "../variants";
 
 let {
 	children,

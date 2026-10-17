@@ -1,9 +1,9 @@
 <script lang="ts">
 import { DateFormatter, type DateValue, getLocalTimeZone } from "@internationalized/date";
 import type { Calendar as CalendarPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type CalendarCaptionLayout, calendar } from "../variants";
 import { getCalendarChooser } from "./chooser-state.svelte";
-import { type CalendarCaptionLayout, calendar } from "./variants";
 
 let {
 	captionLayout,

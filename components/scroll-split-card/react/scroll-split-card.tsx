@@ -2,14 +2,14 @@
 
 import { type CSSProperties, useEffect, useRef } from "react";
 import { Card, CardDescription, CardTitle } from "../../card/react/card";
-import { cn } from "../../lib/react/cn";
-import { bindScrollProgress } from "../../lib/react/scroll-frame";
-import { type ScrollSplitCardItem, SPLIT_POSITIONS } from "./types";
+import { cn } from "../../lib/cn";
+import { bindScrollProgress } from "../../lib/scroll-frame";
+import { type ScrollSplitCardItem, SPLIT_POSITIONS } from "../types";
 import {
 	type ScrollSplitCardSize,
 	type ScrollSplitCardTone,
 	scrollSplitCard,
-} from "./variants";
+} from "../variants";
 
 export type { ScrollSplitCardItem, ScrollSplitCardSize, ScrollSplitCardTone };
 

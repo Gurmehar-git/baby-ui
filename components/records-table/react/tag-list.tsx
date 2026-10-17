@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
-import { tagToneClass } from "./variants";
+import { tagToneClass } from "../variants";
 
 function Tag({ name }: { name: string }) {
 	return (

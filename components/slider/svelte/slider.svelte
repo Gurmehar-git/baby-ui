@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Slider as SliderPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	sliderInlineSplit,
 	sliderLayout,
@@ -9,15 +9,15 @@ import {
 	sliderRulerValueAt,
 	sliderThumbCenter,
 	sliderWaveBars,
-} from "./core";
-import { attachElastic } from "./elastic";
+} from "../core";
+import { attachElastic } from "../elastic";
 import {
 	type SliderMark,
 	type SliderSize,
 	type SliderVariant,
 	slider,
 	sliderPercent,
-} from "./variants";
+} from "../variants";
 
 let {
 	value = $bindable(50),

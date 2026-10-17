@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useId, useMemo, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { useChart } from "./chart";
-import { evenTickIndices, fittedTicks, toDate, Y_TICK_GAP } from "./core";
-import { useActivePoint, useCartesian } from "./frame";
+import { cn } from "../../lib/cn";
+import { evenTickIndices, fittedTicks, toDate, Y_TICK_GAP } from "../core";
 import {
 	CHART_DURATION,
 	CHART_EASE_CSS,
 	type Playback,
 	prefersReducedMotion,
 	tween,
-} from "./motion";
+} from "../motion";
+import { type ChartGridVariant, chartAxis, chartGrid } from "../variants";
+import { useChart } from "./chart";
+import { useActivePoint, useCartesian } from "./frame";
 import { usePlot } from "./time-series";
-import { type ChartGridVariant, chartAxis, chartGrid } from "./variants";
 
 const slide = `transform ${CHART_DURATION.update}ms ${CHART_EASE_CSS}`;
 

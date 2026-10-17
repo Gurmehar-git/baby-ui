@@ -1,6 +1,6 @@
 <script lang="ts">
 import { onDestroy } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import type { LoadingStateVariant } from "./types";
 
 export type { LoadingStateVariant } from "./types";

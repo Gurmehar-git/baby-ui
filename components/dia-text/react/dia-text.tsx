@@ -9,8 +9,8 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
-import { DIA_TEXT_COLORS, type DiaTextSize, diaGradient, diaText } from "./variants";
+import { cn } from "../../lib/cn";
+import { DIA_TEXT_COLORS, type DiaTextSize, diaGradient, diaText } from "../variants";
 
 export type { DiaTextSize };
 

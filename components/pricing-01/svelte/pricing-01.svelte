@@ -7,7 +7,7 @@ import CardAction from "../../card/svelte/card-action.svelte";
 import CardContent from "../../card/svelte/card-content.svelte";
 import CardFooter from "../../card/svelte/card-footer.svelte";
 import CardHeader from "../../card/svelte/card-header.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
 import ToggleGroupItem from "../../toggle-group/svelte/toggle-group-item.svelte";
 import {
@@ -15,8 +15,8 @@ import {
 	type Pricing01Labels,
 	type Pricing01Period,
 	type Pricing01Plan,
-} from "./types";
-import { type Pricing01Variant, pricing01 } from "./variants";
+} from "../types";
+import { type Pricing01Variant, pricing01 } from "../variants";
 
 type Props = Omit<HTMLAttributes<HTMLElement>, "title"> & {
 	plans: Pricing01Plan[];

@@ -1,8 +1,8 @@
 <script lang="ts">
 import { Popover as PopoverPrimitive } from "bits-ui";
+import { cn } from "../../lib/cn";
 import { ANCHORED } from "../../lib/svelte/anchor";
-import { cn } from "../../lib/svelte/cn";
-import { popover } from "./variants";
+import { popover } from "../variants";
 
 let {
 	class: classProp,

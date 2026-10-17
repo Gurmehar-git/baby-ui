@@ -1,10 +1,10 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { angleAt, RADAR_SPRING, RADAR_TIMING } from "../geometry";
+import { radar } from "../variants";
 import { useRadar } from "./context";
 import { enterSpring } from "./enter.svelte";
-import { angleAt, RADAR_SPRING, RADAR_TIMING } from "./geometry";
-import { radar } from "./variants";
 
 let { class: className }: { class?: string } = $props();
 

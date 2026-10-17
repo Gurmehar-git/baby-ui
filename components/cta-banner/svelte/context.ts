@@ -1,5 +1,5 @@
 import { getContext, hasContext, setContext } from "svelte";
-import { type CtaBannerSize, type CtaBannerVariant, ctaBanner } from "./variants";
+import { type CtaBannerSize, type CtaBannerVariant, ctaBanner } from "../variants";
 
 type Banner = { variant: CtaBannerVariant; size: CtaBannerSize; titleId?: string };
 

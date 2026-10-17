@@ -1,10 +1,10 @@
 <script lang="ts">
+import type { Datum } from "../../chart/core";
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import type { Datum } from "../../chart/svelte/core";
-import { type SlopeItem, slopeItems } from "./geometry";
+import { type SlopeItem, slopeItems } from "../geometry";
+import type { SlopeVariant } from "../variants";
 import SlopePlot from "./slope-plot.svelte";
-import type { SlopeVariant } from "./variants";
 
 let {
 	data,

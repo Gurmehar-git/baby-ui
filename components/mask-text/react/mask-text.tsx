@@ -5,8 +5,8 @@ import {
 	type PointerEvent as ReactPointerEvent,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
-import { type MaskTextSize, maskText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type MaskTextSize, maskText } from "../variants";
 
 export type { MaskTextSize };
 

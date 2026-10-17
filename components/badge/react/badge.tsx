@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
-import { type BadgeSize, type BadgeVariant, badge } from "./variants";
+import { cn } from "../../lib/cn";
+import { type BadgeSize, type BadgeVariant, badge } from "../variants";
 
 export interface BadgeProps extends ComponentProps<"span"> {
 	variant?: BadgeVariant;

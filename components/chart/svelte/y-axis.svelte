@@ -1,10 +1,10 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { fittedTicks, Y_TICK_GAP } from "../core";
+import { CHART_DURATION, CHART_EASE_CSS } from "../motion";
+import { chartAxis } from "../variants";
 import { useChart, usePlot } from "./context";
-import { fittedTicks, Y_TICK_GAP } from "./core";
-import { CHART_DURATION, CHART_EASE_CSS } from "./motion";
-import { chartAxis } from "./variants";
 
 let {
 	tickCount = 5,

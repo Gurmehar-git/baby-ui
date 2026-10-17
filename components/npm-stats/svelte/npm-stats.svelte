@@ -3,7 +3,7 @@ import Empty from "../../empty/svelte/empty.svelte";
 import EmptyDescription from "../../empty/svelte/empty-description.svelte";
 import EmptyHeader from "../../empty/svelte/empty-header.svelte";
 import EmptyTitle from "../../empty/svelte/empty-title.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
 import ToggleGroupItem from "../../toggle-group/svelte/toggle-group-item.svelte";
@@ -19,16 +19,16 @@ import {
 	npmFacts,
 	rangeTrend,
 	trailingSum,
-} from "./core";
-import NpmDownloadsChart from "./downloads-chart.svelte";
-import NpmPackageBreakdown from "./package-breakdown.svelte";
-import TrendBadge from "./trend-badge.svelte";
+} from "../core";
 import {
 	NPM_STATS_LAYOUT,
 	type NpmStatsRange,
 	type NpmStatsVariant,
 	npmStats,
-} from "./variants";
+} from "../variants";
+import NpmDownloadsChart from "./downloads-chart.svelte";
+import NpmPackageBreakdown from "./package-breakdown.svelte";
+import TrendBadge from "./trend-badge.svelte";
 
 let {
 	packages,

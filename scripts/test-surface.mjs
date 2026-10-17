@@ -57,7 +57,7 @@ function setup() {
 	return { el, media, doc, win };
 }
 
-const { watchSurface } = await import("../components/lib/react/surface.ts");
+const { watchSurface } = await import("../components/lib/surface.ts");
 
 test("destroy removes every listener and disconnects every observer", () => {
 	const { el, media, doc, win } = setup();

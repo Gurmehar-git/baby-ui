@@ -2,16 +2,16 @@
 
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import type { ComponentProps, ReactNode } from "react";
+import { cn } from "../../lib/cn";
+import { menu } from "../../lib/menu";
 import { ANCHORED } from "../../lib/react/anchor";
-import { cn } from "../../lib/react/cn";
-import { menu } from "../../lib/react/menu";
 import {
 	type SelectContentSize,
 	type SelectTriggerSize,
 	type SelectTriggerVariant,
 	selectContent,
 	selectTrigger,
-} from "./variants";
+} from "../variants";
 
 export type { SelectTriggerSize, SelectTriggerVariant };
 

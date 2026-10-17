@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { currentHref, groupHrefs, isCurrentSection } from "./current";
+import { cn } from "../../lib/cn";
+import { currentHref, groupHrefs, isCurrentSection } from "../current";
+import { type MegaNavbarVariant, megaNavbar } from "../variants";
 import type { MegaMenuGroup, MegaMenuItem } from "./types";
-import { type MegaNavbarVariant, megaNavbar } from "./variants";
 
 /** Desktop dropdowns sharing one panel that resizes and slides to centre under the open
  * trigger, so moving along the row reads as the panel morphing, not popovers swapping. */

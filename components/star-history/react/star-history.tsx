@@ -17,7 +17,7 @@ import {
 	EmptyHeader,
 	EmptyTitle,
 } from "../../empty/react/empty";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Line, LineChart } from "../../line-chart/react";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../tabs/react";
@@ -36,13 +36,13 @@ import {
 	type StarHistoryData,
 	type StarHistoryLabels,
 	starMilestones,
-} from "./core";
+} from "../core";
 import {
 	STAR_HISTORY_LAYOUT,
 	type StarHistoryMode,
 	type StarHistoryVariant,
 	starHistory,
-} from "./variants";
+} from "../variants";
 
 export type { StarHistoryData, StarHistoryLabels, StarHistoryMode, StarHistoryVariant };
 

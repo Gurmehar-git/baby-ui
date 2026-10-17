@@ -1,8 +1,8 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { CHART_SPRING, Spring } from "../motion";
 import { follow } from "./follow.svelte";
-import { CHART_SPRING, Spring } from "./motion";
 
 let {
 	color,

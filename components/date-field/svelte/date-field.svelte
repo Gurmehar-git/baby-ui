@@ -2,9 +2,9 @@
 import type { DateValue } from "@internationalized/date";
 import { DateField as DateFieldPrimitive } from "bits-ui";
 import FieldError from "../../field/svelte/field-error.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { DATE_FIELD_LABELS, type DateFieldLabels } from "./core";
-import { type DateFieldSize, dateField } from "./variants";
+import { cn } from "../../lib/cn";
+import { DATE_FIELD_LABELS, type DateFieldLabels } from "../core";
+import { type DateFieldSize, dateField } from "../variants";
 
 let {
 	value = $bindable(),

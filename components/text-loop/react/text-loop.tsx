@@ -1,14 +1,14 @@
 "use client";
 
 import { type CSSProperties, useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type TextLoopDirection,
 	type TextLoopSize,
 	type TextLoopVariant,
 	textLoop,
 	textLoopRollStep,
-} from "./variants";
+} from "../variants";
 
 export type { TextLoopDirection, TextLoopSize, TextLoopVariant };
 

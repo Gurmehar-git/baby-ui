@@ -1,7 +1,7 @@
 <script lang="ts">
 import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
-import { type MenuItemVariant, menu } from "../../lib/svelte/menu";
+import { cn } from "../../lib/cn";
+import { type MenuItemVariant, menu } from "../../lib/menu";
 
 let {
 	class: classProp,

@@ -4,7 +4,7 @@ import Checkbox from "../../checkbox/svelte/checkbox.svelte";
 import HoverCard from "../../hover-card/svelte/hover-card.svelte";
 import HoverCardContent from "../../hover-card/svelte/hover-card-content.svelte";
 import HoverCardTrigger from "../../hover-card/svelte/hover-card-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Popover from "../../popover/svelte/popover.svelte";
 import PopoverContent from "../../popover/svelte/popover-content.svelte";
 import PopoverTrigger from "../../popover/svelte/popover-trigger.svelte";
@@ -14,15 +14,15 @@ import SelectItem from "../../select/svelte/select-item.svelte";
 import SelectTrigger from "../../select/svelte/select-trigger.svelte";
 import SelectValue from "../../select/svelte/select-value.svelte";
 import Switch from "../../switch/svelte/switch.svelte";
-import GlyphIcon from "./glyph-icon.svelte";
-import { NEW_PROPERTY_TYPES, TYPE_GLYPHS, toggleIn } from "./model";
+import { NEW_PROPERTY_TYPES, TYPE_GLYPHS, toggleIn } from "../model";
 import type {
 	RecordsColumnConfig,
 	RecordsColumnSettings,
 	RecordsColumnType,
 	RecordsTableLabels,
 	ResolvedColumn,
-} from "./types";
+} from "../types";
+import GlyphIcon from "./glyph-icon.svelte";
 
 let {
 	title,

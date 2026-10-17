@@ -1,8 +1,8 @@
 <script lang="ts">
 import { Calendar as Primitive } from "bits-ui";
-import { type ButtonVariant, button } from "../../button/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
-import { calendar } from "./variants";
+import { type ButtonVariant, button } from "../../button/variants";
+import { cn } from "../../lib/cn";
+import { calendar } from "../variants";
 
 let {
 	ref = $bindable(null),

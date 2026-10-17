@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Tooltip as TooltipPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 
 let { class: classProp, ...rest }: TooltipPrimitive.TriggerProps = $props();
 </script>

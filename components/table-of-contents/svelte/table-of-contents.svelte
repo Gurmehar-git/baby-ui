@@ -1,6 +1,6 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	activeRange,
 	buildTrack,
@@ -14,8 +14,8 @@ import {
 	type TocRow,
 	type TocTrack,
 	thumbStyle,
-} from "./toc-core";
-import { type TableOfContentsVariant, tableOfContents } from "./variants";
+} from "../toc-core";
+import { type TableOfContentsVariant, tableOfContents } from "../variants";
 
 let {
 	items,

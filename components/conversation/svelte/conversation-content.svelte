@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import ScrollArea from "../../scroll-area/svelte/scroll-area.svelte";
 import { getConversation } from "./context";
 

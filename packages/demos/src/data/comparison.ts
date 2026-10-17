@@ -1,7 +1,7 @@
 import type {
 	ComparisonColumn,
 	ComparisonSection,
-} from "../../../../components/comparison-table/react/compare";
+} from "../../../../components/comparison-table/compare";
 
 /** Sample plans for the comparison table demo, priced per seat. */
 export const PLAN_COLUMNS: ComparisonColumn[] = [

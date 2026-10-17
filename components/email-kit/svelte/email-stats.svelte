@@ -6,7 +6,7 @@ import {
 	type EmailStatsTone,
 	type EmailStatsTrend,
 	emailStats,
-} from "./variants";
+} from "../variants";
 
 export interface EmailStat {
 	/** Pre-formatted, e.g. "1,284" or "$12.4k". */

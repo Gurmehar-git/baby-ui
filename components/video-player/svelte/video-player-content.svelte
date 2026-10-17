@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { default as Hls, HlsConfig } from "hls.js";
 import type { HTMLVideoAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { isHlsSource, VIDEO_QUALITY_AUTO } from "../types";
+import { videoPlayer } from "../variants";
 import { getVideoPlayer } from "./context";
-import { isHlsSource, VIDEO_QUALITY_AUTO } from "./types";
-import { videoPlayer } from "./variants";
 
 let {
 	src,

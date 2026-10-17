@@ -1,9 +1,9 @@
 <script lang="ts">
 import Badge from "../../badge/svelte/badge.svelte";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type DiffRowChange, diffRow } from "../variants";
 import type { DiffRow } from "./types";
-import { type DiffRowChange, diffRow } from "./variants";
 
 const NEUTRAL = {
 	row: "",

@@ -12,7 +12,7 @@ import {
 } from "react";
 import { Badge } from "../../badge/react/badge";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	ORBIT_HERO_LABELS,
 	ORBIT_HERO_TONES,
@@ -21,14 +21,14 @@ import {
 	orbitDelay,
 	orbitPlace,
 	spinOrbits,
-} from "./orbit";
+} from "../orbit";
 import type {
 	OrbitHeroAction,
 	OrbitHeroGroup,
 	OrbitHeroLabels,
 	OrbitHeroTone,
-} from "./types";
-import { type OrbitHeroSize, type OrbitHeroVariant, orbitHero } from "./variants";
+} from "../types";
+import { type OrbitHeroSize, type OrbitHeroVariant, orbitHero } from "../variants";
 
 export type {
 	OrbitHeroAction,

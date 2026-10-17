@@ -2,20 +2,20 @@
 import { type DateValue, isEqualMonth } from "@internationalized/date";
 import { RangeCalendar as CalendarPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
-import type { ButtonVariant } from "../../button/svelte/variants";
+import type { ButtonVariant } from "../../button/variants";
 import CalendarChooser from "../../calendar/svelte/calendar-chooser.svelte";
 import CalendarChooserNav from "../../calendar/svelte/calendar-chooser-nav.svelte";
 import {
 	CalendarChooserState,
 	setCalendarChooser,
 } from "../../calendar/svelte/chooser-state.svelte";
-import type { WithoutChildren } from "../../calendar/svelte/types";
+import type { WithoutChildren } from "../../calendar/types";
 import {
 	type CalendarCaptionLayout,
 	type CalendarSize,
 	calendar,
-} from "../../calendar/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+} from "../../calendar/variants";
+import { cn } from "../../lib/cn";
 import RangeCalendarCaption from "./range-calendar-caption.svelte";
 import RangeCalendarCell from "./range-calendar-cell.svelte";
 import RangeCalendarDay from "./range-calendar-day.svelte";

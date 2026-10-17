@@ -9,8 +9,8 @@ import InputGroup from "../../input-group/svelte/input-group.svelte";
 import InputGroupAddon from "../../input-group/svelte/input-group-addon.svelte";
 import InputGroupButton from "../../input-group/svelte/input-group-button.svelte";
 import InputGroupInput from "../../input-group/svelte/input-group-input.svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { ImageSlotProps } from "../../lib/svelte/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import Spinner from "../../spinner/svelte/spinner.svelte";
 import {
@@ -23,8 +23,8 @@ import {
 	signupMessages,
 	stackIssues,
 	stackStyle,
-} from "./signup";
-import { type NewsletterSignupVariant, newsletterSignup } from "./variants";
+} from "../signup";
+import { type NewsletterSignupVariant, newsletterSignup } from "../variants";
 
 let {
 	title,

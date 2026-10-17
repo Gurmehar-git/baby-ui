@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type GlitchTextBlendMode, type GlitchTextSize, glitchText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type GlitchTextBlendMode, type GlitchTextSize, glitchText } from "../variants";
 
 let {
 	text,

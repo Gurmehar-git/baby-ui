@@ -1,17 +1,17 @@
 <script lang="ts">
+import type { ActivePoint, Datum, TooltipRow } from "../../chart/core";
+import { CHART_DURATION, tween } from "../../chart/motion";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum, TooltipRow } from "../../chart/svelte/core";
-import { CHART_DURATION, tween } from "../../chart/svelte/motion";
 import {
 	blendModel,
 	medianTint,
 	type RidgeModel,
 	ridgeHeight,
 	ridgePath,
-} from "./density";
-import { type RidgelineVariant, ridgelineChart } from "./variants";
+} from "../density";
+import { type RidgelineVariant, ridgelineChart } from "../variants";
 
 let {
 	frame,

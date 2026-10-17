@@ -1,9 +1,9 @@
 <script lang="ts">
-import { type ButtonVariant, button } from "../../button/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
-import { YEAR_PAGE } from "./chooser";
+import { type ButtonVariant, button } from "../../button/variants";
+import { cn } from "../../lib/cn";
+import { YEAR_PAGE } from "../chooser";
+import { calendar } from "../variants";
 import { getCalendarChooser } from "./chooser-state.svelte";
-import { calendar } from "./variants";
 
 let { variant = "ghost" }: { variant?: ButtonVariant } = $props();
 

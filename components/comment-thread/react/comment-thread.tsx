@@ -14,12 +14,8 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "../../collapsible/react/collapsible";
-import { cn } from "../../lib/react/cn";
-import {
-	EMPTY_MENTIONS,
-	initials,
-	type MentionValue,
-} from "../../mention-input/react/mention";
+import { cn } from "../../lib/cn";
+import { EMPTY_MENTIONS, initials, type MentionValue } from "../../mention-input/mention";
 import { MentionInput } from "../../mention-input/react/mention-input";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import {
@@ -38,8 +34,8 @@ import {
 	splitMentions,
 	type ThreadComment,
 	toggleReaction,
-} from "./thread";
-import { type CommentThreadVariant, commentThread } from "./variants";
+} from "../thread";
+import { type CommentThreadVariant, commentThread } from "../variants";
 
 export type {
 	CommentAuthor,

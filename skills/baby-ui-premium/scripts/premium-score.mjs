@@ -60,12 +60,9 @@ export function score(findings, manual = {}) {
 /** Source folders for a baby-ui component page, found from the slug at the end of the URL. */
 function sourcesFor(url) {
 	const slug = new URL(url).pathname.split("/").filter(Boolean).at(-1) ?? "";
-	return [
-		`components/${slug}/react`,
-		`components/${slug}/svelte`,
-		`pro/components/${slug}/react`,
-		`pro/components/${slug}/svelte`,
-	].filter((dir) => existsSync(dir));
+	return [`components/${slug}`, `pro/components/${slug}`].filter((dir) =>
+		existsSync(dir),
+	);
 }
 
 export async function premiumScore(url, { selector = "body", source, manual = {} } = {}) {

@@ -4,9 +4,9 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Button } from "../../button/react/button";
 import { Checkbox } from "../../checkbox/react/checkbox";
 import { Input } from "../../input/react/input";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RadioGroup, RadioGroupItem } from "../../radio-group/react/radio-group";
-import { type QuestionLayout, question } from "./variants";
+import { type QuestionLayout, question } from "../variants";
 
 export type QuestionOption = { value: string; label: string; disabled?: boolean };
 

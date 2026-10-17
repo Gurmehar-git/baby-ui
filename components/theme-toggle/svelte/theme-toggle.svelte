@@ -1,13 +1,13 @@
 <script lang="ts">
 import { flushSync } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { ensureRevealStyle, runThemeReveal, supportsViewTransition } from "./reveal";
+import { cn } from "../../lib/cn";
+import { ensureRevealStyle, runThemeReveal, supportsViewTransition } from "../reveal";
 import {
 	type ThemeToggleStart,
 	type ThemeToggleValue,
 	type ThemeToggleVariant,
 	themeToggle,
-} from "./variants";
+} from "../variants";
 
 let {
 	theme: themeProp,

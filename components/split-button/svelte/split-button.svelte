@@ -17,8 +17,8 @@ import DropdownMenu from "../../dropdown-menu/svelte/dropdown-menu.svelte";
 import DropdownMenuContent from "../../dropdown-menu/svelte/dropdown-menu-content.svelte";
 import DropdownMenuItem from "../../dropdown-menu/svelte/dropdown-menu-item.svelte";
 import DropdownMenuTrigger from "../../dropdown-menu/svelte/dropdown-menu-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type SplitButtonSize, type SplitButtonVariant, splitButton } from "./variants";
+import { cn } from "../../lib/cn";
+import { type SplitButtonSize, type SplitButtonVariant, splitButton } from "../variants";
 
 let {
 	label,

@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { type BadgeSize, type BadgeVariant, badge } from "./variants";
+import { cn } from "../../lib/cn";
+import { type BadgeSize, type BadgeVariant, badge } from "../variants";
 
 type Props = Omit<HTMLAttributes<HTMLSpanElement>, "class" | "children"> & {
 	children?: Snippet;

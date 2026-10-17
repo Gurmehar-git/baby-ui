@@ -1,7 +1,7 @@
 <script lang="ts" module>
 import type { Snippet } from "svelte";
 import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
-import type { ButtonSize, ButtonVariant } from "./variants";
+import type { ButtonSize, ButtonVariant } from "../variants";
 
 export type { ButtonSize, ButtonVariant };
 
@@ -19,8 +19,8 @@ export type ButtonProps = {
 </script>
 
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { button, buttonFace, isIconSize } from "./variants";
+import { cn } from "../../lib/cn";
+import { button, buttonFace, isIconSize } from "../variants";
 
 const faceStyles = buttonFace();
 

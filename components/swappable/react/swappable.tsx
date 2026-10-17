@@ -10,14 +10,14 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	mountSwappable,
 	type SwappableHandlers,
 	type Swapy,
 	type SwapyConfig,
-} from "./core";
-import { type SwappableVariant, swappable } from "./variants";
+} from "../core";
+import { type SwappableVariant, swappable } from "../variants";
 
 export type { SwappableVariant };
 

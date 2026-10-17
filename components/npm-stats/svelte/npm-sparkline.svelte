@@ -1,5 +1,5 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 
 let { values, class: classProp }: { values: number[]; class?: string } = $props();
 

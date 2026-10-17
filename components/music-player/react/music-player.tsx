@@ -2,8 +2,8 @@
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
-import type { ImageSlotProps } from "../../lib/react/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import { Slider } from "../../slider/react/slider";
 import {
 	clampUnit,
@@ -11,8 +11,8 @@ import {
 	MUSIC_PLAYER_LABELS,
 	type MusicPlayerLabels,
 	SEEK_TOLERANCE,
-} from "./types";
-import { type MusicPlayerLayout, musicPlayer } from "./variants";
+} from "../types";
+import { type MusicPlayerLayout, musicPlayer } from "../variants";
 
 export type { MusicPlayerLabels, MusicPlayerLayout };
 

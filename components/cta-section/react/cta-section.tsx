@@ -8,9 +8,9 @@ import {
 	AvatarImage,
 } from "../../avatar/react/avatar";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
-import type { CtaAction } from "./types";
-import { type CtaSectionVariant, ctaSection } from "./variants";
+import { cn } from "../../lib/cn";
+import type { CtaAction } from "../types";
+import { type CtaSectionVariant, ctaSection } from "../variants";
 
 export type { CtaAction, CtaSectionVariant };
 

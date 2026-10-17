@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Command as CommandPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
-import { offsetBox, type PillBox, pillCss } from "../../lib/svelte/pill";
+import { cn } from "../../lib/cn";
+import { offsetBox, type PillBox, pillCss } from "../../lib/pill";
 import { getCommand } from "./context";
 
 let { class: classProp, children, ...rest }: CommandPrimitive.ListProps = $props();

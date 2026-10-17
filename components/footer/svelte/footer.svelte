@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import NotchedShelf from "../../notched-shelf/svelte/notched-shelf.svelte";
+import { type FooterLayout, footer } from "../variants";
 import type { FooterColumn, FooterLink, FooterSocialLink, FooterStatus } from "./types";
-import { type FooterLayout, footer } from "./variants";
 
 let {
 	brand,

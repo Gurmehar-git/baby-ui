@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import type { ActivePoint, Datum, TooltipRow } from "../../chart/core";
 import { setActivePoint } from "../../chart/svelte/context";
-import type { ActivePoint, Datum, TooltipRow } from "../../chart/svelte/core";
+import type { RadarMetric, RadarSeries } from "../geometry";
+import type { RadarGridShape, RadarVariant } from "../variants";
 import { setRadar } from "./context";
-import type { RadarMetric, RadarSeries } from "./geometry";
-import type { RadarGridShape, RadarVariant } from "./variants";
 
 let {
 	frame,

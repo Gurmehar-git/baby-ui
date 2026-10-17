@@ -1,8 +1,8 @@
 <script lang="ts">
+import type { ActivePoint, Datum, TooltipRow } from "../../chart/core";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum, TooltipRow } from "../../chart/svelte/core";
 import {
 	branchHue,
 	createTreemapStage,
@@ -11,8 +11,8 @@ import {
 	type Rect,
 	shadeFor,
 	topOf,
-} from "./layout";
-import { type TreemapVariant, treemapChart } from "./variants";
+} from "../layout";
+import { type TreemapVariant, treemapChart } from "../variants";
 
 let {
 	frame,

@@ -1,9 +1,9 @@
 "use client";
 
 import { type CSSProperties, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { type MagnetLinesOptions, mountMagnetLines } from "./magnet";
-import { type MagnetLinesSize, type MagnetLinesTone, magnetLines } from "./variants";
+import { cn } from "../../lib/cn";
+import { type MagnetLinesOptions, mountMagnetLines } from "../magnet";
+import { type MagnetLinesSize, type MagnetLinesTone, magnetLines } from "../variants";
 
 export type { MagnetLinesSize, MagnetLinesTone };
 

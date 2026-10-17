@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { type FillButtonSize, type FillButtonTone, fillButton } from "./variants";
+import { cn } from "../../lib/cn";
+import { type FillButtonSize, type FillButtonTone, fillButton } from "../variants";
 
 type Props = {
 	/** Label; also rendered on the fill as a decorative copy. */

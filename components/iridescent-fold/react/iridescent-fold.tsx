@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { useCanvasEngine } from "../../lib/react/use-canvas-engine";
-import { type IridescentFoldOptions, mountIridescentFold } from "./fold";
+import { type IridescentFoldOptions, mountIridescentFold } from "../fold";
 import {
 	IRIDESCENT_FOLD_COLORS,
 	IRIDESCENT_FOLD_SPEED,
@@ -12,7 +12,7 @@ import {
 	type IridescentFoldTone,
 	type IridescentFoldVariant,
 	iridescentFold,
-} from "./variants";
+} from "../variants";
 
 export type {
 	IridescentFoldPosition,

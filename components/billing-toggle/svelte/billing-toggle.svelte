@@ -12,7 +12,7 @@ import Badge from "../../badge/svelte/badge.svelte";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
 import ToggleGroupItem from "../../toggle-group/svelte/toggle-group-item.svelte";
 import type { ToggleGroupSize, ToggleGroupVariant } from "../../toggle-group/svelte/variants";
-import { billingToggle } from "./variants";
+import { billingToggle } from "../variants";
 
 let {
 	value = $bindable(""),

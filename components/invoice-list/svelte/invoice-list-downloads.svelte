@@ -1,7 +1,7 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import type { Invoice } from "../invoice-core";
 import { getInvoiceList } from "./context";
-import type { Invoice } from "./invoice-core";
 
 let { invoice, class: classProp }: { invoice: Invoice; class?: string } = $props();
 const ctx = getInvoiceList();

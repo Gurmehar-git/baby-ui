@@ -1,10 +1,10 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type OgBlogPostMode,
 	type OgBlogPostTone,
 	type OgBlogPostVariant,
 	ogBlogPost,
-} from "./variants";
+} from "../variants";
 
 export type { OgBlogPostMode, OgBlogPostTone, OgBlogPostVariant };
 

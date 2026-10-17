@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
-import { type SkeletonShape, skeleton, skeletonReveal } from "./variants";
+import { cn } from "../../lib/cn";
+import { type SkeletonShape, skeleton, skeletonReveal } from "../variants";
 
 export interface SkeletonProps extends ComponentProps<"div"> {
 	/** Overrides the class width; omit to size with classes. */

@@ -7,7 +7,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../../card/react/card";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	clampProgress,
 	FLIGHT_STATUS_LABELS,
@@ -17,14 +17,14 @@ import {
 	MATRIX_HEIGHT,
 	MATRIX_WIDTH,
 	matrixDots,
-} from "./types";
+} from "../types";
 import {
 	FLIGHT_STATUS_TONE,
 	FLIGHT_TONE_BADGE,
 	type FlightStatusDisplay,
 	type FlightStatusTone,
 	flightStatusCard,
-} from "./variants";
+} from "../variants";
 
 export type { FlightStatus, FlightStatusDisplay, FlightStatusLabels, FlightStatusTone };
 

@@ -8,14 +8,14 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	MARKER_SHAPES,
 	MARKER_STAGGER_MS,
 	type MarkerTone,
 	type MarkerVariant,
 	marker,
-} from "./variants";
+} from "../variants";
 
 export type { MarkerTone, MarkerVariant };
 

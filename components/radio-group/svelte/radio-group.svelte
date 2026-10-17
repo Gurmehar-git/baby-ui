@@ -1,15 +1,15 @@
 <script lang="ts">
 import { RadioGroup as RadioGroupPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { setRadioGroupItemContext } from "./context";
-import { attachRadioPill } from "./glide";
+import { cn } from "../../lib/cn";
+import { attachRadioPill } from "../glide";
 import {
 	type RadioOrientation,
 	type RadioSize,
 	type RadioVariant,
 	radioGroup,
-} from "./variants";
+} from "../variants";
+import { setRadioGroupItemContext } from "./context";
 
 let {
 	children,

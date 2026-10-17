@@ -4,8 +4,8 @@ import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group";
 import type { ComponentProps } from "react";
 import { createContext, useContext, useLayoutEffect, useMemo, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { attachSegmentPill } from "./segment";
+import { cn } from "../../lib/cn";
+import { attachSegmentPill } from "../segment";
 import { type ToggleGroupSize, type ToggleGroupVariant, toggleGroup } from "./variants";
 
 export type { ToggleGroupSize, ToggleGroupVariant };

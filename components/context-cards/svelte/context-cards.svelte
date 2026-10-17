@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { contextChunkBadge } from "../variants";
 import type { ContextChunk } from "./types";
-import { contextChunkBadge } from "./variants";
 
 let {
 	class: classProp,

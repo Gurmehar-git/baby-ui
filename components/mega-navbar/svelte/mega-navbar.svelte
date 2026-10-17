@@ -2,18 +2,18 @@
 import type { Snippet } from "svelte";
 import Collapsible from "../../collapsible/svelte/collapsible.svelte";
 import CollapsibleContent from "../../collapsible/svelte/collapsible-content.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { pillStyle } from "../../lib/svelte/pill";
+import { cn } from "../../lib/cn";
+import { pillStyle } from "../../lib/pill";
 import NotchedShelf from "../../notched-shelf/svelte/notched-shelf.svelte";
 import Sheet from "../../sheet/svelte/sheet.svelte";
 import SheetContent from "../../sheet/svelte/sheet-content.svelte";
 import SheetHeader from "../../sheet/svelte/sheet-header.svelte";
 import SheetTitle from "../../sheet/svelte/sheet-title.svelte";
-import { capsuleBox, currentHref, groupHrefs } from "./current";
+import { capsuleBox, currentHref, groupHrefs } from "../current";
+import { type MegaNavbarVariant, megaNavbar } from "../variants";
 import MegaMenu from "./mega-menu.svelte";
 import MegaNavbarExpand from "./mega-navbar-expand.svelte";
 import type { MegaMenuGroup, MegaNavLink } from "./types";
-import { type MegaNavbarVariant, megaNavbar } from "./variants";
 
 let {
 	brand,

@@ -1,8 +1,8 @@
 "use client";
 
 import { type CSSProperties, type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import type { ImageSlotProps } from "../../lib/react/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import {
 	cardLayout,
 	type StickyScrollCardItem,
@@ -10,7 +10,7 @@ import {
 	type StickyScrollCardsVariant,
 	scrubStack,
 	stickyScrollCards,
-} from "./variants";
+} from "../variants";
 
 export type { StickyScrollCardItem, StickyScrollCardsSize, StickyScrollCardsVariant };
 

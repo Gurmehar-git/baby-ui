@@ -3,7 +3,7 @@ import { tick, untrack } from "svelte";
 import Avatar from "../../avatar/svelte/avatar.svelte";
 import AvatarFallback from "../../avatar/svelte/avatar-fallback.svelte";
 import AvatarImage from "../../avatar/svelte/avatar-image.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	EMPTY_MENTIONS,
 	findTrigger,
@@ -16,8 +16,8 @@ import {
 	reconcileMentions,
 	snapOutOfMentions,
 	suggestMentions,
-} from "./mention";
-import { type MentionInputSize, mentionInput } from "./variants";
+} from "../mention";
+import { type MentionInputSize, mentionInput } from "../variants";
 
 let {
 	value = $bindable(),

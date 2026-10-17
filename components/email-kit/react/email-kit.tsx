@@ -17,8 +17,8 @@ import {
 	Tailwind,
 	Text,
 } from "react-email";
-import { cn } from "../../lib/react/cn";
-import { emailTailwindConfig } from "../../lib/react/email-theme";
+import { cn } from "../../lib/cn";
+import { emailTailwindConfig } from "../../lib/email-theme";
 import {
 	EMAIL_STAT_TREND_GLYPH,
 	type EmailBadgeTone,
@@ -66,7 +66,7 @@ import {
 	emailShell,
 	emailStats,
 	emailText,
-} from "./variants";
+} from "../variants";
 
 export type {
 	EmailBadgeTone,

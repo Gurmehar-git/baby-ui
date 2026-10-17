@@ -14,8 +14,8 @@ import {
 	type EmailShellSurface,
 	EmailText,
 } from "../../email-kit/react/email-kit";
-import { emailLayout } from "../../email-kit/react/variants";
-import { EMAIL_RECEIPT_LABELS, type EmailReceiptLabels, emailReceipt } from "./variants";
+import { emailLayout } from "../../email-kit/variants";
+import { EMAIL_RECEIPT_LABELS, type EmailReceiptLabels, emailReceipt } from "../variants";
 
 export type { EmailReceiptLabels };
 

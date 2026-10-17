@@ -1,7 +1,5 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import ChartFrame from "../../chart/svelte/chart-frame.svelte";
-import { useChart } from "../../chart/svelte/context";
 import {
 	announceRows,
 	type ChartStatus,
@@ -11,15 +9,17 @@ import {
 	summarize,
 	type TooltipRow,
 	toDate,
-} from "../../chart/svelte/core";
+} from "../../chart/core";
+import ChartFrame from "../../chart/svelte/chart-frame.svelte";
+import { useChart } from "../../chart/svelte/context";
 import {
 	createAnimatedDomain,
 	createChartPhase,
 	createSeriesRegistry,
 } from "../../chart/svelte/lifecycle.svelte";
-import { scatterDomain } from "./geometry";
+import { scatterDomain } from "../geometry";
+import { SCATTER_SHAPES } from "../variants";
 import ScatterPlot from "./scatter-plot.svelte";
-import { SCATTER_SHAPES } from "./variants";
 
 let {
 	data,

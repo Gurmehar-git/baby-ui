@@ -2,15 +2,15 @@
 import { extent, max } from "d3-array";
 import { scaleLinear, scaleTime } from "d3-scale";
 import { curveMonotoneX, area as d3Area, line as d3Line } from "d3-shape";
-import { useChart } from "../../chart/svelte/context";
 import {
 	type Datum,
 	DEFAULT_MARGIN,
 	nearestIndex,
 	seriesColor,
 	toDate,
-} from "../../chart/svelte/core";
-import { cn } from "../../lib/svelte/cn";
+} from "../../chart/core";
+import { useChart } from "../../chart/svelte/context";
+import { cn } from "../../lib/cn";
 import {
 	type BrushMode,
 	clampRange,
@@ -22,8 +22,8 @@ import {
 	moveRange,
 	resizeRange,
 	sameRange,
-} from "./geometry";
-import { type ChartBrushVariant, chartBrush } from "./variants";
+} from "../geometry";
+import { type ChartBrushVariant, chartBrush } from "../variants";
 
 let {
 	data,

@@ -15,7 +15,7 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "../../collapsible/react/collapsible";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { SlotText } from "../../slot-text/react/slot-text";
 import {
@@ -26,8 +26,8 @@ import {
 	moveTimelineFocus,
 	type TimelineEventBase,
 	type TimelineTone,
-} from "./feed";
-import { type TimelineVariant, timeline } from "./variants";
+} from "../feed";
+import { type TimelineVariant, timeline } from "../variants";
 
 export type { TimelineTone, TimelineVariant };
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Tooltip from "../../tooltip/svelte/tooltip.svelte";
 import TooltipContent from "../../tooltip/svelte/tooltip-content.svelte";
 import TooltipProvider from "../../tooltip/svelte/tooltip-provider.svelte";
@@ -18,8 +18,8 @@ import {
 	timelineWidth,
 	uptimePercent,
 	visibleItems,
-} from "./timeline";
-import { type StatusMonitorSize, statusMonitor, statusTone } from "./variants";
+} from "../timeline";
+import { type StatusMonitorSize, statusMonitor, statusTone } from "../variants";
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, "title"> & {
 	/** One entry per period, oldest first; the newest 90 are kept. */

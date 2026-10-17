@@ -1,9 +1,9 @@
 <script lang="ts">
+import type { ActivePoint, Datum, TooltipRow } from "../../chart/core";
+import { CHART_DURATION, tween } from "../../chart/motion";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum, TooltipRow } from "../../chart/svelte/core";
-import { CHART_DURATION, tween } from "../../chart/svelte/motion";
 import {
 	axisPicks,
 	blendLayers,
@@ -12,8 +12,8 @@ import {
 	streamExtent,
 	streamPath,
 	widestStretch,
-} from "./stream";
-import { type StreamgraphVariant, streamgraphChart } from "./variants";
+} from "../stream";
+import { type StreamgraphVariant, streamgraphChart } from "../variants";
 
 let {
 	frame,

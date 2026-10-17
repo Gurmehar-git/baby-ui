@@ -14,14 +14,14 @@ import {
 	FieldLabel,
 	type FieldOrientation,
 } from "../../field/react/field";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type FormControlProps,
 	type FormSpacing,
 	formFieldIds,
 	formFieldState,
 	form as formStyles,
-} from "./variants";
+} from "../variants";
 
 export type { FormControlProps, FormSpacing };
 

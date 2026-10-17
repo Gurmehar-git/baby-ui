@@ -11,9 +11,9 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { dialogFrame } from "../../dialog/react/variants";
-import { cn } from "../../lib/react/cn";
-import { offsetBox, type PillBox, pillStyle, pressedBox } from "../../lib/react/pill";
+import { dialogFrame } from "../../dialog/variants";
+import { cn } from "../../lib/cn";
+import { offsetBox, type PillBox, pillStyle, pressedBox } from "../../lib/pill";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react";
 import {
 	Tooltip,
@@ -21,8 +21,8 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "../../tooltip/react/tooltip";
-import { rankCommandMatch } from "./score";
-import { type CommandVariant, commandFrame } from "./variants";
+import { rankCommandMatch } from "../score";
+import { type CommandVariant, commandFrame } from "../variants";
 
 export type { CommandVariant };
 

@@ -2,15 +2,15 @@
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { setCarousel } from "./context";
-import { createCarouselTrack } from "./track";
+import { cn } from "../../lib/cn";
+import { createCarouselTrack } from "../track";
 import {
 	type CarouselControls,
 	type CarouselSize,
 	type CarouselVariant,
 	carousel,
-} from "./variants";
+} from "../variants";
+import { setCarousel } from "./context";
 
 let {
 	label,

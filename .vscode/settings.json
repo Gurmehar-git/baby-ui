@@ -1,3 +1,26 @@
 {
-    "js/ts.experimental.useTsgo": false
+	"js/ts.experimental.useTsgo": false,
+	// Reference clones and build output are not source; watching or indexing them stalls the editor.
+	"files.watcherExclude": {
+		"**/.scratchpad/**": true,
+		"**/.svelte-kit/**": true,
+		"**/.docvia/**": true,
+		"**/.turbo/**": true,
+		"**/node_modules/**": true,
+		"apps/site/static/r/**": true,
+		"apps/site/static/svelte/**": true,
+		"apps/site/src/lib/generated/**": true
+	},
+	"search.exclude": {
+		"**/.scratchpad": true,
+		"**/.svelte-kit": true,
+		"**/.docvia": true,
+		"**/.turbo": true,
+		"apps/site/static/r": true,
+		"apps/site/static/svelte": true,
+		"apps/site/src/lib/generated": true
+	},
+	"files.exclude": {
+		"**/.turbo": true
+	}
 }

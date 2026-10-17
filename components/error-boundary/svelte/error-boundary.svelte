@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import type { EmptyLayout, EmptySize, EmptyVariant } from "../../empty/svelte/variants";
-import type { ErrorBoundaryLabels } from "./core";
+import type { EmptyLayout, EmptySize, EmptyVariant } from "../../empty/variants";
+import type { ErrorBoundaryLabels } from "../core";
 import ErrorBoundaryFallback from "./error-boundary-fallback.svelte";
 
 let {

@@ -3,11 +3,11 @@
 import type { CSSProperties } from "react";
 import { useRef, useState } from "react";
 import { Button } from "../../button/react/button";
-import { button } from "../../button/react/variants";
+import { button } from "../../button/variants";
 import { Dialog, DialogClose, DialogContent } from "../../dialog/react/dialog";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Spinner } from "../../spinner/react/spinner";
-import { type AgentScreenSize, agentScreen } from "./variants";
+import { type AgentScreenSize, agentScreen } from "../variants";
 
 export type { AgentScreenSize };
 

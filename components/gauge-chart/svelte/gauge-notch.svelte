@@ -1,8 +1,8 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { prefersReducedMotion, Spring } from "../../chart/svelte/motion";
-import { NOTCH_SPRING, type Notch } from "./geometry";
+import { prefersReducedMotion, Spring } from "../../chart/motion";
+import { NOTCH_SPRING, type Notch } from "../geometry";
 
 let {
 	notch,

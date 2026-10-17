@@ -1,14 +1,14 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { type DitherOptions, mountDither } from "./dither";
+import { cn } from "../../lib/cn";
+import { type DitherOptions, mountDither } from "../dither";
 import {
 	type DitherGradientMatrix,
 	type DitherGradientPosition,
 	type DitherGradientTone,
 	ditherGradient,
-} from "./variants";
+} from "../variants";
 
 export type { DitherGradientMatrix, DitherGradientPosition, DitherGradientTone };
 

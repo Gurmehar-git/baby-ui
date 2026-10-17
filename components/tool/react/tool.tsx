@@ -1,8 +1,8 @@
 "use client";
 
 import { useId, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { TOOL_LABELS, type ToolLabels, type ToolState, tool } from "./variants";
+import { cn } from "../../lib/cn";
+import { TOOL_LABELS, type ToolLabels, type ToolState, tool } from "../variants";
 
 export type { ToolLabels, ToolState };
 

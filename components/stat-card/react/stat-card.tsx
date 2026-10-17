@@ -11,9 +11,9 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../../card/react/card";
+import { type ChartStatus, type Datum, toDate } from "../../chart/core";
 import { ChartContainer } from "../../chart/react/chart";
-import { type ChartStatus, type Datum, toDate } from "../../chart/react/core";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Line, LineChart } from "../../line-chart/react/line-chart";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { Skeleton } from "../../skeleton/react/skeleton";
@@ -28,7 +28,7 @@ import {
 	trendPath,
 	trendSentence,
 	trendTone,
-} from "./variants";
+} from "../variants";
 
 export type { StatCardChartKind, StatCardPositive, StatCardSize, StatCardStatus };
 

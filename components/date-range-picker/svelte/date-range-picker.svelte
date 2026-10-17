@@ -2,10 +2,10 @@
 import { CalendarDate, type DateValue } from "@internationalized/date";
 import { type DateRange, DateRangeField } from "bits-ui";
 import Button from "../../button/svelte/button.svelte";
-import { button } from "../../button/svelte/variants";
-import { dateField } from "../../date-field/svelte/variants";
+import { button } from "../../button/variants";
+import { dateField } from "../../date-field/variants";
 import FieldError from "../../field/svelte/field-error.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Popover from "../../popover/svelte/popover.svelte";
 import PopoverContent from "../../popover/svelte/popover-content.svelte";
 import PopoverTrigger from "../../popover/svelte/popover-trigger.svelte";
@@ -17,9 +17,9 @@ import {
 	type DateRangePreset,
 	DEFAULT_RANGE_PRESETS,
 	type RangeDateParts,
-} from "./core";
+} from "../core";
+import { type DateRangePickerSize, dateRangePicker } from "../variants";
 import DateRangePickerPresets from "./date-range-picker-presets.svelte";
-import { type DateRangePickerSize, dateRangePicker } from "./variants";
 
 let {
 	value = $bindable(),

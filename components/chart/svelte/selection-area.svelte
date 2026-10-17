@@ -1,9 +1,9 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type ChartSelectionEdge, chartSelection } from "../variants";
 import { usePlot } from "./context";
-import { type ChartSelectionEdge, chartSelection } from "./variants";
 
 let { edge = "dashed", class: className }: { edge?: ChartSelectionEdge; class?: string } =
 	$props();

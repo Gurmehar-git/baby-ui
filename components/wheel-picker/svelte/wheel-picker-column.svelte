@@ -1,14 +1,14 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { useWheel } from "./context";
+import { cn } from "../../lib/cn";
 import {
 	nearestEnabled,
 	normalizeWheelOption,
 	WHEEL_FLICK,
 	type WheelPickerOption,
 	wheelPicker,
-} from "./variants";
+} from "../variants";
+import { useWheel } from "./context";
 
 let {
 	options,

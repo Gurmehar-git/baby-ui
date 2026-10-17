@@ -1,7 +1,7 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { depthFaces } from "./bar-core";
+import { depthFaces } from "../bar-core";
 import BarPulse from "./bar-pulse.svelte";
 import { type DisplayedBar, useBarChart } from "./context";
 

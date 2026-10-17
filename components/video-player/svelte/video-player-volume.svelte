@@ -1,14 +1,14 @@
 <script lang="ts">
 import { MediaController } from "media-chrome";
 import type { HTMLAttributes } from "svelte/elements";
-import { button } from "../../button/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import { button } from "../../button/variants";
+import { cn } from "../../lib/cn";
 import Popover from "../../popover/svelte/popover.svelte";
 import PopoverContent from "../../popover/svelte/popover-content.svelte";
 import PopoverTrigger from "../../popover/svelte/popover-trigger.svelte";
+import { clampVolume } from "../types";
+import { videoPlayer } from "../variants";
 import { getVideoPlayer } from "./context";
-import { clampVolume } from "./types";
-import { videoPlayer } from "./variants";
 import VideoPlayerSpeaker from "./video-player-speaker.svelte";
 
 let {

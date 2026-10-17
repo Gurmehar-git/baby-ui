@@ -4,11 +4,11 @@ import { untrack } from "svelte";
 import InputGroup from "../../input-group/svelte/input-group.svelte";
 import InputGroupAddon from "../../input-group/svelte/input-group-addon.svelte";
 import InputGroupInput from "../../input-group/svelte/input-group-input.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { DATA_TABLE_ICONS, type DataTableInstance, debounce } from "../core";
+import { dataTable } from "../variants";
 import { getDataTableStatus } from "./context";
-import { DATA_TABLE_ICONS, type DataTableInstance, debounce } from "./core";
 import Icon from "./data-table-icon.svelte";
-import { dataTable } from "./variants";
 
 let {
 	table,

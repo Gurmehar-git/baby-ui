@@ -12,15 +12,15 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { useChart } from "../../chart/react/chart";
 import {
 	type Datum,
 	DEFAULT_MARGIN,
 	nearestIndex,
 	seriesColor,
 	toDate,
-} from "../../chart/react/core";
-import { cn } from "../../lib/react/cn";
+} from "../../chart/core";
+import { useChart } from "../../chart/react/chart";
+import { cn } from "../../lib/cn";
 import {
 	type BrushMode,
 	clampRange,
@@ -32,8 +32,8 @@ import {
 	moveRange,
 	resizeRange,
 	sameRange,
-} from "./geometry";
-import { type ChartBrushVariant, chartBrush } from "./variants";
+} from "../geometry";
+import { type ChartBrushVariant, chartBrush } from "../variants";
 
 export interface ChartBrushProps {
 	/** The full series; pass the same rows as the chart it drives. */

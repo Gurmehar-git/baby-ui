@@ -9,7 +9,7 @@ import EmailHeading from "../../email-kit/svelte/email-heading.svelte";
 import EmailSection from "../../email-kit/svelte/email-section.svelte";
 import EmailShell from "../../email-kit/svelte/email-shell.svelte";
 import EmailText from "../../email-kit/svelte/email-text.svelte";
-import { type EmailWelcomeDensity, emailWelcome } from "./variants";
+import { type EmailWelcomeDensity, emailWelcome } from "../variants";
 
 export interface EmailWelcomeStep {
 	title: string;

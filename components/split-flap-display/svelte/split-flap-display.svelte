@@ -1,14 +1,14 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { flapColumns, flapRows, SPLIT_FLAP_CHARACTERS } from "./flap";
-import SplitFlapCell from "./split-flap-cell.svelte";
+import { cn } from "../../lib/cn";
+import { flapColumns, flapRows, SPLIT_FLAP_CHARACTERS } from "../flap";
 import {
 	type SplitFlapIndicator,
 	type SplitFlapSize,
 	type SplitFlapVariant,
 	splitFlap,
-} from "./variants";
+} from "../variants";
+import SplitFlapCell from "./split-flap-cell.svelte";
 
 let {
 	value,

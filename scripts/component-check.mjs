@@ -41,7 +41,9 @@ export async function checkComponent(slug, args) {
 		console.error(`No component folder components/${slug} (or pro/components/${slug}).`);
 		return 1;
 	}
-	const missing = [`${slug}.ts`, "index.md"].filter((f) => !existsSync(join(folder, f)));
+	const missing = ["component.ts", "index.md"].filter(
+		(f) => !existsSync(join(folder, f)),
+	);
 	const ports = ["react", "svelte"].filter((p) => existsSync(join(folder, p)));
 	console.log(`${posix(folder)}: ${ports.join(" + ") || "no port"}`);
 	const results = [];
@@ -49,11 +51,11 @@ export async function checkComponent(slug, args) {
 	console.log(
 		`${missing.length ? "FAIL" : "ok  "} files${missing.length ? `: missing ${missing.join(", ")}` : ""}`,
 	);
-	if (!missing.includes(`${slug}.ts`))
+	if (!missing.includes("component.ts"))
 		results.push(
 			run("spec validates", "bun", [
 				"-e",
-				`await import(${JSON.stringify(`./${posix(join(folder, `${slug}.ts`))}`)})`,
+				`await import(${JSON.stringify(`./${posix(join(folder, "component.ts"))}`)})`,
 			]),
 		);
 	// gen lists what it writes in the root's .gitignore; only hand-written files are checked.

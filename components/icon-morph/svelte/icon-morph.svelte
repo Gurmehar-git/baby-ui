@@ -1,8 +1,8 @@
 <script lang="ts">
 import { untrack } from "svelte";
 import type { SVGAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { createIconMorph } from "./engine";
+import { cn } from "../../lib/cn";
+import { createIconMorph } from "../engine";
 import {
 	type IconMorphName,
 	type IconTreeOptions,
@@ -11,8 +11,8 @@ import {
 	paint,
 	rest,
 	staticAttrs,
-} from "./icons";
-import { type IconMorphSize, iconMorph } from "./variants";
+} from "../icons";
+import { type IconMorphSize, iconMorph } from "../variants";
 
 let {
 	name,

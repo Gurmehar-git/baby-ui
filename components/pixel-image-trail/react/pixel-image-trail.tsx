@@ -1,14 +1,14 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	mountPixelTrail,
 	type PixelImageTrailSize,
 	type PixelImageTrailVariant,
 	type PixelTrailOptions,
 	pixelImageTrail,
-} from "./pixel-trail";
+} from "../pixel-trail";
 
 export type { PixelImageTrailSize, PixelImageTrailVariant };
 

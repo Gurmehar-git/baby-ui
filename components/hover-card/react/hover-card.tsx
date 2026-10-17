@@ -8,8 +8,8 @@ import {
 	useContext,
 	useMemo,
 } from "react";
+import { cn } from "../../lib/cn";
 import { ANCHORED } from "../../lib/react/anchor";
-import { cn } from "../../lib/react/cn";
 
 const DelayCtx = createContext({ openDelay: 300, closeDelay: 150 });
 

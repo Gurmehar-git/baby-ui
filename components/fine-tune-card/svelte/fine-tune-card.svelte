@@ -1,7 +1,8 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import type { PropertyValues } from "../../property-panel/schema";
 import PropertyPanelControls from "../../property-panel/svelte/property-panel-controls.svelte";
-import type { PropertyValues } from "../../property-panel/svelte/schema";
+import { type FineTuneCardSize, fineTuneCard } from "../variants";
 import {
 	FINE_TUNE_LAYOUTS,
 	type FineTuneCardLabels,
@@ -10,7 +11,6 @@ import {
 	fineTuneInitial,
 	fineTuneSchema,
 } from "./types";
-import { type FineTuneCardSize, fineTuneCard } from "./variants";
 
 let {
 	fields,

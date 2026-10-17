@@ -2,8 +2,8 @@
 
 import type { KeyboardEvent } from "react";
 import { useMemo, useRef, useState } from "react";
-import { type FileTreeNode, flatten } from "./types";
-import { type FileTreeSize, fileTree, ROW_INSET } from "./variants";
+import { type FileTreeNode, flatten } from "../types";
+import { type FileTreeSize, fileTree, ROW_INSET } from "../variants";
 
 export type { FileTreeSize };
 

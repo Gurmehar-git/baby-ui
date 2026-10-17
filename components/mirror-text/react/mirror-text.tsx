@@ -1,6 +1,6 @@
 import { createElement, type ElementType, Fragment } from "react";
-import { cn } from "../../lib/react/cn";
-import { type MirrorTextDirection, mirrorText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type MirrorTextDirection, mirrorText } from "../variants";
 
 export type { MirrorTextDirection };
 

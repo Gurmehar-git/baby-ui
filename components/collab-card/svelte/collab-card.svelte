@@ -1,9 +1,9 @@
 <script lang="ts">
 import Avatar from "../../avatar/svelte/avatar.svelte";
 import AvatarImage from "../../avatar/svelte/avatar-image.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type CollabCardTone, collabCard } from "../variants";
 import type { CollabCardCollaborator } from "./types";
-import { type CollabCardTone, collabCard } from "./variants";
 
 let {
 	collaborators,

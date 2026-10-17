@@ -1,8 +1,8 @@
 <script lang="ts">
 import { Dialog as DialogPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
-import { button } from "../../button/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import { button } from "../../button/variants";
+import { cn } from "../../lib/cn";
 import {
 	type FullscreenNavAlign,
 	type FullscreenNavSize,
@@ -11,7 +11,7 @@ import {
 	linkDelay,
 	linkIndex,
 	panelDelay,
-} from "./variants";
+} from "../variants";
 
 export type NavLink = {
 	href: string;

@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Progress from "../../progress/svelte/progress.svelte";
 import Spinner from "../../spinner/svelte/spinner.svelte";
 import {
@@ -9,7 +9,7 @@ import {
 	type LoadingScreenPosition,
 	loadingScreen,
 	statusLabel,
-} from "./variants";
+} from "../variants";
 
 let {
 	logo,

@@ -18,7 +18,7 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "../../collapsible/react/collapsible";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type ReasoningRow,
 	type ReasoningRowsKind,
@@ -29,7 +29,7 @@ import {
 	reasoningRows,
 	reasoningStep,
 	SOURCE_TONES,
-} from "./variants";
+} from "../variants";
 
 export type { ReasoningRow, ReasoningRowsKind, ReasoningStepStatus, ReasoningVariant };
 

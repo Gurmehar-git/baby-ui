@@ -1,5 +1,5 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	createInertia,
 	letterOrigins,
@@ -7,7 +7,7 @@ import {
 	type TextRepelMode,
 	type TextRepelSize,
 	textRepel,
-} from "./variants";
+} from "../variants";
 
 let {
 	text,

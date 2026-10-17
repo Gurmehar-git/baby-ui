@@ -154,7 +154,7 @@ export const ComponentSpecSchema = z.object({
 
 export type ComponentSpec = z.infer<typeof ComponentSpecSchema>;
 
-/** What a `components/<slug>/<slug>.ts` states; `completeSpec` adds the derived impl fields. */
+/** What a `components/<slug>/component.ts` states; `completeSpec` adds the derived impl fields. */
 export const ComponentManifestSchema = ComponentSpecSchema.extend({
 	impl: z
 		.object({

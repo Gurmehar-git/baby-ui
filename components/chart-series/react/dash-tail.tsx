@@ -2,7 +2,7 @@
 
 import { type CSSProperties, useId } from "react";
 import { useCartesian } from "../../chart/react/frame";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 
 const PAD = 10;
 

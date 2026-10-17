@@ -1,6 +1,6 @@
 import { type CSSProperties, createElement, type ElementType } from "react";
-import { cn } from "../../lib/react/cn";
-import { type ShimmerTextSize, type ShimmerTextVariant, shimmerText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type ShimmerTextSize, type ShimmerTextVariant, shimmerText } from "../variants";
 
 export type { ShimmerTextSize, ShimmerTextVariant };
 

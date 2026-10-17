@@ -1,15 +1,15 @@
 "use client";
 
 import { type CSSProperties, useEffect, useId, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import type { WheelCarouselItem } from "./types";
+import { cn } from "../../lib/cn";
+import type { WheelCarouselItem } from "../types";
 import {
 	type WheelCarouselAspect,
 	type WheelCarouselPhotoSide,
 	type WheelCarouselSize,
 	wheelCarousel,
-} from "./variants";
-import { createWheel } from "./wheel";
+} from "../variants";
+import { createWheel } from "../wheel";
 
 export type {
 	WheelCarouselAspect,

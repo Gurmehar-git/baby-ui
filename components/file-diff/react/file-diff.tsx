@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type DiffLineKind, diffRow } from "./variants";
+import { cn } from "../../lib/cn";
+import { type DiffLineKind, diffRow } from "../variants";
 
 export type DiffLine = { kind: DiffLineKind; text: string };
 

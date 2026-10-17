@@ -142,7 +142,7 @@ describe("add", () => {
 		const root = reactApp();
 		await add({ cwd: root, items: ["badge"], install: false });
 		const badge = readFileSync(join(root, "src/components/ui/badge/badge.tsx"), "utf8");
-		expect(badge).not.toContain("use client");
+		expect(badge.startsWith('"use client"\n')).toBe(true);
 		expect(badge).toContain('from "@/lib/cn"');
 		const css = readFileSync(join(root, "src/app/globals.css"), "utf8");
 		expect(css).toContain("@custom-variant dark");
@@ -384,5 +384,15 @@ describe("maintenance", () => {
 		expect(Object.keys(entry?.files ?? {})).toEqual([
 			"src/components/ui/badge/badge.tsx",
 		]);
+	});
+
+	it("adopt skips a stock shadcn component that only shares the name", async () => {
+		const { repair } = await import("../src/commands/maintain.ts");
+		const root = reactApp();
+		mkdirSync(join(root, "src/components/ui"), { recursive: true });
+		writeFileSync(join(root, "src/components/ui/badge.tsx"), "// shadcn's own badge\n");
+		await repair({ cwd: root, items: ["badge"], adopt: true, install: false });
+		const lock = await readLock(root);
+		expect(Object.values(lock.items).some((i) => i.name === "badge")).toBe(false);
 	});
 });

@@ -4,9 +4,9 @@ import type { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { useActivePoint } from "../../chart/react/frame";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
+import { barChart } from "../variants";
 import { useBarChart } from "./bar-chart";
-import { barChart } from "./variants";
 
 export interface BarTooltipProps {
 	/** Panel body; defaults to `<ChartTooltipContent />`. */

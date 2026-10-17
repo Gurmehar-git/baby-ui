@@ -1,12 +1,12 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type UnderlineHoverTextTone,
 	type UnderlineHoverTextTrigger,
 	type UnderlineHoverTextVariant,
 	underlineHoverText,
-} from "./variants";
+} from "../variants";
 
 let {
 	children,

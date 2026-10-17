@@ -1,15 +1,15 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
-import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
-import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum, Margin } from "../../chart/svelte/core";
+import type { ActivePoint, Datum, Margin } from "../../chart/core";
 import {
 	CHART_DURATION,
 	CHART_EASE_CSS,
 	prefersReducedMotion,
 	tween,
-} from "../../chart/svelte/motion";
+} from "../../chart/motion";
+import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
+import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
+import { setActivePoint, useChart } from "../../chart/svelte/context";
 import {
 	type LaidLink,
 	type LaidNode,
@@ -21,8 +21,8 @@ import {
 	type SankeyData,
 	type SankeyText,
 	visibleLabels,
-} from "./layout";
-import { type SankeyLinkColor, type SankeyOrientation, sankeyChart } from "./variants";
+} from "../layout";
+import { type SankeyLinkColor, type SankeyOrientation, sankeyChart } from "../variants";
 
 let {
 	frame,

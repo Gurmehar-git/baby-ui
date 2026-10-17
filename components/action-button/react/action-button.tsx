@@ -2,10 +2,10 @@
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { Button, type ButtonProps } from "../../button/react/button";
-import type { ButtonSize, ButtonVariant } from "../../button/react/variants";
-import { cn } from "../../lib/react/cn";
-import { morph, trackActiveWidth } from "../../lib/react/morph";
-import { actionButton } from "./variants";
+import type { ButtonSize, ButtonVariant } from "../../button/variants";
+import { cn } from "../../lib/cn";
+import { morph, trackActiveWidth } from "../../lib/morph";
+import { actionButton } from "../variants";
 
 export type ActionButtonState = "idle" | "pending" | "success";
 

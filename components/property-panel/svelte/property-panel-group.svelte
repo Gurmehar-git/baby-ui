@@ -1,9 +1,9 @@
 <script lang="ts">
 import { Collapsible as CollapsiblePrimitive } from "bits-ui";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { propertyPanel } from "../variants";
 import { setPropertyPanelGroup } from "./context";
-import { propertyPanel } from "./variants";
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, "id"> & {
 	id?: string;

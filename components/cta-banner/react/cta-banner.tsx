@@ -11,7 +11,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	BANNER_BANDS,
 	BANNER_DEFAULTS,
@@ -21,8 +21,8 @@ import {
 	bannerPace,
 	bannerRows,
 	tickerRows,
-} from "./banner";
-import { type CtaBannerSize, type CtaBannerVariant, ctaBanner } from "./variants";
+} from "../banner";
+import { type CtaBannerSize, type CtaBannerVariant, ctaBanner } from "../variants";
 
 export type { CtaBannerSize, CtaBannerVariant };
 

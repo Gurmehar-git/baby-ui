@@ -9,9 +9,9 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
-import { transitionMs } from "../../lib/react/motion";
-import { ATTACHMENT_LABELS, type AttachmentLabels } from "./labels";
+import { cn } from "../../lib/cn";
+import { transitionMs } from "../../lib/motion";
+import { ATTACHMENT_LABELS, type AttachmentLabels } from "../labels";
 import {
 	ATTACHMENT_ICON,
 	type AttachmentStatus,
@@ -20,7 +20,7 @@ import {
 	attachment,
 	attachments,
 	fileType,
-} from "./variants";
+} from "../variants";
 
 export type { AttachmentLabels, AttachmentStatus, AttachmentsVariant, AttachmentVariant };
 

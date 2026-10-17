@@ -1,9 +1,9 @@
 <script lang="ts">
 import { Command as CommandPrimitive, computeCommandScore } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { rankCommandMatch } from "../score";
+import { type CommandVariant, commandFrame } from "../variants";
 import { getCommandDialogState, setCommand } from "./context";
-import { rankCommandMatch } from "./score";
-import { type CommandVariant, commandFrame } from "./variants";
 
 let {
 	children,

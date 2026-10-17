@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
-import { cn } from "../../lib/react/cn";
-import { type BoldCopySize, boldCopy } from "./variants";
+import { cn } from "../../lib/cn";
+import { type BoldCopySize, boldCopy } from "../variants";
 
 export type { BoldCopySize };
 

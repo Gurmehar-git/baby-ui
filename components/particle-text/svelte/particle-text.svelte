@@ -1,13 +1,13 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	mountParticles,
 	type ParticleOptions,
 	type ParticleTextShape,
 	type ParticleTextSize,
 	particleText,
-} from "./particles";
+} from "../particles";
 
 let {
 	text,

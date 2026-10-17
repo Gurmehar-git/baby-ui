@@ -1,14 +1,14 @@
 <script lang="ts">
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import FunnelPlot from "./funnel-plot.svelte";
-import type { FunnelStage } from "./geometry";
+import type { FunnelStage } from "../geometry";
 import type {
 	FunnelEdges,
 	FunnelLabelLayout,
 	FunnelOrientation,
 	FunnelPattern,
-} from "./variants";
+} from "../variants";
+import FunnelPlot from "./funnel-plot.svelte";
 
 let {
 	data,

@@ -8,10 +8,10 @@ import {
 	useRef,
 	useState,
 } from "react";
+import type { ActivePoint, Datum, TooltipRow } from "../../chart/core";
+import { CHART_DURATION, tween } from "../../chart/motion";
 import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, Datum, TooltipRow } from "../../chart/react/core";
 import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
-import { CHART_DURATION, tween } from "../../chart/react/motion";
 import { useActiveIndex } from "../../chart/react/time-series";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
 import {
@@ -23,8 +23,8 @@ import {
 	streamLayers,
 	streamPath,
 	widestStretch,
-} from "./stream";
-import { type StreamgraphVariant, streamgraphChart } from "./variants";
+} from "../stream";
+import { type StreamgraphVariant, streamgraphChart } from "../variants";
 
 export type { StreamgraphVariant };
 

@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { INVOICE_LIST_LABELS, type InvoiceListLabels } from "../invoice-core";
+import { type InvoiceListDensity, invoiceList } from "../variants";
 import { setInvoiceList } from "./context";
-import { INVOICE_LIST_LABELS, type InvoiceListLabels } from "./invoice-core";
-import { type InvoiceListDensity, invoiceList } from "./variants";
 
 let {
 	density = "comfortable",

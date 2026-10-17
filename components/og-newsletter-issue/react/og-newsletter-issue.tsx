@@ -1,9 +1,9 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type OgNewsletterIssueMode,
 	type OgNewsletterIssueTone,
 	ogNewsletterIssue,
-} from "./variants";
+} from "../variants";
 
 export type { OgNewsletterIssueMode, OgNewsletterIssueTone };
 

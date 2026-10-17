@@ -1,8 +1,8 @@
 <script lang="ts">
 import { AlertDialog as AlertDialogPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
-import { dialogFrame } from "../../dialog/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import { dialogFrame } from "../../dialog/variants";
+import { cn } from "../../lib/cn";
 import { getAlertDialog } from "./context";
 
 let { children, class: classProp }: { children?: Snippet; class?: string } = $props();

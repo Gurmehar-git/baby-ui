@@ -1,7 +1,7 @@
 <script lang="ts">
 import Badge from "../../badge/svelte/badge.svelte";
+import { type DocsNavConnector, docsNav, markerWidth, rowState } from "../variants";
 import type { DocsNavItem } from "./types";
-import { type DocsNavConnector, docsNav, markerWidth, rowState } from "./variants";
 
 let {
 	items,

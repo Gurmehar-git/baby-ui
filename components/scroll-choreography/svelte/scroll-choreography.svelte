@@ -1,14 +1,14 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { ImageSlotProps } from "../../lib/svelte/image";
-import { bindScrollProgress } from "../../lib/svelte/scroll-frame";
-import { CHOREOGRAPHY_SLOTS, type ScrollChoreographyImages } from "./types";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
+import { bindScrollProgress } from "../../lib/scroll-frame";
+import { CHOREOGRAPHY_SLOTS, type ScrollChoreographyImages } from "../types";
 import {
 	type ScrollChoreographySize,
 	type ScrollChoreographyVariant,
 	scrollChoreography,
-} from "./variants";
+} from "../variants";
 
 let {
 	images,

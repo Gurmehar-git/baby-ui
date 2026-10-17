@@ -1,9 +1,9 @@
 "use client";
 
 import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { typingStumbleSteps } from "./stumble";
-import { type TypingTextSize, typingText } from "./variants";
+import { cn } from "../../lib/cn";
+import { typingStumbleSteps } from "../stumble";
+import { type TypingTextSize, typingText } from "../variants";
 
 export type { TypingTextSize };
 

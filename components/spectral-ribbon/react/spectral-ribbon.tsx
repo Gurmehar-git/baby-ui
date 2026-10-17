@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { useCanvasEngine } from "../../lib/react/use-canvas-engine";
-import { mountSpectralRibbon, type SpectralRibbonOptions } from "./ribbon";
+import { mountSpectralRibbon, type SpectralRibbonOptions } from "../ribbon";
 import {
 	SPECTRAL_RIBBON_COLORS,
 	SPECTRAL_RIBBON_SPEED,
@@ -11,7 +11,7 @@ import {
 	type SpectralRibbonSpeed,
 	type SpectralRibbonTone,
 	spectralRibbon,
-} from "./variants";
+} from "../variants";
 
 export type { SpectralRibbonPosition, SpectralRibbonSpeed, SpectralRibbonTone };
 

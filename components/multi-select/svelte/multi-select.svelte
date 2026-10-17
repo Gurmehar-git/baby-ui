@@ -7,7 +7,7 @@ import CommandInput from "../../command/svelte/command-input.svelte";
 import CommandItem from "../../command/svelte/command-item.svelte";
 import CommandList from "../../command/svelte/command-list.svelte";
 import CommandSeparator from "../../command/svelte/command-separator.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Popover from "../../popover/svelte/popover.svelte";
 import PopoverContent from "../../popover/svelte/popover-content.svelte";
 import PopoverTrigger from "../../popover/svelte/popover-trigger.svelte";
@@ -20,7 +20,7 @@ import {
 	type MultiSelectSize,
 	multiSelect,
 	toggleValue,
-} from "./variants";
+} from "../variants";
 
 let {
 	options,

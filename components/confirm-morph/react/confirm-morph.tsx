@@ -9,9 +9,9 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { button } from "../../button/react/variants";
-import { cn } from "../../lib/react/cn";
-import { trackActiveWidth } from "../../lib/react/morph";
+import { button } from "../../button/variants";
+import { cn } from "../../lib/cn";
+import { trackActiveWidth } from "../../lib/morph";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { Spinner } from "../../spinner/react/spinner";
 import {
@@ -19,12 +19,12 @@ import {
 	type ConfirmMorphMode,
 	type ConfirmMorphState,
 	createConfirmMorph,
-} from "./confirm";
+} from "../confirm";
 import {
 	type ConfirmMorphSize,
 	type ConfirmMorphVariant,
 	confirmMorph,
-} from "./variants";
+} from "../variants";
 
 export type {
 	ConfirmMorphMode,

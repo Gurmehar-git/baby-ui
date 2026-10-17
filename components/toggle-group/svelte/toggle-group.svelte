@@ -1,9 +1,9 @@
 <script lang="ts">
 import { ToggleGroup as ToggleGroupPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { attachSegmentPill } from "../segment";
 import { setToggleGroup, type ToggleGroupSize, type ToggleGroupVariant } from "./context";
-import { attachSegmentPill } from "./segment";
 import { toggleGroup } from "./variants";
 
 let {

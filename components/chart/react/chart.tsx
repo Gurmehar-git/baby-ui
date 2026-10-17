@@ -12,10 +12,10 @@ import {
 	useMemo,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Toggle } from "../../toggle/react/toggle";
-import { chartStyleCss, createFormatters, type Formatters, seriesColor } from "./core";
-import { type ChartAspect, type ChartLegendAlign, chart, chartLegend } from "./variants";
+import { chartStyleCss, createFormatters, type Formatters, seriesColor } from "../core";
+import { type ChartAspect, type ChartLegendAlign, chart, chartLegend } from "../variants";
 
 export type ChartConfig = Record<
 	string,

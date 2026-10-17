@@ -1,20 +1,20 @@
 <script lang="ts">
 import { Combobox } from "bits-ui";
 import { tick, untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { glideHighlight } from "../../lib/svelte/glide";
+import { cn } from "../../lib/cn";
+import { glideHighlight } from "../../lib/glide";
 import {
 	type ExpandingSearchGroup,
 	type ExpandingSearchItem,
 	groupSearch,
 	rankSearch,
 	splitSearchMatch,
-} from "./search";
+} from "../search";
 import {
 	type ExpandingSearchSize,
 	type ExpandingSearchVariant,
 	expandingSearch,
-} from "./variants";
+} from "../variants";
 
 let {
 	label,

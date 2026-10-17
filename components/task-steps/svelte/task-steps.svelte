@@ -1,5 +1,4 @@
 <script lang="ts">
-import TaskStepRows from "./task-step-rows.svelte";
 import {
 	type TaskStatus as Status,
 	TASK_STEP_LABELS,
@@ -7,7 +6,8 @@ import {
 	type TaskStepsSize,
 	type TaskStepsVariant,
 	taskSteps,
-} from "./variants";
+} from "../variants";
+import TaskStepRows from "./task-step-rows.svelte";
 
 export type TaskStatus = Status;
 

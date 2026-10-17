@@ -9,10 +9,10 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Spinner } from "../../spinner/react/spinner";
-import { caretAt, cleanDraft, type InlineEditPhase, runSave } from "./edit";
-import { type InlineEditSize, type InlineEditVariant, inlineEdit } from "./variants";
+import { caretAt, cleanDraft, type InlineEditPhase, runSave } from "../edit";
+import { type InlineEditSize, type InlineEditVariant, inlineEdit } from "../variants";
 
 export type { InlineEditSize, InlineEditVariant };
 

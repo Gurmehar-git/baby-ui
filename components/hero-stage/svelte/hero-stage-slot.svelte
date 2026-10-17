@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { heroStage } from "../variants";
 import { getHeroStageMotion } from "./context";
-import { heroStage } from "./variants";
 
 type Props = {
 	children: Snippet;

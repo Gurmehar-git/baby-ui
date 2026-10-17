@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type DotOptions, mountDots } from "./dots";
+import { cn } from "../../lib/cn";
+import { type DotOptions, mountDots } from "../dots";
 import {
 	DOT_MATRIX_SIZE,
 	type DotMatrixGlowPosition,
@@ -10,7 +10,7 @@ import {
 	type DotMatrixGlowSize,
 	type DotMatrixGlowTone,
 	dotMatrixGlow,
-} from "./variants";
+} from "../variants";
 
 let {
 	shape = "dot",

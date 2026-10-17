@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { ComponentProps } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Textarea from "../../textarea/svelte/textarea.svelte";
-import { inputGroup } from "./variants";
+import { inputGroup } from "../variants";
 
 let {
 	ref = $bindable(null),

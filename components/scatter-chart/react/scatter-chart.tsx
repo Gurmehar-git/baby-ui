@@ -15,7 +15,6 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { useChart } from "../../chart/react/chart";
 import {
 	type ActivePoint,
 	announceRows,
@@ -30,7 +29,14 @@ import {
 	summarize,
 	type TooltipRow,
 	toDate,
-} from "../../chart/react/core";
+} from "../../chart/core";
+import {
+	CHART_DURATION,
+	CHART_EASE,
+	prefersReducedMotion,
+	tween,
+} from "../../chart/motion";
+import { useChart } from "../../chart/react/chart";
 import {
 	ActivePointProvider,
 	CartesianProvider,
@@ -38,12 +44,6 @@ import {
 	type TickScale,
 	useActivePoint,
 } from "../../chart/react/frame";
-import {
-	CHART_DURATION,
-	CHART_EASE,
-	prefersReducedMotion,
-	tween,
-} from "../../chart/react/motion";
 import {
 	type PlotContextValue,
 	PlotProvider,
@@ -61,14 +61,14 @@ import {
 	POINT_ENTER,
 	scatterDomain,
 	shapePath,
-} from "./geometry";
+} from "../geometry";
 import {
 	SCATTER_RADIUS,
 	SCATTER_SHAPES,
 	type ScatterShape,
 	type ScatterSize,
 	scatterPoint,
-} from "./variants";
+} from "../variants";
 
 interface ScatterRootValue {
 	/** Series under the pointer; null when the keyboard selects a whole row. */

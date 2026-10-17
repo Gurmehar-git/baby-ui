@@ -6,9 +6,9 @@ import {
 	InputGroupAddon,
 	InputGroupInput,
 } from "../../input-group/react/input-group";
-import type { InputGroupSize } from "../../input-group/react/variants";
+import type { InputGroupSize } from "../../input-group/variants";
 import { LetterMorph } from "../../letter-morph/react/letter-morph";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	DEFAULT_STRENGTH_LABELS,
 	measurePassword,
@@ -16,8 +16,8 @@ import {
 	type PasswordStrength,
 	type PasswordStrengthLabels,
 	strengthLabel,
-} from "./strength";
-import { passwordInput } from "./variants";
+} from "../strength";
+import { passwordInput } from "../variants";
 
 export type { PasswordRule, PasswordStrength, PasswordStrengthLabels };
 

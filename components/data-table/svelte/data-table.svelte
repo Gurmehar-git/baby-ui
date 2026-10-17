@@ -1,11 +1,11 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import type { TableVariant } from "../../table/svelte/variants";
+import { cn } from "../../lib/cn";
+import type { TableVariant } from "../../table/variants";
+import { DATA_TABLE_LABELS, type DataTableLabels } from "../core";
+import { type DataTableDensity, dataTable } from "../variants";
 import { setDataTableStatus } from "./context";
-import { DATA_TABLE_LABELS, type DataTableLabels } from "./core";
-import { type DataTableDensity, dataTable } from "./variants";
 
 let {
 	loading = false,

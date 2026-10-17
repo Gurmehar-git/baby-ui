@@ -14,14 +14,14 @@ import {
 	useSyncExternalStore,
 } from "react";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
-import { createCarouselTrack } from "./track";
+import { cn } from "../../lib/cn";
+import { createCarouselTrack } from "../track";
 import {
 	type CarouselControls,
 	type CarouselSize,
 	type CarouselVariant,
 	carousel,
-} from "./variants";
+} from "../variants";
 
 export type { CarouselControls, CarouselSize, CarouselVariant };
 

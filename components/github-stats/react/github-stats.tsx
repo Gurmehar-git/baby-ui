@@ -12,7 +12,7 @@ import {
 	EmptyTitle,
 } from "../../empty/react/empty";
 import { GithubCalendar } from "../../github-calendar/react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import {
 	Select,
@@ -39,13 +39,13 @@ import {
 	sameDaysChange,
 	weeklyContributions,
 	yearTotal,
-} from "./core";
+} from "../core";
 import {
 	GITHUB_MIX_FILL,
 	GITHUB_STATS_LAYOUT,
 	type GithubStatsVariant,
 	githubStats,
-} from "./variants";
+} from "../variants";
 
 export type { GithubStatsData, GithubStatsLabels, GithubStatsVariant, GithubStatsView };
 

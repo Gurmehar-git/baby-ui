@@ -13,8 +13,8 @@ import {
 	type EmailShellSurface,
 	EmailText,
 } from "../../email-kit/react/email-kit";
-import { emailLayout } from "../../email-kit/react/variants";
-import { emailTeamInvite, initials } from "./variants";
+import { emailLayout } from "../../email-kit/variants";
+import { emailTeamInvite, initials } from "../variants";
 
 export interface EmailTeamInviteProps {
 	productName: string;

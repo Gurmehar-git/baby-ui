@@ -4,12 +4,12 @@ import { untrack } from "svelte";
 import Collapsible from "../../collapsible/svelte/collapsible.svelte";
 import CollapsibleContent from "../../collapsible/svelte/collapsible-content.svelte";
 import CollapsibleTrigger from "../../collapsible/svelte/collapsible-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type ExpandableCardSize,
 	type ExpandableCardVariant,
 	expandableCard,
-} from "./variants";
+} from "../variants";
 
 let {
 	title,

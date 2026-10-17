@@ -10,16 +10,16 @@ import {
 	CardTitle,
 } from "../../card/react/card";
 import { ChartContainer } from "../../chart/react/chart";
-import { ChoroplethChart } from "../../choropleth-chart/react/choropleth-chart";
 import {
 	featureKey,
 	featureLabel,
 	type GeoCollection,
-} from "../../choropleth-chart/react/geometry";
-import type { ChoroplethProjection } from "../../choropleth-chart/react/variants";
-import { cn } from "../../lib/react/cn";
+} from "../../choropleth-chart/geometry";
+import { ChoroplethChart } from "../../choropleth-chart/react/choropleth-chart";
+import type { ChoroplethProjection } from "../../choropleth-chart/variants";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
-import { type StatCardMapSize, statCardMap } from "./variants";
+import { type StatCardMapSize, statCardMap } from "../variants";
 
 export type { StatCardMapSize };
 

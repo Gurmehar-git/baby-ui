@@ -615,7 +615,7 @@ export { Label } from "@baby-ui/components/svelte/label";
 export { LetterMorph } from "@baby-ui/components/svelte/letter-morph";
 export { type LetterMorphOptions, createLetterMorph } from "@baby-ui/components/svelte/letter-morph";
 export { letterMorph, type LetterMorphVariant, type LetterMorphSize } from "@baby-ui/components/svelte/letter-morph";
-export { cn } from "@baby-ui/components/lib/svelte/cn";
+export { cn } from "@baby-ui/components/lib/cn";
 export { LightCaustics } from "@baby-ui/components/svelte/light-caustics";
 export { type LightCausticsOptions, mountLightCaustics } from "@baby-ui/components/svelte/light-caustics";
 export { lightCaustics, type LightCausticsTone, type LightCausticsSpeed, type LightCausticsPosition, LIGHT_CAUSTICS_COLORS, LIGHT_CAUSTICS_SPEED } from "@baby-ui/components/svelte/light-caustics";

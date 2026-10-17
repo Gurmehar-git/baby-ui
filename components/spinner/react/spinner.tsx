@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type SpinnerSize, spinnerIcon } from "./variants";
+import { cn } from "../../lib/cn";
+import { type SpinnerSize, spinnerIcon } from "../variants";
 
 export type { SpinnerSize };
 

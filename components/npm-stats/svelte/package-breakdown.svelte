@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	formatCompact,
 	formatShare,
@@ -9,15 +9,15 @@ import {
 	type NpmStatsLabels,
 	rangeRows,
 	rangeTrend,
-} from "./core";
-import NpmSparkline from "./npm-sparkline.svelte";
-import TrendBadge from "./trend-badge.svelte";
+} from "../core";
 import {
 	type NpmStatsRange,
 	type NpmStatsVariant,
 	npmStats,
 	packageFill,
-} from "./variants";
+} from "../variants";
+import NpmSparkline from "./npm-sparkline.svelte";
+import TrendBadge from "./trend-badge.svelte";
 
 let {
 	packages,

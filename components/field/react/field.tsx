@@ -1,6 +1,6 @@
 import type { ComponentProps, ReactNode } from "react";
 import { Label } from "../../label/react/label";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Separator } from "../../separator/react/separator";
 import {
 	type FieldErrorEntry,
@@ -10,7 +10,7 @@ import {
 	field,
 	fieldErrorMessages,
 	fieldLegend,
-} from "./variants";
+} from "../variants";
 
 export type { FieldErrorEntry, FieldLegendVariant, FieldOrientation, FieldSize };
 

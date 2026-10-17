@@ -6,7 +6,7 @@ import { Checkbox } from "../../checkbox/react/checkbox";
 import { Field, FieldError, FieldLabel, FieldSeparator } from "../../field/react/field";
 import { Input } from "../../input/react/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../../input-otp/react/input-otp";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { PasswordInput } from "../../password-input/react/password-input";
 import {
 	AUTH_COPY,
@@ -17,8 +17,8 @@ import {
 	type AuthStep,
 	authProblems,
 	resendSeconds,
-} from "./auth";
-import { type AuthFormVariant, authForm } from "./variants";
+} from "../auth";
+import { type AuthFormVariant, authForm } from "../variants";
 
 export type { AuthDetails, AuthFormVariant, AuthMode, AuthStatus, AuthStep };
 

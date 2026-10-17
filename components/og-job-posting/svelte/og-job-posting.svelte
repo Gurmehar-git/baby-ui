@@ -1,11 +1,11 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_JOB_RINGS,
 	type OgJobPostingMode,
 	type OgJobPostingTone,
 	ogJobPosting,
-} from "./variants";
+} from "../variants";
 
 let {
 	title,

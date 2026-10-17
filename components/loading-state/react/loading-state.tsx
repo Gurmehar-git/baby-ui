@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 
 export type LoadingStateVariant = "drive" | "dots" | "orbit" | "surfer";
 

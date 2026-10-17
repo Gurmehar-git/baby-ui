@@ -1,10 +1,10 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type OgProductLaunchLayout,
 	type OgProductLaunchMode,
 	type OgProductLaunchTone,
 	ogProductLaunch,
-} from "./variants";
+} from "../variants";
 
 export type { OgProductLaunchLayout, OgProductLaunchMode, OgProductLaunchTone };
 

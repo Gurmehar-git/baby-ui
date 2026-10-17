@@ -2,17 +2,17 @@
 
 import { Toolbar } from "@base-ui/react/toolbar";
 import { type ReactNode, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	createExpandingGroup,
 	type ExpandingGroupItem,
 	type ExpandingGroupState,
-} from "./group";
+} from "../group";
 import {
 	type ExpandingButtonGroupSize,
 	type ExpandingButtonGroupVariant,
 	expandingButtonGroup,
-} from "./variants";
+} from "../variants";
 
 export type { ExpandingButtonGroupSize, ExpandingButtonGroupVariant };
 

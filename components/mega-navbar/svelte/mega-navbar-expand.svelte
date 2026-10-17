@@ -1,17 +1,17 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { onDestroy } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { currentHref, groupHrefs, isCurrentSection } from "./current";
+import { cn } from "../../lib/cn";
+import { currentHref, groupHrefs, isCurrentSection } from "../current";
 import {
 	EXPAND_CLOSE_MS,
 	EXPAND_OPEN_MS,
 	expandSide,
 	placeMark,
 	slideBox,
-} from "./expand";
+} from "../expand";
+import { megaNavbar } from "../variants";
 import type { MegaMenuGroup, MegaMenuItem, MegaNavLink } from "./types";
-import { megaNavbar } from "./variants";
 
 let {
 	brand,

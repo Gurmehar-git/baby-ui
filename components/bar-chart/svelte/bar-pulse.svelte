@@ -1,8 +1,8 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { type Playback, prefersReducedMotion, tween } from "../../chart/svelte/motion";
-import { EASE_IN_OUT, PULSE_MS, pulseRect, type Rect } from "./bar-core";
+import { type Playback, prefersReducedMotion, tween } from "../../chart/motion";
+import { EASE_IN_OUT, PULSE_MS, pulseRect, type Rect } from "../bar-core";
 
 let { rect, axis }: { rect: Rect; axis: Parameters<typeof pulseRect>[1] } = $props();
 

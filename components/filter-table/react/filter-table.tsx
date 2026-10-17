@@ -3,8 +3,8 @@
 import type { ComponentProps } from "react";
 import { useMemo, useState } from "react";
 import { Badge } from "../../badge/react/badge";
-import type { BadgeVariant } from "../../badge/react/variants";
-import { cn } from "../../lib/react/cn";
+import type { BadgeVariant } from "../../badge/variants";
+import { cn } from "../../lib/cn";
 
 export type FilterRowStatus = "todo" | "progress" | "done";
 

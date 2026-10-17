@@ -12,7 +12,6 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { useChart } from "../../chart/react/chart";
 import type {
 	ChartPhase,
 	ChartStatus,
@@ -20,8 +19,15 @@ import type {
 	Margin,
 	SeriesConfig,
 	TooltipRow,
-} from "../../chart/react/core";
-import { announceRows, hoverThrottle } from "../../chart/react/core";
+} from "../../chart/core";
+import { announceRows, hoverThrottle } from "../../chart/core";
+import {
+	CHART_EASE,
+	type Playback,
+	prefersReducedMotion,
+	tween,
+} from "../../chart/motion";
+import { useChart } from "../../chart/react/chart";
 import {
 	ActivePointProvider,
 	type CartesianContextValue,
@@ -29,12 +35,6 @@ import {
 	ChartFrame,
 	type TickScale,
 } from "../../chart/react/frame";
-import {
-	CHART_EASE,
-	type Playback,
-	prefersReducedMotion,
-	tween,
-} from "../../chart/react/motion";
 import {
 	useActiveIndex,
 	useAnimatedDomain,
@@ -58,13 +58,13 @@ import {
 	staggerDelay,
 	summarizeBars,
 	UPDATE_MS,
-} from "./bar-core";
+} from "../bar-core";
 import {
 	type BarEntrance,
 	type BarOrientationVariant,
 	type BarVariant,
 	barChart,
-} from "./variants";
+} from "../variants";
 
 const BAR_MARGIN: Margin = { top: 16, right: 16, bottom: 32, left: 44 };
 const SKELETON_BARS = 12;

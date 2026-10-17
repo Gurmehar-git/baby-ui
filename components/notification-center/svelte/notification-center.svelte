@@ -4,11 +4,11 @@ import Avatar from "../../avatar/svelte/avatar.svelte";
 import AvatarFallback from "../../avatar/svelte/avatar-fallback.svelte";
 import AvatarImage from "../../avatar/svelte/avatar-image.svelte";
 import Button from "../../button/svelte/button.svelte";
-import { button } from "../../button/svelte/variants";
+import { button } from "../../button/variants";
 import Collapsible from "../../collapsible/svelte/collapsible.svelte";
 import CollapsibleContent from "../../collapsible/svelte/collapsible-content.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { initials } from "../../mention-input/svelte/mention";
+import { cn } from "../../lib/cn";
+import { initials } from "../../mention-input/mention";
 import Popover from "../../popover/svelte/popover.svelte";
 import PopoverContent from "../../popover/svelte/popover-content.svelte";
 import PopoverTrigger from "../../popover/svelte/popover-trigger.svelte";
@@ -23,8 +23,8 @@ import {
 	type NotificationTone,
 	type NotificationView,
 	unreadSummary,
-} from "./inbox";
-import { type NotificationCenterSize, notificationCenter } from "./variants";
+} from "../inbox";
+import { type NotificationCenterSize, notificationCenter } from "../variants";
 
 let {
 	notifications = $bindable(),

@@ -2,7 +2,7 @@
 import { untrack } from "svelte";
 import Checkbox from "../../checkbox/svelte/checkbox.svelte";
 import Input from "../../input/svelte/input.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RadioGroup from "../../radio-group/svelte/radio-group.svelte";
 import RadioGroupItem from "../../radio-group/svelte/radio-group-item.svelte";
 import type { QuestionAnswer, QuestionItem } from "./types";

@@ -6,12 +6,12 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "../../collapsible/react/collapsible";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type ExpandableCardSize,
 	type ExpandableCardVariant,
 	expandableCard,
-} from "./variants";
+} from "../variants";
 
 export type { ExpandableCardSize, ExpandableCardVariant };
 

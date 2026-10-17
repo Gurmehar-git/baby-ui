@@ -2,9 +2,9 @@
 
 <script lang="ts">
 import { untrack } from "svelte";
-import { CHART_DURATION, type Playback, Spring, tween } from "../../chart/svelte/motion";
-import { arcPath, bisector, type PieSlice, POP_SPRING, sliceDelay } from "./geometry";
-import type { PieHover } from "./variants";
+import { CHART_DURATION, type Playback, Spring, tween } from "../../chart/motion";
+import { arcPath, bisector, type PieSlice, POP_SPRING, sliceDelay } from "../geometry";
+import type { PieHover } from "../variants";
 
 let {
 	slice,

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { onDestroy } from "svelte";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
 import ToggleGroupItem from "../../toggle-group/svelte/toggle-group-item.svelte";
 import {
@@ -28,8 +28,8 @@ import {
 	TONE_LABELS,
 	toneColors,
 	WIDTH_LABELS,
-} from "./ink";
-import { type SignaturePadVariant, signaturePad } from "./variants";
+} from "../ink";
+import { type SignaturePadVariant, signaturePad } from "../variants";
 
 let {
 	value = $bindable(),

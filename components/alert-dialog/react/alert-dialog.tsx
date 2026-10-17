@@ -4,9 +4,9 @@ import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog
 import type { ComponentProps, ReactNode } from "react";
 import { createContext, useContext, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { type ButtonVariant, button } from "../../button/react/variants";
-import { type DialogVariant, dialogFrame } from "../../dialog/react/variants";
-import { cn } from "../../lib/react/cn";
+import { type ButtonVariant, button } from "../../button/variants";
+import { type DialogVariant, dialogFrame } from "../../dialog/variants";
+import { cn } from "../../lib/cn";
 
 type Ctx = {
 	variant: DialogVariant;

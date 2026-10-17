@@ -1,10 +1,8 @@
 "use client";
 
 import { useId, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import type { ChartPhase } from "./core";
-import { useCartesian } from "./frame";
-import { usePlot } from "./time-series";
+import { cn } from "../../lib/cn";
+import type { ChartPhase } from "../core";
 import {
 	type ChartBackgroundVariant,
 	type ChartReferenceTone,
@@ -12,7 +10,9 @@ import {
 	chartBackground,
 	chartReferenceArea,
 	chartSelection,
-} from "./variants";
+} from "../variants";
+import { useCartesian } from "./frame";
+import { usePlot } from "./time-series";
 
 /** Bands show from the grid retween on, so they settle with the series. */
 const bandVisible = (phase: ChartPhase) =>

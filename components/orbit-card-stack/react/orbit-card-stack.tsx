@@ -10,8 +10,8 @@ import {
 } from "react";
 import { Badge } from "../../badge/react/badge";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
-import type { ImageSlotProps } from "../../lib/react/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import {
 	clampIndex,
 	DEFAULT_ORBIT_LABELS,
@@ -25,7 +25,7 @@ import {
 	type OrbitStackItem,
 	orbitCardStack,
 	orbitTransform,
-} from "./variants";
+} from "../variants";
 
 export type {
 	OrbitCardStackLabels,

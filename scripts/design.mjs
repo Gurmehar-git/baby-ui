@@ -49,12 +49,7 @@ for (const slug of slugs) {
 	const url = `${base}${item.href}`;
 	const selector = "[data-demo-canvas]";
 	if (mode === "audit") {
-		const sources = [
-			`components/${slug}/react`,
-			`components/${slug}/svelte`,
-			`pro/components/${slug}/react`,
-			`pro/components/${slug}/svelte`,
-		];
+		const sources = [`components/${slug}`, `pro/components/${slug}`];
 		const r = await buildReport({
 			source: sources.filter((s) => existsSync(s)),
 			urls: [url],

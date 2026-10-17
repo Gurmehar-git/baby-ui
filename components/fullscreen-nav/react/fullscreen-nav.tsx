@@ -2,8 +2,8 @@
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { type ReactNode, useRef, useState } from "react";
-import { button } from "../../button/react/variants";
-import { cn } from "../../lib/react/cn";
+import { button } from "../../button/variants";
+import { cn } from "../../lib/cn";
 import {
 	type FullscreenNavAlign,
 	type FullscreenNavSize,
@@ -12,7 +12,7 @@ import {
 	linkDelay,
 	linkIndex,
 	panelDelay,
-} from "./variants";
+} from "../variants";
 
 export type { FullscreenNavAlign, FullscreenNavSize, FullscreenNavVariant };
 

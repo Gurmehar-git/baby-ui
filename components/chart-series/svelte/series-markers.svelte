@@ -1,11 +1,11 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { CHART_EASE_CSS } from "../../chart/motion";
 import { useActivePoint, useChart, usePlot } from "../../chart/svelte/context";
-import { CHART_EASE_CSS } from "../../chart/svelte/motion";
-import { MARKER_ENTER, REVEAL_DURATION } from "./core";
+import { MARKER_ENTER, REVEAL_DURATION } from "../core";
+import { type SeriesMarkerAppearance, seriesMarker } from "../variants";
 import MarkerShape from "./marker-shape.svelte";
-import { type SeriesMarkerAppearance, seriesMarker } from "./variants";
 
 let {
 	dataKey,

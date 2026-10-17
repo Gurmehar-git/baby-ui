@@ -1,14 +1,14 @@
 <script lang="ts">
 import { onDestroy } from "svelte";
 import Button from "../../button/svelte/button.svelte";
-import { button } from "../../button/svelte/variants";
+import { button } from "../../button/variants";
 import Card from "../../card/svelte/card.svelte";
 import DropdownMenu from "../../dropdown-menu/svelte/dropdown-menu.svelte";
 import DropdownMenuContent from "../../dropdown-menu/svelte/dropdown-menu-content.svelte";
 import DropdownMenuItem from "../../dropdown-menu/svelte/dropdown-menu-item.svelte";
 import DropdownMenuLabel from "../../dropdown-menu/svelte/dropdown-menu-label.svelte";
 import DropdownMenuTrigger from "../../dropdown-menu/svelte/dropdown-menu-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Textarea from "../../textarea/svelte/textarea.svelte";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
 import ToggleGroupItem from "../../toggle-group/svelte/toggle-group-item.svelte";
@@ -20,12 +20,12 @@ import {
 	type ChatTopic,
 	promptHistory,
 	resolvingIndex,
-} from "./types";
+} from "../types";
 import {
 	type ChatComposerSize,
 	type ChatComposerVariant,
 	chatComposer,
-} from "./variants";
+} from "../variants";
 
 let {
 	messages,

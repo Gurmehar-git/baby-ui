@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Table from "../../table/svelte/table.svelte";
 import TableBody from "../../table/svelte/table-body.svelte";
 import TableCaption from "../../table/svelte/table-caption.svelte";

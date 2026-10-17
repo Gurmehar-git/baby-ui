@@ -1,8 +1,8 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { createReel } from "./reel";
-import { type TextReelOrientation, type TextReelSize, textReel } from "./variants";
+import { cn } from "../../lib/cn";
+import { createReel } from "../reel";
+import { type TextReelOrientation, type TextReelSize, textReel } from "../variants";
 
 let {
 	items,

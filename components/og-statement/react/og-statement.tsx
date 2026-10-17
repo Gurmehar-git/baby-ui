@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgStatementMode, ogStatement } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgStatementMode, ogStatement } from "../variants";
 
 export type { OgStatementMode };
 

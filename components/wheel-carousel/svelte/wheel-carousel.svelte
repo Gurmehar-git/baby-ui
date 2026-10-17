@@ -1,14 +1,14 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { WheelCarouselItem } from "./types";
+import { cn } from "../../lib/cn";
+import type { WheelCarouselItem } from "../types";
 import {
 	type WheelCarouselAspect,
 	type WheelCarouselPhotoSide,
 	type WheelCarouselSize,
 	wheelCarousel,
-} from "./variants";
-import { createWheel } from "./wheel";
+} from "../variants";
+import { createWheel } from "../wheel";
 
 let {
 	items,

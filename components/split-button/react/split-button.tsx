@@ -9,8 +9,8 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "../../dropdown-menu/react/dropdown-menu";
-import { cn } from "../../lib/react/cn";
-import { type SplitButtonSize, type SplitButtonVariant, splitButton } from "./variants";
+import { cn } from "../../lib/cn";
+import { type SplitButtonSize, type SplitButtonVariant, splitButton } from "../variants";
 
 export type { SplitButtonSize, SplitButtonVariant };
 

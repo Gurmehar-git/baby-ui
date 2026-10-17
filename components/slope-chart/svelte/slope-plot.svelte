@@ -1,10 +1,10 @@
 <script lang="ts">
 import { untrack } from "svelte";
+import type { ActivePoint, Datum } from "../../chart/core";
+import { CHART_DURATION, tween } from "../../chart/motion";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum } from "../../chart/svelte/core";
-import { CHART_DURATION, tween } from "../../chart/svelte/motion";
 import {
 	blendLayout,
 	nearestSlope,
@@ -14,8 +14,8 @@ import {
 	type SlopeLayout,
 	type SlopeRow,
 	slopeLayout,
-} from "./geometry";
-import { type SlopeVariant, slopeChart } from "./variants";
+} from "../geometry";
+import { type SlopeVariant, slopeChart } from "../variants";
 
 let {
 	frame,

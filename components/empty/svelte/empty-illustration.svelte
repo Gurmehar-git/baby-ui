@@ -1,15 +1,15 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type EmptyPhase,
 	type EmptyScene,
 	SCENE_FRAMES,
 	SCENE_VIEW,
 	SHAPE_KINDS,
-} from "./art";
-import { createIllustration, initialShapes } from "./illustration";
-import { type EmptyIllustrationSize, emptyIllustration } from "./variants";
+} from "../art";
+import { createIllustration, initialShapes } from "../illustration";
+import { type EmptyIllustrationSize, emptyIllustration } from "../variants";
 
 let {
 	scene,

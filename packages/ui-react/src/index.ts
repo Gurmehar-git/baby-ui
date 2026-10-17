@@ -328,7 +328,7 @@ export { type LabelProps, Label } from "@baby-ui/components/react/label";
 export { type LetterMorphProps, LetterMorph } from "@baby-ui/components/react/letter-morph";
 export { type LetterMorphOptions, createLetterMorph } from "@baby-ui/components/react/letter-morph";
 export { letterMorph, type LetterMorphVariant, type LetterMorphSize } from "@baby-ui/components/react/letter-morph";
-export { cn } from "@baby-ui/components/lib/react/cn";
+export { cn } from "@baby-ui/components/lib/cn";
 export { type LightCausticsProps, LightCaustics } from "@baby-ui/components/react/light-caustics";
 export { type LightCausticsOptions, mountLightCaustics } from "@baby-ui/components/react/light-caustics";
 export { lightCaustics, type LightCausticsTone, type LightCausticsSpeed, type LightCausticsPosition, LIGHT_CAUSTICS_COLORS, LIGHT_CAUSTICS_SPEED } from "@baby-ui/components/react/light-caustics";

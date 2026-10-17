@@ -1,5 +1,5 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_CHANGELOG_ICONS,
 	type OgChangelogKind,
@@ -7,7 +7,7 @@ import {
 	type OgChangelogTone,
 	ogChangelog,
 	ogChangelogMarker,
-} from "./variants";
+} from "../variants";
 
 let {
 	version,

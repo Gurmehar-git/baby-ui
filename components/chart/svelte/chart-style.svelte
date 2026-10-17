@@ -1,6 +1,6 @@
 <script lang="ts">
+import { chartStyleCss } from "../core";
 import type { ChartConfig } from "./context";
-import { chartStyleCss } from "./core";
 
 let { id, config }: { id: string; config: ChartConfig } = $props();
 

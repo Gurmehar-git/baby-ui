@@ -26,8 +26,8 @@ import DropdownMenuSub from "../../dropdown-menu/svelte/dropdown-menu-sub.svelte
 import DropdownMenuSubContent from "../../dropdown-menu/svelte/dropdown-menu-sub-content.svelte";
 import DropdownMenuSubTrigger from "../../dropdown-menu/svelte/dropdown-menu-sub-trigger.svelte";
 import DropdownMenuTrigger from "../../dropdown-menu/svelte/dropdown-menu-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { initials } from "../../mention-input/svelte/mention";
+import { cn } from "../../lib/cn";
+import { initials } from "../../mention-input/mention";
 import Spinner from "../../spinner/svelte/spinner.svelte";
 import {
 	runSignOut,
@@ -37,8 +37,8 @@ import {
 	USER_STATUSES,
 	type UserMenuUser,
 	type UserStatus,
-} from "./account";
-import { type UserMenuSize, userMenu } from "./variants";
+} from "../account";
+import { type UserMenuSize, userMenu } from "../variants";
 
 let {
 	user,

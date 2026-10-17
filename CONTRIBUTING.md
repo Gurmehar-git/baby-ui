@@ -16,9 +16,9 @@ through [portless](https://portless.sh), so they get named `*.baby-ui.localhost`
 
 ## Layout
 
-- `components/<slug>/`: one folder per component. `<slug>.ts` is the spec, `index.md` the docs,
-  `react/` and `svelte/` the ports, `examples/` the copy-ready examples. React is the source for
-  shared `.ts`; the Svelte copies are generated.
+- `components/<slug>/`: one folder per component. `component.ts` is the spec, `index.md` the
+  docs, `variants.ts` and any other framework-free `.ts` the code both ports import, `react/` and
+  `svelte/` the ports, `examples/` the copy-ready examples. Shared helpers are `components/lib/`.
 - A spec states what code can't: props, guidance, a11y, motion. `pnpm gen` derives each port's
   files, npm and registry dependencies from its imports, and `variantsOf(tv, axes)` reads the
   variant options from the `tv()`. List `files`/`dependencies`/`registryDependencies` only for

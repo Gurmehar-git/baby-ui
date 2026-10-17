@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { useCanvasEngine } from "../../lib/react/use-canvas-engine";
-import { type ClosingPlasmaOptions, mountClosingPlasma } from "./plasma";
+import { type ClosingPlasmaOptions, mountClosingPlasma } from "../plasma";
 import {
 	CLOSING_PLASMA_COLORS,
 	CLOSING_PLASMA_SPEED,
@@ -11,7 +11,7 @@ import {
 	type ClosingPlasmaSpeed,
 	type ClosingPlasmaTone,
 	closingPlasma,
-} from "./variants";
+} from "../variants";
 
 export type { ClosingPlasmaPosition, ClosingPlasmaSpeed, ClosingPlasmaTone };
 

@@ -29,15 +29,19 @@ const today = Date.now();
 const recent = (date?: string) =>
 	!!date && today - Date.parse(date) <= FRESH_DAYS * DAY_MS;
 
-/** The spec's own folder in each port, plus the spec file; shared `lib/` never dates a component. */
+/** The component's code (each port and the shared files) and its spec; `lib/` never dates one. */
 function datedPaths(spec: ComponentSpec) {
-	const pro = proSlugs.has(spec.slug);
-	const folders = FRAMEWORKS.flatMap((f) => {
-		const folder = spec.impl[f]?.files[0]?.path.split("/")[0];
-		if (!folder || folder === "lib") return [];
-		return [`${pro ? "pro/" : ""}components/${folder}/${f}`];
-	});
-	return { folders, file: `${pro ? "pro/" : ""}components/${spec.slug}/${spec.slug}.ts` };
+	const root = `${proSlugs.has(spec.slug) ? "pro/" : ""}components`;
+	const folder = FRAMEWORKS.map((f) => spec.impl[f]?.files[0]?.path.split("/")[0]).find(
+		(name) => name && name !== "lib",
+	);
+	const folders = folder
+		? [
+				...FRAMEWORKS.filter((f) => spec.impl[f]).map((f) => `${root}/${folder}/${f}`),
+				`${root}/${folder}/shared`,
+			]
+		: [];
+	return { folders, file: `${root}/${spec.slug}/component.ts` };
 }
 
 type Freshness = "new" | "updated" | null;

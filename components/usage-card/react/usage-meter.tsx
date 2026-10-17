@@ -9,8 +9,8 @@ import {
 } from "react";
 import { type ChartConfig, ChartStyle } from "../../chart/react/chart";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
-import { type MeterStatus, meterKeyStep, type meterLayout, meterNumber } from "./meter";
-import type { usageCard } from "./variants";
+import { type MeterStatus, meterKeyStep, type meterLayout, meterNumber } from "../meter";
+import type { usageCard } from "../variants";
 
 export interface UsageMeterProps {
 	id: string;

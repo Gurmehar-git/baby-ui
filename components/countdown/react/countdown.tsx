@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import {
 	type CountdownUnit,
@@ -11,8 +11,8 @@ import {
 	spokenCountdown,
 	toEpoch,
 	UNIT_NAMES,
-} from "./clock";
-import { type CountdownVariant, countdown } from "./variants";
+} from "../clock";
+import { type CountdownVariant, countdown } from "../variants";
 
 export type { CountdownUnit, CountdownVariant };
 

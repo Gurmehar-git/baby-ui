@@ -1,6 +1,6 @@
 import { getContext, setContext } from "svelte";
-import type { Point, RadarMetric, RadarSeries } from "./geometry";
-import type { RadarGridShape, RadarVariant } from "./variants";
+import type { Point, RadarMetric, RadarSeries } from "../geometry";
+import type { RadarGridShape, RadarVariant } from "../variants";
 
 export interface RadarContextValue {
 	readonly data: RadarSeries[];

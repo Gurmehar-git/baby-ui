@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { ComponentProps } from "svelte";
 import Button from "../../button/svelte/button.svelte";
-import type { ButtonSize } from "../../button/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
-import { inputGroup } from "./variants";
+import type { ButtonSize } from "../../button/variants";
+import { cn } from "../../lib/cn";
+import { inputGroup } from "../variants";
 
 let {
 	ref = $bindable(null),

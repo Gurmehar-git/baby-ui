@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type AsciiOptions, mountAscii } from "./ascii";
+import { cn } from "../../lib/cn";
+import { type AsciiOptions, mountAscii } from "../ascii";
 import {
 	type AsciiEffectDither,
 	type AsciiEffectFit,
@@ -10,7 +10,7 @@ import {
 	type AsciiEffectTone,
 	type AsciiEffectVariant,
 	asciiEffect,
-} from "./variants";
+} from "../variants";
 
 let {
 	src,

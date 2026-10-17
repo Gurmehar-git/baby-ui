@@ -13,7 +13,7 @@ import Empty from "../../empty/svelte/empty.svelte";
 import EmptyDescription from "../../empty/svelte/empty-description.svelte";
 import EmptyHeader from "../../empty/svelte/empty-header.svelte";
 import EmptyTitle from "../../empty/svelte/empty-title.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import { Line, LineChart } from "../../line-chart/svelte";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import Tabs from "../../tabs/svelte/tabs.svelte";
@@ -35,13 +35,13 @@ import {
 	type StarHistoryData,
 	type StarHistoryLabels,
 	starMilestones,
-} from "./core";
+} from "../core";
 import {
 	STAR_HISTORY_LAYOUT,
 	type StarHistoryMode,
 	type StarHistoryVariant,
 	starHistory,
-} from "./variants";
+} from "../variants";
 
 let {
 	history,

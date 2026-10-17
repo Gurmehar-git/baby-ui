@@ -10,8 +10,6 @@ export interface InstallConfig {
 	readonly project: Project;
 	readonly framework: "react" | "svelte";
 	readonly typescript: boolean;
-	/** React only: keep `"use client"` directives. */
-	readonly rsc: boolean;
 	readonly srcDir: boolean;
 	/** Alias strings as written in components.json, with each CLI's defaults filled in. */
 	readonly aliases: Readonly<Record<AliasKey, string>>;
@@ -97,7 +95,6 @@ export function installConfig(project: Project): InstallConfig {
 		project,
 		framework,
 		typescript,
-		rsc: raw.rsc === true,
 		srcDir: existsSync(join(project.root, "src")),
 		aliases,
 		declaredAliases: Object.fromEntries(

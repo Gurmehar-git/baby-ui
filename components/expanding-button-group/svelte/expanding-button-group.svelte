@@ -1,6 +1,6 @@
 <script lang="ts" module>
 import type { Snippet } from "svelte";
-import type { ExpandingGroupItem } from "./group";
+import type { ExpandingGroupItem } from "../group";
 
 export type ExpandingButtonGroupItem = ExpandingGroupItem & {
 	icon: Snippet;
@@ -12,13 +12,13 @@ export type ExpandingButtonGroupItem = ExpandingGroupItem & {
 <script lang="ts">
 import { Toolbar } from "bits-ui";
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { createExpandingGroup, type ExpandingGroupState } from "./group";
+import { cn } from "../../lib/cn";
+import { createExpandingGroup, type ExpandingGroupState } from "../group";
 import {
 	type ExpandingButtonGroupSize,
 	type ExpandingButtonGroupVariant,
 	expandingButtonGroup,
-} from "./variants";
+} from "../variants";
 
 let {
 	items,

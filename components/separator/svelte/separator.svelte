@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Separator as SeparatorPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
-import { type SeparatorVariant, separator } from "./variants";
+import { cn } from "../../lib/cn";
+import { type SeparatorVariant, separator } from "../variants";
 
 let {
 	ref = $bindable(null),

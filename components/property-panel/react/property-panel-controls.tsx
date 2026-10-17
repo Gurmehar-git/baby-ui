@@ -27,13 +27,6 @@ import { Slider } from "../../slider/react/slider";
 import { Switch } from "../../switch/react/switch";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
 import {
-	PropertyPanel,
-	PropertyPanelGroup,
-	PropertyPanelGroupContent,
-	PropertyPanelGroupLabel,
-	type PropertyPanelProps,
-} from "./property-panel";
-import {
 	getPropertyValue,
 	type PropertyField,
 	type PropertySchema,
@@ -43,8 +36,15 @@ import {
 	propertyGroups,
 	propertyNodes,
 	setPropertyValue,
-} from "./schema";
-import { propertyPanel } from "./variants";
+} from "../schema";
+import { propertyPanel } from "../variants";
+import {
+	PropertyPanel,
+	PropertyPanelGroup,
+	PropertyPanelGroupContent,
+	PropertyPanelGroupLabel,
+	type PropertyPanelProps,
+} from "./property-panel";
 
 export interface PropertyPanelControlsProps
 	extends Omit<PropertyPanelProps, "children" | "defaultValue" | "onChange"> {

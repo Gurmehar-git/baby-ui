@@ -1,5 +1,5 @@
 import { getContext, hasContext, setContext } from "svelte";
-import type { SwappableVariant } from "./variants";
+import type { SwappableVariant } from "../variants";
 
 type Shared = { variant: SwappableVariant; hintId: string };
 

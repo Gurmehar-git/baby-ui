@@ -9,20 +9,20 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
-import { glideHighlight } from "../../lib/react/glide";
+import { cn } from "../../lib/cn";
+import { glideHighlight } from "../../lib/glide";
 import {
 	type ExpandingSearchGroup,
 	type ExpandingSearchItem,
 	groupSearch,
 	rankSearch,
 	splitSearchMatch,
-} from "./search";
+} from "../search";
 import {
 	type ExpandingSearchSize,
 	type ExpandingSearchVariant,
 	expandingSearch,
-} from "./variants";
+} from "../variants";
 
 export type { ExpandingSearchItem, ExpandingSearchSize, ExpandingSearchVariant };
 

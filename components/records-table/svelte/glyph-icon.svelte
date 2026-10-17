@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Glyph } from "./types";
+import type { Glyph } from "../types";
 
 let { glyphs, size = 14 }: { glyphs: Glyph[]; size?: number } = $props();
 </script>

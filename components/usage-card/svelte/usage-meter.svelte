@@ -2,8 +2,8 @@
 import ChartStyle from "../../chart/svelte/chart-style.svelte";
 import type { ChartConfig } from "../../chart/svelte/context";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
-import { type MeterStatus, meterKeyStep, type meterLayout, meterNumber } from "./meter";
-import type { usageCard } from "./variants";
+import { type MeterStatus, meterKeyStep, type meterLayout, meterNumber } from "../meter";
+import type { usageCard } from "../variants";
 
 let {
 	id,

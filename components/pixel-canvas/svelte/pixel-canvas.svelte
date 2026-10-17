@@ -1,14 +1,14 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { mountPixels, type PixelOptions } from "./pixels";
+import { cn } from "../../lib/cn";
+import { mountPixels, type PixelOptions } from "../pixels";
 import {
 	type PixelCanvasPosition,
 	type PixelCanvasTone,
 	type PixelCanvasVariant,
 	pixelCanvas,
-} from "./variants";
+} from "../variants";
 
 let {
 	variant = "default",

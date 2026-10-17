@@ -1,7 +1,7 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { typingStumbleSteps } from "./stumble";
-import { type TypingTextSize, typingText } from "./variants";
+import { cn } from "../../lib/cn";
+import { typingStumbleSteps } from "../stumble";
+import { type TypingTextSize, typingText } from "../variants";
 
 let {
 	text,

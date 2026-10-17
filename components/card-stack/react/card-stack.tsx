@@ -10,7 +10,7 @@ import {
 	useState,
 } from "react";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type CardDecision,
 	createCardDeck,
@@ -19,8 +19,8 @@ import {
 	type DeckPoint,
 	type DeckReturn,
 	VISIBLE,
-} from "./deck";
-import { type CardStackSize, type CardStackVariant, cardStack } from "./variants";
+} from "../deck";
+import { type CardStackSize, type CardStackVariant, cardStack } from "../variants";
 
 export type { CardDecision, CardStackSize, CardStackVariant };
 

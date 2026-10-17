@@ -1,8 +1,8 @@
 <script lang="ts">
 import { Text } from "@better-svelte-email/components";
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type EmailTextSize, type EmailTextTone, emailText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type EmailTextSize, type EmailTextTone, emailText } from "../variants";
 
 let {
 	children,

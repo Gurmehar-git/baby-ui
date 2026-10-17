@@ -1,9 +1,9 @@
 <script lang="ts">
 import { untrack } from "svelte";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { isApplePlatform, parseShortcut } from "../../lib/svelte/shortcut-keys";
-import { shortcutCap } from "../../shortcut/svelte/variants";
+import { cn } from "../../lib/cn";
+import { isApplePlatform, parseShortcut } from "../../lib/shortcut-keys";
+import { shortcutCap } from "../../shortcut/variants";
 import {
 	comboFromEvent,
 	comboKey,
@@ -12,8 +12,8 @@ import {
 	heldModifiers,
 	RESERVED_SHORTCUTS,
 	type ShortcutBinding,
-} from "./recorder";
-import { type ShortcutRecorderSize, shortcutRecorder } from "./variants";
+} from "../recorder";
+import { type ShortcutRecorderSize, shortcutRecorder } from "../variants";
 
 let {
 	label,

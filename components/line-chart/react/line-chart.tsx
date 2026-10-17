@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { useChart } from "../../chart/react/chart";
 import {
 	type FadeEdges,
 	fadeStops,
@@ -12,15 +11,16 @@ import {
 	seriesPoints,
 	seriesVisibleInPhase,
 	toDate,
-} from "../../chart/react/core";
+} from "../../chart/core";
+import { CHART_DURATION, tween } from "../../chart/motion";
+import { useChart } from "../../chart/react/chart";
 import { useActivePoint } from "../../chart/react/frame";
-import { CHART_DURATION, tween } from "../../chart/react/motion";
 import {
 	TimeSeriesChart,
 	type TimeSeriesChartProps,
 	usePlot,
 } from "../../chart/react/time-series";
-import { splitAtBaseline } from "../../chart-series/react/core";
+import { splitAtBaseline } from "../../chart-series/core";
 import { DashTail } from "../../chart-series/react/dash-tail";
 import { HighlightBand } from "../../chart-series/react/highlight";
 import { LoadingPulse, LoadingSweep } from "../../chart-series/react/loading";
@@ -28,8 +28,8 @@ import { SeriesMarkers, TerminalMarker } from "../../chart-series/react/markers"
 import type {
 	SeriesLoadingStyle,
 	SeriesMarkerAppearance,
-} from "../../chart-series/react/variants";
-import { cn } from "../../lib/react/cn";
+} from "../../chart-series/variants";
+import { cn } from "../../lib/cn";
 import {
 	LINE_CURVES,
 	type LineCurve,
@@ -37,7 +37,7 @@ import {
 	line,
 	type ProfitLossEncoding,
 	profitLoss,
-} from "./variants";
+} from "../variants";
 
 export interface LineChartProps extends TimeSeriesChartProps {
 	/** Announced after the chart's name, e.g. "line chart". */

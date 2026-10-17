@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import type { ActivePoint } from "../core";
+import { CHART_SPRING, Spring } from "../motion";
+import { chartTooltip } from "../variants";
 import { portal, setActivePoint, useActivePoint } from "./context";
-import type { ActivePoint } from "./core";
-import { CHART_SPRING, Spring } from "./motion";
-import { chartTooltip } from "./variants";
 
 let {
 	anchor,

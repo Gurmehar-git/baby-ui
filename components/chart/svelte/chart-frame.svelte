@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type ChartPhase, isLoadingPhase } from "../core";
+import { chart } from "../variants";
 import { useChart } from "./context";
-import { type ChartPhase, isLoadingPhase } from "./core";
-import { chart } from "./variants";
 
 let {
 	roleDescription,

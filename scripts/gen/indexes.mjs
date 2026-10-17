@@ -117,11 +117,15 @@ function uiIndex({
 	external,
 }) {
 	const folderOf = (dir) => join(root, dir, framework);
-	// Copies this run writes may not be on disk yet (a fresh checkout), so read the run's output.
+	// Files this run writes may not be on disk yet (a fresh checkout), so read the run's output.
 	const exportsAt = (dir, file) => exportsIn(output, join(folderOf(dir), file));
 	const modules = [];
 	for (const dir of portDirs(root, framework)) {
 		const files = filesIn(output, folderOf(dir));
+		// Code both ports share sits at the folder root, beside component.ts.
+		const shared = filesIn(output, join(root, dir)).filter(
+			(f) => isTs(f) && f !== "component.ts",
+		);
 		const pick = dir === "lib" ? (f) => LIB_PUBLIC.includes(f) : () => true;
 		if (defaults) {
 			for (const file of ordered(
@@ -155,23 +159,25 @@ function uiIndex({
 			...componentExts.flatMap((ext) =>
 				ordered(dir, files.filter((f) => f.endsWith(ext)).filter(pick), ext),
 			),
-			...files.filter(isTs).filter(pick).sort(),
+			...[...files.filter(isTs), ...shared].filter(pick).sort(),
 		];
 		for (const file of sources) {
+			const isShared = shared.includes(file);
 			modules.push({
 				dir,
 				file: file.replace(/\.tsx?$/, ""),
-				names: exportsAt(dir, file).map((n) => ({
-					...n,
-					spec: n.type ? `type ${n.name}` : n.name,
-				})),
+				shared: isShared,
+				names: exportsIn(
+					output,
+					join(isShared ? join(root, dir) : folderOf(dir), file),
+				).map((n) => ({ ...n, spec: n.type ? `type ${n.name}` : n.name })),
 			});
 		}
 	}
 
 	const facadeFrom = (m) =>
 		m.dir === "lib"
-			? `${pkg}/lib/${framework}/${m.file}`
+			? `${pkg}/lib/${m.shared ? "" : `${framework}/`}${m.file}`
 			: `${pkg}/${framework}/${m.dir}`;
 	const barrel = reexports(modules, facadeFrom, external, facadeSpec);
 	const folders = new Map();
@@ -179,7 +185,7 @@ function uiIndex({
 	for (const dir of new Set(modules.map((m) => m.dir))) {
 		if (dir === "lib") continue;
 		const own = modules.filter((m) => m.dir === dir);
-		folders.set(dir, reexports(own, (m) => `./${m.file}`).text);
+		folders.set(dir, reexports(own, (m) => `${m.shared ? ".." : "."}/${m.file}`).text);
 		facades.set(dir, reexports(own, facadeFrom, [], facadeSpec).text);
 	}
 	return { ...barrel, folders, facades };
@@ -187,17 +193,21 @@ function uiIndex({
 
 /** Every `lib/` file, so `@baby-ui/<fw>/lib/<file>` keeps resolving (Pro uses them directly). */
 function libFacades(output, framework) {
-	const dir = join(COMPONENTS, "lib", framework);
-	return filesIn(output, dir)
-		.filter(isTs)
-		.map((file) => {
+	const lib = join(COMPONENTS, "lib");
+	const port = join(lib, framework);
+	return [
+		...filesIn(output, lib).map((file) => [lib, file, ""]),
+		...filesIn(output, port).map((file) => [port, file, `${framework}/`]),
+	]
+		.filter(([, file]) => isTs(file))
+		.map(([dir, file, sub]) => {
 			const base = file.replace(/\.ts$/, "");
 			const names = exportsIn(output, join(dir, file)).map((n) =>
 				n.type ? `type ${n.name}` : n.name,
 			);
 			return [
 				file,
-				`export { ${names.join(", ")} } from "@baby-ui/components/lib/${framework}/${base}";\n`,
+				`export { ${names.join(", ")} } from "@baby-ui/components/lib/${sub}${base}";\n`,
 			];
 		});
 }
@@ -214,13 +224,15 @@ function specsIndex(manifests, name, derived = {}) {
 			(m) => m[1],
 		);
 		if (!names.length)
-			throw new Error(`gen: ${slug}.ts has no \`export const x = defineComponent(\``);
+			throw new Error(
+				`gen: ${slug}/component.ts has no \`export const x = defineComponent(\``,
+			);
 		return [slug, names];
 	});
 	return [
 		'import { type ComponentSpec, completeSpec, type DerivedImpl } from "@baby-ui/registry-schema";',
 		...specNames.map(
-			([slug, names]) => `import { ${names.join(", ")} } from "./${slug}/${slug}";`,
+			([slug, names]) => `import { ${names.join(", ")} } from "./${slug}/component";`,
 		),
 		"",
 		"/** What each port ships, read from its imports by `pnpm gen`. */",
@@ -282,13 +294,13 @@ export function indexes(output, report) {
 			output.add(join(facade, "lib", file), text);
 		}
 		for (const [dir, entry] of EXTRA_ENTRIES) {
-			const path = join(COMPONENTS, dir, framework, `${entry}.ts`);
+			const path = join(COMPONENTS, dir, `${entry}.ts`);
 			const names = exportsIn(output, path).map((n) =>
 				n.type ? `type ${n.name}` : n.name,
 			);
 			output.add(
 				join(facade, dir, `${entry}.ts`),
-				`export { ${names.join(", ")} } from "@baby-ui/components/${framework}/${dir}/${entry}";\n`,
+				`export { ${names.join(", ")} } from "@baby-ui/components/${dir}/${entry}";\n`,
 			);
 		}
 	}

@@ -5,9 +5,9 @@ import type { Snippet } from "svelte";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { useActivePoint } from "../../chart/svelte/context";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { barChart } from "../variants";
 import { useBarChart } from "./context";
-import { barChart } from "./variants";
 
 let {
 	content,

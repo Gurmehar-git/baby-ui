@@ -3,10 +3,10 @@
 import { type CSSProperties, useReducer, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../../avatar/react/avatar";
 import { Button } from "../../button/react/button";
-import { button } from "../../button/react/variants";
+import { button } from "../../button/variants";
 import { Collapsible, CollapsibleContent } from "../../collapsible/react/collapsible";
-import { cn } from "../../lib/react/cn";
-import { initials } from "../../mention-input/react/mention";
+import { cn } from "../../lib/cn";
+import { initials } from "../../mention-input/mention";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover/react/popover";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
@@ -18,8 +18,8 @@ import {
 	type NotificationTone,
 	type NotificationView,
 	unreadSummary,
-} from "./inbox";
-import { type NotificationCenterSize, notificationCenter } from "./variants";
+} from "../inbox";
+import { type NotificationCenterSize, notificationCenter } from "../variants";
 
 export type { NotificationCenterSize, NotificationItem, NotificationTone };
 

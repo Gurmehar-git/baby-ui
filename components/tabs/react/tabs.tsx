@@ -12,13 +12,13 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type TabsOrientation,
 	type TabsSize,
 	type TabsVariant,
 	tabsFrame,
-} from "./variants";
+} from "../variants";
 
 export type { TabsOrientation, TabsSize, TabsVariant };
 

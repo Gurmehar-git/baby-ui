@@ -9,14 +9,14 @@ import {
 	useMemo,
 	useRef,
 } from "react";
+import { type Datum, linePath, seriesColor, seriesPoints } from "../../chart/core";
+import { type Playback, prefersReducedMotion, tween } from "../../chart/motion";
 import { useChart } from "../../chart/react/chart";
-import { type Datum, linePath, seriesColor, seriesPoints } from "../../chart/react/core";
-import { type Playback, prefersReducedMotion, tween } from "../../chart/react/motion";
 import { usePlot } from "../../chart/react/time-series";
-import { cn } from "../../lib/react/cn";
-import { detectMomentum } from "./live";
+import { cn } from "../../lib/cn";
+import { detectMomentum } from "../live";
+import { type LiveLineCurve, type LiveLineTint, liveLine } from "../variants";
 import { useLive } from "./live-line-chart";
-import { type LiveLineCurve, type LiveLineTint, liveLine } from "./variants";
 
 const CURVES = { monotone: curveMonotoneX, linear: curveLinear, step: curveStepAfter };
 const PULSE_MS = 1500;

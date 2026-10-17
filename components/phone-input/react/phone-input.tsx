@@ -16,8 +16,8 @@ import {
 	InputGroupAddon,
 	InputGroupInput,
 } from "../../input-group/react/input-group";
-import type { InputGroupSize } from "../../input-group/react/variants";
-import { cn } from "../../lib/react/cn";
+import type { InputGroupSize } from "../../input-group/variants";
+import { cn } from "../../lib/cn";
 import {
 	capDigits,
 	caretAfterDigits,
@@ -32,8 +32,8 @@ import {
 	parsePhoneNumber,
 	phoneStatus,
 	toE164,
-} from "./phone";
-import { type PhoneInputVariant, phoneInput } from "./variants";
+} from "../phone";
+import { type PhoneInputVariant, phoneInput } from "../variants";
 
 export type { PhoneCountry, PhoneInputVariant, PhoneStatus };
 

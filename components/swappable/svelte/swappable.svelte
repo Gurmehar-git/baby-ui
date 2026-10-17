@@ -1,15 +1,15 @@
 <script lang="ts">
 import { type Snippet, untrack } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { setSwappable } from "./context";
+import { cn } from "../../lib/cn";
 import {
 	mountSwappable,
 	type SwappableHandlers,
 	type Swapy,
 	type SwapyConfig,
-} from "./core";
-import { type SwappableVariant, swappable } from "./variants";
+} from "../core";
+import { type SwappableVariant, swappable } from "../variants";
+import { setSwappable } from "./context";
 
 let {
 	variant = "card",

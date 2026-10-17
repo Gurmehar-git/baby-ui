@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgPromptPhotoMode, ogPromptPhoto } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgPromptPhotoMode, ogPromptPhoto } from "../variants";
 
 export type { OgPromptPhotoMode };
 

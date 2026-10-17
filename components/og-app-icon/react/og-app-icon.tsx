@@ -1,10 +1,10 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_APP_ICON_DOODLES,
 	type OgAppIconMode,
 	ogAppIcon,
 	ogAppIconDoodle,
-} from "./variants";
+} from "../variants";
 
 export type { OgAppIconMode };
 

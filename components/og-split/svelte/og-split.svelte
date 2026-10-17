@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type OgSplitMode, ogSplit } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgSplitMode, ogSplit } from "../variants";
 
 let {
 	name,

@@ -8,15 +8,15 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, Datum, Margin } from "../../chart/react/core";
-import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
+import type { ActivePoint, Datum, Margin } from "../../chart/core";
 import {
 	CHART_DURATION,
 	CHART_EASE_CSS,
 	prefersReducedMotion,
 	tween,
-} from "../../chart/react/motion";
+} from "../../chart/motion";
+import { useChart } from "../../chart/react/chart";
+import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
 import { useActiveIndex } from "../../chart/react/time-series";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
 import {
@@ -32,8 +32,8 @@ import {
 	type SankeyData,
 	type SankeyText,
 	visibleLabels,
-} from "./layout";
-import { type SankeyLinkColor, type SankeyOrientation, sankeyChart } from "./variants";
+} from "../layout";
+import { type SankeyLinkColor, type SankeyOrientation, sankeyChart } from "../variants";
 
 export interface SankeyChartProps {
 	data: SankeyData;

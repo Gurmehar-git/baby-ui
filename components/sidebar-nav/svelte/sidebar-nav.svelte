@@ -8,15 +8,15 @@ import DropdownMenuContent from "../../dropdown-menu/svelte/dropdown-menu-conten
 import DropdownMenuItem from "../../dropdown-menu/svelte/dropdown-menu-item.svelte";
 import DropdownMenuSeparator from "../../dropdown-menu/svelte/dropdown-menu-separator.svelte";
 import DropdownMenuTrigger from "../../dropdown-menu/svelte/dropdown-menu-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { SIDEBAR_NAV_LABELS, type SidebarNavLabels } from "./labels";
+import { cn } from "../../lib/cn";
+import { SIDEBAR_NAV_LABELS, type SidebarNavLabels } from "../labels";
+import { type SidebarNavSize, sidebarNav } from "../variants";
 import type {
 	SidebarNavItem,
 	SidebarRecent,
 	SidebarWorkspace,
 	SidebarWorkspaceAction,
 } from "./types";
-import { type SidebarNavSize, sidebarNav } from "./variants";
 
 let {
 	workspace,

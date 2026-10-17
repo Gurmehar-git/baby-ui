@@ -3,7 +3,7 @@ import type { Snippet } from "svelte";
 import Collapsible from "../../collapsible/svelte/collapsible.svelte";
 import CollapsibleContent from "../../collapsible/svelte/collapsible-content.svelte";
 import CollapsibleTrigger from "../../collapsible/svelte/collapsible-trigger.svelte";
-import { reasoningExtras } from "./variants";
+import { reasoningExtras } from "../variants";
 
 let {
 	summary,

@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { cn } from "../../lib/cn";
 import { canvasEngine } from "../../lib/svelte/canvas-engine.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type LightCausticsOptions, mountLightCaustics } from "./caustics";
+import { type LightCausticsOptions, mountLightCaustics } from "../caustics";
 import {
 	LIGHT_CAUSTICS_COLORS,
 	LIGHT_CAUSTICS_SPEED,
@@ -10,7 +10,7 @@ import {
 	type LightCausticsSpeed,
 	type LightCausticsTone,
 	lightCaustics,
-} from "./variants";
+} from "../variants";
 
 let {
 	tone = "ocean",

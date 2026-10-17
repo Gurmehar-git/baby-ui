@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
-import { cn } from "../../lib/react/cn";
-import { type GlitchTextBlendMode, type GlitchTextSize, glitchText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type GlitchTextBlendMode, type GlitchTextSize, glitchText } from "../variants";
 
 export type { GlitchTextBlendMode, GlitchTextSize };
 

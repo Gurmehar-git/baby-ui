@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import Badge from "../../badge/svelte/badge.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { reasoningExtras } from "./variants";
+import { cn } from "../../lib/cn";
+import { reasoningExtras } from "../variants";
 
 let {
 	children,

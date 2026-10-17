@@ -1,9 +1,9 @@
 <script lang="ts">
 import { MediaController } from "media-chrome";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { videoPlayer } from "../variants";
 import { getVideoPlayer } from "./context";
-import { videoPlayer } from "./variants";
 
 let {
 	ref = $bindable(null),

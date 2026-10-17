@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { prefersReducedMotion, Spring } from "../../chart/react/motion";
-import { cn } from "../../lib/react/cn";
+import { prefersReducedMotion, Spring } from "../../chart/motion";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import {
 	activeCount,
@@ -18,8 +18,8 @@ import {
 	RING_CIRCUMFERENCE,
 	RING_RADIUS,
 	scaleFill,
-} from "./geometry";
-import { type GaugeChartLayout, type GaugeChartTone, gaugeChart } from "./variants";
+} from "../geometry";
+import { type GaugeChartLayout, type GaugeChartTone, gaugeChart } from "../variants";
 
 /** Drives one notch between hidden (0) and shown (1) after `delay` seconds. */
 function NotchPath({

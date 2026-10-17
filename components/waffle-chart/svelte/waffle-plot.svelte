@@ -1,8 +1,8 @@
 <script lang="ts">
+import type { ActivePoint, Datum } from "../../chart/core";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum } from "../../chart/svelte/core";
 import {
 	rowShape,
 	slotAt,
@@ -10,8 +10,8 @@ import {
 	type WaffleCell,
 	type WaffleRow,
 	waffleBox,
-} from "./geometry";
-import { type WaffleVariant, waffleChart } from "./variants";
+} from "../geometry";
+import { type WaffleVariant, waffleChart } from "../variants";
 
 let {
 	frame,

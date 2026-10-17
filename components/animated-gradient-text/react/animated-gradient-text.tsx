@@ -4,8 +4,8 @@ import {
 	type ElementType,
 	type ReactNode,
 } from "react";
-import { cn } from "../../lib/react/cn";
-import { type GradientTextTone, gradientText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type GradientTextTone, gradientText } from "../variants";
 
 export type { GradientTextTone };
 

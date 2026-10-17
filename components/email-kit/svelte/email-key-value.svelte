@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Column, Row, Section } from "@better-svelte-email/components";
-import { cn } from "../../lib/svelte/cn";
-import { type EmailKeyValueDensity, emailKeyValue } from "./variants";
+import { cn } from "../../lib/cn";
+import { type EmailKeyValueDensity, emailKeyValue } from "../variants";
 
 export interface EmailKeyValueRow {
 	label: string;

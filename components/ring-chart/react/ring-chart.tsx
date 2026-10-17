@@ -1,10 +1,10 @@
 "use client";
 
 import { useCallback, useLayoutEffect, useMemo, useRef } from "react";
+import type { ActivePoint, Datum } from "../../chart/core";
+import { CHART_DURATION, type Playback, Spring, tween } from "../../chart/motion";
 import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, Datum } from "../../chart/react/core";
 import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
-import { CHART_DURATION, type Playback, Spring, tween } from "../../chart/react/motion";
 import { useActiveIndex } from "../../chart/react/time-series";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
@@ -20,8 +20,8 @@ import {
 	ringPath,
 	ringRows,
 	sweepDelay,
-} from "./geometry";
-import { type RingCap, ringChart } from "./variants";
+} from "../geometry";
+import { type RingCap, ringChart } from "../variants";
 
 export interface RingChartProps {
 	data: Datum[];

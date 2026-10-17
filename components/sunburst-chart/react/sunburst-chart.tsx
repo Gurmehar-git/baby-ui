@@ -8,16 +8,16 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, Datum } from "../../chart/react/core";
-import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
+import type { ActivePoint, Datum } from "../../chart/core";
 import {
 	CHART_DURATION,
 	CHART_EASE,
 	cubicBezier,
 	type Playback,
 	tween,
-} from "../../chart/react/motion";
+} from "../../chart/motion";
+import { useChart } from "../../chart/react/chart";
+import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
 import { useActiveIndex } from "../../chart/react/time-series";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
 import {
@@ -48,8 +48,8 @@ import {
 	transitionGeometry,
 	visibleArcs,
 	ZOOM_MS,
-} from "./geometry";
-import { SUNBURST_HUB, type SunburstVariant, sunburstChart } from "./variants";
+} from "../geometry";
+import { SUNBURST_HUB, type SunburstVariant, sunburstChart } from "../variants";
 
 const SUNBURST_EASE = cubicBezier(...SUNBURST_CURVE);
 

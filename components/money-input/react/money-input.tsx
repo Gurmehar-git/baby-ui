@@ -7,8 +7,8 @@ import {
 	InputGroupAddon,
 	InputGroupInput,
 } from "../../input-group/react/input-group";
-import type { InputGroupSize } from "../../input-group/react/variants";
-import { cn } from "../../lib/react/cn";
+import type { InputGroupSize } from "../../input-group/variants";
+import { cn } from "../../lib/cn";
 import {
 	Select,
 	SelectContent,
@@ -25,8 +25,8 @@ import {
 	groupAmount,
 	significantBefore,
 	toMinor,
-} from "./money";
-import { type MoneyInputVariant, moneyInput } from "./variants";
+} from "../money";
+import { type MoneyInputVariant, moneyInput } from "../variants";
 
 export type { MoneyInputVariant };
 

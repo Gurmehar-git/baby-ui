@@ -14,8 +14,8 @@ import {
 	type EmailShellSurface,
 	EmailText,
 } from "../../email-kit/react/email-kit";
-import { emailLayout } from "../../email-kit/react/variants";
-import { emailMagicLink } from "./variants";
+import { emailLayout } from "../../email-kit/variants";
+import { emailMagicLink } from "../variants";
 
 export interface EmailMagicLinkProps {
 	productName: string;

@@ -7,9 +7,9 @@ import CardDescription from "../../card/svelte/card-description.svelte";
 import CardHeader from "../../card/svelte/card-header.svelte";
 import CardTitle from "../../card/svelte/card-title.svelte";
 import GaugeChart from "../../gauge-chart/svelte/gauge-chart.svelte";
-import type { GaugeChartLayout, GaugeChartTone } from "../../gauge-chart/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
-import { type ScoreCardSize, scoreCard } from "./variants";
+import type { GaugeChartLayout, GaugeChartTone } from "../../gauge-chart/variants";
+import { cn } from "../../lib/cn";
+import { type ScoreCardSize, scoreCard } from "../variants";
 
 let {
 	title,

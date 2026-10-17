@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Markdown } from "../../markdown/react/markdown";
 import {
 	type StreamingTextLayout,
 	type StreamingTextSize,
 	streamingText,
-} from "./variants";
+} from "../variants";
 
 const WORD_DELAY = 55;
 

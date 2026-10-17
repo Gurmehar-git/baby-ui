@@ -1,4 +1,4 @@
-import type { ChartPhase } from "../../chart/svelte/core";
+import type { ChartPhase } from "../../chart/core";
 
 /** Loops while loading; once status flips it exits from its current progress, then unmounts. */
 export function createLoadingMode(phase: () => ChartPhase) {

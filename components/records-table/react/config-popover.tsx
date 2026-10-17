@@ -9,7 +9,7 @@ import {
 	HoverCardContent,
 	HoverCardTrigger,
 } from "../../hover-card/react/hover-card";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover/react/popover";
 import {
 	Select,
@@ -19,7 +19,7 @@ import {
 	SelectValue,
 } from "../../select/react/select";
 import { Switch } from "../../switch/react/switch";
-import { NEW_PROPERTY_TYPES, TYPE_GLYPHS, toggleIn } from "./model";
+import { NEW_PROPERTY_TYPES, TYPE_GLYPHS, toggleIn } from "../model";
 import type {
 	Glyph,
 	RecordsColumnConfig,
@@ -28,7 +28,7 @@ import type {
 	RecordsTableLabels,
 	RecordsToolKind,
 	ResolvedColumn,
-} from "./types";
+} from "../types";
 
 export function Icon({ children, size = 14 }: { children: ReactNode; size?: number }) {
 	return (

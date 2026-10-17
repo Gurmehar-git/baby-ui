@@ -1,17 +1,17 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { useCartesian } from "./context";
-import { fittedTicks, Y_TICK_GAP } from "./core";
+import { cn } from "../../lib/cn";
+import { fittedTicks, Y_TICK_GAP } from "../core";
 import {
 	CHART_DURATION,
 	CHART_EASE_CSS,
 	type Playback,
 	prefersReducedMotion,
 	tween,
-} from "./motion";
-import { type ChartGridVariant, chartGrid } from "./variants";
+} from "../motion";
+import { type ChartGridVariant, chartGrid } from "../variants";
+import { useCartesian } from "./context";
 
 let {
 	variant = "dashed",

@@ -3,13 +3,13 @@
 <script lang="ts">
 import { curveLinear, curveMonotoneX, curveStepAfter, area as d3Area } from "d3-shape";
 import { untrack } from "svelte";
+import { type Datum, linePath, seriesColor, seriesPoints } from "../../chart/core";
+import { type Playback, prefersReducedMotion, tween } from "../../chart/motion";
 import { useChart, usePlot } from "../../chart/svelte/context";
-import { type Datum, linePath, seriesColor, seriesPoints } from "../../chart/svelte/core";
-import { type Playback, prefersReducedMotion, tween } from "../../chart/svelte/motion";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { detectMomentum } from "../live";
+import { type LiveLineCurve, type LiveLineTint, liveLine } from "../variants";
 import { useLive } from "./context";
-import { detectMomentum } from "./live";
-import { type LiveLineCurve, type LiveLineTint, liveLine } from "./variants";
 
 let {
 	dataKey,

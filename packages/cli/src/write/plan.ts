@@ -149,7 +149,6 @@ function transformFile(
 	if (!SCRIPT.has(extname(path))) return content;
 	return transformScript(content, file.path, {
 		aliases: { ...cfg.declaredAliases, components: cfg.aliases.components },
-		stripUseClient: !cfg.rsc,
 		resolve,
 	});
 }

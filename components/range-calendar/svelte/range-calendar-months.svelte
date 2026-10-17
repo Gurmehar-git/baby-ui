@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { calendar } from "../../calendar/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import { calendar } from "../../calendar/variants";
+import { cn } from "../../lib/cn";
 
 let {
 	ref = $bindable(null),

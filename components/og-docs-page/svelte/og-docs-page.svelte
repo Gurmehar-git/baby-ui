@@ -1,12 +1,12 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_DOCS_PAGE_BONES,
 	type OgDocsPageMode,
 	type OgDocsPageMotif,
 	type OgDocsPageTone,
 	ogDocsPage,
-} from "./variants";
+} from "../variants";
 
 let {
 	title,

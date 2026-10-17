@@ -1,7 +1,5 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import ChartFrame from "../../chart/svelte/chart-frame.svelte";
-import { useChart } from "../../chart/svelte/context";
 import {
 	announceRows,
 	type ChartStatus,
@@ -9,14 +7,16 @@ import {
 	type Margin,
 	type TooltipRow,
 	toDate,
-} from "../../chart/svelte/core";
+} from "../../chart/core";
+import ChartFrame from "../../chart/svelte/chart-frame.svelte";
+import { useChart } from "../../chart/svelte/context";
 import {
 	createAnimatedDomain,
 	createChartPhase,
 } from "../../chart/svelte/lifecycle.svelte";
+import { candleColor, ohlcDomain, readOhlc } from "../geometry";
 import CandlestickPlot from "./candlestick-plot.svelte";
 import { type CandlestickLabels, DEFAULT_LABELS } from "./context";
-import { candleColor, ohlcDomain, readOhlc } from "./geometry";
 
 let {
 	data,

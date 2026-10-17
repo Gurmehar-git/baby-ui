@@ -2,9 +2,9 @@
 
 import type { ReactNode } from "react";
 import { useEffect, useId, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
+import { type MorphingModalSize, morphingModal } from "../variants";
 import { invert, MORPH_EASE, MORPH_MS, type MorphSpring } from "./use-morph";
-import { type MorphingModalSize, morphingModal } from "./variants";
 
 export type { MorphingModalSize };
 

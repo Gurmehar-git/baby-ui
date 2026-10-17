@@ -3,9 +3,9 @@ import type { HTMLInputAttributes } from "svelte/elements";
 import InputGroup from "../../input-group/svelte/input-group.svelte";
 import InputGroupAddon from "../../input-group/svelte/input-group-addon.svelte";
 import InputGroupInput from "../../input-group/svelte/input-group-input.svelte";
-import type { InputGroupSize } from "../../input-group/svelte/variants";
+import type { InputGroupSize } from "../../input-group/variants";
 import LetterMorph from "../../letter-morph/svelte/letter-morph.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	DEFAULT_STRENGTH_LABELS,
 	measurePassword,
@@ -13,8 +13,8 @@ import {
 	type PasswordStrength,
 	type PasswordStrengthLabels,
 	strengthLabel,
-} from "./strength";
-import { passwordInput } from "./variants";
+} from "../strength";
+import { passwordInput } from "../variants";
 
 let {
 	label,

@@ -1,19 +1,13 @@
 "use client";
 
 import { useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import type { ActivePoint, Datum } from "../../chart/core";
+import { CHART_DURATION, CHART_EASE, EASE_OUT, Spring, tween } from "../../chart/motion";
 import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, Datum } from "../../chart/react/core";
 import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
-import {
-	CHART_DURATION,
-	CHART_EASE,
-	EASE_OUT,
-	Spring,
-	tween,
-} from "../../chart/react/motion";
 import { useActiveIndex } from "../../chart/react/time-series";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type FunnelCell,
 	type FunnelRing,
@@ -23,7 +17,7 @@ import {
 	LABEL_FADE,
 	STAGE_STAGGER,
 	stageColor,
-} from "./geometry";
+} from "../geometry";
 import {
 	FUNNEL_PATTERN_TILE,
 	type FunnelEdges,
@@ -32,7 +26,7 @@ import {
 	type FunnelPattern,
 	funnelChart,
 	funnelEdges,
-} from "./variants";
+} from "../variants";
 
 export type { FunnelStage };
 

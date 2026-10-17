@@ -1,13 +1,13 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { rollSwap, rollSwapSlide, rollSwapTilt, swapChars, tiltTiming } from "./swap";
+import { cn } from "../../lib/cn";
+import { rollSwap, rollSwapSlide, rollSwapTilt, swapChars, tiltTiming } from "../swap";
 import {
 	ROLL_DONE,
 	type RollStagger,
 	type RollTextMotion,
 	type RollTextSize,
 	rollText,
-} from "./variants";
+} from "../variants";
 
 let {
 	text,

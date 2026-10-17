@@ -1,4 +1,4 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 
 export interface NpmSparklineProps {
 	values: number[];

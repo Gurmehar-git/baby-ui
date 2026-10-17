@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { useCanvasEngine } from "../../lib/react/use-canvas-engine";
-import { type LiquidChromeOptions, mountLiquidChrome } from "./chrome";
+import { type LiquidChromeOptions, mountLiquidChrome } from "../chrome";
 import {
 	LIQUID_CHROME_COLORS,
 	LIQUID_CHROME_SPEED,
@@ -11,7 +11,7 @@ import {
 	type LiquidChromeSpeed,
 	type LiquidChromeTone,
 	liquidChrome,
-} from "./variants";
+} from "../variants";
 
 export type { LiquidChromePosition, LiquidChromeSpeed, LiquidChromeTone };
 

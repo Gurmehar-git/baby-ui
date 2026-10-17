@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Img, Text } from "@better-svelte-email/components";
-import { type EmailHeaderAlign, type EmailHeaderVariant, emailHeader } from "./variants";
+import { type EmailHeaderAlign, type EmailHeaderVariant, emailHeader } from "../variants";
 
 let {
 	brand,

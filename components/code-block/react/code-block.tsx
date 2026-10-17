@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { CopyButton } from "../../copy-button/react/copy-button";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 
 export interface CodeBlockProps {
 	code: string;

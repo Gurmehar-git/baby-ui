@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgWordmarkMode, ogWordmark } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgWordmarkMode, ogWordmark } from "../variants";
 
 export type { OgWordmarkMode };
 

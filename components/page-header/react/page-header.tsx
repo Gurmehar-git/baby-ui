@@ -9,7 +9,7 @@ import {
 	AvatarImage,
 } from "../../avatar/react/avatar";
 import { Badge } from "../../badge/react/badge";
-import type { BadgeVariant } from "../../badge/react/variants";
+import type { BadgeVariant } from "../../badge/variants";
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -18,11 +18,11 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "../../breadcrumb/react/breadcrumb";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { Tabs, TabsList, TabsTrigger } from "../../tabs/react/tabs";
-import { type PageHeaderTab, watchCondensed } from "./header";
-import { type PageHeaderVariant, pageHeader } from "./variants";
+import { type PageHeaderTab, watchCondensed } from "../header";
+import { type PageHeaderVariant, pageHeader } from "../variants";
 
 export type { PageHeaderTab, PageHeaderVariant };
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { ComponentProps } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Separator from "../../separator/svelte/separator.svelte";
-import { buttonGroup } from "./variants";
+import { buttonGroup } from "../variants";
 
 let {
 	ref = $bindable(null),

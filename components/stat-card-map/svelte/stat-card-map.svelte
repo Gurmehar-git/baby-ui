@@ -6,16 +6,16 @@ import CardContent from "../../card/svelte/card-content.svelte";
 import CardHeader from "../../card/svelte/card-header.svelte";
 import CardTitle from "../../card/svelte/card-title.svelte";
 import ChartContainer from "../../chart/svelte/chart-container.svelte";
-import ChoroplethChart from "../../choropleth-chart/svelte/choropleth-chart.svelte";
 import {
 	featureKey,
 	featureLabel,
 	type GeoCollection,
-} from "../../choropleth-chart/svelte/geometry";
-import type { ChoroplethProjection } from "../../choropleth-chart/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+} from "../../choropleth-chart/geometry";
+import ChoroplethChart from "../../choropleth-chart/svelte/choropleth-chart.svelte";
+import type { ChoroplethProjection } from "../../choropleth-chart/variants";
+import { cn } from "../../lib/cn";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
-import { type StatCardMapSize, statCardMap } from "./variants";
+import { type StatCardMapSize, statCardMap } from "../variants";
 
 let {
 	title,

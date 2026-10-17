@@ -1,10 +1,9 @@
 <script lang="ts">
+import type { ActivePoint, Datum } from "../../chart/core";
+import { CHART_DURATION, prefersReducedMotion, tween } from "../../chart/motion";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { setActivePoint } from "../../chart/svelte/context";
-import type { ActivePoint, Datum } from "../../chart/svelte/core";
-import { CHART_DURATION, prefersReducedMotion, tween } from "../../chart/svelte/motion";
-import type { ChoroplethLabels } from "./choropleth-chart.svelte";
 import {
 	clampZoom,
 	DIM_TRANSITION,
@@ -18,8 +17,9 @@ import {
 	type ZoomState,
 	zoomAt,
 	zoomTransform,
-} from "./geometry";
-import { type ChoroplethProjection, choroplethChart } from "./variants";
+} from "../geometry";
+import { type ChoroplethProjection, choroplethChart } from "../variants";
+import type { ChoroplethLabels } from "./choropleth-chart.svelte";
 
 let {
 	frame,

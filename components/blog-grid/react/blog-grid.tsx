@@ -12,8 +12,8 @@ import {
 import { flushSync } from "react-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "../../avatar/react/avatar";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
-import type { ImageSlotProps } from "../../lib/react/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import {
 	Pagination,
 	PaginationContent,
@@ -31,8 +31,8 @@ import {
 	easeHeight,
 	formatPostDate,
 	withViewTransition,
-} from "./posts";
-import { type BlogGridVariant, blogGrid } from "./variants";
+} from "../posts";
+import { type BlogGridVariant, blogGrid } from "../variants";
 
 export type { BlogAuthor, BlogGridVariant, BlogPost };
 

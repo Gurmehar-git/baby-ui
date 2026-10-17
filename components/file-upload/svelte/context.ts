@@ -1,6 +1,6 @@
 import { getContext, hasContext, setContext } from "svelte";
-import type { FileRejection, FileUploadLabels, UploadFile } from "./core";
-import type { FileUploadSize, FileUploadVariant } from "./variants";
+import type { FileRejection, FileUploadLabels, UploadFile } from "../core";
+import type { FileUploadSize, FileUploadVariant } from "../variants";
 
 export type FileUploadState = {
 	files: UploadFile[];

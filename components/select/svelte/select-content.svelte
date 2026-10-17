@@ -1,9 +1,9 @@
 <script lang="ts">
 import { Select as SelectPrimitive } from "bits-ui";
+import { cn } from "../../lib/cn";
+import { menu } from "../../lib/menu";
 import { ANCHORED } from "../../lib/svelte/anchor";
-import { cn } from "../../lib/svelte/cn";
-import { menu } from "../../lib/svelte/menu";
-import { type SelectContentSize, selectContent } from "./variants";
+import { type SelectContentSize, selectContent } from "../variants";
 
 let {
 	class: classProp,

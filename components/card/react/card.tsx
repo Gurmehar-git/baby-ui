@@ -1,6 +1,6 @@
 import { Children, type ComponentProps, isValidElement, type ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
-import { type CardVariant, cardFrame } from "./variants";
+import { cn } from "../../lib/cn";
+import { type CardVariant, cardFrame } from "../variants";
 
 export type { CardVariant };
 

@@ -1,7 +1,7 @@
 import { type CSSProperties, createElement, type ElementType, Fragment } from "react";
-import { cn } from "../../lib/react/cn";
-import { TEXT_TRANSITION_PRESETS, type TextTransitionPreset } from "./presets";
-import { type TextTransitionVariant, textTransition } from "./variants";
+import { cn } from "../../lib/cn";
+import { TEXT_TRANSITION_PRESETS, type TextTransitionPreset } from "../presets";
+import { type TextTransitionVariant, textTransition } from "../variants";
 
 export type { TextTransitionVariant };
 

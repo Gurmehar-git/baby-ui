@@ -2,7 +2,6 @@
 
 <script lang="ts">
 import { untrack } from "svelte";
-import { useActivePoint, useChart, usePlot } from "../../chart/svelte/context";
 import {
 	type FadeEdges,
 	fadeStops,
@@ -10,19 +9,20 @@ import {
 	linePath,
 	seriesColor,
 	seriesVisibleInPhase,
-} from "../../chart/svelte/core";
-import { CHART_DURATION, tween } from "../../chart/svelte/motion";
+} from "../../chart/core";
+import { CHART_DURATION, tween } from "../../chart/motion";
+import { useActivePoint, useChart, usePlot } from "../../chart/svelte/context";
 import { useExtentRegistry } from "../../chart/svelte/time-series-chart.svelte";
 import HighlightBand from "../../chart-series/svelte/highlight-band.svelte";
 import LoadingPulse from "../../chart-series/svelte/loading-pulse.svelte";
 import LoadingSweep from "../../chart-series/svelte/loading-sweep.svelte";
 import SeriesMarkers from "../../chart-series/svelte/series-markers.svelte";
-import type { SeriesLoadingStyle } from "../../chart-series/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
-import { LINE_CURVES, type LineCurve } from "../../line-chart/svelte/variants";
+import type { SeriesLoadingStyle } from "../../chart-series/variants";
+import { cn } from "../../lib/cn";
+import { LINE_CURVES, type LineCurve } from "../../line-chart/variants";
+import { areaPath, type Band, bandPoints, bandSignature, stackMax } from "../geometry";
+import { type AreaVariant, area } from "../variants";
 import { useStack } from "./context";
-import { areaPath, type Band, bandPoints, bandSignature, stackMax } from "./geometry";
-import { type AreaVariant, area } from "./variants";
 
 let {
 	dataKey,

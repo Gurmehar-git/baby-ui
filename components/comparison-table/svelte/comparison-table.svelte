@@ -1,6 +1,6 @@
 <script lang="ts">
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import Switch from "../../switch/svelte/switch.svelte";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
@@ -14,8 +14,8 @@ import {
 	comparisonCell,
 	hasBilling,
 	rowIsShared,
-} from "./compare";
-import { type ComparisonTableVariant, comparisonTable } from "./variants";
+} from "../compare";
+import { type ComparisonTableVariant, comparisonTable } from "../variants";
 
 let {
 	columns,

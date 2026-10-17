@@ -1,13 +1,13 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	LIMIT_HINT_MS,
 	limitHit,
 	limitMessage,
 	type NumberLimitEdge,
 	nudge,
-} from "./limit";
-import { type NumberInputSize, type NumberInputVariant, numberInput } from "./variants";
+} from "../limit";
+import { type NumberInputSize, type NumberInputVariant, numberInput } from "../variants";
 
 let {
 	value = $bindable(null),

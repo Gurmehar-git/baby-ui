@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Dialog as SheetPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import { type SheetSide, type SheetVariant, sheet } from "./variants";
 
 let {

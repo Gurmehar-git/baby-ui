@@ -2,20 +2,20 @@
 
 <script lang="ts">
 import { untrack } from "svelte";
+import { seriesVisibleInPhase } from "../../chart/core";
 import { usePlot } from "../../chart/svelte/context";
-import { seriesVisibleInPhase } from "../../chart/svelte/core";
 import { useExtentRegistry } from "../../chart/svelte/time-series-chart.svelte";
 import {
 	bezierPath,
 	type ProjectionPoint,
 	projectionExtent,
 	visibleEndX,
-} from "./geometry";
+} from "../geometry";
 import {
 	type ProjectionLineCurve,
 	type ProjectionLineVariant,
 	projectionLine,
-} from "./variants";
+} from "../variants";
 
 let {
 	data,

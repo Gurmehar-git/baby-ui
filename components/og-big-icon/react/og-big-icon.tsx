@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgBigIconMode, ogBigIcon } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgBigIconMode, ogBigIcon } from "../variants";
 
 export type { OgBigIconMode };
 

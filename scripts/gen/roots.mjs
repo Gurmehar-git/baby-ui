@@ -20,11 +20,7 @@ export function sourceRoots() {
 export const BOOKKEEPING = /(\.generated\.json|\.gitignore|\.tmp)$/;
 
 const GENERATOR_DIR = join(ROOT, "scripts/gen") + sep;
-const GENERATOR_FILES = new Set(
-	["scripts/generate.mjs", "scripts/shared-exceptions.json"].map((path) =>
-		join(ROOT, path),
-	),
-);
+const GENERATOR_FILES = new Set([join(ROOT, "scripts/generate.mjs")]);
 
 /** The generator's own code and config: a change there needs fresh modules, not just a rerun. */
 export const isGeneratorCode = (path) =>

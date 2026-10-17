@@ -1,9 +1,9 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type ChartBackgroundVariant, chartBackground } from "../variants";
 import { useCartesian } from "./context";
-import { type ChartBackgroundVariant, chartBackground } from "./variants";
 
 let {
 	variant = "dots",

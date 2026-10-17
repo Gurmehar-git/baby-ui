@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { MARKER_SPRING } from "./geometry";
+import { cn } from "../../lib/cn";
+import { MARKER_SPRING } from "../geometry";
 import { actionable, assign, type ChartMarker, spring } from "./types";
 
 let {

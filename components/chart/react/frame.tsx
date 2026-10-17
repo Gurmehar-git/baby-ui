@@ -10,8 +10,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
-import { useChart } from "./chart";
+import { cn } from "../../lib/cn";
 import {
 	type ActivePoint,
 	type ChartPhase,
@@ -19,8 +18,9 @@ import {
 	isLoadingPhase,
 	type Margin,
 	type TooltipRow,
-} from "./core";
-import { chart } from "./variants";
+} from "../core";
+import { chart } from "../variants";
+import { useChart } from "./chart";
 
 export type TickScale = ((value: unknown) => number) & {
 	ticks: (count?: number) => unknown[];

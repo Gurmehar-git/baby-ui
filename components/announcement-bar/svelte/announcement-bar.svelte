@@ -1,6 +1,6 @@
 <script lang="ts" module>
 import type { Snippet } from "svelte";
-import type { AnnouncementAction } from "./rotation";
+import type { AnnouncementAction } from "../rotation";
 
 export type Announcement = {
 	/** Stable id, reported to callbacks. */
@@ -15,9 +15,9 @@ export type Announcement = {
 <script lang="ts">
 import Button from "../../button/svelte/button.svelte";
 import Countdown from "../../countdown/svelte/countdown.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { createRotation, faceState, readDismissed, rememberDismissed } from "./rotation";
-import { type AnnouncementBarVariant, announcementBar } from "./variants";
+import { cn } from "../../lib/cn";
+import { createRotation, faceState, readDismissed, rememberDismissed } from "../rotation";
+import { type AnnouncementBarVariant, announcementBar } from "../variants";
 
 let {
 	messages,

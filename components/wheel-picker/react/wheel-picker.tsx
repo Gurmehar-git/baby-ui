@@ -14,7 +14,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	nearestEnabled,
 	normalizeWheelOption,
@@ -22,7 +22,7 @@ import {
 	type WheelPickerOption,
 	type WheelPickerRows,
 	wheelPicker,
-} from "./variants";
+} from "../variants";
 
 export type { WheelPickerOption, WheelPickerRows };
 

@@ -1,9 +1,9 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type OgEditorialBioMode,
 	type OgEditorialBioTone,
 	ogEditorialBio,
-} from "./variants";
+} from "../variants";
 
 export type { OgEditorialBioMode, OgEditorialBioTone };
 

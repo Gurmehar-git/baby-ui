@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { createElement } from "react";
-import { cn } from "../../lib/react/cn";
-import { TYPOGRAPHY_TAG, type TypographyVariant, typography } from "./variants";
+import { cn } from "../../lib/cn";
+import { TYPOGRAPHY_TAG, type TypographyVariant, typography } from "../variants";
 
 export type { TypographyVariant };
 

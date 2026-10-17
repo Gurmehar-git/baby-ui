@@ -1,10 +1,10 @@
 <script lang="ts">
 import { Dialog as DialogPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
-import { dialogFrame } from "../../dialog/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import { dialogFrame } from "../../dialog/variants";
+import { cn } from "../../lib/cn";
+import { type CommandVariant, commandFrame } from "../variants";
 import { setCommandDialogState } from "./context";
-import { type CommandVariant, commandFrame } from "./variants";
 
 let {
 	children,

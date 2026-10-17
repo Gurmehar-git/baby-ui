@@ -7,12 +7,10 @@ import DropdownMenu from "../../dropdown-menu/svelte/dropdown-menu.svelte";
 import DropdownMenuContent from "../../dropdown-menu/svelte/dropdown-menu-content.svelte";
 import DropdownMenuItem from "../../dropdown-menu/svelte/dropdown-menu-item.svelte";
 import DropdownMenuTrigger from "../../dropdown-menu/svelte/dropdown-menu-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Popover from "../../popover/svelte/popover.svelte";
 import PopoverContent from "../../popover/svelte/popover-content.svelte";
 import PopoverTrigger from "../../popover/svelte/popover-trigger.svelte";
-import ConfigPopover from "./config-popover.svelte";
-import GlyphIcon from "./glyph-icon.svelte";
 import {
 	ACTIONS_WIDTH,
 	COLUMN_ORDER,
@@ -28,8 +26,7 @@ import {
 	TYPE_GLYPHS,
 	toggleIn,
 	updateColumn,
-} from "./model";
-import TagList from "./tag-list.svelte";
+} from "../model";
 import type {
 	ColumnKey,
 	RecordRow,
@@ -37,8 +34,11 @@ import type {
 	RecordSortKey,
 	RecordsTableConfig,
 	RecordsTableLabels,
-} from "./types";
-import { type RecordsDensity, recordsTable, strengthDot } from "./variants";
+} from "../types";
+import { type RecordsDensity, recordsTable, strengthDot } from "../variants";
+import ConfigPopover from "./config-popover.svelte";
+import GlyphIcon from "./glyph-icon.svelte";
+import TagList from "./tag-list.svelte";
 
 let {
 	rows,

@@ -1,13 +1,13 @@
 "use client";
 
 import { type CSSProperties, type PointerEvent, type ReactNode, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { baseVars, hoverLayers } from "./effects";
+import { cn } from "../../lib/cn";
+import { baseVars, hoverLayers } from "../effects";
 import {
 	type HoverTransitionDirection,
 	type HoverTransitionEffect,
 	hoverTransition,
-} from "./variants";
+} from "../variants";
 
 export type { HoverTransitionDirection, HoverTransitionEffect };
 

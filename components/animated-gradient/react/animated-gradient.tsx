@@ -1,10 +1,10 @@
 import type { CSSProperties, ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type AnimatedGradientPosition,
 	type AnimatedGradientTone,
 	animatedGradient,
-} from "./variants";
+} from "../variants";
 
 export type { AnimatedGradientPosition, AnimatedGradientTone };
 

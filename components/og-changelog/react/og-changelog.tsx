@@ -1,4 +1,4 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_CHANGELOG_ICONS,
 	type OgChangelogKind,
@@ -6,7 +6,7 @@ import {
 	type OgChangelogTone,
 	ogChangelog,
 	ogChangelogMarker,
-} from "./variants";
+} from "../variants";
 
 export type { OgChangelogKind, OgChangelogMode, OgChangelogTone };
 

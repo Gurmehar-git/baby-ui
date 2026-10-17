@@ -1,14 +1,14 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type DitherOptions, mountDither } from "./dither";
+import { cn } from "../../lib/cn";
+import { type DitherOptions, mountDither } from "../dither";
 import {
 	type DitherGradientMatrix,
 	type DitherGradientPosition,
 	type DitherGradientTone,
 	ditherGradient,
-} from "./variants";
+} from "../variants";
 
 let {
 	tone = "spectrum",

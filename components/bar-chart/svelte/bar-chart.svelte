@@ -1,17 +1,17 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import type { ChartStatus, Datum, Margin, TooltipRow } from "../../chart/core";
+import { announceRows } from "../../chart/core";
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import type { ChartStatus, Datum, Margin, TooltipRow } from "../../chart/svelte/core";
-import { announceRows } from "../../chart/svelte/core";
 import {
 	createAnimatedDomain,
 	createChartPhase,
 	createSeriesRegistry,
 } from "../../chart/svelte/lifecycle.svelte";
-import { barDomain, categoryOf, summarizeBars } from "./bar-core";
+import { barDomain, categoryOf, summarizeBars } from "../bar-core";
+import type { BarEntrance, BarOrientationVariant, BarVariant } from "../variants";
 import BarPlot from "./bar-plot.svelte";
-import type { BarEntrance, BarOrientationVariant, BarVariant } from "./variants";
 
 let {
 	data,

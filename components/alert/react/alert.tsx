@@ -2,8 +2,8 @@
 
 import type { ComponentProps } from "react";
 import { useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { ALERT_ROLE, type AlertVariant, alert, alertCollapse } from "./variants";
+import { cn } from "../../lib/cn";
+import { ALERT_ROLE, type AlertVariant, alert, alertCollapse } from "../variants";
 
 export function Alert({
 	className,

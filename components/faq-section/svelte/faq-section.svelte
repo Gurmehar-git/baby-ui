@@ -4,7 +4,7 @@ import AccordionContent from "../../accordion/svelte/accordion-content.svelte";
 import AccordionItem from "../../accordion/svelte/accordion-item.svelte";
 import AccordionTrigger from "../../accordion/svelte/accordion-trigger.svelte";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import SearchInput from "../../search-input/svelte/search-input.svelte";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
 import ToggleGroupItem from "../../toggle-group/svelte/toggle-group-item.svelte";
@@ -17,8 +17,8 @@ import {
 	faqKey,
 	faqMatches,
 	highlightParts,
-} from "./faq";
-import { type FaqSectionVariant, faqSection } from "./variants";
+} from "../faq";
+import { type FaqSectionVariant, faqSection } from "../variants";
 
 let {
 	items,

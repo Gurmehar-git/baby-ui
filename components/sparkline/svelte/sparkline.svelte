@@ -1,9 +1,9 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import SlotText from "../../slot-text/svelte/slot-text.svelte";
-import { createSparkline, pointAt, scrubKey } from "./spark";
-import { type SparklineVariant, sparkline } from "./variants";
+import { createSparkline, pointAt, scrubKey } from "../spark";
+import { type SparklineVariant, sparkline } from "../variants";
 
 let {
 	data,

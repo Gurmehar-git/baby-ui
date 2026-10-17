@@ -117,7 +117,7 @@ const sveltePlugin = {
 async function renderSvelte(props) {
 	const entry = [
 		'import { Renderer, pixelBasedPreset } from "@better-svelte-email/server";',
-		'import { emailTailwindConfig } from "./lib/svelte/email-theme";',
+		'import { emailTailwindConfig } from "./lib/email-theme";',
 		...templates.map((t) => `import ${pascal(t.slug)} from ${str(posix(t.svelte))};`),
 		"export default async function run(props) {",
 		"\tconst tailwindConfig = { ...emailTailwindConfig, presets: [pixelBasedPreset] };",

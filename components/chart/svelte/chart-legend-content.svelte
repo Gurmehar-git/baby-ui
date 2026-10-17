@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { Component } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Toggle from "../../toggle/svelte/toggle.svelte";
+import { seriesColor } from "../core";
+import { type ChartLegendAlign, chartLegend } from "../variants";
 import { useChart } from "./context";
-import { seriesColor } from "./core";
-import { type ChartLegendAlign, chartLegend } from "./variants";
 
 let {
 	align = "center",

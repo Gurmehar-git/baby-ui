@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { TYPOGRAPHY_TAG, type TypographyVariant, typography } from "./variants";
+import { cn } from "../../lib/cn";
+import { TYPOGRAPHY_TAG, type TypographyVariant, typography } from "../variants";
 
 let {
 	children,

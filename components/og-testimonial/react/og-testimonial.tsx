@@ -1,12 +1,12 @@
-import { cn } from "../../lib/react/cn";
-import { ogTestimonialStars } from "./stars";
+import { cn } from "../../lib/cn";
+import { ogTestimonialStars } from "../stars";
 import {
 	type OgTestimonialAlign,
 	type OgTestimonialMode,
 	type OgTestimonialStar,
 	type OgTestimonialTone,
 	ogTestimonial,
-} from "./variants";
+} from "../variants";
 
 export type {
 	OgTestimonialAlign,

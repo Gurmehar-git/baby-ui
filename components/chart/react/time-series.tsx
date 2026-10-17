@@ -16,7 +16,6 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { useChart } from "./chart";
 import {
 	type ActivePoint,
 	announceRows,
@@ -39,7 +38,9 @@ import {
 	summarize,
 	type TooltipRow,
 	toDate,
-} from "./core";
+} from "../core";
+import { CHART_DURATION, type Playback, tween } from "../motion";
+import { useChart } from "./chart";
 import {
 	ActivePointProvider,
 	type CartesianContextValue,
@@ -47,7 +48,6 @@ import {
 	ChartFrame,
 	type TickScale,
 } from "./frame";
-import { CHART_DURATION, type Playback, tween } from "./motion";
 
 /** Room around the reveal clip so round caps and dots at the plot edge are not cut. */
 const CLIP_PAD = 8;

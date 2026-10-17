@@ -23,8 +23,8 @@ import {
 	KEY_ZOOM_STEP,
 	type ZoomState,
 	zoomAt,
-} from "./geometry";
-import type { ChoroplethProjection } from "./variants";
+} from "../geometry";
+import type { ChoroplethProjection } from "../variants";
 
 let {
 	data,

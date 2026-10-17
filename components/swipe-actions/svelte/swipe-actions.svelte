@@ -1,13 +1,13 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { setSwipeList } from "./context";
-import { createSwipeGroup, type SwipeGroup } from "./swipe";
+import { cn } from "../../lib/cn";
+import { createSwipeGroup, type SwipeGroup } from "../swipe";
 import {
 	type SwipeActionsSize,
 	type SwipeActionsVariant,
 	swipeActions,
-} from "./variants";
+} from "../variants";
+import { setSwipeList } from "./context";
 
 let {
 	label,

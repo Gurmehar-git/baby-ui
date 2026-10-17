@@ -1,8 +1,8 @@
 <script lang="ts">
 import { useChart } from "../../chart/svelte/context";
-import { cn } from "../../lib/svelte/cn";
-import { scaleFill } from "./geometry";
-import { choroplethChart } from "./variants";
+import { cn } from "../../lib/cn";
+import { scaleFill } from "../geometry";
+import { choroplethChart } from "../variants";
 
 let { values, noData }: { values: Record<string, number>; noData: string } = $props();
 

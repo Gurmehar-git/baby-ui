@@ -10,7 +10,7 @@ import type {
 	Margin,
 	SeriesConfig,
 	TooltipRow,
-} from "./core";
+} from "../core";
 
 export type ChartConfig = ChartConfigShape;
 

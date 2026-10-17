@@ -123,8 +123,9 @@ Any agent (Claude Code, Codex, Cursor, Copilot) should read this file first.
 - `pnpm gen` (`scripts/generate.mjs`) writes gitignored files; it runs on `prepare`, before turbo
   check/registry/build, and live during `pnpm dev`/`pnpm playground` as its own `gen:watch`
   process (the site also gets `registry:watch`); never inside Vite. Edit sources, never its outputs:
-  - Shared non-component `.ts` (variants, engines, types, labels, `lib/`) has ONE source, the React
-    copy; Svelte copies are generated. Port-specific files go in `scripts/shared-exceptions.json`.
+  - Shared non-component `.ts` (variants, engines, types, labels) lives once at the component's
+    folder root (`components/<slug>/variants.ts`, shared `lib/` at `components/lib/*.ts`); both
+    ports import `../variants`. A file that differs per port lives in each port folder.
   - All 5 index files (spec list, both UI `index.ts`, both demo maps) are generated from folders.
   - Spec `demo: { mode: "auto", frame }` generates both demos from a typed samples export
     (`packages/demos/src/data/samples.ts`, SCREAMING_SNAKE slug) and usage from required-prop

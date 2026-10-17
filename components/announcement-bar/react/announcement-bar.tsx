@@ -11,7 +11,7 @@ import {
 } from "react";
 import { Button } from "../../button/react/button";
 import { Countdown } from "../../countdown/react/countdown";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type AnnouncementAction,
 	clearAnnouncementDismissal,
@@ -19,8 +19,8 @@ import {
 	faceState,
 	readDismissed,
 	rememberDismissed,
-} from "./rotation";
-import { type AnnouncementBarVariant, announcementBar } from "./variants";
+} from "../rotation";
+import { type AnnouncementBarVariant, announcementBar } from "../variants";
 
 export type { AnnouncementAction, AnnouncementBarVariant };
 export { clearAnnouncementDismissal };

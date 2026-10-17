@@ -1,9 +1,9 @@
 <script lang="ts">
 import { tick, untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Spinner from "../../spinner/svelte/spinner.svelte";
-import { caretAt, cleanDraft, type InlineEditPhase, runSave } from "./edit";
-import { type InlineEditSize, type InlineEditVariant, inlineEdit } from "./variants";
+import { caretAt, cleanDraft, type InlineEditPhase, runSave } from "../edit";
+import { type InlineEditSize, type InlineEditVariant, inlineEdit } from "../variants";
 
 let {
 	value,

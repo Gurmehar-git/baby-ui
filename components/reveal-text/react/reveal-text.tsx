@@ -9,7 +9,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type RevealTextDirection,
 	type RevealTextSize,
@@ -19,7 +19,7 @@ import {
 	type RevealTextVariant,
 	revealText,
 	revealUnits,
-} from "./variants";
+} from "../variants";
 
 export type {
 	RevealTextDirection,

@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { ImageSlotProps } from "../../lib/svelte/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import Slider from "../../slider/svelte/slider.svelte";
 import {
 	clampUnit,
@@ -10,8 +10,8 @@ import {
 	MUSIC_PLAYER_LABELS,
 	type MusicPlayerLabels,
 	SEEK_TOLERANCE,
-} from "./types";
-import { type MusicPlayerLayout, musicPlayer } from "./variants";
+} from "../types";
+import { type MusicPlayerLayout, musicPlayer } from "../variants";
 
 let {
 	title,

@@ -1,9 +1,9 @@
 <script lang="ts">
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import { type RidgelineSeries, ridgeModel } from "./density";
+import { type RidgelineSeries, ridgeModel } from "../density";
+import type { RidgelineVariant } from "../variants";
 import RidgelinePlot from "./ridgeline-plot.svelte";
-import type { RidgelineVariant } from "./variants";
 
 let {
 	series,

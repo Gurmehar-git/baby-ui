@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type OgTaglineMode, type OgTaglineTone, ogTagline } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgTaglineMode, type OgTaglineTone, ogTagline } from "../variants";
 
 let {
 	name,

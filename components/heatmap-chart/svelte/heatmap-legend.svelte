@@ -1,20 +1,20 @@
 <script lang="ts">
 import { useChart } from "../../chart/svelte/context";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	HEATMAP_LEVELS,
 	HEATMAP_TIMING,
 	heatmapLevelKey,
 	LEVEL_PATTERN,
-} from "./calendar";
-import PatternDefs from "./pattern-defs.svelte";
+} from "../calendar";
 import {
 	type HeatmapLegendAlign,
 	type HeatmapShape,
 	heatmapChart,
 	levelFill,
 	SHAPE_RADIUS,
-} from "./variants";
+} from "../variants";
+import PatternDefs from "./pattern-defs.svelte";
 
 let {
 	lessLabel = "Less",

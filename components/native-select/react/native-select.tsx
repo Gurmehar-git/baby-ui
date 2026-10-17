@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
-import { type NativeSelectSize, nativeSelect } from "./variants";
+import { cn } from "../../lib/cn";
+import { type NativeSelectSize, nativeSelect } from "../variants";
 
 export type { NativeSelectSize };
 

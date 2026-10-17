@@ -1,4 +1,4 @@
-import type { BadgeVariant } from "../../badge/svelte/variants";
+import type { BadgeVariant } from "../../badge/variants";
 
 export interface DocsNavItem {
 	href: string;

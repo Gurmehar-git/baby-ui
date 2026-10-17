@@ -1,9 +1,9 @@
 <script lang="ts">
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type QuestionLayout, question } from "../variants";
 import QuestionOptions from "./question-options.svelte";
 import type { QuestionAnswer, QuestionAnswers, QuestionItem } from "./types";
-import { type QuestionLayout, question } from "./variants";
 
 const EMPTY_ANSWER: QuestionAnswer = { selected: [] };
 

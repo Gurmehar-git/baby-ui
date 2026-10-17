@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { reasoningExtras } from "./variants";
+import { cn } from "../../lib/cn";
+import { reasoningExtras } from "../variants";
 
 let { children, class: classProp }: { children?: Snippet; class?: string } = $props();
 </script>

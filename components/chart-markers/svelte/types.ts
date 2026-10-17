@@ -1,6 +1,6 @@
 import type { Snippet } from "svelte";
-import { Spring, type SpringConfig } from "../../chart/svelte/motion";
-import type { ChartMarkerBase } from "./geometry";
+import { Spring, type SpringConfig } from "../../chart/motion";
+import type { ChartMarkerBase } from "../geometry";
 
 export interface ChartMarker extends ChartMarkerBase {
 	icon?: Snippet;

@@ -1,8 +1,8 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { CHART_EASE } from "../../chart/svelte/motion";
-import { ENTER_MS, type Rect, squareColumn, squareDelay } from "./bar-core";
+import { CHART_EASE } from "../../chart/motion";
+import { ENTER_MS, type Rect, squareColumn, squareDelay } from "../bar-core";
 import type { DisplayedBar } from "./context";
 
 let { d, vertical, color }: { d: DisplayedBar; vertical: boolean; color: string } =

@@ -1,6 +1,6 @@
 import { createContext } from "svelte";
-import type { InvoiceListLabels } from "./invoice-core";
-import type { InvoiceListDensity, invoiceList } from "./variants";
+import type { InvoiceListLabels } from "../invoice-core";
+import type { InvoiceListDensity, invoiceList } from "../variants";
 
 export type InvoiceListContext = {
 	readonly styles: ReturnType<typeof invoiceList>;

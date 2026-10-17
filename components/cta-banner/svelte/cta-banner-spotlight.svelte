@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { BANNER_DEFAULTS, bannerPace } from "./banner";
+import { cn } from "../../lib/cn";
+import { BANNER_DEFAULTS, bannerPace } from "../banner";
 import { ctaBannerStyles } from "./context";
 
 let {

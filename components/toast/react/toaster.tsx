@@ -1,8 +1,8 @@
 "use client";
 
 import { Toaster as Sonner, type ToasterProps } from "sonner";
-import { cn } from "../../lib/react/cn";
-import { TOAST_CLASSES } from "../../lib/react/toast-classes";
+import { cn } from "../../lib/cn";
+import { TOAST_CLASSES } from "../../lib/toast-classes";
 
 export type { ToasterProps } from "sonner";
 export { toast } from "sonner";

@@ -1,9 +1,9 @@
 <script lang="ts">
 import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
 import { getContext } from "svelte";
+import { cn } from "../../lib/cn";
+import { menu } from "../../lib/menu";
 import { ANCHORED } from "../../lib/svelte/anchor";
-import { cn } from "../../lib/svelte/cn";
-import { menu } from "../../lib/svelte/menu";
 
 let { class: classProp, ...rest }: ContextMenuPrimitive.SubContentProps = $props();
 

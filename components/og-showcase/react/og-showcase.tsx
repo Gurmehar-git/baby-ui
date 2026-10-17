@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { OG_SHOWCASE_COLUMNS, type OgShowcaseMode, ogShowcase } from "./variants";
+import { cn } from "../../lib/cn";
+import { OG_SHOWCASE_COLUMNS, type OgShowcaseMode, ogShowcase } from "../variants";
 
 export type { OgShowcaseMode };
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { DIA_TEXT_COLORS, type DiaTextSize, diaGradient, diaText } from "./variants";
+import { cn } from "../../lib/cn";
+import { DIA_TEXT_COLORS, type DiaTextSize, diaGradient, diaText } from "../variants";
 
 let {
 	text,

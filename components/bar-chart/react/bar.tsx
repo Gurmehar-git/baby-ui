@@ -1,16 +1,15 @@
 "use client";
 
 import { type CSSProperties, useId, useLayoutEffect, useRef } from "react";
-import { useChart } from "../../chart/react/chart";
-import { seriesColor } from "../../chart/react/core";
+import { seriesColor } from "../../chart/core";
 import {
 	CHART_EASE,
 	type Playback,
 	prefersReducedMotion,
 	tween,
-} from "../../chart/react/motion";
-import { cn } from "../../lib/react/cn";
-import { type DisplayedBar, useBarChart, useBarRegistration } from "./bar-chart";
+} from "../../chart/motion";
+import { useChart } from "../../chart/react/chart";
+import { cn } from "../../lib/cn";
 import {
 	depthFaces,
 	EASE_IN_OUT,
@@ -20,8 +19,9 @@ import {
 	type Rect,
 	squareColumn,
 	squareDelay,
-} from "./bar-core";
-import { type BarLineCap, barChart } from "./variants";
+} from "../bar-core";
+import { type BarLineCap, barChart } from "../variants";
+import { type DisplayedBar, useBarChart, useBarRegistration } from "./bar-chart";
 
 export interface BarProps {
 	dataKey: string;

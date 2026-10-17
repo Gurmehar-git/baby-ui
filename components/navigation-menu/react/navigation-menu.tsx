@@ -2,13 +2,13 @@
 
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 import type { ComponentProps } from "react";
+import { cn } from "../../lib/cn";
 import { ANCHORED } from "../../lib/react/anchor";
-import { cn } from "../../lib/react/cn";
 import {
 	type NavigationMenuSize,
 	navigationMenu,
 	navigationMenuTriggerStyle,
-} from "./variants";
+} from "../variants";
 
 export type { NavigationMenuSize };
 export { navigationMenuTriggerStyle };

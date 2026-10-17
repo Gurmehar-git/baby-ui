@@ -1,13 +1,13 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type CompareOrientation, createImageCompare } from "./compare";
+import { cn } from "../../lib/cn";
+import { type CompareOrientation, createImageCompare } from "../compare";
 import {
 	type ImageCompareSize,
 	type ImageCompareVariant,
 	imageCompare,
-} from "./variants";
+} from "../variants";
 
 let {
 	before,

@@ -2,7 +2,7 @@
 
 <script lang="ts">
 import { useChart, usePlot } from "../../chart/svelte/context";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 
 let {
 	dataKey,

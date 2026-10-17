@@ -1,6 +1,6 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	clampStep,
 	moveStepFocus,
@@ -9,8 +9,8 @@ import {
 	type StepperStep,
 	stepDelay,
 	stepStatus,
-} from "./steps";
-import { type StepperOrientation, stepper } from "./variants";
+} from "../steps";
+import { type StepperOrientation, stepper } from "../variants";
 
 let {
 	steps,

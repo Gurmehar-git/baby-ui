@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { createResizable } from "./split";
-import { type ResizableVariant, resizable } from "./variants";
+import { cn } from "../../lib/cn";
+import { createResizable } from "../split";
+import { type ResizableVariant, resizable } from "../variants";
 
 let {
 	onLayoutChange,

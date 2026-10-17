@@ -2,30 +2,20 @@
 
 <script lang="ts">
 import { untrack } from "svelte";
-import { stackBase, stackMax } from "../../area-chart/svelte/geometry";
+import { stackBase, stackMax } from "../../area-chart/geometry";
+import { type ChartPhase, type Datum, seriesColor, toDate } from "../../chart/core";
+import { CHART_DURATION, CHART_EASE, type Playback, tween } from "../../chart/motion";
 import { useActivePoint, useChart, usePlot } from "../../chart/svelte/context";
-import {
-	type ChartPhase,
-	type Datum,
-	seriesColor,
-	toDate,
-} from "../../chart/svelte/core";
-import {
-	CHART_DURATION,
-	CHART_EASE,
-	type Playback,
-	tween,
-} from "../../chart/svelte/motion";
 import { useExtentRegistry } from "../../chart/svelte/time-series-chart.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { useBarLayout } from "./context";
+import { cn } from "../../lib/cn";
 import {
 	localProgress,
 	seriesBarDelay,
 	seriesBarOffset,
 	seriesBarWidth,
-} from "./geometry";
-import { type SeriesBarVariant, seriesBar } from "./variants";
+} from "../geometry";
+import { type SeriesBarVariant, seriesBar } from "../variants";
+import { useBarLayout } from "./context";
 
 let {
 	dataKey,

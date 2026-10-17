@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { reasoningExtras } from "./variants";
+import { cn } from "../../lib/cn";
+import { reasoningExtras } from "../variants";
 
 let {
 	src,

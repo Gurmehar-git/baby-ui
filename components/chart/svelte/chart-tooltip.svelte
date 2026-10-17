@@ -2,13 +2,13 @@
 
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { CHART_SPRING, Spring } from "../motion";
 import ChartDatePill from "./chart-date-pill.svelte";
 import ChartTooltipContent from "./chart-tooltip-content.svelte";
 import ChartTooltipDot from "./chart-tooltip-dot.svelte";
 import ChartTooltipPanel from "./chart-tooltip-panel.svelte";
 import { useActivePoint, usePlot } from "./context";
 import { follow } from "./follow.svelte";
-import { CHART_SPRING, Spring } from "./motion";
 
 let {
 	content,

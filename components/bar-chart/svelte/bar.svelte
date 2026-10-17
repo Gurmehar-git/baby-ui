@@ -2,13 +2,13 @@
 
 <script lang="ts">
 import { untrack } from "svelte";
+import { seriesColor } from "../../chart/core";
 import { useChart } from "../../chart/svelte/context";
-import { seriesColor } from "../../chart/svelte/core";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type BarLineCap, barChart } from "../variants";
 import BarDepth from "./bar-depth.svelte";
 import BarSquares from "./bar-squares.svelte";
 import { useBarChart } from "./context";
-import { type BarLineCap, barChart } from "./variants";
 
 let {
 	dataKey,

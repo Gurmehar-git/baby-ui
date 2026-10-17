@@ -3,7 +3,7 @@
 import { type CSSProperties, type HTMLAttributes, useState } from "react";
 import { Button } from "../../button/react/button";
 import { Card } from "../../card/react/card";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
 import {
 	digitDelay,
@@ -11,8 +11,8 @@ import {
 	type Pricing02Labels,
 	type Pricing02Period,
 	type Pricing02Plan,
-} from "./types";
-import { type Pricing02Variant, pricing02 } from "./variants";
+} from "../types";
+import { type Pricing02Variant, pricing02 } from "../variants";
 
 export type { Pricing02Labels, Pricing02Period, Pricing02Plan, Pricing02Variant };
 

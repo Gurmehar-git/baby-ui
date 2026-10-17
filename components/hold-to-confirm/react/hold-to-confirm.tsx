@@ -8,14 +8,14 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
-import { morph, trackActiveWidth } from "../../lib/react/morph";
-import { createHold } from "./hold";
+import { cn } from "../../lib/cn";
+import { morph, trackActiveWidth } from "../../lib/morph";
+import { createHold } from "../hold";
 import {
 	type HoldToConfirmSize,
 	type HoldToConfirmVariant,
 	holdToConfirm,
-} from "./variants";
+} from "../variants";
 
 export type { HoldToConfirmSize, HoldToConfirmVariant };
 

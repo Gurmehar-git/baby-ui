@@ -1,12 +1,12 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type TextLoopDirection,
 	type TextLoopSize,
 	type TextLoopVariant,
 	textLoop,
 	textLoopRollStep,
-} from "./variants";
+} from "../variants";
 
 let {
 	items,

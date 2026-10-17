@@ -1,14 +1,14 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { mountPixels, type PixelOptions } from "./pixels";
+import { cn } from "../../lib/cn";
+import { mountPixels, type PixelOptions } from "../pixels";
 import {
 	type PixelCanvasPosition,
 	type PixelCanvasTone,
 	type PixelCanvasVariant,
 	pixelCanvas,
-} from "./variants";
+} from "../variants";
 
 export type { PixelCanvasPosition, PixelCanvasTone, PixelCanvasVariant };
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 import { Markdown, StreamingMarkdown } from "@docvia/markdown/svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type MarkdownAnimate, markdownMotion } from "./motion";
-import { type MarkdownSize, type MarkdownVariant, markdown } from "./variants";
+import { cn } from "../../lib/cn";
+import { type MarkdownAnimate, markdownMotion } from "../motion";
+import { type MarkdownSize, type MarkdownVariant, markdown } from "../variants";
 
 let {
 	content,

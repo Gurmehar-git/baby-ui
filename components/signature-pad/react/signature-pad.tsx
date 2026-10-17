@@ -2,7 +2,7 @@
 
 import { type PointerEvent, useEffect, useId, useRef, useState } from "react";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
 import {
 	downloadBlob,
@@ -29,8 +29,8 @@ import {
 	TONE_LABELS,
 	toneColors,
 	WIDTH_LABELS,
-} from "./ink";
-import { type SignaturePadVariant, signaturePad } from "./variants";
+} from "../ink";
+import { type SignaturePadVariant, signaturePad } from "../variants";
 
 export type { InkPoint, InkStroke, InkTone, InkWidth, SignaturePadVariant };
 

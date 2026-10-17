@@ -1,7 +1,7 @@
 <script lang="ts">
 import { AlertDialog as AlertDialogPrimitive } from "bits-ui";
-import { button } from "../../button/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import { button } from "../../button/variants";
+import { cn } from "../../lib/cn";
 
 let { class: classProp, ...rest }: AlertDialogPrimitive.CancelProps = $props();
 </script>

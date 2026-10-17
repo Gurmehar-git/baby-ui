@@ -5,7 +5,7 @@ import {
 	type DataTableInstance,
 	type DataTableOptions,
 	setDataTableOptions,
-} from "./core";
+} from "../core";
 import { svelteReactivity } from "./reactivity.svelte";
 
 /**

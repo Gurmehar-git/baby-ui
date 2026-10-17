@@ -1,7 +1,7 @@
 import { getContext, setContext } from "svelte";
-import type { TableVariant } from "../../table/svelte/variants";
-import { DATA_TABLE_LABELS, type DataTableLabels } from "./core";
-import type { DataTableDensity } from "./variants";
+import type { TableVariant } from "../../table/variants";
+import { DATA_TABLE_LABELS, type DataTableLabels } from "../core";
+import type { DataTableDensity } from "../variants";
 
 export type DataTableStatus = {
 	loading: boolean;

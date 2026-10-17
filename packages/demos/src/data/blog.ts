@@ -1,4 +1,4 @@
-import type { BlogAuthor, BlogPost } from "../../../../components/blog-grid/react/posts";
+import type { BlogAuthor, BlogPost } from "../../../../components/blog-grid/posts";
 import { avatar, photo } from "./media";
 
 const emma: BlogAuthor = {

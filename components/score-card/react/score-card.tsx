@@ -10,9 +10,9 @@ import {
 	CardTitle,
 } from "../../card/react/card";
 import { GaugeChart } from "../../gauge-chart/react/gauge-chart";
-import type { GaugeChartLayout, GaugeChartTone } from "../../gauge-chart/react/variants";
-import { cn } from "../../lib/react/cn";
-import { type ScoreCardSize, scoreCard } from "./variants";
+import type { GaugeChartLayout, GaugeChartTone } from "../../gauge-chart/variants";
+import { cn } from "../../lib/cn";
+import { type ScoreCardSize, scoreCard } from "../variants";
 
 export type { ScoreCardSize };
 

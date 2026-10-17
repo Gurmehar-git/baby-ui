@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Progress as ProgressPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	PROGRESS_RING,
 	type ProgressSize,
@@ -8,7 +8,7 @@ import {
 	type ProgressVariant,
 	progress,
 	progressPercent,
-} from "./variants";
+} from "../variants";
 
 let {
 	value = 0,

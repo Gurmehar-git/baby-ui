@@ -1,6 +1,6 @@
 import { type CSSProperties, createContext, type ReactNode, useContext } from "react";
-import { cn } from "../../lib/react/cn";
-import { type HeroStageMotion, heroStage } from "./variants";
+import { cn } from "../../lib/cn";
+import { type HeroStageMotion, heroStage } from "../variants";
 
 export type { HeroStageMotion };
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type ShimmerTextSize, type ShimmerTextVariant, shimmerText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type ShimmerTextSize, type ShimmerTextVariant, shimmerText } from "../variants";
 
 let {
 	text,

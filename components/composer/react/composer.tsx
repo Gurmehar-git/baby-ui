@@ -8,14 +8,14 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "../../dropdown-menu/react/dropdown-menu";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 } from "../../select/react/select";
-import { COMPOSER_LINE_HEIGHT, type ComposerSize, composer } from "./variants";
+import { COMPOSER_LINE_HEIGHT, type ComposerSize, composer } from "../variants";
 
 export type ComposerModel = {
 	value: string;

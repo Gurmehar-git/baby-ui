@@ -1,8 +1,8 @@
 "use client";
 
 import { type CSSProperties, useLayoutEffect, useMemo, useState } from "react";
+import type { ActivePoint, Datum } from "../../chart/core";
 import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, Datum } from "../../chart/react/core";
 import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
 import { useActiveIndex } from "../../chart/react/time-series";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
@@ -17,8 +17,8 @@ import {
 	type WaffleRow,
 	waffleBox,
 	waffleRows,
-} from "./geometry";
-import { type WaffleVariant, waffleChart } from "./variants";
+} from "../geometry";
+import { type WaffleVariant, waffleChart } from "../variants";
 
 export type { WaffleVariant };
 

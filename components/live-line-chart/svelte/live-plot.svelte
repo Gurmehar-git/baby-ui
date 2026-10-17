@@ -1,16 +1,15 @@
 <script lang="ts">
 import { scaleLinear, scaleTime } from "d3-scale";
 import { type Snippet, untrack } from "svelte";
-import { setActivePoint, setPlot, type TickScale } from "../../chart/svelte/context";
 import type {
 	ActivePoint,
 	Datum,
 	Margin,
 	SeriesConfig,
 	TooltipRow,
-} from "../../chart/svelte/core";
-import { prefersReducedMotion } from "../../chart/svelte/motion";
-import { setLive } from "./context";
+} from "../../chart/core";
+import { prefersReducedMotion } from "../../chart/motion";
+import { setActivePoint, setPlot, type TickScale } from "../../chart/svelte/context";
 import {
 	interpolateAt,
 	type LiveFrame,
@@ -21,7 +20,8 @@ import {
 	settled,
 	smoothingFactor,
 	targetRange,
-} from "./live";
+} from "../live";
+import { setLive } from "./context";
 
 let {
 	frame: box,

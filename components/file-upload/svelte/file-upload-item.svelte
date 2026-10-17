@@ -1,11 +1,11 @@
 <script lang="ts">
 import type { HTMLLiAttributes } from "svelte/elements";
 import Button from "../../button/svelte/button.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { transitionMs } from "../../lib/svelte/motion";
+import { cn } from "../../lib/cn";
+import { transitionMs } from "../../lib/motion";
+import { formatBytes, statusLabel, type UploadFile } from "../core";
+import { fileUpload } from "../variants";
 import { fileUploadState } from "./context";
-import { formatBytes, statusLabel, type UploadFile } from "./core";
-import { fileUpload } from "./variants";
 
 let {
 	file: item,

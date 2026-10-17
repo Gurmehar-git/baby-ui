@@ -11,13 +11,13 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../../card/react/card";
+import { type ChartStatus, type Datum, toDate } from "../../chart/core";
 import { ChartContainer } from "../../chart/react/chart";
-import { type ChartStatus, type Datum, toDate } from "../../chart/react/core";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Line, LineChart } from "../../line-chart/react/line-chart";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
-import { type OverviewCardChart, type OverviewCardSize, overviewCard } from "./variants";
+import { type OverviewCardChart, type OverviewCardSize, overviewCard } from "../variants";
 
 export type { OverviewCardChart, OverviewCardSize };
 

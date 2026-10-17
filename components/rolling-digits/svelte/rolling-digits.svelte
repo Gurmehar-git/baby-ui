@@ -1,19 +1,19 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	formatRollingDigits,
 	type RollingDigitCell,
 	type RollingDigitsLocale,
 	rollingDigitCells,
-} from "./format";
-import RollingDigit from "./rolling-digit.svelte";
+} from "../format";
 import {
 	type RollingDigitsDirection,
 	type RollingDigitsSize,
 	type RollingDigitsVariant,
 	rollingDigits,
-} from "./variants";
+} from "../variants";
+import RollingDigit from "./rolling-digit.svelte";
 
 let {
 	value,

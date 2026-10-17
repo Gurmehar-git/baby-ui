@@ -8,7 +8,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	Tooltip,
 	TooltipContent,
@@ -28,13 +28,13 @@ import {
 	timelineWidth,
 	uptimePercent,
 	visibleItems,
-} from "./timeline";
+} from "../timeline";
 import {
 	type StatusMonitorSize,
 	type StatusMonitorStatus,
 	statusMonitor,
 	statusTone,
-} from "./variants";
+} from "../variants";
 
 export type {
 	StatusMonitorItem,

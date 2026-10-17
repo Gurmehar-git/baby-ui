@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type OgBigIconMode, ogBigIcon } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgBigIconMode, ogBigIcon } from "../variants";
 
 let {
 	name,

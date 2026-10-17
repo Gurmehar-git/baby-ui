@@ -1,6 +1,6 @@
 import { type DateValue, getLocalTimeZone, today } from "@internationalized/date";
 import { createContext } from "svelte";
-import { type CalendarMotion, type CalendarView, yearPageStart } from "./chooser";
+import { type CalendarMotion, type CalendarView, yearPageStart } from "../chooser";
 
 type ChooserOptions = {
 	placeholder: () => DateValue | undefined;

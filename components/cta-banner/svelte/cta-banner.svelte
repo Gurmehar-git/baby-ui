@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { BANNER_DEFAULTS } from "./banner";
+import { cn } from "../../lib/cn";
+import { BANNER_DEFAULTS } from "../banner";
+import { type CtaBannerSize, type CtaBannerVariant, ctaBanner } from "../variants";
 import { setCtaBanner } from "./context";
-import { type CtaBannerSize, type CtaBannerVariant, ctaBanner } from "./variants";
 
 let {
 	children,

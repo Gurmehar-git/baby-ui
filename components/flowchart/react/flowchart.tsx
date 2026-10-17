@@ -3,7 +3,7 @@
 import type { ReactNode, PointerEvent as ReactPointerEvent } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { Badge } from "../../badge/react/badge";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	Select,
 	SelectContent,
@@ -11,7 +11,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "../../select/react/select";
-import { type FlowchartBackground, flowchartCanvas } from "./variants";
+import { type FlowchartBackground, flowchartCanvas } from "../variants";
 
 export type { FlowchartBackground };
 

@@ -14,8 +14,8 @@ import {
 } from "react";
 import { Button } from "../../button/react/button";
 import { FieldError } from "../../field/react/field";
-import { cn } from "../../lib/react/cn";
-import { transitionMs } from "../../lib/react/motion";
+import { cn } from "../../lib/cn";
+import { transitionMs } from "../../lib/motion";
 import {
 	FILE_UPLOAD_LABELS,
 	type FileRejection,
@@ -28,13 +28,13 @@ import {
 	type UploadFile,
 	uploadHint,
 	uploadSummary,
-} from "./core";
+} from "../core";
 import {
 	type FileUploadSize,
 	type FileUploadStatus,
 	type FileUploadVariant,
 	fileUpload,
-} from "./variants";
+} from "../variants";
 
 export type {
 	FileRejection,

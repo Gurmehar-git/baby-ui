@@ -3,12 +3,6 @@ import { extent } from "d3-array";
 import { scaleLinear, scaleTime } from "d3-scale";
 import { type Snippet, untrack } from "svelte";
 import {
-	setActivePoint,
-	setPlot,
-	type TickScale,
-	useChart,
-} from "../../chart/svelte/context";
-import {
 	type ActivePoint,
 	type ChartPhase,
 	type Datum,
@@ -18,16 +12,22 @@ import {
 	type SeriesConfig,
 	type TooltipRow,
 	toDate,
-} from "../../chart/svelte/core";
+} from "../../chart/core";
 import {
 	CHART_DURATION,
 	CHART_EASE,
 	prefersReducedMotion,
 	tween,
-} from "../../chart/svelte/motion";
+} from "../../chart/motion";
+import {
+	setActivePoint,
+	setPlot,
+	type TickScale,
+	useChart,
+} from "../../chart/svelte/context";
+import { nearestPoint, POINT_BLUR, POINT_CONCEAL, POINT_ENTER } from "../geometry";
+import type { ScatterShape } from "../variants";
 import { setScatterRoot } from "./context";
-import { nearestPoint, POINT_BLUR, POINT_CONCEAL, POINT_ENTER } from "./geometry";
-import type { ScatterShape } from "./variants";
 
 let {
 	frame,

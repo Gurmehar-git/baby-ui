@@ -8,7 +8,7 @@ import {
 	Section,
 } from "@better-svelte-email/components";
 import type { Snippet } from "svelte";
-import { type EmailShellSurface, emailShell } from "./variants";
+import { type EmailShellSurface, emailShell } from "../variants";
 
 let {
 	preview,

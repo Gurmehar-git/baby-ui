@@ -1,14 +1,14 @@
 <script lang="ts">
-import { button } from "../../button/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import { button } from "../../button/variants";
+import { cn } from "../../lib/cn";
 import Popover from "../../popover/svelte/popover.svelte";
 import PopoverContent from "../../popover/svelte/popover-content.svelte";
 import PopoverTrigger from "../../popover/svelte/popover-trigger.svelte";
 import RadioGroup from "../../radio-group/svelte/radio-group.svelte";
 import RadioGroupItem from "../../radio-group/svelte/radio-group-item.svelte";
+import { formatPlaybackRate, VIDEO_PLAYBACK_RATES } from "../types";
+import { videoPlayer } from "../variants";
 import { getVideoPlayer } from "./context";
-import { formatPlaybackRate, VIDEO_PLAYBACK_RATES } from "./types";
-import { videoPlayer } from "./variants";
 
 let {
 	rates = VIDEO_PLAYBACK_RATES,

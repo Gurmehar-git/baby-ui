@@ -8,8 +8,7 @@
 		"**/*.css"
 	],
 	"exports": {
-		"./react/data-table/worker": "./data-table/react/worker.ts",
-		"./svelte/data-table/worker": "./data-table/svelte/worker.ts",
+		"./data-table/worker": "./data-table/worker.ts",
 		"./react/*": "./*/react/index.ts",
 		"./svelte/*": {
 			"svelte": "./*/svelte/index.ts",
@@ -20,11 +19,12 @@
 			"svelte": "./lib/svelte/*.ts",
 			"types": "./lib/svelte/*.ts"
 		},
+		"./lib/*": "./lib/*.ts",
 		"./specs": "./specs.ts"
 	},
 	"scripts": {
 		"check": "tsc --noEmit -p tsconfig.react.json && svelte-check --tsconfig ./tsconfig.json",
-		"test": "bun test _tools && node --test _tools/paths.test.mjs"
+		"test": "bun test _tools"
 	},
 	"dependencies": {
 		"@baby-ui/registry-schema": "workspace:*",

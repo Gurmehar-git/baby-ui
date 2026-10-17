@@ -55,29 +55,42 @@ const order = (slug) => (a, b) => {
  * the npm packages they import, and the other components they import (registry dependencies).
  */
 export function derivePort(output, root, slug, port) {
-	const own = join(root, slug, port);
-	const lib = join(LIB, port);
+	const component = join(root, slug);
+	const own = join(component, port);
 	const nodeModules = join(root, "node_modules");
-	// A fresh checkout has this run's generated copies only in `output`, not on disk yet.
+	// A fresh checkout has this run's generated files only in `output`, not on disk yet.
 	const read = (path) => output.files.get(path) ?? readFileSync(path, "utf8");
 	const exists = (path) => output.files.has(path) || isFile(path);
+	// Shipped flat: `<slug>/<file>` from the port or the folder root, `lib/<file>` likewise.
+	const shippedAs = (file) => {
+		const inLib = file.startsWith(LIB + sep);
+		const rest = relative(inLib ? LIB : component, file).replaceAll(sep, "/");
+		return `${inLib ? "lib" : slug}/${rest.replace(new RegExp(`^${port}/`), "")}`;
+	};
 	const files = new Map();
 	const dependencies = new Set();
 	const registryDependencies = new Set();
-	const queue = filesIn(output, own)
-		.filter((f) => f !== "index.ts")
-		.map((f) => join(own, f));
+	// The port's files and every shared one: a shared file is public API even if nothing imports it.
+	const queue = [
+		...filesIn(output, own)
+			.filter((f) => f !== "index.ts")
+			.map((f) => join(own, f)),
+		...filesIn(output, component)
+			.filter((f) => f.endsWith(".ts") && f !== "component.ts")
+			.map((f) => join(component, f)),
+	];
 	while (queue.length) {
 		const file = queue.shift();
-		const inLib = file.startsWith(lib + sep);
-		const path = `${inLib ? "lib" : slug}/${relative(inLib ? lib : own, file).replaceAll(sep, "/")}`;
+		const path = shippedAs(file);
 		if (files.has(path)) continue;
-		files.set(path, inLib ? "registry:lib" : "registry:ui");
+		files.set(path, path.startsWith("lib/") ? "registry:lib" : "registry:ui");
 		for (const spec of specifiers(read(file), file)) {
 			// Pro reaches the public kit by package: a lib file ships, a component is a dependency.
 			const kit = /^@baby-ui\/(?:react|svelte)\/(?:lib\/(.+)|([a-z0-9-]+))$/.exec(spec);
 			if (kit?.[1]) {
-				const target = resolveLocal(join(lib, "index.ts"), `./${kit[1]}`, exists);
+				const target =
+					resolveLocal(join(LIB, "index.ts"), `./${kit[1]}`, exists) ??
+					resolveLocal(join(LIB, port, "index.ts"), `./${kit[1]}`, exists);
 				if (target) queue.push(target);
 				continue;
 			}
@@ -92,7 +105,7 @@ export function derivePort(output, root, slug, port) {
 			}
 			const target = resolveLocal(file, spec, exists);
 			if (!target) continue;
-			if (target.startsWith(own + sep) || target.startsWith(lib + sep))
+			if (target.startsWith(component + sep) || target.startsWith(LIB + sep))
 				queue.push(target);
 			else registryDependencies.add(relative(root, target).split(sep)[0]);
 		}

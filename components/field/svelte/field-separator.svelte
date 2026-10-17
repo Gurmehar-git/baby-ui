@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Separator from "../../separator/svelte/separator.svelte";
-import { field } from "./variants";
+import { field } from "../variants";
 
 let {
 	ref = $bindable(null),

@@ -8,12 +8,12 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "../../breadcrumb/react/breadcrumb";
-import { breadcrumb } from "../../breadcrumb/react/variants";
+import { breadcrumb } from "../../breadcrumb/variants";
+import type { ActivePoint, Datum, TooltipRow } from "../../chart/core";
 import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, Datum, TooltipRow } from "../../chart/react/core";
 import { ActivePointProvider, ChartFrame } from "../../chart/react/frame";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	branchHue,
 	createTreemapStage,
@@ -26,8 +26,8 @@ import {
 	shadeFor,
 	type TreemapNode,
 	topOf,
-} from "./layout";
-import { type TreemapVariant, treemapChart } from "./variants";
+} from "../layout";
+import { type TreemapVariant, treemapChart } from "../variants";
 
 export type { TreemapNode, TreemapVariant };
 

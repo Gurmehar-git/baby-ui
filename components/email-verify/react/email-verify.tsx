@@ -15,8 +15,8 @@ import {
 	type EmailShellSurface,
 	EmailText,
 } from "../../email-kit/react/email-kit";
-import { emailLayout } from "../../email-kit/react/variants";
-import { emailVerify } from "./variants";
+import { emailLayout } from "../../email-kit/variants";
+import { emailVerify } from "../variants";
 
 export interface EmailVerifyProps {
 	productName: string;

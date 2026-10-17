@@ -1,8 +1,8 @@
 "use client";
 
 import { type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { type DotOptions, mountDots } from "./dots";
+import { cn } from "../../lib/cn";
+import { type DotOptions, mountDots } from "../dots";
 import {
 	DOT_MATRIX_SIZE,
 	type DotMatrixGlowPosition,
@@ -10,7 +10,7 @@ import {
 	type DotMatrixGlowSize,
 	type DotMatrixGlowTone,
 	dotMatrixGlow,
-} from "./variants";
+} from "../variants";
 
 export type {
 	DotMatrixGlowPosition,

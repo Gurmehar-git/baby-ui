@@ -1,15 +1,15 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type FisheyeOptions, mountFisheye } from "./fisheye";
-import ItemList from "./item-list.svelte";
-import { INFINITE_IMAGE_FIELD_LABELS, type InfiniteImageFieldLabels } from "./labels";
+import { cn } from "../../lib/cn";
+import { type FisheyeOptions, mountFisheye } from "../fisheye";
+import { INFINITE_IMAGE_FIELD_LABELS, type InfiniteImageFieldLabels } from "../labels";
 import {
 	DEFAULT_LENS,
 	type InfiniteImageFieldSize,
 	type InfiniteImageItem,
 	infiniteImageField,
-} from "./variants";
+} from "../variants";
+import ItemList from "./item-list.svelte";
 
 let {
 	items,

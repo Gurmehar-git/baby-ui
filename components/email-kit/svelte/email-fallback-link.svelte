@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Link, Text } from "@better-svelte-email/components";
-import { type EmailFallbackLinkAlign, emailFallbackLink } from "./variants";
+import { type EmailFallbackLinkAlign, emailFallbackLink } from "../variants";
 
 /** The raw URL under a button, for clients that block buttons or strip styles. */
 let {

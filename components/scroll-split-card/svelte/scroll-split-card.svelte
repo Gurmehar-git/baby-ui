@@ -2,14 +2,14 @@
 import Card from "../../card/svelte/card.svelte";
 import CardDescription from "../../card/svelte/card-description.svelte";
 import CardTitle from "../../card/svelte/card-title.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { bindScrollProgress } from "../../lib/svelte/scroll-frame";
-import { type ScrollSplitCardItem, SPLIT_POSITIONS } from "./types";
+import { cn } from "../../lib/cn";
+import { bindScrollProgress } from "../../lib/scroll-frame";
+import { type ScrollSplitCardItem, SPLIT_POSITIONS } from "../types";
 import {
 	type ScrollSplitCardSize,
 	type ScrollSplitCardTone,
 	scrollSplitCard,
-} from "./variants";
+} from "../variants";
 
 let {
 	image,

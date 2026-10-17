@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { createLetterMorph } from "./letters";
-import { type LetterMorphSize, type LetterMorphVariant, letterMorph } from "./variants";
+import { cn } from "../../lib/cn";
+import { createLetterMorph } from "../letters";
+import { type LetterMorphSize, type LetterMorphVariant, letterMorph } from "../variants";
 
 export type { LetterMorphSize, LetterMorphVariant };
 

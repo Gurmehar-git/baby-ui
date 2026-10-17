@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { tick } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type PillBox, pillCss, pressedBox } from "../../lib/svelte/pill";
+import { cn } from "../../lib/cn";
+import { type PillBox, pillCss, pressedBox } from "../../lib/pill";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
 import TooltipProvider from "../../tooltip/svelte/tooltip-provider.svelte";
 import { getCommand } from "./context";

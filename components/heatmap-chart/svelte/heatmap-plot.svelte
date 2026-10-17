@@ -1,10 +1,10 @@
 <script lang="ts">
 import { untrack } from "svelte";
+import type { ActivePoint, Datum } from "../../chart/core";
+import { prefersReducedMotion, tween } from "../../chart/motion";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum } from "../../chart/svelte/core";
-import { prefersReducedMotion, tween } from "../../chart/svelte/motion";
 import {
 	enterDelay,
 	HEATMAP_MARGIN,
@@ -12,10 +12,10 @@ import {
 	type HeatmapCell,
 	type HeatmapPhase,
 	LEVEL_PATTERN,
-} from "./calendar";
+} from "../calendar";
+import { runShimmer } from "../shimmer";
+import { type HeatmapShape, heatmapChart, levelFill, SHAPE_RADIUS } from "../variants";
 import PatternDefs from "./pattern-defs.svelte";
-import { runShimmer } from "./shimmer";
-import { type HeatmapShape, heatmapChart, levelFill, SHAPE_RADIUS } from "./variants";
 
 let {
 	frame,

@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgAppTileMode, type OgAppTileTone, ogAppTile } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgAppTileMode, type OgAppTileTone, ogAppTile } from "../variants";
 
 export type { OgAppTileMode, OgAppTileTone };
 

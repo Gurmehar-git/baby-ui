@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { type GibberishTextSize, gibberishText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type GibberishTextSize, gibberishText } from "../variants";
 
 export type { GibberishTextSize };
 

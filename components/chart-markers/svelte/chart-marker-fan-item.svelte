@@ -1,9 +1,9 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { FAN_STAGGER, fanPosition, MARKER_SPRING, popStyle } from "../geometry";
+import type { chartMarkers } from "../variants";
 import ChartMarkerDisc from "./chart-marker-disc.svelte";
-import { FAN_STAGGER, fanPosition, MARKER_SPRING, popStyle } from "./geometry";
 import { assign, type ChartMarker, spring } from "./types";
-import type { chartMarkers } from "./variants";
 
 let {
 	marker,

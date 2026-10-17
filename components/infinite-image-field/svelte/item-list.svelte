@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { InfiniteImageItem } from "./variants";
+import type { InfiniteImageItem } from "../variants";
 
 let { items }: { items: InfiniteImageItem[] } = $props();
 </script>

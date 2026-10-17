@@ -3,7 +3,7 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { DateRange, Matcher } from "react-day-picker";
 import { Button } from "../../button/react/button";
-import { button } from "../../button/react/variants";
+import { button } from "../../button/variants";
 import {
 	compareDateParts,
 	type Draft,
@@ -13,12 +13,12 @@ import {
 	fromDateParts,
 	isOutsideRange,
 	toDateParts,
-} from "../../date-field/react/core";
+} from "../../date-field/core";
 import { DateSegments, useFieldDraft } from "../../date-field/react/segments";
-import { dateField } from "../../date-field/react/variants";
+import { dateField } from "../../date-field/variants";
 import { FieldError } from "../../field/react/field";
-import { cn } from "../../lib/react/cn";
-import { type PillBox, pillStyle, pressedBox } from "../../lib/react/pill";
+import { cn } from "../../lib/cn";
+import { type PillBox, pillStyle, pressedBox } from "../../lib/pill";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover/react/popover";
 import { RangeCalendar } from "../../range-calendar/react/range-calendar";
 import {
@@ -29,8 +29,8 @@ import {
 	DEFAULT_RANGE_PRESETS,
 	sameRange,
 	todayParts,
-} from "./core";
-import { type DateRangePickerSize, dateRangePicker } from "./variants";
+} from "../core";
+import { type DateRangePickerSize, dateRangePicker } from "../variants";
 
 export type { DateRange, DateRangePickerLabels, DateRangePickerSize, DateRangePreset };
 

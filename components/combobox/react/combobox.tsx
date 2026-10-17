@@ -9,9 +9,9 @@ import {
 	CommandItem,
 	CommandList,
 } from "../../command/react/command";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover/react/popover";
-import { type ComboboxSize, combobox } from "./variants";
+import { type ComboboxSize, combobox } from "../variants";
 
 /** A combobox is a Popover whose content is a Command: shadcn/ui's own combobox recipe,
  * no dedicated positioning, dismiss or search logic of its own. */

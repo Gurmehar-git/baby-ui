@@ -2,8 +2,8 @@
 
 import { type ReactNode, useState } from "react";
 import { Badge } from "../../badge/react/badge";
-import { cn } from "../../lib/react/cn";
-import { type TaskStatus, type TaskStep, taskStepRows } from "./variants";
+import { cn } from "../../lib/cn";
+import { type TaskStatus, type TaskStep, taskStepRows } from "../variants";
 
 function StepRing({ active, children }: { active: boolean; children?: number }) {
 	const c = 2 * Math.PI * 11;

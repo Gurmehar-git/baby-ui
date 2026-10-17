@@ -8,7 +8,7 @@ import {
 	AccordionTrigger,
 } from "../../accordion/react/accordion";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { SearchInput } from "../../search-input/react/search-input";
 import { ToggleGroup, ToggleGroupItem } from "../../toggle-group/react/toggle-group";
 import {
@@ -20,8 +20,8 @@ import {
 	faqKey,
 	faqMatches,
 	highlightParts,
-} from "./faq";
-import { type FaqSectionVariant, faqSection } from "./variants";
+} from "../faq";
+import { type FaqSectionVariant, faqSection } from "../variants";
 
 export type { FaqContact, FaqItem, FaqSectionVariant };
 

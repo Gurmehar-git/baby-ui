@@ -1,11 +1,11 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type ReasoningRow,
 	type ReasoningRowsKind,
 	reasoningRows,
 	SOURCE_TONES,
-} from "./variants";
+} from "../variants";
 
 let {
 	rows,

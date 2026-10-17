@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { HTMLSelectAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { type NativeSelectSize, nativeSelect } from "./variants";
+import { cn } from "../../lib/cn";
+import { type NativeSelectSize, nativeSelect } from "../variants";
 
 let {
 	ref = $bindable(null),

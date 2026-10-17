@@ -2,9 +2,8 @@
 import { MediaController } from "media-chrome";
 import { untrack } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cardFrame } from "../../card/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
-import { setVideoPlayer } from "./context";
+import { cardFrame } from "../../card/variants";
+import { cn } from "../../lib/cn";
 import {
 	clampVolume,
 	mediaErrorKind,
@@ -15,8 +14,9 @@ import {
 	type VideoPlayerErrorKind,
 	type VideoPlayerRendition,
 	volumeLevel,
-} from "./types";
-import { VIDEO_PLAYER_CARD, type VideoPlayerVariant, videoPlayer } from "./variants";
+} from "../types";
+import { VIDEO_PLAYER_CARD, type VideoPlayerVariant, videoPlayer } from "../variants";
+import { setVideoPlayer } from "./context";
 
 let {
 	variant = "default",

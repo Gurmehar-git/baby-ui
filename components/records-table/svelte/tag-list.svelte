@@ -1,5 +1,5 @@
 <script lang="ts">
-import { tagToneClass } from "./variants";
+import { tagToneClass } from "../variants";
 
 let { tags }: { tags: string[] } = $props();
 

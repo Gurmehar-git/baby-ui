@@ -1,20 +1,20 @@
 "use client";
 
 import { useId, useLayoutEffect, useMemo } from "react";
-import { seriesVisibleInPhase } from "../../chart/react/core";
+import { seriesVisibleInPhase } from "../../chart/core";
 import { useExtentRegistry, usePlot } from "../../chart/react/time-series";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	bezierPath,
 	type ProjectionPoint,
 	projectionExtent,
 	visibleEndX,
-} from "./geometry";
+} from "../geometry";
 import {
 	type ProjectionLineCurve,
 	type ProjectionLineVariant,
 	projectionLine,
-} from "./variants";
+} from "../variants";
 
 export interface ProjectionLineProps {
 	/** Anchor plus horizon, e.g. from `buildProjection`; the chart widens to fit it. */

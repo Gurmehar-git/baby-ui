@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 
 // A styled slot, not an image component: pass your own <img>/AvatarFallback/icon as
 // children. Lifts clear of a footer line when one is present in the same message.

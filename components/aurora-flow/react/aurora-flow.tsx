@@ -1,10 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { type CanvasEngine, useCanvasEngine } from "../../lib/react/use-canvas-engine";
-import { type AuroraFlowOptions, mountAuroraFlow } from "./aurora";
-import { mountSilkAurora } from "./silk";
+import { type AuroraFlowOptions, mountAuroraFlow } from "../aurora";
+import { mountSilkAurora } from "../silk";
 import {
 	AURORA_FLOW_GRAIN,
 	AURORA_FLOW_SPEED,
@@ -14,7 +14,7 @@ import {
 	type AuroraFlowVariant,
 	auroraColors,
 	auroraFlow,
-} from "./variants";
+} from "../variants";
 
 export type { AuroraFlowPosition, AuroraFlowSpeed, AuroraFlowTone, AuroraFlowVariant };
 

@@ -1,9 +1,9 @@
 <script lang="ts">
 import { Collapsible as CollapsiblePrimitive } from "bits-ui";
 import { type Snippet, untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type ReasoningVariant, reasoning } from "../variants";
 import { type ActiveStep, setReasoningContext } from "./context";
-import { type ReasoningVariant, reasoning } from "./variants";
 
 let {
 	children,

@@ -1,10 +1,10 @@
 <script lang="ts">
 import { untrack } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { screenOpen, type VideoPlayerScreenTrigger } from "../types";
+import { videoPlayer } from "../variants";
 import { getVideoPlayer } from "./context";
-import { screenOpen, type VideoPlayerScreenTrigger } from "./types";
-import { videoPlayer } from "./variants";
 
 let {
 	when = "ended",

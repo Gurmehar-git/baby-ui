@@ -1,6 +1,6 @@
 <script lang="ts">
 import { ContextMenu as ContextMenuPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 
 let { class: classProp, ...rest }: ContextMenuPrimitive.TriggerProps = $props();
 </script>

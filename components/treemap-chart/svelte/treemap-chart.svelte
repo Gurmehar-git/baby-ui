@@ -5,10 +5,10 @@ import BreadcrumbItem from "../../breadcrumb/svelte/breadcrumb-item.svelte";
 import BreadcrumbList from "../../breadcrumb/svelte/breadcrumb-list.svelte";
 import BreadcrumbPage from "../../breadcrumb/svelte/breadcrumb-page.svelte";
 import BreadcrumbSeparator from "../../breadcrumb/svelte/breadcrumb-separator.svelte";
-import { breadcrumb } from "../../breadcrumb/svelte/variants";
+import { breadcrumb } from "../../breadcrumb/variants";
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type FlatNode,
 	flattenTree,
@@ -17,9 +17,9 @@ import {
 	SHADE_STEPS,
 	type TreemapNode,
 	topOf,
-} from "./layout";
+} from "../layout";
+import { type TreemapVariant, treemapChart } from "../variants";
 import TreemapPlot from "./treemap-plot.svelte";
-import { type TreemapVariant, treemapChart } from "./variants";
 
 let {
 	data,

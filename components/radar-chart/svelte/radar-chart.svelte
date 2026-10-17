@@ -1,12 +1,12 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import type { Datum } from "../../chart/core";
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import type { Datum } from "../../chart/svelte/core";
-import { cn } from "../../lib/svelte/cn";
-import { niceMax, type RadarMetric, type RadarSeries, seriesColor } from "./geometry";
+import { cn } from "../../lib/cn";
+import { niceMax, type RadarMetric, type RadarSeries, seriesColor } from "../geometry";
+import type { RadarGridShape, RadarVariant } from "../variants";
 import RadarPlot from "./radar-plot.svelte";
-import type { RadarGridShape, RadarVariant } from "./variants";
 
 let {
 	data,

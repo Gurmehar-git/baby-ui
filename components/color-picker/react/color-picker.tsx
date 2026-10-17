@@ -12,7 +12,7 @@ import {
 	InputGroupAddon,
 	InputGroupInput,
 } from "../../input-group/react/input-group";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	hexKeyStep,
 	hexToHsl,
@@ -24,7 +24,7 @@ import {
 	parseHex,
 	rgbToHex,
 	stepHex,
-} from "../../lib/react/color";
+} from "../../lib/color";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover/react/popover";
 import {
 	arrowStep,
@@ -33,7 +33,7 @@ import {
 	colorPicker,
 	hasEyeDropper,
 	pickScreenColor,
-} from "./variants";
+} from "../variants";
 
 export type { ColorPickerSize, ColorPickerVariant };
 

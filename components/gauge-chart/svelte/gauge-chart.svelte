@@ -1,7 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
-import GaugeNotch from "./gauge-notch.svelte";
 import {
 	activeCount,
 	arcNotches,
@@ -14,8 +13,9 @@ import {
 	RING_CIRCUMFERENCE,
 	RING_RADIUS,
 	scaleFill,
-} from "./geometry";
-import { type GaugeChartLayout, type GaugeChartTone, gaugeChart } from "./variants";
+} from "../geometry";
+import { type GaugeChartLayout, type GaugeChartTone, gaugeChart } from "../variants";
+import GaugeNotch from "./gauge-notch.svelte";
 
 let {
 	value,

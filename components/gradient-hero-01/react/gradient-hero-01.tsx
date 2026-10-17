@@ -2,13 +2,13 @@ import type { HTMLAttributes, ReactNode } from "react";
 import { Badge } from "../../badge/react/badge";
 import { Button } from "../../button/react/button";
 import { CopyButton } from "../../copy-button/react/copy-button";
-import { cn } from "../../lib/react/cn";
-import type { GradientHero01Action } from "./types";
+import { cn } from "../../lib/cn";
+import type { GradientHero01Action } from "../types";
 import {
 	type GradientHero01Size,
 	type GradientHero01Tone,
 	gradientHero01,
-} from "./variants";
+} from "../variants";
 
 export type { GradientHero01Action, GradientHero01Size, GradientHero01Tone };
 

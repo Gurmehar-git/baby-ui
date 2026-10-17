@@ -1,4 +1,3 @@
-import { TaskStepRows } from "./rows";
 import {
 	TASK_STEP_LABELS,
 	type TaskStatus,
@@ -7,7 +6,8 @@ import {
 	type TaskStepsSize,
 	type TaskStepsVariant,
 	taskSteps,
-} from "./variants";
+} from "../variants";
+import { TaskStepRows } from "./rows";
 
 export type { TaskStatus, TaskStep, TaskStepDetail, TaskStepsSize, TaskStepsVariant };
 

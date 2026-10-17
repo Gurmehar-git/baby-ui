@@ -1,7 +1,7 @@
 <script lang="ts">
 import Badge from "../../badge/svelte/badge.svelte";
+import { INVOICE_STATUS_TONE, type InvoiceStatus } from "../invoice-core";
 import { getInvoiceList } from "./context";
-import { INVOICE_STATUS_TONE, type InvoiceStatus } from "./invoice-core";
 
 let { status, class: classProp }: { status: InvoiceStatus; class?: string } = $props();
 const ctx = getInvoiceList();

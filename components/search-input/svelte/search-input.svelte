@@ -3,10 +3,10 @@ import type { HTMLInputAttributes } from "svelte/elements";
 import InputGroup from "../../input-group/svelte/input-group.svelte";
 import InputGroupAddon from "../../input-group/svelte/input-group-addon.svelte";
 import InputGroupInput from "../../input-group/svelte/input-group-input.svelte";
-import type { InputGroupSize } from "../../input-group/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import type { InputGroupSize } from "../../input-group/variants";
+import { cn } from "../../lib/cn";
 import Shortcut from "../../shortcut/svelte/shortcut.svelte";
-import { type SearchInputVariant, searchInput } from "./variants";
+import { type SearchInputVariant, searchInput } from "../variants";
 
 let {
 	label,

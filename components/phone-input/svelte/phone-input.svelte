@@ -1,5 +1,5 @@
 <script lang="ts" module>
-import type { PhoneCountry, PhoneStatus } from "./phone";
+import type { PhoneCountry, PhoneStatus } from "../phone";
 
 export type PhoneInputDetails = {
 	country: PhoneCountry;
@@ -23,8 +23,8 @@ import CommandList from "../../command/svelte/command-list.svelte";
 import InputGroup from "../../input-group/svelte/input-group.svelte";
 import InputGroupAddon from "../../input-group/svelte/input-group-addon.svelte";
 import InputGroupInput from "../../input-group/svelte/input-group-input.svelte";
-import type { InputGroupSize } from "../../input-group/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import type { InputGroupSize } from "../../input-group/variants";
+import { cn } from "../../lib/cn";
 import {
 	capDigits,
 	caretAfterDigits,
@@ -37,8 +37,8 @@ import {
 	parsePhoneNumber,
 	phoneStatus,
 	toE164,
-} from "./phone";
-import { type PhoneInputVariant, phoneInput } from "./variants";
+} from "../phone";
+import { type PhoneInputVariant, phoneInput } from "../variants";
 
 let {
 	label,

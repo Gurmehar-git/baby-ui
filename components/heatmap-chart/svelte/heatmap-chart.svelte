@@ -1,7 +1,7 @@
 <script lang="ts">
+import type { ChartStatus, Datum } from "../../chart/core";
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import type { ChartStatus, Datum } from "../../chart/svelte/core";
 import {
 	buildCalendar,
 	type HeatmapCell,
@@ -9,9 +9,9 @@ import {
 	type HeatmapWeekStart,
 	heatmapNext,
 	localeWeekStart,
-} from "./calendar";
+} from "../calendar";
+import type { HeatmapShape } from "../variants";
 import HeatmapPlot from "./heatmap-plot.svelte";
-import type { HeatmapShape } from "./variants";
 
 let {
 	data,

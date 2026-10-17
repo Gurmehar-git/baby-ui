@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { OG_SHOWCASE_COLUMNS, type OgShowcaseMode, ogShowcase } from "./variants";
+import { cn } from "../../lib/cn";
+import { OG_SHOWCASE_COLUMNS, type OgShowcaseMode, ogShowcase } from "../variants";
 
 let {
 	title,

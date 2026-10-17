@@ -3,9 +3,9 @@
 import type { KeyboardEvent } from "react";
 import { useState } from "react";
 import { Badge } from "../../badge/react/badge";
-import { cn } from "../../lib/react/cn";
-import { armKey } from "./arm";
-import { TAG_INPUT_CHIP, type TagInputSize, tagInput } from "./variants";
+import { cn } from "../../lib/cn";
+import { armKey } from "../arm";
+import { TAG_INPUT_CHIP, type TagInputSize, tagInput } from "../variants";
 
 export type { TagInputSize };
 

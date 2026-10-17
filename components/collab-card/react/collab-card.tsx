@@ -1,6 +1,6 @@
 import { Avatar, AvatarImage } from "../../avatar/react/avatar";
-import { cn } from "../../lib/react/cn";
-import { type CollabCardTone, collabCard } from "./variants";
+import { cn } from "../../lib/cn";
+import { type CollabCardTone, collabCard } from "../variants";
 
 export type { CollabCardTone };
 

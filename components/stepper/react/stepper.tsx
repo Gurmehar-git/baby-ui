@@ -1,7 +1,7 @@
 "use client";
 
 import { type CSSProperties, type ReactNode, useEffect, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	clampStep,
 	moveStepFocus,
@@ -11,8 +11,8 @@ import {
 	type StepperStep,
 	stepDelay,
 	stepStatus,
-} from "./steps";
-import { type StepperOrientation, stepper } from "./variants";
+} from "../steps";
+import { type StepperOrientation, stepper } from "../variants";
 
 export type { StepperOrientation, StepperStatus, StepperStep };
 

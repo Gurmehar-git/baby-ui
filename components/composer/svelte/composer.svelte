@@ -4,13 +4,13 @@ import DropdownMenu from "../../dropdown-menu/svelte/dropdown-menu.svelte";
 import DropdownMenuContent from "../../dropdown-menu/svelte/dropdown-menu-content.svelte";
 import DropdownMenuItem from "../../dropdown-menu/svelte/dropdown-menu-item.svelte";
 import DropdownMenuTrigger from "../../dropdown-menu/svelte/dropdown-menu-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Select from "../../select/svelte/select.svelte";
 import SelectContent from "../../select/svelte/select-content.svelte";
 import SelectItem from "../../select/svelte/select-item.svelte";
 import SelectTrigger from "../../select/svelte/select-trigger.svelte";
+import { COMPOSER_LINE_HEIGHT, type ComposerSize, composer } from "../variants";
 import type { ComposerAction, ComposerModel } from "./types";
-import { COMPOSER_LINE_HEIGHT, type ComposerSize, composer } from "./variants";
 
 const ACTIONS_TRIGGER =
 	"flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors duration-(--duration-instant) hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-foreground [&>svg]:transition-transform [&>svg]:duration-(--duration-fast) [&>svg]:ease-[var(--ease-ui-out)] data-[state=open]:[&>svg]:rotate-45";

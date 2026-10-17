@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
+import type { Datum } from "../core";
+import { type ChartTooltipIndicator, chartTooltip } from "../variants";
 import { useActivePoint, useChart } from "./context";
-import type { Datum } from "./core";
-import { type ChartTooltipIndicator, chartTooltip } from "./variants";
 
 let {
 	indicator = "dot",

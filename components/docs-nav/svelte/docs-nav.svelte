@@ -2,11 +2,11 @@
 import Collapsible from "../../collapsible/svelte/collapsible.svelte";
 import CollapsibleContent from "../../collapsible/svelte/collapsible-content.svelte";
 import CollapsibleTrigger from "../../collapsible/svelte/collapsible-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { revealCurrent } from "../scroll";
+import { type DocsNavConnector, docsNav } from "../variants";
 import DocsNavList from "./docs-nav-list.svelte";
-import { revealCurrent } from "./scroll";
 import type { DocsNavSection } from "./types";
-import { type DocsNavConnector, docsNav } from "./variants";
 
 let {
 	sections,

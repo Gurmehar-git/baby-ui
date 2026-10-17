@@ -1,10 +1,5 @@
 <script lang="ts">
 import type { ComponentProps } from "svelte";
-import PropertyPanel from "./property-panel.svelte";
-import PropertyPanelGroup from "./property-panel-group.svelte";
-import PropertyPanelGroupContent from "./property-panel-group-content.svelte";
-import PropertyPanelGroupLabel from "./property-panel-group-label.svelte";
-import PropertyPanelRow from "./property-panel-row.svelte";
 import {
 	getPropertyValue,
 	type PropertySchema,
@@ -14,7 +9,12 @@ import {
 	propertyGroups,
 	propertyNodes,
 	setPropertyValue,
-} from "./schema";
+} from "../schema";
+import PropertyPanel from "./property-panel.svelte";
+import PropertyPanelGroup from "./property-panel-group.svelte";
+import PropertyPanelGroupContent from "./property-panel-group-content.svelte";
+import PropertyPanelGroupLabel from "./property-panel-group-label.svelte";
+import PropertyPanelRow from "./property-panel-row.svelte";
 
 let {
 	schema,

@@ -1,9 +1,9 @@
 <script lang="ts">
 import { Avatar as AvatarPrimitive } from "bits-ui";
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type AvatarShape, type AvatarSize, avatar } from "../variants";
 import { setAvatar } from "./context";
-import { type AvatarShape, type AvatarSize, avatar } from "./variants";
 
 let {
 	children,

@@ -1,7 +1,7 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { type SeriesMarkerAppearance, seriesMarker } from "./variants";
+import { type SeriesMarkerAppearance, seriesMarker } from "../variants";
 
 let {
 	color,

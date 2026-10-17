@@ -1,12 +1,12 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	type OgPodcastEpisodeLayout,
 	type OgPodcastEpisodeMode,
 	type OgPodcastEpisodeTone,
 	ogPodcastEpisode,
-} from "./variants";
-import { OG_PODCAST_WAVE, waveBarHeights } from "./waveform";
+} from "../variants";
+import { OG_PODCAST_WAVE, waveBarHeights } from "../waveform";
 
 let {
 	title,

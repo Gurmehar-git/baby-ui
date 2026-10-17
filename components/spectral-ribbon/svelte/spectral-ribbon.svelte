@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { cn } from "../../lib/cn";
 import { canvasEngine } from "../../lib/svelte/canvas-engine.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { mountSpectralRibbon, type SpectralRibbonOptions } from "./ribbon";
+import { mountSpectralRibbon, type SpectralRibbonOptions } from "../ribbon";
 import {
 	SPECTRAL_RIBBON_COLORS,
 	SPECTRAL_RIBBON_SPEED,
@@ -10,7 +10,7 @@ import {
 	type SpectralRibbonSpeed,
 	type SpectralRibbonTone,
 	spectralRibbon,
-} from "./variants";
+} from "../variants";
 
 let {
 	tone = "spectrum",

@@ -4,13 +4,13 @@ import {
 	type ElementType,
 	type ReactNode,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type UnderlineHoverTextTone,
 	type UnderlineHoverTextTrigger,
 	type UnderlineHoverTextVariant,
 	underlineHoverText,
-} from "./variants";
+} from "../variants";
 
 export type {
 	UnderlineHoverTextTone,

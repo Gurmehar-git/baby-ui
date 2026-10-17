@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Progress } from "../../progress/react/progress";
 import { Spinner } from "../../spinner/react/spinner";
 import {
@@ -10,7 +10,7 @@ import {
 	type LoadingScreenPosition,
 	loadingScreen,
 	statusLabel,
-} from "./variants";
+} from "../variants";
 
 export type { LoadingScreenIndicator, LoadingScreenLogoMotion, LoadingScreenPosition };
 

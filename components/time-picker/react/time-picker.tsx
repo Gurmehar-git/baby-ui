@@ -7,11 +7,11 @@ import {
 	fieldLayout,
 	localeHourCycle,
 	timeToDraft,
-} from "../../date-field/react/core";
+} from "../../date-field/core";
 import { DateSegments, useFieldDraft } from "../../date-field/react/segments";
-import { dateField } from "../../date-field/react/variants";
+import { dateField } from "../../date-field/variants";
 import { FieldError } from "../../field/react/field";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	clockHands,
 	formatTime,
@@ -22,8 +22,8 @@ import {
 	type TimePickerLabels,
 	type TimeValue,
 	timeOutOfRange,
-} from "./core";
-import { type TimePickerSize, timePicker } from "./variants";
+} from "../core";
+import { type TimePickerSize, timePicker } from "../variants";
 
 export type { TimePickerLabels, TimePickerSize, TimeValue };
 

@@ -2,7 +2,6 @@
 
 <script lang="ts">
 import { untrack } from "svelte";
-import { useActivePoint, useChart, usePlot } from "../../chart/svelte/context";
 import {
 	type FadeEdges,
 	fadeStops,
@@ -13,8 +12,9 @@ import {
 	seriesPoints,
 	seriesVisibleInPhase,
 	toDate,
-} from "../../chart/svelte/core";
-import { CHART_DURATION, tween } from "../../chart/svelte/motion";
+} from "../../chart/core";
+import { CHART_DURATION, tween } from "../../chart/motion";
+import { useActivePoint, useChart, usePlot } from "../../chart/svelte/context";
 import DashTail from "../../chart-series/svelte/dash-tail.svelte";
 import HighlightBand from "../../chart-series/svelte/highlight-band.svelte";
 import LoadingPulse from "../../chart-series/svelte/loading-pulse.svelte";
@@ -24,9 +24,9 @@ import TerminalMarker from "../../chart-series/svelte/terminal-marker.svelte";
 import type {
 	SeriesLoadingStyle,
 	SeriesMarkerAppearance,
-} from "../../chart-series/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
-import { LINE_CURVES, type LineCurve, type LineVariant, line } from "./variants";
+} from "../../chart-series/variants";
+import { cn } from "../../lib/cn";
+import { LINE_CURVES, type LineCurve, type LineVariant, line } from "../variants";
 
 let {
 	dataKey,

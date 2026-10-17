@@ -16,8 +16,8 @@ import {
 	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
 } from "../../dropdown-menu/react/dropdown-menu";
-import { cn } from "../../lib/react/cn";
-import { initials } from "../../mention-input/react/mention";
+import { cn } from "../../lib/cn";
+import { initials } from "../../mention-input/mention";
 import { Spinner } from "../../spinner/react/spinner";
 import {
 	runSignOut,
@@ -27,8 +27,8 @@ import {
 	USER_STATUSES,
 	type UserMenuUser,
 	type UserStatus,
-} from "./account";
-import { type UserMenuSize, userMenu } from "./variants";
+} from "../account";
+import { type UserMenuSize, userMenu } from "../variants";
 
 export type { ThemePreference, UserMenuSize, UserMenuUser, UserStatus };
 

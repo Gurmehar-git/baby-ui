@@ -9,7 +9,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	sliderInlineSplit,
 	sliderLayout,
@@ -18,15 +18,15 @@ import {
 	sliderRulerValueAt,
 	sliderThumbCenter,
 	sliderWaveBars,
-} from "./core";
-import { attachElastic } from "./elastic";
+} from "../core";
+import { attachElastic } from "../elastic";
 import {
 	type SliderMark,
 	type SliderSize,
 	type SliderVariant,
 	slider,
 	sliderPercent,
-} from "./variants";
+} from "../variants";
 
 export type { SliderMark, SliderSize, SliderVariant };
 

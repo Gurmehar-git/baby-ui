@@ -1,11 +1,11 @@
-import { cn } from "../../lib/react/cn";
-import { ogProductStars } from "./stars";
+import { cn } from "../../lib/cn";
+import { ogProductStars } from "../stars";
 import {
 	type OgProductShopMode,
 	type OgProductShopStar,
 	type OgProductShopTone,
 	ogProductShop,
-} from "./variants";
+} from "../variants";
 
 export type { OgProductShopMode, OgProductShopStar, OgProductShopTone };
 

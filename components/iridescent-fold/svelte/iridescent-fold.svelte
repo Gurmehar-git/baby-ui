@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { cn } from "../../lib/cn";
 import { canvasEngine } from "../../lib/svelte/canvas-engine.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { type IridescentFoldOptions, mountIridescentFold } from "./fold";
+import { type IridescentFoldOptions, mountIridescentFold } from "../fold";
 import {
 	IRIDESCENT_FOLD_COLORS,
 	IRIDESCENT_FOLD_SPEED,
@@ -11,7 +11,7 @@ import {
 	type IridescentFoldTone,
 	type IridescentFoldVariant,
 	iridescentFold,
-} from "./variants";
+} from "../variants";
 
 let {
 	variant = "foil",

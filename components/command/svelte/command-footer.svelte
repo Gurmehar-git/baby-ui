@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import { getCommand } from "./context";
 
 let { class: classProp, children, ...rest }: HTMLAttributes<HTMLDivElement> = $props();

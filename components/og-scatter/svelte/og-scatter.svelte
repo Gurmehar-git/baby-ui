@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { OG_SCATTER_TILES, type OgScatterMode, ogScatter } from "./variants";
+import { cn } from "../../lib/cn";
+import { OG_SCATTER_TILES, type OgScatterMode, ogScatter } from "../variants";
 
 let {
 	name,

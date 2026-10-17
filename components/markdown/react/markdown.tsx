@@ -1,7 +1,7 @@
 import { Markdown as DocviaMarkdown, StreamingMarkdown } from "@docvia/markdown/react";
-import { cn } from "../../lib/react/cn";
-import { type MarkdownAnimate, markdownMotion } from "./motion";
-import { type MarkdownSize, type MarkdownVariant, markdown } from "./variants";
+import { cn } from "../../lib/cn";
+import { type MarkdownAnimate, markdownMotion } from "../motion";
+import { type MarkdownSize, type MarkdownVariant, markdown } from "../variants";
 
 export type { MarkdownAnimate, MarkdownSize, MarkdownVariant };
 

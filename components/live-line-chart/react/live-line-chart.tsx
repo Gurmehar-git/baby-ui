@@ -13,21 +13,21 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { useChart } from "../../chart/react/chart";
 import type {
 	ActivePoint,
 	Datum,
 	Margin,
 	SeriesConfig,
 	TooltipRow,
-} from "../../chart/react/core";
+} from "../../chart/core";
+import { prefersReducedMotion } from "../../chart/motion";
+import { useChart } from "../../chart/react/chart";
 import {
 	ActivePointProvider,
 	CartesianProvider,
 	ChartFrame,
 	type TickScale,
 } from "../../chart/react/frame";
-import { prefersReducedMotion } from "../../chart/react/motion";
 import {
 	type PlotContextValue,
 	PlotProvider,
@@ -44,7 +44,7 @@ import {
 	settled,
 	smoothingFactor,
 	targetRange,
-} from "./live";
+} from "../live";
 
 /** Commits the animation loop to React at most every 32ms (about 30fps). */
 const COMMIT_MS = 32;

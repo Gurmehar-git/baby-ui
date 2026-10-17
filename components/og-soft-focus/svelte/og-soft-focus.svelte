@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type OgSoftFocusMode, ogSoftFocus } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgSoftFocusMode, ogSoftFocus } from "../variants";
 
 let {
 	name,

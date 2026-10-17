@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { TOOL_LABELS, type ToolLabels, type ToolState, tool } from "./variants";
+import { cn } from "../../lib/cn";
+import { TOOL_LABELS, type ToolLabels, type ToolState, tool } from "../variants";
 
 let {
 	name,

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
-import { navigationMenu } from "./variants";
+import { cn } from "../../lib/cn";
+import { navigationMenu } from "../variants";
 
 let {
 	ref = $bindable(null),

@@ -6,8 +6,8 @@ import EmptyDescription from "../../empty/svelte/empty-description.svelte";
 import EmptyHeader from "../../empty/svelte/empty-header.svelte";
 import EmptyMedia from "../../empty/svelte/empty-media.svelte";
 import EmptyTitle from "../../empty/svelte/empty-title.svelte";
-import type { EmptyLayout, EmptySize, EmptyVariant } from "../../empty/svelte/variants";
-import { ERROR_BOUNDARY_LABELS, type ErrorBoundaryLabels, errorMessage } from "./core";
+import type { EmptyLayout, EmptySize, EmptyVariant } from "../../empty/variants";
+import { ERROR_BOUNDARY_LABELS, type ErrorBoundaryLabels, errorMessage } from "../core";
 
 let {
 	error,

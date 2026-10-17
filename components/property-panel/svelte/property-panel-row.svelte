@@ -22,8 +22,8 @@ import Slider from "../../slider/svelte/slider.svelte";
 import Switch from "../../switch/svelte/switch.svelte";
 import ToggleGroup from "../../toggle-group/svelte/toggle-group.svelte";
 import ToggleGroupItem from "../../toggle-group/svelte/toggle-group-item.svelte";
-import type { PropertyField, PropertyValue } from "./schema";
-import { propertyPanel } from "./variants";
+import type { PropertyField, PropertyValue } from "../schema";
+import { propertyPanel } from "../variants";
 
 /** One config entry as a label column plus its baby-ui control, every kind at one height. */
 let {

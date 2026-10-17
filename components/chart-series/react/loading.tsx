@@ -3,15 +3,15 @@
 import type { CurveFactory } from "d3-shape";
 import { area as d3Area } from "d3-shape";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { type ChartPhase, fadeStops, linePath } from "../../chart/react/core";
-import { useCartesian } from "../../chart/react/frame";
+import { type ChartPhase, fadeStops, linePath } from "../../chart/core";
 import {
 	CHART_EASE_CSS,
 	type Playback,
 	prefersReducedMotion,
 	tween,
-} from "../../chart/react/motion";
-import { cn } from "../../lib/react/cn";
+} from "../../chart/motion";
+import { useCartesian } from "../../chart/react/frame";
+import { cn } from "../../lib/cn";
 import {
 	PULSE_CLIP_PAD,
 	PULSE_CYCLE,
@@ -23,8 +23,8 @@ import {
 	SWEEP_EXIT,
 	skeletonHeights,
 	sweepStops,
-} from "./core";
-import { seriesLoading } from "./variants";
+} from "../core";
+import { seriesLoading } from "../variants";
 
 type Mode = "loop" | "exit" | null;
 

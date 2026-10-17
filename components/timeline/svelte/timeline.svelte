@@ -1,6 +1,6 @@
 <script lang="ts" module>
 import type { Snippet } from "svelte";
-import type { TimelineEventBase } from "./feed";
+import type { TimelineEventBase } from "../feed";
 
 export type TimelineEvent = TimelineEventBase & {
 	/** Revealed in place when the row expands; rows without it are not interactive. */
@@ -18,11 +18,11 @@ import AvatarImage from "../../avatar/svelte/avatar-image.svelte";
 import Collapsible from "../../collapsible/svelte/collapsible.svelte";
 import CollapsibleContent from "../../collapsible/svelte/collapsible-content.svelte";
 import CollapsibleTrigger from "../../collapsible/svelte/collapsible-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import SlotText from "../../slot-text/svelte/slot-text.svelte";
-import { addedEvents, announceAdded, createTimelineReveal, groupTimeline, moveTimelineFocus } from "./feed";
-import { type TimelineVariant, timeline } from "./variants";
+import { addedEvents, announceAdded, createTimelineReveal, groupTimeline, moveTimelineFocus } from "../feed";
+import { type TimelineVariant, timeline } from "../variants";
 
 let {
 	events,

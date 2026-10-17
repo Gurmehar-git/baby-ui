@@ -2,7 +2,7 @@
 
 import { type ComponentProps, createContext, type ReactNode, useContext } from "react";
 import { Badge } from "../../badge/react/badge";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Skeleton } from "../../skeleton/react/skeleton";
 import {
 	Table,
@@ -22,8 +22,8 @@ import {
 	type InvoiceListLabels,
 	type InvoiceStatus,
 	isoDate,
-} from "./invoice-core";
-import { type InvoiceListDensity, invoiceList } from "./variants";
+} from "../invoice-core";
+import { type InvoiceListDensity, invoiceList } from "../variants";
 
 type InvoiceListContextValue = {
 	styles: ReturnType<typeof invoiceList>;

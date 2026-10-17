@@ -1,11 +1,11 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type OgPodcastEpisodeLayout,
 	type OgPodcastEpisodeMode,
 	type OgPodcastEpisodeTone,
 	ogPodcastEpisode,
-} from "./variants";
-import { OG_PODCAST_WAVE, waveBarHeights } from "./waveform";
+} from "../variants";
+import { OG_PODCAST_WAVE, waveBarHeights } from "../waveform";
 
 export type { OgPodcastEpisodeLayout, OgPodcastEpisodeMode, OgPodcastEpisodeTone };
 

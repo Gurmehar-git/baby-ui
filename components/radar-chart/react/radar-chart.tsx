@@ -12,9 +12,7 @@ import {
 	useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { useChart } from "../../chart/react/chart";
-import type { ActivePoint, Datum } from "../../chart/react/core";
-import { ActivePointProvider, ChartFrame, useActivePoint } from "../../chart/react/frame";
+import type { ActivePoint, Datum } from "../../chart/core";
 import {
 	CHART_DURATION,
 	CHART_EASE,
@@ -23,10 +21,12 @@ import {
 	Spring,
 	type SpringConfig,
 	tween,
-} from "../../chart/react/motion";
+} from "../../chart/motion";
+import { useChart } from "../../chart/react/chart";
+import { ActivePointProvider, ChartFrame, useActivePoint } from "../../chart/react/frame";
 import { useActiveIndex } from "../../chart/react/time-series";
 import { ChartTooltipContent, ChartTooltipPanel } from "../../chart/react/tooltip";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	markerPath,
 	niceMax,
@@ -41,8 +41,8 @@ import {
 	seriesDash,
 	seriesKey,
 	seriesPoints,
-} from "./geometry";
-import { type RadarGridShape, type RadarVariant, radar } from "./variants";
+} from "../geometry";
+import { type RadarGridShape, type RadarVariant, radar } from "../variants";
 
 export type { RadarMetric, RadarSeries };
 

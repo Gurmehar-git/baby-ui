@@ -2,15 +2,15 @@
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
 import Card from "../../card/svelte/card.svelte";
-import { cn } from "../../lib/svelte/cn";
-import type { ImageSlotProps } from "../../lib/svelte/image";
-import { bindScrollProgress, scrollToProgress } from "../../lib/svelte/scroll-frame";
-import { activeFlipCard, type CaseStudyFlipItem, flipCardOffsets } from "./types";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
+import { bindScrollProgress, scrollToProgress } from "../../lib/scroll-frame";
+import { activeFlipCard, type CaseStudyFlipItem, flipCardOffsets } from "../types";
 import {
 	type CaseStudyFlipStackSize,
 	type CaseStudyFlipStackTone,
 	caseStudyFlipStack,
-} from "./variants";
+} from "../variants";
 
 let {
 	items,

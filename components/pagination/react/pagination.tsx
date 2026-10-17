@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
-import { type PaginationSize, pagination } from "./variants";
+import { cn } from "../../lib/cn";
+import { type PaginationSize, pagination } from "../variants";
 
 export type { PaginationSize };
 

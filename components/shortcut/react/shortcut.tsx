@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	isApplePlatform,
 	joinCaps,
@@ -9,8 +9,8 @@ import {
 	parseShortcut,
 	shortcutBlocked,
 	shortcutOwner,
-} from "../../lib/react/shortcut-keys";
-import { type ShortcutSize, type ShortcutVariant, shortcutCap } from "./variants";
+} from "../../lib/shortcut-keys";
+import { type ShortcutSize, type ShortcutVariant, shortcutCap } from "../variants";
 
 export type { ShortcutSize, ShortcutVariant };
 

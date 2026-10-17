@@ -8,8 +8,8 @@ import {
 	type ReactNode,
 	useContext,
 } from "react";
+import { cn } from "../../lib/cn";
 import { ANCHORED } from "../../lib/react/anchor";
-import { cn } from "../../lib/react/cn";
 
 export function TooltipProvider(props: ComponentProps<typeof TooltipPrimitive.Provider>) {
 	return <TooltipPrimitive.Provider {...props} />;

@@ -7,12 +7,8 @@ import Button from "../../button/svelte/button.svelte";
 import Collapsible from "../../collapsible/svelte/collapsible.svelte";
 import CollapsibleContent from "../../collapsible/svelte/collapsible-content.svelte";
 import CollapsibleTrigger from "../../collapsible/svelte/collapsible-trigger.svelte";
-import { cn } from "../../lib/svelte/cn";
-import {
-	EMPTY_MENTIONS,
-	initials,
-	type MentionValue,
-} from "../../mention-input/svelte/mention";
+import { cn } from "../../lib/cn";
+import { EMPTY_MENTIONS, initials, type MentionValue } from "../../mention-input/mention";
 import MentionInput from "../../mention-input/svelte/mention-input.svelte";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import {
@@ -30,8 +26,8 @@ import {
 	splitMentions,
 	type ThreadComment,
 	toggleReaction,
-} from "./thread";
-import { type CommentThreadVariant, commentThread } from "./variants";
+} from "../thread";
+import { type CommentThreadVariant, commentThread } from "../variants";
 
 let {
 	comments = $bindable(),

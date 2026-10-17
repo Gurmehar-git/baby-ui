@@ -1,7 +1,7 @@
 import { Badge } from "../../badge/react/badge";
-import { cn } from "../../lib/react/cn";
-import { formatChange, NPM_STATS_LABELS, type PeriodChange } from "./core";
-import { npmStats } from "./variants";
+import { cn } from "../../lib/cn";
+import { formatChange, NPM_STATS_LABELS, type PeriodChange } from "../core";
+import { npmStats } from "../variants";
 
 export interface TrendBadgeProps {
 	change: PeriodChange;

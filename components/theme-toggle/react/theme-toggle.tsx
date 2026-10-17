@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
-import { cn } from "../../lib/react/cn";
-import { ensureRevealStyle, runThemeReveal, supportsViewTransition } from "./reveal";
+import { cn } from "../../lib/cn";
+import { ensureRevealStyle, runThemeReveal, supportsViewTransition } from "../reveal";
 import {
 	type ThemeToggleStart,
 	type ThemeToggleValue,
 	type ThemeToggleVariant,
 	themeToggle,
-} from "./variants";
+} from "../variants";
 
 export type { ThemeToggleStart, ThemeToggleValue, ThemeToggleVariant };
 

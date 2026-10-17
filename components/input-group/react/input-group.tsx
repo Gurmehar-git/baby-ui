@@ -2,9 +2,9 @@
 
 import type { ComponentProps } from "react";
 import { Button, type ButtonProps } from "../../button/react/button";
-import type { ButtonSize } from "../../button/react/variants";
+import type { ButtonSize } from "../../button/variants";
 import { Input } from "../../input/react/input";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Textarea } from "../../textarea/react/textarea";
 import {
 	focusGroupControl,
@@ -12,7 +12,7 @@ import {
 	type InputGroupSize,
 	inputGroup,
 	inputGroupAddon,
-} from "./variants";
+} from "../variants";
 
 export type { InputGroupAddonAlign, InputGroupSize };
 

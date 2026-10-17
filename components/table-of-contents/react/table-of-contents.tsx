@@ -1,7 +1,7 @@
 "use client";
 
 import { type CSSProperties, useEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	activeRange,
 	buildTrack,
@@ -15,8 +15,8 @@ import {
 	type TocRow,
 	type TocTrack,
 	thumbStyle,
-} from "./toc-core";
-import { type TableOfContentsVariant, tableOfContents } from "./variants";
+} from "../toc-core";
+import { type TableOfContentsVariant, tableOfContents } from "../variants";
 
 export type { TocItem };
 

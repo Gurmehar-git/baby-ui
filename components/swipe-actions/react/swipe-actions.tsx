@@ -15,18 +15,18 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "../../dropdown-menu/react/dropdown-menu";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	createSwipeGroup,
 	createSwipeRow,
 	type SwipeGroup,
 	type SwipeSide,
-} from "./swipe";
+} from "../swipe";
 import {
 	type SwipeActionsSize,
 	type SwipeActionsVariant,
 	swipeActions,
-} from "./variants";
+} from "../variants";
 
 export type { SwipeActionsSize, SwipeActionsVariant };
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { rollsUp } from "./format";
-import type { RollingDigitsDirection } from "./variants";
+import { cn } from "../../lib/cn";
+import { rollsUp } from "../format";
+import type { RollingDigitsDirection } from "../variants";
 
 let {
 	char,

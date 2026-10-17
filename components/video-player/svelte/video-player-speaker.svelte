@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { VideoPlayerVolumeLevel } from "./types";
+import type { VideoPlayerVolumeLevel } from "../types";
 
 let { level, class: classProp }: { level: VideoPlayerVolumeLevel; class: string } =
 	$props();

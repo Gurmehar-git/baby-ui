@@ -8,7 +8,7 @@ import {
 	XAxis,
 	YAxis,
 } from "../../chart/react";
-import { formatCompact, formatDayTick, isWeekLabel, weekToDate } from "./core";
+import { formatCompact, formatDayTick, isWeekLabel, weekToDate } from "../core";
 
 export interface NpmDownloadsChartProps {
 	/** Pre-aggregated rows (`{ date, total }`): daily `YYYY-MM-DD` or weekly `'YYWww`. */

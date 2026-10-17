@@ -2,13 +2,13 @@
 import type { Snippet } from "svelte";
 import Button from "../../button/svelte/button.svelte";
 import DraggableMarquee from "../../draggable-marquee/svelte/draggable-marquee.svelte";
-import { cn } from "../../lib/svelte/cn";
-import LogoColumn from "./logo-column.svelte";
+import { cn } from "../../lib/cn";
 import {
 	type LogoCarouselTone,
 	type LogoCarouselVariant,
 	logoCarousel,
-} from "./variants";
+} from "../variants";
+import LogoColumn from "./logo-column.svelte";
 
 const CYCLE_INTERVAL_MS = 1600;
 const STAGGER_MS = 125;

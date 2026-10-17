@@ -21,8 +21,8 @@ import {
 	InputGroupButton,
 	InputGroupInput,
 } from "../../input-group/react/input-group";
-import { cn } from "../../lib/react/cn";
-import type { ImageSlotProps } from "../../lib/react/image";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
 import { RollingDigits } from "../../rolling-digits/react/rolling-digits";
 import { Spinner } from "../../spinner/react/spinner";
 import {
@@ -36,8 +36,8 @@ import {
 	signupMessages,
 	stackIssues,
 	stackStyle,
-} from "./signup";
-import { type NewsletterSignupVariant, newsletterSignup } from "./variants";
+} from "../signup";
+import { type NewsletterSignupVariant, newsletterSignup } from "../variants";
 
 export type {
 	NewsletterIssue,

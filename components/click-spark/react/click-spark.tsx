@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { createSparks } from "./sparks";
-import { type ClickSparkScope, type ClickSparkTone, clickSpark } from "./variants";
+import { cn } from "../../lib/cn";
+import { createSparks } from "../sparks";
+import { type ClickSparkScope, type ClickSparkTone, clickSpark } from "../variants";
 
 export type { ClickSparkScope, ClickSparkTone };
 

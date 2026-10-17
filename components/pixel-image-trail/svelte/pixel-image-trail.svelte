@@ -1,14 +1,14 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	mountPixelTrail,
 	type PixelImageTrailSize,
 	type PixelImageTrailVariant,
 	type PixelTrailOptions,
 	pixelImageTrail,
-} from "./pixel-trail";
+} from "../pixel-trail";
 
 let {
 	src,

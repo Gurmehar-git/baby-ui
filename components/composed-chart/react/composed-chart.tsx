@@ -10,30 +10,25 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { stackBase, stackMax } from "../../area-chart/react/geometry";
+import { stackBase, stackMax } from "../../area-chart/geometry";
+import { type ChartPhase, type Datum, seriesColor, toDate } from "../../chart/core";
+import { CHART_DURATION, CHART_EASE, type Playback, tween } from "../../chart/motion";
 import { useChart } from "../../chart/react/chart";
-import { type ChartPhase, type Datum, seriesColor, toDate } from "../../chart/react/core";
 import { useActivePoint } from "../../chart/react/frame";
-import {
-	CHART_DURATION,
-	CHART_EASE,
-	type Playback,
-	tween,
-} from "../../chart/react/motion";
 import {
 	TimeSeriesChart,
 	type TimeSeriesChartProps,
 	useExtentRegistry,
 	usePlot,
 } from "../../chart/react/time-series";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	localProgress,
 	seriesBarDelay,
 	seriesBarOffset,
 	seriesBarWidth,
-} from "./geometry";
-import { type SeriesBarVariant, seriesBar } from "./variants";
+} from "../geometry";
+import { type SeriesBarVariant, seriesBar } from "../variants";
 
 interface BarLayoutValue {
 	keys: string[];

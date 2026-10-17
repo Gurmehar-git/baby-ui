@@ -1,4 +1,4 @@
-import type { Spring } from "./motion";
+import type { Spring } from "../motion";
 
 /** Jumps on first show and for keyboard moves; springs otherwise. */
 export function follow(

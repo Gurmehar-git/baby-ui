@@ -1,20 +1,20 @@
 "use client";
 
 import { type CSSProperties, type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import type { ImageSlotProps } from "../../lib/react/image";
-import { onScrollFrame } from "../../lib/react/scroll-frame";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
+import { onScrollFrame } from "../../lib/scroll-frame";
 import {
 	type CollectionSurferItem,
 	surfNearness,
 	surfShift,
 	wrapSurfScroll,
-} from "./types";
+} from "../types";
 import {
 	type CollectionSurferSize,
 	type CollectionSurferVariant,
 	collectionSurfer,
-} from "./variants";
+} from "../variants";
 
 export type { CollectionSurferItem, CollectionSurferSize, CollectionSurferVariant };
 

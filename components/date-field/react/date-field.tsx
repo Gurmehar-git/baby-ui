@@ -2,7 +2,7 @@
 
 import { useId, useMemo } from "react";
 import { FieldError } from "../../field/react/field";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	DATE_FIELD_LABELS,
 	type DateFieldLabels,
@@ -15,9 +15,9 @@ import {
 	isOutsideRange,
 	isoDate,
 	toDateParts,
-} from "./core";
+} from "../core";
+import { type DateFieldSize, dateField } from "../variants";
 import { DateSegments, useFieldDraft } from "./segments";
-import { type DateFieldSize, dateField } from "./variants";
 
 export type { DateFieldLabels, DateFieldSize };
 

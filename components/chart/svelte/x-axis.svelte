@@ -1,10 +1,10 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { evenTickIndices, toDate } from "../core";
+import { CHART_DURATION, CHART_EASE_CSS } from "../motion";
+import { chartAxis } from "../variants";
 import { useActivePoint, usePlot } from "./context";
-import { evenTickIndices, toDate } from "./core";
-import { CHART_DURATION, CHART_EASE_CSS } from "./motion";
-import { chartAxis } from "./variants";
 
 let {
 	tickCount = 5,

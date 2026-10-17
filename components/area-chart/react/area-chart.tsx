@@ -10,7 +10,6 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { useChart } from "../../chart/react/chart";
 import {
 	type FadeEdges,
 	fadeStops,
@@ -18,9 +17,10 @@ import {
 	linePath,
 	seriesColor,
 	seriesVisibleInPhase,
-} from "../../chart/react/core";
+} from "../../chart/core";
+import { CHART_DURATION, tween } from "../../chart/motion";
+import { useChart } from "../../chart/react/chart";
 import { useActivePoint } from "../../chart/react/frame";
-import { CHART_DURATION, tween } from "../../chart/react/motion";
 import {
 	TimeSeriesChart,
 	type TimeSeriesChartProps,
@@ -30,11 +30,11 @@ import {
 import { HighlightBand } from "../../chart-series/react/highlight";
 import { LoadingPulse, LoadingSweep } from "../../chart-series/react/loading";
 import { SeriesMarkers } from "../../chart-series/react/markers";
-import type { SeriesLoadingStyle } from "../../chart-series/react/variants";
-import { cn } from "../../lib/react/cn";
-import { LINE_CURVES, type LineCurve } from "../../line-chart/react/variants";
-import { areaPath, type Band, bandPoints, bandSignature, stackMax } from "./geometry";
-import { type AreaVariant, area } from "./variants";
+import type { SeriesLoadingStyle } from "../../chart-series/variants";
+import { cn } from "../../lib/cn";
+import { LINE_CURVES, type LineCurve } from "../../line-chart/variants";
+import { areaPath, type Band, bandPoints, bandSignature, stackMax } from "../geometry";
+import { type AreaVariant, area } from "../variants";
 
 interface StackContextValue {
 	stacked: boolean;

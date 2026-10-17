@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { HTMLTextareaAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
-import { type TextareaSize, type TextareaVariant, textarea } from "./variants";
+import { type TextareaSize, type TextareaVariant, textarea } from "../variants";
 
 type Props = {
 	value?: string;

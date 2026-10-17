@@ -1,11 +1,11 @@
 "use client";
 
+import { fittedTicks, X_TICK_GAP, Y_TICK_GAP } from "../../chart/core";
+import { CHART_DURATION, CHART_EASE_CSS } from "../../chart/motion";
 import { useChart } from "../../chart/react/chart";
-import { fittedTicks, X_TICK_GAP, Y_TICK_GAP } from "../../chart/react/core";
-import { CHART_DURATION, CHART_EASE_CSS } from "../../chart/react/motion";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
+import { barChart } from "../variants";
 import { useBarChart } from "./bar-chart";
-import { barChart } from "./variants";
 
 const slide = `transform ${CHART_DURATION.update}ms ${CHART_EASE_CSS}`;
 

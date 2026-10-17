@@ -2,15 +2,15 @@
 import type { AnyFieldApi } from "@tanstack/svelte-form";
 import type { HTMLAttributes } from "svelte/elements";
 import Field from "../../field/svelte/field.svelte";
-import type { FieldOrientation } from "../../field/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
-import { setFormField } from "./context";
+import type { FieldOrientation } from "../../field/variants";
+import { cn } from "../../lib/cn";
 import {
 	type FormSpacing,
 	formFieldIds,
 	formFieldState,
 	form as formStyles,
-} from "./variants";
+} from "../variants";
+import { setFormField } from "./context";
 
 let {
 	ref = $bindable(null),

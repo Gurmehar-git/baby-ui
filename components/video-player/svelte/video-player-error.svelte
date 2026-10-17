@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { button } from "../../button/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import { button } from "../../button/variants";
+import { cn } from "../../lib/cn";
+import { VIDEO_ERROR_MESSAGES, type VideoPlayerErrorKind } from "../types";
+import { videoPlayer } from "../variants";
 import { getVideoPlayer } from "./context";
-import { VIDEO_ERROR_MESSAGES, type VideoPlayerErrorKind } from "./types";
-import { videoPlayer } from "./variants";
 
 let {
 	messages,

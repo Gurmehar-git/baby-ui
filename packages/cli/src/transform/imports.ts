@@ -72,8 +72,6 @@ export function rewriteSpecifier(input: string, aliases: Aliases): string {
 
 export interface ScriptTransform {
 	aliases: Aliases;
-	/** Strip a leading `"use client"` (shadcn does this when `rsc` is false). */
-	stripUseClient: boolean;
 	/** Second pass: re-point an import whose rewritten form does not resolve. */
 	resolve?: (original: string, rewritten: string) => string;
 }
@@ -84,7 +82,7 @@ export function transformScript(
 	filename: string,
 	opts: ScriptTransform,
 ): string {
-	const { program, module } = parseSync(filename, code);
+	const { module } = parseSync(filename, code);
 	const out = new MagicString(code);
 	const spans = [
 		...module.staticImports.map((i) => i.moduleRequest),
@@ -104,17 +102,6 @@ export function transformScript(
 		const rewritten = rewriteSpecifier(value, opts.aliases);
 		const next = opts.resolve ? opts.resolve(value, rewritten) : rewritten;
 		if (next !== value) out.overwrite(start, end, `${quote}${next}${quote}`);
-	}
-	if (opts.stripUseClient) {
-		const first = program.body[0];
-		if (
-			first?.type === "ExpressionStatement" &&
-			/^["']use client["']$/.test(
-				code.slice(first.expression.start, first.expression.end),
-			)
-		) {
-			out.remove(first.start, first.end);
-		}
 	}
 	return out.toString();
 }

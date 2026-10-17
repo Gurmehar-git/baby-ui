@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type OgPricingMode, type OgPricingTone, ogPricing } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgPricingMode, type OgPricingTone, ogPricing } from "../variants";
 
 let {
 	plan,

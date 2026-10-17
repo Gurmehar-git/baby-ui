@@ -1,12 +1,12 @@
 <script lang="ts">
+import type { ActivePoint, Datum } from "../../chart/core";
 import ChartTooltipContent from "../../chart/svelte/chart-tooltip-content.svelte";
 import ChartTooltipPanel from "../../chart/svelte/chart-tooltip-panel.svelte";
 import { setActivePoint, useChart } from "../../chart/svelte/context";
-import type { ActivePoint, Datum } from "../../chart/svelte/core";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
-import { RING_END, RING_START, type RingRow, ringLayout } from "./geometry";
+import { RING_END, RING_START, type RingRow, ringLayout } from "../geometry";
+import { type RingCap, ringChart } from "../variants";
 import Ring from "./ring.svelte";
-import { type RingCap, ringChart } from "./variants";
 
 let {
 	frame,

@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLButtonAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { fileUpload } from "../variants";
 import { fileUploadState } from "./context";
-import { fileUpload } from "./variants";
 
 let {
 	class: classProp,

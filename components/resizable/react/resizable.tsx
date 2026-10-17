@@ -1,9 +1,9 @@
 "use client";
 
 import { type ComponentProps, type CSSProperties, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
-import { createResizable } from "./split";
-import { type ResizableVariant, resizable } from "./variants";
+import { cn } from "../../lib/cn";
+import { createResizable } from "../split";
+import { type ResizableVariant, resizable } from "../variants";
 
 export type { ResizableVariant };
 

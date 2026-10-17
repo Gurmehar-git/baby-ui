@@ -1,16 +1,16 @@
 <script lang="ts">
 import { untrack } from "svelte";
+import type { Datum } from "../../chart/core";
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import type { Datum } from "../../chart/svelte/core";
 import {
 	allocateCells,
 	emptyCells,
 	reassignCells,
 	type WaffleRow,
 	waffleRows,
-} from "./geometry";
-import type { WaffleVariant } from "./variants";
+} from "../geometry";
+import type { WaffleVariant } from "../variants";
 import WafflePlot from "./waffle-plot.svelte";
 
 let {

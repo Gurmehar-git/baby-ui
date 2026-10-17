@@ -13,8 +13,8 @@ import EmailList, { type EmailListItem } from "../../email-kit/svelte/email-list
 import EmailPanel from "../../email-kit/svelte/email-panel.svelte";
 import EmailShell from "../../email-kit/svelte/email-shell.svelte";
 import EmailText from "../../email-kit/svelte/email-text.svelte";
-import { type EmailShellSurface, emailLayout } from "../../email-kit/svelte/variants";
-import { emailVerify } from "./variants";
+import { type EmailShellSurface, emailLayout } from "../../email-kit/variants";
+import { emailVerify } from "../variants";
 
 let {
 	productName,

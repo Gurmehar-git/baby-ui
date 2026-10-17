@@ -29,7 +29,7 @@ import {
 	selectionBetween,
 	summarize,
 	toDate,
-} from "./core";
+} from "../core";
 import {
 	createAnimatedDomain,
 	createChartPhase,

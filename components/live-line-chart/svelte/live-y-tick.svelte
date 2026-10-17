@@ -1,7 +1,7 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { Spring, type SpringConfig } from "../../chart/svelte/motion";
+import { Spring, type SpringConfig } from "../../chart/motion";
 
 let {
 	y,

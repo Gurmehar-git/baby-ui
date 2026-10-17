@@ -1,6 +1,6 @@
 import { getContext, hasContext, setContext } from "svelte";
-import type { AttachmentLabels } from "./labels";
-import type { AttachmentStatus, AttachmentVariant } from "./variants";
+import type { AttachmentLabels } from "../labels";
+import type { AttachmentStatus, AttachmentVariant } from "../variants";
 
 export type AttachmentState = {
 	name: string;

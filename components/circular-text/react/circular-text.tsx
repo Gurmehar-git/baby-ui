@@ -1,6 +1,6 @@
 import { type CSSProperties, createElement, type ElementType } from "react";
-import { cn } from "../../lib/react/cn";
-import { type CircularTextDirection, circularText } from "./variants";
+import { cn } from "../../lib/cn";
+import { type CircularTextDirection, circularText } from "../variants";
 
 export type { CircularTextDirection };
 

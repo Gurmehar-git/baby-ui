@@ -1,5 +1,5 @@
 import { createContext } from "svelte";
-import type { RadioSize, RadioVariant } from "./variants";
+import type { RadioSize, RadioVariant } from "../variants";
 
 export type { RadioSize, RadioVariant };
 

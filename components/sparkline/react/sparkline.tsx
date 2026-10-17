@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { SlotText } from "../../slot-text/react/slot-text";
-import { createSparkline, pointAt, scrubKey } from "./spark";
-import { type SparklineVariant, sparkline } from "./variants";
+import { createSparkline, pointAt, scrubKey } from "../spark";
+import { type SparklineVariant, sparkline } from "../variants";
 
 export type { SparklineVariant };
 

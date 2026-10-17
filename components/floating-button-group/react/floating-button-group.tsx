@@ -2,14 +2,14 @@
 
 import { Toolbar } from "@base-ui/react/toolbar";
 import { Fragment, type ReactNode, useEffect, useRef } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../../tooltip/react/tooltip";
-import { createTray } from "./tray";
+import { createTray } from "../tray";
 import {
 	type FloatingButtonGroupSize,
 	type FloatingButtonGroupVariant,
 	floatingButtonGroup,
-} from "./variants";
+} from "../variants";
 
 export type { FloatingButtonGroupSize, FloatingButtonGroupVariant };
 

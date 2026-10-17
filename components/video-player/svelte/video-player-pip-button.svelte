@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { button } from "../../button/svelte/variants";
-import { cn } from "../../lib/svelte/cn";
+import { button } from "../../button/variants";
+import { cn } from "../../lib/cn";
+import { videoPlayer } from "../variants";
 import { getVideoPlayer } from "./context";
-import { videoPlayer } from "./variants";
 
 let {
 	ref = $bindable(null),

@@ -1,17 +1,17 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { toDate } from "../../chart/core";
 import { useActivePoint, useChart, usePlot } from "../../chart/svelte/context";
-import { toDate } from "../../chart/svelte/core";
-import ChartMarkerLayer from "./chart-marker-layer.svelte";
-import { dayKey, GUIDE_TRANSITION, groupMarkers, MARKER_OFFSET } from "./geometry";
-import type { ChartMarker } from "./types";
+import { dayKey, GUIDE_TRANSITION, groupMarkers, MARKER_OFFSET } from "../geometry";
 import {
 	type ChartMarkerAppearance,
 	type ChartMarkerSize,
 	chartMarkers,
 	MARKER_PX,
-} from "./variants";
+} from "../variants";
+import ChartMarkerLayer from "./chart-marker-layer.svelte";
+import type { ChartMarker } from "./types";
 
 let {
 	items,

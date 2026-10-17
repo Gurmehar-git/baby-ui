@@ -6,10 +6,10 @@ import {
 	InputGroupAddon,
 	InputGroupInput,
 } from "../../input-group/react/input-group";
-import type { InputGroupSize } from "../../input-group/react/variants";
-import { cn } from "../../lib/react/cn";
+import type { InputGroupSize } from "../../input-group/variants";
+import { cn } from "../../lib/cn";
 import { Shortcut } from "../../shortcut/react/shortcut";
-import { type SearchInputVariant, searchInput } from "./variants";
+import { type SearchInputVariant, searchInput } from "../variants";
 
 export type { SearchInputVariant };
 

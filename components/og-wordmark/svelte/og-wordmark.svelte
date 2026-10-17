@@ -1,6 +1,6 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
-import { type OgWordmarkMode, ogWordmark } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgWordmarkMode, ogWordmark } from "../variants";
 
 let {
 	name,

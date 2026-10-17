@@ -1,10 +1,10 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
-import { type Playback, prefersReducedMotion, tween } from "../../chart/svelte/motion";
-import { SWEEP_MS, SWEEP_STOPS, skeletonHeights } from "./bar-core";
+import { type Playback, prefersReducedMotion, tween } from "../../chart/motion";
+import { SWEEP_MS, SWEEP_STOPS, skeletonHeights } from "../bar-core";
+import { barChart } from "../variants";
 import { useBarChart } from "./context";
-import { barChart } from "./variants";
 
 const SKELETON_BARS = 12;
 const chart = useBarChart();

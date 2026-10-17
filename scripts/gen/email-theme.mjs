@@ -110,7 +110,7 @@ function palette(vars) {
 	return out;
 }
 
-/** Writes `lib/email-theme.ts` into both ports (a generated React file is not on disk yet). */
+/** Writes `components/lib/email-theme.ts`, which both ports import. */
 export function emailTheme(output) {
 	const css = readFileSync(join(ROOT, "packages/tokens/src/tokens.css"), "utf8");
 	const shared = sharedBlock(css);
@@ -146,6 +146,5 @@ export function emailTheme(output) {
 		"};",
 		"",
 	].join("\n");
-	output.add(join(ROOT, "components/lib/react/email-theme.ts"), body);
-	output.add(join(ROOT, "components/lib/svelte/email-theme.ts"), body);
+	output.add(join(ROOT, "components/lib/email-theme.ts"), body);
 }

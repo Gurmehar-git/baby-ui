@@ -2,15 +2,15 @@
 
 import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
 import { Card } from "../../card/react/card";
-import { cn } from "../../lib/react/cn";
-import type { ImageSlotProps } from "../../lib/react/image";
-import { bindScrollProgress, scrollToProgress } from "../../lib/react/scroll-frame";
-import { activeFlipCard, type CaseStudyFlipItem, flipCardOffsets } from "./types";
+import { cn } from "../../lib/cn";
+import type { ImageSlotProps } from "../../lib/image";
+import { bindScrollProgress, scrollToProgress } from "../../lib/scroll-frame";
+import { activeFlipCard, type CaseStudyFlipItem, flipCardOffsets } from "../types";
 import {
 	type CaseStudyFlipStackSize,
 	type CaseStudyFlipStackTone,
 	caseStudyFlipStack,
-} from "./variants";
+} from "../variants";
 
 export type { CaseStudyFlipItem, CaseStudyFlipStackSize, CaseStudyFlipStackTone };
 

@@ -23,7 +23,8 @@ function resolveRegistryDep(framework: Framework, dep: string): string {
 		: `${REGISTRY_URL}/${FRAMEWORK[framework].routePrefix}/${dep}.json`;
 }
 
-const EXPORT_LINE = /export\s+\{([^}]*)\}\s+from\s+"\.\/([^"]+)";/g;
+// `./button` is the port's own file, `../variants` the shared one; both install as `<folder>/<file>`.
+const EXPORT_LINE = /export\s+\{([^}]*)\}\s+from\s+"\.\.?\/([^"]+)";/g;
 const FACADE_LINE =
 	/export\s+\{([^}]*)\}\s+from\s+"@baby-ui\/components\/(?:react|svelte)\/([a-z0-9-]+)";/g;
 

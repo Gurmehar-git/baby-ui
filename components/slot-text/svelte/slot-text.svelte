@@ -1,8 +1,8 @@
 <script lang="ts">
 import { untrack } from "svelte";
-import { cn } from "../../lib/svelte/cn";
-import { createSlotText } from "./slot";
-import { type SlotTextSize, type SlotTextVariant, slotText } from "./variants";
+import { cn } from "../../lib/cn";
+import { createSlotText } from "../slot";
+import { type SlotTextSize, type SlotTextVariant, slotText } from "../variants";
 
 let {
 	value,

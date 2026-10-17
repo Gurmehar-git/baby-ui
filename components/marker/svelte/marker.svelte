@@ -1,13 +1,13 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import {
 	MARKER_SHAPES,
 	MARKER_STAGGER_MS,
 	type MarkerTone,
 	type MarkerVariant,
 	marker,
-} from "./variants";
+} from "../variants";
 
 let {
 	children,

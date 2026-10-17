@@ -2,18 +2,18 @@
 
 <script lang="ts">
 import { type CurveFactory, area as d3Area } from "d3-shape";
-import { useCartesian } from "../../chart/svelte/context";
-import { linePath } from "../../chart/svelte/core";
+import { linePath } from "../../chart/core";
 import {
 	CHART_EASE_CSS,
 	type Playback,
 	prefersReducedMotion,
 	tween,
-} from "../../chart/svelte/motion";
-import { cn } from "../../lib/svelte/cn";
-import { SWEEP_CYCLE, SWEEP_EXIT, skeletonHeights, sweepStops } from "./core";
+} from "../../chart/motion";
+import { useCartesian } from "../../chart/svelte/context";
+import { cn } from "../../lib/cn";
+import { SWEEP_CYCLE, SWEEP_EXIT, skeletonHeights, sweepStops } from "../core";
+import { seriesLoading } from "../variants";
 import { createLoadingMode, silhouette } from "./loading-mode.svelte";
-import { seriesLoading } from "./variants";
 
 let {
 	curve,

@@ -1,6 +1,11 @@
 import { type CSSProperties, useMemo } from "react";
-import { cn } from "../../lib/react/cn";
-import { type CubeTextSize, type CubeTextStagger, cubeText, cubeWords } from "./variants";
+import { cn } from "../../lib/cn";
+import {
+	type CubeTextSize,
+	type CubeTextStagger,
+	cubeText,
+	cubeWords,
+} from "../variants";
 
 export type { CubeTextSize, CubeTextStagger };
 

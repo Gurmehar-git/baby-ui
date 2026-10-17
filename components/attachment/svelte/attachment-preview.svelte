@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { ATTACHMENT_ICON, attachment, fileType } from "../variants";
 import { attachmentState } from "./context";
-import { ATTACHMENT_ICON, attachment, fileType } from "./variants";
 
 let {
 	src,

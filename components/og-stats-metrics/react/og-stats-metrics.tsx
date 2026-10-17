@@ -1,11 +1,11 @@
-import { cn } from "../../lib/react/cn";
-import { AREA_H, AREA_W, sparklinePath } from "./sparkline";
+import { cn } from "../../lib/cn";
+import { AREA_H, AREA_W, sparklinePath } from "../sparkline";
 import {
 	type OgStatsMetricsMode,
 	type OgStatsMetricsTone,
 	type OgStatsMetricsTrend,
 	ogStatsMetrics,
-} from "./variants";
+} from "../variants";
 
 export type { OgStatsMetricsMode, OgStatsMetricsTone, OgStatsMetricsTrend };
 

@@ -12,8 +12,8 @@ import EmailHeading from "../../email-kit/svelte/email-heading.svelte";
 import EmailPanel from "../../email-kit/svelte/email-panel.svelte";
 import EmailShell from "../../email-kit/svelte/email-shell.svelte";
 import EmailText from "../../email-kit/svelte/email-text.svelte";
-import { type EmailShellSurface, emailLayout } from "../../email-kit/svelte/variants";
-import { emailTeamInvite, initials } from "./variants";
+import { type EmailShellSurface, emailLayout } from "../../email-kit/variants";
+import { emailTeamInvite, initials } from "../variants";
 
 let {
 	productName,

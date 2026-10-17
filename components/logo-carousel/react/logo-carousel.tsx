@@ -12,12 +12,12 @@ import {
 } from "react";
 import { Button } from "../../button/react/button";
 import { DraggableMarquee } from "../../draggable-marquee/react/draggable-marquee";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	type LogoCarouselTone,
 	type LogoCarouselVariant,
 	logoCarousel,
-} from "./variants";
+} from "../variants";
 
 export type { LogoCarouselTone, LogoCarouselVariant };
 

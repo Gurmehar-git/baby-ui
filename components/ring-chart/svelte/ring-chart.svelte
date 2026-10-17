@@ -1,10 +1,10 @@
 <script lang="ts">
+import type { Datum } from "../../chart/core";
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import type { Datum } from "../../chart/svelte/core";
-import { type RingRow, ringRows } from "./geometry";
+import { type RingRow, ringRows } from "../geometry";
+import type { RingCap } from "../variants";
 import RingPlot from "./ring-plot.svelte";
-import type { RingCap } from "./variants";
 
 let {
 	data,

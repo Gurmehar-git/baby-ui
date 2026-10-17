@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgTaglineMode, type OgTaglineTone, ogTagline } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgTaglineMode, type OgTaglineTone, ogTagline } from "../variants";
 
 export type { OgTaglineMode, OgTaglineTone };
 

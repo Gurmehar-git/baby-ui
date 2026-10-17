@@ -2,8 +2,8 @@
 
 import { OTPInput, OTPInputContext } from "input-otp";
 import { type ComponentProps, createContext, useContext } from "react";
-import { cn } from "../../lib/react/cn";
-import { type InputOtpInvalidMotion, type InputOtpSize, inputOtp } from "./variants";
+import { cn } from "../../lib/cn";
+import { type InputOtpInvalidMotion, type InputOtpSize, inputOtp } from "../variants";
 
 type StyleProps = {
 	size: InputOtpSize;

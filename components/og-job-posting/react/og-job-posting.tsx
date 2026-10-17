@@ -1,10 +1,10 @@
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	OG_JOB_RINGS,
 	type OgJobPostingMode,
 	type OgJobPostingTone,
 	ogJobPosting,
-} from "./variants";
+} from "../variants";
 
 export type { OgJobPostingMode, OgJobPostingTone };
 

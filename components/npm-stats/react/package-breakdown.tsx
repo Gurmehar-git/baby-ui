@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	formatCompact,
 	formatShare,
@@ -8,15 +8,15 @@ import {
 	type NpmStatsLabels,
 	rangeRows,
 	rangeTrend,
-} from "./core";
-import { NpmSparkline } from "./sparkline";
-import { TrendBadge } from "./trend-badge";
+} from "../core";
 import {
 	type NpmStatsRange,
 	type NpmStatsVariant,
 	npmStats,
 	packageFill,
-} from "./variants";
+} from "../variants";
+import { NpmSparkline } from "./sparkline";
+import { TrendBadge } from "./trend-badge";
 
 export interface NpmPackageBreakdownProps extends ComponentProps<"div"> {
 	packages: NpmPackage[];

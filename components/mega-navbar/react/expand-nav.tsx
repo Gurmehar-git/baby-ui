@@ -2,17 +2,17 @@
 
 import type { CSSProperties, FocusEvent, ReactNode } from "react";
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { currentHref, groupHrefs, isCurrentSection } from "./current";
+import { cn } from "../../lib/cn";
+import { currentHref, groupHrefs, isCurrentSection } from "../current";
 import {
 	EXPAND_CLOSE_MS,
 	EXPAND_OPEN_MS,
 	expandSide,
 	placeMark,
 	slideBox,
-} from "./expand";
+} from "../expand";
+import { megaNavbar } from "../variants";
 import type { MegaMenuGroup, MegaMenuItem, MegaNavLink } from "./mega-navbar";
-import { megaNavbar } from "./variants";
 
 function Chevron({ className, open }: { className: string; open: boolean }) {
 	return (

@@ -8,7 +8,7 @@ import {
 	XAxis,
 	YAxis,
 } from "../../chart/svelte";
-import { formatCompact, formatDayTick, isWeekLabel, weekToDate } from "./core";
+import { formatCompact, formatDayTick, isWeekLabel, weekToDate } from "../core";
 
 let {
 	data,

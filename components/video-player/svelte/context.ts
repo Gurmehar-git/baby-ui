@@ -3,8 +3,8 @@ import type {
 	VideoPlayerErrorKind,
 	VideoPlayerRendition,
 	VideoPlayerVolumeLevel,
-} from "./types";
-import type { VideoPlayerVariant } from "./variants";
+} from "../types";
+import type { VideoPlayerVariant } from "../variants";
 
 export type VideoPlayerContext = {
 	readonly variant: VideoPlayerVariant;

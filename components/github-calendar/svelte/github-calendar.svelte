@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import Tooltip from "../../tooltip/svelte/tooltip.svelte";
 import TooltipContent from "../../tooltip/svelte/tooltip-content.svelte";
 import TooltipProvider from "../../tooltip/svelte/tooltip-provider.svelte";
@@ -13,7 +13,7 @@ import {
 	type GithubCalendarLevel,
 	type GithubCalendarWeekStart,
 	moveIndex,
-} from "./calendar";
+} from "../calendar";
 import {
 	type GithubCalendarShape,
 	type GithubCalendarSize,
@@ -22,7 +22,7 @@ import {
 	githubCalendar,
 	TONE_FILL,
 	WEEK_TRACK,
-} from "./variants";
+} from "../variants";
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, "title"> & {
 	/** One entry per day; gaps between the first and last day render as 0. */

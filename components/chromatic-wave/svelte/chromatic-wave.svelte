@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { cn } from "../../lib/cn";
 import { canvasEngine } from "../../lib/svelte/canvas-engine.svelte";
-import { cn } from "../../lib/svelte/cn";
 import {
 	CHROMATIC_WAVE_COLORS,
 	CHROMATIC_WAVE_SPEED,
@@ -9,8 +9,8 @@ import {
 	type ChromaticWaveSpeed,
 	type ChromaticWaveTone,
 	chromaticWave,
-} from "./variants";
-import { type ChromaticWaveOptions, mountChromaticWave } from "./wave";
+} from "../variants";
+import { type ChromaticWaveOptions, mountChromaticWave } from "../wave";
 
 let {
 	tone = "spectrum",

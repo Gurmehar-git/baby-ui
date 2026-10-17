@@ -1,8 +1,8 @@
 <script lang="ts">
+import { CHART_SPRING, Spring } from "../../chart/motion";
 import { portal, useActivePoint, usePlot } from "../../chart/svelte/context";
 import { follow } from "../../chart/svelte/follow.svelte";
-import { CHART_SPRING, Spring } from "../../chart/svelte/motion";
-import { chartTooltip } from "../../chart/svelte/variants";
+import { chartTooltip } from "../../chart/variants";
 
 let { target, format }: { target: HTMLElement; format: (ms: number) => string } =
 	$props();

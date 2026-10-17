@@ -1,11 +1,11 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import type { Margin } from "../../chart/core";
 import ChartFrame from "../../chart/svelte/chart-frame.svelte";
 import { useChart } from "../../chart/svelte/context";
-import type { Margin } from "../../chart/svelte/core";
 import { createSeriesRegistry } from "../../chart/svelte/lifecycle.svelte";
+import type { LivePoint } from "../live";
 import { defaultFormatTime } from "./context";
-import type { LivePoint } from "./live";
 import LivePlot from "./live-plot.svelte";
 
 let {

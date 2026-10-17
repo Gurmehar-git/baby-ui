@@ -1,11 +1,11 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { cn } from "../../lib/svelte/cn";
-import { transitionMs } from "../../lib/svelte/motion";
+import { cn } from "../../lib/cn";
+import { transitionMs } from "../../lib/motion";
+import { ATTACHMENT_LABELS, type AttachmentLabels } from "../labels";
+import { type AttachmentStatus, type AttachmentVariant, attachment } from "../variants";
 import { inAttachmentList, setAttachment } from "./context";
-import { ATTACHMENT_LABELS, type AttachmentLabels } from "./labels";
-import { type AttachmentStatus, type AttachmentVariant, attachment } from "./variants";
 
 let {
 	name,

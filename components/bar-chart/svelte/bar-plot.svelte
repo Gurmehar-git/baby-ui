@@ -1,7 +1,6 @@
 <script lang="ts">
 import { scaleBand, scaleLinear } from "d3-scale";
 import { type Snippet, untrack } from "svelte";
-import { setActivePoint, setCartesian, type TickScale } from "../../chart/svelte/context";
 import type {
 	ActivePoint,
 	ChartPhase,
@@ -10,9 +9,10 @@ import type {
 	Margin,
 	SeriesConfig,
 	TooltipRow,
-} from "../../chart/svelte/core";
-import { hoverThrottle } from "../../chart/svelte/core";
-import { CHART_EASE, tween } from "../../chart/svelte/motion";
+} from "../../chart/core";
+import { hoverThrottle } from "../../chart/core";
+import { CHART_EASE, tween } from "../../chart/motion";
+import { setActivePoint, setCartesian, type TickScale } from "../../chart/svelte/context";
 import {
 	type BarRect,
 	barLayout,
@@ -25,10 +25,10 @@ import {
 	type Rect,
 	staggerDelay,
 	UPDATE_MS,
-} from "./bar-core";
+} from "../bar-core";
+import type { BarEntrance, BarOrientationVariant, BarVariant } from "../variants";
 import BarSkeleton from "./bar-skeleton.svelte";
 import { type DisplayedBar, setBarChart } from "./context";
-import type { BarEntrance, BarOrientationVariant, BarVariant } from "./variants";
 
 let {
 	frame,

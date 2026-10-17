@@ -2,8 +2,8 @@
 
 import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import type { ReactNode } from "react";
-import { cn } from "../../lib/react/cn";
-import { type ToggleSize, type ToggleVariant, toggleButton } from "./variants";
+import { cn } from "../../lib/cn";
+import { type ToggleSize, type ToggleVariant, toggleButton } from "../variants";
 
 export type { ToggleSize, ToggleVariant };
 

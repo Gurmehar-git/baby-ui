@@ -8,8 +8,8 @@ import {
 	nextPhase,
 	type SeriesConfig,
 	shouldTweenDomain,
-} from "./core";
-import { CHART_DURATION, type Playback, tween } from "./motion";
+} from "../core";
+import { CHART_DURATION, type Playback, tween } from "../motion";
 
 /** Room around the reveal clip so round caps and dots at the plot edge are not cut. */
 export const CLIP_PAD = 8;

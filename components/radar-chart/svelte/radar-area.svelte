@@ -1,10 +1,9 @@
 <svelte:options namespace="svg" />
 
 <script lang="ts">
+import { CHART_DURATION, CHART_EASE, Spring, tween } from "../../chart/motion";
 import { useActivePoint, useChart } from "../../chart/svelte/context";
-import { CHART_DURATION, CHART_EASE, Spring, tween } from "../../chart/svelte/motion";
-import { cn } from "../../lib/svelte/cn";
-import { useRadar } from "./context";
+import { cn } from "../../lib/cn";
 import {
 	markerPath,
 	polygonPath,
@@ -14,8 +13,9 @@ import {
 	seriesDash,
 	seriesKey,
 	seriesPoints,
-} from "./geometry";
-import { radar } from "./variants";
+} from "../geometry";
+import { radar } from "../variants";
+import { useRadar } from "./context";
 
 let {
 	index,

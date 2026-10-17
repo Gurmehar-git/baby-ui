@@ -2,16 +2,16 @@
 
 <script lang="ts">
 import { untrack } from "svelte";
+import { linePath, seriesVisibleInPhase } from "../../chart/core";
 import { useActivePoint, useChart, usePlot } from "../../chart/svelte/context";
-import { linePath, seriesVisibleInPhase } from "../../chart/svelte/core";
-import { splitAtBaseline } from "../../chart-series/svelte/core";
-import { cn } from "../../lib/svelte/cn";
+import { splitAtBaseline } from "../../chart-series/core";
+import { cn } from "../../lib/cn";
 import {
 	LINE_CURVES,
 	type LineCurve,
 	type ProfitLossEncoding,
 	profitLoss,
-} from "./variants";
+} from "../variants";
 
 let {
 	dataKey,

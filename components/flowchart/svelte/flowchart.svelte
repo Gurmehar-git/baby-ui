@@ -1,10 +1,10 @@
 <script lang="ts">
 import { untrack } from "svelte";
 import Badge from "../../badge/svelte/badge.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { type FlowchartBackground, flowchartCanvas } from "../variants";
 import ConditionChip from "./condition-chip.svelte";
 import type { FlowchartConditionRow, FlowchartEdge, StepNode } from "./types";
-import { type FlowchartBackground, flowchartCanvas } from "./variants";
 
 const PAD_Y = 24;
 const ROW_GAP = 64;

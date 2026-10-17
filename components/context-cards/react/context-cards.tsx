@@ -2,8 +2,8 @@
 
 import type { ComponentProps } from "react";
 import { useEffect, useState } from "react";
-import { cn } from "../../lib/react/cn";
-import { type ContextChunkTone, contextChunkBadge } from "./variants";
+import { cn } from "../../lib/cn";
+import { type ContextChunkTone, contextChunkBadge } from "../variants";
 
 export type { ContextChunkTone };
 

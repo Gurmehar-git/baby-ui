@@ -1,6 +1,6 @@
 import { Progress as ProgressPrimitive } from "@base-ui/react/progress";
 import { useId } from "react";
-import { cn } from "../../lib/react/cn";
+import { cn } from "../../lib/cn";
 import {
 	PROGRESS_RING,
 	type ProgressSize,
@@ -8,7 +8,7 @@ import {
 	type ProgressVariant,
 	progress,
 	progressPercent,
-} from "./variants";
+} from "../variants";
 
 export type { ProgressSize, ProgressTone, ProgressVariant };
 

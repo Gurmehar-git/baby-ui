@@ -10,7 +10,7 @@ import EmptyDescription from "../../empty/svelte/empty-description.svelte";
 import EmptyHeader from "../../empty/svelte/empty-header.svelte";
 import EmptyTitle from "../../empty/svelte/empty-title.svelte";
 import GithubCalendar from "../../github-calendar/svelte/github-calendar.svelte";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import Select from "../../select/svelte/select.svelte";
 import SelectContent from "../../select/svelte/select-content.svelte";
@@ -38,13 +38,13 @@ import {
 	sameDaysChange,
 	weeklyContributions,
 	yearTotal,
-} from "./core";
+} from "../core";
 import {
 	GITHUB_MIX_FILL,
 	GITHUB_STATS_LAYOUT,
 	type GithubStatsVariant,
 	githubStats,
-} from "./variants";
+} from "../variants";
 
 let {
 	data,

@@ -1,5 +1,5 @@
 import { getContext, hasContext, setContext } from "svelte";
-import type { InputOtpInvalidMotion, InputOtpSize } from "./variants";
+import type { InputOtpInvalidMotion, InputOtpSize } from "../variants";
 
 export type InputOtpStyle = {
 	size: InputOtpSize;

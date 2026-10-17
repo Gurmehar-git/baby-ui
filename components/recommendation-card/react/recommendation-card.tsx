@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { Button } from "../../button/react/button";
-import type { ButtonVariant } from "../../button/react/variants";
+import type { ButtonVariant } from "../../button/variants";
 
 export type RecommendationOption = {
 	key: string;

@@ -1,8 +1,8 @@
 <script lang="ts">
 import { PinInput as InputOTPPrimitive } from "bits-ui";
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
+import { inputOtp } from "../variants";
 import { getInputOtpStyle } from "./context";
-import { inputOtp } from "./variants";
 
 let {
 	ref = $bindable(null),

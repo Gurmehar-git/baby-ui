@@ -2,16 +2,16 @@
 
 <script lang="ts">
 import { untrack } from "svelte";
+import { seriesColor } from "../../chart/core";
 import { useActivePoint, useChart, usePlot } from "../../chart/svelte/context";
-import { seriesColor } from "../../chart/svelte/core";
-import { useScatterRoot } from "./context";
-import { enterDelay, shapePath } from "./geometry";
+import { enterDelay, shapePath } from "../geometry";
 import {
 	SCATTER_RADIUS,
 	type ScatterShape,
 	type ScatterSize,
 	scatterPoint,
-} from "./variants";
+} from "../variants";
+import { useScatterRoot } from "./context";
 
 let {
 	dataKey,

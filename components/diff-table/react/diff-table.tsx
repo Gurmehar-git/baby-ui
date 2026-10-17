@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { Badge } from "../../badge/react/badge";
 import { Button } from "../../button/react/button";
-import { cn } from "../../lib/react/cn";
-import { type DiffRowChange, diffRow } from "./variants";
+import { cn } from "../../lib/cn";
+import { type DiffRowChange, diffRow } from "../variants";
 
 export type { DiffRowChange };
 

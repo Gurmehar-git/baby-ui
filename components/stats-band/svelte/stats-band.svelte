@@ -1,5 +1,5 @@
 <script lang="ts">
-import { cn } from "../../lib/svelte/cn";
+import { cn } from "../../lib/cn";
 import RollingDigits from "../../rolling-digits/svelte/rolling-digits.svelte";
 import Sparkline from "../../sparkline/svelte/sparkline.svelte";
 import {
@@ -10,8 +10,8 @@ import {
 	uptimeBars,
 	WORLD,
 	worldDots,
-} from "./stats";
-import { type StatsBandVariant, statsBand } from "./variants";
+} from "../stats";
+import { type StatsBandVariant, statsBand } from "../variants";
 
 let {
 	stats,

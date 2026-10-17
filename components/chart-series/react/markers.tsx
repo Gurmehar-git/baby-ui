@@ -1,13 +1,13 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import { CHART_EASE_CSS } from "../../chart/motion";
 import { useChart } from "../../chart/react/chart";
 import { useActivePoint } from "../../chart/react/frame";
-import { CHART_EASE_CSS } from "../../chart/react/motion";
 import { usePlot } from "../../chart/react/time-series";
-import { cn } from "../../lib/react/cn";
-import { MARKER_ENTER, REVEAL_DURATION } from "./core";
-import { type SeriesMarkerAppearance, seriesMarker } from "./variants";
+import { cn } from "../../lib/cn";
+import { MARKER_ENTER, REVEAL_DURATION } from "../core";
+import { type SeriesMarkerAppearance, seriesMarker } from "../variants";
 
 const RING_GAP = 2;
 const RING_WIDTH = 2;

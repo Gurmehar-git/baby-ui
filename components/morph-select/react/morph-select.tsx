@@ -10,17 +10,17 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "../../lib/react/cn";
-import { glideHighlight } from "../../lib/react/glide";
-import { trackActiveWidth } from "../../lib/react/morph";
+import { cn } from "../../lib/cn";
+import { glideHighlight } from "../../lib/glide";
+import { trackActiveWidth } from "../../lib/morph";
 import {
 	flatOptions,
 	type MorphSelectGroup,
 	type MorphSelectItem,
 	type MorphSelectOption,
 	sections,
-} from "./options";
-import { type MorphSelectSize, type MorphSelectVariant, morphSelect } from "./variants";
+} from "../options";
+import { type MorphSelectSize, type MorphSelectVariant, morphSelect } from "../variants";
 
 export type {
 	MorphSelectGroup,

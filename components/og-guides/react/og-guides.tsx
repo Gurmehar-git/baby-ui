@@ -1,5 +1,5 @@
-import { cn } from "../../lib/react/cn";
-import { type OgGuidesMode, ogGuides } from "./variants";
+import { cn } from "../../lib/cn";
+import { type OgGuidesMode, ogGuides } from "../variants";
 
 export type { OgGuidesMode };
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 import Badge from "../../badge/svelte/badge.svelte";
-import { cn } from "../../lib/svelte/cn";
-import { formatChange, NPM_STATS_LABELS, type PeriodChange } from "./core";
-import { npmStats } from "./variants";
+import { cn } from "../../lib/cn";
+import { formatChange, NPM_STATS_LABELS, type PeriodChange } from "../core";
+import { npmStats } from "../variants";
 
 let {
 	change,
