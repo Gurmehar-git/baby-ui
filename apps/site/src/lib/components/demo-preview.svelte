@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Framework } from "@baby-ui/registry-schema";
-import { Spinner } from "@baby-ui/svelte";
+import { Button, Spinner } from "@baby-ui/svelte";
 import type { Snippet } from "svelte";
 import type { DemoLoader } from "#lib/demos.js";
 import { REACT_RUNNER_URL } from "#lib/flags.js";
@@ -43,17 +43,28 @@ const iframeSrc = $derived(
 		{#if content}
 			{@render content()}
 		{:else if demoPromise}
-			{#await demoPromise}
-				<div class="flex flex-col items-center gap-2 text-muted-foreground text-sm">
-					<Spinner size="default" label="Loading preview" />
-					<span>Loading preview…</span>
-				</div>
-			{:then mod}
-				{@const Demo = mod.default}
-				<Demo {props} />
-			{:catch}
-				<p class="text-muted-foreground text-sm">Couldn't load this preview.</p>
-			{/await}
+			<!-- Keyed so the old demo unmounts before the page resets `props` to the next spec's. -->
+			{#key slug}
+				<svelte:boundary onerror={(error) => console.error(error)}>
+					{#await demoPromise}
+						<div class="flex flex-col items-center gap-2 text-muted-foreground text-sm">
+							<Spinner size="default" label="Loading preview" />
+							<span>Loading preview…</span>
+						</div>
+					{:then mod}
+						{@const Demo = mod.default}
+						<Demo {props} />
+					{:catch}
+						<p class="text-muted-foreground text-sm">Couldn't load this preview.</p>
+					{/await}
+					{#snippet failed(_error, reset)}
+						<div class="flex flex-col items-center gap-2 text-muted-foreground text-sm">
+							<span>This preview crashed.</span>
+							<Button variant="outline" size="sm" onclick={reset}>Reload preview</Button>
+						</div>
+					{/snippet}
+				</svelte:boundary>
+			{/key}
 		{:else}
 			<p class="text-muted-foreground text-sm">No demo for this component yet.</p>
 		{/if}

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Spinner } from "@baby-ui/svelte";
+import { Button, Spinner } from "@baby-ui/svelte";
 import type { Component } from "svelte";
 import type { Panel } from "#lib/docs-nodes.js";
 import CodeGroup from "./code-group.svelte";
@@ -29,13 +29,21 @@ const example = $derived(load?.());
 		class="grid min-h-40 grid-cols-[minmax(0,1fr)] place-items-center rounded-xl border border-border bg-background bg-[radial-gradient(var(--border)_1px,transparent_1px)] [background-size:16px_16px] p-8"
 	>
 		{#if example}
-			{#await example}
-				<Spinner size="default" label="Loading example" />
-			{:then mod}
-				<mod.default />
-			{:catch}
-				<p class="text-muted-foreground text-sm">Couldn't load this example.</p>
-			{/await}
+			<svelte:boundary onerror={(error) => console.error(error)}>
+				{#await example}
+					<Spinner size="default" label="Loading example" />
+				{:then mod}
+					<mod.default />
+				{:catch}
+					<p class="text-muted-foreground text-sm">Couldn't load this example.</p>
+				{/await}
+				{#snippet failed(_error, reset)}
+					<div class="flex flex-col items-center gap-2 text-muted-foreground text-sm">
+						<span>This example crashed.</span>
+						<Button variant="outline" size="sm" onclick={reset}>Reload example</Button>
+					</div>
+				{/snippet}
+			</svelte:boundary>
 		{:else}
 			<p class="text-muted-foreground text-sm">No example named “{name}”.</p>
 		{/if}
