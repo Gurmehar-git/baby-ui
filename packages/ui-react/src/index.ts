@@ -476,9 +476,9 @@ export { type OgWordmarkProps, OgWordmark } from "@baby-ui/components/react/og-w
 export { ogWordmark, type OgWordmarkMode } from "@baby-ui/components/react/og-wordmark";
 export { type OrbitCardStackProps, OrbitCardStack } from "@baby-ui/components/react/orbit-card-stack";
 export { orbitCardStack, type OrbitCardStackSize, type OrbitCardStackLayout, type OrbitStackItem, type OrbitCardStackLabels, DEFAULT_ORBIT_LABELS, initialsFor, clampIndex, orbitTransform, nextIndex, type GridFit, gridFit } from "@baby-ui/components/react/orbit-card-stack";
-export { type OrbitHeroProps, OrbitHero } from "@baby-ui/components/react/orbit-hero";
+export { type OrbitHeroProps, OrbitHero, OrbitHeroContent, OrbitHeroBadge, OrbitHeroTitle, OrbitHeroSubheading, OrbitHeroDescription, OrbitHeroActions, type OrbitHeroActionProps, OrbitHeroAction } from "@baby-ui/components/react/orbit-hero";
 export { ORBIT_OUTER_RADIUS, ORBIT_INNER_RADIUS, ORBIT_HERO_TONES, ORBIT_HERO_LABELS, orbitPlace, orbitDelay, spinOrbits } from "@baby-ui/components/react/orbit-hero";
-export { type OrbitHeroAction, type OrbitHeroGroup, type OrbitHeroTone, type OrbitHeroLabels } from "@baby-ui/components/react/orbit-hero";
+export { type OrbitHeroGroup, type OrbitHeroTone, type OrbitHeroLabels } from "@baby-ui/components/react/orbit-hero";
 export { orbitHero, type OrbitHeroVariant, type OrbitHeroSize } from "@baby-ui/components/react/orbit-hero";
 export { type OverviewCardProps, OverviewCard, OverviewCardHeader, OverviewCardTitle, OverviewCardDescription, type OverviewCardPeriodsProps, OverviewCardPeriods, OverviewCardPeriod, OverviewCardContent, OverviewCardValue, OverviewCardTrend, OverviewCardChart } from "@baby-ui/components/react/overview-card";
 export { overviewCard, type OverviewCardSize, type OverviewCardChartKind } from "@baby-ui/components/react/overview-card";

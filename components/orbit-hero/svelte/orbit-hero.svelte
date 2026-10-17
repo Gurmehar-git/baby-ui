@@ -2,7 +2,6 @@
 import type { Snippet } from "svelte";
 import { untrack } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import Badge from "../../badge/svelte/badge.svelte";
 import Button from "../../button/svelte/button.svelte";
 import { cn } from "../../lib/cn";
 import {
@@ -14,23 +13,13 @@ import {
 	orbitPlace,
 	spinOrbits,
 } from "../orbit";
-import type {
-	OrbitHeroAction,
-	OrbitHeroGroup,
-	OrbitHeroLabels,
-	OrbitHeroTone,
-} from "../types";
+import type { OrbitHeroGroup, OrbitHeroLabels, OrbitHeroTone } from "../types";
 import { type OrbitHeroSize, type OrbitHeroVariant, orbitHero } from "../variants";
+import { setOrbitHero } from "./context";
 
-type Props = Omit<HTMLAttributes<HTMLElement>, "title"> & {
-	headline: string;
-	/** A second, muted headline line. */
-	subheading?: string;
-	description?: string;
-	/** Pill above the headline. */
-	badge?: string;
-	/** The first is the primary action; the rest are outlined. */
-	actions?: OrbitHeroAction[];
+type Props = HTMLAttributes<HTMLElement> & {
+	/** Copy parts: OrbitHeroContent and friends. */
+	children?: Snippet;
 	/** Item sets for the rings; the centre's top half cycles through them. */
 	groups: OrbitHeroGroup<T>[];
 	/** Draws one ring item, usually a 24px-grid icon; it is sized to 32px. */
@@ -50,11 +39,6 @@ type Props = Omit<HTMLAttributes<HTMLElement>, "title"> & {
 };
 
 let {
-	headline,
-	subheading,
-	description,
-	badge,
-	actions = [],
 	groups,
 	item,
 	tones = ORBIT_HERO_TONES,
@@ -68,6 +52,7 @@ let {
 	size = "screen",
 	class: classProp,
 	style,
+	children,
 	...rest
 }: Props = $props();
 
@@ -77,14 +62,16 @@ const reducedMotion = () => matchMedia("(prefers-reduced-motion: reduce)").match
 
 const noiseId = $props.id();
 const s = $derived(orbitHero({ variant, size }));
+setOrbitHero({
+	get styles() {
+		return s;
+	},
+});
 const labels = $derived({ ...ORBIT_HERO_LABELS, ...labelsProp });
 const groupIndex = $derived(wrap(group, groups.length));
 const toneIndex = $derived(wrap(tone, tones.length));
 const current = $derived(groups[groupIndex]);
 const currentTone = $derived(tones[toneIndex]);
-const live = $derived(
-	actions.filter((a) => a.href !== undefined || a.onClick !== undefined),
-);
 const counts = $derived(groups.map((g) => g.count ?? g.outer.length + g.inner.length));
 const maxCount = $derived(Math.max(1, ...counts));
 
@@ -154,6 +141,7 @@ $effect(() => {
 	{/each}
 {/snippet}
 
+<!-- Copy parts (OrbitHeroContent and friends) beside two rings of items that cycle by group and tone. -->
 <section
 	data-slot="orbit-hero"
 	class={cn(s.root(), classProp)}
@@ -183,38 +171,7 @@ $effect(() => {
 		<div aria-hidden="true" class={s.glowWarm()}></div>
 		<div aria-hidden="true" class={s.vignette()}></div>
 
-		<div class={s.content()}>
-			{#if badge}
-				<Badge variant="outline" class={s.badge()}>{badge}</Badge>
-			{/if}
-			<h1 class={s.title()}>
-				{headline}
-				{#if subheading}<br /><span class={s.subheading()}>{subheading}</span>{/if}
-			</h1>
-			{#if description}<p class={s.description()}>{description}</p>{/if}
-			{#if live.length}
-				<div class={s.actions()}>
-					{#each live as action, i (i)}
-						{#if action.href !== undefined}
-							<Button
-								href={action.href}
-								target={action.target}
-								rel={action.target === "_blank" ? "noopener noreferrer" : undefined}
-								variant={i === 0 ? "default" : "outline"}
-								size="lg"
-								onclick={action.onClick}
-							>
-								{action.label}
-							</Button>
-						{:else}
-							<Button variant={i === 0 ? "default" : "outline"} size="lg" onclick={action.onClick}>
-								{action.label}
-							</Button>
-						{/if}
-					{/each}
-				</div>
-			{/if}
-		</div>
+		{@render children?.()}
 
 		<div bind:this={stage} class={s.stage()}>
 			{#if current}

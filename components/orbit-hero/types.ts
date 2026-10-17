@@ -1,12 +1,3 @@
-export interface OrbitHeroAction {
-	label: string;
-	/** Renders a link; otherwise a button calling `onClick`. */
-	href?: string;
-	/** Link target; `_blank` also sets `rel="noopener noreferrer"`. */
-	target?: "_blank" | "_self";
-	onClick?: () => void;
-}
-
 /** One set of items for the two rings; the centre's top half cycles through groups. */
 export interface OrbitHeroGroup<T> {
 	label: string;

@@ -1,4 +1,12 @@
-import { OrbitHero } from "@baby-ui/react";
+import {
+	OrbitHero,
+	OrbitHeroAction,
+	OrbitHeroActions,
+	OrbitHeroContent,
+	OrbitHeroDescription,
+	OrbitHeroSubheading,
+	OrbitHeroTitle,
+} from "@baby-ui/react";
 
 const groups = [
 	{
@@ -16,17 +24,26 @@ const groups = [
 export function Example() {
 	return (
 		<OrbitHero
-			headline="Icons for"
-			subheading="Modern Frameworks"
-			description="One icon set, packaged for every stack you ship."
-			actions={[
-				{ label: "Explore", href: "/icons" },
-				{ label: "Get started", href: "/docs" },
-			]}
 			groups={groups}
 			renderItem={(name) => (
 				<span className="text-xs font-medium">{name.slice(0, 2)}</span>
 			)}
-		/>
+		>
+			<OrbitHeroContent>
+				<OrbitHeroTitle>
+					Icons for
+					<OrbitHeroSubheading>Modern Frameworks</OrbitHeroSubheading>
+				</OrbitHeroTitle>
+				<OrbitHeroDescription>
+					One icon set, packaged for every stack you ship.
+				</OrbitHeroDescription>
+				<OrbitHeroActions>
+					<OrbitHeroAction href="/icons">Explore</OrbitHeroAction>
+					<OrbitHeroAction variant="outline" href="/docs">
+						Get started
+					</OrbitHeroAction>
+				</OrbitHeroActions>
+			</OrbitHeroContent>
+		</OrbitHero>
 	);
 }

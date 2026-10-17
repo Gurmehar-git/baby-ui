@@ -1,5 +1,13 @@
 <script lang="ts">
-import { OrbitHero } from "@baby-ui/svelte";
+import {
+	OrbitHero,
+	OrbitHeroAction,
+	OrbitHeroActions,
+	OrbitHeroContent,
+	OrbitHeroDescription,
+	OrbitHeroSubheading,
+	OrbitHeroTitle,
+} from "@baby-ui/svelte";
 
 const groups = [
 	{
@@ -15,14 +23,19 @@ const groups = [
 ];
 </script>
 
-<OrbitHero
-	headline="Icons for"
-	subheading="Modern Frameworks"
-	description="One icon set, packaged for every stack you ship."
-	actions={[{ label: "Explore", href: "/icons" }, { label: "Get started", href: "/docs" }]}
-	{groups}
->
+<OrbitHero {groups}>
 	{#snippet item(name)}
 		<span class="text-xs font-medium">{name.slice(0, 2)}</span>
 	{/snippet}
+	<OrbitHeroContent>
+		<OrbitHeroTitle>
+			Icons for
+			<OrbitHeroSubheading>Modern Frameworks</OrbitHeroSubheading>
+		</OrbitHeroTitle>
+		<OrbitHeroDescription>One icon set, packaged for every stack you ship.</OrbitHeroDescription>
+		<OrbitHeroActions>
+			<OrbitHeroAction href="/icons">Explore</OrbitHeroAction>
+			<OrbitHeroAction variant="outline" href="/docs">Get started</OrbitHeroAction>
+		</OrbitHeroActions>
+	</OrbitHeroContent>
 </OrbitHero>

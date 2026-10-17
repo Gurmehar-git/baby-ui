@@ -13,22 +13,28 @@ Pass `groups` of plain values and draw each one yourself, so any icon library wo
 of the centre dial cycles groups, the bottom half cycles `tones`; both change on their own every
 `interval` ms until you set it to 0.
 
+The copy is built from parts: `OrbitHeroContent` holds `OrbitHeroBadge`, `OrbitHeroTitle`
+(with an optional `OrbitHeroSubheading`), `OrbitHeroDescription` and `OrbitHeroActions`.
+
 ```svelte
 // tab: Svelte
-<OrbitHero headline="Every icon your product needs" groups={GROUPS}>
+<OrbitHero groups={GROUPS}>
 	{#snippet item(Icon)}
 		<Icon />
 	{/snippet}
+	<OrbitHeroContent>
+		<OrbitHeroTitle>Every icon your product needs</OrbitHeroTitle>
+	</OrbitHeroContent>
 </OrbitHero>
 ```
 
 ```tsx
 // tab: React
-<OrbitHero
-	headline="Every icon your product needs"
-	groups={GROUPS}
-	renderItem={(Icon) => <Icon />}
-/>
+<OrbitHero groups={GROUPS} renderItem={(Icon) => <Icon />}>
+	<OrbitHeroContent>
+		<OrbitHeroTitle>Every icon your product needs</OrbitHeroTitle>
+	</OrbitHeroContent>
+</OrbitHero>
 ```
 
 Items are drawn at 32px on a 48px slot; ten on the outer ring and six on the inner read best.

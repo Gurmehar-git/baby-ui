@@ -15,39 +15,17 @@ export const orbitHero = defineComponent({
 	variants: variantsOf(orbitHeroVariants, ["variant", "size"]),
 	props: [
 		{
-			name: "headline",
-			type: "string",
-			description: "The h1.",
-			required: true,
-			default: "Solar Icons for",
-			control: { kind: "text" },
-		},
-		{
-			name: "subheading",
-			type: "string",
-			description: "A second headline line, in the muted colour.",
-			default: "Modern Frameworks",
-			control: { kind: "text" },
-		},
-		{
-			name: "description",
-			type: "string",
-			description: "Copy under the headline.",
-			default:
-				"1,451 unique icons in six styles, packaged for modern web and mobile frameworks.",
-			control: { kind: "text" },
-		},
-		{
-			name: "badge",
-			type: "string",
-			description: "Pill above the headline.",
-			control: { kind: "text" },
-		},
-		{
-			name: "actions",
-			type: "OrbitHeroAction[]",
+			name: "children",
+			type: "ReactNode | Snippet",
 			description:
-				"Buttons (label with href or onClick); the first is primary, the rest outlined.",
+				"OrbitHero: OrbitHeroContent with OrbitHeroBadge, OrbitHeroTitle (OrbitHeroSubheading inside for a muted second line), OrbitHeroDescription and OrbitHeroActions.",
+			control: { kind: "none" },
+		},
+		{
+			name: "href",
+			type: "string",
+			description:
+				'OrbitHeroAction: renders a link (`target="_blank"` adds a safe rel), otherwise a button with onClick. `variant="outline"` for secondary actions.',
 			control: { kind: "none" },
 		},
 		{

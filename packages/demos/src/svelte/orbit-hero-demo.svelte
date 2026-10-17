@@ -1,5 +1,13 @@
 <script lang="ts">
-import { OrbitHero } from "@baby-ui/svelte";
+import {
+	OrbitHero,
+	OrbitHeroAction,
+	OrbitHeroActions,
+	OrbitHeroContent,
+	OrbitHeroDescription,
+	OrbitHeroSubheading,
+	OrbitHeroTitle,
+} from "@baby-ui/svelte";
 import type { ComponentProps } from "svelte";
 import { ORBIT_GLYPHS, ORBIT_GROUPS, ORBIT_HERO } from "../data/orbit-hero";
 import { controlProps } from "../data/preview-props";
@@ -9,15 +17,10 @@ const p = $derived(controlProps<ComponentProps<typeof OrbitHero>>(props));
 </script>
 
 <OrbitHero
-	headline={p.headline ?? ORBIT_HERO.headline}
-	subheading={p.subheading ?? ORBIT_HERO.subheading}
-	description={p.description ?? ORBIT_HERO.description}
-	badge={p.badge}
 	interval={p.interval}
 	variant={p.variant}
 	size={p.size ?? "section"}
 	groups={ORBIT_GROUPS}
-	actions={ORBIT_HERO.actions}
 >
 	{#snippet item(name)}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -26,4 +29,18 @@ const p = $derived(controlProps<ComponentProps<typeof OrbitHero>>(props));
 			{/each}
 		</svg>
 	{/snippet}
+	<OrbitHeroContent>
+		<OrbitHeroTitle>
+			{ORBIT_HERO.headline}
+			<OrbitHeroSubheading>{ORBIT_HERO.subheading}</OrbitHeroSubheading>
+		</OrbitHeroTitle>
+		<OrbitHeroDescription>{ORBIT_HERO.description}</OrbitHeroDescription>
+		<OrbitHeroActions>
+			{#each ORBIT_HERO.actions as action, i (action.label)}
+				<OrbitHeroAction href={action.href} target={action.target} variant={i === 0 ? "default" : "outline"}>
+					{action.label}
+				</OrbitHeroAction>
+			{/each}
+		</OrbitHeroActions>
+	</OrbitHeroContent>
 </OrbitHero>

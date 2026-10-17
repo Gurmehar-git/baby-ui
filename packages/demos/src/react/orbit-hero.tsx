@@ -1,6 +1,14 @@
 "use client";
 
-import { OrbitHero } from "@baby-ui/react";
+import {
+	OrbitHero,
+	OrbitHeroAction,
+	OrbitHeroActions,
+	OrbitHeroContent,
+	OrbitHeroDescription,
+	OrbitHeroSubheading,
+	OrbitHeroTitle,
+} from "@baby-ui/react";
 import type { ComponentProps } from "react";
 import { ORBIT_GLYPHS, ORBIT_GROUPS, ORBIT_HERO } from "../data/orbit-hero";
 import { controlProps } from "../data/preview-props";
@@ -29,16 +37,31 @@ export function OrbitHeroDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof OrbitHero>>(props);
 	return (
 		<OrbitHero
-			headline={p.headline ?? ORBIT_HERO.headline}
-			subheading={p.subheading ?? ORBIT_HERO.subheading}
-			description={p.description ?? ORBIT_HERO.description}
-			badge={p.badge}
 			interval={p.interval}
 			variant={p.variant}
 			size={p.size ?? "section"}
 			groups={ORBIT_GROUPS}
-			actions={ORBIT_HERO.actions}
 			renderItem={(name) => <Glyph name={name} />}
-		/>
+		>
+			<OrbitHeroContent>
+				<OrbitHeroTitle>
+					{ORBIT_HERO.headline}
+					<OrbitHeroSubheading>{ORBIT_HERO.subheading}</OrbitHeroSubheading>
+				</OrbitHeroTitle>
+				<OrbitHeroDescription>{ORBIT_HERO.description}</OrbitHeroDescription>
+				<OrbitHeroActions>
+					{ORBIT_HERO.actions.map((action, i) => (
+						<OrbitHeroAction
+							key={action.label}
+							href={action.href}
+							target={action.target}
+							variant={i === 0 ? "default" : "outline"}
+						>
+							{action.label}
+						</OrbitHeroAction>
+					))}
+				</OrbitHeroActions>
+			</OrbitHeroContent>
+		</OrbitHero>
 	);
 }

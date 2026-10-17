@@ -841,8 +841,16 @@ export { ogWordmark, type OgWordmarkMode } from "@baby-ui/components/svelte/og-w
 export { OrbitCardStack } from "@baby-ui/components/svelte/orbit-card-stack";
 export { orbitCardStack, type OrbitCardStackSize, type OrbitCardStackLayout, type OrbitStackItem, type OrbitCardStackLabels, DEFAULT_ORBIT_LABELS, initialsFor, clampIndex, orbitTransform, nextIndex, type GridFit, gridFit } from "@baby-ui/components/svelte/orbit-card-stack";
 export { OrbitHero } from "@baby-ui/components/svelte/orbit-hero";
+export { OrbitHeroAction } from "@baby-ui/components/svelte/orbit-hero";
+export { OrbitHeroActions } from "@baby-ui/components/svelte/orbit-hero";
+export { OrbitHeroBadge } from "@baby-ui/components/svelte/orbit-hero";
+export { OrbitHeroContent } from "@baby-ui/components/svelte/orbit-hero";
+export { OrbitHeroDescription } from "@baby-ui/components/svelte/orbit-hero";
+export { OrbitHeroSubheading } from "@baby-ui/components/svelte/orbit-hero";
+export { OrbitHeroTitle } from "@baby-ui/components/svelte/orbit-hero";
+export { type OrbitHeroState, setOrbitHero, orbitHeroState } from "@baby-ui/components/svelte/orbit-hero";
 export { ORBIT_OUTER_RADIUS, ORBIT_INNER_RADIUS, ORBIT_HERO_TONES, ORBIT_HERO_LABELS, orbitPlace, orbitDelay, spinOrbits } from "@baby-ui/components/svelte/orbit-hero";
-export { type OrbitHeroAction, type OrbitHeroGroup, type OrbitHeroTone, type OrbitHeroLabels } from "@baby-ui/components/svelte/orbit-hero";
+export { type OrbitHeroGroup, type OrbitHeroTone, type OrbitHeroLabels } from "@baby-ui/components/svelte/orbit-hero";
 export { orbitHero, type OrbitHeroVariant, type OrbitHeroSize } from "@baby-ui/components/svelte/orbit-hero";
 export { OverviewCard } from "@baby-ui/components/svelte/overview-card";
 export { OverviewCardChart } from "@baby-ui/components/svelte/overview-card";
