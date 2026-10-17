@@ -14,18 +14,10 @@ export const pricing02 = defineComponent({
 	variants: variantsOf(pricing02Variants, ["variant"]),
 	props: [
 		{
-			name: "plans",
-			type: "Pricing02Plan[]",
-			description:
-				"One entry per plan: id, name, prices keyed by period, features, and optional description, featuresLabel, featured, cta and href.",
-			required: true,
-			control: { kind: "none" },
-		},
-		{
 			name: "periods",
 			type: "Pricing02Period[]",
 			description:
-				"Billing periods (value, label, cadence). The toggle shows when there are two or more.",
+				"Pricing02: billing periods (value, label, cadence). Pricing02Periods shows a toggle when there are two or more.",
 			required: true,
 			control: { kind: "none" },
 		},
@@ -33,52 +25,36 @@ export const pricing02 = defineComponent({
 			name: "period",
 			type: "string",
 			description:
-				"Active period value. Controlled with defaultPeriod and onPeriodChange; bindable in Svelte.",
-			control: { kind: "none" },
-		},
-		{
-			name: "onSelect",
-			type: "(planId: string, period: string) => void",
-			description:
-				"Called by a plan's button when the plan has no href. Plans with neither show no button.",
+				"Pricing02: active period value. Controlled with defaultPeriod and onPeriodChange; bindable in Svelte.",
 			control: { kind: "none" },
 		},
 		{
 			name: "variant",
 			type: VARIANTS.map((v) => `"${v}"`).join(" | "),
-			description:
-				"`soft` fills each price panel, tinting the featured one; `outline` draws dashed panels with a solid primary rim on the featured one.",
+			description: "Pricing02: a raised panel per plan, or a dashed outline.",
 			default: "soft",
 			control: { kind: "select", options: VARIANTS },
 		},
 		{
-			name: "eyebrow",
-			type: "string",
-			description: "Small caps line above the title.",
+			name: "children",
+			type: "ReactNode | Snippet",
+			description:
+				"Pricing02: Pricing02Header (Pricing02Heading, Pricing02Aside with Pricing02Periods), Pricing02Plans of Pricing02Plan cards (Pricing02PlanPanel over Pricing02PlanList), then Pricing02Footnotes.",
 			control: { kind: "none" },
 		},
 		{
-			name: "title",
-			type: "string",
-			description: "Section heading; line breaks are kept.",
+			name: "featured",
+			type: "boolean",
+			description: "Pricing02Plan: tints the panel and fills the button.",
+			default: false,
 			control: { kind: "none" },
 		},
 		{
-			name: "description",
-			type: "string",
-			description: "Copy above the toggle.",
-			control: { kind: "none" },
-		},
-		{
-			name: "footnotes",
-			type: "string[]",
-			description: "Small print under the plans.",
-			control: { kind: "none" },
-		},
-		{
-			name: "labels",
-			type: "Partial<Pricing02Labels>",
-			description: "The toggle's accessible name and the fallback button prefix.",
+			name: "prices",
+			type: "Record<string, string>",
+			description:
+				"Pricing02PlanPrice: display price keyed by period value, already formatted.",
+			required: true,
 			control: { kind: "none" },
 		},
 	],
