@@ -798,7 +798,17 @@ export { ORBIT_OUTER_RADIUS, ORBIT_INNER_RADIUS, ORBIT_HERO_TONES, ORBIT_HERO_LA
 export { type OrbitHeroAction, type OrbitHeroGroup, type OrbitHeroTone, type OrbitHeroLabels } from "@baby-ui/components/svelte/orbit-hero";
 export { orbitHero, type OrbitHeroVariant, type OrbitHeroSize } from "@baby-ui/components/svelte/orbit-hero";
 export { OverviewCard } from "@baby-ui/components/svelte/overview-card";
-export { overviewCard, type OverviewCardSize, type OverviewCardChart } from "@baby-ui/components/svelte/overview-card";
+export { OverviewCardChart } from "@baby-ui/components/svelte/overview-card";
+export { OverviewCardContent } from "@baby-ui/components/svelte/overview-card";
+export { OverviewCardDescription } from "@baby-ui/components/svelte/overview-card";
+export { OverviewCardHeader } from "@baby-ui/components/svelte/overview-card";
+export { OverviewCardPeriod } from "@baby-ui/components/svelte/overview-card";
+export { OverviewCardPeriods } from "@baby-ui/components/svelte/overview-card";
+export { OverviewCardTitle } from "@baby-ui/components/svelte/overview-card";
+export { OverviewCardTrend } from "@baby-ui/components/svelte/overview-card";
+export { OverviewCardValue } from "@baby-ui/components/svelte/overview-card";
+export { type OverviewCardState, setOverviewCard, overviewCardState } from "@baby-ui/components/svelte/overview-card";
+export { overviewCard, type OverviewCardSize, type OverviewCardChartKind } from "@baby-ui/components/svelte/overview-card";
 export { PageHeader } from "@baby-ui/components/svelte/page-header";
 export { PageHeaderActions } from "@baby-ui/components/svelte/page-header";
 export { PageHeaderBar } from "@baby-ui/components/svelte/page-header";

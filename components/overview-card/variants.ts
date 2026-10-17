@@ -3,9 +3,9 @@ import { tv, type VariantProps } from "tailwind-variants";
 export const overviewCard = tv({
 	slots: {
 		root: "w-full gap-0 overflow-hidden py-0",
-		header: "flex flex-wrap items-start justify-between gap-3 px-5 pt-4 pb-1",
+		header: "gap-x-3 gap-y-0.5 px-5 pt-4 pb-1",
 		title: "font-medium text-muted-foreground text-sm",
-		description: "mt-0.5 text-muted-foreground text-xs",
+		description: "text-muted-foreground text-xs",
 		body: "flex flex-col gap-3 px-5 pb-0",
 		headline: "flex flex-wrap items-baseline gap-2",
 		label: "text-muted-foreground text-xs",
@@ -26,4 +26,6 @@ export const overviewCard = tv({
 });
 
 export type OverviewCardSize = NonNullable<VariantProps<typeof overviewCard>["size"]>;
-export type OverviewCardChart = NonNullable<VariantProps<typeof overviewCard>["chart"]>;
+export type OverviewCardChartKind = NonNullable<
+	VariantProps<typeof overviewCard>["chart"]
+>;

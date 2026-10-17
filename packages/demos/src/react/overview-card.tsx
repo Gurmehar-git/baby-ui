@@ -1,6 +1,16 @@
 "use client";
 
-import { OverviewCard } from "@baby-ui/react";
+import {
+	OverviewCard,
+	OverviewCardChart,
+	OverviewCardContent,
+	OverviewCardHeader,
+	OverviewCardPeriod,
+	OverviewCardPeriods,
+	OverviewCardTitle,
+	OverviewCardTrend,
+	OverviewCardValue,
+} from "@baby-ui/react";
 import { type ComponentProps, useState } from "react";
 import { REVENUE_BY_PERIOD, REVENUE_PERIODS } from "../data/overview";
 import { controlProps } from "../data/preview-props";
@@ -21,19 +31,33 @@ export function OverviewCardDemo({ props }: { props: Props }) {
 	return (
 		<div className="w-full max-w-lg">
 			<OverviewCard
-				title="Total revenue"
+				name="Total revenue"
 				data={reading.data}
 				dataKey="revenue"
 				value={reading.total}
 				label={REVENUE_PERIODS.find((p) => p.value === period)?.label ?? ""}
 				trend={reading.trend}
-				periods={REVENUE_PERIODS}
-				period={period}
-				onPeriodChange={setPeriod}
 				chart={p.chart ?? "area"}
 				size={p.size ?? "default"}
 				formatValue={currency}
-			/>
+			>
+				<OverviewCardHeader>
+					<OverviewCardTitle>Total revenue</OverviewCardTitle>
+					<OverviewCardPeriods value={period} onValueChange={setPeriod}>
+						{REVENUE_PERIODS.map((option) => (
+							<OverviewCardPeriod key={option.value} value={option.value}>
+								{option.label}
+							</OverviewCardPeriod>
+						))}
+					</OverviewCardPeriods>
+				</OverviewCardHeader>
+				<OverviewCardContent>
+					<OverviewCardValue>
+						<OverviewCardTrend />
+					</OverviewCardValue>
+					<OverviewCardChart />
+				</OverviewCardContent>
+			</OverviewCard>
 		</div>
 	);
 }

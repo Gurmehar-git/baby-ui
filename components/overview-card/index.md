@@ -1,14 +1,17 @@
 ---
 title: Overview Card
-description: "A dashboard hero metric: headline, trend, an optional period switcher and a full-width chart."
+description: "A dashboard hero metric from parts: headline, trend, an optional period switcher and a full-width chart."
 component: overview-card
 category: blocks
 tags: [overview, dashboard, hero metric, chart, card]
 ---
 
-A bigger sibling of `stat-card`: the chart is the main event, and an optional period
-switcher (`periods`, `period`, `onPeriodChange`) lets a caller swap in a different `data`
-array without the card owning any fetch logic itself.
+A bigger sibling of `stat-card`, built from parts: `OverviewCardHeader` holds the title and an
+optional `OverviewCardPeriods` switcher, and `OverviewCardContent` holds `OverviewCardValue`
+(with `OverviewCardTrend` inside) and the full-width `OverviewCardChart`.
+
+`OverviewCardPeriods` is a ToggleGroup of `OverviewCardPeriod` items: listen to
+`onValueChange` (or `bind:value` in Svelte) and pass a different `data` array, so the card
+never owns any fetch logic. Leave it out for a single fixed range.
 
 Pass `formatValue` for currency or units, and `locale` for the date and percent formats.
-Omit `periods` to hide the switcher entirely, e.g. for a single fixed range.

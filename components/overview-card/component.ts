@@ -4,7 +4,7 @@ export const overviewCard = defineComponent({
 	slug: "overview-card",
 	name: "Overview Card",
 	description:
-		"A dashboard hero metric: headline, trend, an optional period switcher and a full-width chart.",
+		"A dashboard hero metric from parts: headline, trend, an optional period switcher and a full-width chart.",
 	category: "blocks",
 	status: "stable",
 	retired: true,
@@ -19,7 +19,7 @@ export const overviewCard = defineComponent({
 		{
 			name: "value",
 			type: "number",
-			description: "Headline at rest, e.g. the period total.",
+			description: "OverviewCard: headline at rest, e.g. the period total.",
 			required: true,
 			control: { kind: "none" },
 		},
@@ -31,16 +31,32 @@ export const overviewCard = defineComponent({
 			control: { kind: "none" },
 		},
 		{
-			name: "periods",
-			type: "{ value: string; label: string }[]",
-			description: "Period switcher options. Omit to hide the toggle entirely.",
+			name: "name",
+			type: "string",
+			description:
+				"OverviewCard: what the metric is; the chart's accessible name and the period switcher's lead.",
+			required: true,
 			control: { kind: "none" },
 		},
 		{
-			name: "period",
+			name: "label",
+			type: "string",
+			description: 'OverviewCard: caption under the headline at rest, e.g. "This month".',
+			required: true,
+			control: { kind: "none" },
+		},
+		{
+			name: "value",
 			type: "string",
 			description:
-				"Selected period. Controlled with onPeriodChange; bindable in Svelte. Uncontrolled default is defaultPeriod or the first option.",
+				"OverviewCardPeriods: selected period. Controlled with onValueChange or defaultValue; bindable in Svelte.",
+			control: { kind: "none" },
+		},
+		{
+			name: "children",
+			type: "ReactNode | Snippet",
+			description:
+				"OverviewCard: OverviewCardHeader (OverviewCardTitle, OverviewCardDescription, OverviewCardPeriods) and OverviewCardContent (OverviewCardValue, OverviewCardTrend, OverviewCardChart).",
 			control: { kind: "none" },
 		},
 		{
