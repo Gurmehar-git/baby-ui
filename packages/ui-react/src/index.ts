@@ -597,7 +597,8 @@ export { shortcutCap, type ShortcutVariant, type ShortcutSize } from "@baby-ui/c
 export { type ShortcutRecorderProps, ShortcutRecorder } from "@baby-ui/components/react/shortcut-recorder";
 export { type ShortcutBinding, RESERVED_SHORTCUTS, heldModifiers, heldCaps, comboFromEvent, hasModifier, comboKey } from "@baby-ui/components/react/shortcut-recorder";
 export { shortcutRecorder, type ShortcutRecorderSize } from "@baby-ui/components/react/shortcut-recorder";
-export { type ShowMoreProps, ShowMore } from "@baby-ui/components/react/show-more";
+export { type ShowMoreProps, ShowMore, ShowMoreContent, type ShowMoreTriggerProps, ShowMoreTrigger } from "@baby-ui/components/react/show-more";
+export { showMore } from "@baby-ui/components/react/show-more";
 export { type ShowcaseGridProps, ShowcaseGrid, type ShowcasePanelProps, ShowcasePanel } from "@baby-ui/components/react/showcase-grid";
 export { showcaseGrid, showcasePanel, type ShowcaseFrame, type ShowcaseSpan, DOT_CORNERS, RULE_MARKS, HATCH_MARKS } from "@baby-ui/components/react/showcase-grid";
 export { type SidebarNavItem, type SidebarRecent, type SidebarWorkspace, type SidebarWorkspaceAction, type SidebarNavProps, SidebarNav } from "@baby-ui/components/react/sidebar-nav";

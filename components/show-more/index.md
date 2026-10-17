@@ -6,8 +6,9 @@ category: base
 tags: [show, more]
 ---
 
-The control only renders when the content actually exceeds `lines`, measured with a
-`ResizeObserver`. A "Show more" that expands nothing is worse than no control.
+Put the text in `ShowMoreContent` and the expander, `ShowMoreTrigger`, after it. The trigger
+only renders when the content actually exceeds `lines`, measured with a `ResizeObserver`. A
+"Show more" that expands nothing is worse than no control.
 
 ## Why the veil matters
 

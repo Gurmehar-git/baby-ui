@@ -11,37 +11,45 @@ export const showMore = defineComponent({
 		{
 			name: "lines",
 			type: "number",
-			description: "Lines of content visible when collapsed.",
+			description: "ShowMore: lines of content visible when collapsed.",
 			default: 3,
 			control: { kind: "number", min: 1, max: 12, step: 1 },
 		},
 		{
 			name: "maxHeight",
 			type: "number",
-			description: "Cap on the expanded height, in pixels. Past it the region scrolls.",
+			description:
+				"ShowMore: cap on the expanded height, in pixels. Past it the region scrolls.",
 			default: 320,
 			control: { kind: "number", min: 120, max: 800, step: 20 },
 		},
 		{
 			name: "expanded",
 			type: "boolean",
-			description: "Whether the content is expanded. Bindable.",
+			description:
+				"ShowMore: whether the content is expanded. Controlled with onExpandedChange or defaultExpanded; bindable in Svelte.",
 			default: false,
 			control: { kind: "none" },
 		},
 		{
 			name: "moreLabel",
 			type: "string",
-			description: "Expander label when collapsed.",
+			description: "ShowMoreTrigger: label when collapsed.",
 			default: "Show more",
 			control: { kind: "text" },
 		},
 		{
 			name: "lessLabel",
 			type: "string",
-			description: "Expander label when expanded.",
+			description: "ShowMoreTrigger: label when expanded.",
 			default: "Show less",
 			control: { kind: "text" },
+		},
+		{
+			name: "children",
+			type: "ReactNode | Snippet",
+			description: "ShowMore: ShowMoreContent, then ShowMoreTrigger.",
+			control: { kind: "none" },
 		},
 	],
 	motion: {

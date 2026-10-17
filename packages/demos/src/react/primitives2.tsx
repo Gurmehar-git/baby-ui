@@ -16,6 +16,8 @@ import {
 	ScrollArea,
 	Shortcut,
 	ShowMore,
+	ShowMoreContent,
+	ShowMoreTrigger,
 	Spinner,
 	Toggle,
 	ToggleGroup,
@@ -137,15 +139,17 @@ export function CollapsibleDemo({ props }: { props: Props }) {
 
 export function ShowMoreDemo({ props }: { props: Props }) {
 	const p = controlProps<ComponentProps<typeof ShowMore>>(props);
+	const trigger = controlProps<ComponentProps<typeof ShowMoreTrigger>>(props);
 	return (
 		<div className="w-full max-w-80">
-			<ShowMore
-				lines={Number(p.lines ?? 3)}
-				maxHeight={Number(p.maxHeight ?? 320)}
-				moreLabel={p.moreLabel || "Show more"}
-				lessLabel={p.lessLabel || "Show less"}
-			>
-				<p>{LOREM}</p>
+			<ShowMore lines={Number(p.lines ?? 3)} maxHeight={Number(p.maxHeight ?? 320)}>
+				<ShowMoreContent>
+					<p>{LOREM}</p>
+				</ShowMoreContent>
+				<ShowMoreTrigger
+					moreLabel={trigger.moreLabel || "Show more"}
+					lessLabel={trigger.lessLabel || "Show less"}
+				/>
 			</ShowMore>
 		</div>
 	);
