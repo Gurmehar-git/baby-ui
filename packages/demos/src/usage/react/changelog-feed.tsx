@@ -1,6 +1,12 @@
 "use client";
 
-import { ChangelogFeed } from "@baby-ui/react";
+import {
+	ChangelogFeed,
+	ChangelogFeedFilters,
+	ChangelogFeedHeader,
+	ChangelogFeedList,
+	ChangelogFeedTitle,
+} from "@baby-ui/react";
 
 export function Example() {
 	return (
@@ -24,6 +30,12 @@ export function Example() {
 					summary: "Names like Zoë now open correctly in every spreadsheet app.",
 				},
 			]}
-		/>
+		>
+			<ChangelogFeedHeader>
+				<ChangelogFeedTitle>Changelog</ChangelogFeedTitle>
+			</ChangelogFeedHeader>
+			<ChangelogFeedFilters />
+			<ChangelogFeedList />
+		</ChangelogFeed>
 	);
 }

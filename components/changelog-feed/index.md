@@ -12,4 +12,8 @@ entries scroll under it.
 
 The New / Improved / Fixed chips filter by `kind` and show their counts. An entry opens into
 its `details` and an optional `media`: a captioned `photo` or a `code` snippet with a copy
-button. Put a subscribe control in `actions`.
+button.
+
+Arrange the parts: `ChangelogFeedHeader` holds `ChangelogFeedHeading` (title and description)
+and anything beside it, such as a subscribe button. Then `ChangelogFeedFilters`,
+`ChangelogFeedList`, `ChangelogFeedEmpty` and an optional closing `ChangelogFeedEnd`.

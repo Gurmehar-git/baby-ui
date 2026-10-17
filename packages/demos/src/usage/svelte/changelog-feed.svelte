@@ -1,5 +1,11 @@
 <script lang="ts">
-import { ChangelogFeed } from "@baby-ui/svelte";
+import {
+	ChangelogFeed,
+	ChangelogFeedFilters,
+	ChangelogFeedHeader,
+	ChangelogFeedList,
+	ChangelogFeedTitle,
+} from "@baby-ui/svelte";
 </script>
 
 <ChangelogFeed
@@ -22,4 +28,10 @@ import { ChangelogFeed } from "@baby-ui/svelte";
 			summary: "Names like Zoë now open correctly in every spreadsheet app.",
 		},
 	]}
-/>
+>
+	<ChangelogFeedHeader>
+		<ChangelogFeedTitle>Changelog</ChangelogFeedTitle>
+	</ChangelogFeedHeader>
+	<ChangelogFeedFilters />
+	<ChangelogFeedList />
+</ChangelogFeed>

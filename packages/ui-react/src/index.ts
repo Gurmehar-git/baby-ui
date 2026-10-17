@@ -72,7 +72,7 @@ export { carousel, type CarouselVariant, type CarouselSize, type CarouselControl
 export { type CaseStudyFlipStackProps, CaseStudyFlipStack } from "@baby-ui/components/react/case-study-flip-stack";
 export { type CaseStudyFlipItem, flipCardOffsets, activeFlipCard } from "@baby-ui/components/react/case-study-flip-stack";
 export { caseStudyFlipStack, type CaseStudyFlipStackSize, type CaseStudyFlipStackTone } from "@baby-ui/components/react/case-study-flip-stack";
-export { type ChangelogFeedProps, ChangelogFeed } from "@baby-ui/components/react/changelog-feed";
+export { type ChangelogFeedProps, ChangelogFeed, ChangelogFeedHeader, ChangelogFeedHeading, ChangelogFeedTitle, ChangelogFeedDescription, ChangelogFeedFilters, type ChangelogFeedListProps, ChangelogFeedList, ChangelogFeedEmpty, ChangelogFeedEnd } from "@baby-ui/components/react/changelog-feed";
 export { type ChangelogKind, type ChangelogMedia, type ChangelogEntry, CHANGELOG_KINDS, kindBadge, changelogMonths, changelogDay, kindCount, kindShown } from "@baby-ui/components/react/changelog-feed";
 export { changelogFeed, type ChangelogFeedVariant } from "@baby-ui/components/react/changelog-feed";
 export { type ChartConfig, useChart, type ChartContainerProps, ChartContainer, ChartStyle, type ChartLegendContentProps, ChartLegendContent, ChartLegend } from "@baby-ui/components/react/chart";

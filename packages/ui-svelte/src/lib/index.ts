@@ -158,7 +158,16 @@ export { CaseStudyFlipStack } from "@baby-ui/components/svelte/case-study-flip-s
 export { type CaseStudyFlipItem, flipCardOffsets, activeFlipCard } from "@baby-ui/components/svelte/case-study-flip-stack";
 export { caseStudyFlipStack, type CaseStudyFlipStackSize, type CaseStudyFlipStackTone } from "@baby-ui/components/svelte/case-study-flip-stack";
 export { ChangelogFeed } from "@baby-ui/components/svelte/changelog-feed";
+export { ChangelogFeedDescription } from "@baby-ui/components/svelte/changelog-feed";
+export { ChangelogFeedEmpty } from "@baby-ui/components/svelte/changelog-feed";
+export { ChangelogFeedEnd } from "@baby-ui/components/svelte/changelog-feed";
+export { ChangelogFeedFilters } from "@baby-ui/components/svelte/changelog-feed";
+export { ChangelogFeedHeader } from "@baby-ui/components/svelte/changelog-feed";
+export { ChangelogFeedHeading } from "@baby-ui/components/svelte/changelog-feed";
+export { ChangelogFeedList } from "@baby-ui/components/svelte/changelog-feed";
+export { ChangelogFeedTitle } from "@baby-ui/components/svelte/changelog-feed";
 export { type ChangelogKind, type ChangelogMedia, type ChangelogEntry, CHANGELOG_KINDS, kindBadge, changelogMonths, changelogDay, kindCount, kindShown } from "@baby-ui/components/svelte/changelog-feed";
+export { type ChangelogFeedState, setChangelogFeed, changelogFeedState } from "@baby-ui/components/svelte/changelog-feed";
 export { changelogFeed, type ChangelogFeedVariant } from "@baby-ui/components/svelte/changelog-feed";
 export { Background } from "@baby-ui/components/svelte/chart";
 export { CartesianGrid } from "@baby-ui/components/svelte/chart";

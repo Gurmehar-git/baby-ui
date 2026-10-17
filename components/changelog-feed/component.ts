@@ -16,7 +16,7 @@ export const changelogFeed = defineComponent({
 			name: "image",
 			type: "(props: ImageSlotProps) => ReactNode | Snippet<[ImageSlotProps]>",
 			description:
-				"Renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
+				"ChangelogFeedList: renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
 			control: { kind: "none" },
 		},
 		{
@@ -36,9 +36,10 @@ export const changelogFeed = defineComponent({
 			control: { kind: "select", options: VARIANTS },
 		},
 		{
-			name: "actions",
+			name: "children",
 			type: "ReactNode | Snippet",
-			description: "Beside the title, such as a subscribe button.",
+			description:
+				"ChangelogFeed: ChangelogFeedHeader (ChangelogFeedHeading with a title and description, then e.g. a subscribe button), ChangelogFeedFilters, ChangelogFeedList, ChangelogFeedEmpty and ChangelogFeedEnd.",
 			control: { kind: "none" },
 		},
 		{
@@ -53,12 +54,6 @@ export const changelogFeed = defineComponent({
 			type: "string[]",
 			description:
 				"Open entry ids; defaults to the newest. Controlled with onValueChange.",
-			control: { kind: "none" },
-		},
-		{
-			name: "endNote",
-			type: "string",
-			description: "A closing line after the last entry.",
 			control: { kind: "none" },
 		},
 	],
