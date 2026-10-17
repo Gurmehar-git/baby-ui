@@ -275,8 +275,7 @@ export { type GithubCounts, type GithubContributionMix, type GithubOrganization,
 export { githubStats, type GithubStatsVariant, GITHUB_STATS_LAYOUT, GITHUB_MIX_FILL } from "@baby-ui/components/react/github-stats";
 export { type GlitchTextProps, GlitchText } from "@baby-ui/components/react/glitch-text";
 export { glitchText, type GlitchTextSize, type GlitchTextBlendMode } from "@baby-ui/components/react/glitch-text";
-export { type GradientHero01Props, GradientHero01 } from "@baby-ui/components/react/gradient-hero-01";
-export { type GradientHero01Action } from "@baby-ui/components/react/gradient-hero-01";
+export { type GradientHero01Props, GradientHero01, GradientHero01Content, GradientHero01Badge, GradientHero01Title, GradientHero01Description, GradientHero01Actions, type GradientHero01ActionProps, GradientHero01Action, GradientHero01Install, GradientHero01Meta, GradientHero01Media } from "@baby-ui/components/react/gradient-hero-01";
 export { gradientHero01, type GradientHero01Tone, type GradientHero01Size } from "@baby-ui/components/react/gradient-hero-01";
 export { type GrainGradientProps, GrainGradient } from "@baby-ui/components/react/grain-gradient";
 export { grainGradient, type GrainGradientTone, type GrainGradientPosition, grainTexture } from "@baby-ui/components/react/grain-gradient";

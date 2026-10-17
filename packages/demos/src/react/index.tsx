@@ -106,7 +106,7 @@ export const demos: Record<string, DemoLoader> = {
 	"github-calendar": () => import("./auto/github-calendar").then((m) => ({ default: m.GithubCalendarDemo })),
 	"github-stats": () => import("./github-stats").then((m) => ({ default: m.GithubStatsDemo })),
 	"glitch-text": () => import("./text").then((m) => ({ default: m.GlitchTextDemo })),
-	"gradient-hero-01": () => import("./auto/gradient-hero-01").then((m) => ({ default: m.GradientHero01Demo })),
+	"gradient-hero-01": () => import("./gradient-hero-01").then((m) => ({ default: m.GradientHero01Demo })),
 	"grain-gradient": () => import("./grain-gradient").then((m) => ({ default: m.GrainGradientDemo })),
 	"heatmap-chart": () => import("./heatmap-chart").then((m) => ({ default: m.HeatmapChartDemo })),
 	"hero-stage": () => import("./hero-stage").then((m) => ({ default: m.HeroStageDemo })),

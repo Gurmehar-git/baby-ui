@@ -569,7 +569,16 @@ export { githubStats, type GithubStatsVariant, GITHUB_STATS_LAYOUT, GITHUB_MIX_F
 export { GlitchText } from "@baby-ui/components/svelte/glitch-text";
 export { glitchText, type GlitchTextSize, type GlitchTextBlendMode } from "@baby-ui/components/svelte/glitch-text";
 export { GradientHero01 } from "@baby-ui/components/svelte/gradient-hero-01";
-export { type GradientHero01Action } from "@baby-ui/components/svelte/gradient-hero-01";
+export { GradientHero01Action } from "@baby-ui/components/svelte/gradient-hero-01";
+export { GradientHero01Actions } from "@baby-ui/components/svelte/gradient-hero-01";
+export { GradientHero01Badge } from "@baby-ui/components/svelte/gradient-hero-01";
+export { GradientHero01Content } from "@baby-ui/components/svelte/gradient-hero-01";
+export { GradientHero01Description } from "@baby-ui/components/svelte/gradient-hero-01";
+export { GradientHero01Install } from "@baby-ui/components/svelte/gradient-hero-01";
+export { GradientHero01Media } from "@baby-ui/components/svelte/gradient-hero-01";
+export { GradientHero01Meta } from "@baby-ui/components/svelte/gradient-hero-01";
+export { GradientHero01Title } from "@baby-ui/components/svelte/gradient-hero-01";
+export { type GradientHero01State, setGradientHero01, gradientHero01State } from "@baby-ui/components/svelte/gradient-hero-01";
 export { gradientHero01, type GradientHero01Tone, type GradientHero01Size } from "@baby-ui/components/svelte/gradient-hero-01";
 export { GrainGradient } from "@baby-ui/components/svelte/grain-gradient";
 export { grainGradient, type GrainGradientTone, type GrainGradientPosition, grainTexture } from "@baby-ui/components/svelte/grain-gradient";

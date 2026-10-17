@@ -12,51 +12,27 @@ export const gradientHero01 = defineComponent({
 	category: "blocks",
 	status: "stable",
 	retired: true,
-	demo: { mode: "auto", frame: "none" },
 	variants: variantsOf(gradientHero01Variants, ["tone", "size"]),
 	props: [
 		{
-			name: "headline",
+			name: "children",
+			type: "ReactNode | Snippet",
+			description:
+				"GradientHero01: GradientHero01Content (GradientHero01Badge, GradientHero01Title, GradientHero01Description, GradientHero01Actions, GradientHero01Install, GradientHero01Meta), then an optional GradientHero01Media that switches to a split layout.",
+			control: { kind: "none" },
+		},
+		{
+			name: "command",
 			type: "string",
-			description: "The h1.",
+			description: "GradientHero01Install: the command in the pill, with a copy button.",
 			required: true,
 			control: { kind: "none" },
 		},
 		{
-			name: "description",
+			name: "href",
 			type: "string",
-			description: "Copy under the headline.",
-			control: { kind: "none" },
-		},
-		{
-			name: "badge",
-			type: "string",
-			description: "Pill above the headline.",
-			control: { kind: "none" },
-		},
-		{
-			name: "actions",
-			type: "GradientHero01Action[]",
 			description:
-				"Buttons (label with href or onClick); the first is primary, the rest outlined. Actions with neither are skipped.",
-			control: { kind: "none" },
-		},
-		{
-			name: "install",
-			type: "string",
-			description: "An install command in a pill with a copy button.",
-			control: { kind: "text" },
-		},
-		{
-			name: "meta",
-			type: "string[]",
-			description: "Small facts under the actions, such as the version and licence.",
-			control: { kind: "none" },
-		},
-		{
-			name: "media",
-			type: "ReactNode | Snippet",
-			description: "A visual beside the copy; the hero switches to a split layout.",
+				'GradientHero01Action: renders a link, otherwise a button with onClick. `variant="outline"` for secondary actions.',
 			control: { kind: "none" },
 		},
 		{
