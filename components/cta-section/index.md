@@ -6,10 +6,11 @@ category: blocks
 tags: [cta, call to action, banner, marketing, landing, section]
 ---
 
-Composes `button` and `avatar`. Actions take a `label` and either an `href` (a link) or an
-`onClick`.
+Composes `button`. `CtaSectionContent` holds the title, description, `CtaSectionActions` and
+an optional `CtaSectionNote`; each `CtaSectionAction` is a link with `href` or a button with
+`onClick`, and `variant="outline"` makes it the secondary.
 
-`centered` closes a page, with an optional `note` and up to four `avatars` as social proof.
-`split` puts the copy and its `points` beside your `visual`, a product shot or a live card.
-`banner` is one line; with `dismissible` it folds its own row closed, and `open` with
+`centered` closes a page; put an `AvatarGroup` in the note as social proof. `split` puts the
+copy and its `CtaSectionPoints` beside `CtaSectionVisual`, a product shot or a live card.
+`banner` is one line; `CtaSectionDismiss` folds its own row closed, and `open` with
 `onOpenChange` (or `bind:open`) brings it back.

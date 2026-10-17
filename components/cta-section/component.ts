@@ -13,68 +13,32 @@ export const ctaSection = defineComponent({
 	variants: variantsOf(ctaSectionVariants, ["variant"]),
 	props: [
 		{
-			name: "title",
-			type: "string",
-			description: "The heading.",
-			required: true,
-			control: { kind: "none" },
-		},
-		{
-			name: "primaryAction",
-			type: "{ label: string; href?: string; onClick?: () => void }",
-			description: "The main button; a link when it has an href.",
-			required: true,
-			control: { kind: "none" },
-		},
-		{
 			name: "variant",
 			type: VARIANTS.map((v) => `"${v}"`).join(" | "),
-			description: "A closing section, copy beside a `visual`, or a single-line banner.",
+			description:
+				"CtaSection: a closing section, copy beside CtaSectionVisual, or a single-line banner.",
 			default: "centered",
 			control: { kind: "select", options: VARIANTS },
-		},
-		{
-			name: "secondaryAction",
-			type: "CtaAction",
-			description: "An outline button beside the primary; not shown in the banner.",
-			control: { kind: "none" },
-		},
-		{
-			name: "note",
-			type: "string",
-			description: "Small print under the actions in the centered variant.",
-			control: { kind: "none" },
-		},
-		{
-			name: "avatars",
-			type: "{ src: string; alt?: string }[]",
-			description: "Up to four faces beside the note in the centered variant.",
-			control: { kind: "none" },
-		},
-		{
-			name: "points",
-			type: "string[]",
-			description: "Benefit lines with a check in the split variant.",
-			control: { kind: "none" },
-		},
-		{
-			name: "visual",
-			type: "ReactNode | Snippet",
-			description: "The split variant's right-hand side.",
-			control: { kind: "none" },
-		},
-		{
-			name: "dismissible",
-			type: "boolean",
-			description: "Banner: adds a dismiss button.",
-			default: false,
-			control: { kind: "none" },
 		},
 		{
 			name: "open",
 			type: "boolean",
 			description:
-				"Banner: shown or folded away. Controlled with onOpenChange; bindable in Svelte.",
+				"CtaSection, banner: shown or folded away. Controlled with onOpenChange; bindable in Svelte.",
+			control: { kind: "none" },
+		},
+		{
+			name: "children",
+			type: "ReactNode | Snippet",
+			description:
+				"CtaSection: CtaSectionContent (CtaSectionTitle, CtaSectionDescription, CtaSectionPoints, CtaSectionActions, CtaSectionNote), then CtaSectionVisual in split; the banner puts CtaSectionActions with CtaSectionDismiss beside the content.",
+			control: { kind: "none" },
+		},
+		{
+			name: "href",
+			type: "string",
+			description:
+				'CtaSectionAction: renders a link; otherwise a button with onClick. `variant="outline"` makes it the secondary action.',
 			control: { kind: "none" },
 		},
 	],
@@ -104,7 +68,7 @@ export const ctaSection = defineComponent({
 		],
 		performance: ["No effects or observers; the banner fold is CSS."],
 		ai: [
-			"One primary action, at most one secondary.",
+			"One primary CtaSectionAction, at most one outline secondary.",
 			"Keep the title under eight words.",
 		],
 	},

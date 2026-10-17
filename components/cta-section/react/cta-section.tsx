@@ -1,45 +1,34 @@
 "use client";
 
-import { type ReactNode, useId, useState } from "react";
 import {
-	Avatar,
-	AvatarFallback,
-	AvatarGroup,
-	AvatarImage,
-} from "../../avatar/react/avatar";
+	type ComponentProps,
+	createContext,
+	type ReactNode,
+	useContext,
+	useId,
+	useState,
+} from "react";
 import { Button } from "../../button/react/button";
+import type { ButtonVariant } from "../../button/variants";
 import { cn } from "../../lib/cn";
-import type { CtaAction } from "../types";
 import { type CtaSectionVariant, ctaSection } from "../variants";
 
-export type { CtaAction, CtaSectionVariant };
+export type { CtaSectionVariant };
 
-export interface CtaSectionProps {
-	title: string;
-	primaryAction: CtaAction;
-	/** `centered` closes a page, `split` sits beside a visual, `banner` is one line. */
-	variant?: CtaSectionVariant;
-	description?: string;
-	/** Not shown in the banner. */
-	secondaryAction?: CtaAction;
-	/** Small print under the actions in the centered variant. */
-	note?: string;
-	/** Faces beside the note in the centered variant; four at most. */
-	avatars?: { src: string; alt?: string }[];
-	/** Short benefit lines in the split variant. */
-	points?: string[];
-	/** The split variant's right-hand side, e.g. a product shot. */
-	visual?: ReactNode;
-	/** Banner: shows a dismiss button. */
-	dismissible?: boolean;
-	/** Banner: whether it is shown; folds closed when false. */
-	open?: boolean;
-	onOpenChange?: (open: boolean) => void;
-	className?: string;
+type CtaSectionState = {
+	variant: CtaSectionVariant;
+	titleId: string;
+	close: () => void;
+	styles: ReturnType<typeof ctaSection>;
+};
+
+const CtaSectionContext = createContext<CtaSectionState | null>(null);
+
+function useCtaSection() {
+	const state = useContext(CtaSectionContext);
+	if (!state) throw new Error("CtaSection parts must be rendered inside a CtaSection.");
+	return state;
 }
-
-const ARROW = "M3 8h10M9 4l4 4-4 4";
-const CHECK = "M3.5 8.5 6.5 11.5 12.5 4.5";
 
 function Glyph({ d, className }: { d: string; className?: string }) {
 	return (
@@ -55,137 +44,247 @@ function Glyph({ d, className }: { d: string; className?: string }) {
 	);
 }
 
-/** A call to action: a centred closing section, a split layout beside a visual, or a dismissible banner. */
+export interface CtaSectionProps extends ComponentProps<"section"> {
+	/** `centered` closes a page, `split` sits beside a visual, `banner` is one line. */
+	variant?: CtaSectionVariant;
+	/** Banner: whether it is shown; folds closed when false. */
+	open?: boolean;
+	onOpenChange?: (open: boolean) => void;
+}
+
+/**
+ * A call to action from parts: CtaSectionContent (title, description, points, actions, note),
+ * beside CtaSectionVisual in the split variant; the banner adds CtaSectionDismiss.
+ */
 export function CtaSection({
-	title,
-	primaryAction,
 	variant = "centered",
-	description,
-	secondaryAction,
-	note,
-	avatars = [],
-	points = [],
-	visual,
-	dismissible = false,
 	open: openProp,
 	onOpenChange,
 	className,
+	children,
+	...props
 }: CtaSectionProps) {
-	const id = useId();
-	const s = ctaSection({ variant });
+	const titleId = useId();
+	const styles = ctaSection({ variant });
 	const [ownOpen, setOwnOpen] = useState(true);
 	const open = openProp ?? ownOpen;
 	const close = () => {
 		if (openProp === undefined) setOwnOpen(false);
 		onOpenChange?.(false);
 	};
-	const action = (item: CtaAction, primary: boolean, size: "sm" | "lg" = "lg") => (
-		<Button
-			size={size}
-			variant={primary ? "default" : "outline"}
-			href={item.href}
-			onClick={item.onClick}
-			className={size === "sm" ? undefined : s.action()}
-		>
-			{item.label}
-			{primary ? <Glyph d={ARROW} className={s.arrow()} /> : null}
-		</Button>
-	);
-
-	if (variant === "banner") {
-		return (
+	return (
+		<CtaSectionContext.Provider value={{ variant, titleId, close, styles }}>
 			<section
 				data-slot="cta-section"
 				data-variant={variant}
-				aria-labelledby={`${id}-title`}
-				className={cn(s.root(), className)}
+				aria-labelledby={titleId}
+				className={cn(styles.root(), className)}
+				{...props}
 			>
-				<div data-open={open} inert={!open} className={s.collapse()}>
-					<div className={s.collapseInner()}>
-						<div className={s.wrap()}>
-							<div className={s.banner()}>
-								<p className={s.bannerText()}>
-									<strong id={`${id}-title`} className={s.bannerTitle()}>
-										{title}
-									</strong>
-									{description ? (
-										<span className={s.bannerDescription()}>{description}</span>
-									) : null}
-								</p>
-								<div className={s.bannerActions()}>
-									{action(primaryAction, true, "sm")}
-									{dismissible ? (
-										<Button
-											size="icon-sm"
-											variant="ghost"
-											aria-label="Dismiss"
-											onClick={close}
-										>
-											<Glyph d="M4 4l8 8M12 4l-8 8" />
-										</Button>
-									) : null}
-								</div>
+				{variant === "banner" ? (
+					<div data-open={open} inert={!open} className={styles.collapse()}>
+						<div className={styles.collapseInner()}>
+							<div className={styles.wrap()}>
+								<div className={styles.banner()}>{children}</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				) : (
+					<div className={styles.wrap()}>
+						<div className={styles.panel()}>{children}</div>
+					</div>
+				)}
 			</section>
-		);
-	}
+		</CtaSectionContext.Provider>
+	);
+}
 
-	const copy = (
-		<div className={s.copy()}>
-			<h2 id={`${id}-title`} className={s.title()}>
-				{title}
-			</h2>
-			{description ? <p className={s.description()}>{description}</p> : null}
-			{variant === "split" && points.length ? (
-				<ul className={s.points()}>
-					{points.map((point) => (
-						<li key={point} className={s.point()}>
-							<Glyph d={CHECK} />
-							{point}
-						</li>
-					))}
-				</ul>
-			) : null}
-			<div className={s.actions()}>
-				{action(primaryAction, true)}
-				{secondaryAction ? action(secondaryAction, false) : null}
-			</div>
-			{variant === "centered" && (note || avatars.length) ? (
-				<div className={s.note()}>
-					{avatars.length ? (
-						<AvatarGroup aria-hidden="true">
-							{avatars.slice(0, 4).map((face) => (
-								<Avatar key={face.src} size="sm" className="size-6.5">
-									<AvatarImage src={face.src} alt={face.alt ?? ""} />
-									<AvatarFallback>{(face.alt ?? "").charAt(0)}</AvatarFallback>
-								</Avatar>
-							))}
-						</AvatarGroup>
-					) : null}
-					{note}
-				</div>
-			) : null}
+/** Text parts switch element in the banner, so they take only a class and children. */
+export interface CtaSectionTextProps {
+	className?: string;
+	children?: ReactNode;
+}
+
+/** The copy column; one line of text in the banner. */
+export function CtaSectionContent({ className, children }: CtaSectionTextProps) {
+	const { variant, styles } = useCtaSection();
+	if (variant === "banner")
+		return (
+			<p data-slot="cta-section-content" className={cn(styles.bannerText(), className)}>
+				{children}
+			</p>
+		);
+	return (
+		<div data-slot="cta-section-content" className={cn(styles.copy(), className)}>
+			{children}
 		</div>
 	);
+}
 
+/** The heading that names the section; inline in the banner. */
+export function CtaSectionTitle({ className, children }: CtaSectionTextProps) {
+	const { variant, titleId, styles } = useCtaSection();
+	if (variant === "banner")
+		return (
+			<strong
+				data-slot="cta-section-title"
+				id={titleId}
+				className={cn(styles.bannerTitle(), className)}
+			>
+				{children}
+			</strong>
+		);
 	return (
-		<section
-			data-slot="cta-section"
-			data-variant={variant}
-			aria-labelledby={`${id}-title`}
-			className={cn(s.root(), className)}
+		<h2
+			data-slot="cta-section-title"
+			id={titleId}
+			className={cn(styles.title(), className)}
 		>
-			<div className={s.wrap()}>
-				<div className={s.panel()}>
-					{copy}
-					{variant === "split" && visual ? (
-						<div className={s.stage()}>{visual}</div>
-					) : null}
-				</div>
-			</div>
-		</section>
+			{children}
+		</h2>
+	);
+}
+
+export function CtaSectionDescription({ className, children }: CtaSectionTextProps) {
+	const { variant, styles } = useCtaSection();
+	if (variant === "banner")
+		return (
+			<span
+				data-slot="cta-section-description"
+				className={cn(styles.bannerDescription(), className)}
+			>
+				{children}
+			</span>
+		);
+	return (
+		<p
+			data-slot="cta-section-description"
+			className={cn(styles.description(), className)}
+		>
+			{children}
+		</p>
+	);
+}
+
+/** Benefit lines, each with a check; holds CtaSectionPoint items. */
+export function CtaSectionPoints({ className, ...props }: ComponentProps<"ul">) {
+	const { styles } = useCtaSection();
+	return (
+		<ul
+			data-slot="cta-section-points"
+			className={cn(styles.points(), className)}
+			{...props}
+		/>
+	);
+}
+
+export function CtaSectionPoint({ className, children, ...props }: ComponentProps<"li">) {
+	const { styles } = useCtaSection();
+	return (
+		<li
+			data-slot="cta-section-point"
+			className={cn(styles.point(), className)}
+			{...props}
+		>
+			<Glyph d="M3.5 8.5 6.5 11.5 12.5 4.5" />
+			{children}
+		</li>
+	);
+}
+
+export function CtaSectionActions({ className, ...props }: ComponentProps<"div">) {
+	const { variant, styles } = useCtaSection();
+	return (
+		<div
+			data-slot="cta-section-actions"
+			className={cn(
+				variant === "banner" ? styles.bannerActions() : styles.actions(),
+				className,
+			)}
+			{...props}
+		/>
+	);
+}
+
+export interface CtaSectionActionProps {
+	/** Renders a link. */
+	href?: string;
+	onClick?: () => void;
+	/** `default` is the primary action and leans its arrow on hover; use `outline` for the secondary. */
+	variant?: ButtonVariant;
+	className?: string;
+	children?: ReactNode;
+}
+
+export function CtaSectionAction({
+	href,
+	onClick,
+	variant = "default",
+	className,
+	children,
+}: CtaSectionActionProps) {
+	const { variant: layout, styles } = useCtaSection();
+	const banner = layout === "banner";
+	return (
+		<Button
+			data-slot="cta-section-action"
+			size={banner ? "sm" : "lg"}
+			variant={variant}
+			href={href}
+			onClick={onClick}
+			className={cn(!banner && styles.action(), className)}
+		>
+			{children}
+			{variant === "default" ? (
+				<Glyph d="M3 8h10M9 4l4 4-4 4" className={styles.arrow()} />
+			) : null}
+		</Button>
+	);
+}
+
+/** Small print under the actions, e.g. "No credit card required"; faces can go inside. */
+export function CtaSectionNote({ className, ...props }: ComponentProps<"div">) {
+	const { styles } = useCtaSection();
+	return (
+		<div
+			data-slot="cta-section-note"
+			className={cn(styles.note(), className)}
+			{...props}
+		/>
+	);
+}
+
+/** The split variant's right-hand side, e.g. a product shot. */
+export function CtaSectionVisual({ className, ...props }: ComponentProps<"div">) {
+	const { styles } = useCtaSection();
+	return (
+		<div
+			data-slot="cta-section-visual"
+			className={cn(styles.stage(), className)}
+			{...props}
+		/>
+	);
+}
+
+/** The banner's close button; folds the banner away. */
+export function CtaSectionDismiss({
+	"aria-label": ariaLabel = "Dismiss",
+	className,
+}: {
+	"aria-label"?: string;
+	className?: string;
+}) {
+	const { close } = useCtaSection();
+	return (
+		<Button
+			data-slot="cta-section-dismiss"
+			size="icon-sm"
+			variant="ghost"
+			aria-label={ariaLabel}
+			onClick={close}
+			className={className}
+		>
+			<Glyph d="M4 4l8 8M12 4l-8 8" />
+		</Button>
 	);
 }

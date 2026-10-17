@@ -1,11 +1,23 @@
 <script lang="ts">
-import { CtaSection } from "@baby-ui/svelte";
+import {
+	CtaSection,
+	CtaSectionAction,
+	CtaSectionActions,
+	CtaSectionContent,
+	CtaSectionDescription,
+	CtaSectionNote,
+	CtaSectionTitle,
+} from "@baby-ui/svelte";
 </script>
 
-<CtaSection
-	title="Ready to ship?"
-	description="Start free, upgrade when your team grows."
-	primaryAction={{ label: "Get started", href: "/signup" }}
-	secondaryAction={{ label: "Read the docs", href: "/docs" }}
-	note="No credit card required"
-/>
+<CtaSection>
+	<CtaSectionContent>
+		<CtaSectionTitle>Ready to ship?</CtaSectionTitle>
+		<CtaSectionDescription>Start free, upgrade when your team grows.</CtaSectionDescription>
+		<CtaSectionActions>
+			<CtaSectionAction href="/signup">Get started</CtaSectionAction>
+			<CtaSectionAction variant="outline" href="/docs">Read the docs</CtaSectionAction>
+		</CtaSectionActions>
+		<CtaSectionNote>No credit card required</CtaSectionNote>
+	</CtaSectionContent>
+</CtaSection>

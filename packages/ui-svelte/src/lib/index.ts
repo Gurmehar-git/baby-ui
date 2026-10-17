@@ -322,7 +322,17 @@ export { BANNER_NOISE, BANNER_BANDS, BANNER_LINES, BANNER_SPOTS, tickerRows, BAN
 export { setCtaBanner, ctaBannerState, ctaBannerStyles } from "@baby-ui/components/svelte/cta-banner";
 export { ctaBanner, type CtaBannerVariant, type CtaBannerSize } from "@baby-ui/components/svelte/cta-banner";
 export { CtaSection } from "@baby-ui/components/svelte/cta-section";
-export { type CtaAction } from "@baby-ui/components/svelte/cta-section";
+export { CtaSectionAction } from "@baby-ui/components/svelte/cta-section";
+export { CtaSectionActions } from "@baby-ui/components/svelte/cta-section";
+export { CtaSectionContent } from "@baby-ui/components/svelte/cta-section";
+export { CtaSectionDescription } from "@baby-ui/components/svelte/cta-section";
+export { CtaSectionDismiss } from "@baby-ui/components/svelte/cta-section";
+export { CtaSectionNote } from "@baby-ui/components/svelte/cta-section";
+export { CtaSectionPoint } from "@baby-ui/components/svelte/cta-section";
+export { CtaSectionPoints } from "@baby-ui/components/svelte/cta-section";
+export { CtaSectionTitle } from "@baby-ui/components/svelte/cta-section";
+export { CtaSectionVisual } from "@baby-ui/components/svelte/cta-section";
+export { type CtaSectionState, setCtaSection, ctaSectionState } from "@baby-ui/components/svelte/cta-section";
 export { ctaSection, type CtaSectionVariant } from "@baby-ui/components/svelte/cta-section";
 export { CubeText } from "@baby-ui/components/svelte/cube-text";
 export { cubeText, type CubeTextSize, type CubeTextStagger, type CubeGlyph, cubeWords } from "@baby-ui/components/svelte/cube-text";

@@ -157,8 +157,7 @@ export { countdown, type CountdownVariant } from "@baby-ui/components/react/coun
 export { type CtaBannerProps, CtaBanner, CtaBannerContent, CtaBannerBadge, CtaBannerEyebrow, CtaBannerTitle, CtaBannerDescription, CtaBannerActions, CtaBannerNote, type CtaBannerGrainProps, CtaBannerGrain, type CtaBannerFloaterProps, CtaBannerFloater, type CtaBannerTickerProps, CtaBannerTicker, type CtaBannerSpotlightProps, CtaBannerSpotlight } from "@baby-ui/components/react/cta-banner";
 export { BANNER_NOISE, BANNER_BANDS, BANNER_LINES, BANNER_SPOTS, tickerRows, BANNER_DEFAULTS, bannerRows, bannerPace, BANNER_RUN } from "@baby-ui/components/react/cta-banner";
 export { ctaBanner, type CtaBannerVariant, type CtaBannerSize } from "@baby-ui/components/react/cta-banner";
-export { type CtaSectionProps, CtaSection } from "@baby-ui/components/react/cta-section";
-export { type CtaAction } from "@baby-ui/components/react/cta-section";
+export { type CtaSectionProps, CtaSection, type CtaSectionTextProps, CtaSectionContent, CtaSectionTitle, CtaSectionDescription, CtaSectionPoints, CtaSectionPoint, CtaSectionActions, type CtaSectionActionProps, CtaSectionAction, CtaSectionNote, CtaSectionVisual, CtaSectionDismiss } from "@baby-ui/components/react/cta-section";
 export { ctaSection, type CtaSectionVariant } from "@baby-ui/components/react/cta-section";
 export { type CubeTextProps, CubeText } from "@baby-ui/components/react/cube-text";
 export { cubeText, type CubeTextSize, type CubeTextStagger, type CubeGlyph, cubeWords } from "@baby-ui/components/react/cube-text";
