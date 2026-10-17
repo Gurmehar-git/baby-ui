@@ -506,8 +506,8 @@ export { type PixelImageTrailProps, PixelImageTrail } from "@baby-ui/components/
 export { pixelImageTrail, type PixelImageTrailVariant, type PixelImageTrailSize, type PixelTrailOptions, mountPixelTrail } from "@baby-ui/components/react/pixel-image-trail";
 export { Popover, PopoverTrigger, PopoverContent } from "@baby-ui/components/react/popover";
 export { popover } from "@baby-ui/components/react/popover";
-export { type Pricing01Props, Pricing01 } from "@baby-ui/components/react/pricing-01";
-export { type Pricing01Period, type Pricing01Plan, type Pricing01Labels, PRICING_01_LABELS } from "@baby-ui/components/react/pricing-01";
+export { type Pricing01Props, Pricing01, Pricing01Header, Pricing01Heading, Pricing01Eyebrow, Pricing01Title, Pricing01Aside, Pricing01Description, Pricing01Periods, Pricing01Plans, type Pricing01PlanProps, Pricing01Plan, Pricing01PlanHeader, Pricing01PlanName, Pricing01PlanBadge, Pricing01PlanPrice, Pricing01PlanContent, Pricing01PlanDescription, Pricing01PlanFeatures, Pricing01PlanFeature, Pricing01PlanFooter, type Pricing01PlanActionProps, Pricing01PlanAction } from "@baby-ui/components/react/pricing-01";
+export { type Pricing01Period } from "@baby-ui/components/react/pricing-01";
 export { pricing01, type Pricing01Variant } from "@baby-ui/components/react/pricing-01";
 export { type Pricing02Props, Pricing02 } from "@baby-ui/components/react/pricing-02";
 export { type Pricing02Period, type Pricing02Plan, type Pricing02Labels, PRICING_02_LABELS, digitDelay } from "@baby-ui/components/react/pricing-02";

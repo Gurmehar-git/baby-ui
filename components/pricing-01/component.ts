@@ -14,18 +14,10 @@ export const pricing01 = defineComponent({
 	variants: variantsOf(pricing01Variants, ["variant"]),
 	props: [
 		{
-			name: "plans",
-			type: "Pricing01Plan[]",
-			description:
-				"One entry per card: id, name, prices keyed by period, features, and optional description, note, badge, featured, cta and href.",
-			required: true,
-			control: { kind: "none" },
-		},
-		{
 			name: "periods",
 			type: "Pricing01Period[]",
 			description:
-				"Billing periods (value, label, cadence). The toggle shows when there are two or more.",
+				"Pricing01: billing periods (value, label, cadence). Pricing01Periods shows a toggle when there are two or more.",
 			required: true,
 			control: { kind: "none" },
 		},
@@ -33,45 +25,38 @@ export const pricing01 = defineComponent({
 			name: "period",
 			type: "string",
 			description:
-				"Active period value. Controlled with defaultPeriod and onPeriodChange; bindable in Svelte.",
-			control: { kind: "none" },
-		},
-		{
-			name: "onSelect",
-			type: "(planId: string, period: string) => void",
-			description:
-				"Called by a plan's button when the plan has no href. Plans with neither show no button.",
+				"Pricing01: active period value. Controlled with defaultPeriod and onPeriodChange; bindable in Svelte.",
 			control: { kind: "none" },
 		},
 		{
 			name: "variant",
 			type: VARIANTS.map((v) => `"${v}"`).join(" | "),
-			description: "Flat cards, or cards inside the inset rim Card uses for `framed`.",
+			description:
+				"Pricing01: flat cards, or cards inside the inset rim Card uses for `framed`.",
 			default: "default",
 			control: { kind: "select", options: VARIANTS },
 		},
 		{
-			name: "eyebrow",
-			type: "string",
-			description: "Small caps line above the title.",
+			name: "children",
+			type: "ReactNode | Snippet",
+			description:
+				"Pricing01: Pricing01Header (Pricing01Heading with eyebrow and title, Pricing01Aside with description and Pricing01Periods), then Pricing01Plans of Pricing01Plan cards.",
 			control: { kind: "none" },
 		},
 		{
-			name: "title",
-			type: "string",
-			description: "Section heading.",
+			name: "featured",
+			type: "boolean",
+			description:
+				"Pricing01Plan: outlines the card and fills its badge and button. `note` rises behind the card on hover.",
+			default: false,
 			control: { kind: "none" },
 		},
 		{
-			name: "description",
-			type: "string",
-			description: "Copy beside the heading.",
-			control: { kind: "none" },
-		},
-		{
-			name: "labels",
-			type: "Partial<Pricing01Labels>",
-			description: "The toggle's accessible name and the fallback button prefix.",
+			name: "prices",
+			type: "Record<string, string>",
+			description:
+				"Pricing01PlanPrice: display price keyed by period value, already formatted.",
+			required: true,
 			control: { kind: "none" },
 		},
 	],

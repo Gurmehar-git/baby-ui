@@ -6,8 +6,10 @@ category: blocks
 tags: [pricing, plans, billing, saas]
 ---
 
-Plans carry one formatted price per billing period, so currency and rounding stay yours. The
-period toggle appears once there are two periods and is controlled through `period`.
+Each `Pricing01Plan` is a card from parts: a header with `Pricing01PlanName`, an optional
+`Pricing01PlanBadge` and `Pricing01PlanPrice`, then the description and features, then
+`Pricing01PlanAction` in the footer (a link with `href`, or a button with `onClick`).
 
-A plan's button links to `href`, or calls `onSelect` with the plan id and period; plans with
-neither show no button. Composes `card`, `badge`, `button` and `toggle-group`.
+`Pricing01PlanPrice` takes one formatted price per billing period, so currency and rounding
+stay yours. `Pricing01Periods` appears once there are two periods and is controlled through
+`period` on the root. Composes `card`, `badge`, `button` and `toggle-group`.
