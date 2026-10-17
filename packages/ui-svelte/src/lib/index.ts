@@ -641,7 +641,12 @@ export { liveLine, type LiveLineCurve, type LiveMomentum, type LiveLineTint, liv
 export { LoadingScreen } from "@baby-ui/components/svelte/loading-screen";
 export { loadingScreen, type LoadingScreenPosition, type LoadingScreenLogoMotion, type LoadingScreenIndicator } from "@baby-ui/components/svelte/loading-screen";
 export { LoadingState } from "@baby-ui/components/svelte/loading-state";
-export { type LoadingStateVariant } from "@baby-ui/components/svelte/loading-state";
+export { LoadingStateElapsed } from "@baby-ui/components/svelte/loading-state";
+export { LoadingStateIndicator } from "@baby-ui/components/svelte/loading-state";
+export { LoadingStateLabel } from "@baby-ui/components/svelte/loading-state";
+export { LoadingStatePreview } from "@baby-ui/components/svelte/loading-state";
+export { type LoadingStateState, setLoadingState, loadingStateState } from "@baby-ui/components/svelte/loading-state";
+export { loadingState, type LoadingStateVariant, LOADING_PATTERNS, formatElapsed } from "@baby-ui/components/svelte/loading-state";
 export { LogoCarousel } from "@baby-ui/components/svelte/logo-carousel";
 export { LogoColumn } from "@baby-ui/components/svelte/logo-carousel";
 export { logoCarousel, type LogoCarouselVariant, type LogoCarouselTone } from "@baby-ui/components/svelte/logo-carousel";

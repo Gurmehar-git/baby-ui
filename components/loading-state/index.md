@@ -6,17 +6,22 @@ category: agents
 tags: [loading, loader, spinner, progress, agent]
 ---
 
-A 3x3 pixel grid with a wavefront animation, paired with a shimmering status label and a
-live elapsed timer in tabular monospace figures.
+Built from parts: `LoadingStateIndicator` is the 3x3 pixel grid, `LoadingStateLabel` the
+shimmering status text and `LoadingStateElapsed` a live timer in tabular monospace figures.
 
 ## Variants
 
 - `drive` / `dots` sweep a chevron wavefront across the grid: square cells for `drive`,
   round for `dots`.
 - `orbit` laps a comet around the grid's perimeter instead of sweeping through it.
-- `surfer` is `drive` plus a looping video card underneath, for a "look away while this
-  runs" long task. Pass `videoSrc`; without one it falls back to a "Video unavailable"
-  placeholder rather than a broken player.
+
+## Preview
+
+Add `LoadingStatePreview` for a looping video card under the row, for a "look away while
+this runs" long task. Without a `src`, or if it fails, it shows a "Video unavailable"
+placeholder rather than a broken player.
+
+::example{name="preview"}
 
 ## Motion
 

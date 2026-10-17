@@ -1,6 +1,7 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { loadingState as loadingStateVariants } from "./variants";
 
-const VARIANTS = ["drive", "dots", "orbit", "surfer"];
+const VARIANTS = ["drive", "dots", "orbit"];
 
 export const loadingState = defineComponent({
 	slug: "loading-state",
@@ -9,30 +10,29 @@ export const loadingState = defineComponent({
 		"Pixel-grid wavefront loader with a shimmering label and a live elapsed timer.",
 	category: "agents",
 	status: "stable",
-	variants: { variant: VARIANTS },
+	variants: variantsOf(loadingStateVariants, ["variant"]),
 	props: [
 		{
-			name: "label",
-			type: "string",
-			description:
-				'Status text next to the grid. Defaults to "Churning" ("Subway surfing" for `surfer`).',
-			control: { kind: "text" },
-		},
-		{
 			name: "variant",
-			type: '"drive" | "dots" | "orbit" | "surfer"',
+			type: '"drive" | "dots" | "orbit"',
 			description:
-				"`drive`/`dots` sweep a chevron wavefront across the grid (square vs. round cells); `orbit` laps a comet around the perimeter; `surfer` is `drive` plus a looping video card underneath.",
+				"LoadingState: `drive`/`dots` sweep a chevron wavefront across the grid (square vs. round cells); `orbit` laps a comet around the perimeter.",
 			default: "drive",
 			control: { kind: "select", options: VARIANTS },
 		},
 		{
-			name: "videoSrc",
+			name: "children",
+			type: "ReactNode | Snippet",
+			description:
+				"LoadingState: LoadingStateIndicator, LoadingStateLabel and LoadingStateElapsed, then an optional LoadingStatePreview.",
+			control: { kind: "none" },
+		},
+		{
+			name: "src",
 			type: "string",
 			description:
-				'`surfer` only: the looping video URL. Falls back to a "Video unavailable" placeholder without one.',
-			control: { kind: "text" },
-			showWhen: { variant: ["surfer"] },
+				'LoadingStatePreview: the looping video URL. Falls back to a "Video unavailable" placeholder without one.',
+			control: { kind: "none" },
 		},
 	],
 	motion: {

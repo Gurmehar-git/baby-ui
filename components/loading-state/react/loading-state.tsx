@@ -1,42 +1,78 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+	type ComponentProps,
+	createContext,
+	type ReactNode,
+	useContext,
+	useEffect,
+	useState,
+} from "react";
 import { cn } from "../../lib/cn";
+import {
+	formatElapsed,
+	LOADING_PATTERNS,
+	type LoadingStateVariant,
+	loadingState,
+} from "../variants";
 
-export type LoadingStateVariant = "drive" | "dots" | "orbit" | "surfer";
+export type { LoadingStateVariant };
 
-const CHEVRON = Array.from({ length: 9 }, (_, i) => {
-	const row = Math.floor(i / 3);
-	const col = i % 3;
-	return (col + Math.abs(row - 1)) * 90;
-});
-
-const ORBIT_ORDER = [0, 1, 2, 5, 8, 7, 6, 3];
-const ORBIT = Array.from({ length: 9 }, (_, i) => {
-	const step = ORBIT_ORDER.indexOf(i);
-	return step === -1 ? null : step * 110;
-});
-
-type Pattern = { delays: (number | null)[]; duration: number; round: boolean };
-
-const PATTERNS: Record<Exclude<LoadingStateVariant, "surfer">, Pattern> = {
-	drive: { delays: CHEVRON, duration: 650, round: false },
-	dots: { delays: CHEVRON, duration: 650, round: true },
-	orbit: { delays: ORBIT, duration: 950, round: false },
+type LoadingStateContextValue = {
+	variant: LoadingStateVariant;
+	styles: ReturnType<typeof loadingState>;
 };
 
-function LoaderGrid({ delays, duration, round }: Pattern) {
+const LoadingStateContext = createContext<LoadingStateContextValue | null>(null);
+
+function useLoadingState() {
+	const state = useContext(LoadingStateContext);
+	if (!state)
+		throw new Error("LoadingState parts must be rendered inside a LoadingState.");
+	return state;
+}
+
+export interface LoadingStateProps extends ComponentProps<"div"> {
+	variant?: LoadingStateVariant;
+}
+
+/**
+ * A status row from parts: LoadingStateIndicator, LoadingStateLabel and LoadingStateElapsed,
+ * with an optional LoadingStatePreview underneath.
+ */
+export function LoadingState({
+	variant = "drive",
+	className,
+	...props
+}: LoadingStateProps) {
+	const styles = loadingState({ variant });
 	return (
-		<span aria-hidden className="grid shrink-0 grid-cols-[repeat(3,4px)] gap-[1.5px]">
+		<LoadingStateContext.Provider value={{ variant, styles }}>
+			<div
+				data-slot="loading-state"
+				role="status"
+				className={cn(styles.root(), className)}
+				{...props}
+			/>
+		</LoadingStateContext.Provider>
+	);
+}
+
+/** The 3x3 pixel grid; reduced motion freezes it to its dim state. */
+export function LoadingStateIndicator({ className }: { className?: string }) {
+	const { variant, styles } = useLoadingState();
+	const { delays, duration } = LOADING_PATTERNS[variant];
+	return (
+		<span
+			data-slot="loading-state-indicator"
+			aria-hidden
+			className={cn(styles.indicator(), className)}
+		>
 			{delays.map((delay, index) => (
 				<span
 					// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
 					key={index}
-					className={cn(
-						"size-[4px] bg-foreground",
-						round ? "rounded-full" : "rounded-[1px]",
-						delay !== null && "pixel-cell",
-					)}
+					className={cn(styles.cell(), delay !== null && "pixel-cell")}
 					style={{
 						opacity: delay === null ? 0.07 : 0.15,
 						animationDuration: delay === null ? undefined : `${duration}ms`,
@@ -48,101 +84,70 @@ function LoaderGrid({ delays, duration, round }: Pattern) {
 	);
 }
 
-function useElapsed() {
+export function LoadingStateLabel({ className, ...props }: ComponentProps<"span">) {
+	const { styles } = useLoadingState();
+	return (
+		<span
+			data-slot="loading-state-label"
+			className={cn(styles.label(), className)}
+			{...props}
+		/>
+	);
+}
+
+/** Time since this part mounted, ticking every tenth of a second. */
+export function LoadingStateElapsed({ className }: { className?: string }) {
+	const { styles } = useLoadingState();
 	const [deciseconds, setDeciseconds] = useState(0);
 	useEffect(() => {
 		const id = setInterval(() => setDeciseconds((d) => d + 1), 100);
 		return () => clearInterval(id);
 	}, []);
-	const total = deciseconds / 10;
-	if (total < 60) return `${total.toFixed(1)}s`;
-	return `${Math.floor(total / 60)}m ${(total % 60).toFixed(1)}s`;
-}
-
-export interface LoadingStateProps {
-	label?: string;
-	variant?: LoadingStateVariant;
-	/** Surfer variant only; falls back to a "Video unavailable" placeholder without one. */
-	videoSrc?: string;
-}
-
-/** Pixel-grid loader paired with a shimmering label and a live elapsed timer. Reduced
- * motion freezes the grid to its dim state; the timer still ticks. */
-export function LoadingState({ label, variant = "drive", videoSrc }: LoadingStateProps) {
-	const elapsed = useElapsed();
-	const surfer = variant === "surfer";
-	const resolvedLabel = label ?? (surfer ? "Subway surfing" : "Churning");
-	const [videoOk, setVideoOk] = useState(true);
-	const pattern = PATTERNS[surfer ? "drive" : variant];
-
-	const labelEl = (
-		<span
-			data-slot="loading-state-label"
-			className="reasoning-shimmer font-medium text-sm"
-		>
-			{resolvedLabel}
-		</span>
-	);
-	const elapsedEl = (
-		<span
-			data-slot="loading-state-elapsed"
-			className="font-mono text-xs text-muted-foreground tabular-nums"
-		>
-			{elapsed}
-		</span>
-	);
-
-	if (surfer) {
-		return (
-			<div
-				data-slot="loading-state"
-				role="status"
-				className="flex w-fit flex-col items-start"
-			>
-				<div className="flex items-center gap-2.5">
-					<LoaderGrid {...PATTERNS.drive} />
-					{labelEl}
-					{elapsedEl}
-				</div>
-				<div
-					data-slot="loading-state-preview"
-					className="pop-in mt-2 w-56 overflow-hidden rounded-[10px] shadow-2xl"
-					style={{ transformOrigin: "top left" }}
-				>
-					<div className="relative aspect-video w-full bg-muted">
-						{videoOk && videoSrc ? (
-							<video
-								src={videoSrc}
-								autoPlay
-								muted
-								loop
-								playsInline
-								onError={() => setVideoOk(false)}
-								className="h-full w-full object-cover"
-							/>
-						) : (
-							<div className="flex h-full w-full flex-col items-center justify-center gap-1.5">
-								<LoaderGrid {...PATTERNS.drive} />
-								<span className="px-3 text-center font-mono text-xs text-muted-foreground">
-									Video unavailable
-								</span>
-							</div>
-						)}
-					</div>
-				</div>
-			</div>
-		);
-	}
-
 	return (
-		<div
-			data-slot="loading-state"
-			role="status"
-			className="flex w-fit items-center gap-2.5"
-		>
-			<LoaderGrid {...pattern} />
-			{labelEl}
-			{elapsedEl}
+		<span data-slot="loading-state-elapsed" className={cn(styles.elapsed(), className)}>
+			{formatElapsed(deciseconds)}
+		</span>
+	);
+}
+
+export interface LoadingStatePreviewProps {
+	/** A looping video URL; without one, or if it fails, the fallback shows. */
+	src?: string;
+	/** Replaces the default "Video unavailable" placeholder. */
+	children?: ReactNode;
+	className?: string;
+}
+
+/** A looping video card under the row, for a "look away while this runs" long task. */
+export function LoadingStatePreview({
+	src,
+	children,
+	className,
+}: LoadingStatePreviewProps) {
+	const { styles } = useLoadingState();
+	const [failed, setFailed] = useState(false);
+	return (
+		<div data-slot="loading-state-preview" className={cn(styles.preview(), className)}>
+			<div className={styles.frame()}>
+				{src && !failed ? (
+					<video
+						src={src}
+						autoPlay
+						muted
+						loop
+						playsInline
+						onError={() => setFailed(true)}
+						className={styles.video()}
+					/>
+				) : (
+					(children ?? (
+						<div className={styles.fallback()}>
+							<LoadingStateIndicator />
+							<span className={styles.fallbackText()}>Video unavailable</span>
+						</div>
+					))
+				)}
+			</div>
 		</div>
 	);
 }

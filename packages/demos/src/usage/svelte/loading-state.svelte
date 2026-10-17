@@ -1,5 +1,14 @@
 <script lang="ts">
-import { LoadingState } from "@baby-ui/svelte";
+import {
+	LoadingState,
+	LoadingStateElapsed,
+	LoadingStateIndicator,
+	LoadingStateLabel,
+} from "@baby-ui/svelte";
 </script>
 
-<LoadingState label="Churning" />
+<LoadingState>
+	<LoadingStateIndicator />
+	<LoadingStateLabel>Churning</LoadingStateLabel>
+	<LoadingStateElapsed />
+</LoadingState>

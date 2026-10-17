@@ -1,7 +1,18 @@
 "use client";
 
-import { LoadingState } from "@baby-ui/react";
+import {
+	LoadingState,
+	LoadingStateElapsed,
+	LoadingStateIndicator,
+	LoadingStateLabel,
+} from "@baby-ui/react";
 
 export function Example() {
-	return <LoadingState label="Churning" />;
+	return (
+		<LoadingState>
+			<LoadingStateIndicator />
+			<LoadingStateLabel>Churning</LoadingStateLabel>
+			<LoadingStateElapsed />
+		</LoadingState>
+	);
 }
