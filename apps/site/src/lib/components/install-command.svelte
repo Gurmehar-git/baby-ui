@@ -1,6 +1,5 @@
 <script lang="ts">
 import { installArgs } from "#lib/install.js";
-import { prefs } from "#lib/preferences.svelte.js";
 import PmCommand from "./pm-command.svelte";
 
 let { slug, cascade = false }: { slug: string; cascade?: boolean } = $props();
@@ -8,8 +7,8 @@ let { slug, cascade = false }: { slug: string; cascade?: boolean } = $props();
 
 <PmCommand
 	kind="dlx"
-	args={installArgs(slug, prefs.framework, prefs.dialect)}
-	highlight="{slug}.json"
+	args={installArgs(slug)}
+	highlight={slug}
 	{cascade}
 	analytics={{ event: "install_copied", props: { item: slug, method: "cli" } }}
 />

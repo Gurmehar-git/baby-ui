@@ -3,12 +3,20 @@ import { z } from "zod";
 const record = z.record(z.string(), z.string());
 
 // Lenient on purpose: third-party registries omit fields our own build always writes.
-export const RegistryFileSchema = z.object({
-	path: z.string(),
-	content: z.string().optional(),
-	type: z.string(),
-	target: z.string().optional(),
-});
+export const RegistryFileSchema = z
+	.object({
+		path: z.string().optional(),
+		content: z.string().optional(),
+		type: z.string(),
+		target: z.string().optional(),
+	})
+	// shadcn-svelte 1.x items give only a `target`.
+	.transform(({ path, ...file }, ctx) => {
+		const resolved = path ?? file.target;
+		if (resolved !== undefined) return { ...file, path: resolved };
+		ctx.addIssue({ code: "custom", message: "a file needs a path or a target" });
+		return z.NEVER;
+	});
 
 export const RegistryItemSchema = z.object({
 	name: z.string(),

@@ -49,10 +49,3 @@ export function cssNames(css: string): string[] {
 	}
 	return [...names];
 }
-
-/** Namespaced form, matching what the install command shows. */
-export function installCommand(slug: string, framework: Framework, site: string): string {
-	return framework === "react"
-		? `npx shadcn@latest add ${site}/r/${slug}.json`
-		: `npx shadcn-svelte@latest add ${site}/svelte/r/${slug}.json`;
-}

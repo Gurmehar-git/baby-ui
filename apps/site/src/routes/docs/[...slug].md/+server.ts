@@ -5,7 +5,7 @@ import type { EntryGenerator, RequestHandler } from "./$types";
 
 export const prerender = true;
 export const entries: EntryGenerator = () =>
-	["index", "installation", "theming", "mcp"].map((slug) => ({ slug }));
+	["index", "installation", "cli", "theming", "mcp"].map((slug) => ({ slug }));
 
 export const GET: RequestHandler = async ({ params }) => {
 	const slug = params.slug || "index";

@@ -1,8 +1,8 @@
 import type { ComponentSpec, Framework } from "@baby-ui/registry-schema";
 import { FRAMEWORKS } from "@baby-ui/registry-schema";
 import origins from "./generated/origins.json";
+import { installArgs } from "./install";
 import { CATEGORY_LABEL, specHref } from "./registry";
-import { installCommand } from "./registry-items";
 import { usageSnippet } from "./usage";
 
 const RAW = import.meta.glob(["../docs/**/*.md", "../../../../components/*/index.md"], {
@@ -76,11 +76,7 @@ export async function componentMarkdown(
 		"Installation",
 		pro
 			? ["Pro component: the install command is available after signing in on the site."]
-			: ports.flatMap((f) => [
-					"```bash",
-					installCommand(spec.slug, f, origins.registry),
-					"```",
-				]),
+			: ["```bash", `npx ${installArgs(spec.slug)}`, "```"],
 	);
 
 	for (const framework of ports) {
@@ -158,7 +154,7 @@ export async function componentMarkdown(
 	out.push(
 		"## Guidance for AI tools",
 		"",
-		`${spec.name} is a Baby UI component that installs as source through the shadcn CLIs, in React and Svelte with the same props. The full index is at ${origins.site}/llms.txt.`,
+		`${spec.name} is a Baby UI component that installs as source through @baby-ui/cli, in React and Svelte with the same props. The full index is at ${origins.site}/llms.txt.`,
 	);
 	return out.join("\n").trim();
 }

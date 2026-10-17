@@ -1,12 +1,13 @@
 ---
 title: Installation
-description: Add Baby UI components to a React or Svelte project with the shadcn CLI.
+description: Add Baby UI components to a React or Svelte project with the Baby UI CLI.
 ---
 
-Baby UI installs with the shadcn CLI into any project that has Tailwind CSS v4. Already on
-shadcn/ui or shadcn-svelte? Skip to step 2.
+Baby UI installs with [`@baby-ui/cli`](/docs/cli) into any project that has Tailwind CSS v4.
+It reads the same `components.json` as shadcn and shadcn-svelte, so an existing shadcn
+project needs no setup: skip to step 2.
 
-## 1. Set up shadcn
+## 1. Set up the project
 
 New project? Create it with Next.js, Vite or SvelteKit first; shadcn's
 [React](https://ui.shadcn.com/docs/installation) and
@@ -14,30 +15,21 @@ New project? Create it with Next.js, Vite or SvelteKit first; shadcn's
 Then:
 
 ```bash
-# tab: React
-# pm: dlx shadcn@latest init
+# pm: dlx @baby-ui/cli init
 ```
 
-```bash
-# tab: Svelte
-# pm: dlx shadcn-svelte@latest init
-```
-
-Any style, preset and base colour works; components read the same variables.
+`init` detects the framework, writes `components.json`, `utils` and the theme. On SvelteKit 3
+it sets the aliases to `#lib`.
 
 ## 2. Add a component
 
 ```bash
-# tab: React
-# pm: dlx shadcn@latest add https://baby-ui.pages.dev/r/button.json
+# pm: dlx @baby-ui/cli add button
 ```
 
-```bash
-# tab: Svelte
-# pm: dlx shadcn-svelte@latest add https://baby-ui.pages.dev/svelte/r/button.json
-```
-
-Every component page has this command ready, plus a Manual tab for copying by hand.
+Bare names come from Baby UI. The framework and TypeScript or JavaScript come from
+`components.json`, so the command is the same everywhere. Every component page has it ready,
+plus a Manual tab for copying by hand.
 
 ## 3. Use it
 
@@ -68,29 +60,34 @@ export default function Page() {
   `tokens` only adds variables: your colours, fonts and Tailwind defaults are never touched.
 - The folder follows the category: `ui`, `blocks`, `animated`, `text`, `backgrounds`,
   `agents`, `charts`, `og` or `emails`. Imports between items are rewritten to match.
+- `.baby-ui/lock.json`, so `diff`, `update` and `undo` know what came from where. Commit it.
 
 To match this site's look, see [Theming](/docs/theming).
 
-## Registry
+## With the shadcn CLI
 
-React can use a namespace instead of full URLs (`shadcn-svelte` can't yet). In
-`components.json`:
+The files are the same either way; the stock CLIs take the item URL:
 
-```json
-{
-	"registries": {
-		"@baby-ui": "https://baby-ui.pages.dev/r/{name}.json"
-	}
-}
+```bash
+# tab: React
+# pm: dlx shadcn@latest add https://baby-ui.pages.dev/r/button.json
 ```
 
-Then `npx shadcn@latest add @baby-ui/button`. Every item, `tokens`, `theme`, the
+```bash
+# tab: Svelte
+# pm: dlx shadcn-svelte@latest add https://baby-ui.pages.dev/svelte/r/button.json
+```
+
+`baby-ui init` also registers the `@baby-ui` namespace in `components.json`, so
+`npx shadcn@latest add @baby-ui/button` works in React. Every item, `tokens`, `theme`, the
 `registry.json` index and a light `index.json` are on all four routes:
 
 | Framework | TypeScript | JavaScript |
 | --- | --- | --- |
 | React | `/r/{slug}.json` | `/r/js/{slug}.json` |
 | Svelte | `/svelte/r/{slug}.json` | `/svelte/r/js/{slug}.json` |
+
+Components added this way can join the lock later with `baby-ui repair --adopt`.
 
 ## Troubleshooting
 
@@ -100,7 +97,11 @@ Then `npx shadcn@latest add @baby-ui/button`. Every item, `tokens`, `theme`, the
 - **Svelte imports use `$lib` on SvelteKit 3**: installed files import through the aliases in
   `components.json`. SvelteKit 3 removed `$lib`, so set them to `#lib` (`"lib": "#lib"`,
   `"ui": "#lib/components/ui"` and so on); SvelteKit 2 projects keep `$lib`.
-- **`@/components/ui/button` imports the wrong Button**: `init` left shadcn's
+- **shadcn-svelte fails with "File '$app/tsconfig' not found"**: the stock CLI can't read
+  SvelteKit 3's tsconfig yet. Use `@baby-ui/cli`, which can.
+- **`@/components/ui/button` imports the wrong Button**: shadcn's `init` left
   `components/ui/button.tsx`, which shadows the folder. Delete it.
-- **Grey, unstyled controls**: `tokens` is missing; add `tokens.json` with the same command.
+- **Grey, unstyled controls**: `tokens` is missing; run `baby-ui add tokens`.
 - **Nothing animates**: reduced motion is on in your OS, which keeps fades and drops travel.
+- **Something else looks off**: `baby-ui doctor` checks the config, stylesheet and every
+  installed file.

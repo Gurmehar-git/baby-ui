@@ -36,6 +36,7 @@ const GUIDES: DocsNavSection = {
 	items: [
 		{ href: "/docs", label: "Introduction" },
 		{ href: "/docs/installation", label: "Installation" },
+		{ href: "/docs/cli", label: "CLI" },
 		{ href: "/docs/theming", label: "Theming" },
 		{ href: "/docs/mcp", label: "MCP" },
 	],

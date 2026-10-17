@@ -167,6 +167,22 @@ describe("add", () => {
 		expect(css.match(/--success: oklch\(73%/g)).toHaveLength(1);
 	});
 
+	it("installs shadcn-svelte items whose files have only a target", async () => {
+		const root = svelteApp();
+		writeFileSync(
+			join(root, "kbd.json"),
+			JSON.stringify({
+				name: "kbd",
+				type: "registry:ui",
+				files: [
+					{ type: "registry:file", target: "kbd/kbd.svelte", content: "<kbd />\n" },
+				],
+			}),
+		);
+		await add({ cwd: root, items: ["kbd.json"], install: false });
+		expect(existsSync(join(root, "src/lib/components/ui/kbd/kbd.svelte"))).toBe(true);
+	});
+
 	it("keeps local edits, refuses to undo over them, and redoes", async () => {
 		const root = reactApp();
 		const file = join(root, "src/components/ui/badge/badge.tsx");

@@ -1,10 +1,10 @@
 ---
 title: Introduction
-description: Copy-paste components for React and Svelte, built from one spec and installed with the shadcn CLI.
+description: Copy-paste components for React and Svelte, built from one spec and installed with the Baby UI CLI.
 ---
 
 Baby UI is a shadcn registry, not a package. The CLI copies source into your project and you
-own it.
+own it. Use [`@baby-ui/cli`](/docs/cli) or the stock shadcn CLIs; the files are the same.
 
 ## Why Baby UI
 
@@ -26,15 +26,17 @@ own it.
 
 ## How it works
 
-1. Run `shadcn init` (or `shadcn-svelte init`) once. [Installation](/docs/installation) has
-   both.
-2. Add a component; its source, variants and any CSS it needs land in your project.
+1. Run `npx @baby-ui/cli init` once, or skip it in a shadcn project.
+   [Installation](/docs/installation) has the details.
+2. Run `npx @baby-ui/cli add button`; its source, variants and any CSS it needs land in your
+   project.
 3. Change anything. Tokens in [Theming](/docs/theming) restyle every component at once.
 
 ## FAQ
 
 - **Is it free?** Every component on this site is Apache-2.0.
 - **Do I need Tailwind?** Yes, Tailwind CSS v4; the theme is plain CSS variables on top.
-- **TypeScript or JavaScript?** Both. The header's language picker switches every command.
+- **TypeScript or JavaScript?** Both. The CLI follows `components.json`; the header's
+  language picker switches the code shown on the site.
 - **Can I mix it with shadcn/ui?** Yes. Base parts share shadcn's names, so they replace or
   sit beside shadcn components.

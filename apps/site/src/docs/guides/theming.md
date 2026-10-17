@@ -10,16 +10,10 @@ Components read shadcn's variable names, so your existing theme already drives t
 The `theme` item brings this site's palette, radius and type stack:
 
 ```bash
-# tab: React
-# pm: dlx shadcn@latest add https://baby-ui.pages.dev/r/theme.json
+# pm: dlx @baby-ui/cli add theme
 ```
 
-```bash
-# tab: Svelte
-# pm: dlx shadcn-svelte@latest add https://baby-ui.pages.dev/svelte/r/theme.json
-```
-
-Or paste it over what `init` wrote, after `@import "tailwindcss"`:
+`baby-ui init` adds it for you. Or paste it over what `init` wrote, after `@import "tailwindcss"`:
 
 ```css
 /* baby-ui:theme */

@@ -133,14 +133,12 @@ export const SITE_TOOLS: SiteTool[] = [
 	{
 		name: "get_install_command",
 		description:
-			"The shadcn CLI command that adds one or more components to a React or Svelte project. Pro components install from the account page instead.",
+			"The @baby-ui/cli command that adds one or more components to a React or Svelte project; it reads framework and TS/JS from components.json. Pro components install from the account page instead.",
 		inputSchema: {
 			type: "object",
 			properties: {
 				slugs: { type: "array", items: { type: "string" }, minItems: 1 },
-				framework: { type: "string", enum: ["react", "svelte"], default: "react" },
 				packageManager: { type: "string", enum: [...PMS], default: "npm" },
-				language: { type: "string", enum: ["ts", "js"], default: "ts" },
 			},
 			required: ["slugs"],
 		},
@@ -154,13 +152,9 @@ export const SITE_TOOLS: SiteTool[] = [
 				(slug) => catalog.find((item) => item.slug === slug)?.tier === "pro",
 			);
 			const free = slugs.filter((slug) => !pro.includes(slug));
-			const framework = str(args, "framework") === "svelte" ? "svelte" : "react";
 			const requested = str(args, "packageManager");
 			const pm = isPm(requested) ? requested : "npm";
-			const dialect = str(args, "language") === "js" ? "js" : "ts";
-			const out = free.length
-				? [pmCommand("dlx", installArgs(free, framework, dialect), pm)]
-				: [];
+			const out = free.length ? [pmCommand("dlx", installArgs(free), pm)] : [];
 			if (pro.length)
 				out.push(
 					`Pro (install from ${origins.site}/account after purchase): ${pro.join(", ")}`,
@@ -171,7 +165,7 @@ export const SITE_TOOLS: SiteTool[] = [
 ];
 
 export const MCP_INSTRUCTIONS =
-	"Baby UI is a React and Svelte component library installed as source through the shadcn CLIs. " +
+	"Baby UI is a React and Svelte component library installed as source through @baby-ui/cli. " +
 	"Search or list components, read get_component before choosing one (it names what to use instead), " +
 	"then install with get_install_command. Style through variant, size and className/class; never fork a component.";
 

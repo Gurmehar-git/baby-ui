@@ -48,7 +48,12 @@ const PAGES = [
 	{
 		href: "/docs/installation",
 		name: "Installation",
-		keywords: "setup cli shadcn install",
+		keywords: "setup shadcn install",
+	},
+	{
+		href: "/docs/cli",
+		name: "CLI",
+		keywords: "cli command add diff update repair undo doctor npx bunx",
 	},
 	{ href: "/docs/theming", name: "Theming", keywords: "tokens colours dark mode motion" },
 	{

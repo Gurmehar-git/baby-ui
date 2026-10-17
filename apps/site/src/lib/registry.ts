@@ -244,6 +244,7 @@ export type NavIcon =
 	| "emails"
 	| "intro"
 	| "install"
+	| "cli"
 	| "theming"
 	| "design"
 	| "create"
@@ -333,8 +334,14 @@ export function siteNav(categories: NavCategory[]): NavItem[] {
 				{
 					href: "/docs/installation",
 					label: "Installation",
-					description: "Set up the registry for React or Svelte.",
+					description: "Set up a React or Svelte project and add a component.",
 					icon: "install",
+				},
+				{
+					href: "/docs/cli",
+					label: "CLI",
+					description: "Add, diff, update, repair and undo from one command.",
+					icon: "cli",
 				},
 				{
 					href: "/docs/theming",

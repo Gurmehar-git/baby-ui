@@ -34,7 +34,7 @@ claude mcp add --transport http baby-ui https://baby-ui.nexonauts.com/api/mcp
 | `search_components` | The best matches for an intent or name, each with its markdown docs URL. |
 | `list_components` | Every component, optionally filtered by `category` or `tier`. |
 | `get_component` | One component's full reference: when to use it, what to use instead, install, usage, props, keyboard, accessibility, motion and notes for AI. |
-| `get_install_command` | The shadcn CLI command for one or more slugs, for React or Svelte, any package manager, TS or JS. |
+| `get_install_command` | The `@baby-ui/cli add` command for one or more slugs, for any package manager. |
 
 Pro components appear in search and docs; their source installs from your account page.
 

@@ -89,7 +89,7 @@ async function copyPage() {
 
 async function copyInstall() {
 	if (!installSlug) return;
-	const args = installArgs(installSlug, prefs.framework, prefs.dialect);
+	const args = installArgs(installSlug);
 	await navigator.clipboard.writeText(pmCommand("dlx", args, prefs.pm));
 	flash("install");
 }

@@ -18,8 +18,8 @@
 
 - **240+ components, two ports.** Each one is built once from a shared spec and shipped as a
   hand-written React port and Svelte port: same props, same motion, same accessibility.
-- **A shadcn drop-in.** The shadcn CLI copies source into your project; part names, `data-slot`s
-  and `variant`/`size` props match shadcn/ui and shadcn-svelte.
+- **A shadcn drop-in.** The CLI copies source into your project; part names, `data-slot`s and
+  `variant`/`size` props match shadcn/ui and shadcn-svelte.
 - **Accessible by construction.** Interactive parts sit on Base UI (React) and bits-ui (Svelte),
   the primitives shadcn itself uses.
 - **Motion that answers the hand.** Presses squish, popovers zoom from their trigger, panels grow
@@ -30,15 +30,16 @@
 
 ## Quick start
 
-In a project with Tailwind CSS v4 and `shadcn init` done:
+In a React or Svelte project with Tailwind CSS v4:
 
 ```bash
-npx shadcn@latest add https://baby-ui.pages.dev/r/button.json
-npx shadcn-svelte@latest add https://baby-ui.pages.dev/svelte/r/button.json
+npx @baby-ui/cli init
+npx @baby-ui/cli add button
 ```
 
-The [installation guide](https://baby-ui.nexonauts.com/docs/installation) covers a fresh
-project, and every component page has its command ready.
+Already on shadcn? Skip `init`. The [installation guide](https://baby-ui.nexonauts.com/docs/installation)
+covers a fresh project and the stock shadcn CLIs, and the [CLI guide](https://baby-ui.nexonauts.com/docs/cli)
+covers `diff`, `update`, `repair` and `undo`.
 
 ## Contributing
 
