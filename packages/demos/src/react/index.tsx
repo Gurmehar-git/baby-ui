@@ -50,7 +50,7 @@ export const demos: Record<string, DemoLoader> = {
 	"code-block": () => import("./auto/code-block").then((m) => ({ default: m.CodeBlockDemo })),
 	"collab-card": () => import("./auto/collab-card").then((m) => ({ default: m.CollabCardDemo })),
 	collapsible: () => import("./primitives2").then((m) => ({ default: m.CollapsibleDemo })),
-	"collection-surfer": () => import("./auto/collection-surfer").then((m) => ({ default: m.CollectionSurferDemo })),
+	"collection-surfer": () => import("./collection-surfer").then((m) => ({ default: m.CollectionSurferDemo })),
 	"color-picker": () => import("./content").then((m) => ({ default: m.ColorPickerDemo })),
 	combobox: () => import("./overlays").then((m) => ({ default: m.ComboboxDemo })),
 	command: () => import("./dialogs").then((m) => ({ default: m.CommandDemo })),

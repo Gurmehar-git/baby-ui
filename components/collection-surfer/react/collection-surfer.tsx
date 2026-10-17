@@ -1,6 +1,14 @@
 "use client";
 
-import { type CSSProperties, type ReactNode, useEffect, useRef } from "react";
+import {
+	type ComponentProps,
+	type CSSProperties,
+	createContext,
+	type ReactNode,
+	useContext,
+	useEffect,
+	useRef,
+} from "react";
 import { cn } from "../../lib/cn";
 import type { ImageSlotProps } from "../../lib/image";
 import { onScrollFrame } from "../../lib/scroll-frame";
@@ -18,6 +26,20 @@ import {
 
 export type { CollectionSurferItem, CollectionSurferSize, CollectionSurferVariant };
 
+type CollectionSurferState = {
+	items: CollectionSurferItem[];
+	styles: ReturnType<typeof collectionSurfer>;
+};
+
+const CollectionSurferContext = createContext<CollectionSurferState | null>(null);
+
+function useCollectionSurfer() {
+	const state = useContext(CollectionSurferContext);
+	if (!state)
+		throw new Error("CollectionSurfer parts must be rendered inside a CollectionSurfer.");
+	return state;
+}
+
 export interface CollectionSurferProps {
 	items: CollectionSurferItem[];
 	/** How cards react to the pointer: grow, lift, or not at all. */
@@ -25,32 +47,27 @@ export interface CollectionSurferProps {
 	size?: CollectionSurferSize;
 	/** Scroll distance in px that moves the line one card forward. */
 	scrollPerItem?: number;
-	/** Overlay heading; the item count follows it. */
-	title?: string;
-	hint?: string;
 	/** Accessible name of the scroll region. */
 	label?: string;
-	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
-	image?: (props: ImageSlotProps) => ReactNode;
 	className?: string;
+	children?: ReactNode;
 }
 
+/** A scroll box that surfs a 3D line of cards: CollectionSurferTrack, with an optional title and hint over it. */
 export function CollectionSurfer({
 	items,
 	variant = "magnetic",
 	size = "default",
 	scrollPerItem = 300,
-	title,
-	hint = "Scroll to surf",
 	label = "Collection",
-	image,
 	className,
+	children,
 }: CollectionSurferProps) {
 	const rootRef = useRef<HTMLElement>(null);
 	const stageRef = useRef<HTMLDivElement>(null);
 	const count = items.length;
 	const loop = count * scrollPerItem;
-	const s = collectionSurfer({ variant, size });
+	const styles = collectionSurfer({ variant, size });
 
 	useEffect(() => {
 		const root = rootRef.current;
@@ -103,55 +120,96 @@ export function CollectionSurfer({
 	}, [loop, scrollPerItem, count, variant]);
 
 	return (
-		<section
-			ref={rootRef}
-			data-slot="collection-surfer"
-			aria-label={label}
-			// biome-ignore lint/a11y/noNoninteractiveTabindex: the scroll box needs focus for keyboard scrolling.
-			tabIndex={0}
-			className={cn(s.root(), className)}
-		>
-			<div ref={stageRef} className={s.stage()}>
-				{title && (
-					<h2 className={s.title()}>
-						{title}
-						<span className={s.count()}>({count})</span>
-					</h2>
-				)}
-				{hint && <p className={s.hint()}>{hint}</p>}
-				<div className={s.scene()}>
-					<div className={s.track()}>
-						{[...items, ...items].map((item, i) => (
-							<div
-								// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
-								key={`${i}-${item.src}`}
-								data-surf-card=""
-								aria-hidden={i >= count || undefined}
-								className={s.card()}
-								style={{ "--i": i } as CSSProperties}
-							>
-								<span className={s.number()}>
-									{String((i % count) + 1).padStart(2, "0")}
-								</span>
-								<div className={s.frame()}>
-									{image ? (
-										image({ src: item.src, alt: item.alt, className: s.image() })
-									) : (
-										<img
-											src={item.src}
-											alt={item.alt}
-											className={s.image()}
-											decoding="async"
-											draggable={false}
-										/>
-									)}
-								</div>
-							</div>
-						))}
-					</div>
+		<CollectionSurferContext.Provider value={{ items, styles }}>
+			<section
+				ref={rootRef}
+				data-slot="collection-surfer"
+				aria-label={label}
+				// biome-ignore lint/a11y/noNoninteractiveTabindex: the scroll box needs focus for keyboard scrolling.
+				tabIndex={0}
+				className={cn(styles.root(), className)}
+			>
+				<div ref={stageRef} className={styles.stage()}>
+					{children}
 				</div>
+				<div aria-hidden="true" style={{ height: loop * 3 }} />
+			</section>
+		</CollectionSurferContext.Provider>
+	);
+}
+
+/** Overlay heading; the item count follows it. */
+export function CollectionSurferTitle({
+	className,
+	children,
+	...props
+}: ComponentProps<"h2">) {
+	const { items, styles } = useCollectionSurfer();
+	return (
+		<h2
+			data-slot="collection-surfer-title"
+			className={cn(styles.title(), className)}
+			{...props}
+		>
+			{children}
+			<span className={styles.count()}>({items.length})</span>
+		</h2>
+	);
+}
+
+/** A corner hint, e.g. "Scroll to surf". */
+export function CollectionSurferHint({ className, ...props }: ComponentProps<"p">) {
+	const { styles } = useCollectionSurfer();
+	return (
+		<p
+			data-slot="collection-surfer-hint"
+			className={cn(styles.hint(), className)}
+			{...props}
+		/>
+	);
+}
+
+export interface CollectionSurferTrackProps {
+	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
+	image?: (props: ImageSlotProps) => ReactNode;
+	className?: string;
+}
+
+/** The endless line of cards; the second set repeats the first and is hidden from screen readers. */
+export function CollectionSurferTrack({ image, className }: CollectionSurferTrackProps) {
+	const { items, styles } = useCollectionSurfer();
+	const count = items.length;
+	return (
+		<div data-slot="collection-surfer-track" className={cn(styles.scene(), className)}>
+			<div className={styles.track()}>
+				{[...items, ...items].map((item, i) => (
+					<div
+						// biome-ignore lint/suspicious/noArrayIndexKey: items render in a fixed order and can repeat, so position is the identity.
+						key={`${i}-${item.src}`}
+						data-surf-card=""
+						aria-hidden={i >= count || undefined}
+						className={styles.card()}
+						style={{ "--i": i } as CSSProperties}
+					>
+						<span className={styles.number()}>
+							{String((i % count) + 1).padStart(2, "0")}
+						</span>
+						<div className={styles.frame()}>
+							{image ? (
+								image({ src: item.src, alt: item.alt, className: styles.image() })
+							) : (
+								<img
+									src={item.src}
+									alt={item.alt}
+									className={styles.image()}
+									decoding="async"
+									draggable={false}
+								/>
+							)}
+						</div>
+					</div>
+				))}
 			</div>
-			<div aria-hidden="true" style={{ height: loop * 3 }} />
-		</section>
+		</div>
 	);
 }

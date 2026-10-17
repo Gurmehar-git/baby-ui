@@ -11,14 +11,13 @@ export const collectionSurfer = defineComponent({
 		"An endless diagonal line of 3D image cards that glides toward you as you scroll.",
 	category: "animated",
 	status: "stable",
-	demo: { mode: "auto", frame: "none" },
 	variants: variantsOf(collectionSurferVariants, ["variant", "size"]),
 	props: [
 		{
 			name: "image",
 			type: "(props: ImageSlotProps) => ReactNode | Snippet<[ImageSlotProps]>",
 			description:
-				"Renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
+				"CollectionSurferTrack: renders each image with `{ src, alt, width?, height?, className?, loading? }`, e.g. through your framework's image component. Defaults to `<img>`.",
 			control: { kind: "none" },
 		},
 		{
@@ -50,17 +49,11 @@ export const collectionSurfer = defineComponent({
 			control: { kind: "number", min: 100, max: 800, step: 50 },
 		},
 		{
-			name: "title",
-			type: "string",
-			description: "Overlay heading; the item count follows it.",
-			control: { kind: "text" },
-		},
-		{
-			name: "hint",
-			type: "string",
-			description: "Corner hint.",
-			default: "Scroll to surf",
-			control: { kind: "text" },
+			name: "children",
+			type: "ReactNode | Snippet",
+			description:
+				"CollectionSurfer: CollectionSurferTrack, with an optional CollectionSurferTitle (the item count follows it) and CollectionSurferHint over it.",
+			control: { kind: "none" },
 		},
 		{
 			name: "label",

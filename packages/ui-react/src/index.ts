@@ -122,7 +122,7 @@ export { type CodeBlockProps, CodeBlock } from "@baby-ui/components/react/code-b
 export { type CollabCardCollaborator, type CollabCardProps, CollabCard } from "@baby-ui/components/react/collab-card";
 export { collabCard, type CollabCardTone } from "@baby-ui/components/react/collab-card";
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@baby-ui/components/react/collapsible";
-export { type CollectionSurferProps, CollectionSurfer } from "@baby-ui/components/react/collection-surfer";
+export { type CollectionSurferProps, CollectionSurfer, CollectionSurferTitle, CollectionSurferHint, type CollectionSurferTrackProps, CollectionSurferTrack } from "@baby-ui/components/react/collection-surfer";
 export { type CollectionSurferItem, SURF_REACH, wrapSurfScroll, surfShift, surfNearness } from "@baby-ui/components/react/collection-surfer";
 export { collectionSurfer, type CollectionSurferVariant, type CollectionSurferSize } from "@baby-ui/components/react/collection-surfer";
 export { type ColorFormat, type ColorPickerProps, ColorPicker } from "@baby-ui/components/react/color-picker";

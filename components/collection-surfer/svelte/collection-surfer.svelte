@@ -1,7 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { cn } from "../../lib/cn";
-import type { ImageSlotProps } from "../../lib/image";
 import { onScrollFrame } from "../../lib/scroll-frame";
 import {
 	type CollectionSurferItem,
@@ -14,17 +13,16 @@ import {
 	type CollectionSurferVariant,
 	collectionSurfer,
 } from "../variants";
+import { setCollectionSurfer } from "./context";
 
 let {
 	items,
 	variant = "magnetic",
 	size = "default",
 	scrollPerItem = 300,
-	title,
-	hint = "Scroll to surf",
 	label = "Collection",
-	image,
 	class: classProp,
+	children,
 }: {
 	items: CollectionSurferItem[];
 	/** How cards react to the pointer: grow, lift, or not at all. */
@@ -32,14 +30,10 @@ let {
 	size?: CollectionSurferSize;
 	/** Scroll distance in px that moves the line one card forward. */
 	scrollPerItem?: number;
-	/** Overlay heading; the item count follows it. */
-	title?: string;
-	hint?: string;
 	/** Accessible name of the scroll region. */
 	label?: string;
-	/** Renders each image, e.g. through your framework's image component; defaults to `<img>`. */
-	image?: Snippet<[ImageSlotProps]>;
 	class?: string;
+	children?: Snippet;
 } = $props();
 
 let root = $state<HTMLElement>();
@@ -47,6 +41,14 @@ let stage = $state<HTMLDivElement>();
 const count = $derived(items.length);
 const loop = $derived(count * scrollPerItem);
 const s = $derived(collectionSurfer({ variant, size }));
+setCollectionSurfer({
+	get items() {
+		return items;
+	},
+	get styles() {
+		return s;
+	},
+});
 
 $effect(() => {
 	const scroller = root;
@@ -111,31 +113,7 @@ $effect(() => {
 	class={cn(s.root(), classProp)}
 >
 	<div bind:this={stage} class={s.stage()}>
-		{#if title}
-			<h2 class={s.title()}>
-				{title}<span class={s.count()}>({count})</span>
-			</h2>
-		{/if}
-		{#if hint}
-			<p class={s.hint()}>{hint}</p>
-		{/if}
-		<div class={s.scene()}>
-			<div class={s.track()}>
-				{#each [...items, ...items] as item, i (`${i}-${item.src}`)}
-					<div
-						data-surf-card=""
-						aria-hidden={i >= count || undefined}
-						class={s.card()}
-						style="--i: {i};"
-					>
-						<span class={s.number()}>{String((i % count) + 1).padStart(2, "0")}</span>
-						<div class={s.frame()}>
-							{#if image}{@render image({ src: item.src, alt: item.alt, className: s.image() })}{:else}<img src={item.src} alt={item.alt} class={s.image()} draggable="false" />{/if}
-						</div>
-					</div>
-				{/each}
-			</div>
-		</div>
+		{@render children?.()}
 	</div>
 	<div aria-hidden="true" style="height: {loop * 3}px;"></div>
 </section>

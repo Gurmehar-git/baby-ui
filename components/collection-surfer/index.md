@@ -6,7 +6,9 @@ category: animated
 tags: [scroll, 3d, gallery, infinite]
 ---
 
-Every `scrollPerItem` px of scroll moves the line one card closer. The scroll offset wraps by one
+`CollectionSurferTrack` draws the cards from `items`; `CollectionSurferTitle` and
+`CollectionSurferHint` float over them. Every `scrollPerItem` px of scroll moves the line one
+card closer. The scroll offset wraps by one
 full loop, so the line never runs out.
 
 Near the pointer, cards grow (`magnetic`) or lift (`uplift`); `simple` leaves them still. Nothing
