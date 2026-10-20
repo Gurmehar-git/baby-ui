@@ -337,6 +337,29 @@
 		"rest: choropleth-feature[99]: role is unset in React, presentation in Svelte",
 		"rest: choropleth-feature[9]: role is unset in React, presentation in Svelte"
 	],
+	"citation-text": [
+		"rest: citation-chip[0]: aria-expanded is unset in React, false in Svelte",
+		"rest: citation-chip[0]: aria-haspopup is unset in React, dialog in Svelte",
+		"rest: citation-chip[0]: role is link in React, button in Svelte",
+		"rest: citation-chip[1]: aria-expanded is unset in React, false in Svelte",
+		"rest: citation-chip[1]: aria-haspopup is unset in React, dialog in Svelte",
+		"rest: citation-chip[1]: role is link in React, button in Svelte",
+		"rest: citation-chip[2]: aria-expanded is unset in React, false in Svelte",
+		"rest: citation-chip[2]: aria-haspopup is unset in React, dialog in Svelte",
+		"rest: citation-chip[2]: role is link in React, button in Svelte",
+		"rest: citation-chip[3]: aria-expanded is unset in React, false in Svelte",
+		"rest: citation-chip[3]: aria-haspopup is unset in React, dialog in Svelte",
+		"rest: citation-chip[3]: role is link in React, button in Svelte",
+		"rest: citation-chip[4]: aria-expanded is unset in React, false in Svelte",
+		"rest: citation-chip[4]: aria-haspopup is unset in React, dialog in Svelte",
+		"rest: citation-chip[4]: role is link in React, button in Svelte",
+		"rest: citation-chip[5]: aria-expanded is unset in React, false in Svelte",
+		"rest: citation-chip[5]: aria-haspopup is unset in React, dialog in Svelte",
+		"rest: citation-chip[5]: role is link in React, button in Svelte",
+		"rest: citation-chip[6]: aria-expanded is unset in React, false in Svelte",
+		"rest: citation-chip[6]: aria-haspopup is unset in React, dialog in Svelte",
+		"rest: citation-chip[6]: role is link in React, button in Svelte"
+	],
 	"collapsible": [
 		"rest: collapsible-trigger: aria-controls is unset in React, <ref> in Svelte"
 	],
