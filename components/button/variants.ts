@@ -103,11 +103,11 @@ export const button = tv({
 	defaultVariants: { variant: "default", size: "default" },
 });
 
-/** Faces fill the button and inherit its justify, direction and gap, so a caller's layout classes
- * reach the content. The hidden face leaves the flow, so the button is sized by what it shows. */
+/** Faces fill the button and inherit its justify, direction and gap. The hidden face leaves the
+ * flow and is clipped across, so only what the button shows sizes it or adds scroll width. */
 export const buttonFace = tv({
 	slots: {
-		wrap: "relative grid w-full min-w-0 grid-cols-[minmax(0,1fr)] gap-[inherit] [align-items:inherit] [flex-direction:inherit] [justify-content:inherit]",
+		wrap: "relative grid w-full min-w-0 grid-cols-[minmax(0,1fr)] overflow-x-clip gap-[inherit] [align-items:inherit] [flex-direction:inherit] [justify-content:inherit]",
 		face: [
 			"col-start-1 row-start-1 flex gap-[inherit] whitespace-nowrap [align-items:inherit] [flex-direction:inherit] [justify-content:inherit]",
 			"transition-[opacity,transform,scale,translate,filter] duration-(--duration-base) ease-[var(--ease-ui-out)] motion-reduce:transition-none",
