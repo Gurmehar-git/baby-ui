@@ -6,6 +6,9 @@ export { agentScreen, type AgentScreenSize } from "@baby-ui/components/react/age
 export { Alert, AlertTitle, AlertDescription } from "@baby-ui/components/react/alert";
 export { alert, type AlertVariant, ALERT_ROLE, ALERT_ICON, alertCollapse } from "@baby-ui/components/react/alert";
 export { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel, AlertDialogAction } from "@baby-ui/components/react/alert-dialog";
+export { type AnimatedBeamNode, type AnimatedBeamProps, AnimatedBeam, AnimatedBeamBeams, type AnimatedBeamNodesProps, AnimatedBeamNodes } from "@baby-ui/components/react/animated-beam";
+export { type BeamPoint, type BeamLink, type BeamGeometry, BEAM_DURATION, PULSE_SHARE, hubPositions, beamPath, beamGeometry, pulseKeyframes, pulseDasharray } from "@baby-ui/components/react/animated-beam";
+export { animatedBeam, type AnimatedBeamLayout, type AnimatedBeamSize, type AnimatedBeamTone } from "@baby-ui/components/react/animated-beam";
 export { type AnimatedGradientProps, AnimatedGradient } from "@baby-ui/components/react/animated-gradient";
 export { animatedGradient, type AnimatedGradientTone, type AnimatedGradientPosition } from "@baby-ui/components/react/animated-gradient";
 export { type AnimatedGradientTextProps, AnimatedGradientText } from "@baby-ui/components/react/animated-gradient-text";
@@ -112,6 +115,9 @@ export { type CircuitNode, type CircuitConnection, type CircuitTrace, tracePath,
 export { circuitBoard, circuitNode, type CircuitBoardTone, type CircuitBoardSpeed, type CircuitNodeStatus } from "@baby-ui/components/react/circuit-board";
 export { type CircularTextProps, CircularText } from "@baby-ui/components/react/circular-text";
 export { circularText, type CircularTextDirection } from "@baby-ui/components/react/circular-text";
+export { type CitationTextProps, CitationText, CitationTextBody, CitationTextSources } from "@baby-ui/components/react/citation-text";
+export { type CitationSource, type CitationSegment, type CitationRef, numberCitations, siteName, monogram, needsSpace, segmentActive } from "@baby-ui/components/react/citation-text";
+export { citationText, type CitationChip } from "@baby-ui/components/react/citation-text";
 export { type ClickSparkProps, ClickSpark } from "@baby-ui/components/react/click-spark";
 export { type SparkOptions, createSparks } from "@baby-ui/components/react/click-spark";
 export { clickSpark, type ClickSparkTone, type ClickSparkScope } from "@baby-ui/components/react/click-spark";
@@ -181,6 +187,9 @@ export { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, Dialo
 export { dialogFrame, type DialogVariant, dialogWidth, type DialogSize } from "@baby-ui/components/react/dialog";
 export { type DiffRow, type DiffTableProps, DiffTable } from "@baby-ui/components/react/diff-table";
 export { diffRow, type DiffRowChange } from "@baby-ui/components/react/diff-table";
+export { type DispersionRaysProps, DispersionRays } from "@baby-ui/components/react/dispersion-rays";
+export { type DispersionRaysOptions, createDispersionRays } from "@baby-ui/components/react/dispersion-rays";
+export { dispersionRays, type DispersionRaysTone, type DispersionRaysSpeed, type DispersionRaysPosition, DISPERSION_RAYS_COLORS, DISPERSION_RAYS_SPEED } from "@baby-ui/components/react/dispersion-rays";
 export { type DitherGradientProps, DitherGradient } from "@baby-ui/components/react/dither-gradient";
 export { type DitherOptions, mountDither } from "@baby-ui/components/react/dither-gradient";
 export { ditherGradient, type DitherGradientTone, type DitherGradientMatrix, type DitherGradientPosition } from "@baby-ui/components/react/dither-gradient";
@@ -307,6 +316,9 @@ export { type FisheyeOptions, mountFisheye } from "@baby-ui/components/react/inf
 export { type GalleryOptions, createGallery } from "@baby-ui/components/react/infinite-image-field";
 export { type InfiniteImageFieldLabels, INFINITE_IMAGE_FIELD_LABELS } from "@baby-ui/components/react/infinite-image-field";
 export { type InfiniteImageItem, infiniteImageField, type InfiniteImageFieldVariant, type InfiniteImageFieldShape, type InfiniteImageFieldLayout, type InfiniteImageFieldSize, DEFAULT_LENS } from "@baby-ui/components/react/infinite-image-field";
+export { type InkBloomProps, InkBloom } from "@baby-ui/components/react/ink-bloom";
+export { type InkBloomOptions, createInkBloom } from "@baby-ui/components/react/ink-bloom";
+export { inkBloom, type InkBloomTone, type InkBloomSpeed, type InkBloomPosition, INK_BLOOM_COLORS, INK_BLOOM_SPEED } from "@baby-ui/components/react/ink-bloom";
 export { type InlineEditProps, InlineEdit } from "@baby-ui/components/react/inline-edit";
 export { type InlineEditPhase, caretAt, cleanDraft, runSave } from "@baby-ui/components/react/inline-edit";
 export { inlineEdit, type InlineEditVariant, type InlineEditSize } from "@baby-ui/components/react/inline-edit";
@@ -327,6 +339,9 @@ export { type LetterMorphProps, LetterMorph } from "@baby-ui/components/react/le
 export { type LetterMorphOptions, createLetterMorph } from "@baby-ui/components/react/letter-morph";
 export { letterMorph, type LetterMorphVariant, type LetterMorphSize } from "@baby-ui/components/react/letter-morph";
 export { cn } from "@baby-ui/components/lib/cn";
+export { type LicenseKeyProps, LicenseKey, LicenseKeyHeader, LicenseKeyHeading, LicenseKeyTitle, LicenseKeyDescription, LicenseKeyRotate, LicenseKeyPass, LicenseKeyPassHeader, LicenseKeyBrand, LicenseKeyPlan, LicenseKeyValue, LicenseKeyMeta, LicenseKeyMetaItem, LicenseKeySeats, LicenseKeyConfirm, LicenseKeySetup, LicenseKeyStep, LicenseKeyCode } from "@baby-ui/components/react/license-key";
+export { type LicenseKeyStatus, type LicenseSeats, type LicenseRegistry, type LicenseFramework, type LicenseKeyLabels, LICENSE_KEY_LABELS, maskKey, keyGroups, registrySnippet, envLine, installCommand, formatDate, fillEnv } from "@baby-ui/components/react/license-key";
+export { licenseKey, licenseDisclosure, type LicenseKeyVariant } from "@baby-ui/components/react/license-key";
 export { type LightCausticsProps, LightCaustics } from "@baby-ui/components/react/light-caustics";
 export { type LightCausticsOptions, mountLightCaustics } from "@baby-ui/components/react/light-caustics";
 export { lightCaustics, type LightCausticsTone, type LightCausticsSpeed, type LightCausticsPosition, LIGHT_CAUSTICS_COLORS, LIGHT_CAUSTICS_SPEED } from "@baby-ui/components/react/light-caustics";
@@ -346,6 +361,9 @@ export { type LoadingStateProps, LoadingState, LoadingStateIndicator, LoadingSta
 export { loadingState, type LoadingStateVariant, LOADING_PATTERNS, formatElapsed } from "@baby-ui/components/react/loading-state";
 export { type LogoCarouselProps, LogoCarousel } from "@baby-ui/components/react/logo-carousel";
 export { logoCarousel, type LogoCarouselVariant, type LogoCarouselTone } from "@baby-ui/components/react/logo-carousel";
+export { type MagicLinkLoginProps, MagicLinkLogin, MagicLinkLoginAside, MagicLinkLoginPanel, MagicLinkLoginBrand, MagicLinkLoginViews, MagicLinkLoginForm, MagicLinkLoginSent, MagicLinkLoginHeader, MagicLinkLoginProviders, MagicLinkLoginEmail, MagicLinkLoginLegal, MagicLinkLoginSentHeader, MagicLinkLoginInbox, MagicLinkLoginResend } from "@baby-ui/components/react/magic-link-login";
+export { type MagicLinkStatus, type MagicLinkProvider, type MagicLinkInbox, type MagicLinkLabels, MAGIC_LINK_LABELS, normalizeEmail, isValidEmail, inboxFor, cooldownSeconds, formatCooldown } from "@baby-ui/components/react/magic-link-login";
+export { magicLinkLogin, magicLinkView, type MagicLinkVariant, type MagicLinkLayout } from "@baby-ui/components/react/magic-link-login";
 export { type MagnetLinesProps, MagnetLines } from "@baby-ui/components/react/magnet-lines";
 export { type MagnetLinesOptions, mountMagnetLines } from "@baby-ui/components/react/magnet-lines";
 export { magnetLines, type MagnetLinesSize, type MagnetLinesTone } from "@baby-ui/components/react/magnet-lines";
@@ -493,6 +511,9 @@ export { particleText, type ParticleTextShape, type ParticleTextSize, type Parti
 export { type PasswordInputProps, PasswordInput } from "@baby-ui/components/react/password-input";
 export { type PasswordRule, type PasswordStrengthLevel, type PasswordStrength, type PasswordStrengthLabels, DEFAULT_STRENGTH_LABELS, countCodePoints, passwordRules, measurePassword, strengthLabel } from "@baby-ui/components/react/password-input";
 export { passwordInput, type PasswordStrengthStep } from "@baby-ui/components/react/password-input";
+export { type PaymentMethodCardProps, PaymentMethodCard, PaymentMethodCardTitle, PaymentMethodCardContent, PaymentMethodCardMark, PaymentMethodCardDetails, PaymentMethodCardAction, PaymentMethodCardError } from "@baby-ui/components/react/payment-method-card";
+export { type CardBrand, type CardPaymentMethod, type WalletPaymentMethod, type PaymentMethod, type PaymentMethodStatus, type ExpiryState, type PaymentMethodLabels, PAYMENT_METHOD_LABELS, BRAND_MARK, SOON_DAYS, isCard, expiryState, expiryLabel } from "@baby-ui/components/react/payment-method-card";
+export { paymentMethodCard, type PaymentMethodCardVariant } from "@baby-ui/components/react/payment-method-card";
 export { type PhoneInputDetails, type PhoneInputProps, PhoneInput } from "@baby-ui/components/react/phone-input";
 export { type PhoneCountry, type PhoneStatus, FALLBACK_COUNTRY, PHONE_COUNTRIES, findCountry, onlyDigits, flagOf, capDigits, formatNational, phoneStatus, toE164, parsePhoneNumber, formatPhoneNumber, caretAfterDigits } from "@baby-ui/components/react/phone-input";
 export { phoneInput, type PhoneInputVariant } from "@baby-ui/components/react/phone-input";
@@ -512,6 +533,17 @@ export { pricing01, type Pricing01Variant } from "@baby-ui/components/react/pric
 export { type Pricing02Props, Pricing02, Pricing02Header, Pricing02Heading, Pricing02Eyebrow, Pricing02Title, Pricing02Aside, Pricing02Description, Pricing02Periods, Pricing02Plans, type Pricing02PlanProps, Pricing02Plan, Pricing02PlanPanel, Pricing02PlanName, Pricing02PlanDescription, Pricing02PlanPrice, type Pricing02PlanActionProps, Pricing02PlanAction, Pricing02PlanList, Pricing02PlanListLabel, Pricing02PlanFeatures, Pricing02PlanFeature, Pricing02Footnotes } from "@baby-ui/components/react/pricing-02";
 export { type Pricing02Period, digitDelay } from "@baby-ui/components/react/pricing-02";
 export { pricing02, type Pricing02Variant } from "@baby-ui/components/react/pricing-02";
+export { type PricingComparisonProps, PricingComparison, PricingComparisonToolbar, PricingComparisonDifferences, PricingComparisonTable, PricingComparisonMobile, PricingComparisonEmpty } from "@baby-ui/components/react/pricing-comparison";
+export { type ComparisonPlan, type ComparisonGroup, type PricingComparisonLabels, PRICING_COMPARISON_LABELS, comparisonValue, rowDiffers, groupDiffers, comparisonValueText } from "@baby-ui/components/react/pricing-comparison";
+export { pricingComparison, type PricingComparisonDensity } from "@baby-ui/components/react/pricing-comparison";
+export { type PricingPlansProps, PricingPlans, PricingPlansCycle, PricingPlansGrid, type PricingPlanProps, PricingPlan, PricingPlanHeader, PricingPlanTitle, PricingPlanDescription, PricingPlanPrice, PricingPlanAction, PricingPlanFeatures } from "@baby-ui/components/react/pricing-plans";
+export { type PricingCycle, type PlanPrices, type PricingPlanOption, type PlanPrice, type PricingPlansLabels, PRICING_PLANS_LABELS, PRICING_CYCLES, availableCycles, annualSavePercent, maxAnnualSavePercent, planPrice, isCustomPlan, formatPlanMoney, planPriceLabel, describePlanPrice } from "@baby-ui/components/react/pricing-plans";
+export { pricingPlans, type PricingPlansLayout, type PricingPlansSize } from "@baby-ui/components/react/pricing-plans";
+export { type PrismGradientProps, PrismGradient } from "@baby-ui/components/react/prism-gradient";
+export { prismGradient, type PrismGradientTone, type PrismGradientSpeed, type PrismGradientPosition, PRISM_GRADIENT_COLORS, PRISM_GRADIENT_SPEED } from "@baby-ui/components/react/prism-gradient";
+export { type PrismOrbProps, PrismOrb } from "@baby-ui/components/react/prism-orb";
+export { type PrismOrbOptions, createPrismOrb } from "@baby-ui/components/react/prism-orb";
+export { prismOrb, type PrismOrbTone, type PrismOrbSpeed, type PrismOrbPosition, PRISM_ORB_COLORS, PRISM_ORB_SPEED } from "@baby-ui/components/react/prism-orb";
 export { type ProgressProps, Progress } from "@baby-ui/components/react/progress";
 export { progress, type ProgressSize, type ProgressTone, type ProgressVariant, PROGRESS_RING, progressPercent } from "@baby-ui/components/react/progress";
 export { type ProjectionLineProps, ProjectionLine } from "@baby-ui/components/react/projection-line";
@@ -636,7 +668,7 @@ export { splitFlap, type SplitFlapVariant, type SplitFlapSize, type SplitFlapInd
 export { type SplitTextProps, SplitText } from "@baby-ui/components/react/split-text";
 export { splitText, type SplitTextSize } from "@baby-ui/components/react/split-text";
 export { type StarHistoryProps, StarHistory, StarIcon } from "@baby-ui/components/react/star-history";
-export { type StarDatum, type StarHistoryData, type StarHistoryLabels, STAR_HISTORY_LABELS, STAR_MILESTONES, dailyGains, gainSeries, firstStarDate, lastStarDate, currentStars, averagePerDay, recentGain, bestDay, type StarMilestones, starMilestones, formatDate } from "@baby-ui/components/react/star-history";
+export { type StarDatum, type StarHistoryData, type StarHistoryLabels, STAR_HISTORY_LABELS, STAR_MILESTONES, dailyGains, gainSeries, firstStarDate, lastStarDate, currentStars, averagePerDay, recentGain, bestDay, type StarMilestones, starMilestones } from "@baby-ui/components/react/star-history";
 export { starHistory, type StarHistoryVariant, type StarHistoryMode, STAR_HISTORY_LAYOUT } from "@baby-ui/components/react/star-history";
 export { type StatCardProps, StatCard, StatCardHeader, StatCardTitle, StatCardTrend, StatCardContent, StatCardValue, StatCardDescription, StatCardEmpty, StatCardError, StatCardChart } from "@baby-ui/components/react/stat-card";
 export { statCard, type StatCardSize, type StatCardChartKind, type StatCardStatus, type StatCardPositive, periodTrend, type TrendTone, trendTone, trendPath, trendSentence, statSummary } from "@baby-ui/components/react/stat-card";
@@ -658,6 +690,9 @@ export { type StreamOffset, type StreamLayers, streamLayers, streamExtent, blend
 export { streamgraphChart, type StreamgraphVariant } from "@baby-ui/components/react/streamgraph-chart";
 export { type StreamingToken, type StreamingSource, type StreamingTextProps, StreamingText } from "@baby-ui/components/react/streaming-text";
 export { streamingText, type StreamingTextSize, type StreamingTextLayout } from "@baby-ui/components/react/streaming-text";
+export { type SubscriptionCardProps, SubscriptionCard, SubscriptionCardHeader, SubscriptionCardTitle, SubscriptionCardPrice, SubscriptionCardSchedule, SubscriptionCardAlert, SubscriptionCardSeats, SubscriptionCardFooter, SubscriptionCardManage, SubscriptionCardChangePlan, SubscriptionCardResume, SubscriptionCardCancel } from "@baby-ui/components/react/subscription-card";
+export { type SubscriptionInterval, type SubscriptionStatus, type SubscriptionPlan, type SubscriptionSeats, type SubscriptionPending, type SubscriptionBadgeTone, type SubscriptionLabels, SUBSCRIPTION_LABELS, STATUS_TONE, toTime, daysUntil, intervalLabel, scheduleLine, availableActions } from "@baby-ui/components/react/subscription-card";
+export { subscriptionCard, type SubscriptionCardVariant } from "@baby-ui/components/react/subscription-card";
 export { type SunburstChartProps, SunburstChart } from "@baby-ui/components/react/sunburst-chart";
 export { type SunburstNode, type ArcDatum, type Focus, type ArcGeometry, type SunburstLayout, ID_SEP, SUNBURST_CURVE, ZOOM_MS, GROW_MS, FADE_MS, DEFAULT_HOVER_POP, sumValues, buildLayout, ringOptions, isDescendant, isOnPath, geometryFor, lerpGeometry, transitionGeometry, hubRadius, clockwiseFraction, enterDelays, relativeOpacity, maxHoverThickness, hoverGrowTargets, growPadding, applyHoverGrow, centroid, labelRotation, labelFits, visibleArcs, focusTrail, arcColor } from "@baby-ui/components/react/sunburst-chart";
 export { sunburstChart, type SunburstVariant, SUNBURST_HUB } from "@baby-ui/components/react/sunburst-chart";
@@ -714,6 +749,9 @@ export { tool, type ToolState, type ToolLabels, TOOL_LABELS } from "@baby-ui/com
 export { type ToolDetailLine, type ToolStep, type ToolDiffLine, type ToolDiff, type ToolChipsLabels, type ToolChipsProps, ToolChips } from "@baby-ui/components/react/tool-chips";
 export { toolChips, type ToolChipsSize } from "@baby-ui/components/react/tool-chips";
 export { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@baby-ui/components/react/tooltip";
+export { type TopographicLinesProps, TopographicLines } from "@baby-ui/components/react/topographic-lines";
+export { type ContourOptions, mountContours } from "@baby-ui/components/react/topographic-lines";
+export { topographicLines, type TopographicLinesVariant, type TopographicLinesTone, type TopographicLinesPosition } from "@baby-ui/components/react/topographic-lines";
 export { type TreemapChartProps, TreemapChart } from "@baby-ui/components/react/treemap-chart";
 export { type TreemapNode, type FlatNode, SHADE_STEPS, flattenTree, layoutFrom, isUnder, topOf, nearestTile, createTreemapStage, shadeFor, branchHue } from "@baby-ui/components/react/treemap-chart";
 export { treemapChart, type TreemapVariant } from "@baby-ui/components/react/treemap-chart";
