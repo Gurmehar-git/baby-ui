@@ -28,6 +28,21 @@ const CANDIDATES = {
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+async function requestBrowserClose(port) {
+	const version = await (await fetch(`http://127.0.0.1:${port}/json/version`)).json();
+	const ws = new WebSocket(version.webSocketDebuggerUrl);
+	await new Promise((resolve, reject) => {
+		ws.addEventListener("open", resolve, { once: true });
+		ws.addEventListener("error", reject, { once: true });
+	});
+	ws.send(JSON.stringify({ id: 1, method: "Browser.close" }));
+	await Promise.race([
+		new Promise((resolve) => ws.addEventListener("close", resolve, { once: true })),
+		wait(2000),
+	]);
+	ws.close();
+}
+
 function findBrowser() {
 	const path =
 		process.env.PROBE_BROWSER ??
@@ -40,11 +55,20 @@ function findBrowser() {
 /** Starts a headless browser on a free debugging port; `close()` always removes its profile. */
 export async function launch() {
 	const profile = mkdtempSync(join(tmpdir(), "baby-ui-probe-"));
+	const removeProfile = () => {
+		try {
+			rmSync(profile, { recursive: true, force: true, maxRetries: 10, retryDelay: 100 });
+		} catch {}
+	};
+	const stderr = [];
 	const proc = spawn(
 		findBrowser(),
 		[
 			"--headless=new",
 			"--disable-gpu",
+			...(process.platform === "linux" && process.env.CI
+				? ["--no-sandbox", "--disable-dev-shm-usage"]
+				: []),
 			"--remote-debugging-port=0",
 			`--user-data-dir=${profile}`,
 			"--no-first-run",
@@ -56,20 +80,44 @@ export async function launch() {
 			"--disable-backgrounding-occluded-windows",
 			"about:blank",
 		],
-		{ stdio: "ignore" },
+		{ stdio: ["ignore", "ignore", "pipe"] },
 	);
+	proc.stderr.on("data", (chunk) => stderr.push(String(chunk)));
 	// The browser writes the port it picked to DevToolsActivePort once it is listening.
 	const portFile = join(profile, "DevToolsActivePort");
 	for (let i = 0; i < 100 && !existsSync(portFile); i++) await wait(100);
-	if (!existsSync(portFile)) throw new Error("Browser did not start its debugging port.");
-	const port = Number(readFileSync(portFile, "utf8").split("\n")[0]);
-	const close = () => {
-		proc.kill();
+	if (!existsSync(portFile)) {
 		if (process.platform === "win32" && proc.pid)
 			spawn("taskkill", ["/PID", String(proc.pid), "/T", "/F"], { stdio: "ignore" });
-		setTimeout(() => rmSync(profile, { recursive: true, force: true }), 500);
+		else proc.kill();
+		removeProfile();
+		const detail = stderr.join("").trim();
+		throw new Error(
+			`Browser did not start its debugging port.${detail ? ` ${detail}` : ""}`,
+		);
+	}
+	const port = Number(readFileSync(portFile, "utf8").split("\n")[0]);
+	let closePromise;
+	const close = () => {
+		if (closePromise) return closePromise;
+		closePromise = (async () => {
+			await requestBrowserClose(port).catch(() => {});
+			if (proc.exitCode === null && process.platform === "win32" && proc.pid) {
+				const killer = spawn("taskkill", ["/PID", String(proc.pid), "/T", "/F"], {
+					stdio: "ignore",
+				});
+				await Promise.race([
+					new Promise((resolve) => killer.once("close", resolve)),
+					wait(2000),
+				]);
+			} else if (proc.exitCode === null) {
+				proc.kill();
+			}
+			removeProfile();
+		})();
+		return closePromise;
 	};
-	process.once("exit", close);
+	process.once("exit", () => proc.kill());
 	return { port, close };
 }
 

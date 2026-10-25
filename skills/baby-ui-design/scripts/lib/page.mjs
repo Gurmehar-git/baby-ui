@@ -31,7 +31,7 @@ export async function withPage(
 		return await fn(page);
 	} finally {
 		clearTimeout(deadline);
-		browser.close();
+		await browser.close();
 	}
 }
 

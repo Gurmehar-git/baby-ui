@@ -75,6 +75,8 @@ export { carousel, type CarouselVariant, type CarouselSize, type CarouselControl
 export { type CaseStudyFlipStackProps, CaseStudyFlipStack } from "@baby-ui/components/react/case-study-flip-stack";
 export { type CaseStudyFlipItem, flipCardOffsets, activeFlipCard } from "@baby-ui/components/react/case-study-flip-stack";
 export { caseStudyFlipStack, type CaseStudyFlipStackSize, type CaseStudyFlipStackTone } from "@baby-ui/components/react/case-study-flip-stack";
+export { ChangeSummary, ChangeSummaryHeader, ChangeSummaryTitle, ChangeSummaryPeriod, ChangeSummaryList, ChangeSummaryItem, ChangeSummaryLabel, ChangeSummaryChange } from "@baby-ui/components/react/change-summary";
+export { changeSummary, changeSummaryTrend, type ChangeSummaryVariant, type ChangeSummaryTone, type ChangeSummaryDirection } from "@baby-ui/components/react/change-summary";
 export { type ChangelogFeedProps, ChangelogFeed, ChangelogFeedHeader, ChangelogFeedHeading, ChangelogFeedTitle, ChangelogFeedDescription, ChangelogFeedFilters, type ChangelogFeedListProps, ChangelogFeedList, ChangelogFeedEmpty, ChangelogFeedEnd } from "@baby-ui/components/react/changelog-feed";
 export { type ChangelogKind, type ChangelogMedia, type ChangelogEntry, CHANGELOG_KINDS, kindBadge, changelogMonths, changelogDay, kindCount, kindShown } from "@baby-ui/components/react/changelog-feed";
 export { changelogFeed, type ChangelogFeedVariant } from "@baby-ui/components/react/changelog-feed";
@@ -181,6 +183,8 @@ export { type DatePickerSize } from "@baby-ui/components/react/date-picker";
 export { type DateRange, type DateRangePickerProps, DateRangePickerPresets, DateRangePicker } from "@baby-ui/components/react/date-range-picker";
 export { type RangeDateParts, type DateRangeParts, type DateRangePreset, type DateRangePickerLabels, DATE_RANGE_PICKER_LABELS, addDays, DEFAULT_RANGE_PRESETS, todayParts } from "@baby-ui/components/react/date-range-picker";
 export { dateRangePicker, type DateRangePickerSize } from "@baby-ui/components/react/date-range-picker";
+export { type DecisionInboxProps, DecisionInbox, DecisionInboxHeader, DecisionInboxList, DecisionInboxItem, DecisionInboxTitle, DecisionInboxBody, DecisionInboxDetail, DecisionInboxActions, DecisionInboxAction, DecisionInboxEmpty } from "@baby-ui/components/react/decision-inbox";
+export { decisionInbox, type DecisionInboxVariant } from "@baby-ui/components/react/decision-inbox";
 export { type DiaTextProps, DiaText } from "@baby-ui/components/react/dia-text";
 export { diaText, type DiaTextSize, DIA_TEXT_COLORS, diaGradient } from "@baby-ui/components/react/dia-text";
 export { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose } from "@baby-ui/components/react/dialog";
@@ -207,6 +211,9 @@ export { draggableMarquee, type DraggableMarqueeGap, type DraggableMarqueeDirect
 export { type DrawerDirection, type DrawerProps, Drawer, DrawerTrigger, DrawerPortal, DrawerOverlay, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription, DrawerClose } from "@baby-ui/components/react/drawer";
 export { drawerFrame, type DrawerVariant } from "@baby-ui/components/react/drawer";
 export { DropdownMenu, DropdownMenuSub, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuShortcut, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSubTrigger, DropdownMenuSubContent } from "@baby-ui/components/react/dropdown-menu";
+export { type EmailDraftProps, EmailDraft, EmailDraftHeader, EmailDraftTitle, EmailDraftAmount, EmailDraftDescription, EmailDraftPanel, EmailDraftContent, EmailDraftFields, EmailDraftTo, EmailDraftAttachment, EmailDraftMessage, EmailDraftOptions, EmailDraftTones, EmailDraftTone, EmailDraftEdit, EmailDraftHint, EmailDraftReceipt, EmailDraftFooter, EmailDraftAuthor, EmailDraftState, EmailDraftActions, EmailDraftDiscard, EmailDraftSend } from "@baby-ui/components/react/email-draft";
+export { EMAIL_DRAFT_ICONS } from "@baby-ui/components/react/email-draft";
+export { emailDraft, type EmailDraftVariant, type EmailDraftStatus } from "@baby-ui/components/react/email-draft";
 export { type EmailShellProps, EmailShell, type EmailHeaderProps, EmailHeader, EmailHeading, type EmailHeroProps, EmailHero, EmailPanel, EmailSection, type EmailListItem, EmailList, EmailText, EmailBadge, EmailButton, EmailCallout, EmailDivider, type EmailFooterLink, type EmailFooterProps, EmailFooter, EmailCode, EmailFallbackLink, type EmailStat, EmailStats, type EmailKeyValueRow, EmailKeyValue } from "@baby-ui/components/react/email-kit";
 export { emailShell, emailHeader, emailHeading, emailHero, emailPanel, emailSection, emailList, emailText, emailBadge, emailButton, EMAIL_BUTTON_PADDING, emailCallout, emailDivider, emailFooter, emailCode, emailLayout, emailFallbackLink, emailStats, EMAIL_STAT_TREND_GLYPH, emailKeyValue, type EmailShellSurface, type EmailHeaderVariant, type EmailHeaderAlign, type EmailHeadingSize, type EmailHeadingAlign, type EmailHeroTone, type EmailHeroSize, type EmailHeroAlign, type EmailPanelTone, type EmailSectionAlign, type EmailListMarker, type EmailButtonShape, type EmailButtonWidth, type EmailFooterLayout, type EmailTextTone, type EmailTextSize, type EmailBadgeTone, type EmailButtonVariant, type EmailButtonSize, type EmailCalloutTone, type EmailDividerSpacing, type EmailFooterAlign, type EmailCodeSize, type EmailFallbackLinkAlign, type EmailStatsColumns, type EmailStatsTone, type EmailStatsTrend, type EmailKeyValueDensity } from "@baby-ui/components/react/email-kit";
 export { type EmailMagicLinkProps, EmailMagicLink } from "@baby-ui/components/react/email-magic-link";
@@ -251,6 +258,9 @@ export { type UploadFile, type FileRejectionReason, type FileRejection, type Fil
 export { fileUpload, type FileUploadVariant, type FileUploadSize, type FileUploadStatus } from "@baby-ui/components/react/file-upload";
 export { type FillButtonProps, FillButton } from "@baby-ui/components/react/fill-button";
 export { fillButton, type FillButtonTone, type FillButtonSize } from "@baby-ui/components/react/fill-button";
+export { type FilterMenuProps, FilterMenu, FilterMenuHeader, FilterMenuTitle, FilterMenuClear, FilterMenuChips, FilterMenuGroups } from "@baby-ui/components/react/filter-menu";
+export { type FilterOption, type FilterGroup, type FilterValue, filterChips, toggleFilter } from "@baby-ui/components/react/filter-menu";
+export { filterMenu, type FilterMenuVariant } from "@baby-ui/components/react/filter-menu";
 export { type FilterRowStatus, type FilterRow, type FilterTableLabels, type FilterTableProps, FilterTable } from "@baby-ui/components/react/filter-table";
 export { type FineTuneField, type FineTuneCardLabels, type FineTuneState, type FineTuneCardProps, FineTuneCard } from "@baby-ui/components/react/fine-tune-card";
 export { fineTuneCard, type FineTuneCardSize } from "@baby-ui/components/react/fine-tune-card";
@@ -384,6 +394,9 @@ export { type MentionKind, type MentionPerson, type MentionChannel, type Mention
 export { mentionInput, type MentionInputSize } from "@baby-ui/components/react/mention-input";
 export { type MessageGroupProps, MessageGroup, type MessageProps, Message, MessageAvatar, MessageContent, type MessageBubbleProps, MessageBubble, MessageHeader, MessageFooter, MessageTyping } from "@baby-ui/components/react/message";
 export { message, type MessageAlign, type MessageMotion, messageBubble, type MessageBubbleVariant } from "@baby-ui/components/react/message";
+export { type MessageActionsProps, MessageActions, MessageActionsBar, MessageActionsCopy, MessageActionsRegenerate, MessageActionsVersions, MessageActionsFeedback, MessageActionsSpeak, MessageActionsFeedbackPanel } from "@baby-ui/components/react/message-actions";
+export { MESSAGE_ICONS } from "@baby-ui/components/react/message-actions";
+export { messageActions, type MessageActionsVariant, type MessageFeedback } from "@baby-ui/components/react/message-actions";
 export { type MirrorTextProps, MirrorText } from "@baby-ui/components/react/mirror-text";
 export { mirrorText, type MirrorTextDirection } from "@baby-ui/components/react/mirror-text";
 export { type MoneyInputDetails, type MoneyInputProps, MoneyInput } from "@baby-ui/components/react/money-input";
@@ -414,6 +427,9 @@ export { notchedShelf, type NotchedShelfVariant, type NotchedShelfLayout, type N
 export { type NotificationCenterProps, NotificationCenter } from "@baby-ui/components/react/notification-center";
 export { type NotificationTone, type NotificationItem, type NotificationView, type InboxRow, unreadSummary, markRead, markAllRead, createInbox } from "@baby-ui/components/react/notification-center";
 export { notificationCenter, type NotificationCenterSize } from "@baby-ui/components/react/notification-center";
+export { type NotificationStackProps, NotificationStack, NotificationStackItem, NotificationStackPattern, NotificationStackBody, NotificationStackHeader, NotificationStackBadge, NotificationStackDismiss, NotificationStackTitle, NotificationStackDescription, NotificationStackActions, NotificationStackEmpty, NotificationStackAction } from "@baby-ui/components/react/notification-stack";
+export { NOTIFICATION_PATTERNS, NOTIFICATION_PEEK, type StackPlace, stackLayout } from "@baby-ui/components/react/notification-stack";
+export { notificationStack, type NotificationStackVariant, NOTIFICATION_PATTERN_NAMES, type NotificationPatternName } from "@baby-ui/components/react/notification-stack";
 export { type NpmStatsProps, NpmStats } from "@baby-ui/components/react/npm-stats";
 export { type NpmDownloadsChartProps, NpmDownloadsChart } from "@baby-ui/components/react/npm-stats";
 export { type NpmPackageBreakdownProps, NpmPackageBreakdown } from "@baby-ui/components/react/npm-stats";
@@ -562,6 +578,9 @@ export { RadioGroup, RadioGroupItem } from "@baby-ui/components/react/radio-grou
 export { attachRadioPill } from "@baby-ui/components/react/radio-group";
 export { radioGroup, type RadioVariant, type RadioSize, type RadioOrientation } from "@baby-ui/components/react/radio-group";
 export { type RangeCalendarProps, RangeCalendar } from "@baby-ui/components/react/range-calendar";
+export { type ReactionBarProps, ReactionBar, ReactionBarItem, ReactionBarIcon, ReactionBarCount } from "@baby-ui/components/react/reaction-bar";
+export { REACTION_PATHS, compactCount } from "@baby-ui/components/react/reaction-bar";
+export { reactionBar, type ReactionBarVariant, type ReactionBarTone, REACTION_ICONS, type ReactionIcon } from "@baby-ui/components/react/reaction-bar";
 export { type ReasoningProps, Reasoning, ReasoningSteps, type ReasoningStepProps, ReasoningStep, type ReasoningStepDetailsProps, ReasoningStepDetails, ReasoningStepSources, type ReasoningStepSourceProps, ReasoningStepSource, type ReasoningStepImageProps, ReasoningStepImage, type ReasoningRowsProps, ReasoningRows } from "@baby-ui/components/react/reasoning";
 export { reasoning, type ReasoningVariant, reasoningStep, type ReasoningStepStatus, reasoningExtras, reasoningRows, type ReasoningRowsKind, type ReasoningRow, SOURCE_TONES } from "@baby-ui/components/react/reasoning";
 export { type RecommendationOption, type RecommendationLabels, type RecommendationCardProps, RecommendationCard } from "@baby-ui/components/react/recommendation-card";
@@ -738,6 +757,8 @@ export { type TimePickerSize, timePicker } from "@baby-ui/components/react/time-
 export { type TimelineEvent, type TimelineProps, Timeline } from "@baby-ui/components/react/timeline";
 export { type TimelineTone, type TimelineEventBase, type TimelineRow, type TimelineGroup, groupTimeline, addedEvents, announceAdded, createTimelineReveal, moveTimelineFocus } from "@baby-ui/components/react/timeline";
 export { timeline, type TimelineVariant } from "@baby-ui/components/react/timeline";
+export { type TipsPanelProps, TipsPanel, TipsPanelHeader, TipsPanelTitle, TipsPanelProgress, TipsPanelContent, TipsPanelGrid, TipsPanelTip, TipsPanelTipTitle, TipsPanelTipDescription, TipsPanelAction, TipsPanelFooter } from "@baby-ui/components/react/tips-panel";
+export { tipsPanel, type TipsPanelVariant } from "@baby-ui/components/react/tips-panel";
 export { type ToasterProps, toast, Toaster } from "@baby-ui/components/react/toast";
 export { type ToggleProps, Toggle } from "@baby-ui/components/react/toggle";
 export { toggleButton, type ToggleVariant, type ToggleSize } from "@baby-ui/components/react/toggle";
@@ -775,6 +796,8 @@ export { videoPlayer, type VideoPlayerVariant, VIDEO_PLAYER_CARD, videoPlayerBut
 export { type WaffleChartProps, WaffleChart } from "@baby-ui/components/react/waffle-chart";
 export { type WaffleRow, type WaffleCell, type WaffleShape, WAFFLE_GAP, waffleRows, allocateCells, reassignCells, emptyCells, waffleBox, slotPosition, slotAt, rowShape } from "@baby-ui/components/react/waffle-chart";
 export { waffleChart, type WaffleVariant } from "@baby-ui/components/react/waffle-chart";
+export { type WallHeroProps, WallHero, WallHeroContent, WallHeroBrand, WallHeroTitle, WallHeroDescription, WallHeroCommand, WallHeroActions, WallHeroWall, WallHeroColumn, WallHeroCard } from "@baby-ui/components/react/wall-hero";
+export { wallHero, type WallHeroVariant, type WallHeroDirection } from "@baby-ui/components/react/wall-hero";
 export { type WebglLiquidProps, WebglLiquid } from "@baby-ui/components/react/webgl-liquid";
 export { type WebglLiquidOptions, mountWebglLiquid } from "@baby-ui/components/react/webgl-liquid";
 export { webglLiquid, type WebglLiquidTone, type WebglLiquidSpeed, type WebglLiquidPosition, WEBGL_LIQUID_COLORS, WEBGL_LIQUID_SPEED } from "@baby-ui/components/react/webgl-liquid";
