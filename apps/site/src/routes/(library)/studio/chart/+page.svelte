@@ -390,11 +390,11 @@ const allCharts = $derived([...data.kinds, ...data.samples]);
 {/snippet}
 
 {#if spec}
-	<main class="flex flex-col p-3 lg:h-[calc(100dvh-var(--header-h))]">
+	<main class="flex flex-col p-3 xl:h-[calc(100dvh-var(--header-h))]">
 		<h1 class="sr-only">Chart studio</h1>
-		<div class="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:grid-cols-[17rem_minmax(0,1fr)_24rem]">
+		<div class="grid min-h-0 flex-1 grid-cols-1 gap-3 xl:grid-cols-[24rem_minmax(0,1fr)] xl:grid-rows-2 xl:gap-y-0">
 			<!-- Every chart: the ones whose data you edit, then the ones that keep their sample data. -->
-			<nav aria-label="Chart type" class="hidden min-h-0 flex-col rounded-xl border border-border bg-card p-1 lg:flex">
+			<nav aria-label="Chart type" class="hidden min-h-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-1 xl:row-start-1 xl:flex xl:rounded-b-none xl:border-b-0">
 				<div class="relative px-1 pt-1 pb-2">
 					<IconSearch size={14} class="pointer-events-none absolute top-1/2 left-3.5 -mt-1 -translate-y-1/2 text-muted-foreground" />
 					<Input size="sm" bind:value={query} placeholder="Filter charts" aria-label="Filter charts" class="pl-8" />
@@ -429,10 +429,10 @@ const allCharts = $derived([...data.kinds, ...data.samples]);
 			</nav>
 
 			<!-- Stage: size switch and actions above, the chart, then its name and a data shuffle. -->
-			<section aria-label="Preview" class="flex min-h-[22rem] min-w-0 lg:min-h-[28rem] flex-col rounded-xl border border-border bg-card p-1">
+			<section aria-label="Preview" class="flex min-h-[22rem] min-w-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-2 xl:row-span-2 xl:row-start-1 xl:min-h-[28rem]">
 				<div class="flex flex-wrap items-center justify-between gap-2 px-2 pt-1 pb-2">
 					<!-- Phones get a picker instead of the rail, and no size switch: the stage is already phone-wide. -->
-					<div class="min-w-0 flex-1 lg:hidden">
+					<div class="min-w-0 flex-1 xl:hidden">
 						<Select items={allCharts.map((c) => ({ value: c.spec.slug, label: c.spec.name }))} bind:value={() => slug, pick}>
 							<SelectTrigger size="sm" aria-label="Chart" class="w-full max-w-56">
 								<SelectValue />
@@ -561,7 +561,7 @@ const allCharts = $derived([...data.kinds, ...data.samples]);
 			</section>
 
 			<!-- Style: the chart's own dials. Data: edit cells, add rows and series, or paste CSV. -->
-			<aside aria-label="Tune the chart" class="flex min-h-0 flex-col rounded-xl border border-border bg-card p-1">
+			<aside aria-label="Tune the chart" class="flex min-h-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-1 xl:row-start-2 xl:rounded-t-none">
 				<div class="flex shrink-0 items-start justify-between gap-2 px-2.5 pt-2 pb-1">
 					<div>
 						<p class="font-medium text-foreground text-sm">Tune the chart</p>

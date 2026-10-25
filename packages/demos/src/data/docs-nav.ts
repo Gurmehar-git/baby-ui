@@ -1,6 +1,11 @@
 /** Sample docs tree for the docs-nav demos; real apps pass their own routes. */
 export const DOCS_SECTIONS = [
 	{
+		id: "overview",
+		label: "Overview",
+		href: "#overview",
+	},
+	{
 		id: "start",
 		label: "Getting started",
 		items: [

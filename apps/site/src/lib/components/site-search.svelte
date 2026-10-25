@@ -42,6 +42,7 @@ let filter = $state("all");
 let query = $state("");
 let mac = $state(false);
 let catalog = $state<CatalogItem[]>([]);
+let { expanded = false }: { expanded?: boolean } = $props();
 
 const PAGES = [
 	{ href: "/docs", name: "Introduction", keywords: "docs about overview" },
@@ -149,14 +150,22 @@ function go(href: string) {
 
 <Button
 	variant="ghost"
-	size="icon"
+	size={expanded ? "default" : "icon"}
 	onclick={() => (open = true)}
 	aria-label="Search"
 	aria-keyshortcuts={mac ? "Meta+K" : "Control+K"}
 	title="Search ({mac ? "⌘K" : "Ctrl K"})"
-	class="shrink-0 rounded-xl text-foreground/75 hover:text-foreground"
+	class={expanded
+		? "w-full justify-start rounded-lg border border-border bg-background px-3 text-muted-foreground shadow-xs hover:bg-background hover:text-foreground"
+		: "shrink-0 rounded-xl text-foreground/75 hover:text-foreground"}
 >
 	<IconSearch size={17} />
+	{#if expanded}
+		<span>Search…</span>
+		<kbd class="ml-auto rounded-sm bg-muted px-1.5 py-0.5 font-sans text-[10px] text-muted-foreground">
+			{mac ? "⌘ K" : "Ctrl K"}
+		</kbd>
+	{/if}
 	<!-- Owns Ctrl/⌘+K; hidden, since the title already names the shortcut. -->
 	<Shortcut shortcut="mod+k" ontrigger={() => (open = !open)} class="hidden" />
 </Button>

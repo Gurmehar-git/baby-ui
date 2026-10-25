@@ -279,11 +279,11 @@ const code = new LiveCode(() => ({
 <StudioSeo slug="background" crumb="Background" />
 
 {#if current}
-	<main class="flex flex-col p-3 lg:h-[calc(100dvh-var(--header-h))]">
+	<main class="flex flex-col p-3 xl:h-[calc(100dvh-var(--header-h))]">
 		<h1 class="sr-only">Background studio</h1>
-		<div class="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:grid-cols-[17rem_minmax(0,1fr)_20rem]">
+		<div class="grid min-h-0 flex-1 grid-cols-1 gap-3 xl:grid-cols-[20rem_minmax(0,1fr)] xl:grid-rows-2 xl:gap-y-0">
 			<!-- Library: the content layout to preview with, then every background as a live row. -->
-			<nav aria-label="Backgrounds" class="hidden min-h-0 flex-col rounded-xl border border-border bg-card p-1 lg:flex">
+			<nav aria-label="Backgrounds" class="hidden min-h-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-1 xl:row-start-1 xl:flex xl:rounded-b-none xl:border-b-0">
 				<div class="px-2.5 pt-2 pb-3">
 					<p class="font-medium text-foreground text-sm">Scene library</p>
 					<p class="text-muted-foreground text-xs">Every background you can tune here.</p>
@@ -337,10 +337,10 @@ const code = new LiveCode(() => ({
 			</nav>
 
 			<!-- Stage: description and size switch above, the framed preview, then name and remix below. -->
-			<section aria-label="Preview" class="flex min-h-[30rem] min-w-0 flex-col rounded-xl border border-border bg-card p-1">
+			<section aria-label="Preview" class="flex min-h-[30rem] min-w-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-2 xl:row-span-2 xl:row-start-1">
 				<div class="flex flex-wrap items-center justify-between gap-2 px-2 pt-1 pb-2">
 					<div class="flex min-w-0 flex-wrap items-center gap-2">
-						<div class="lg:hidden">
+						<div class="xl:hidden">
 							<Select
 								items={data.backgrounds.map((b) => ({ value: b.spec.slug, label: b.spec.name }))}
 								bind:value={() => current.spec.slug, (next) => pick(next, "select")}
@@ -436,7 +436,7 @@ const code = new LiveCode(() => ({
 			</section>
 
 			<!-- Tune: the background's own dials, and the compose settings for the preview. -->
-			<aside aria-label="Tune the scene" class="flex min-h-0 flex-col rounded-xl border border-border bg-card p-1">
+			<aside aria-label="Tune the scene" class="flex min-h-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-1 xl:row-start-2 xl:rounded-t-none">
 				<div class="flex shrink-0 items-start justify-between gap-2 px-2.5 pt-2 pb-1">
 					<div>
 						<p class="font-medium text-foreground text-sm">Tune the scene</p>
@@ -475,7 +475,7 @@ const code = new LiveCode(() => ({
 								<span class="w-8 shrink-0 text-right text-muted-foreground text-xs tabular-nums">{scrim}%</span>
 							</div>
 						</div>
-						<div class="mt-2 lg:hidden">
+						<div class="mt-2 xl:hidden">
 							<SegmentControl size="sm" label="Sample layout" options={LAYOUTS} current={layout} onPick={(id) => (layout = id)} />
 						</div>
 					</TabsContent>

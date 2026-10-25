@@ -9,6 +9,8 @@ import SiteFooter from "#lib/components/site-footer.svelte";
 import { componentCountLabel } from "#lib/registry.js";
 import {
 	DEFAULT_KEYWORDS,
+	HOME_TITLE,
+	homeDescription,
 	organizationLd,
 	softwareApplicationLd,
 	websiteLd,
@@ -18,9 +20,7 @@ import type { PageProps } from "./$types";
 let { data }: PageProps = $props();
 const total = $derived(data.total ?? 0);
 
-const DESCRIPTION = $derived(
-	`Animated, accessible React and Svelte components on one token layer. Install any of ${componentCountLabel(total)} components with the shadcn CLI, in TypeScript or JavaScript.`,
-);
+const DESCRIPTION = $derived(homeDescription(total));
 
 // Featured slugs, cycled so the terminal shows the CLI installing something new each beat.
 const SHOWCASE = $derived([...data.grid, ...data.fresh].map((item) => item.slug));
@@ -38,7 +38,7 @@ $effect(() => {
 </script>
 
 <Seo
-	title="Baby UI: Animated React & Svelte Components"
+	title={HOME_TITLE}
 	description={DESCRIPTION}
 	tag="{componentCountLabel(total)} components"
 	jsonLd={[

@@ -4,6 +4,10 @@ import { componentCountLabel } from "./registry";
 export const SITE_URL = origins.site;
 export const SITE_NAME = "Baby UI";
 export const REPO_URL = "https://github.com/kanakkholwal/baby-ui";
+export const HOME_TITLE = "Baby UI: Animated React & Svelte Components";
+
+export const homeDescription = (total: number) =>
+	`Animated, accessible React and Svelte components on one token layer. Install any of ${componentCountLabel(total)} components with the shadcn CLI, in TypeScript or JavaScript.`;
 
 export const DEFAULT_KEYWORDS = [
 	"react components",
@@ -45,11 +49,19 @@ export function ogImageUrl(
 	origin: string,
 	params: { title: string; description?: string; tag?: string },
 ): string {
-	const url = new URL("/og", origin);
+	return absoluteUrl(origin, ogImagePath(params));
+}
+
+export function ogImagePath(params: {
+	title: string;
+	description?: string;
+	tag?: string;
+}): string {
+	const url = new URL("/og", "https://baby-ui.invalid");
 	url.searchParams.set("title", params.title);
 	if (params.description) url.searchParams.set("description", params.description);
 	if (params.tag) url.searchParams.set("tag", params.tag);
-	return url.toString();
+	return `${url.pathname}${url.search}`;
 }
 
 /** Appends `suffix` when the result still fits a search snippet (160 chars). */

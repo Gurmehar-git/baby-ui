@@ -20,6 +20,8 @@ let edges = $state({ overflow: false, left: false, right: false });
 
 const indicator = $derived(rects[tabs.value] ?? { left: 0, top: 0, width: 0, height: 0 });
 const vertical = $derived(tabs.orientation === "vertical");
+const scrollBehavior = (): ScrollBehavior =>
+	matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 
 function measure() {
 	if (!list || !viewport || !root) return;
@@ -70,7 +72,7 @@ $effect(() => {
 	const right = frame.right - (edges.right ? 36 : 0);
 	const delta =
 		item.left < left ? item.left - left : item.right > right ? item.right - right : 0;
-	if (delta) viewport.scrollBy({ left: delta, behavior: "smooth" });
+	if (delta) viewport.scrollBy({ left: delta, behavior: scrollBehavior() });
 });
 
 const mask = $derived(
@@ -84,7 +86,7 @@ const mask = $derived(
 function scroll(direction: number) {
 	viewport?.scrollBy({
 		left: direction * viewport.clientWidth * 0.8,
-		behavior: "smooth",
+		behavior: scrollBehavior(),
 	});
 }
 

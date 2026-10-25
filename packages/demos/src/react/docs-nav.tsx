@@ -15,6 +15,7 @@ export function DocsNavDemo({ props }: { props: Props }) {
 			<DocsNav
 				sections={DOCS_SECTIONS}
 				current={current}
+				variant={p.variant ?? "default"}
 				connector={p.connector ?? "tick"}
 				rungs={p.rungs ?? false}
 				onNavigate={(href, event) => {

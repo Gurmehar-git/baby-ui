@@ -266,6 +266,40 @@ export type NavItem = NavLink & {
 	footer?: NavLink & { hint: string };
 };
 
+/** Documentation pages in reading order. Shared by navigation and previous/next controls. */
+export const DOCS_MENU: NavMenuItem[] = [
+	{
+		href: "/docs",
+		label: "Introduction",
+		description: "What Baby UI is and how it installs.",
+		icon: "intro",
+	},
+	{
+		href: "/docs/installation",
+		label: "Installation",
+		description: "Set up a React or Svelte project and add a component.",
+		icon: "install",
+	},
+	{
+		href: "/docs/cli",
+		label: "CLI",
+		description: "Add, diff, update, repair and undo from one command.",
+		icon: "cli",
+	},
+	{
+		href: "/docs/theming",
+		label: "Theming",
+		description: "Tokens, colours and motion variables.",
+		icon: "theming",
+	},
+	{
+		href: "/docs/mcp",
+		label: "MCP",
+		description: "Search, read and install components from your AI tool.",
+		icon: "llms",
+	},
+];
+
 /** The global top-level nav, shared by the header's mega menu and the mobile drawer's top row. */
 export function siteNav(categories: NavCategory[]): NavItem[] {
 	const byId = new Map(categories.map((c) => [c.category, c]));
@@ -325,30 +359,7 @@ export function siteNav(categories: NavCategory[]): NavItem[] {
 			label: "Docs",
 			match: ["/docs"],
 			menu: [
-				{
-					href: "/docs",
-					label: "Introduction",
-					description: "What Baby UI is and how it installs.",
-					icon: "intro",
-				},
-				{
-					href: "/docs/installation",
-					label: "Installation",
-					description: "Set up a React or Svelte project and add a component.",
-					icon: "install",
-				},
-				{
-					href: "/docs/cli",
-					label: "CLI",
-					description: "Add, diff, update, repair and undo from one command.",
-					icon: "cli",
-				},
-				{
-					href: "/docs/theming",
-					label: "Theming",
-					description: "Tokens, colours and motion variables.",
-					icon: "theming",
-				},
+				...DOCS_MENU.slice(0, 4),
 				{
 					href: "/design-system",
 					label: "Design system",
@@ -361,12 +372,7 @@ export function siteNav(categories: NavCategory[]): NavItem[] {
 					description: "Pick accent, radius and font; copy the CSS.",
 					icon: "create",
 				},
-				{
-					href: "/docs/mcp",
-					label: "MCP",
-					description: "Search, read and install components from your AI tool.",
-					icon: "llms",
-				},
+				...DOCS_MENU.slice(4),
 				{
 					href: "/llms.txt",
 					label: "llms.txt",

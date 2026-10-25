@@ -1,6 +1,13 @@
 "use client";
 
-import { type MouseEvent, type PointerEvent, useEffect, useRef, useState } from "react";
+import {
+	type ComponentType,
+	type MouseEvent,
+	type PointerEvent,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { Badge } from "../../badge/react/badge";
 import type { BadgeVariant } from "../../badge/variants";
 import {
@@ -9,14 +16,29 @@ import {
 	CollapsibleTrigger,
 } from "../../collapsible/react/collapsible";
 import { cn } from "../../lib/cn";
+import { matchesCurrent } from "../match";
 import { revealCurrent } from "../scroll";
-import { type DocsNavConnector, docsNav, markerWidth, rowState } from "../variants";
+import {
+	type DocsNavConnector,
+	type DocsNavVariant,
+	docsNav,
+	markerWidth,
+	rowState,
+} from "../variants";
 
-export type { DocsNavConnector };
+export type { DocsNavConnector, DocsNavVariant };
+
+export type DocsNavIcon = ComponentType<{
+	size?: number;
+	className?: string;
+	"aria-hidden"?: boolean;
+}>;
 
 export interface DocsNavItem {
 	href: string;
 	label: string;
+	/** Additional path prefixes that mark this link current. */
+	match?: string[];
 	/** Small pill after the label, e.g. a status like "beta". */
 	badge?: string;
 	/** Badge colour; the Badge default when omitted. */
@@ -26,9 +48,14 @@ export interface DocsNavItem {
 export interface DocsNavSection {
 	id: string;
 	label: string;
+	/** A direct section link. When omitted, the section discloses its items. */
+	href?: string;
+	/** Additional path prefixes that mark a direct section link current. */
+	match?: string[];
+	icon?: DocsNavIcon;
 	/** Shown beside the section label, e.g. how many links it holds. */
 	count?: number | string;
-	items: DocsNavItem[];
+	items?: DocsNavItem[];
 }
 
 export interface DocsNavProps {
@@ -40,6 +67,7 @@ export interface DocsNavProps {
 	/** Uncontrolled starting sections; every section when omitted. */
 	defaultOpen?: string[];
 	onOpenChange?: (open: string[]) => void;
+	variant?: DocsNavVariant;
 	connector?: DocsNavConnector;
 	/** Adds a continuous hairline ladder beside the links; works with either connector. */
 	rungs?: boolean;
@@ -57,6 +85,7 @@ export function DocsNav({
 	open: openProp,
 	defaultOpen,
 	onOpenChange,
+	variant = "default",
 	connector = "tick",
 	rungs = false,
 	onNavigate,
@@ -64,11 +93,13 @@ export function DocsNav({
 	className,
 }: DocsNavProps) {
 	const [internalOpen, setInternalOpen] = useState(
-		() => defaultOpen ?? sections.map((s) => s.id),
+		() =>
+			defaultOpen ??
+			sections.filter((section) => !section.href).map((section) => section.id),
 	);
 	const open = openProp ?? internalOpen;
 	const root = useRef<HTMLElement>(null);
-	const styles = docsNav({ connector });
+	const styles = docsNav({ connector, variant });
 
 	const setSection = (id: string, next: boolean) => {
 		const list = next
@@ -78,10 +109,10 @@ export function DocsNav({
 		onOpenChange?.(list);
 	};
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: re-run triggers the body never reads: current.
+	// biome-ignore lint/correctness/useExhaustiveDependencies: current/open only retrigger the shared reveal helper.
 	useEffect(() => {
-		revealCurrent(root.current);
-	}, [current]);
+		return revealCurrent(root.current);
+	}, [current, open]);
 
 	return (
 		<nav
@@ -90,30 +121,63 @@ export function DocsNav({
 			data-slot="docs-nav"
 			className={cn(styles.root(), className)}
 		>
-			{sections.map((section) => (
-				<Collapsible
-					key={section.id}
-					className={styles.section()}
-					open={open.includes(section.id)}
-					onOpenChange={(next) => setSection(section.id, next)}
-				>
-					<CollapsibleTrigger className={styles.trigger()}>
-						{section.label}
-						{section.count !== undefined ? (
-							<span className={styles.count()}>{section.count}</span>
-						) : null}
-					</CollapsibleTrigger>
-					<CollapsibleContent className={styles.content()}>
-						<DocsNavList
-							items={section.items}
-							current={current}
-							connector={connector}
-							rungs={rungs}
-							onNavigate={onNavigate}
-						/>
-					</CollapsibleContent>
-				</Collapsible>
-			))}
+			{sections.map((section) => {
+				const items = section.items ?? [];
+				const href = section.href;
+				const sectionCurrent = href
+					? matchesCurrent({ href, match: section.match }, current)
+					: items.some((item) => matchesCurrent(item, current));
+				const sectionStyles = docsNav({ connector, variant, sectionCurrent });
+				const Icon = section.icon;
+				if (href) {
+					return (
+						<div key={section.id} className={sectionStyles.section()}>
+							<a
+								href={href}
+								aria-current={sectionCurrent ? "page" : undefined}
+								onClick={(event) => onNavigate?.(href, event)}
+								className={sectionStyles.topLink()}
+							>
+								{Icon ? (
+									<Icon size={16} aria-hidden className={sectionStyles.sectionIcon()} />
+								) : null}
+								<span className={sectionStyles.sectionLabel()}>{section.label}</span>
+								{section.count !== undefined ? (
+									<span className={sectionStyles.count()}>{section.count}</span>
+								) : null}
+							</a>
+						</div>
+					);
+				}
+				return (
+					<Collapsible
+						key={section.id}
+						className={sectionStyles.section()}
+						open={open.includes(section.id)}
+						onOpenChange={(next) => setSection(section.id, next)}
+					>
+						<CollapsibleTrigger className={sectionStyles.trigger()}>
+							{Icon ? (
+								<Icon size={16} aria-hidden className={sectionStyles.sectionIcon()} />
+							) : null}
+							<span className={sectionStyles.sectionLabel()}>{section.label}</span>
+							{section.count !== undefined ? (
+								<span className={sectionStyles.count()}>{section.count}</span>
+							) : null}
+						</CollapsibleTrigger>
+						<CollapsibleContent className={sectionStyles.content()}>
+							<DocsNavList
+								items={items}
+								current={current}
+								variant={variant}
+								connector={connector}
+								rungs={rungs}
+								onNavigate={onNavigate}
+							/>
+						</CollapsibleContent>
+					</Collapsible>
+				);
+			})}
 		</nav>
 	);
 }
@@ -121,12 +185,14 @@ export function DocsNav({
 function DocsNavList({
 	items,
 	current,
+	variant,
 	connector,
 	rungs,
 	onNavigate,
 }: {
 	items: DocsNavItem[];
 	current?: string;
+	variant: DocsNavVariant;
 	connector: DocsNavConnector;
 	rungs: boolean;
 	onNavigate?: DocsNavProps["onNavigate"];
@@ -146,20 +212,20 @@ function DocsNavList({
 	return (
 		<div
 			ref={list}
-			className={docsNav({ connector }).list()}
+			className={docsNav({ connector, variant }).list()}
 			onPointerLeave={() => setHovered(null)}
 		>
 			{pill ? (
 				<div
 					aria-hidden="true"
-					className={docsNav({ connector, hovering: hovered !== null }).pill()}
+					className={docsNav({ connector, variant, hovering: hovered !== null }).pill()}
 					style={{ transform: `translateY(${pill.top}px)`, height: pill.height }}
 				/>
 			) : null}
 			{items.map((item, index) => {
-				const active = item.href === current;
+				const active = matchesCurrent(item, current);
 				const state = rowState(active, hovered === index, hovered !== null);
-				const styles = docsNav({ connector, rungs, state });
+				const styles = docsNav({ connector, variant, rungs, state });
 				return (
 					<div key={item.href} className={styles.row()}>
 						<span

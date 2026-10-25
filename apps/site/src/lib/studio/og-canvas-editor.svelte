@@ -639,9 +639,9 @@ const orNumber = (next: number | null, fallback: number) => next ?? fallback;
 	<span class="font-medium text-muted-foreground text-xs">{label}</span>
 {/snippet}
 
-<div class="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:grid-cols-[16rem_minmax(0,1fr)_20rem]">
+<div class="grid min-h-0 flex-1 grid-cols-1 gap-3 xl:grid-cols-[20rem_minmax(0,1fr)] xl:grid-rows-2 xl:gap-y-0">
 	<!-- Left: pick a starting layout, or add and order the elements on the card. -->
-	<nav aria-label="Layouts and layers" class="flex min-h-0 flex-col rounded-xl border border-border bg-card p-1">
+	<nav aria-label="Layouts and layers" class="flex min-h-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-1 xl:row-start-1 xl:rounded-b-none xl:border-b-0">
 		<Tabs
 			bind:value={() => leftTab, (next) => {
 				leftTab = next;
@@ -754,7 +754,7 @@ const orNumber = (next: number | null, fallback: number) => next ?? fallback;
 	</nav>
 
 	<!-- Stage: the card being edited, or its rendered PNG. -->
-	<section aria-label="Card" class="flex min-h-[24rem] min-w-0 flex-col rounded-xl border border-border bg-card p-1">
+	<section aria-label="Card" class="flex min-h-[24rem] min-w-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-2 xl:row-span-2 xl:row-start-1">
 		<div class="flex flex-wrap items-center justify-between gap-2 px-2 pt-1 pb-2">
 			<div class="flex items-center gap-1">
 				<Button size="sm" variant="ghost" disabled={!canUndo} onclick={() => undo("button")}>
@@ -903,7 +903,7 @@ const orNumber = (next: number | null, fallback: number) => next ?? fallback;
 	</section>
 
 	<!-- Right: the selected element's settings, or the card's own when nothing is selected. -->
-	<aside aria-label="Settings" class="flex min-h-0 flex-col rounded-xl border border-border bg-card p-1">
+	<aside aria-label="Settings" class="flex min-h-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-1 xl:row-start-2 xl:rounded-t-none">
 		<div class="flex shrink-0 items-center justify-between gap-2 px-2.5 pt-2 pb-1.5">
 			<div class="min-w-0">
 				<p class="truncate font-medium text-foreground text-sm">

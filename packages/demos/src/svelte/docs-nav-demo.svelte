@@ -14,6 +14,7 @@ let current = $state("#installation");
 	<DocsNav
 		sections={DOCS_SECTIONS}
 		{current}
+		variant={p.variant ?? "default"}
 		connector={p.connector ?? "tick"}
 		rungs={props.rungs === true}
 		onNavigate={(href, event) => {

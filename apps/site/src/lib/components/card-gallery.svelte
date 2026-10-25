@@ -7,10 +7,12 @@ import ComponentCard, { type CardFrame, FRAME_PX } from "./component-card.svelte
 let {
 	items,
 	lead,
+	mode = "masonry",
 }: {
 	items: CardItem[];
 	/** An intro tile placed first, at its own measured height. */
 	lead?: Snippet;
+	mode?: "masonry" | "grid";
 } = $props();
 
 const GAP = 12;
@@ -74,7 +76,16 @@ const at = (p: Placed) => ({
 	</div>
 {/snippet}
 
-<div bind:clientWidth={width}>
+{#if mode === "grid"}
+	<div class="@container">
+		<div class="grid grid-cols-1 gap-3 @2xl:grid-cols-2 @4xl:grid-cols-3 @7xl:grid-cols-4">
+			{#each items as item (item.slug)}
+				<ComponentCard {item} frame="md" />
+			{/each}
+		</div>
+	</div>
+{:else}
+	<div bind:clientWidth={width}>
 	{#if width}
 		<div class="relative" style:height="{layout.height}px">
 			{#if layout.leadAt}
@@ -86,7 +97,7 @@ const at = (p: Placed) => ({
 			{#each layout.tiles as tile (tile.item.slug)}
 				{@const p = at(tile.at)}
 				<div class="absolute" style:left={p.left} style:width={p.width} style:top={p.top}>
-					<ComponentCard item={tile.item} frame={tile.frame} tile />
+					<ComponentCard item={tile.item} frame={tile.frame} />
 				</div>
 			{/each}
 		</div>
@@ -96,9 +107,10 @@ const at = (p: Placed) => ({
 			<div class="columns-1 gap-3 *:mb-3 *:break-inside-avoid @2xl:columns-2 @5xl:columns-3 @7xl:columns-4">
 				{#if lead}{@render leadTile()}{/if}
 				{#each items as item (item.slug)}
-					<ComponentCard {item} frame={frameFor(item)} tile />
+					<ComponentCard {item} frame={frameFor(item)} />
 				{/each}
 			</div>
 		</div>
 	{/if}
-</div>
+	</div>
+{/if}

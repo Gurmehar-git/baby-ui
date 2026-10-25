@@ -42,7 +42,7 @@ afterNavigate(({ from, to, type, shallow }) => {
 	if (shallow) return;
 
 	// Read `page`: on the first ("enter") navigation, `to.route` and `to.params` are empty.
-	const onComponent = page.route.id === "/components/[category]/[slug]";
+	const onComponent = page.route.id === "/(library)/components/[category]/[slug]";
 	setAnalyticsContext({
 		component: onComponent ? page.params.slug : null,
 		category: onComponent ? page.params.category : null,
@@ -53,9 +53,15 @@ afterNavigate(({ from, to, type, shallow }) => {
 
 <ModeWatcher />
 <NavProgress />
+<a
+	href="#main-content"
+	class="fixed top-2 left-2 z-50 -translate-y-16 rounded-md bg-foreground px-3 py-2 text-background text-sm focus:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+>
+	Skip to content
+</a>
 <SiteHeader />
 <PreferencesPanel />
 <!-- Matches SiteHeader's single 56px row; sticky rails and anchors offset by the same value. -->
-<div class="pt-(--header-h) [--header-h:3.5rem]">
+<div id="main-content" tabindex="-1" class="pt-(--header-h) outline-none [--header-h:3.5rem]">
 	{@render children()}
 </div>

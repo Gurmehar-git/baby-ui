@@ -25,7 +25,7 @@ export const duration = {
 } as const;
 
 export const staggerStep = 45;
-export const pressScale = 0.97;
+export const pressScale = 0.98;
 export const enterScale = 0.95;
 
 /**

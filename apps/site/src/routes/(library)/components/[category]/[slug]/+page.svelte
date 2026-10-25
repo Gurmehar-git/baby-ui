@@ -6,7 +6,6 @@ import {
 	IconArrowUpRight,
 	IconBrandReact,
 	IconBrandSvelte,
-	IconChevronRight,
 	IconList,
 } from "@baby-ui/icons";
 import type { Framework } from "@baby-ui/registry-schema";
@@ -15,6 +14,11 @@ import {
 	AlertDescription,
 	AlertTitle,
 	Badge,
+	Button,
+	Drawer,
+	DrawerContent,
+	DrawerHeader,
+	DrawerTitle,
 	Markdown,
 	Select,
 	SelectContent,
@@ -31,6 +35,7 @@ import type { Snippet } from "svelte";
 import { track } from "#lib/analytics.js";
 import CodeBlock from "#lib/components/code-block.svelte";
 import ComponentCard from "#lib/components/component-card.svelte";
+import ContentPageHeader from "#lib/components/content-page-header.svelte";
 import ControlsPanel from "#lib/components/controls-panel.svelte";
 import CopyButton from "#lib/components/copy-button.svelte";
 import DemoPreview from "#lib/components/demo-preview.svelte";
@@ -48,7 +53,7 @@ import PropsTable from "#lib/components/props-table.svelte";
 import Seo from "#lib/components/seo.svelte";
 import { demos } from "#lib/demos.js";
 import type { Heading } from "#lib/docs-nodes.js";
-import { OUTLINE_PANEL, outlineSidebar } from "#lib/docs-sidebar.svelte.js";
+import { outlineSidebar } from "#lib/docs-sidebar.svelte.js";
 import { prefs } from "#lib/preferences.svelte.js";
 import { EmailPreview, OgPngPreview, PREVIEW_VIEWS } from "#lib/preview-modes.svelte.js";
 import { productFor } from "#lib/products.js";
@@ -89,10 +94,7 @@ $effect(() => {
 	return () => query.removeEventListener("change", sync);
 });
 
-// Split pins the stage in the right column; playground gives it the full width above the docs.
-// Below xl the page stays stacked either way.
-const split = $derived(prefs.layout === "split" && wide);
-const playground = $derived(prefs.layout === "playground" && wide);
+const library = $derived(prefs.layout === "library");
 
 // Framework and language are global preferences, set from the header settings drawer.
 const framework = $derived(prefs.framework);
@@ -155,18 +157,10 @@ const port = $derived(data.ports.find((p) => p.framework === framework) ?? data.
 const adjacent = $derived(data.adjacent);
 const hasControls = $derived(data.spec.props.some((p) => p.control.kind !== "none"));
 const related = $derived(data.related);
-// In split the stage is pinned beside the page, so its tab becomes the controls, or goes;
-// playground docks both above, leaving Usage.
-const tabs = $derived(
-	[
-		playground
-			? false
-			: !split
-				? { id: "preview", label: "Preview" }
-				: hasControls && { id: "preview", label: "Controls" },
-		{ id: "usage", label: "Usage" },
-	].filter((t): t is { id: string; label: string } => Boolean(t)),
-);
+const tabs = [
+	{ id: "preview", label: "Preview" },
+	{ id: "usage", label: "Code" },
+];
 
 $effect(() => {
 	if (!tabs.some((t) => t.id === tab)) tab = tabs[0]?.id ?? "usage";
@@ -182,7 +176,7 @@ const insteadLine = ({ text, use }: { text: string; use?: string }) => {
 	return alt ? `${text} Use [${alt.name}](${alt.href}).` : text;
 };
 const SECTION = "mt-16 scroll-mt-[calc(var(--header-h)+1.5rem)]";
-const HEADING = "font-semibold text-foreground text-xl tracking-tight";
+const HEADING = "font-medium text-foreground text-lg tracking-tight";
 const PAGE_SECTIONS = new Set([
 	"overview",
 	"preview",
@@ -262,6 +256,7 @@ const categoryTrail = $derived(
 		? []
 		: [{ name: "Components", path: "/components" }],
 );
+const pageTags = $derived([...new Set(data.spec.keywords)].slice(0, 4));
 </script>
 
 <Seo
@@ -286,24 +281,73 @@ const categoryTrail = $derived(
 	]}
 />
 
-<!-- Stacked caps at a readable width and centres like the docs; split keeps its half column. -->
-<main
-	class={[
-		"@container min-w-0 pt-8 pb-16 md:pt-12",
-		!split && !playground && "mx-auto w-full max-w-5xl",
-	]}
->
+<main class="@container mx-auto w-full min-w-0 max-w-5xl pt-8 pb-16 md:pt-12">
 	<div id="overview" class="scroll-mt-[calc(var(--header-h)+1.5rem)]">
-		<nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-sm">
-			<a
-				href={categoryHref(data.spec.category)}
-				class="text-muted-foreground transition-colors hover:text-foreground"
-			>
-				{CATEGORY_LABEL[data.spec.category]}
-			</a>
-			<IconChevronRight size={14} class="text-muted-foreground" />
-			<span class="font-medium text-foreground">{data.spec.name}</span>
-		</nav>
+		<ContentPageHeader
+			title={data.spec.name}
+			description={data.spec.description}
+			breadcrumbs={[
+				{ label: CATEGORY_LABEL[data.spec.category], href: categoryHref(data.spec.category) },
+				{ label: data.spec.name },
+			]}
+			tags={pageTags}
+		>
+			{#snippet meta()}
+				{#if data.spec.tier === "pro"}
+					<Badge size="sm" variant="gold">Pro</Badge>
+				{/if}
+				{#if data.fresh === "new"}
+					<Badge size="sm" variant="info">New</Badge>
+				{:else if data.fresh === "updated"}
+					<Badge size="sm" variant="success">Updated</Badge>
+				{/if}
+				{#if data.spec.status !== "stable"}
+					<Badge size="sm" variant="outline">{data.spec.status}</Badge>
+				{/if}
+			{/snippet}
+			{#snippet actions()}
+				<PageMenu
+					markdownUrl="{specHref(data.spec)}.md"
+					copyText={data.spec.description}
+					name={data.spec.name}
+					installSlug={data.spec.tier === "pro" ? undefined : data.spec.slug}
+					subject="component"
+				/>
+				{#if adjacent.prev}
+					<Button
+						href={adjacent.prev.href}
+						variant="secondary"
+						size="icon-sm"
+						aria-label="Previous component: {adjacent.prev.name}"
+						class="rounded-md"
+					>
+						<IconArrowLeft size={15} />
+					</Button>
+				{/if}
+				{#if adjacent.next}
+					<Button
+						href={adjacent.next.href}
+						variant="secondary"
+						size="icon-sm"
+						aria-label="Next component: {adjacent.next.name}"
+						class="rounded-md"
+					>
+						<IconArrowRight size={15} />
+					</Button>
+				{/if}
+				<MobileNavDrawer
+					label="On this page"
+					title="On this page"
+					class="xl:hidden"
+				>
+					{#snippet icon()}<IconList size={14} />{/snippet}
+					{#snippet children()}
+						<PropsRail slug={data.spec.slug} {outline} heading={false} promo={false} />
+					{/snippet}
+				</MobileNavDrawer>
+				<OutlineToggle />
+			{/snippet}
+		</ContentPageHeader>
 
 		{#if data.spec.retired}
 			<Alert variant="warning" class="mt-4">
@@ -313,72 +357,10 @@ const categoryTrail = $derived(
 				</AlertDescription>
 			</Alert>
 		{/if}
-
-		<div class="mt-5 flex flex-col gap-4 @xl:flex-row @xl:items-start @xl:justify-between">
-			<div class="flex items-center gap-3">
-				<h1 class="text-balance font-semibold text-[2.125rem] text-foreground leading-[1.1] tracking-[-0.03em] md:text-[2.5rem]">
-					{data.spec.name}
-				</h1>
-				{#if data.spec.tier === "pro"}
-					<span class="mt-1 rounded-full bg-foreground px-2 py-0.5 font-medium text-[11px] text-background">
-						Pro
-					</span>
-				{/if}
-				{#if data.fresh === "new"}
-					<Badge size="sm" variant="info" class="mt-1">New</Badge>
-				{:else if data.fresh === "updated"}
-					<Badge size="sm" variant="success" class="mt-1">Updated</Badge>
-				{/if}
-				{#if data.spec.status !== "stable"}
-					<span class="mt-1 rounded-full border border-border px-2 py-0.5 text-[11px] text-muted-foreground">
-						{data.spec.status}
-					</span>
-				{/if}
-			</div>
-			<div class="flex flex-wrap items-center gap-2 @xl:justify-end">
-				<PageMenu
-					markdownUrl="{specHref(data.spec)}.md"
-					copyText={data.spec.description}
-					name={data.spec.name}
-					installSlug={data.spec.tier === "pro" ? undefined : data.spec.slug}
-					subject="component"
-				/>
-				{#if !split && !playground}<OutlineToggle />{/if}
-			</div>
-		</div>
-
-		<p class="mt-4 max-w-2xl text-pretty text-base text-muted-foreground leading-7 sm:text-[1.0625rem] sm:leading-8">
-			{data.spec.description}
-		</p>
-
-		<div class={["mt-5", !split && !playground && "xl:hidden"]}>
-			<MobileNavDrawer label="On this page" title="On this page">
-				{#snippet icon()}<IconList size={14} />{/snippet}
-				{#snippet children()}
-					<PropsRail slug={data.spec.slug} {outline} heading={false} promo={false} />
-				{/snippet}
-			</MobileNavDrawer>
-		</div>
 	</div>
 
-	{#if playground}
-		<!-- The workbench: a viewport-tall stage with the controls docked beside it. -->
-		<section
-			id="preview"
-			class={[
-				"mt-8 grid h-[calc(100dvh-var(--header-h)-4rem)] min-h-[32rem] scroll-mt-[calc(var(--header-h)+1.5rem)] gap-3",
-				hasControls && "grid-cols-[minmax(0,1fr)_20rem]",
-			]}
-		>
-			<div class="min-h-0">{@render previewStage(true)}</div>
-			{#if hasControls}<ControlsPanel spec={data.spec} bind:values docked />{/if}
-		</section>
-	{/if}
-
-	<!-- Playground centres the docs under its full-width workbench. -->
-	<div class={playground ? "mx-auto w-full max-w-5xl" : undefined}>
 	<section
-		id={playground ? "usage" : "preview"}
+		id="preview"
 		class="mt-10 scroll-mt-[calc(var(--header-h)+1.5rem)]"
 	>
 		<Tabs
@@ -399,13 +381,11 @@ const categoryTrail = $derived(
 			<!-- Only the open view renders: the demo is heavy and the usage block is highlighted. -->
 			<TabsContent value="preview">
 				{#if tab === "preview"}
-					{#if !split}
-						<div class="overflow-x-auto">
-							{@render previewStage()}
-						</div>
-					{/if}
+					<div class="overflow-x-auto">
+						{@render previewStage()}
+					</div>
 					{#if hasControls}
-						<ControlsPanel spec={data.spec} bind:values defaultOpen={split} />
+						<ControlsPanel spec={data.spec} bind:values />
 					{/if}
 				{/if}
 			</TabsContent>
@@ -445,7 +425,7 @@ const categoryTrail = $derived(
 	<section id="installation" class="mt-16 scroll-mt-[calc(var(--header-h)+1.5rem)]">
 		<!-- The framework switch reads as part of the heading: "Installation · Svelte". -->
 		<div class="flex flex-wrap items-center gap-1.5">
-			<h2 class="font-semibold text-foreground text-xl tracking-tight">Installation</h2>
+			<h2 class={HEADING}>Installation</h2>
 			<Select
 				bind:value={
 					() => framework,
@@ -556,7 +536,7 @@ const categoryTrail = $derived(
 
 	{#if related.length}
 		<section id="related" class="mt-16 scroll-mt-[calc(var(--header-h)+1.5rem)]">
-			<h2 class="font-semibold text-foreground text-xl tracking-tight">Related components</h2>
+			<h2 class={HEADING}>Related components</h2>
 			<p class="mt-2 text-[0.9375rem] text-muted-foreground leading-7">
 				More from {CATEGORY_LABEL[data.spec.category]}.
 			</p>
@@ -568,30 +548,6 @@ const categoryTrail = $derived(
 		</section>
 	{/if}
 
-	{#if adjacent.prev || adjacent.next}
-		<nav aria-label="Component pages" class="mt-16 flex items-center justify-between gap-3 border-border border-t pt-6">
-			{#if adjacent.prev}
-				<a
-					href={adjacent.prev.href}
-					class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/20 py-2 pr-4 pl-3 font-medium text-foreground text-sm transition-colors hover:bg-foreground/[0.06]"
-				>
-					<IconArrowLeft size={15} class="shrink-0 text-muted-foreground" />
-					{adjacent.prev.name}
-				</a>
-			{:else}
-				<span></span>
-			{/if}
-			{#if adjacent.next}
-				<a
-					href={adjacent.next.href}
-					class="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/20 py-2 pr-3 pl-4 font-medium text-foreground text-sm transition-colors hover:bg-foreground/[0.06]"
-				>
-					{adjacent.next.name}
-					<IconArrowRight size={15} class="shrink-0 text-muted-foreground" />
-				</a>
-			{/if}
-		</nav>
-	{/if}
 	<div class="mt-10 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-muted-foreground text-xs">
 		<a
 			href={product.href}
@@ -606,7 +562,6 @@ const categoryTrail = $derived(
 		<a href="{specHref(data.spec)}.md" target="_blank" rel="noopener" class="underline decoration-border underline-offset-4 transition-colors hover:text-foreground">
 			View this page as Markdown
 		</a>
-	</div>
 	</div>
 </main>
 
@@ -673,25 +628,29 @@ const categoryTrail = $derived(
 	</div>
 {/if}
 
-{#if split}
-	<aside aria-label="Live preview" class="hidden min-w-0 xl:block">
-		<div class="sticky top-(--header-h) flex h-[calc(100dvh-var(--header-h))] flex-col gap-3 py-8">
-			<div class="flex items-center justify-between gap-3">
-				<p class="font-medium text-foreground text-sm">Preview</p>
-			</div>
-			<div class="min-h-0 flex-1">
-				{@render previewStage(true)}
-			</div>
-		</div>
-	</aside>
-{:else if !playground}
-	<aside aria-label="On this page" class="hidden min-w-0 xl:block">
+{#if library}
+	<aside
+		aria-label="On this page"
+		class="hidden min-w-0 overflow-clip xl:block"
+	>
 		<div
 			id="outline-sidebar"
 			inert={!outlineSidebar.current}
-			class={["scrollbar-hide fixed top-[calc(var(--header-h)+2.5rem)] right-8 z-10 max-h-[calc(100dvh-var(--header-h)-4.5rem)] w-(--right-sidebar-width) overflow-y-auto pb-1", OUTLINE_PANEL]}
+			class="scrollbar-hide sticky top-[calc(var(--header-h)+2.5rem)] max-h-[calc(100dvh-var(--header-h)-4.5rem)] w-(--right-sidebar-width) overflow-y-auto pb-1 pl-8"
 		>
 			<PropsRail slug={data.spec.slug} {outline} promo={false} />
 		</div>
 	</aside>
+{:else if wide}
+	<Drawer bind:open={outlineSidebar.current} direction="right">
+		<DrawerContent
+			handle={false}
+			class="w-80! max-w-[85vw]! rounded-none! border-border border-l bg-card! shadow-xl [&_[data-slot=drawer-surface]]:p-6"
+		>
+			<DrawerHeader class="sr-only"><DrawerTitle>On this page</DrawerTitle></DrawerHeader>
+			<div id="outline-sidebar" class="scrollbar-hide min-h-0 flex-1 overflow-y-auto">
+				<PropsRail slug={data.spec.slug} {outline} promo={false} />
+			</div>
+		</DrawerContent>
+	</Drawer>
 {/if}

@@ -1,11 +1,21 @@
 <script lang="ts">
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from "@baby-ui/svelte";
-import { type Snippet, untrack } from "svelte";
+import {
+	Drawer,
+	DrawerClose,
+	DrawerContent,
+	DrawerHeader,
+	DrawerTitle,
+	ScrollArea,
+} from "@baby-ui/svelte";
+import type { Snippet } from "svelte";
 import { docsSidebar, outlineSidebar } from "#lib/docs-sidebar.svelte.js";
 import { mobileNav } from "#lib/mobile-nav.svelte.js";
 import { prefs } from "#lib/preferences.svelte.js";
 import { type SidebarGroup, siteNav } from "#lib/registry.js";
 import { page } from "$app/state";
+import Logo from "./logo.svelte";
+import SidebarToggleIcon from "./sidebar-toggle-icon.svelte";
+import SiteSearch from "./site-search.svelte";
 import SiteSidebar from "./site-sidebar.svelte";
 
 let { groups, children }: { groups: SidebarGroup[]; children: Snippet } = $props();
@@ -19,83 +29,34 @@ const drawerLinks = $derived([
 		.filter((link) => link.featured)
 		.map(({ href, label }) => ({ href, label, match: [href] })),
 ]);
-// Split and playground float the rail over a component page so its preview gets the width.
-const componentPage = $derived(page.route.id === "/components/[category]/[slug]");
-const split = $derived(prefs.layout === "split" && componentPage);
-const playground = $derived(prefs.layout === "playground" && componentPage);
-const floating = $derived(split || playground);
-// Transitions start after mount, so a stored "closed" doesn't animate on load.
-let ready = $state(false);
+const hasOutline = $derived(
+	page.route.id === "/(library)/components/[category]/[slug]" ||
+		page.route.id === "/(library)/docs/[...slug]",
+);
+const library = $derived(prefs.layout === "library");
+const playground = $derived(prefs.layout === "playground");
+let desktop = $state(false);
 $effect(() => {
-	requestAnimationFrame(() => (ready = true));
+	const query = matchMedia("(min-width: 768px)");
+	const sync = () => (desktop = query.matches);
+	sync();
+	query.addEventListener("change", sync);
+	return () => query.removeEventListener("change", sync);
 });
 
-// Columns and panels key off <html> attributes set from the persisted state while the boot screen
-// still covers the page; toggling an attribute restyles only the grid, not the whole subtree.
-let grid = $state<HTMLElement>();
+// Rail state lives on <html>, so the fixed and in-layout forms share one toggle contract.
 $effect(() => {
 	const left = docsSidebar.current ? "open" : "closed";
 	const root = document.documentElement.dataset;
 	if (root.leftRail === left) return;
-	const main = grid?.children[1];
-	const before = main?.getBoundingClientRect().left;
 	root.leftRail = left;
-	if (!main || before === undefined || !untrack(() => ready) || reduced()) return;
-	// FLIP the content only: a transform on an aside would re-anchor its fixed rail.
-	const dx = before - main.getBoundingClientRect().left;
-	const css = getComputedStyle(main);
-	main.animate([{ translate: `${dx}px 0` }, { translate: "0 0" }], {
-		duration: Number.parseFloat(
-			css.getPropertyValue(left === "open" ? "--duration-drawer" : "--duration-overlay"),
-		),
-		easing: css.getPropertyValue("--ease-drawer").trim() || "ease-out",
-	});
 });
-// The right column resizes in the same frames the rail slides, from resolved px tracks to px
-// tracks; snapping it made the content width jump.
 $effect(() => {
-	const right = outlineSidebar.current ? "open" : "closed";
+	const right = library && hasOutline && outlineSidebar.current ? "open" : "closed";
 	const root = document.documentElement.dataset;
-	if (root.rightRail === right && root.rightCol === right) return;
-	const before = grid ? getComputedStyle(grid).gridTemplateColumns : "";
-	root.rightRail = right;
+	if (root.rightCol === right) return;
 	root.rightCol = right;
-	if (!grid || !untrack(() => ready) || reduced()) return;
-	const after = getComputedStyle(grid).gridTemplateColumns;
-	if (before === after) return;
-	const css = getComputedStyle(grid);
-	grid.animate([{ gridTemplateColumns: before }, { gridTemplateColumns: after }], {
-		duration: Number.parseFloat(
-			css.getPropertyValue(right === "open" ? "--duration-drawer" : "--duration-overlay"),
-		),
-		easing: css.getPropertyValue("--ease-drawer").trim() || "ease-out",
-	});
 });
-
-// Floating over the page, the rail closes like a popover: a press outside it, or Escape.
-$effect(() => {
-	if (!floating || !docsSidebar.current) return;
-	const xl = matchMedia("(min-width: 1280px)");
-	const onPointer = (event: PointerEvent) => {
-		const inside =
-			event.target instanceof Element &&
-			event.target.closest('#docs-sidebar, [aria-controls="docs-sidebar"]');
-		if (xl.matches && !inside) docsSidebar.current = false;
-	};
-	const onKey = (event: KeyboardEvent) => {
-		if (xl.matches && event.key === "Escape" && !event.defaultPrevented) {
-			docsSidebar.current = false;
-		}
-	};
-	document.addEventListener("pointerdown", onPointer);
-	document.addEventListener("keydown", onKey);
-	return () => {
-		document.removeEventListener("pointerdown", onPointer);
-		document.removeEventListener("keydown", onKey);
-	};
-});
-
-const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function active(match: string[]) {
 	const path = page.url.pathname;
@@ -103,45 +64,93 @@ function active(match: string[]) {
 }
 </script>
 
-<!-- The header's toggle drives docsSidebar; closed collapses the column and slides the panel out. -->
+{#snippet sidebarContent(closeOnNavigate = false)}
+	<div class="shrink-0 bg-card pt-2 pb-3">
+		<SiteSearch expanded />
+	</div>
+	<ScrollArea
+		maxHeight="none"
+		class="min-h-0 flex-1 [&_[data-slot=scroll-area-scrollbar]]:hidden [&>span]:from-card"
+	>
+		<div class="pb-4">
+			<SiteSidebar
+				{groups}
+				showSearch={false}
+				onNavigate={closeOnNavigate ? () => (docsSidebar.current = false) : undefined}
+			/>
+		</div>
+	</ScrollArea>
+{/snippet}
+
+<!-- Library resizes grid tracks; Playground overlays the same rails as fixed drawers. -->
 <div
-	bind:this={grid}
-	data-ready={ready || undefined}
 	class={[
-		"grid min-w-0 grid-cols-[minmax(0,1fr)] px-4 [--right-sidebar-width:20rem] md:gap-4 md:px-6 xl:gap-8 xl:px-8",
-		"md:grid-cols-[15rem_minmax(0,1fr)] md:[[data-left-rail=closed]_&]:grid-cols-[0rem_minmax(0,1fr)]",
-		split
-			? // The rail floats over the page in split, so the two halves get the full width.
-				"xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]!"
-			: playground
-				? "xl:grid-cols-[minmax(0,1fr)]!"
-				: // The right column is closed unless opened, so prerendered HTML matches the default.
-				"xl:grid-cols-[15rem_minmax(0,1fr)_0rem] xl:[[data-left-rail=closed]_&]:grid-cols-[0rem_minmax(0,1fr)_0rem] xl:[[data-right-col=open]_&]:grid-cols-[15rem_minmax(0,1fr)_20rem] xl:[[data-left-rail=closed][data-right-col=open]_&]:grid-cols-[0rem_minmax(0,1fr)_20rem]",
+		"grid min-h-[calc(100dvh-var(--header-h))] min-w-0 grid-cols-[minmax(0,1fr)] bg-card px-4 [--right-sidebar-width:20rem] md:gap-0 md:px-0 md:pr-2 md:pb-2",
+		library
+			? [
+					"md:grid-cols-[16rem_minmax(0,1fr)] md:[[data-left-rail=closed]_&]:grid-cols-[0rem_minmax(0,1fr)]",
+					"transition-[grid-template-columns] ease-[var(--ease-drawer)] motion-reduce:transition-none",
+					docsSidebar.current
+						? "duration-[var(--duration-drawer)]"
+						: "duration-[var(--duration-overlay)]",
+				]
+			: "md:grid-cols-[minmax(0,1fr)]",
 	]}
 >
-	<!-- Floating, the wrapper drops out of the grid; its fixed panel overlays the page instead. -->
-	<div class={["hidden min-w-0 md:block", floating && "xl:contents"]}>
-		<!-- Closed: 15rem panel plus the widest page gutter, so it clears the viewport edge. -->
+	{#if library}
+	<div class="hidden min-w-0 overflow-clip md:block">
 		<div
 			id="docs-sidebar"
 			inert={!docsSidebar.current}
+			class="sticky top-(--header-h) flex h-[calc(100dvh-var(--header-h))] w-64 flex-col overflow-hidden bg-card px-4"
+		>
+			{@render sidebarContent()}
+		</div>
+	</div>
+	{/if}
+	<div class="min-w-0 bg-background md:rounded-b-3xl md:border md:border-border md:border-t-0 md:px-10 xl:px-14">
+		<div
 			class={[
-				"scrollbar-hide fixed top-(--header-h) bottom-0 w-60 overflow-y-auto bg-background py-6 pr-4",
-				"ease-[var(--ease-drawer)] in-data-[ready]:transition-[translate] motion-reduce:transition-none",
-				"translate-x-0 duration-[var(--duration-drawer)] [[data-left-rail=closed]_&]:-translate-x-[17rem] [[data-left-rail=closed]_&]:duration-[var(--duration-overlay)]",
-				floating && [
-					"xl:left-0 xl:z-30 xl:w-80 xl:bg-background/70 xl:pr-16 xl:pl-8 xl:backdrop-blur-xl",
-					// Fades into the page on the right and at the bottom, so the overlay has no hard edge.
-					"xl:[mask-composite:intersect] xl:[mask-image:linear-gradient(to_right,black_70%,transparent),linear-gradient(to_bottom,black_88%,transparent)]",
-					"xl:[[data-left-rail=closed]_&]:-translate-x-full",
+				"min-w-0",
+				library && hasOutline && [
+					"grid transition-[grid-template-columns] ease-[var(--ease-drawer)] motion-reduce:transition-none xl:grid-cols-[minmax(0,1fr)_0rem] xl:[[data-right-col=open]_&]:grid-cols-[minmax(0,1fr)_20rem]",
+					outlineSidebar.current
+						? "duration-[var(--duration-drawer)]"
+						: "duration-[var(--duration-overlay)]",
 				],
 			]}
 		>
-			<SiteSidebar {groups} connector="curve" rungs />
+			{@render children()}
 		</div>
 	</div>
-	{@render children()}
 </div>
+
+{#if playground && desktop}
+	<Drawer bind:open={docsSidebar.current} direction="left">
+		<DrawerContent
+			handle={false}
+			class="w-64! max-w-[85vw]! rounded-none! border-border border-r bg-card! px-4 shadow-xl [&_[data-slot=drawer-surface]]:p-0"
+		>
+			<DrawerHeader class="h-14 shrink-0 flex-row items-center justify-between gap-3 p-0 pr-0">
+				<DrawerTitle class="sr-only">Navigation</DrawerTitle>
+				<a
+					href="/"
+					class="group flex items-center gap-2.5 font-semibold text-foreground text-sm tracking-tight"
+				>
+					<Logo class="size-6 text-foreground" />
+					<span class="font-semibold font-display whitespace-nowrap">Baby UI</span>
+				</a>
+				<DrawerClose
+					aria-label="Close navigation"
+					class="static inline-flex size-8 items-center justify-center rounded-md text-foreground/75 transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+				>
+					<SidebarToggleIcon open class="size-[18px]" />
+				</DrawerClose>
+			</DrawerHeader>
+			{@render sidebarContent(true)}
+		</DrawerContent>
+	</Drawer>
+{/if}
 
 <Drawer bind:open={mobileNav.open}>
 	<DrawerContent>
@@ -165,7 +174,10 @@ function active(match: string[]) {
 					</a>
 				{/each}
 			</nav>
-			<SiteSidebar {groups} connector="curve" rungs onNavigate={() => (mobileNav.open = false)} />
+			<SiteSidebar
+				{groups}
+				onNavigate={() => (mobileNav.open = false)}
+			/>
 		</div>
 	</DrawerContent>
 </Drawer>

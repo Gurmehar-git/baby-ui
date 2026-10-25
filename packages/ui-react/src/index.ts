@@ -199,9 +199,10 @@ export { type DitherOptions, mountDither } from "@baby-ui/components/react/dithe
 export { ditherGradient, type DitherGradientTone, type DitherGradientMatrix, type DitherGradientPosition } from "@baby-ui/components/react/dither-gradient";
 export { type DitheredLogoProps, DitheredLogo } from "@baby-ui/components/react/dithered-logo";
 export { ditheredLogo, type DitheredLogoVariant, type DitheredLogoTone, type DitheredLogoSize } from "@baby-ui/components/react/dithered-logo";
-export { type DocsNavItem, type DocsNavSection, type DocsNavProps, DocsNav } from "@baby-ui/components/react/docs-nav";
+export { type DocsNavIcon, type DocsNavItem, type DocsNavSection, type DocsNavProps, DocsNav } from "@baby-ui/components/react/docs-nav";
+export { type DocsNavMatch, matchesCurrent } from "@baby-ui/components/react/docs-nav";
 export { revealCurrent } from "@baby-ui/components/react/docs-nav";
-export { docsNav, type DocsNavConnector, type DocsNavRowState, markerWidth, rowState } from "@baby-ui/components/react/docs-nav";
+export { docsNav, type DocsNavConnector, type DocsNavVariant, type DocsNavRowState, markerWidth, rowState } from "@baby-ui/components/react/docs-nav";
 export { type DotMatrixGlowProps, DotMatrixGlow } from "@baby-ui/components/react/dot-matrix-glow";
 export { type DotOptions, mountDots } from "@baby-ui/components/react/dot-matrix-glow";
 export { dotMatrixGlow, type DotMatrixGlowShape, type DotMatrixGlowSize, type DotMatrixGlowTone, type DotMatrixGlowPosition, DOT_MATRIX_SIZE } from "@baby-ui/components/react/dot-matrix-glow";
@@ -649,6 +650,8 @@ export { type ShortcutBinding, RESERVED_SHORTCUTS, heldModifiers, heldCaps, comb
 export { shortcutRecorder, type ShortcutRecorderSize } from "@baby-ui/components/react/shortcut-recorder";
 export { type ShowMoreProps, ShowMore, ShowMoreContent, type ShowMoreTriggerProps, ShowMoreTrigger } from "@baby-ui/components/react/show-more";
 export { showMore } from "@baby-ui/components/react/show-more";
+export { type ShowcaseCardProps, ShowcaseCard, ShowcaseCardPreview, ShowcaseCardFooter, ShowcaseCardCopy, ShowcaseCardTitle, ShowcaseCardDescription, ShowcaseCardAction, ShowcaseCardLink } from "@baby-ui/components/react/showcase-card";
+export { showcaseCard, type ShowcaseCardVariant, type ShowcaseCardSize } from "@baby-ui/components/react/showcase-card";
 export { type ShowcaseGridProps, ShowcaseGrid, type ShowcasePanelProps, ShowcasePanel } from "@baby-ui/components/react/showcase-grid";
 export { showcaseGrid, showcasePanel, type ShowcaseFrame, type ShowcaseSpan, DOT_CORNERS, RULE_MARKS, HATCH_MARKS } from "@baby-ui/components/react/showcase-grid";
 export { type SidebarNavItem, type SidebarRecent, type SidebarWorkspace, type SidebarWorkspaceAction, type SidebarNavProps, SidebarNav } from "@baby-ui/components/react/sidebar-nav";

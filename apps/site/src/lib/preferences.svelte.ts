@@ -5,8 +5,8 @@ import { persisted } from "./persisted-state.svelte";
 
 export type Dialect = "ts" | "js";
 export type PackageManager = "bun" | "npm" | "pnpm" | "yarn";
-/** Component pages: preview above the docs, a sticky preview beside them, or a full-width workbench. */
-export type PageLayout = "stacked" | "split" | "playground";
+/** Page composition only; visual styling and content stay shared across every mode. */
+export type PageLayout = "playground" | "library";
 
 /** `ink` replaces the ring colour where the fill is too light to read as one. */
 type Ramp = { primary: string; fg: string; ink?: string };
@@ -105,24 +105,37 @@ export type ThemeId = (typeof THEMES)[number]["id"];
 const KEY = "baby-ui:preferences";
 const THEME_KEY = "baby-ui:theme";
 
-type Stored = {
+type Settable = {
 	framework: Framework;
 	dialect: Dialect;
 	pm: PackageManager;
 	layout: PageLayout;
 };
 
+type Stored = Omit<Settable, "layout"> & {
+	layout: PageLayout | "standard" | "stacked" | "split";
+};
+
 const DEFAULT_STORED: Stored = {
 	framework: "svelte",
 	dialect: "ts",
 	pm: "bun",
-	layout: "stacked",
+	layout: "library",
 };
 
 class Preferences {
 	#stored = persisted<Stored>(KEY, DEFAULT_STORED);
 	#theme = persisted<ThemeId>(THEME_KEY, "default");
 	open = $state(false);
+
+	constructor() {
+		if (
+			this.#stored.current.layout !== "playground" &&
+			this.#stored.current.layout !== "library"
+		) {
+			this.#stored.current = { ...this.#stored.current, layout: "library" };
+		}
+	}
 
 	get framework() {
 		return this.#stored.current.framework;
@@ -133,9 +146,8 @@ class Preferences {
 	get pm() {
 		return this.#stored.current.pm;
 	}
-	// Stores saved before this field existed have no layout.
 	get layout(): PageLayout {
-		return this.#stored.current.layout ?? "stacked";
+		return this.#stored.current.layout === "playground" ? "playground" : "library";
 	}
 	get theme() {
 		return this.#theme.current;
@@ -162,15 +174,15 @@ class Preferences {
 		}
 	}
 
-	set<K extends keyof Stored | "theme">(
+	set<K extends keyof Settable | "theme">(
 		key: K,
-		value: K extends keyof Stored ? Stored[K] : ThemeId,
+		value: K extends keyof Settable ? Settable[K] : ThemeId,
 	) {
 		track("preference_changed", { key, value });
 		if (key === "theme") {
 			this.#theme.current = value as ThemeId;
 		} else {
-			this.#stored.current = { ...this.#stored.current, [key]: value };
+			this.#stored.current = { ...this.#stored.current, [key]: value } as Stored;
 		}
 	}
 }

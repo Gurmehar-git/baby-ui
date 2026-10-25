@@ -3,8 +3,9 @@ import Collapsible from "../../collapsible/svelte/collapsible.svelte";
 import CollapsibleContent from "../../collapsible/svelte/collapsible-content.svelte";
 import CollapsibleTrigger from "../../collapsible/svelte/collapsible-trigger.svelte";
 import { cn } from "../../lib/cn";
+import { matchesCurrent } from "../match";
 import { revealCurrent } from "../scroll";
-import { type DocsNavConnector, docsNav } from "../variants";
+import { type DocsNavConnector, type DocsNavVariant, docsNav } from "../variants";
 import DocsNavList from "./docs-nav-list.svelte";
 import type { DocsNavSection } from "./types";
 
@@ -13,6 +14,7 @@ let {
 	current,
 	open = $bindable(),
 	onOpenChange,
+	variant = "default",
 	connector = "tick",
 	rungs = false,
 	onNavigate,
@@ -25,6 +27,7 @@ let {
 	/** Ids of the expanded sections; bindable. Every section when omitted. */
 	open?: string[];
 	onOpenChange?: (open: string[]) => void;
+	variant?: DocsNavVariant;
 	connector?: DocsNavConnector;
 	/** Adds a continuous hairline ladder beside the links; works with either connector. */
 	rungs?: boolean;
@@ -36,8 +39,10 @@ let {
 } = $props();
 
 let root = $state<HTMLElement>();
-const styles = $derived(docsNav({ connector }));
-const expanded = $derived(open ?? sections.map((s) => s.id));
+const styles = $derived(docsNav({ connector, variant }));
+const expanded = $derived(
+	open ?? sections.filter((section) => !section.href).map((section) => section.id),
+);
 
 function setSection(id: string, next: boolean) {
 	const list = next
@@ -49,25 +54,51 @@ function setSection(id: string, next: boolean) {
 
 $effect(() => {
 	void current;
-	revealCurrent(root);
+	void expanded;
+	return revealCurrent(root);
 });
 </script>
 
 <nav bind:this={root} aria-label={label} data-slot="docs-nav" class={cn(styles.root(), className)}>
 	{#each sections as section (section.id)}
-		<Collapsible
-			class={styles.section()}
-			bind:open={() => expanded.includes(section.id), (next) => setSection(section.id, next)}
-		>
-			<CollapsibleTrigger class={styles.trigger()}>
-				{section.label}
+		{@const items = section.items ?? []}
+		{@const href = section.href}
+		{@const sectionCurrent = href
+			? matchesCurrent({ href, match: section.match }, current)
+			: items.some((item) => matchesCurrent(item, current))}
+		{@const sectionStyles = docsNav({ connector, variant, sectionCurrent })}
+		{@const Icon = section.icon}
+		{#if href}
+			<div class={sectionStyles.section()}>
+				<a
+					{href}
+					aria-current={sectionCurrent ? "page" : undefined}
+					onclick={(event) => onNavigate?.(href, event)}
+					class={sectionStyles.topLink()}
+				>
+					{#if Icon}<Icon size={16} aria-hidden={true} class={sectionStyles.sectionIcon()} />{/if}
+					<span class={sectionStyles.sectionLabel()}>{section.label}</span>
+					{#if section.count !== undefined}
+						<span class={sectionStyles.count()}>{section.count}</span>
+					{/if}
+				</a>
+			</div>
+		{:else}
+			<Collapsible
+				class={sectionStyles.section()}
+				bind:open={() => expanded.includes(section.id), (next) => setSection(section.id, next)}
+			>
+				<CollapsibleTrigger class={sectionStyles.trigger()}>
+					{#if Icon}<Icon size={16} aria-hidden={true} class={sectionStyles.sectionIcon()} />{/if}
+					<span class={sectionStyles.sectionLabel()}>{section.label}</span>
 				{#if section.count !== undefined}
-					<span class={styles.count()}>{section.count}</span>
+					<span class={sectionStyles.count()}>{section.count}</span>
 				{/if}
-			</CollapsibleTrigger>
-			<CollapsibleContent class={styles.content()}>
-				<DocsNavList items={section.items} {current} {connector} {rungs} {onNavigate} />
-			</CollapsibleContent>
-		</Collapsible>
+				</CollapsibleTrigger>
+				<CollapsibleContent class={sectionStyles.content()}>
+					<DocsNavList {items} {current} {variant} {connector} {rungs} {onNavigate} />
+				</CollapsibleContent>
+			</Collapsible>
+		{/if}
 	{/each}
 </nav>

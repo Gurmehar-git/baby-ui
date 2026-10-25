@@ -24,6 +24,8 @@ export type { TabsOrientation, TabsSize, TabsVariant };
 
 const ARROW =
 	"absolute inset-y-0 z-20 inline-flex w-9 items-center justify-center text-foreground transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-0";
+const scrollBehavior = (): ScrollBehavior =>
+	matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 
 type Ctx = {
 	value: string;
@@ -171,7 +173,7 @@ export function TabsList({ className, children, ...props }: ComponentProps<"div"
 		const right = frame.right - (edges.right ? 36 : 0);
 		const delta =
 			item.left < left ? item.left - left : item.right > right ? item.right - right : 0;
-		if (delta) port.scrollBy({ left: delta, behavior: "smooth" });
+		if (delta) port.scrollBy({ left: delta, behavior: scrollBehavior() });
 	}, [tabs.value, edges]);
 
 	const mask = edges.overflow
@@ -183,7 +185,10 @@ export function TabsList({ className, children, ...props }: ComponentProps<"div"
 	function scroll(direction: number) {
 		const port = viewport.current;
 		if (port)
-			port.scrollBy({ left: direction * port.clientWidth * 0.8, behavior: "smooth" });
+			port.scrollBy({
+				left: direction * port.clientWidth * 0.8,
+				behavior: scrollBehavior(),
+			});
 	}
 
 	return (

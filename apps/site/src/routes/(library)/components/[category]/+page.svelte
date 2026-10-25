@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@baby-ui/svelte";
 import CardGallery from "#lib/components/card-gallery.svelte";
 import GalleryIntro from "#lib/components/gallery-intro.svelte";
 import Seo from "#lib/components/seo.svelte";
@@ -11,6 +12,7 @@ import {
 import type { PageProps } from "./$types";
 
 let { data }: PageProps = $props();
+let activeGroup = $state("");
 
 const label = $derived(data.label);
 const path = $derived(data.path);
@@ -26,6 +28,11 @@ const description = $derived(
 		`${count} components for React and Svelte, via the shadcn CLI.`,
 	),
 );
+$effect(() => {
+	if (data.groups && !data.groups.some((group) => group.id === activeGroup)) {
+		activeGroup = data.groups[0]?.id ?? "";
+	}
+});
 </script>
 
 <Seo
@@ -55,48 +62,35 @@ const description = $derived(
 	]}
 />
 
-<main class="min-w-0 py-8 xl:col-span-2">
-	<!-- The page header is the first gallery's opening tile. -->
+<main class="max-w-7xl min-w-0 py-6 xl:col-span-2">
+	<GalleryIntro title={label} description={data.blurb} items={data.items} {back} compact />
 	{#if data.groups}
-		{#each data.groups as group, index (group.id)}
-			{@const opening = index === 0}
-			<section
-				id={group.id}
-				class={[opening ? "mt-2" : "mt-12", "scroll-mt-[calc(var(--header-h)+1.5rem)]"]}
-			>
-				{#if !opening}
-					<div class="mb-4 flex items-baseline gap-2">
-						<h2 class="font-semibold text-foreground text-lg tracking-tight">{group.label}</h2>
-						<span class="text-muted-foreground text-sm tabular-nums">{group.items.length}</span>
+		<Tabs bind:value={activeGroup} variant="underline">
+			<div class="sticky top-(--header-h) z-20 bg-background/95 pt-5 backdrop-blur-md">
+				<TabsList aria-label="{label} groups" class="min-w-full justify-start">
+					{#each data.groups as group (group.id)}
+						<TabsTrigger value={group.id}>
+							{group.label}
+							<span class="text-xs tabular-nums">{group.items.length}</span>
+						</TabsTrigger>
+					{/each}
+				</TabsList>
+			</div>
+			{#each data.groups as group (group.id)}
+				<TabsContent value={group.id} class="mt-10">
+					<div class="mb-3 flex items-baseline gap-2">
+						<h2 class="font-medium text-base text-foreground tracking-tight">{group.label}</h2>
+						<span class="text-muted-foreground text-xs tabular-nums">{group.items.length}</span>
 					</div>
-				{/if}
-				{#if opening}
-					<CardGallery items={group.items}>
-						{#snippet lead()}
-							<GalleryIntro
-								title={label}
-								description={data.blurb}
-								items={data.items}
-								{back}
-							/>
-						{/snippet}
-					</CardGallery>
-				{:else}
-					<CardGallery items={group.items} />
-				{/if}
-			</section>
-		{/each}
+					<CardGallery items={group.items} mode="grid" />
+				</TabsContent>
+			{/each}
+		</Tabs>
 	{:else}
-		<div class="mt-2">
-			<CardGallery items={data.items}>
-				{#snippet lead()}
-					<GalleryIntro title={label} description={data.blurb} items={data.items} {back} />
-				{/snippet}
-			</CardGallery>
-		</div>
+		<div class="mt-10"><CardGallery items={data.items} mode="grid" /></div>
 	{/if}
 
-	<section aria-labelledby="category-about" class="mt-16 max-w-2xl text-muted-foreground text-sm leading-relaxed">
+	<section aria-labelledby="category-about" class="mt-12 max-w-2xl text-muted-foreground text-sm leading-relaxed">
 		<h2 id="category-about" class="font-medium text-base text-foreground">About {heading}</h2>
 		<p class="mt-2">
 			{count} {heading} for React and Svelte, each with a TypeScript and a JavaScript

@@ -81,6 +81,13 @@
 
 	/* One knob: controls and fields use it as is, cards +6px, dialogs +10px. */
 	--radius: 0.625rem;
+	/* Compact control preview. Shared control recipes consume these before individual
+	   component variants are migrated, so the scale can be judged without a broad rewrite. */
+	--control-height-xs: 1.5rem;
+	--control-height-sm: 1.75rem;
+	--control-height-default: 2rem;
+	--control-height-lg: 2.25rem;
+	--control-height-xl: 2.5rem;
 
 	/* All self-hosted: Inter, JetBrains Mono and Newsreader via fontsource, Satoshi vendored. */
 	--font-heading: "Satoshi", "Inter Variable", ui-sans-serif, system-ui, sans-serif;

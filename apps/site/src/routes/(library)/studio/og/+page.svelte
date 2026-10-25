@@ -213,7 +213,7 @@ const code = new LiveCode(() => ({
 
 <StudioSeo slug="og" crumb="OG images" />
 
-<main class="flex flex-col gap-3 p-3 lg:h-[calc(100dvh-var(--header-h))]">
+<main class="flex flex-col gap-3 p-3 xl:h-[calc(100dvh-var(--header-h))]">
 	<div class="flex flex-wrap items-center justify-between gap-2">
 		<h1 class="font-medium text-foreground text-sm">OG image studio</h1>
 		<SegmentControl size="sm" label="Studio mode" options={MODES} current={mode} onPick={switchMode} />
@@ -222,8 +222,8 @@ const code = new LiveCode(() => ({
 	{#if mode === "canvas"}
 		<OgCanvasEditor />
 	{:else if current}
-		<div class="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:grid-cols-[15rem_minmax(0,1fr)_20rem]">
-			<nav aria-label="OG templates" class="hidden min-h-0 flex-col rounded-xl border border-border bg-card p-1 lg:flex">
+		<div class="grid min-h-0 flex-1 grid-cols-1 gap-3 xl:grid-cols-[20rem_minmax(0,1fr)] xl:grid-rows-2 xl:gap-y-0">
+			<nav aria-label="OG templates" class="hidden min-h-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-1 xl:row-start-1 xl:flex xl:rounded-b-none xl:border-b-0">
 				<div class="relative px-1 pt-1 pb-2">
 					<IconSearch size={14} class="pointer-events-none absolute top-1/2 left-3.5 -mt-0.5 -translate-y-1/2 text-muted-foreground" />
 					<Input size="sm" bind:value={query} placeholder="Filter" aria-label="Filter templates" class="pl-8" />
@@ -251,10 +251,10 @@ const code = new LiveCode(() => ({
 				</ul>
 			</nav>
 
-			<section aria-label="Preview" class="flex min-h-[24rem] min-w-0 flex-col rounded-xl border border-border bg-card p-1">
+			<section aria-label="Preview" class="flex min-h-[24rem] min-w-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-2 xl:row-span-2 xl:row-start-1">
 				<div class="flex flex-wrap items-center justify-between gap-2 px-2 pt-1 pb-2">
 					<div class="flex items-center gap-2">
-						<div class="lg:hidden">
+						<div class="xl:hidden">
 							<Select
 								items={data.templates.map((t) => ({ value: t.spec.slug, label: t.spec.name }))}
 								bind:value={() => current.spec.slug, (next) => pick(next, "select")}
@@ -320,7 +320,7 @@ const code = new LiveCode(() => ({
 				</div>
 			</section>
 
-			<aside aria-label="Edit the card" class="flex min-h-0 flex-col rounded-xl border border-border bg-card p-1">
+			<aside aria-label="Edit the card" class="flex min-h-0 flex-col rounded-xl border border-border bg-card p-1 xl:col-start-1 xl:row-start-2 xl:rounded-t-none">
 				<div class="flex shrink-0 items-start justify-between gap-2 px-2.5 pt-2 pb-1">
 					<div>
 						<p class="font-medium text-foreground text-sm">Edit the card</p>

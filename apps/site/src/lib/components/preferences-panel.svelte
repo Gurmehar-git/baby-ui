@@ -7,8 +7,7 @@ import {
 	IconBrandSvelte,
 	IconBrandTypescript,
 	IconCheck,
-	IconLayoutColumns,
-	IconLayoutRows,
+	IconLayoutGrid,
 } from "@baby-ui/icons";
 import type { Framework } from "@baby-ui/registry-schema";
 import {
@@ -43,9 +42,8 @@ const DIALECTS: { id: Dialect; label: string; icon: Icon }[] = [
 ];
 
 const LAYOUTS: { id: PageLayout; label: string; icon: Icon }[] = [
-	{ id: "stacked", label: "Stacked", icon: IconLayoutRows },
-	{ id: "split", label: "Split", icon: IconLayoutColumns },
-	{ id: "playground", label: "Play", icon: IconAdjustmentsHorizontal },
+	{ id: "library", label: "Library", icon: IconLayoutGrid },
+	{ id: "playground", label: "Playground", icon: IconAdjustmentsHorizontal },
 ];
 
 const currentLayout = $derived(LAYOUTS.find((layout) => layout.id === prefs.layout));

@@ -4,12 +4,12 @@ import {
 	DEFAULT_KEYWORDS,
 	type JsonLd,
 	jsonLdScript,
-	ogImageUrl,
 	SITE_NAME,
 	SITE_URL,
 } from "#lib/seo.js";
 import { dev } from "$app/env";
 import { page } from "$app/state";
+import cover from "../../../../../.github/assets/cover.png";
 
 let {
 	title,
@@ -23,7 +23,7 @@ let {
 	jsonLd = [],
 	markdown,
 
-	/** Defaults to the branded OG card for this title/description. */
+	/** Defaults to the authored Baby UI cover shared with the Introduction page. */
 	/** Schema.org nodes for this page, emitted as one @graph. */
 	/** Path of the page's markdown twin, advertised to crawlers and LLM tools. */
 }: {
@@ -44,7 +44,7 @@ const fullTitle = $derived(
 // Prerendering runs at http://sveltekit-prerender, so the request origin is only trusted in dev.
 const origin = $derived(dev ? page.url.origin : SITE_URL);
 const canonical = $derived(absoluteUrl(origin, page.url.pathname));
-const ogImage = $derived(image ?? ogImageUrl(origin, { title, description, tag }));
+const ogImage = $derived(absoluteUrl(origin, image ?? cover));
 const keywordList = $derived(keywords.length ? keywords : DEFAULT_KEYWORDS);
 </script>
 
@@ -67,8 +67,8 @@ const keywordList = $derived(keywords.length ? keywords : DEFAULT_KEYWORDS);
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content={canonical} />
 	<meta property="og:image" content={ogImage} />
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image:height" content="630" />
+	<meta property="og:image:width" content="1280" />
+	<meta property="og:image:height" content="640" />
 	<meta property="og:image:alt" content={fullTitle} />
 	<meta property="og:locale" content="en_US" />
 

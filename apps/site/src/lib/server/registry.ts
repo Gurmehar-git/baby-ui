@@ -2,7 +2,6 @@ import gitDates from "virtual:component-dates";
 import { specs as publicSpecs } from "@baby-ui/components/specs";
 import {
 	CATEGORIES,
-	type Category,
 	type ComponentSpec,
 	FRAMEWORKS,
 	PREVIEW_CATEGORIES,
@@ -175,27 +174,24 @@ export function latestNew(limit: number, exclude: readonly string[] = []): CardI
 	return picked.map(cardItem);
 }
 
-/** Every category, with `lead` (the route's own category) moved to the front. */
-export function sidebarGroups(lead?: Category): SidebarGroup[] {
-	return [...CATEGORIES]
-		.sort((a, b) => Number(b === lead) - Number(a === lead))
-		.map((category) => ({
-			category,
-			label: CATEGORY_LABEL[category],
-			// Alphabetical: the sidebar is for finding a known name, not for browsing.
-			items: liveSpecs
-				.filter((s) => s.category === category)
-				.map((s) => ({
-					slug: s.slug,
-					name: s.name,
-					href: specHref(s),
-					status: s.status,
-					tier: s.tier,
-					fresh: freshness(s),
-				}))
-				.sort((a, b) => a.name.localeCompare(b.name)),
-		}))
-		.filter((g) => g.items.length > 0);
+/** Every category in its canonical order; DocsNav reveals the current link in place. */
+export function sidebarGroups(): SidebarGroup[] {
+	return CATEGORIES.map((category) => ({
+		category,
+		label: CATEGORY_LABEL[category],
+		// Alphabetical: the sidebar is for finding a known name, not for browsing.
+		items: liveSpecs
+			.filter((s) => s.category === category)
+			.map((s) => ({
+				slug: s.slug,
+				name: s.name,
+				href: specHref(s),
+				status: s.status,
+				tier: s.tier,
+				fresh: freshness(s),
+			}))
+			.sort((a, b) => a.name.localeCompare(b.name)),
+	})).filter((g) => g.items.length > 0);
 }
 
 export function findSpec(category: string, slug: string): ComponentSpec | undefined {
@@ -207,7 +203,7 @@ export function adjacentComponents(
 	category: string,
 	slug: string,
 ): { prev: AdjacentComponent | null; next: AdjacentComponent | null } {
-	const flat = sidebarGroups(category as Category).flatMap((group) =>
+	const flat = sidebarGroups().flatMap((group) =>
 		group.items.map((item) => ({ ...item, category: group.category })),
 	);
 	const index = flat.findIndex(

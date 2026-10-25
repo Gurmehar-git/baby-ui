@@ -12,9 +12,17 @@ export const docsNav = defineComponent({
 			name: "sections",
 			type: "DocsNavSection[]",
 			description:
-				"Sections of links: id, label, optional count, items with href, label, badge and badgeVariant.",
+				"Ordered rows. A section with href is a direct top-level link; one with items is a collapsible group. Both accept an optional icon, count and match prefixes.",
 			required: true,
 			control: { kind: "none" },
+		},
+		{
+			name: "variant",
+			type: '"default" | "sidebar"',
+			description:
+				"Default documentation headings, or compact sidebar rows with icons, end-aligned counts and chevrons.",
+			default: "default",
+			control: { kind: "select", options: ["default", "sidebar"] },
 		},
 		{
 			name: "current",
@@ -76,6 +84,7 @@ export const docsNav = defineComponent({
 			"The hovered row's marker grows and brightens, the current row's marker is longest and solid, and the other rows dim to 60% while one is hovered.",
 			"Sections expand over 200ms and collapse over 120ms, with the chevron rotating on the same timing; collapsed links are inert.",
 			"When the current link changes it is centred in its scroll container, only if it sits more than 40px off-centre.",
+			"The current section may still be collapsed; route changes can control which group opens without overriding the user's next disclosure action.",
 		],
 	},
 	a11y: {
@@ -93,6 +102,7 @@ export const docsNav = defineComponent({
 			'A nav landmark named by `label`; the current link carries aria-current="page".',
 			"Collapsed sections are inert, so their links leave the tab order and the accessibility tree.",
 			"Markers and the hover pill are decorative (aria-hidden); state is also carried by text weight and aria-current.",
+			"Direct top-level rows are links, while grouped rows use real Collapsible triggers with independent expanded state.",
 		],
 	},
 	impl: {

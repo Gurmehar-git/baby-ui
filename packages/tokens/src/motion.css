@@ -46,20 +46,20 @@
 
 	--stagger-step: 45ms;
 
-	--press-scale: 0.97;
+	--press-scale: 0.98;
 	/* Same perceived squish at every size: a ratio moves big controls more pixels, so they give less. */
-	--press-scale-sm: 0.96;
-	--press-scale-lg: 0.98;
-	--press-scale-icon: 0.93;
-	--press-scale-row: 0.98;
+	--press-scale-sm: 0.97;
+	--press-scale-lg: 0.985;
+	--press-scale-icon: 0.96;
+	--press-scale-row: 0.985;
 	--hover-scale: 1.02;
 	--enter-scale: 0.95;
 	--enter-lift: 8px;
-	/* Popovers zoom in from 0.9 and out to 0.95, so leaving travels less. */
-	--popover-enter-scale: 0.9;
-	--popover-exit-scale: 0.95;
+	/* Anchored surfaces settle over a short distance instead of visibly zooming. */
+	--popover-enter-scale: 0.97;
+	--popover-exit-scale: 0.98;
 	/* A modal settles down onto the page from slightly above full size. */
-	--modal-enter-scale: 1.05;
+	--modal-enter-scale: 1.02;
 }
 
 /* Reduced motion means gentler, not none: keep opacity and colour, drop travel. */

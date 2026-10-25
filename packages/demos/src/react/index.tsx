@@ -252,6 +252,7 @@ export const demos: Record<string, DemoLoader> = {
 	shortcut: () => import("./primitives2").then((m) => ({ default: m.ShortcutDemo })),
 	"shortcut-recorder": () => import("./shortcut-recorder").then((m) => ({ default: m.ShortcutRecorderDemo })),
 	"show-more": () => import("./primitives2").then((m) => ({ default: m.ShowMoreDemo })),
+	"showcase-card": () => import("./showcase-card").then((m) => ({ default: m.ShowcaseCardDemo })),
 	"showcase-grid": () => import("./showcase-grid").then((m) => ({ default: m.ShowcaseGridDemo })),
 	"sidebar-nav": () => import("./sidebar-nav").then((m) => ({ default: m.SidebarNavDemo })),
 	signature: () => import("./signature").then((m) => ({ default: m.SignatureDemo })),

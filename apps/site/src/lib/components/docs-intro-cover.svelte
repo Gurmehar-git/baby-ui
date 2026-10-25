@@ -1,5 +1,4 @@
 <script lang="ts">
-// The README's cover (`node scripts/generate-cover.mjs`), so the repo and the docs open on one image.
 import cover from "../../../../../.github/assets/cover.png";
 </script>
 

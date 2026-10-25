@@ -13,6 +13,8 @@ component's `variants.ts`.
 - Prop types derive from the tv: `NonNullable<VariantProps<typeof x>["variant"]>`.
 - Shared contracts are written for both primitives at once: Base UI emits
   `data-open`/`data-closed`/`data-starting-style`, bits-ui emits `data-state=open|closed`.
+- The site package and generated registry read these same component contracts and token files;
+  no registry-only copy of classes or CSS is maintained.
 
 ## Colour
 
@@ -35,6 +37,8 @@ component's `variants.ts`.
 
 ## Type
 
+- Satoshi remains the heading face. Product headings prefer medium weight; the Baby UI brand
+  mark keeps its established semibold treatment.
 - UI text uses four sizes: `text-xs` 12/16 (meta, badges, kbd), `text-sm` 14/20 (controls,
   rows, body in components), `text-base` 16/24 (reading text), `text-lg` 18/28 (panel titles).
 - Display uses three: `text-2xl`, `text-4xl`, `text-6xl`, tracking baked into each size.
@@ -79,6 +83,10 @@ step is `default`, never `md`.
 | `lg` | `h-10` 40 | `rounded-lg` 10 | `text-sm` | `size-4.5` | `px-3.5` | `px-5` | `gap-2` |
 | `xl` | `h-12` 48 | `rounded-xl` 14 | `text-base` | `size-5` | `px-4` | `px-6` | `gap-2.5` |
 
+The compact preview is deliberately limited to the shared `controlSize` recipe. Its token
+heights are 24, 28, 32, 36 and 40px in `tokens.css`; individual component recipes stay on the
+established ladder until the preview is approved, avoiding a speculative library-wide rewrite.
+
 - Radius rides the size variant, never the base: the ladder holds radius at 25 to 29% of height,
   so small controls don't turn into pills and large ones don't go square.
 - A group (ToggleGroup, segmented Tabs) is the control height in total: rim plus items.
@@ -115,8 +123,8 @@ Motion is CSS-only. Exits undercut entrances; reduced motion keeps opacity and d
 
 | Contract | Used by | In | Out | Easing |
 | --- | --- | --- | --- | --- |
-| `ANCHORED` (`lib/anchor.ts`) | Popover, Tooltip, HoverCard, DropdownMenu, ContextMenu, Select, Combobox, MultiSelect, NavigationMenu, DatePicker, ColorPicker field | opacity + scale 0.9 to 1, 4px lean from the trigger, 150ms | to scale 0.95, 100ms | `ease` |
-| `dialogFrame` popup | Dialog, AlertDialog | opacity + scale 1.05 to 1, 250ms | to scale 0.95, 100ms | `--ease-out-quad` |
+| `ANCHORED` (`lib/anchor.ts`) | Popover, Tooltip, HoverCard, DropdownMenu, ContextMenu, Select, Combobox, MultiSelect, NavigationMenu, DatePicker, ColorPicker field | opacity + scale 0.97 to 1, 4px lean from the trigger, 150ms | to scale 0.98, 100ms | `ease` |
+| `dialogFrame` popup | Dialog, AlertDialog | opacity + scale 1.02 to 1, 250ms | to scale 0.98, 100ms | `--ease-out-quad` |
 | `dialogFrame` backdrop | Dialog, AlertDialog, Command | opacity, 150ms | 100ms | `--ease-out` |
 | `sheet` panel and backdrop | Sheet | translate from the edge, 250ms | 200ms | `--ease-drawer` |
 | vaul | Drawer | vaul's drag physics, 500ms | gesture-driven | `--ease-drawer` |
@@ -148,8 +156,8 @@ Tokens:
   `bg-popover` body with a hairline `border-border`, so the rim reads in dark mode too.
 - Springs are CSS `linear()` curves: `ease-(--ease-spring-snappy)` over 400ms (no overshoot) and
   `ease-(--ease-spring-bouncy)` over 600ms (3% overshoot). No JS animation library.
-- Scales: `--popover-enter-scale` 0.9, `--popover-exit-scale` 0.95, `--modal-enter-scale` 1.05,
-  `--press-scale` 0.97 (`-sm` 0.96, `-lg` 0.98, `-icon` 0.93, `-row` 0.98): a ratio moves a
+- Scales: `--popover-enter-scale` 0.97, `--popover-exit-scale` 0.98, `--modal-enter-scale` 1.02,
+  `--press-scale` 0.98 (`-sm` 0.97, `-lg` 0.985, `-icon` 0.96, `-row` 0.985): a ratio moves a
   big control more pixels, so larger controls give a smaller ratio.
 - Anything whose content changes size animates the size (grid rows), never pops.
 

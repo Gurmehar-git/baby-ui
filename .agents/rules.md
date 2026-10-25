@@ -138,8 +138,8 @@ Any agent (Claude Code, Codex, Cursor, Copilot) should read this file first.
   docs; describe the behaviour itself (user, 2026-09-30).
 - Motion is CSS-only: `--duration-*`, `--ease-*`, `--enter-scale`, `--press-scale`. Exits
   mirror entrances and use `--duration-exit`. Every anchored surface (popover, tooltip,
-  dropdown, select, combobox) uses `ANCHORED` in `lib/anchor.ts`: a zoom from 0.9 plus a
-  4px slide from the trigger, 150ms in and 100ms out to 0.95 on `ease` (user, 2026-09-29).
+  dropdown, select, combobox) uses `ANCHORED` in `lib/anchor.ts`: a zoom from 0.97 plus a
+  4px slide from the trigger, 150ms in and 100ms out to 0.98 on `ease` (user, 2026-10-25).
 - **HARD RULE:** any component whose own content changes size or row count at runtime
   (expanding a tree, filtering a list, collapsing a section) animates that change the same
   way Collapsible does: `grid-template-rows` (`0fr` ↔ `1fr`) with an `overflow-hidden` wrapper

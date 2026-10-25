@@ -114,10 +114,14 @@ const SIDEBAR_ROUTES = [
 	...TOP_LEVEL.map(categoryHref),
 	...Object.keys(COLLECTIONS).map((id) => `/${id}`),
 	"/docs",
+	"/studio",
+	"/pricing",
 ];
 const hasSidebar = $derived(
 	SIDEBAR_ROUTES.some((route) => page.url.pathname.startsWith(route)),
 );
+const workspaceShell = $derived(hasSidebar);
+const libraryShell = $derived(hasSidebar && prefs.layout === "library");
 
 // Set the class in the same tick as mode-watcher: the reveal snapshots the DOM when this returns.
 function pickMode(next: ThemeToggleValue) {
@@ -150,17 +154,65 @@ function active(match: string[]) {
 }
 </script>
 
+{#snippet desktopSidebarToggle()}
+	<Button
+		variant="ghost"
+		size="icon-sm"
+		onclick={() => (docsSidebar.current = !docsSidebar.current)}
+		aria-expanded={docsSidebar.current}
+		aria-controls="docs-sidebar"
+		aria-label={docsSidebar.current ? "Close navigation" : "Open navigation"}
+		class="hidden rounded-md text-foreground/75 hover:bg-transparent hover:text-foreground md:inline-flex"
+	>
+		<SidebarToggleIcon open={docsSidebar.current} class="size-[18px]" />
+	</Button>
+{/snippet}
+
+{#snippet brand()}
+	<a
+		href="/"
+		class="group flex items-center gap-2.5 font-semibold text-foreground text-sm tracking-tight"
+	>
+		<Logo class="size-6 text-foreground" />
+		<span class="font-semibold font-display whitespace-nowrap">Baby UI</span>
+	</a>
+{/snippet}
+
 <header
 	class={[
 		"fixed inset-x-0 top-0 z-40",
 		// The blur layer is always composited; scrolling only fades its opacity.
 		"before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:border-border before:border-b before:bg-background/70 before:backdrop-blur-xl before:backdrop-saturate-150",
 		"before:transition-opacity before:duration-[var(--duration-dropdown)] before:ease-[var(--ease-ui-out)] motion-reduce:before:transition-none",
-		scrolled ? "before:opacity-100" : "before:opacity-0",
+		scrolled && !workspaceShell ? "before:opacity-100" : "before:opacity-0",
+		workspaceShell && [
+			"bg-card transition-colors duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
+		],
 	]}
 >
-	<div class="relative flex h-14 w-full items-center justify-between gap-4 px-4 md:px-6 xl:px-8">
-		<div class="flex items-center gap-3">
+	<div
+		class={[
+			"relative isolate flex h-14 w-full items-center justify-between gap-4 px-4 md:px-6",
+			workspaceShell ? "xl:px-6" : "xl:px-8",
+			workspaceShell && [
+				"md:before:absolute md:before:top-1 md:before:right-2 md:before:bottom-0 md:before:-z-1 md:before:rounded-t-3xl md:before:border md:before:border-b-0 md:before:border-border md:before:bg-background md:before:transition-[left] md:before:duration-[var(--duration-drawer)] md:before:ease-[var(--ease-drawer)] motion-reduce:md:before:transition-none",
+				libraryShell && docsSidebar.current ? "md:before:left-64" : "md:before:left-0",
+			],
+		]}
+	>
+		<div
+			class={[
+				"flex items-center gap-3",
+				workspaceShell && [
+					"md:pr-0 md:transition-[width,gap] md:ease-[var(--ease-drawer)] motion-reduce:md:transition-none",
+					libraryShell
+						? docsSidebar.current
+							? "md:w-54 md:gap-3 md:duration-[var(--duration-drawer)]"
+							: "md:w-8 md:gap-0 md:duration-[var(--duration-overlay)]"
+						: "md:w-54 md:gap-3",
+				],
+			]}
+		>
 			{#if hasSidebar}
 				<Button
 					variant="outline"
@@ -171,27 +223,29 @@ function active(match: string[]) {
 				>
 					<IconMenu2 size={17} />
 				</Button>
-				<Button
-					variant="ghost"
-					size="icon-sm"
-					onclick={() => (docsSidebar.current = !docsSidebar.current)}
-					aria-expanded={docsSidebar.current}
-					aria-controls="docs-sidebar"
-					aria-label={docsSidebar.current ? "Close navigation" : "Open navigation"}
-					class="hidden rounded-md text-foreground/75 hover:bg-transparent hover:text-foreground md:inline-flex"
-				>
-					<SidebarToggleIcon open={docsSidebar.current} class="size-[18px]" />
-				</Button>
+				{#if !workspaceShell}{@render desktopSidebarToggle()}{/if}
 			{/if}
-			<a
-				href="/"
-				class="group flex items-center gap-2.5 font-semibold text-foreground text-sm tracking-tight"
-			>
-				<Logo class="size-6 text-foreground" />
-				<span class="font-semibold font-display whitespace-nowrap">Baby UI</span>
-			</a>
+			{#if workspaceShell}
+				<div
+					inert={(libraryShell && !docsSidebar.current) || undefined}
+					aria-hidden={(libraryShell && !docsSidebar.current) || undefined}
+					class={[
+						"min-w-0 overflow-hidden md:transition-[width,opacity] md:ease-[var(--ease-ui-out)] motion-reduce:md:transition-none",
+						libraryShell
+							? docsSidebar.current
+								? "md:w-43 md:opacity-100 md:duration-[var(--duration-drawer)]"
+								: "md:w-0 md:opacity-0 md:duration-[var(--duration-overlay)]"
+							: "md:w-43 md:opacity-100",
+					]}
+				>
+					{@render brand()}
+				</div>
+			{:else}
+				{@render brand()}
+			{/if}
+			{#if hasSidebar && workspaceShell}{@render desktopSidebarToggle()}{/if}
 
-			<nav aria-label="Main" class="hidden items-center gap-1 md:flex">
+			{#if !workspaceShell}<nav aria-label="Main" class="hidden items-center gap-1 md:flex">
 				<MegaMenu groups={GROUPS} active={page.url.pathname}>
 					{#snippet itemIcon(item: MegaMenuItem)}
 						{@const Icon = iconFor.get(item.href)}
@@ -211,11 +265,11 @@ function active(match: string[]) {
 						{link.label}
 					</Button>
 				{/each}
-			</nav>
+			</nav>{/if}
 		</div>
 
 		<nav aria-label="Site tools" class="flex items-center gap-2">
-			<SiteSearch />
+			{#if !workspaceShell}<SiteSearch />{/if}
 
 			<ThemeToggle
 				theme={mode.current === "dark" ? "dark" : "light"}
@@ -250,9 +304,10 @@ function active(match: string[]) {
 							rel="noreferrer noopener"
 							target="_blank"
 							variant="ghost"
+							size="sm"
 							loadingLabel=""
 							aria-label={stars === null ? "Star on GitHub" : `Star on GitHub, ${stars} stars`}
-							class="h-9 gap-1 rounded-xl px-2 text-foreground/75 tabular-nums hover:text-foreground"
+							class="gap-1 rounded-md px-2 text-foreground/75 tabular-nums hover:text-foreground"
 						>
 							<IconBrandGithub size={16} />
 							{#if stars !== null}<span class="text-xs">{compact.format(stars)}</span>{/if}

@@ -9,6 +9,10 @@ export const docsNav = tv({
 			"h-8 w-full justify-start gap-1.5 pr-3 pl-1.5 font-semibold text-xs text-muted-foreground uppercase tracking-wider hover:text-foreground",
 		count:
 			"inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-foreground/[0.06] px-1 font-medium text-xs text-foreground/70 tabular-nums",
+		sectionIcon: "size-4 shrink-0 text-muted-foreground",
+		sectionLabel: "min-w-0",
+		topLink:
+			"flex h-8 items-center gap-2 rounded-lg px-2 font-medium text-sm outline-none transition-colors duration-(--duration-fast) focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
 		content: "px-0 pt-1 pb-1",
 		list: "relative",
 		pill: "pointer-events-none absolute right-0 rounded-md bg-foreground/[0.06] transition-[transform,height,opacity] duration-[var(--duration-dropdown)] ease-[var(--ease-ui-out)] motion-reduce:transition-none",
@@ -22,6 +26,23 @@ export const docsNav = tv({
 		badge: "h-4.5 rounded px-1 text-[11px]",
 	},
 	variants: {
+		variant: {
+			default: {},
+			sidebar: {
+				root: "gap-0.5",
+				section: "border-t-0 py-0.5 first:pt-0",
+				trigger:
+					"h-9 rounded-lg px-2 font-medium text-sm normal-case tracking-normal hover:bg-foreground/[0.04] hover:text-foreground [&>[data-slot=collapsible-icon]]:order-last [&>[data-slot=collapsible-icon]]:ml-auto [&>[data-slot=collapsible-icon]]:duration-[var(--duration-dropdown)] [&[data-panel-open]>[data-slot=collapsible-icon]]:duration-[var(--duration-collapse)] [&[data-state=open]>[data-slot=collapsible-icon]]:duration-[var(--duration-collapse)]",
+				count: "ml-auto mr-1 bg-transparent text-muted-foreground",
+				sectionLabel: "flex-1 truncate",
+				topLink: "h-9",
+				content: "pt-0 pb-1",
+			},
+		},
+		sectionCurrent: {
+			true: {},
+			false: {},
+		},
 		connector: {
 			tick: {
 				pill: "left-0",
@@ -54,6 +75,21 @@ export const docsNav = tv({
 	},
 	compoundVariants: [
 		{
+			variant: "sidebar",
+			sectionCurrent: true,
+			class: {
+				trigger: "bg-foreground/[0.06] text-foreground",
+				topLink: "bg-foreground/[0.06] text-foreground",
+			},
+		},
+		{
+			variant: "sidebar",
+			sectionCurrent: false,
+			class: {
+				topLink: "text-muted-foreground hover:bg-foreground/[0.04] hover:text-foreground",
+			},
+		},
+		{
 			connector: "tick",
 			state: ["rest", "dimmed", "hovered"],
 			class: { marker: "bg-foreground/35" },
@@ -74,10 +110,18 @@ export const docsNav = tv({
 		},
 		{ rungs: true, state: "active", class: { label: "translate-x-2" } },
 	],
-	defaultVariants: { connector: "tick", rungs: false, hovering: false, state: "rest" },
+	defaultVariants: {
+		variant: "default",
+		sectionCurrent: false,
+		connector: "tick",
+		rungs: false,
+		hovering: false,
+		state: "rest",
+	},
 });
 
 export type DocsNavConnector = NonNullable<VariantProps<typeof docsNav>["connector"]>;
+export type DocsNavVariant = NonNullable<VariantProps<typeof docsNav>["variant"]>;
 export type DocsNavRowState = NonNullable<VariantProps<typeof docsNav>["state"]>;
 
 const MARKER_WIDTH: Record<DocsNavConnector, Record<DocsNavRowState, number>> = {

@@ -18,8 +18,7 @@ const feed = changelogFeedState();
 		variant="chip"
 		size="sm"
 		{label}
-		value={feed.kinds}
-		onValueChange={feed.setKinds}
+		bind:value={() => feed.kinds, (next) => feed.setKinds(next)}
 	>
 		{#each CHANGELOG_KINDS as kind (kind.id)}
 			<ToggleGroupItem value={kind.id}>

@@ -1,17 +1,26 @@
 <script lang="ts">
 import Badge from "../../badge/svelte/badge.svelte";
-import { type DocsNavConnector, docsNav, markerWidth, rowState } from "../variants";
+import { matchesCurrent } from "../match";
+import {
+	type DocsNavConnector,
+	type DocsNavVariant,
+	docsNav,
+	markerWidth,
+	rowState,
+} from "../variants";
 import type { DocsNavItem } from "./types";
 
 let {
 	items,
 	current,
+	variant,
 	connector,
 	rungs,
 	onNavigate,
 }: {
 	items: DocsNavItem[];
 	current?: string;
+	variant: DocsNavVariant;
 	connector: DocsNavConnector;
 	rungs: boolean;
 	onNavigate?: (href: string, event: MouseEvent) => void;
@@ -33,21 +42,21 @@ function onEnter(event: PointerEvent, index: number) {
 <div
 	bind:this={list}
 	role="presentation"
-	class={docsNav({ connector }).list()}
+	class={docsNav({ connector, variant }).list()}
 	onpointerleave={() => (hovered = null)}
 >
 	{#if pill}
 		<div
 			aria-hidden="true"
-			class={docsNav({ connector, hovering: hovered !== null }).pill()}
+			class={docsNav({ connector, variant, hovering: hovered !== null }).pill()}
 			style:transform="translateY({pill.top}px)"
 			style:height="{pill.height}px"
 		></div>
 	{/if}
 	{#each items as item, index (item.href)}
-		{@const active = item.href === current}
+		{@const active = matchesCurrent(item, current)}
 		{@const state = rowState(active, hovered === index, hovered !== null)}
-		{@const styles = docsNav({ connector, rungs, state })}
+		{@const styles = docsNav({ connector, variant, rungs, state })}
 		<div class={styles.row()}>
 			<span
 				aria-hidden="true"
