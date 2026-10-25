@@ -4,10 +4,14 @@ import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 import type { ComponentProps, ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/cn";
+import { type ScrollAreaScrollbar, scrollArea } from "../variants";
+
+export type { ScrollAreaScrollbar };
 
 export interface ScrollAreaProps extends ComponentProps<typeof ScrollAreaPrimitive.Root> {
 	children: ReactNode;
 	maxHeight?: string;
+	scrollbar?: ScrollAreaScrollbar;
 	/** Exposes the actual scrollable element, for callers that need to drive its scroll
 	 * position themselves (e.g. Conversation's auto-follow). */
 	viewportRef?: (el: HTMLDivElement | null) => void;
@@ -22,11 +26,13 @@ export interface ScrollAreaProps extends ComponentProps<typeof ScrollAreaPrimiti
 export function ScrollArea({
 	children,
 	maxHeight = "16rem",
+	scrollbar = "auto",
 	className,
 	viewportRef,
 	viewportProps,
 	...props
 }: ScrollAreaProps) {
+	const styles = scrollArea({ scrollbar });
 	const viewport = useRef<HTMLDivElement>(null);
 	const [atTop, setAtTop] = useState(true);
 	const [atBottom, setAtBottom] = useState(true);
@@ -51,7 +57,8 @@ export function ScrollArea({
 	return (
 		<ScrollAreaPrimitive.Root
 			data-slot="scroll-area"
-			className={cn("relative", className)}
+			data-scrollbar={scrollbar}
+			className={cn(styles.root(), className)}
 			{...props}
 		>
 			<ScrollAreaPrimitive.Viewport
@@ -66,23 +73,24 @@ export function ScrollArea({
 				}}
 				data-slot="scroll-area-viewport"
 				style={{ maxHeight, ...viewportProps?.style }}
-				className={cn(
-					"size-full rounded-[inherit] outline-none",
-					viewportProps?.className,
-				)}
+				className={cn(styles.viewport(), viewportProps?.className)}
 			>
 				{children}
 			</ScrollAreaPrimitive.Viewport>
-			<ScrollAreaPrimitive.Scrollbar
-				data-slot="scroll-area-scrollbar"
-				className="flex touch-none select-none p-0.5 transition-colors data-[orientation=horizontal]:h-2.5 data-[orientation=horizontal]:flex-col data-[orientation=vertical]:w-2.5"
-			>
-				<ScrollAreaPrimitive.Thumb
-					data-slot="scroll-area-thumb"
-					className="relative flex-1 rounded-full bg-border"
-				/>
-			</ScrollAreaPrimitive.Scrollbar>
-			<ScrollAreaPrimitive.Corner />
+			{scrollbar === "auto" ? (
+				<>
+					<ScrollAreaPrimitive.Scrollbar
+						data-slot="scroll-area-scrollbar"
+						className="flex touch-none select-none p-0.5 transition-colors data-[orientation=horizontal]:h-2.5 data-[orientation=horizontal]:flex-col data-[orientation=vertical]:w-2.5"
+					>
+						<ScrollAreaPrimitive.Thumb
+							data-slot="scroll-area-thumb"
+							className="relative flex-1 rounded-full bg-border"
+						/>
+					</ScrollAreaPrimitive.Scrollbar>
+					<ScrollAreaPrimitive.Corner />
+				</>
+			) : null}
 
 			<span
 				aria-hidden

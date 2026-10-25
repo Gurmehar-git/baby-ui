@@ -39,7 +39,7 @@ export function ComboboxContent({
 }: ComponentProps<typeof PopoverContent> & { size?: ComboboxSize }) {
 	const c = combobox({ size });
 	return (
-		<PopoverContent className={cn(c.content(), className)} {...props}>
+		<PopoverContent size={size} className={cn(c.content(), className)} {...props}>
 			<Command className={c.list()}>{children}</Command>
 		</PopoverContent>
 	);

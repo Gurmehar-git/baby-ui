@@ -53,7 +53,7 @@ export const command = defineComponent({
 		reducedMotion: "Closing snaps instead of fading.",
 		behaviour: [
 			"The default list eases to its new height as filtering adds or removes rows.",
-			"Opening is instant: the palette is a keyboard shortcut used many times a day. Closing fades over the exit token.",
+			"Opening and closing use Dialog's shared modal scale-and-fade timing, so a pointer-trigger press and the palette entrance overlap instead of feeling sequential.",
 			"One marker sits under the active row and snaps between rows, since arrow keys repeat too fast for motion to help. `default` paints the row itself, as shadcn does.",
 			"Filter tooltips open after a short delay; once one is open, the next opens instantly.",
 			"The highlight resets to the first result on every keystroke.",

@@ -7,11 +7,9 @@ import {
 	CtaBannerBadge,
 	CtaBannerContent,
 	CtaBannerDescription,
-	CtaBannerEyebrow,
 	CtaBannerFloater,
 	CtaBannerGrain,
 	CtaBannerNote,
-	CtaBannerSpotlight,
 	CtaBannerTicker,
 	CtaBannerTitle,
 } from "@baby-ui/svelte";
@@ -22,8 +20,7 @@ import { controlProps } from "../data/preview-props";
 type Controls = Partial<
 	ComponentProps<typeof CtaBanner> &
 		ComponentProps<typeof CtaBannerGrain> &
-		ComponentProps<typeof CtaBannerTicker> &
-		ComponentProps<typeof CtaBannerSpotlight>
+		ComponentProps<typeof CtaBannerTicker>
 > & { title?: string };
 
 let { props = {} }: { props?: Record<string, unknown> } = $props();
@@ -58,22 +55,6 @@ const floaters = BANNER_ICONS.floaters.flatMap((paths, i) => {
 				<Button size="lg" variant="secondary">Get started</Button>
 				<Button size="lg" variant="dark">Browse components</Button>
 			</CtaBannerActions>
-		</CtaBannerContent>
-	</CtaBanner>
-{:else if p.variant === "spotlight"}
-	<CtaBanner variant="spotlight" size={p.size} tint={p.tint} speed={num(p.speed)} class={FRAME}>
-		<CtaBannerSpotlight radius={num(p.radius)} grid={p.grid} sweep={p.sweep} />
-		<CtaBannerContent>
-			<CtaBannerEyebrow>React and Svelte</CtaBannerEyebrow>
-			<CtaBannerTitle>{p.title ?? "Ship the page tonight"}</CtaBannerTitle>
-			<CtaBannerDescription>
-				Every component installs as source, so the last ten percent is yours to change.
-			</CtaBannerDescription>
-			<CtaBannerActions>
-				<Button size="lg" variant="secondary">Get started</Button>
-				<Button size="lg" variant="ghost" class="text-white hover:bg-white/10">Browse components</Button>
-			</CtaBannerActions>
-			<CtaBannerNote>Free for personal and commercial use.</CtaBannerNote>
 		</CtaBannerContent>
 	</CtaBanner>
 {:else}

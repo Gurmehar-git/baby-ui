@@ -8,7 +8,11 @@ import {
 	ScrollArea,
 } from "@baby-ui/svelte";
 import type { Snippet } from "svelte";
-import { docsSidebar, outlineSidebar } from "#lib/docs-sidebar.svelte.js";
+import {
+	docsSidebar,
+	outlineSidebar,
+	playgroundDocsDrawer,
+} from "#lib/docs-sidebar.svelte.js";
 import { mobileNav } from "#lib/mobile-nav.svelte.js";
 import { prefs } from "#lib/preferences.svelte.js";
 import { type SidebarGroup, siteNav } from "#lib/registry.js";
@@ -44,20 +48,6 @@ $effect(() => {
 	return () => query.removeEventListener("change", sync);
 });
 
-// Rail state lives on <html>, so the fixed and in-layout forms share one toggle contract.
-$effect(() => {
-	const left = docsSidebar.current ? "open" : "closed";
-	const root = document.documentElement.dataset;
-	if (root.leftRail === left) return;
-	root.leftRail = left;
-});
-$effect(() => {
-	const right = library && hasOutline && outlineSidebar.current ? "open" : "closed";
-	const root = document.documentElement.dataset;
-	if (root.rightCol === right) return;
-	root.rightCol = right;
-});
-
 function active(match: string[]) {
 	const path = page.url.pathname;
 	return match.some((m) => path === m || path.startsWith(`${m}/`));
@@ -69,14 +59,15 @@ function active(match: string[]) {
 		<SiteSearch expanded />
 	</div>
 	<ScrollArea
+		scrollbar="hidden"
 		maxHeight="none"
-		class="min-h-0 flex-1 [&_[data-slot=scroll-area-scrollbar]]:hidden [&>span]:from-card"
+		class="min-h-0 flex-1 [&>span]:from-card"
 	>
 		<div class="pb-4">
 			<SiteSidebar
 				{groups}
 				showSearch={false}
-				onNavigate={closeOnNavigate ? () => (docsSidebar.current = false) : undefined}
+				onNavigate={closeOnNavigate ? () => (playgroundDocsDrawer.current = false) : undefined}
 			/>
 		</div>
 	</ScrollArea>
@@ -85,10 +76,12 @@ function active(match: string[]) {
 <!-- Library resizes grid tracks; Playground overlays the same rails as fixed drawers. -->
 <div
 	class={[
-		"grid min-h-[calc(100dvh-var(--header-h))] min-w-0 grid-cols-[minmax(0,1fr)] bg-card px-4 [--right-sidebar-width:20rem] md:gap-0 md:px-0 md:pr-2 md:pb-2",
+		"grid min-h-[calc(100dvh-var(--header-h))] min-w-0 grid-cols-[minmax(0,1fr)] bg-card [--right-sidebar-width:20rem] md:gap-0 md:pr-2 md:pb-2",
 		library
 			? [
-					"md:grid-cols-[16rem_minmax(0,1fr)] md:[[data-left-rail=closed]_&]:grid-cols-[0rem_minmax(0,1fr)]",
+					docsSidebar.current
+						? "md:grid-cols-[16rem_minmax(0,1fr)]"
+						: "md:grid-cols-[0rem_minmax(0,1fr)]",
 					"transition-[grid-template-columns] ease-[var(--ease-drawer)] motion-reduce:transition-none",
 					docsSidebar.current
 						? "duration-[var(--duration-drawer)]"
@@ -108,12 +101,15 @@ function active(match: string[]) {
 		</div>
 	</div>
 	{/if}
-	<div class="min-w-0 bg-background md:rounded-b-3xl md:border md:border-border md:border-t-0 md:px-10 xl:px-14">
+	<div class="min-w-0 rounded-t-3xl border border-border border-b-0 bg-background md:rounded-b-3xl md:border-b md:border-t-0 md:px-10 xl:px-14">
 		<div
 			class={[
-				"min-w-0",
+				"min-w-0 [&_main]:px-4 md:[&_main]:px-0",
 				library && hasOutline && [
-					"grid transition-[grid-template-columns] ease-[var(--ease-drawer)] motion-reduce:transition-none xl:grid-cols-[minmax(0,1fr)_0rem] xl:[[data-right-col=open]_&]:grid-cols-[minmax(0,1fr)_20rem]",
+					"grid transition-[grid-template-columns] ease-[var(--ease-drawer)] motion-reduce:transition-none",
+					outlineSidebar.current
+						? "xl:grid-cols-[minmax(0,1fr)_20rem]"
+						: "xl:grid-cols-[minmax(0,1fr)_0rem]",
 					outlineSidebar.current
 						? "duration-[var(--duration-drawer)]"
 						: "duration-[var(--duration-overlay)]",
@@ -126,7 +122,7 @@ function active(match: string[]) {
 </div>
 
 {#if playground && desktop}
-	<Drawer bind:open={docsSidebar.current} direction="left">
+	<Drawer bind:open={playgroundDocsDrawer.current} direction="left">
 		<DrawerContent
 			handle={false}
 			class="w-64! max-w-[85vw]! rounded-none! border-border border-r bg-card! px-4 shadow-xl [&_[data-slot=drawer-surface]]:p-0"
@@ -144,7 +140,7 @@ function active(match: string[]) {
 					aria-label="Close navigation"
 					class="static inline-flex size-8 items-center justify-center rounded-md text-foreground/75 transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
 				>
-					<SidebarToggleIcon open class="size-[18px]" />
+					<SidebarToggleIcon open class="size-5!" />
 				</DrawerClose>
 			</DrawerHeader>
 			{@render sidebarContent(true)}

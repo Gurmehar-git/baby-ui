@@ -2,6 +2,7 @@
 
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import type { ComponentProps, ReactNode } from "react";
+import { createContext, useContext } from "react";
 import { cn } from "../../lib/cn";
 import { menu } from "../../lib/menu";
 import { ANCHORED } from "../../lib/react/anchor";
@@ -9,17 +10,19 @@ import {
 	type SelectContentSize,
 	type SelectTriggerSize,
 	type SelectTriggerVariant,
-	selectContent,
 	selectTrigger,
 } from "../variants";
 
 export type { SelectTriggerSize, SelectTriggerVariant };
+
+const SelectSizeContext = createContext<SelectTriggerSize>("default");
 
 export function Select({
 	value,
 	onValueChange,
 	items = [],
 	children,
+	size = "default",
 	...props
 }: Omit<
 	ComponentProps<typeof SelectPrimitive.Root>,
@@ -28,16 +31,19 @@ export function Select({
 	value?: string;
 	onValueChange?: (value: string) => void;
 	items?: ReadonlyArray<{ value: string; label: ReactNode }>;
+	size?: SelectTriggerSize;
 }) {
 	return (
-		<SelectPrimitive.Root<string>
-			value={value || null}
-			onValueChange={(next) => onValueChange?.(next ?? "")}
-			items={items}
-			{...props}
-		>
-			{children}
-		</SelectPrimitive.Root>
+		<SelectSizeContext.Provider value={size}>
+			<SelectPrimitive.Root<string>
+				value={value || null}
+				onValueChange={(next) => onValueChange?.(next ?? "")}
+				items={items}
+				{...props}
+			>
+				{children}
+			</SelectPrimitive.Root>
+		</SelectSizeContext.Provider>
 	);
 }
 
@@ -58,12 +64,14 @@ export function SelectTrigger({
 	className,
 	children,
 	variant = "default",
-	size = "default",
+	size: sizeProp,
 	...props
 }: ComponentProps<typeof SelectPrimitive.Trigger> & {
 	variant?: SelectTriggerVariant;
 	size?: SelectTriggerSize;
 }) {
+	const rootSize = useContext(SelectSizeContext);
+	const size = sizeProp ?? rootSize;
 	return (
 		<SelectPrimitive.Trigger
 			data-slot="select-trigger"
@@ -101,7 +109,7 @@ export function SelectContent({
 	side = "bottom",
 	sideOffset = 6,
 	alignItemWithTrigger = false,
-	size,
+	size: sizeProp,
 	...props
 }: ComponentProps<typeof SelectPrimitive.Popup> &
 	Pick<
@@ -111,6 +119,8 @@ export function SelectContent({
 		/** Match the trigger's `size`. */
 		size?: SelectContentSize;
 	}) {
+	const rootSize = useContext(SelectSizeContext);
+	const size = sizeProp ?? rootSize;
 	return (
 		<SelectPrimitive.Portal>
 			<SelectPrimitive.Positioner
@@ -126,10 +136,9 @@ export function SelectContent({
 					data-size={size}
 					className={cn(
 						ANCHORED,
-						menu().surface(),
+						menu({ size }).surface(),
 						// At least the trigger's width, growing to the longest option so labels never clip.
 						"static z-50 max-h-[min(16rem,var(--available-height))] w-max min-w-[var(--anchor-width)] max-w-[min(24rem,var(--available-width))] overflow-x-hidden overflow-y-auto scroll-area",
-						selectContent({ size }),
 						className,
 					)}
 					{...props}

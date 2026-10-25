@@ -7,6 +7,7 @@ import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
+	ScrollArea,
 } from "@baby-ui/svelte";
 import { track } from "#lib/analytics.js";
 import { defaultProps } from "#lib/registry.js";
@@ -27,6 +28,12 @@ let {
 
 // svelte-ignore state_referenced_locally
 let open = $state(defaultOpen);
+let resetKey = $state(0);
+
+function reset() {
+	values = defaultProps(spec);
+	resetKey++;
+}
 
 // Debounced so a dragged slider reports once, when the reader settles on a value.
 $effect(() => {
@@ -41,35 +48,46 @@ $effect(() => {
 </script>
 
 {#if docked}
-	<!-- Same inset frame as the stage beside it: tinted shell, body sunk onto bg-background. -->
-	<section aria-label="Controls" class="flex h-full min-h-0 flex-col rounded-xl border border-border bg-card p-1">
-		<div class="flex h-9 shrink-0 items-center justify-between gap-2 pr-0.5 pl-2.5">
+	<section aria-label="Controls" class="flex h-full min-h-0 flex-col rounded-2xl border border-border bg-background p-1">
+		<div class="flex h-10 shrink-0 items-center justify-between gap-2 px-2.5">
 			<p class="flex items-center gap-2 font-medium text-foreground text-sm">
 				<IconAdjustmentsHorizontal size={16} class="text-muted-foreground" />
 				Controls
 			</p>
-			<Button variant="ghost" size="xs" onclick={() => (values = defaultProps(spec))}>
+			<Button variant="ghost" size="xs" class="-mr-1" onclick={reset}>
 				<IconRefresh />
 				Reset
 			</Button>
 		</div>
-		<div class="scrollbar-hide min-h-0 flex-1 overflow-y-auto rounded-[7px] bg-background p-3">
-			{#key spec.slug}
+		<ScrollArea
+			scrollbar="hidden"
+			maxHeight="none"
+			class="min-h-0 flex-1 rounded-[11px] bg-card"
+		>
+			<div class="py-2">
+			{#key `${spec.slug}:${resetKey}`}
 				<SpecDials {spec} bind:values />
 			{/key}
-		</div>
+			</div>
+		</ScrollArea>
 	</section>
 {:else}
 <!-- The inset frame, same treatment as Card's `framed` variant and CodeBlock: a rim in
      bg-background around a bg-card body, so it reads as its own surface, not a plain box. -->
 <Collapsible bind:open class="mt-4 rounded-2xl border border-border bg-background p-1">
-	<CollapsibleTrigger class="px-3 py-2">
-		<IconAdjustmentsHorizontal size={16} class="text-muted-foreground" />
-		Controls
-	</CollapsibleTrigger>
+	<div class="flex min-h-10 items-center justify-between gap-2 px-1.5">
+		<CollapsibleTrigger class="min-h-8 flex-1 px-1.5 py-1">
+			<IconAdjustmentsHorizontal size={16} class="text-muted-foreground" />
+			Controls
+		</CollapsibleTrigger>
+		<Button variant="ghost" size="xs" onclick={reset}>
+			<IconRefresh />
+			Reset
+		</Button>
+	</div>
 	<CollapsibleContent class="px-0 pb-0">
-		<div class="rounded-[11px] bg-card p-3">
-			{#key spec.slug}
+		<div class="rounded-[11px] bg-card py-2">
+			{#key `${spec.slug}:${resetKey}`}
 				<SpecDials {spec} bind:values />
 			{/key}
 		</div>

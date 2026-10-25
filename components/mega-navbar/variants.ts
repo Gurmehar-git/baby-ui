@@ -5,7 +5,7 @@ export const megaNavbar = tv({
 		root: "@container w-full transition-colors duration-[var(--duration-dropdown)] motion-reduce:transition-none",
 		nav: "mx-auto flex h-16 w-full max-w-6xl items-center gap-2 px-6",
 		trigger:
-			"inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3.5 py-2 font-medium text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+			"inline-flex h-8 items-center gap-1 whitespace-nowrap rounded-full px-3 font-medium text-sm outline-none transition-colors hover:bg-foreground/[0.06] focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
 		chevron:
 			"size-3.5 transition-transform duration-[var(--duration-dropdown)] motion-reduce:transition-none",
 		menu: "relative flex items-center gap-1",
@@ -21,10 +21,10 @@ export const megaNavbar = tv({
 			"transition-[width,height,transform,opacity] duration-300 ease-[cubic-bezier(0.625,0.05,0,1)] motion-reduce:transition-none",
 		],
 		pane: "absolute inset-x-0 top-0 w-max transition-opacity duration-[var(--duration-dropdown)] motion-reduce:transition-none",
-		item: "flex gap-3 rounded-lg p-3 transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none aria-[current=page]:bg-foreground/[0.06] motion-reduce:transition-none",
+		item: "flex gap-3 rounded-lg p-2.5 transition-colors hover:bg-foreground/[0.06] focus-visible:bg-foreground/[0.06] focus-visible:outline-none aria-[current=page]:bg-foreground/[0.06] motion-reduce:transition-none",
 		footer:
 			"group/cta flex items-center justify-between gap-4 border-border border-t px-5 py-3 transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none motion-reduce:transition-none",
-		link: "inline-flex items-center whitespace-nowrap rounded-full px-3.5 py-2 font-medium text-sm transition-colors hover:text-foreground motion-reduce:transition-none",
+		link: "inline-flex h-8 items-center whitespace-nowrap rounded-full px-3 font-medium text-sm transition-colors hover:bg-foreground/[0.06] hover:text-foreground motion-reduce:transition-none",
 		mobileChevron:
 			"size-4 shrink-0 text-muted-foreground transition-transform duration-[var(--duration-dropdown)] motion-reduce:transition-none",
 		mobileItem:
@@ -147,7 +147,7 @@ export const megaNavbar = tv({
 		},
 		current: {
 			true: {
-				trigger: "text-foreground",
+				trigger: "bg-foreground/[0.06] text-foreground",
 				expandTrigger: "text-foreground",
 				link: "text-foreground",
 				mobileItem: "bg-foreground/[0.06]",

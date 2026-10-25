@@ -21,7 +21,8 @@ export const select = defineComponent({
 		{
 			name: "size",
 			type: '"xs" | "sm" | "default" | "lg" | "xl"',
-			description: "SelectTrigger: height and text size.",
+			description:
+				"Select: trigger height plus matching content density, icon size and proportional radius. A part-level size overrides the root.",
 			default: "default",
 			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
 		},

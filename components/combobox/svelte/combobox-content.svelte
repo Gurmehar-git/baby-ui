@@ -15,7 +15,7 @@ let {
 const c = $derived(combobox({ size }));
 </script>
 
-<PopoverContent {...rest} class={cn(c.content(), classProp)}>
+<PopoverContent {...rest} {size} class={cn(c.content(), classProp)}>
 	<Command class={c.list()}>
 		{@render children?.()}
 	</Command>

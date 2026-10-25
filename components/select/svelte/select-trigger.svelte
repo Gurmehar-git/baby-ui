@@ -6,17 +6,21 @@ import {
 	type SelectTriggerVariant,
 	selectTrigger,
 } from "../variants";
+import { getSelectSize } from "./context";
 
 let {
 	class: classProp,
 	children,
 	variant = "default",
-	size = "default",
+	size: sizeProp,
 	...rest
 }: SelectPrimitive.TriggerProps & {
 	variant?: SelectTriggerVariant;
 	size?: SelectTriggerSize;
 } = $props();
+
+const rootSize = getSelectSize();
+const size = $derived(sizeProp ?? rootSize());
 </script>
 
 <SelectPrimitive.Trigger

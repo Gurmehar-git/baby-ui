@@ -31,26 +31,9 @@ export const ctaBanner = tv({
 		// Blurs the rows where they pass behind the words.
 		tickerVeil:
 			"pointer-events-none absolute inset-y-0 left-[calc(50%-7rem)] hidden w-48 bg-(--tint)/20 backdrop-blur-xl [mask-image:linear-gradient(to_right,transparent,black_35%,black_65%,transparent)] @4xl:block",
-		// Spotlight: a dark tint-lit surface 1px inside the edge, which is lit around the pointer.
-		spotEdge:
-			"pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(var(--r,420px)_circle_at_var(--x,50%)_var(--y,0%),var(--tint),rgb(255_255_255/0.1)_55%)]",
-		spotSurface:
-			"pointer-events-none absolute inset-px rounded-[calc(2rem-1px)] bg-[radial-gradient(120%_90%_at_50%_0%,color-mix(in_oklch,var(--tint)_42%,#09090b),#09090b_70%)]",
-		spotOrb:
-			"pointer-events-none absolute -top-48 left-1/2 h-80 w-[70%] -translate-x-1/2 rounded-full bg-(--tint) opacity-40 blur-[110px]",
-		spotGrid:
-			"pointer-events-none absolute inset-px rounded-[calc(2rem-1px)] bg-[linear-gradient(to_right,rgb(255_255_255/0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.06)_1px,transparent_1px)] [background-size:44px_44px] [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_72%)]",
-		// The same grid, brighter, shown only under the pointer's light.
-		spotReveal:
-			"pointer-events-none absolute inset-px rounded-[calc(2rem-1px)] bg-[linear-gradient(to_right,rgb(255_255_255/0.2)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.2)_1px,transparent_1px)] [background-size:44px_44px] [mask-image:radial-gradient(calc(var(--r,420px)*0.55)_circle_at_var(--x,50%)_var(--y,0%),black,transparent)]",
-		spotLight:
-			"pointer-events-none absolute inset-px rounded-[calc(2rem-1px)] bg-[radial-gradient(var(--r,420px)_circle_at_var(--x,50%)_var(--y,0%),rgb(255_255_255/0.08),transparent_70%)]",
-		spotSweep:
-			"cta-banner-sweep pointer-events-none absolute top-px left-0 h-px w-1/3 bg-linear-to-r from-transparent via-white/80 to-transparent",
 	},
 	variants: {
-		/** `grain`: a noisy tinted panel; `ticker`: lit copy beside a running wordmark; `spotlight`:
-		 * a dark tint-lit card whose grid and edge light up under the pointer. */
+		/** `grain`: a noisy tinted panel; `ticker`: lit copy beside a running wordmark. */
 		variant: {
 			grain: {
 				root: "rounded-3xl bg-(--tint) text-white [--tint:var(--cta-banner,#05845f)]",
@@ -70,17 +53,6 @@ export const ctaBanner = tv({
 					"box-decoration-clone max-w-[12ch] bg-linear-to-b from-white/50 via-white/85 to-white bg-clip-text pb-[0.1em] -mb-[0.1em] font-bold text-transparent leading-[0.92] tracking-[-0.04em] [-webkit-text-stroke:1px_white]",
 				description: "max-w-lg text-lg text-white/85 @2xl:text-xl",
 				note: "text-white/75 [&_strong]:text-white",
-			},
-			spotlight: {
-				root: "rounded-[2rem] bg-[#09090b] text-white [--tint:var(--cta-banner,var(--primary))]",
-				content: "mx-auto max-w-3xl items-center gap-6 px-6 text-center",
-				eyebrow:
-					"inline-flex h-7 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 text-white/80 text-xs backdrop-blur before:size-1.5 before:rounded-full before:bg-(--tint) before:shadow-[0_0_10px_var(--tint)]",
-				title:
-					"bg-linear-to-b from-white to-white/60 bg-clip-text font-semibold text-transparent leading-[1.05] tracking-[-0.03em]",
-				description: "max-w-xl text-lg text-white/65",
-				actions: "justify-center",
-				note: "text-white/55 [&_strong]:text-white/85",
 			},
 		},
 		/** Padding and headline scale. */
@@ -116,21 +88,6 @@ export const ctaBanner = tv({
 			variant: "ticker",
 			size: "lg",
 			class: { content: "py-24 @2xl:py-36", title: "text-[clamp(3.5rem,11cqw,8.5rem)]" },
-		},
-		{
-			variant: "spotlight",
-			size: "sm",
-			class: { root: "py-14", title: "text-3xl @2xl:text-4xl" },
-		},
-		{
-			variant: "spotlight",
-			size: "default",
-			class: { root: "py-20 @2xl:py-28", title: "text-4xl @2xl:text-5xl @4xl:text-6xl" },
-		},
-		{
-			variant: "spotlight",
-			size: "lg",
-			class: { root: "py-28 @2xl:py-36", title: "text-5xl @2xl:text-6xl @4xl:text-7xl" },
 		},
 	],
 	defaultVariants: { variant: "grain", size: "default" },

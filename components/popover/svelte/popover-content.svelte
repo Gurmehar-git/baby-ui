@@ -2,18 +2,22 @@
 import { Popover as PopoverPrimitive } from "bits-ui";
 import { cn } from "../../lib/cn";
 import { ANCHORED } from "../../lib/svelte/anchor";
-import { popover } from "../variants";
+import { type PopoverSize, popover } from "../variants";
 
 let {
 	class: classProp,
 	sideOffset = 4,
 	align = "center",
 	container,
+	size = "default",
 	...rest
 }: PopoverPrimitive.ContentProps & {
 	/** Portal target; defaults to the body. Pass a fullscreen element so the popover stays visible. */
 	container?: HTMLElement | null;
+	size?: PopoverSize;
 } = $props();
+
+const styles = $derived(popover({ size }));
 </script>
 
 <PopoverPrimitive.Portal to={container ?? "body"}>
@@ -23,6 +27,7 @@ let {
 		role="dialog"
 		{...rest}
 		data-slot="popover-content"
-		class={cn(ANCHORED, "static", popover().surface(), popover().content(), classProp)}
+		data-size={size}
+		class={cn(ANCHORED, "static", styles.surface(), styles.content(), classProp)}
 	/>
 </PopoverPrimitive.Portal>

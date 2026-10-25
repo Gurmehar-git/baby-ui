@@ -15,6 +15,14 @@ export const scrollArea = defineComponent({
 			default: "16rem",
 			control: { kind: "text" },
 		},
+		{
+			name: "scrollbar",
+			type: '"auto" | "hidden"',
+			description:
+				"Whether to render the custom scrollbar. Hidden keeps scrolling but removes the track, corner and gutter.",
+			default: "auto",
+			control: { kind: "select", options: ["auto", "hidden"] },
+		},
 	],
 	motion: {
 		springs: [],
@@ -22,6 +30,7 @@ export const scrollArea = defineComponent({
 		behaviour: [
 			"Top and bottom fades appear only when content is actually clipped in that direction, so a short list has no false edge.",
 			"They fade over 150ms, which is below the threshold where the change itself draws attention.",
+			"Nested regions contain overscroll, so a wheel or trackpad gesture does not move the page behind a sidebar or panel.",
 		],
 	},
 	a11y: {
@@ -32,7 +41,7 @@ export const scrollArea = defineComponent({
 			},
 		],
 		notes: [
-			"The viewport still scrolls via real overflow, so keyboard scrolling, momentum and screen-reader virtual cursors all keep working; only the scrollbar track and thumb are custom-drawn.",
+			"The viewport still scrolls via real overflow, so keyboard scrolling, momentum and screen-reader virtual cursors all keep working. `scrollbar=hidden` changes only the visual affordance and reserved gutter.",
 			"Positioning, drag-to-scroll and auto-hide are delegated to Base UI (React) and bits-ui (Svelte); this component only owns the classes and data-slots.",
 		],
 	},

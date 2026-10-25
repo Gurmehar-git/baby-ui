@@ -38,7 +38,6 @@ export const BANNER_DEFAULTS = {
 	noise: 0.4,
 	angle: -38,
 	rows: 32,
-	radius: 420,
 } as const;
 
 /** Ticker rows held to 4..48, enough to fill the field without thousands of nodes. */

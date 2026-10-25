@@ -4,7 +4,9 @@ import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import type { ComponentProps } from "react";
 import { cn } from "../../lib/cn";
 import { ANCHORED } from "../../lib/react/anchor";
-import { popover } from "../variants";
+import { type PopoverSize, popover } from "../variants";
+
+export type { PopoverSize };
 
 export const Popover = PopoverPrimitive.Root;
 
@@ -32,13 +34,17 @@ export function PopoverContent({
 	sideOffset = 4,
 	anchor,
 	container,
+	size = "default",
 	...props
 }: ComponentProps<typeof PopoverPrimitive.Popup> &
 	Pick<
 		ComponentProps<typeof PopoverPrimitive.Positioner>,
 		"align" | "alignOffset" | "side" | "sideOffset" | "anchor"
 	> &
-	Pick<ComponentProps<typeof PopoverPrimitive.Portal>, "container">) {
+	Pick<ComponentProps<typeof PopoverPrimitive.Portal>, "container"> & {
+		size?: PopoverSize;
+	}) {
+	const styles = popover({ size });
 	return (
 		<PopoverPrimitive.Portal container={container}>
 			<PopoverPrimitive.Positioner
@@ -51,11 +57,12 @@ export function PopoverContent({
 			>
 				<PopoverPrimitive.Popup
 					data-slot="popover-content"
+					data-size={size}
 					className={cn(
 						ANCHORED,
 						"static",
-						popover().surface(),
-						popover().content(),
+						styles.surface(),
+						styles.content(),
 						className,
 					)}
 					{...props}

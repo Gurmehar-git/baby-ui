@@ -1,14 +1,14 @@
 import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
 import { ctaBanner as ctaBannerVariants } from "./variants";
 
-const VARIANTS = ["grain", "ticker", "spotlight"];
+const VARIANTS = ["grain", "ticker"];
 const SIZES = ["sm", "default", "lg"];
 
 export const ctaBanner = defineComponent({
 	slug: "cta-banner",
 	name: "CTA Banner",
 	description:
-		"A closing call to action built from parts: a grain surface with drifting icons, inclined rows of a running wordmark, or a dark card lit around the pointer.",
+		"A closing call to action built from parts: a grain surface with drifting icons or inclined rows of a running wordmark.",
 	category: "blocks",
 	status: "beta",
 	variants: variantsOf(ctaBannerVariants, ["variant", "size"]),
@@ -23,7 +23,7 @@ export const ctaBanner = defineComponent({
 			name: "variant",
 			type: VARIANTS.map((v) => `"${v}"`).join(" | "),
 			description:
-				"CtaBanner: `grain` a noisy tinted panel, `ticker` lit copy beside a running wordmark, `spotlight` a dark card whose edge and grid light up under the pointer. Every part styles itself from it.",
+				"CtaBanner: `grain` is a noisy tinted panel; `ticker` places lit copy beside a running wordmark. Every part styles itself from it.",
 			default: "grain",
 			control: { kind: "select", options: VARIANTS },
 		},
@@ -38,7 +38,7 @@ export const ctaBanner = defineComponent({
 			name: "tint",
 			type: "string",
 			description:
-				"CtaBanner: any CSS colour; sets `--cta-banner`. Defaults to #05845f for grain, #0066ff for ticker and --primary for spotlight.",
+				"CtaBanner: any CSS colour; sets `--cta-banner`. Defaults to #05845f for grain and #0066ff for ticker.",
 			control: { kind: "color" },
 		},
 		{
@@ -97,30 +97,6 @@ export const ctaBanner = defineComponent({
 			control: { kind: "none" },
 		},
 		{
-			name: "radius",
-			type: "number",
-			description: "CtaBannerSpotlight: the light's radius in pixels.",
-			default: 420,
-			control: { kind: "number", min: 160, max: 800, step: 20 },
-			showWhen: { variant: ["spotlight"] },
-		},
-		{
-			name: "grid",
-			type: "boolean",
-			description: "CtaBannerSpotlight: the grid the light reveals.",
-			default: true,
-			control: { kind: "boolean" },
-			showWhen: { variant: ["spotlight"] },
-		},
-		{
-			name: "sweep",
-			type: "boolean",
-			description: "CtaBannerSpotlight: a highlight that sweeps along the top edge.",
-			default: true,
-			control: { kind: "boolean" },
-			showWhen: { variant: ["spotlight"] },
-		},
-		{
 			name: "duration",
 			type: "number",
 			description:
@@ -130,19 +106,16 @@ export const ctaBanner = defineComponent({
 		},
 	],
 	cssVars: {
-		"--cta-banner":
-			"The surface tint for grain and ticker and the light colour for spotlight; `tint` sets it.",
+		"--cta-banner": "The surface tint for grain and ticker; `tint` sets it.",
 		"--banner-speed": "Divides every loop length inside the banner; `speed` sets it.",
 	},
 	motion: {
 		springs: [],
-		reducedMotion:
-			"Floating icons, the running rows and the edge sweep stand still; the spotlight still follows the pointer.",
+		reducedMotion: "Floating icons and the running rows stand still.",
 		behaviour: [
 			"Grain: each floater drifts 10px across and 15px up while turning 10deg and breathing between 10% and 40% opacity, on its own loop and delay.",
 			"Ticker: rows of the word run inclined at `angle`, alternate rows reversed and staggered; two identical halves keep the 160s loop seamless, and rows pause while off screen.",
 			"Ticker: a blurred veil softens the rows where they pass behind the headline.",
-			"Spotlight: the edge, a brighter copy of the grid and a soft light follow the pointer with no easing; a highlight sweeps the top edge every 6s.",
 		],
 	},
 	a11y: {
@@ -168,7 +141,7 @@ export const ctaBanner = defineComponent({
 			"Ticker animates transforms only and stops while off screen; fewer `rows` means fewer nodes.",
 		],
 		ai: [
-			"Compose one surface part (Grain, Ticker or Spotlight) matching `variant`, then CtaBannerContent with the copy parts.",
+			"Compose the Grain or Ticker surface matching `variant`, then CtaBannerContent with the copy parts.",
 			"Keep two actions at most.",
 		],
 	},
@@ -194,7 +167,6 @@ export const ctaBanner = defineComponent({
 		"noise",
 		"ticker",
 		"marquee",
-		"spotlight",
 		"landing",
 	],
 });

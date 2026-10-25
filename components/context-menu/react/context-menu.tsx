@@ -4,7 +4,7 @@ import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu
 import { Menu } from "@base-ui/react/menu";
 import type { ComponentProps } from "react";
 import { cn } from "../../lib/cn";
-import { type MenuItemVariant, menu } from "../../lib/menu";
+import { type MenuItemVariant, type MenuSize, menu } from "../../lib/menu";
 import { ANCHORED } from "../../lib/react/anchor";
 
 export const ContextMenu = ContextMenuPrimitive.Root;
@@ -29,12 +29,13 @@ export function ContextMenuContent({
 	alignOffset = 4,
 	side = "right",
 	sideOffset = 0,
+	size = "default",
 	...props
 }: ComponentProps<typeof ContextMenuPrimitive.Popup> &
 	Pick<
 		ComponentProps<typeof ContextMenuPrimitive.Positioner>,
 		"align" | "alignOffset" | "side" | "sideOffset"
-	>) {
+	> & { size?: MenuSize }) {
 	return (
 		<ContextMenuPrimitive.Portal>
 			<ContextMenuPrimitive.Positioner
@@ -46,7 +47,8 @@ export function ContextMenuContent({
 			>
 				<ContextMenuPrimitive.Popup
 					data-slot="context-menu-content"
-					className={cn(ANCHORED, "static", menu().surface(), className)}
+					data-size={size}
+					className={cn(ANCHORED, "static", menu({ size }).surface(), className)}
 					{...props}
 				/>
 			</ContextMenuPrimitive.Positioner>
@@ -160,12 +162,13 @@ export function ContextMenuSubContent({
 	alignOffset = -3,
 	side = "right",
 	sideOffset = 0,
+	size = "default",
 	...props
 }: ComponentProps<typeof Menu.Popup> &
 	Pick<
 		ComponentProps<typeof Menu.Positioner>,
 		"align" | "alignOffset" | "side" | "sideOffset"
-	>) {
+	> & { size?: MenuSize }) {
 	return (
 		<Menu.Portal>
 			<Menu.Positioner
@@ -177,7 +180,8 @@ export function ContextMenuSubContent({
 			>
 				<Menu.Popup
 					data-slot="context-menu-sub-content"
-					className={cn(ANCHORED, "static", menu().surface(), "min-w-40", className)}
+					data-size={size}
+					className={cn(ANCHORED, "static min-w-40", menu({ size }).surface(), className)}
 					{...props}
 				/>
 			</Menu.Positioner>

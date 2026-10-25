@@ -4,6 +4,7 @@ import { IconArrowLeft, IconArrowRight, IconList } from "@baby-ui/icons";
 import {
 	Button,
 	Drawer,
+	DrawerClose,
 	DrawerContent,
 	DrawerHeader,
 	DrawerTitle,
@@ -16,7 +17,7 @@ import OutlineToggle from "#lib/components/outline-toggle.svelte";
 import PageMenu from "#lib/components/page-menu.svelte";
 import PropsRail from "#lib/components/props-rail.svelte";
 import Seo from "#lib/components/seo.svelte";
-import { outlineSidebar } from "#lib/docs-sidebar.svelte.js";
+import { outlineSidebar, playgroundOutlineDrawer } from "#lib/docs-sidebar.svelte.js";
 import { prefs } from "#lib/preferences.svelte.js";
 import { articleLd, breadcrumbLd } from "#lib/seo.js";
 import type { PageProps } from "./$types";
@@ -142,12 +143,13 @@ $effect(() => {
 		</div>
 	</aside>
 {:else if wide}
-	<Drawer bind:open={outlineSidebar.current} direction="right">
+	<Drawer bind:open={playgroundOutlineDrawer.current} direction="right">
 		<DrawerContent
 			handle={false}
 			class="w-80! max-w-[85vw]! rounded-none! border-border border-l bg-card! shadow-xl [&_[data-slot=drawer-surface]]:p-6"
 		>
 			<DrawerHeader class="sr-only"><DrawerTitle>On this page</DrawerTitle></DrawerHeader>
+			<DrawerClose />
 			<div id="outline-sidebar" class="scrollbar-hide min-h-0 flex-1 overflow-y-auto">
 				{@render railContent()}
 			</div>

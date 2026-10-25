@@ -73,7 +73,7 @@ export function PopoverDemo({ props }: { props: Props }) {
 		<Popover>
 			<PopoverTrigger className={TRIGGER}>Deploy settings</PopoverTrigger>
 			<PopoverContent
-				className="w-72"
+				size={p.size}
 				side={p.side ?? "bottom"}
 				sideOffset={Number(p.sideOffset ?? 4)}
 				align={p.align ?? "center"}
@@ -156,7 +156,11 @@ export function DropdownMenuDemo({ props }: { props: Props }) {
 		<div className="flex flex-col items-center gap-3">
 			<DropdownMenu>
 				<DropdownMenuTrigger className={TRIGGER}>Actions</DropdownMenuTrigger>
-				<DropdownMenuContent side={p.side ?? "bottom"} align={p.align ?? "start"}>
+				<DropdownMenuContent
+					size={p.size}
+					side={p.side ?? "bottom"}
+					align={p.align ?? "start"}
+				>
 					<DropdownMenuLabel>This file</DropdownMenuLabel>
 					<DropdownMenuItem onClick={() => setLast("rename")}>
 						Rename
@@ -306,15 +310,16 @@ export function SelectDemo({ props }: { props: Props }) {
 	const [value, setValue] = useState("edge");
 	return (
 		<div className="w-64">
-			<Select value={value} onValueChange={setValue} items={RUNTIMES}>
-				<SelectTrigger
-					aria-label="Runtime"
-					variant={pTrigger.variant}
-					size={pTrigger.size}
-				>
+			<Select
+				value={value}
+				onValueChange={setValue}
+				items={RUNTIMES}
+				size={pTrigger.size}
+			>
+				<SelectTrigger aria-label="Runtime" variant={pTrigger.variant}>
 					<SelectValue placeholder={pValue.placeholder || "Select an option"} />
 				</SelectTrigger>
-				<SelectContent side={pContent.side ?? "bottom"} size={pTrigger.size}>
+				<SelectContent side={pContent.side ?? "bottom"}>
 					{RUNTIMES.map((runtime) => (
 						<SelectItem
 							key={runtime.value}

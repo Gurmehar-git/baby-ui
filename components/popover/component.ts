@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { popover as popoverVariants } from "./variants";
 
 export const popover = defineComponent({
 	slug: "popover",
@@ -7,7 +8,15 @@ export const popover = defineComponent({
 		"Anchored panel that flips and shifts to stay on screen, dismissed by Escape or an outside click.",
 	category: "base",
 	status: "stable",
+	variants: variantsOf(popoverVariants, ["size"]),
 	props: [
+		{
+			name: "size",
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
+			description: "PopoverContent: width, padding, text size and proportional radius.",
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
+		},
 		{
 			name: "side",
 			type: '"top" | "right" | "bottom" | "left"',

@@ -9,10 +9,15 @@ tags: [scroll, area]
 Native scrolling. Not a JavaScript reimplementation, so keyboard scrolling, momentum,
 trackpad overscroll and screen-reader virtual cursors all keep working for free.
 
-## The scrollbar is thinned, not hidden
+## Visible by default, removable when the surrounding UI already signals overflow
 
-Hiding it is the popular choice and it removes the only affordance a mouse user has for
-knowing the region scrolls. `scrollbar-width: thin` keeps the signal and loses the bulk.
+The custom scrollbar is visible by default. Use `scrollbar="hidden"` for constrained UI such
+as a persistent navigation rail where clipping, edge fades or visible continuation already
+signal that more content exists. The viewport remains natively scrollable and reserves no
+scrollbar gutter.
 
 The top and bottom fades only appear when content is genuinely clipped in that direction,
 so a list that happens to fit has no false edge.
+
+Overscroll is contained inside the viewport, so reaching the end of a sidebar or panel does
+not continue the same wheel gesture on the page behind it.

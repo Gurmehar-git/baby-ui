@@ -25,11 +25,11 @@ const RUNTIMES = [
 </script>
 
 <div class="w-64">
-	<Select bind:value items={RUNTIMES}>
+	<Select bind:value items={RUNTIMES} size={pTrigger.size}>
 		<SelectTrigger aria-label="Runtime" variant={pTrigger.variant} size={pTrigger.size}>
 			<SelectValue placeholder={pValue.placeholder || "Select an option"} />
 		</SelectTrigger>
-		<SelectContent side={pContent.side ?? "bottom"} size={pTrigger.size}>
+		<SelectContent side={pContent.side ?? "bottom"}>
 			<SelectItem value="edge" label="Edge runtime">Edge runtime</SelectItem>
 			<SelectItem value="node" label="Node runtime">Node runtime</SelectItem>
 			<SelectItem value="static" label="Static export">Static export</SelectItem>

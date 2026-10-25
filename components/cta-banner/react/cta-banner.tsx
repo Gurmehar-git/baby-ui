@@ -35,18 +35,17 @@ const BannerCtx = createContext<{
 const useStyles = () => ctaBanner(useContext(BannerCtx));
 
 export interface CtaBannerProps extends ComponentProps<"section"> {
-	/** `grain`: a noisy tinted panel; `ticker`: lit copy beside a running wordmark; `spotlight`:
-	 * a dark tint-lit card whose grid and edge light up under the pointer. */
+	/** `grain`: a noisy tinted panel; `ticker`: lit copy beside a running wordmark. */
 	variant?: CtaBannerVariant;
 	/** Padding and headline scale. */
 	size?: CtaBannerSize;
-	/** Any CSS colour. Defaults to green for grain, blue for ticker and `--primary` for spotlight. */
+	/** Any CSS colour. Defaults to green for grain and blue for ticker. */
 	tint?: string;
 	/** Scales every loop inside: 2 is twice as fast, 0.5 half. */
 	speed?: number;
 }
 
-/** A closing call to action. Compose the surface (grain, ticker, spotlight) with the copy parts. */
+/** A closing call to action. Compose the grain or ticker surface with the copy parts. */
 export function CtaBanner({
 	variant = "grain",
 	size = "default",
@@ -54,7 +53,6 @@ export function CtaBanner({
 	speed = BANNER_DEFAULTS.speed,
 	className,
 	style,
-	onPointerMove,
 	...props
 }: CtaBannerProps) {
 	const titleId = useId();
@@ -72,13 +70,6 @@ export function CtaBanner({
 				data-variant={variant}
 				className={cn(ctaBanner({ variant, size }).root(), className)}
 				style={vars}
-				onPointerMove={(event) => {
-					onPointerMove?.(event);
-					if (variant !== "spotlight") return;
-					const box = event.currentTarget.getBoundingClientRect();
-					event.currentTarget.style.setProperty("--x", `${event.clientX - box.left}px`);
-					event.currentTarget.style.setProperty("--y", `${event.clientY - box.top}px`);
-				}}
 				{...props}
 			/>
 		</BannerCtx.Provider>
@@ -314,43 +305,5 @@ export function CtaBannerTicker({
 			</div>
 			{veil ? <span aria-hidden className={s.tickerVeil()} /> : null}
 		</>
-	);
-}
-
-export interface CtaBannerSpotlightProps {
-	/** The light's radius in pixels. */
-	radius?: number;
-	/** The grid the light reveals. */
-	grid?: boolean;
-	/** A highlight that sweeps along the top edge. */
-	sweep?: boolean;
-	className?: string;
-}
-
-/** A lit edge, tinted surface, orb and grid that follow the pointer across the root. */
-export function CtaBannerSpotlight({
-	radius = BANNER_DEFAULTS.radius,
-	grid = true,
-	sweep = true,
-	className,
-}: CtaBannerSpotlightProps) {
-	const s = useStyles();
-	return (
-		<span
-			aria-hidden
-			data-slot="cta-banner-spotlight"
-			className={cn(s.layer(), "rounded-[inherit]", className)}
-			style={{ "--r": `${radius}px` } as CSSProperties}
-		>
-			<span className={s.spotEdge()} />
-			<span className={s.spotSurface()} />
-			<span className={s.spotOrb()} />
-			{grid ? <span className={s.spotGrid()} /> : null}
-			{grid ? <span className={s.spotReveal()} /> : null}
-			<span className={s.spotLight()} />
-			{sweep ? (
-				<span className={s.spotSweep()} style={{ animationDuration: bannerPace(6) }} />
-			) : null}
-		</span>
 	);
 }

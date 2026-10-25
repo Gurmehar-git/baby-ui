@@ -9,6 +9,13 @@ export const contextMenu = defineComponent({
 	variants: { variant: ["default", "destructive"] },
 	props: [
 		{
+			name: "size",
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
+			description: "ContextMenuContent: surface radius, padding and row density.",
+			default: "default",
+			control: { kind: "none" },
+		},
+		{
 			name: "open",
 			type: "boolean",
 			description:

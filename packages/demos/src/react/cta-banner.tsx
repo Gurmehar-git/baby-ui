@@ -8,14 +8,11 @@ import {
 	CtaBannerBadge,
 	CtaBannerContent,
 	CtaBannerDescription,
-	CtaBannerEyebrow,
 	CtaBannerFloater,
 	CtaBannerGrain,
 	type CtaBannerGrainProps,
 	CtaBannerNote,
 	type CtaBannerProps,
-	CtaBannerSpotlight,
-	type CtaBannerSpotlightProps,
 	CtaBannerTicker,
 	type CtaBannerTickerProps,
 	CtaBannerTitle,
@@ -23,9 +20,9 @@ import {
 import { BANNER_ICONS } from "../data/cta-banner";
 import { controlProps } from "../data/preview-props";
 
-type Controls = Partial<
-	CtaBannerProps & CtaBannerGrainProps & CtaBannerTickerProps & CtaBannerSpotlightProps
-> & { title?: string };
+type Controls = Partial<CtaBannerProps & CtaBannerGrainProps & CtaBannerTickerProps> & {
+	title?: string;
+};
 
 function Stroke({ paths }: { paths: readonly string[] }) {
 	return (
@@ -81,34 +78,6 @@ export function CtaBannerDemo({ props }: { props: Record<string, unknown> }) {
 							Browse components
 						</Button>
 					</CtaBannerActions>
-				</CtaBannerContent>
-			</CtaBanner>
-		);
-
-	if (p.variant === "spotlight")
-		return (
-			<CtaBanner variant="spotlight" {...root}>
-				<CtaBannerSpotlight
-					radius={p.radius === undefined ? undefined : Number(p.radius)}
-					grid={p.grid}
-					sweep={p.sweep}
-				/>
-				<CtaBannerContent>
-					<CtaBannerEyebrow>React and Svelte</CtaBannerEyebrow>
-					<CtaBannerTitle>{p.title ?? "Ship the page tonight"}</CtaBannerTitle>
-					<CtaBannerDescription>
-						Every component installs as source, so the last ten percent is yours to
-						change.
-					</CtaBannerDescription>
-					<CtaBannerActions>
-						<Button size="lg" variant="secondary">
-							Get started
-						</Button>
-						<Button size="lg" variant="ghost" className="text-white hover:bg-white/10">
-							Browse components
-						</Button>
-					</CtaBannerActions>
-					<CtaBannerNote>Free for personal and commercial use.</CtaBannerNote>
 				</CtaBannerContent>
 			</CtaBanner>
 		);

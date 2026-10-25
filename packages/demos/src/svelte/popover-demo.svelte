@@ -27,7 +27,7 @@ const ROW = "flex w-full flex-row-reverse items-center justify-between gap-4";
 		Deploy settings
 	</PopoverTrigger>
 	<PopoverContent
-		class="w-72"
+		size={p.size}
 		side={p.side ?? "bottom"}
 		sideOffset={Number(props.sideOffset ?? 4)}
 		align={p.align ?? "center"}

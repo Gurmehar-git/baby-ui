@@ -1,7 +1,7 @@
 <script lang="ts">
 import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 import { cn } from "../../lib/cn";
-import { menu } from "../../lib/menu";
+import { type MenuSize, menu } from "../../lib/menu";
 import { ANCHORED, stagger } from "../../lib/svelte/anchor";
 import { dropdownMenuTrigger } from "./context";
 
@@ -9,9 +9,10 @@ let {
 	class: classProp,
 	sideOffset = 4,
 	align = "start",
+	size = "default",
 	ref = $bindable(null),
 	...rest
-}: DropdownMenuPrimitive.ContentProps = $props();
+}: DropdownMenuPrimitive.ContentProps & { size?: MenuSize } = $props();
 
 $effect(() => {
 	if (ref) stagger(ref.querySelectorAll<HTMLElement>("[role='menuitem']"));
@@ -26,6 +27,7 @@ $effect(() => {
 		aria-labelledby={dropdownMenuTrigger()}
 		{...rest}
 		data-slot="dropdown-menu-content"
-		class={cn(ANCHORED, "static", menu().surface(), classProp)}
+		data-size={size}
+		class={cn(ANCHORED, "static", menu({ size }).surface(), classProp)}
 	/>
 </DropdownMenuPrimitive.Portal>

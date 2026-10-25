@@ -4,11 +4,8 @@ import {
 	IconArrowLeft,
 	IconArrowRight,
 	IconArrowUpRight,
-	IconBrandReact,
-	IconBrandSvelte,
 	IconList,
 } from "@baby-ui/icons";
-import type { Framework } from "@baby-ui/registry-schema";
 import {
 	Alert,
 	AlertDescription,
@@ -16,6 +13,7 @@ import {
 	Badge,
 	Button,
 	Drawer,
+	DrawerClose,
 	DrawerContent,
 	DrawerHeader,
 	DrawerTitle,
@@ -53,7 +51,7 @@ import PropsTable from "#lib/components/props-table.svelte";
 import Seo from "#lib/components/seo.svelte";
 import { demos } from "#lib/demos.js";
 import type { Heading } from "#lib/docs-nodes.js";
-import { outlineSidebar } from "#lib/docs-sidebar.svelte.js";
+import { outlineSidebar, playgroundOutlineDrawer } from "#lib/docs-sidebar.svelte.js";
 import { prefs } from "#lib/preferences.svelte.js";
 import { EmailPreview, OgPngPreview, PREVIEW_VIEWS } from "#lib/preview-modes.svelte.js";
 import { productFor } from "#lib/products.js";
@@ -73,6 +71,7 @@ import {
 	SITE_URL,
 } from "#lib/seo.js";
 import { installSourceUrl } from "#lib/source.js";
+import { FRAMEWORK_OPTIONS } from "#lib/technology-options.js";
 import { page } from "$app/state";
 import type { PageProps } from "./$types";
 
@@ -95,6 +94,7 @@ $effect(() => {
 });
 
 const library = $derived(prefs.layout === "library");
+const playground = $derived(prefs.layout === "playground" && wide);
 
 // Framework and language are global preferences, set from the header settings drawer.
 const framework = $derived(prefs.framework);
@@ -165,10 +165,7 @@ const tabs = [
 $effect(() => {
 	if (!tabs.some((t) => t.id === tab)) tab = tabs[0]?.id ?? "usage";
 });
-const FRAMEWORKS: { id: Framework; label: string; icon: typeof IconBrandReact }[] = [
-	{ id: "svelte", label: "Svelte", icon: IconBrandSvelte },
-	{ id: "react", label: "React", icon: IconBrandReact },
-];
+const FRAMEWORKS = FRAMEWORK_OPTIONS;
 const product = $derived(productFor(data.spec.slug));
 const guide = $derived(data.spec.guidance);
 const insteadLine = ({ text, use }: { text: string; use?: string }) => {
@@ -281,7 +278,12 @@ const pageTags = $derived([...new Set(data.spec.keywords)].slice(0, 4));
 	]}
 />
 
-<main class="@container mx-auto w-full min-w-0 max-w-5xl pt-8 pb-16 md:pt-12">
+<main
+	class={[
+		"@container w-full min-w-0 pt-8 pb-16 md:pt-12",
+		!playground && "mx-auto max-w-5xl",
+	]}
+>
 	<div id="overview" class="scroll-mt-[calc(var(--header-h)+1.5rem)]">
 		<ContentPageHeader
 			title={data.spec.name}
@@ -381,11 +383,21 @@ const pageTags = $derived([...new Set(data.spec.keywords)].slice(0, 4));
 			<!-- Only the open view renders: the demo is heavy and the usage block is highlighted. -->
 			<TabsContent value="preview">
 				{#if tab === "preview"}
-					<div class="overflow-x-auto">
-						{@render previewStage()}
-					</div>
-					{#if hasControls}
-						<ControlsPanel spec={data.spec} bind:values />
+					{#if playground}
+						<div
+							class={[
+								"grid h-[calc(100dvh-var(--header-h)-8rem)] min-h-[32rem] gap-3",
+								hasControls && "grid-cols-[minmax(0,1fr)_20rem]",
+							]}
+						>
+							<div class="min-h-0">{@render previewStage(true)}</div>
+							{#if hasControls}<ControlsPanel spec={data.spec} bind:values docked />{/if}
+						</div>
+					{:else}
+						<div class="overflow-x-auto">
+							{@render previewStage()}
+						</div>
+						{#if hasControls}<ControlsPanel spec={data.spec} bind:values />{/if}
 					{/if}
 				{/if}
 			</TabsContent>
@@ -402,6 +414,8 @@ const pageTags = $derived([...new Set(data.spec.keywords)].slice(0, 4));
 			</TabsContent>
 		</Tabs>
 	</section>
+
+	<div class={playground ? "mx-auto w-full max-w-5xl" : undefined}>
 
 	{#if guide.when.length || guide.whenNot.length}
 		<section id="when-to-use" class={SECTION}>
@@ -437,14 +451,16 @@ const pageTags = $derived([...new Set(data.spec.keywords)].slice(0, 4));
 				items={FRAMEWORKS.map((f) => ({ value: f.id, label: f.label }))}
 			>
 				<SelectTrigger variant="ghost" size="xs" aria-label="Framework">
-					{@const Icon = FRAMEWORKS.find((f) => f.id === framework)?.icon}
-					{#if Icon}<Icon size={12} />{/if}
+					{@const currentFramework = FRAMEWORKS.find((f) => f.id === framework)}
+					{#if currentFramework}
+						<currentFramework.icon size={12} class={currentFramework.iconClass} />
+					{/if}
 					<SelectValue />
 				</SelectTrigger>
 				<SelectContent align="end" size="xs">
 					{#each FRAMEWORKS as option (option.id)}
 						<SelectItem value={option.id} label={option.label}>
-							<option.icon size={12} />
+							<option.icon size={12} class={option.iconClass} />
 							{option.label}
 						</SelectItem>
 					{/each}
@@ -563,6 +579,7 @@ const pageTags = $derived([...new Set(data.spec.keywords)].slice(0, 4));
 			View this page as Markdown
 		</a>
 	</div>
+	</div>
 </main>
 
 {#snippet previewStage(fill = false)}
@@ -642,12 +659,13 @@ const pageTags = $derived([...new Set(data.spec.keywords)].slice(0, 4));
 		</div>
 	</aside>
 {:else if wide}
-	<Drawer bind:open={outlineSidebar.current} direction="right">
+	<Drawer bind:open={playgroundOutlineDrawer.current} direction="right">
 		<DrawerContent
 			handle={false}
 			class="w-80! max-w-[85vw]! rounded-none! border-border border-l bg-card! shadow-xl [&_[data-slot=drawer-surface]]:p-6"
 		>
 			<DrawerHeader class="sr-only"><DrawerTitle>On this page</DrawerTitle></DrawerHeader>
+			<DrawerClose />
 			<div id="outline-sidebar" class="scrollbar-hide min-h-0 flex-1 overflow-y-auto">
 				<PropsRail slug={data.spec.slug} {outline} promo={false} />
 			</div>

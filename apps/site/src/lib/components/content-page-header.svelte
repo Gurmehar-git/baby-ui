@@ -37,24 +37,28 @@ let {
 		{/each}
 	</nav>
 
-	<div class="mt-5 flex flex-col gap-4 @xl:flex-row @xl:items-start @xl:justify-between">
-		<div class="flex min-w-0 flex-wrap items-center gap-3">
+	<div class="mt-5 grid min-w-0 gap-x-6 @xl:grid-cols-[minmax(0,1fr)_auto]">
+		<div class="flex min-w-0 flex-wrap items-center gap-3 @xl:col-start-1 @xl:row-start-1">
 			<h1 class="text-balance font-medium text-3xl text-foreground tracking-tight">{title}</h1>
 			{@render meta?.()}
 		</div>
-		{#if actions}<div class="flex shrink-0 flex-wrap items-center gap-2 self-start">{@render actions()}</div>{/if}
-	</div>
 
-	{#if description}
-		<p class="mt-3 max-w-3xl text-pretty text-base text-muted-foreground leading-7">
-			{description}
-		</p>
-	{/if}
-	{#if tags.length}
-		<div class="mt-4 flex flex-wrap gap-1.5" aria-label="Page tags">
-			{#each tags as tag (tag)}
-				<Badge variant="secondary" size="sm" class="font-normal text-muted-foreground">{tag}</Badge>
-			{/each}
-		</div>
-	{/if}
+		{#if description}
+			<p class="mt-3 max-w-3xl text-pretty text-base text-muted-foreground leading-7 @xl:col-start-1">
+				{description}
+			</p>
+		{/if}
+		{#if tags.length}
+			<div class="mt-4 flex flex-wrap gap-1.5 @xl:col-start-1" aria-label="Page tags">
+				{#each tags as tag (tag)}
+					<Badge variant="secondary" size="sm" class="font-normal text-muted-foreground">{tag}</Badge>
+				{/each}
+			</div>
+		{/if}
+		{#if actions}
+			<div class="mt-4 flex shrink-0 flex-wrap items-center gap-2 self-start @xl:col-start-2 @xl:row-start-1 @xl:mt-0">
+				{@render actions()}
+			</div>
+		{/if}
+	</div>
 </header>

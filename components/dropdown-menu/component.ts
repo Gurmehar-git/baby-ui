@@ -9,6 +9,13 @@ export const dropdownMenu = defineComponent({
 	status: "stable",
 	props: [
 		{
+			name: "size",
+			type: '"xs" | "sm" | "default" | "lg" | "xl"',
+			description: "DropdownMenuContent: surface radius, padding and row density.",
+			default: "default",
+			control: { kind: "select", options: ["xs", "sm", "default", "lg", "xl"] },
+		},
+		{
 			name: "side",
 			type: '"top" | "right" | "bottom" | "left"',
 			description: "Preferred side. Flips automatically when there is not room.",

@@ -40,7 +40,7 @@ import { mode, setMode } from "mode-watcher";
 import Logo from "#lib/components/logo.svelte";
 import SidebarToggleIcon from "#lib/components/sidebar-toggle-icon.svelte";
 import SiteSearch from "#lib/components/site-search.svelte";
-import { docsSidebar } from "#lib/docs-sidebar.svelte.js";
+import { docsSidebar, playgroundDocsDrawer } from "#lib/docs-sidebar.svelte.js";
 import { GITHUB_URL, githubStars } from "#lib/github-stars.js";
 import { mobileNav } from "#lib/mobile-nav.svelte.js";
 import { prefs } from "#lib/preferences.svelte.js";
@@ -122,6 +122,9 @@ const hasSidebar = $derived(
 );
 const workspaceShell = $derived(hasSidebar);
 const libraryShell = $derived(hasSidebar && prefs.layout === "library");
+const desktopNavigationOpen = $derived(
+	libraryShell ? docsSidebar.current : playgroundDocsDrawer.current,
+);
 
 // Set the class in the same tick as mode-watcher: the reveal snapshots the DOM when this returns.
 function pickMode(next: ThemeToggleValue) {
@@ -158,19 +161,23 @@ function active(match: string[]) {
 	<Button
 		variant="ghost"
 		size="icon-sm"
-		onclick={() => (docsSidebar.current = !docsSidebar.current)}
-		aria-expanded={docsSidebar.current}
+		onclick={() => {
+			if (libraryShell) docsSidebar.current = !docsSidebar.current;
+			else playgroundDocsDrawer.current = !playgroundDocsDrawer.current;
+		}}
+		aria-expanded={desktopNavigationOpen}
 		aria-controls="docs-sidebar"
-		aria-label={docsSidebar.current ? "Close navigation" : "Open navigation"}
-		class="hidden rounded-md text-foreground/75 hover:bg-transparent hover:text-foreground md:inline-flex"
+		aria-label={desktopNavigationOpen ? "Close navigation" : "Open navigation"}
+		class="hidden size-8 rounded-md text-foreground/75 hover:bg-transparent hover:text-foreground md:inline-flex"
 	>
-		<SidebarToggleIcon open={docsSidebar.current} class="size-[18px]" />
+		<SidebarToggleIcon open={desktopNavigationOpen} class="size-5!" />
 	</Button>
 {/snippet}
 
 {#snippet brand()}
 	<a
 		href="/"
+			aria-label="Baby UI home"
 		class="group flex items-center gap-2.5 font-semibold text-foreground text-sm tracking-tight"
 	>
 		<Logo class="size-6 text-foreground" />
@@ -192,58 +199,70 @@ function active(match: string[]) {
 >
 	<div
 		class={[
-			"relative isolate flex h-14 w-full items-center justify-between gap-4 px-4 md:px-6",
-			workspaceShell ? "xl:px-6" : "xl:px-8",
-			workspaceShell && [
-				"md:before:absolute md:before:top-1 md:before:right-2 md:before:bottom-0 md:before:-z-1 md:before:rounded-t-3xl md:before:border md:before:border-b-0 md:before:border-border md:before:bg-background md:before:transition-[left] md:before:duration-[var(--duration-drawer)] md:before:ease-[var(--ease-drawer)] motion-reduce:md:before:transition-none",
-				libraryShell && docsSidebar.current ? "md:before:left-64" : "md:before:left-0",
-			],
+			"min-w-0",
+			libraryShell
+				? [
+						docsSidebar.current
+							? "md:grid-cols-[16rem_minmax(0,1fr)]"
+							: "md:grid-cols-[0rem_minmax(0,1fr)]",
+						"grid grid-cols-[minmax(0,1fr)] transition-[grid-template-columns] ease-[var(--ease-drawer)] md:pr-2 motion-reduce:transition-none",
+						docsSidebar.current
+							? "duration-[var(--duration-drawer)]"
+							: "duration-[var(--duration-overlay)]",
+					]
+				: workspaceShell
+					? "md:pr-2"
+					: "",
 		]}
 	>
+		{#if libraryShell}
+		<div
+			inert={!docsSidebar.current}
+			aria-hidden={!docsSidebar.current || undefined}
+			class="hidden min-w-0 overflow-clip md:block"
+		>
+			<div class="flex h-14 w-64 items-center justify-between gap-3 px-4">
+				{@render brand()}
+				{@render desktopSidebarToggle()}
+			</div>
+		</div>
+		{/if}
+
 		<div
 			class={[
-				"flex items-center gap-3",
-				workspaceShell && [
-					"md:pr-0 md:transition-[width,gap] md:ease-[var(--ease-drawer)] motion-reduce:md:transition-none",
-					libraryShell
-						? docsSidebar.current
-							? "md:w-54 md:gap-3 md:duration-[var(--duration-drawer)]"
-							: "md:w-8 md:gap-0 md:duration-[var(--duration-overlay)]"
-						: "md:w-54 md:gap-3",
-				],
+				"flex h-14 min-w-0 items-center justify-between gap-2 px-4 sm:gap-4 md:px-6",
+				workspaceShell
+					? "md:rounded-t-3xl md:border md:border-b-0 md:border-border md:bg-background"
+					: "xl:px-8",
 			]}
 		>
+			<div class="flex min-w-0 items-center gap-2">
 			{#if hasSidebar}
 				<Button
-					variant="outline"
-					size="icon"
+					variant="ghost"
+					size="icon-sm"
 					onclick={() => (mobileNav.open = true)}
 					aria-label="Open navigation"
-					class="rounded-2xl border-border bg-card/20 text-foreground/75 hover:border-border-strong hover:bg-card/20 hover:text-foreground md:hidden"
+					class="size-9 rounded-full bg-foreground/[0.04] text-foreground/75 ring-1 ring-border/70 hover:bg-foreground/[0.07] hover:text-foreground md:hidden"
 				>
-					<IconMenu2 size={17} />
+					<IconMenu2 class="size-[1.125rem]" />
 				</Button>
-				{#if !workspaceShell}{@render desktopSidebarToggle()}{/if}
 			{/if}
 			{#if workspaceShell}
-				<div
-					inert={(libraryShell && !docsSidebar.current) || undefined}
-					aria-hidden={(libraryShell && !docsSidebar.current) || undefined}
-					class={[
-						"min-w-0 overflow-hidden md:transition-[width,opacity] md:ease-[var(--ease-ui-out)] motion-reduce:md:transition-none",
-						libraryShell
-							? docsSidebar.current
-								? "md:w-43 md:opacity-100 md:duration-[var(--duration-drawer)]"
-								: "md:w-0 md:opacity-0 md:duration-[var(--duration-overlay)]"
-							: "md:w-43 md:opacity-100",
-					]}
-				>
+				<div class="shrink-0 md:hidden">
 					{@render brand()}
 				</div>
+				{#if libraryShell}
+					{#if !docsSidebar.current}{@render desktopSidebarToggle()}{/if}
+				{:else}
+					<div class="hidden items-center gap-2 md:flex">
+						{@render desktopSidebarToggle()}
+						{@render brand()}
+					</div>
+				{/if}
 			{:else}
 				{@render brand()}
 			{/if}
-			{#if hasSidebar && workspaceShell}{@render desktopSidebarToggle()}{/if}
 
 			{#if !workspaceShell}<nav aria-label="Main" class="hidden items-center gap-1 md:flex">
 				<MegaMenu groups={GROUPS} active={page.url.pathname}>
@@ -258,7 +277,7 @@ function active(match: string[]) {
 						href={link.href}
 						variant="ghost"
 						aria-current={current ? "page" : undefined}
-						class="rounded-full px-3.5 hover:bg-transparent {current
+						class="h-8 rounded-full px-3 hover:bg-foreground/[0.06] {current
 							? 'text-foreground'
 							: 'text-muted-foreground hover:text-foreground'}"
 					>
@@ -266,10 +285,10 @@ function active(match: string[]) {
 					</Button>
 				{/each}
 			</nav>{/if}
-		</div>
+			</div>
 
-		<nav aria-label="Site tools" class="flex items-center gap-2">
-			{#if !workspaceShell}<SiteSearch />{/if}
+		<nav aria-label="Site tools" class="flex items-center gap-1 sm:gap-2">
+			<SiteSearch />
 
 			<ThemeToggle
 				theme={mode.current === "dark" ? "dark" : "light"}
@@ -307,10 +326,10 @@ function active(match: string[]) {
 							size="sm"
 							loadingLabel=""
 							aria-label={stars === null ? "Star on GitHub" : `Star on GitHub, ${stars} stars`}
-							class="gap-1 rounded-md px-2 text-foreground/75 tabular-nums hover:text-foreground"
+							class="h-8 gap-1 rounded-full px-2 text-foreground/75 tabular-nums hover:bg-foreground/[0.06] hover:text-foreground"
 						>
 							<IconBrandGithub size={16} />
-							{#if stars !== null}<span class="text-xs">{compact.format(stars)}</span>{/if}
+							{#if stars !== null}<span class="hidden text-xs sm:inline">{compact.format(stars)}</span>{/if}
 						</Button>
 					{/snippet}
 				</TooltipTrigger>
@@ -319,6 +338,7 @@ function active(match: string[]) {
 			</TooltipProvider>
 
 		</nav>
+		</div>
 	</div>
 </header>
 

@@ -162,7 +162,7 @@ export { type CopyButtonProps, CopyButton } from "@baby-ui/components/react/copy
 export { type CountdownProps, Countdown } from "@baby-ui/components/react/countdown";
 export { type CountdownUnit, COUNTDOWN_UNITS, UNIT_NAMES, toEpoch, sortUnits, countdownParts, spokenCountdown, createCountdownClock } from "@baby-ui/components/react/countdown";
 export { countdown, type CountdownVariant } from "@baby-ui/components/react/countdown";
-export { type CtaBannerProps, CtaBanner, CtaBannerContent, CtaBannerBadge, CtaBannerEyebrow, CtaBannerTitle, CtaBannerDescription, CtaBannerActions, CtaBannerNote, type CtaBannerGrainProps, CtaBannerGrain, type CtaBannerFloaterProps, CtaBannerFloater, type CtaBannerTickerProps, CtaBannerTicker, type CtaBannerSpotlightProps, CtaBannerSpotlight } from "@baby-ui/components/react/cta-banner";
+export { type CtaBannerProps, CtaBanner, CtaBannerContent, CtaBannerBadge, CtaBannerEyebrow, CtaBannerTitle, CtaBannerDescription, CtaBannerActions, CtaBannerNote, type CtaBannerGrainProps, CtaBannerGrain, type CtaBannerFloaterProps, CtaBannerFloater, type CtaBannerTickerProps, CtaBannerTicker } from "@baby-ui/components/react/cta-banner";
 export { BANNER_NOISE, BANNER_BANDS, BANNER_LINES, BANNER_SPOTS, tickerRows, BANNER_DEFAULTS, bannerRows, bannerPace, BANNER_RUN } from "@baby-ui/components/react/cta-banner";
 export { ctaBanner, type CtaBannerVariant, type CtaBannerSize } from "@baby-ui/components/react/cta-banner";
 export { type CtaSectionProps, CtaSection, type CtaSectionTextProps, CtaSectionContent, CtaSectionTitle, CtaSectionDescription, CtaSectionPoints, CtaSectionPoint, CtaSectionActions, type CtaSectionActionProps, CtaSectionAction, CtaSectionNote, CtaSectionVisual, CtaSectionDismiss } from "@baby-ui/components/react/cta-section";
@@ -543,7 +543,7 @@ export { pixelCanvas, type PixelCanvasVariant, type PixelCanvasTone, type PixelC
 export { type PixelImageTrailProps, PixelImageTrail } from "@baby-ui/components/react/pixel-image-trail";
 export { pixelImageTrail, type PixelImageTrailVariant, type PixelImageTrailSize, type PixelTrailOptions, mountPixelTrail } from "@baby-ui/components/react/pixel-image-trail";
 export { Popover, PopoverTrigger, PopoverContent } from "@baby-ui/components/react/popover";
-export { popover } from "@baby-ui/components/react/popover";
+export { popover, type PopoverSize } from "@baby-ui/components/react/popover";
 export { type Pricing01Props, Pricing01, Pricing01Header, Pricing01Heading, Pricing01Eyebrow, Pricing01Title, Pricing01Aside, Pricing01Description, Pricing01Periods, Pricing01Plans, type Pricing01PlanProps, Pricing01Plan, Pricing01PlanHeader, Pricing01PlanName, Pricing01PlanBadge, Pricing01PlanPrice, Pricing01PlanContent, Pricing01PlanDescription, Pricing01PlanFeatures, Pricing01PlanFeature, Pricing01PlanFooter, type Pricing01PlanActionProps, Pricing01PlanAction } from "@baby-ui/components/react/pricing-01";
 export { type Pricing01Period } from "@baby-ui/components/react/pricing-01";
 export { pricing01, type Pricing01Variant } from "@baby-ui/components/react/pricing-01";
@@ -621,6 +621,7 @@ export { scatterPoint, type ScatterSize, type ScatterShape, SCATTER_RADIUS, SCAT
 export { type ScoreCardProps, ScoreCard, ScoreCardHeader, ScoreCardTitle, ScoreCardDescription, type ScoreCardTrendProps, ScoreCardTrend, ScoreCardContent, ScoreCardGauge } from "@baby-ui/components/react/score-card";
 export { scoreCard, type ScoreCardSize } from "@baby-ui/components/react/score-card";
 export { type ScrollAreaProps, ScrollArea } from "@baby-ui/components/react/scroll-area";
+export { scrollArea, type ScrollAreaScrollbar } from "@baby-ui/components/react/scroll-area";
 export { type ScrollChoreographyProps, ScrollChoreography } from "@baby-ui/components/react/scroll-choreography";
 export { type ScrollChoreographyImage, type ScrollChoreographyImages, CHOREOGRAPHY_SLOTS } from "@baby-ui/components/react/scroll-choreography";
 export { scrollChoreography, type ScrollChoreographySize, type ScrollChoreographyVariant } from "@baby-ui/components/react/scroll-choreography";
@@ -636,7 +637,7 @@ export { scrollTiltedGrid, type ScrollTiltedGridSize, type ScrollTiltedGridAspec
 export { type SearchInputProps, SearchInput } from "@baby-ui/components/react/search-input";
 export { searchInput, type SearchInputVariant } from "@baby-ui/components/react/search-input";
 export { Select, SelectValue, SelectTrigger, SelectContent, SelectItem, SelectGroup, SelectLabel, SelectSeparator } from "@baby-ui/components/react/select";
-export { selectTrigger, selectContent, type SelectContentSize, type SelectTriggerVariant, type SelectTriggerSize } from "@baby-ui/components/react/select";
+export { selectTrigger, type SelectTriggerVariant, type SelectTriggerSize, type SelectContentSize } from "@baby-ui/components/react/select";
 export { type SeparatorProps, Separator } from "@baby-ui/components/react/separator";
 export { separator, type SeparatorVariant } from "@baby-ui/components/react/separator";
 export { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, SheetClose } from "@baby-ui/components/react/sheet";

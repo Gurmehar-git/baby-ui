@@ -11,8 +11,8 @@ export const selectTrigger = tv({
 			ghost: [
 				"w-auto font-medium text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring",
 				"transition-[color,background-color,scale] duration-(--duration-fast) ease-(--ease-ui-out) motion-reduce:transition-none",
-				"hover:bg-accent hover:text-accent-foreground active:scale-[var(--press-scale-sm)]",
-				"data-[popup-open]:bg-accent data-[popup-open]:text-foreground data-[state=open]:bg-accent data-[state=open]:text-foreground",
+				"hover:bg-foreground/[0.06] hover:text-foreground",
+				"data-[popup-open]:bg-foreground/[0.08] data-[popup-open]:text-foreground data-[state=open]:bg-foreground/[0.08] data-[state=open]:text-foreground",
 				"disabled:cursor-not-allowed disabled:opacity-50",
 			],
 		},
@@ -28,31 +28,8 @@ export const selectTrigger = tv({
 	defaultVariants: { variant: "default", size: "default" },
 });
 
-// Pair with the trigger's size. Rows: xs 24, sm 28, default 32, lg 36, xl 40; the xs surface
-// drops to rounded-lg so its rows stay concentric.
-export const selectContent = tv({
-	variants: {
-		size: {
-			xs: [
-				"rounded-lg",
-				"**:data-[slot=select-item]:gap-1.5 **:data-[slot=select-item]:rounded-sm **:data-[slot=select-item]:px-2 **:data-[slot=select-item]:py-1 **:data-[slot=select-item]:text-xs",
-				"[&_[data-slot=select-item]_svg]:size-3",
-			],
-			sm: "**:data-[slot=select-item]:text-xs [&_[data-slot=select-item]_svg]:size-3",
-			default: "",
-			lg: "**:data-[slot=select-item]:py-2 [&_[data-slot=select-item]_svg]:size-4",
-			xl: [
-				"**:data-[slot=select-item]:px-3 **:data-[slot=select-item]:py-2 **:data-[slot=select-item]:text-base",
-				"[&_[data-slot=select-item]_svg]:size-4",
-			],
-		},
-	},
-	defaultVariants: { size: "default" },
-});
-
-export type SelectContentSize = NonNullable<VariantProps<typeof selectContent>["size"]>;
-
 export type SelectTriggerVariant = NonNullable<
 	VariantProps<typeof selectTrigger>["variant"]
 >;
 export type SelectTriggerSize = NonNullable<VariantProps<typeof selectTrigger>["size"]>;
+export type SelectContentSize = SelectTriggerSize;

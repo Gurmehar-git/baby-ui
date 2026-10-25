@@ -5,6 +5,7 @@ export type SegmentOption<T extends string = string> = {
 	id: T;
 	label: string;
 	icon: Icon;
+	iconClass?: string;
 };
 </script>
 
@@ -37,7 +38,7 @@ function pick(next: string | string[]) {
 	{#each options as option (option.id)}
 		{@const Glyph = option.icon}
 		<ToggleGroupItem value={option.id} class="pointer-coarse:h-8">
-			<Glyph />
+			<Glyph class={option.iconClass} />
 			{option.label}
 		</ToggleGroupItem>
 	{/each}

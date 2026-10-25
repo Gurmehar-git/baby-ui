@@ -1,15 +1,6 @@
 <script lang="ts">
 import type { Icon } from "@baby-ui/icons";
-import {
-	IconAdjustmentsHorizontal,
-	IconBrandJavascript,
-	IconBrandReact,
-	IconBrandSvelte,
-	IconBrandTypescript,
-	IconCheck,
-	IconLayoutGrid,
-} from "@baby-ui/icons";
-import type { Framework } from "@baby-ui/registry-schema";
+import { IconAdjustmentsHorizontal, IconCheck, IconLayoutGrid } from "@baby-ui/icons";
 import {
 	Field,
 	FieldLabel,
@@ -28,18 +19,8 @@ import {
 	SheetHeader,
 	SheetTitle,
 } from "@baby-ui/svelte";
-import { type Dialect, type PageLayout, prefs, THEMES } from "#lib/preferences.svelte.js";
-import SegmentControl from "./segment-control.svelte";
-
-const FRAMEWORKS: { id: Framework; label: string; icon: Icon }[] = [
-	{ id: "react", label: "React", icon: IconBrandReact },
-	{ id: "svelte", label: "Svelte", icon: IconBrandSvelte },
-];
-
-const DIALECTS: { id: Dialect; label: string; icon: Icon }[] = [
-	{ id: "ts", label: "TS", icon: IconBrandTypescript },
-	{ id: "js", label: "JS", icon: IconBrandJavascript },
-];
+import { type PageLayout, prefs, THEMES } from "#lib/preferences.svelte.js";
+import { DIALECT_OPTIONS, FRAMEWORK_OPTIONS } from "#lib/technology-options.js";
 
 const LAYOUTS: { id: PageLayout; label: string; icon: Icon }[] = [
 	{ id: "library", label: "Library", icon: IconLayoutGrid },
@@ -47,11 +28,27 @@ const LAYOUTS: { id: PageLayout; label: string; icon: Icon }[] = [
 ];
 
 const currentLayout = $derived(LAYOUTS.find((layout) => layout.id === prefs.layout));
+const currentFramework = $derived(
+	FRAMEWORK_OPTIONS.find((framework) => framework.id === prefs.framework),
+);
+const currentDialect = $derived(
+	DIALECT_OPTIONS.find((dialect) => dialect.id === prefs.dialect),
+);
 
 // Resolving through LAYOUTS narrows the select's string back to a PageLayout without a cast.
 function pickLayout(next: string) {
 	const hit = LAYOUTS.find((layout) => layout.id === next);
 	if (hit) prefs.set("layout", hit.id);
+}
+
+function pickFramework(next: string) {
+	const hit = FRAMEWORK_OPTIONS.find((framework) => framework.id === next);
+	if (hit) prefs.set("framework", hit.id);
+}
+
+function pickDialect(next: string) {
+	const hit = DIALECT_OPTIONS.find((dialect) => dialect.id === next);
+	if (hit) prefs.set("dialect", hit.id);
 }
 </script>
 
@@ -96,10 +93,11 @@ function pickLayout(next: string) {
 					<Field orientation="horizontal" size="sm">
 						<FieldLabel>Layout</FieldLabel>
 						<Select
+							size="sm"
 							items={LAYOUTS.map((layout) => ({ value: layout.id, label: layout.label }))}
 							bind:value={() => prefs.layout, pickLayout}
 						>
-							<SelectTrigger size="sm" aria-label="Page layout" class="w-full">
+							<SelectTrigger aria-label="Page layout" class="w-full">
 								{#if currentLayout}
 									<span class="flex min-w-0 items-center gap-1.5">
 										<currentLayout.icon size={14} class="shrink-0 text-muted-foreground" />
@@ -109,7 +107,7 @@ function pickLayout(next: string) {
 									<SelectValue />
 								{/if}
 							</SelectTrigger>
-							<SelectContent size="sm">
+							<SelectContent>
 								{#each LAYOUTS as layout (layout.id)}
 									{@const Glyph = layout.icon}
 									<SelectItem value={layout.id} label={layout.label}>
@@ -122,23 +120,53 @@ function pickLayout(next: string) {
 					</Field>
 					<Field orientation="horizontal" size="sm">
 						<FieldLabel>Framework</FieldLabel>
-						<SegmentControl
+						<Select
 							size="sm"
-							label="Framework"
-							options={FRAMEWORKS}
-							current={prefs.framework}
-							onPick={(id) => prefs.set("framework", id)}
-						/>
+							items={FRAMEWORK_OPTIONS.map((option) => ({ value: option.id, label: option.label }))}
+							bind:value={() => prefs.framework, pickFramework}
+						>
+							<SelectTrigger aria-label="Framework" class="w-full">
+								{#if currentFramework}
+									<currentFramework.icon class={currentFramework.iconClass} />
+									{currentFramework.label}
+								{:else}
+									<SelectValue />
+								{/if}
+							</SelectTrigger>
+							<SelectContent>
+								{#each FRAMEWORK_OPTIONS as option (option.id)}
+									<SelectItem value={option.id} label={option.label}>
+										<option.icon class={option.iconClass} />
+										{option.label}
+									</SelectItem>
+								{/each}
+							</SelectContent>
+						</Select>
 					</Field>
 					<Field orientation="horizontal" size="sm">
 						<FieldLabel>Language</FieldLabel>
-						<SegmentControl
+						<Select
 							size="sm"
-							label="Language"
-							options={DIALECTS}
-							current={prefs.dialect}
-							onPick={(id) => prefs.set("dialect", id)}
-						/>
+							items={DIALECT_OPTIONS.map((option) => ({ value: option.id, label: option.label }))}
+							bind:value={() => prefs.dialect, pickDialect}
+						>
+							<SelectTrigger aria-label="Language" class="w-full">
+								{#if currentDialect}
+									<currentDialect.icon class={currentDialect.iconClass} />
+									{currentDialect.label}
+								{:else}
+									<SelectValue />
+								{/if}
+							</SelectTrigger>
+							<SelectContent>
+								{#each DIALECT_OPTIONS as option (option.id)}
+									<SelectItem value={option.id} label={option.label}>
+										<option.icon class={option.iconClass} />
+										{option.label}
+									</SelectItem>
+								{/each}
+							</SelectContent>
+						</Select>
 					</Field>
 				</PropertyPanelGroupContent>
 			</PropertyPanelGroup>

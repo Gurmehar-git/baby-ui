@@ -82,15 +82,11 @@ export const THEMES = [
 		dark: { primary: "oklch(70% 0.16 275)", fg: "oklch(15% 0 0)" },
 	},
 	{
-		id: "lime",
-		name: "Lime",
-		swatch: "oklch(72% 0.18 130)",
-		light: {
-			primary: "oklch(72% 0.18 130)",
-			fg: "oklch(20% 0.04 130)",
-			ink: "oklch(53% 0.142 130)",
-		},
-		dark: { primary: "oklch(80% 0.18 130)", fg: "oklch(18% 0.04 130)" },
+		id: "cyan",
+		name: "Cyan",
+		swatch: "oklch(62% 0.13 215)",
+		light: { primary: "oklch(52% 0.13 215)", fg: "oklch(99% 0 0)" },
+		dark: { primary: "oklch(75% 0.12 215)", fg: "oklch(15% 0 0)" },
 	},
 ] as const satisfies readonly {
 	id: string;
@@ -134,6 +130,9 @@ class Preferences {
 			this.#stored.current.layout !== "library"
 		) {
 			this.#stored.current = { ...this.#stored.current, layout: "library" };
+		}
+		if (!THEMES.some((theme) => theme.id === this.#theme.current)) {
+			this.#theme.current = "default";
 		}
 	}
 

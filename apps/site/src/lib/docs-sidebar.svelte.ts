@@ -6,3 +6,11 @@ export const docsSidebar = new PersistedState("baby-ui:docs-sidebar-open", true)
 /** Whether the right "On this page" rail is open, from xl up. Closed by default so a page
  * shows three regions; a new key, as the old one stored `true` for every past visitor. */
 export const outlineSidebar = new PersistedState("baby-ui:outline-rail-open", false);
+
+class DrawerState {
+	current = $state(false);
+}
+
+/** Playground panels are modal and therefore start closed instead of inheriting Library rails. */
+export const playgroundDocsDrawer = new DrawerState();
+export const playgroundOutlineDrawer = new DrawerState();
