@@ -18,8 +18,8 @@ const CANDIDATES = {
 		"/Applications/Chromium.app/Contents/MacOS/Chromium",
 	],
 	linux: [
-		"/usr/bin/microsoft-edge",
 		"/usr/bin/google-chrome",
+		"/usr/bin/microsoft-edge",
 		"/usr/bin/brave-browser",
 		"/usr/bin/chromium",
 		"/usr/bin/chromium-browser",
@@ -27,6 +27,38 @@ const CANDIDATES = {
 };
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const hasExited = (proc) => proc.exitCode !== null || proc.signalCode !== null;
+
+function waitForExit(proc, timeout = 2000) {
+	if (hasExited(proc)) return Promise.resolve();
+	return new Promise((resolve) => {
+		const done = () => {
+			clearTimeout(timer);
+			proc.removeListener("close", done);
+			resolve();
+		};
+		const timer = setTimeout(done, timeout);
+		proc.once("close", done);
+	});
+}
+
+async function terminateProcessTree(proc) {
+	if (!proc.pid) return;
+	if (process.platform === "win32") {
+		const killer = spawn("taskkill", ["/PID", String(proc.pid), "/T", "/F"], {
+			stdio: "ignore",
+		});
+		await waitForExit(killer);
+	} else {
+		try {
+			process.kill(-proc.pid, "SIGKILL");
+		} catch {
+			proc.kill("SIGKILL");
+		}
+	}
+	await waitForExit(proc);
+}
 
 async function requestBrowserClose(port) {
 	const version = await (await fetch(`http://127.0.0.1:${port}/json/version`)).json();
@@ -46,6 +78,7 @@ async function requestBrowserClose(port) {
 function findBrowser() {
 	const path =
 		process.env.PROBE_BROWSER ??
+		(process.platform === "linux" ? process.env.CHROME_BIN : undefined) ??
 		(CANDIDATES[process.platform] ?? []).find((file) => existsSync(file));
 	if (!path)
 		throw new Error("No Chromium-family browser found. Set PROBE_BROWSER to its path.");
@@ -62,12 +95,9 @@ export async function launch() {
 	};
 	const stderr = [];
 	const browser = findBrowser();
-	const dbus = "/usr/bin/dbus-run-session";
-	const useDbus = process.platform === "linux" && process.env.CI && existsSync(dbus);
 	const proc = spawn(
-		useDbus ? dbus : browser,
+		browser,
 		[
-			...(useDbus ? ["--", browser] : []),
 			"--headless=new",
 			"--disable-gpu",
 			...(process.platform === "linux" && process.env.CI
@@ -84,16 +114,17 @@ export async function launch() {
 			"--disable-backgrounding-occluded-windows",
 			"about:blank",
 		],
-		{ stdio: ["ignore", "ignore", "pipe"] },
+		{
+			detached: process.platform !== "win32",
+			stdio: ["ignore", "ignore", "pipe"],
+		},
 	);
 	proc.stderr.on("data", (chunk) => stderr.push(String(chunk)));
 	// The browser writes the port it picked to DevToolsActivePort once it is listening.
 	const portFile = join(profile, "DevToolsActivePort");
 	for (let i = 0; i < 100 && !existsSync(portFile); i++) await wait(100);
 	if (!existsSync(portFile)) {
-		if (process.platform === "win32" && proc.pid)
-			spawn("taskkill", ["/PID", String(proc.pid), "/T", "/F"], { stdio: "ignore" });
-		else proc.kill();
+		await terminateProcessTree(proc);
 		removeProfile();
 		const detail = stderr.join("").trim();
 		throw new Error(
@@ -102,26 +133,26 @@ export async function launch() {
 	}
 	const port = Number(readFileSync(portFile, "utf8").split("\n")[0]);
 	let closePromise;
+	const killOnExit = () => {
+		if (process.platform !== "win32" && proc.pid) {
+			try {
+				process.kill(-proc.pid, "SIGKILL");
+			} catch {}
+		} else {
+			proc.kill();
+		}
+	};
+	process.once("exit", killOnExit);
 	const close = () => {
 		if (closePromise) return closePromise;
 		closePromise = (async () => {
 			await requestBrowserClose(port).catch(() => {});
-			if (proc.exitCode === null && process.platform === "win32" && proc.pid) {
-				const killer = spawn("taskkill", ["/PID", String(proc.pid), "/T", "/F"], {
-					stdio: "ignore",
-				});
-				await Promise.race([
-					new Promise((resolve) => killer.once("close", resolve)),
-					wait(2000),
-				]);
-			} else if (proc.exitCode === null) {
-				proc.kill();
-			}
+			await terminateProcessTree(proc);
+			process.removeListener("exit", killOnExit);
 			removeProfile();
 		})();
 		return closePromise;
 	};
-	process.once("exit", () => proc.kill());
 	return { port, close };
 }
 

@@ -35,6 +35,9 @@ jobs:
         run: node scripts/check-import-extensions.mjs
 
       - name: Tests (scripts, chart core, registry-build)
+        timeout-minutes: 5
+        env:
+          PROBE_BROWSER: /usr/bin/google-chrome
         run: pnpm test
 
   build:

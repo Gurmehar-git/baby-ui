@@ -1,7 +1,7 @@
 {
 	"$schema": "https://turborepo.com/schema.json",
 	"ui": "tui",
-	"globalPassThroughEnv": ["CI", "PROBE_BROWSER"],
+	"globalPassThroughEnv": ["CHROME_BIN", "CI", "PROBE_BROWSER"],
 	"tasks": {
 		"//#gen": {
 			"cache": false
