@@ -10,6 +10,11 @@ notices are reproduced here as those licenses require.
 - Source: https://github.com/TanStack/table
 - License: MIT
 
+## affectui
+
+- Source: https://github.com/flohoeller/affectui
+- License: MIT
+
 ## animata
 
 - Source: https://animata.design

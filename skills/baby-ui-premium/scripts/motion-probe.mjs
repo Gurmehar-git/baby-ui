@@ -54,10 +54,17 @@ export async function motionProbe(url, { selector = "body" } = {}) {
 				await page.wait(60);
 				return page.evaluate(`window.__started(${since})`);
 			};
-			const enter = await run();
+			// A control that starts open or pressed (a default-open group) exits on its first click.
+			const startedOn = await page.evaluate(
+				`["aria-expanded", "aria-pressed", "aria-checked"].some((a) => ${pick}?.getAttribute(a) === "true")`,
+			);
+			const firstClick = await run();
 			await page.wait(500);
-			const exit = await run();
+			const secondClick = await run();
 			await page.wait(500);
+			const [enter, exit] = startedOn
+				? [secondClick, firstClick]
+				: [firstClick, secondClick];
 			// Mid-flight reversal: a keyframe animation restarts, a transition retargets.
 			const first = await run();
 			const again = await run();
