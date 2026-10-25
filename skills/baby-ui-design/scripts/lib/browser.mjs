@@ -61,9 +61,13 @@ export async function launch() {
 		} catch {}
 	};
 	const stderr = [];
+	const browser = findBrowser();
+	const dbus = "/usr/bin/dbus-run-session";
+	const useDbus = process.platform === "linux" && process.env.CI && existsSync(dbus);
 	const proc = spawn(
-		findBrowser(),
+		useDbus ? dbus : browser,
 		[
+			...(useDbus ? ["--", browser] : []),
 			"--headless=new",
 			"--disable-gpu",
 			...(process.platform === "linux" && process.env.CI
