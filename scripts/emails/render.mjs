@@ -1,12 +1,5 @@
 #!/usr/bin/env node
-import {
-	existsSync,
-	mkdirSync,
-	readdirSync,
-	readFileSync,
-	rmSync,
-	writeFileSync,
-} from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -30,23 +23,18 @@ const str = JSON.stringify;
 const PRO = join(ROOT, "pro");
 const OUT_PRO = join(ROOT, "apps/site/src/lib/generated/emails-pro");
 
-/** Every template folder: public ones, plus Pro ones when the private submodule is present. */
-function discover(dir, pro) {
+/** Every email-category template, public and Pro when the private submodule is present. */
+function discover(dir, pro, specs) {
 	if (!existsSync(dir)) return [];
-	return readdirSync(dir)
-		.filter((d) => d.startsWith("email-") && d !== "email-kit")
-		.map((slug) => ({
+	return specs
+		.filter((spec) => spec.category === "emails" && spec.slug !== "email-kit")
+		.map(({ slug }) => ({
 			slug,
 			pro,
 			react: join(dir, slug, "react", slug),
 			svelte: join(dir, slug, "svelte", `${slug}.svelte`),
 		}));
 }
-const templates = [
-	...discover(COMPONENTS, false),
-	...discover(join(PRO, "components"), true),
-];
-const slugs = templates.map((t) => t.slug);
 
 async function bundle(
 	entrySource,
@@ -70,6 +58,24 @@ async function bundle(
 	});
 	return import(`${pathToFileURL(outfile).href}?t=${Date.now()}`);
 }
+
+const catalog = await bundle(
+	[
+		`export { specs } from ${str(posix(SPECS))};`,
+		...(existsSync(join(PRO, "components/specs.ts"))
+			? [`export { proSpecs } from ${str(posix(join(PRO, "components/specs.ts")))};`]
+			: []),
+	].join("\n"),
+	ROOT,
+	join(REACT_CACHE, "catalog.mjs"),
+	[],
+	["@better-svelte-email/server"],
+);
+const templates = [
+	...discover(COMPONENTS, false, catalog.specs),
+	...discover(join(PRO, "components"), true, catalog.proSpecs ?? []),
+];
+const slugs = templates.map((t) => t.slug);
 
 async function renderReact(props) {
 	const entry = [
