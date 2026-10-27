@@ -2,7 +2,6 @@
 import type { Snippet } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
 import { cn } from "../../lib/cn";
-import { carousel } from "../variants";
 import { getCarousel } from "./context";
 
 let {
@@ -27,7 +26,7 @@ const active = $derived(ctx.index === index);
 	aria-roledescription="slide"
 	aria-label={ctx.slideLabel(index)}
 	inert={!active}
-	class={cn(carousel().slide(), classProp)}
+	class={cn(ctx.slideClass, classProp)}
 >
 	{@render children?.()}
 </div>

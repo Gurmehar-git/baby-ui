@@ -26,11 +26,17 @@ import {
 import {
 	Button,
 	button,
-	MegaMenu,
-	type MegaMenuGroup,
-	type MegaMenuItem,
+	IconMorph,
+	NavigationMenu,
+	NavigationMenuBody,
+	NavigationMenuContent,
+	NavigationMenuFooter,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+	navigationMenuTriggerStyle,
 	ThemeToggle,
-	type ThemeToggleValue,
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
@@ -77,9 +83,9 @@ const ICONS: Record<NavIcon, typeof IconBook> = {
 	llms: IconFileText,
 };
 
-// Menu items become MegaMenu groups; plain links (Pricing) sit beside them. Featured items keep
+// Menu items become NavigationMenu panels; plain links (Pricing) sit beside them. Featured items keep
 // their descriptions; the rest collapse to one-line links so a long menu stays short.
-const GROUPS = $derived<MegaMenuGroup[]>(
+const GROUPS = $derived(
 	NAV.filter((item) => item.menu).map((item) => {
 		const menu = item.menu ?? [];
 		const featured = menu.some((link) => link.featured)
@@ -127,7 +133,7 @@ const desktopNavigationOpen = $derived(
 );
 
 // Set the class in the same tick as mode-watcher: the reveal snapshots the DOM when this returns.
-function pickMode(next: ThemeToggleValue) {
+function pickMode(next: "light" | "dark") {
 	document.documentElement.classList.toggle("dark", next === "dark");
 	setMode(next);
 }
@@ -168,9 +174,9 @@ function active(match: string[]) {
 		aria-expanded={desktopNavigationOpen}
 		aria-controls="docs-sidebar"
 		aria-label={desktopNavigationOpen ? "Close navigation" : "Open navigation"}
-		class="hidden size-8 rounded-md text-foreground/75 hover:bg-transparent hover:text-foreground md:inline-flex"
+		class="hidden size-8 rounded-full bg-foreground/[0.045] text-foreground/70 ring-1 ring-foreground/[0.05] hover:bg-foreground/[0.075] hover:text-foreground md:inline-flex"
 	>
-		<SidebarToggleIcon open={desktopNavigationOpen} class="size-5!" />
+		<SidebarToggleIcon open={desktopNavigationOpen} class="size-4!" />
 	</Button>
 {/snippet}
 
@@ -183,6 +189,10 @@ function active(match: string[]) {
 		<Logo class="size-6 text-foreground" />
 		<span class="font-semibold font-display whitespace-nowrap">Baby UI</span>
 	</a>
+{/snippet}
+
+{#snippet themeIcon(state: { isDark: boolean })}
+	<IconMorph name="theme" state={state.isDark} size="sm" />
 {/snippet}
 
 <header
@@ -264,27 +274,85 @@ function active(match: string[]) {
 				{@render brand()}
 			{/if}
 
-			{#if !workspaceShell}<nav aria-label="Main" class="hidden items-center gap-1 md:flex">
-				<MegaMenu groups={GROUPS} active={page.url.pathname}>
-					{#snippet itemIcon(item: MegaMenuItem)}
-						{@const Icon = iconFor.get(item.href)}
-						{#if Icon}<Icon aria-hidden="true" />{/if}
-					{/snippet}
-				</MegaMenu>
-				{#each LINKS as link (link.href)}
-					{@const current = active(link.match)}
-					<Button
-						href={link.href}
-						variant="ghost"
-						aria-current={current ? "page" : undefined}
-						class="h-8 rounded-full px-3 hover:bg-foreground/[0.06] {current
-							? 'text-foreground'
-							: 'text-muted-foreground hover:text-foreground'}"
-					>
-						{link.label}
-					</Button>
-				{/each}
-			</nav>{/if}
+			{#if !workspaceShell}<NavigationMenu
+				variant="framed"
+				aria-label="Main"
+				class="hidden md:flex"
+			>
+				<NavigationMenuList class="gap-1">
+					{#each GROUPS as group (group.label)}
+						<NavigationMenuItem value={group.label}>
+							<NavigationMenuTrigger size="sm" class="rounded-full px-3 font-medium text-sm text-muted-foreground hover:text-foreground data-[popup-open]:text-foreground data-[state=open]:text-foreground">
+								{group.label}
+							</NavigationMenuTrigger>
+							<NavigationMenuContent>
+								<NavigationMenuBody>
+									<div class="flex gap-4 p-2">
+										<!-- A long menu with no secondary column runs in two, so the panel stays short. -->
+										<ul class={["grid gap-0.5", !group.more && group.items.length > 4 ? "w-[38rem] grid-cols-2" : "w-80"]}>
+											{#each group.items as item (item.href)}
+												{@const Icon = iconFor.get(item.href)}
+												<li>
+													<NavigationMenuLink
+														href={item.href}
+														aria-current={page.url.pathname === item.href ? "page" : undefined}
+														class="flex-row items-start gap-3"
+													>
+														{#if Icon}<span class="mt-0.5 grid size-7 shrink-0 place-items-center rounded-md border border-border bg-background text-muted-foreground [&_svg]:size-4"><Icon aria-hidden="true" /></span>{/if}
+														<span class="grid gap-0.5">
+															<span class="font-medium text-foreground">{item.label}</span>
+															{#if item.description}<span class="text-muted-foreground text-xs">{item.description}</span>{/if}
+														</span>
+													</NavigationMenuLink>
+												</li>
+											{/each}
+										</ul>
+										{#if group.more}
+											<div class="w-44 border-border border-l pl-4">
+												<p class="px-2 pt-2 pb-1.5 text-muted-foreground text-xs">{group.more.heading}</p>
+												<ul class="grid gap-0.5">
+													{#each group.more.links as link (link.href)}
+														<li>
+															<NavigationMenuLink
+																href={link.href}
+																aria-current={page.url.pathname === link.href ? "page" : undefined}
+																class="py-1.5"
+															>
+																{link.label}
+															</NavigationMenuLink>
+														</li>
+													{/each}
+												</ul>
+											</div>
+										{/if}
+									</div>
+								</NavigationMenuBody>
+								{#if group.footer}
+									<NavigationMenuFooter>
+										<span class="text-muted-foreground">{group.footer.hint}</span>
+										<a href={group.footer.href} class="font-medium text-foreground hover:underline">{group.footer.label}</a>
+									</NavigationMenuFooter>
+								{/if}
+							</NavigationMenuContent>
+						</NavigationMenuItem>
+					{/each}
+					{#each LINKS as link (link.href)}
+						{@const current = active(link.match)}
+						<NavigationMenuItem>
+							<NavigationMenuLink
+								href={link.href}
+								aria-current={current ? "page" : undefined}
+								class={navigationMenuTriggerStyle({
+									size: "sm",
+									class: `rounded-full px-3 font-medium text-sm ${current ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`,
+								})}
+							>
+								{link.label}
+							</NavigationMenuLink>
+						</NavigationMenuItem>
+					{/each}
+				</NavigationMenuList>
+			</NavigationMenu>{/if}
 			</div>
 
 		<nav aria-label="Site tools" class="flex items-center gap-1 sm:gap-2">
@@ -295,12 +363,13 @@ function active(match: string[]) {
 				onThemeChange={pickMode}
 				variant="rectangle"
 				start="bottom-up"
+				icon={themeIcon}
 				class={button({
 					variant: "ghost",
-					size: "icon",
-					class: "rounded-xl text-foreground/75 hover:text-foreground",
+					size: "icon-sm",
+					class:
+						"size-8 rounded-full bg-foreground/[0.045] text-foreground/70 ring-1 ring-foreground/[0.05] hover:bg-foreground/[0.075] hover:text-foreground",
 				})}
-				iconClass="size-4"
 			/>
 
 			<Button
@@ -308,7 +377,7 @@ function active(match: string[]) {
 				size="icon"
 				onclick={() => (prefs.open = true)}
 				aria-label="Settings"
-				class="gear rounded-xl text-foreground/75 hover:text-foreground"
+				class="gear size-8 rounded-full bg-foreground/[0.045] text-foreground/70 ring-1 ring-foreground/[0.05] hover:bg-foreground/[0.075] hover:text-foreground"
 			>
 				<IconSettings size={17} />
 			</Button>
@@ -326,7 +395,7 @@ function active(match: string[]) {
 							size="sm"
 							loadingLabel=""
 							aria-label={stars === null ? "Star on GitHub" : `Star on GitHub, ${stars} stars`}
-							class="h-8 gap-1 rounded-full px-2 text-foreground/75 tabular-nums hover:bg-foreground/[0.06] hover:text-foreground"
+							class="h-8 gap-1 rounded-full bg-foreground/[0.045] px-2.5 font-normal text-foreground/70 tabular-nums ring-1 ring-foreground/[0.05] hover:bg-foreground/[0.075] hover:text-foreground"
 						>
 							<IconBrandGithub size={16} />
 							{#if stars !== null}<span class="hidden text-xs sm:inline">{compact.format(stars)}</span>{/if}

@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { flushSync } from "svelte";
 import { cn } from "../../lib/cn";
 import { ensureRevealStyle, runThemeReveal, supportsViewTransition } from "../reveal";
@@ -17,6 +18,7 @@ let {
 	start = "bottom-up",
 	class: classProp,
 	iconClass,
+	icon,
 }: {
 	theme?: ThemeToggleValue;
 	defaultTheme?: ThemeToggleValue;
@@ -25,6 +27,8 @@ let {
 	start?: ThemeToggleStart;
 	class?: string;
 	iconClass?: string;
+	/** Replaces the default swapping glyph while preserving the page reveal. */
+	icon?: Snippet<[{ theme: ThemeToggleValue; isDark: boolean }]>;
 } = $props();
 
 // svelte-ignore state_referenced_locally -- intentional one-time seed, matching React's useState(initialValue)
@@ -60,6 +64,9 @@ function toggle() {
 	onclick={toggle}
 	class={cn(themeToggle({ variant, start }), classProp)}
 >
+	{#if icon}
+		<span class="theme-toggle-icon">{@render icon({ theme, isDark })}</span>
+	{:else}
 	{#key theme}
 		<span class="theme-toggle-icon">
 			{#if isDark}
@@ -84,4 +91,5 @@ function toggle() {
 			{/if}
 		</span>
 	{/key}
+	{/if}
 </button>

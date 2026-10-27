@@ -1,24 +1,51 @@
 "use client";
 
-import { Timeline } from "@baby-ui/react";
+import {
+	TimelineScale,
+	TimelineScaleContent,
+	TimelineScaleDate,
+	TimelineScaleHeader,
+	TimelineScaleItem,
+	TimelineScaleRail,
+	TimelineScaleTick,
+	TimelineScaleTrack,
+	TimelineScaleViewport,
+} from "@baby-ui/react";
+import { useState } from "react";
 
-const now = Date.parse("2026-10-12T15:00:00Z");
-const events = [
-	{
-		id: "1",
-		at: "2026-10-12T14:52:00Z",
-		actor: "Ada Park",
-		title: "merged Checkout redesign",
-		meta: "#482",
-	},
-	{
-		id: "2",
-		at: "2026-10-12T13:10:00Z",
-		title: "Production deploy succeeded",
-		tone: "success" as const,
-	},
+const milestones = [
+	{ id: "research", date: "2026-08-04", title: "Research complete" },
+	{ id: "beta", date: "2026-09-18", title: "Private beta" },
+	{ id: "launch", date: "2026-10-12", title: "Version 1.0" },
 ];
 
 export function Example() {
-	return <Timeline label="Project activity" events={events} now={now} />;
+	const [active, setActive] = useState("launch");
+	const selected = milestones.find((item) => item.id === active);
+
+	return (
+		<TimelineScale
+			aria-label="Release history"
+			variant="card"
+			value={active}
+			onValueChange={setActive}
+		>
+			<TimelineScaleHeader>
+				<span>Release history</span>
+				<span aria-live="polite">{selected?.title}</span>
+			</TimelineScaleHeader>
+			<TimelineScaleViewport>
+				<TimelineScaleTrack>
+					<TimelineScaleRail />
+					{milestones.map((item) => (
+						<TimelineScaleItem key={item.id} value={item.id} label={item.title}>
+							<TimelineScaleTick />
+							<TimelineScaleDate dateTime={item.date}>{item.date}</TimelineScaleDate>
+							<TimelineScaleContent>{item.title}</TimelineScaleContent>
+						</TimelineScaleItem>
+					))}
+				</TimelineScaleTrack>
+			</TimelineScaleViewport>
+		</TimelineScale>
+	);
 }

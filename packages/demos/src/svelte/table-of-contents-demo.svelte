@@ -42,6 +42,6 @@ let scroller = $state<HTMLElement | null>(null);
 		scrollOffset={0}
 		variant={p.variant ?? "curve"}
 		indicator={props.indicator !== false}
-		class="w-44 shrink-0"
+		class={p.variant === "minimap" ? "shrink-0" : "w-44 shrink-0"}
 	/>
 </div>

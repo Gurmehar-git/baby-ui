@@ -19,10 +19,11 @@ export const tableOfContents = defineComponent({
 		},
 		{
 			name: "variant",
-			type: '"curve" | "straight"',
-			description: "How the rail moves between depths: a smooth bend, or square steps.",
+			type: '"curve" | "straight" | "minimap"',
+			description:
+				"How navigation renders: a curved or stepped outline, or a compact hover minimap.",
 			default: "curve",
-			control: { kind: "select", options: ["curve", "straight"] },
+			control: { kind: "select", options: ["curve", "straight", "minimap"] },
 		},
 		{
 			name: "indicator",

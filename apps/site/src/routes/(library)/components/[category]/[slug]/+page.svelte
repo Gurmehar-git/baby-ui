@@ -4,6 +4,8 @@ import {
 	IconArrowLeft,
 	IconArrowRight,
 	IconArrowUpRight,
+	IconCode,
+	IconEye,
 	IconList,
 } from "@baby-ui/icons";
 import {
@@ -84,17 +86,27 @@ let viewport = $state<"desktop" | "mobile">("desktop");
 let fullscreen = $state(false);
 let reloadKey = $state(0);
 let wide = $state(false);
+let split = $state(false);
 
 $effect(() => {
 	const query = matchMedia("(min-width: 1280px)");
-	const sync = () => (wide = query.matches);
+	const splitQuery = matchMedia("(min-width: 1024px)");
+	const sync = () => {
+		wide = query.matches;
+		split = splitQuery.matches;
+	};
 	sync();
 	query.addEventListener("change", sync);
-	return () => query.removeEventListener("change", sync);
+	splitQuery.addEventListener("change", sync);
+	return () => {
+		query.removeEventListener("change", sync);
+		splitQuery.removeEventListener("change", sync);
+	};
 });
 
 const library = $derived(prefs.layout === "library");
-const playground = $derived(prefs.layout === "playground" && wide);
+// The preview and docked controls fit side by side from 1024px; the outline drawer still waits for 1280px.
+const playground = $derived(prefs.layout === "playground" && split);
 
 // Framework and language are global preferences, set from the header settings drawer.
 const framework = $derived(prefs.framework);
@@ -373,21 +385,31 @@ const pageTags = $derived([...new Set(data.spec.keywords)].slice(0, 4));
 					track("component_tab_selected", { tab: next });
 				}
 			}
-			variant="underline"
+			variant="segment"
+			size="sm"
 		>
-			<TabsList aria-label="Component views">
+			<TabsList
+				aria-label="Component views"
+				class="mb-4 rounded-full [&_[data-slot=tabs-indicator]]:rounded-full"
+			>
 				{#each tabs as item (item.id)}
-					<TabsTrigger value={item.id}>{item.label}</TabsTrigger>
+					<TabsTrigger value={item.id} class="rounded-full">
+						{#if item.id === "preview"}<IconEye size={14} />{:else}<IconCode size={14} />{/if}
+						{item.label}
+					</TabsTrigger>
 				{/each}
 			</TabsList>
 			<!-- Only the open view renders: the demo is heavy and the usage block is highlighted. -->
 			<TabsContent value="preview">
-				{#if tab === "preview"}
+				<!-- Fullscreen renders its own stage; a second live demo here would split its state. -->
+				{#if tab === "preview" && fullscreen}
+					<div class="h-64 rounded-2xl border border-dashed border-border"></div>
+				{:else if tab === "preview"}
 					{#if playground}
 						<div
 							class={[
 								"grid h-[calc(100dvh-var(--header-h)-8rem)] min-h-[32rem] gap-3",
-								hasControls && "grid-cols-[minmax(0,1fr)_20rem]",
+								hasControls && "grid-cols-[minmax(0,1fr)_17rem] xl:grid-cols-[minmax(0,1fr)_20rem]",
 							]}
 						>
 							<div class="min-h-0">{@render previewStage(true)}</div>
@@ -402,7 +424,9 @@ const pageTags = $derived([...new Set(data.spec.keywords)].slice(0, 4));
 				{/if}
 			</TabsContent>
 			<TabsContent value="usage">
-				{#if tab === "usage" && usage}
+				{#if tab === "usage" && data.spec.tier === "pro"}
+					<ProInstallGate name={data.spec.name} />
+				{:else if tab === "usage" && usage}
 					<CodeBlock
 						code={usage.code}
 						html={usage.html}
@@ -639,8 +663,14 @@ const pageTags = $derived([...new Set(data.spec.keywords)].slice(0, 4));
 		<div class="flex items-center justify-between gap-3">
 			<p class="font-medium text-foreground text-sm">{data.spec.name} · Preview</p>
 		</div>
-		<div class="min-h-0 flex-1 overflow-auto">
-			{@render previewStage(true)}
+		<div
+			class={[
+				"grid min-h-0 flex-1 gap-3",
+				hasControls && "lg:grid-cols-[minmax(0,1fr)_20rem]",
+			]}
+		>
+			<div class="min-h-0 overflow-auto">{@render previewStage(true)}</div>
+			{#if hasControls}<ControlsPanel spec={data.spec} bind:values docked />{/if}
 		</div>
 	</div>
 {/if}

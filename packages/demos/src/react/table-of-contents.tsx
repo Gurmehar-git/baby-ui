@@ -50,7 +50,7 @@ export function TableOfContentsDemo({ props }: { props: Props }) {
 				scrollOffset={0}
 				variant={p.variant ?? "curve"}
 				indicator={props.indicator !== false}
-				className="w-44 shrink-0"
+				className={p.variant === "minimap" ? "shrink-0" : "w-44 shrink-0"}
 			/>
 		</div>
 	);

@@ -1,73 +1,115 @@
 "use client";
 
-import { Button, Timeline, type TimelineEvent } from "@baby-ui/react";
-import { type ComponentProps, useEffect, useState } from "react";
+import {
+	Button,
+	Card,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+	TimelineScale,
+	TimelineScaleContent,
+	TimelineScaleDate,
+	TimelineScaleHeader,
+	TimelineScaleItem,
+	TimelineScaleRail,
+	TimelineScaleTick,
+	TimelineScaleTrack,
+	TimelineScaleViewport,
+	TimelineScaleYear,
+} from "@baby-ui/react";
+import { type ComponentProps, useState } from "react";
 import { controlProps } from "../data/preview-props";
 import { TIMELINE_EVENTS, TIMELINE_NEXT, timelineAt } from "../data/timeline";
 
 type Props = Record<string, unknown>;
-
-const PATHS = {
-	rocket:
-		"M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2m4-3-3-3m3 3 6.5-6.5a4.9 4.9 0 0 0 1.4-4.4 4.9 4.9 0 0 0-4.4 1.4L9 12m3 3v4l3-2v-4m-6-1H5l2-3h4",
-	alert:
-		"M12 8v5m0 3h.01M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z",
-	check: "m5 12 5 5 9-10",
+type DemoEvent = Omit<(typeof TIMELINE_EVENTS)[number], "ago" | "icon" | "tone"> & {
+	at: number;
 };
-const Glyph = ({ d }: { d: string }) => (
-	<svg
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor"
-		strokeWidth="2"
-		strokeLinecap="round"
-		strokeLinejoin="round"
-		aria-hidden
-	>
-		<path d={d} />
-	</svg>
-);
+
+const DATE = new Intl.DateTimeFormat("en", {
+	month: "short",
+	day: "numeric",
+	hour: "numeric",
+	minute: "2-digit",
+});
 
 export function TimelineDemo({ props }: { props: Props }) {
-	const p = controlProps<ComponentProps<typeof Timeline>>(props);
-	const [now, setNow] = useState(() => Date.now());
-	const [events, setEvents] = useState<TimelineEvent[]>(() =>
-		TIMELINE_EVENTS.map(({ ago, icon, ...event }) => ({
+	const p = controlProps<ComponentProps<typeof TimelineScale>>(props);
+	const [events, setEvents] = useState<DemoEvent[]>(() =>
+		TIMELINE_EVENTS.toReversed().map(({ ago, icon: _, tone: __, ...event }) => ({
 			...event,
-			at: timelineAt(now, ago),
-			icon: icon ? <Glyph d={PATHS[icon]} /> : undefined,
+			at: timelineAt(Date.now(), ago),
 		})),
 	);
+	const [active, setActive] = useState(TIMELINE_EVENTS[0]?.id ?? "");
 	const [added, setAdded] = useState(0);
-	// The demo's clock ticks so relative times stay fresh; the component never runs its own timer.
-	useEffect(() => {
-		const timer = setInterval(() => setNow(Date.now()), 30_000);
-		return () => clearInterval(timer);
-	}, []);
 	const next = TIMELINE_NEXT[added % TIMELINE_NEXT.length];
+	const selected = events.find((event) => event.id === active);
 	return (
-		<div className="grid w-full max-w-lg gap-3">
-			<Timeline
-				label="Project activity"
-				events={events}
-				now={now}
-				maxHeight={360}
-				variant={p.variant}
-				timeZone={Intl.DateTimeFormat().resolvedOptions().timeZone}
-			/>
-			<Button
-				variant="outline"
-				size="sm"
-				className="justify-self-start"
-				onClick={() => {
-					const at = Date.now();
-					setNow(at);
-					setAdded(added + 1);
-					if (next) setEvents([{ id: `n${added}`, at, ...next }, ...events]);
-				}}
+		<div className="grid w-full min-w-0 gap-3">
+			<TimelineScale
+				aria-label="Project history"
+				orientation={p.orientation ?? "horizontal"}
+				variant={p.variant ?? "default"}
+				value={active}
+				onValueChange={setActive}
 			>
-				Add update
-			</Button>
+				<TimelineScaleHeader>
+					<span className="font-medium text-foreground">Project history</span>
+					<span aria-live="polite" className="max-w-[70%] truncate text-right">
+						{selected?.title}
+					</span>
+				</TimelineScaleHeader>
+				<TimelineScaleViewport className="max-h-96">
+					<TimelineScaleTrack>
+						<TimelineScaleRail />
+						{events.map((event) => {
+							const date = new Date(event.at);
+							const label = [event.actor, event.title].filter(Boolean).join(" ");
+							return (
+								<TimelineScaleItem
+									key={event.id}
+									value={event.id}
+									label={label}
+									description={event.detail ?? event.meta}
+								>
+									<TimelineScaleTick />
+									<TimelineScaleYear>{date.getFullYear()}</TimelineScaleYear>
+									<TimelineScaleDate dateTime={date.toISOString()}>
+										{DATE.format(date)}
+									</TimelineScaleDate>
+									<TimelineScaleContent>
+										<Card className="h-full border-0 bg-transparent py-0 shadow-none">
+											<CardHeader className="px-0">
+												<CardTitle>{label}</CardTitle>
+												{event.detail || event.meta ? (
+													<CardDescription>{event.detail ?? event.meta}</CardDescription>
+												) : null}
+											</CardHeader>
+										</Card>
+									</TimelineScaleContent>
+								</TimelineScaleItem>
+							);
+						})}
+					</TimelineScaleTrack>
+				</TimelineScaleViewport>
+			</TimelineScale>
+			<div className="flex flex-wrap gap-2">
+				<Button
+					variant="outline"
+					size="sm"
+					onClick={() => {
+						if (!next) return;
+						const id = `n${added}`;
+						const at = Date.now();
+						setEvents((current) => [...current, { id, at, ...next }]);
+						setActive(id);
+						setAdded((current) => current + 1);
+					}}
+				>
+					Add milestone
+				</Button>
+			</div>
 		</div>
 	);
 }

@@ -48,6 +48,13 @@ export const themeToggle = defineComponent({
 			control: { kind: "none" },
 		},
 		{
+			name: "icon",
+			type: "Snippet | ((state) => ReactNode)",
+			description:
+				"Custom icon renderer receiving the active theme and dark state; the page reveal remains unchanged.",
+			control: { kind: "none" },
+		},
+		{
 			name: "variant",
 			type: VARIANTS.map((v) => `"${v}"`).join(" | "),
 			description: "Which page-wide reveal plays when the theme flips.",

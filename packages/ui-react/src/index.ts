@@ -25,6 +25,8 @@ export { type AsciiOptions, mountAscii } from "@baby-ui/components/react/ascii-e
 export { asciiEffect, type AsciiEffectVariant, type AsciiEffectTone, type AsciiEffectDither, type AsciiEffectFit, type AsciiEffectPosition } from "@baby-ui/components/react/ascii-effect";
 export { type AspectRatioProps, AspectRatio, type AspectRatioImageProps, AspectRatioImage } from "@baby-ui/components/react/aspect-ratio";
 export { aspectRatio, type AspectRatioMotion, type AspectRatioFit } from "@baby-ui/components/react/aspect-ratio";
+export { AssetMenu, AssetMenuTrigger, AssetMenuContent, AssetMenuLabel, AssetMenuSeparator, AssetMenuPreview, AssetMenuCopyItem, AssetMenuLinkItem } from "@baby-ui/components/react/asset-menu";
+export { assetMenu, type AssetMenuVariant } from "@baby-ui/components/react/asset-menu";
 export { type AttachmentsProps, Attachments, type AttachmentProps, Attachment, type AttachmentPreviewProps, AttachmentPreview, AttachmentContent, AttachmentName, type AttachmentMetaProps, AttachmentMeta, AttachmentProgress, AttachmentRemove, AttachmentRetry } from "@baby-ui/components/react/attachment";
 export { type AttachmentLabels, ATTACHMENT_LABELS } from "@baby-ui/components/react/attachment";
 export { attachments, attachment, type AttachmentsVariant, type AttachmentVariant, type AttachmentStatus, ATTACHMENT_ICON, fileType } from "@baby-ui/components/react/attachment";
@@ -401,6 +403,9 @@ export { message, type MessageAlign, type MessageMotion, messageBubble, type Mes
 export { type MessageActionsProps, MessageActions, MessageActionsBar, MessageActionsCopy, MessageActionsRegenerate, MessageActionsVersions, MessageActionsFeedback, MessageActionsSpeak, MessageActionsFeedbackPanel } from "@baby-ui/components/react/message-actions";
 export { MESSAGE_ICONS } from "@baby-ui/components/react/message-actions";
 export { messageActions, type MessageActionsVariant, type MessageFeedback } from "@baby-ui/components/react/message-actions";
+export { type MiddleTruncationProps, MiddleTruncation } from "@baby-ui/components/react/middle-truncation";
+export { textMetrics, truncateMiddle } from "@baby-ui/components/react/middle-truncation";
+export { middleTruncation, type MiddleTruncationVariant } from "@baby-ui/components/react/middle-truncation";
 export { type MirrorTextProps, MirrorText } from "@baby-ui/components/react/mirror-text";
 export { mirrorText, type MirrorTextDirection } from "@baby-ui/components/react/mirror-text";
 export { type MoneyInputDetails, type MoneyInputProps, MoneyInput } from "@baby-ui/components/react/money-input";
@@ -421,8 +426,8 @@ export { type MusicPlayerLabels, MUSIC_PLAYER_LABELS, formatTime, clampUnit, SEE
 export { musicPlayer, type MusicPlayerLayout } from "@baby-ui/components/react/music-player";
 export { NativeSelect, NativeSelectOption, NativeSelectOptGroup } from "@baby-ui/components/react/native-select";
 export { nativeSelect, type NativeSelectSize } from "@baby-ui/components/react/native-select";
-export { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuViewport, NavigationMenuLink, NavigationMenuIndicator } from "@baby-ui/components/react/navigation-menu";
-export { navigationMenuTriggerStyle, type NavigationMenuSize, navigationMenu } from "@baby-ui/components/react/navigation-menu";
+export { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuBody, NavigationMenuFooter, NavigationMenuViewport, NavigationMenuLink, NavigationMenuIndicator } from "@baby-ui/components/react/navigation-menu";
+export { navigationMenuTriggerStyle, type NavigationMenuSize, navigationMenu, type NavigationMenuVariant } from "@baby-ui/components/react/navigation-menu";
 export { type NewsletterSignupProps, NewsletterSignup } from "@baby-ui/components/react/newsletter-signup";
 export { type NewsletterStory, type NewsletterIssue, type NewsletterStatus, SIGNUP_FAILED, SIGNUP_DONE, emailProblem, signupMessages, stackIssues, stackStyle, nudge } from "@baby-ui/components/react/newsletter-signup";
 export { newsletterSignup, type NewsletterSignupVariant } from "@baby-ui/components/react/newsletter-signup";
@@ -668,6 +673,8 @@ export { type InkPoint, type InkWidth, type InkTone, type InkStroke, INK_TONES, 
 export { signaturePad, type SignaturePadVariant } from "@baby-ui/components/react/signature-pad";
 export { type SkeletonProps, Skeleton } from "@baby-ui/components/react/skeleton";
 export { skeleton, type SkeletonShape, skeletonReveal } from "@baby-ui/components/react/skeleton";
+export { type SlideToUnlockProps, SlideToUnlock, SlideToUnlockTrack, SlideToUnlockText, SlideToUnlockHandle } from "@baby-ui/components/react/slide-to-unlock";
+export { slideToUnlock, type SlideToUnlockVariant, type SlideToUnlockSize } from "@baby-ui/components/react/slide-to-unlock";
 export { type SliderProps, Slider } from "@baby-ui/components/react/slider";
 export { SLIDER_SINGLE_THUMB_VARIANTS, SLIDER_VERTICAL_VARIANTS, sliderLayout, SLIDER_WAVE_BARS, type SliderWaveBar, sliderWaveBars, sliderThumbCenter, sliderInlineSplit, SLIDER_RULER_GAP, SLIDER_RULER_MAJOR_EVERY, type SliderRulerTick, sliderRulerTicks, sliderRulerOffset, sliderRulerValueAt } from "@baby-ui/components/react/slider";
 export { attachElastic } from "@baby-ui/components/react/slider";
@@ -743,6 +750,8 @@ export { tagInput, type TagInputSize, TAG_INPUT_CHIP } from "@baby-ui/components
 export { type TaskStepsProps, TaskSteps } from "@baby-ui/components/react/task-steps";
 export { TaskStepRows } from "@baby-ui/components/react/task-steps";
 export { taskSteps, type TaskStepsVariant, type TaskStepsSize, type TaskStatus, TASK_STEP_LABELS, type TaskStepDetail, type TaskStep, taskStepRows } from "@baby-ui/components/react/task-steps";
+export { Testimonial, TestimonialQuote, TestimonialAuthor, TestimonialAvatar, TestimonialAvatarImage, TestimonialAvatarFallback, TestimonialAuthorDetails, TestimonialAuthorName, TestimonialAuthorTagline, TestimonialVerifiedBadge } from "@baby-ui/components/react/testimonial";
+export { testimonial, type TestimonialVariant } from "@baby-ui/components/react/testimonial";
 export { type TextLoopProps, TextLoop } from "@baby-ui/components/react/text-loop";
 export { textLoop, type TextLoopVariant, type TextLoopDirection, type TextLoopSize, textLoopRollStep } from "@baby-ui/components/react/text-loop";
 export { type TextReelProps, TextReel } from "@baby-ui/components/react/text-reel";
@@ -755,15 +764,14 @@ export { type TextTransitionTarget, type TextTransitionPreset, TEXT_TRANSITION_P
 export { textTransition, type TextTransitionVariant } from "@baby-ui/components/react/text-transition";
 export { type TextareaProps, Textarea, type TextareaCountProps, TextareaCount } from "@baby-ui/components/react/textarea";
 export { textarea, type TextareaSize, type TextareaVariant } from "@baby-ui/components/react/textarea";
-export { type ThemeToggleProps, ThemeToggle } from "@baby-ui/components/react/theme-toggle";
+export { type ThemeToggleIconState, type ThemeToggleProps, ThemeToggle } from "@baby-ui/components/react/theme-toggle";
 export { RECT_FROM, CIRCLE_ORIGIN, ensureRevealStyle, supportsViewTransition, runThemeReveal } from "@baby-ui/components/react/theme-toggle";
 export { themeToggle, type ThemeToggleVariant, type ThemeToggleStart, type ThemeToggleValue } from "@baby-ui/components/react/theme-toggle";
 export { type TimePickerProps, TimePicker } from "@baby-ui/components/react/time-picker";
 export { type TimeValue, type TimePickerLabels, TIME_PICKER_LABELS, type TimeParts, parseTime, timeOutOfRange, type ClockHands, clockHands, nearestTurn, nowAsTimeValue } from "@baby-ui/components/react/time-picker";
 export { type TimePickerSize, timePicker } from "@baby-ui/components/react/time-picker";
-export { type TimelineEvent, type TimelineProps, Timeline } from "@baby-ui/components/react/timeline";
-export { type TimelineTone, type TimelineEventBase, type TimelineRow, type TimelineGroup, groupTimeline, addedEvents, announceAdded, createTimelineReveal, moveTimelineFocus } from "@baby-ui/components/react/timeline";
-export { timeline, type TimelineVariant } from "@baby-ui/components/react/timeline";
+export { type TimelineScaleProps, TimelineScale, TimelineScaleHeader, TimelineScaleViewport, TimelineScaleTrack, TimelineScaleRail, type TimelineScaleItemProps, TimelineScaleItem, TimelineScaleTick, TimelineScaleDate, TimelineScaleYear, TimelineScaleContent } from "@baby-ui/components/react/timeline";
+export { timelineScale, type TimelineOrientation, type TimelineScaleVariant } from "@baby-ui/components/react/timeline";
 export { type TipsPanelProps, TipsPanel, TipsPanelHeader, TipsPanelTitle, TipsPanelProgress, TipsPanelContent, TipsPanelGrid, TipsPanelTip, TipsPanelTipTitle, TipsPanelTipDescription, TipsPanelAction, TipsPanelFooter } from "@baby-ui/components/react/tips-panel";
 export { tipsPanel, type TipsPanelVariant } from "@baby-ui/components/react/tips-panel";
 export { type ToasterProps, toast, Toaster } from "@baby-ui/components/react/toast";

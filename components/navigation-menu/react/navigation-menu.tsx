@@ -1,36 +1,45 @@
 "use client";
 
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
-import type { ComponentProps } from "react";
+import { type ComponentProps, createContext, useContext } from "react";
 import { cn } from "../../lib/cn";
 import { ANCHORED } from "../../lib/react/anchor";
 import {
 	type NavigationMenuSize,
+	type NavigationMenuVariant,
 	navigationMenu,
 	navigationMenuTriggerStyle,
 } from "../variants";
 
-export type { NavigationMenuSize };
+export type { NavigationMenuSize, NavigationMenuVariant };
 export { navigationMenuTriggerStyle };
 
 const styles = navigationMenu();
+const NavigationMenuStyleContext = createContext<NavigationMenuVariant>("default");
 
 export function NavigationMenu({
 	align = "start",
+	variant = "default",
 	className,
 	children,
 	...props
 }: NavigationMenuPrimitive.Root.Props &
-	Pick<NavigationMenuPrimitive.Positioner.Props, "align">) {
+	Pick<NavigationMenuPrimitive.Positioner.Props, "align"> & {
+		variant?: NavigationMenuVariant;
+	}) {
+	const variantStyles = navigationMenu({ variant });
 	return (
-		<NavigationMenuPrimitive.Root
-			data-slot="navigation-menu"
-			className={cn(styles.root(), className)}
-			{...props}
-		>
-			{children}
-			<NavigationMenuViewport align={align} />
-		</NavigationMenuPrimitive.Root>
+		<NavigationMenuStyleContext.Provider value={variant}>
+			<NavigationMenuPrimitive.Root
+				data-slot="navigation-menu"
+				data-variant={variant}
+				className={cn(variantStyles.root(), className)}
+				{...props}
+			>
+				{children}
+				<NavigationMenuViewport align={align} variant={variant} />
+			</NavigationMenuPrimitive.Root>
+		</NavigationMenuStyleContext.Provider>
 	);
 }
 
@@ -91,8 +100,10 @@ export function NavigationMenuTrigger({
 
 export function NavigationMenuContent({
 	className,
+	children,
 	...props
 }: NavigationMenuPrimitive.Content.Props) {
+	const variant = useContext(NavigationMenuStyleContext);
 	return (
 		<NavigationMenuPrimitive.Content
 			data-slot="navigation-menu-content"
@@ -102,9 +113,36 @@ export function NavigationMenuContent({
 				"data-[starting-style]:opacity-0 data-[ending-style]:opacity-0",
 				"data-[starting-style]:data-[activation-direction=left]:-translate-x-1/2 data-[starting-style]:data-[activation-direction=right]:translate-x-1/2",
 				"data-[ending-style]:data-[activation-direction=left]:translate-x-1/2 data-[ending-style]:data-[activation-direction=right]:-translate-x-1/2",
-				styles.content(),
+				navigationMenu({ variant }).content(),
 				className,
 			)}
+			{...props}
+		>
+			{/* One panel child, matching the Svelte port where the viewport measures the first child. */}
+			<div data-slot="navigation-menu-panel" className="flex flex-col">
+				{children}
+			</div>
+		</NavigationMenuPrimitive.Content>
+	);
+}
+
+export function NavigationMenuBody({ className, ...props }: ComponentProps<"div">) {
+	const variant = useContext(NavigationMenuStyleContext);
+	return (
+		<div
+			data-slot="navigation-menu-body"
+			className={cn(navigationMenu({ variant }).body(), className)}
+			{...props}
+		/>
+	);
+}
+
+export function NavigationMenuFooter({ className, ...props }: ComponentProps<"div">) {
+	const variant = useContext(NavigationMenuStyleContext);
+	return (
+		<div
+			data-slot="navigation-menu-footer"
+			className={cn(navigationMenu({ variant }).footer(), className)}
 			{...props}
 		/>
 	);
@@ -113,12 +151,14 @@ export function NavigationMenuContent({
 /** The shared panel: the Positioner slides it between triggers and the Popup resizes to the open content. */
 export function NavigationMenuViewport({
 	className,
+	variant = "default",
 	side = "bottom",
 	sideOffset = 8,
 	align = "start",
 	alignOffset = 0,
 	...props
-}: NavigationMenuPrimitive.Positioner.Props) {
+}: NavigationMenuPrimitive.Positioner.Props & { variant?: NavigationMenuVariant }) {
+	const variantStyles = navigationMenu({ variant });
 	return (
 		<NavigationMenuPrimitive.Portal>
 			<NavigationMenuPrimitive.Positioner
@@ -141,7 +181,7 @@ export function NavigationMenuViewport({
 					className={cn(
 						ANCHORED,
 						"static",
-						styles.viewport(),
+						variantStyles.viewport(),
 						"relative h-(--popup-height) w-(--popup-width) outline-none",
 						"transition-[opacity,scale,translate,width,height]",
 					)}

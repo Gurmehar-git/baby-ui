@@ -36,9 +36,13 @@ export const navigationMenu = tv({
 			"group-data-[state=open]/navigation-menu-trigger:rotate-180",
 			"group-data-[popup-open]/navigation-menu-trigger:rotate-180 motion-reduce:transition-none",
 		],
-		content: "p-2 **:data-[slot=navigation-menu-link]:focus:ring-0",
+		content:
+			"p-2 has-data-[slot=navigation-menu-body]:p-0 **:data-[slot=navigation-menu-link]:focus:ring-0",
+		body: "p-2",
+		footer:
+			"flex min-h-11 items-center justify-between gap-4 border-border border-t px-3 py-2 text-xs",
 		// Popover's own surface, so the panel and every popover look the same.
-		viewport: [popover().surface(), "overflow-hidden"],
+		viewport: [popover().surface(), "overflow-hidden [--navigation-menu-spacing:1rem]"],
 		// The panel's rows follow the menu row contract: tint on hover and focus, squish on press.
 		link: [
 			"flex flex-col gap-0.5 rounded-md p-2 text-sm outline-none",
@@ -50,4 +54,24 @@ export const navigationMenu = tv({
 		indicatorArrow:
 			"relative top-[60%] size-2 rotate-45 rounded-tl-sm bg-border shadow-md",
 	},
+	variants: {
+		variant: {
+			default: {},
+			// The rim lives on the content: the primitive sizes the viewport from it, so viewport padding is lost.
+			framed: {
+				viewport: ["rounded-2xl bg-card [--navigation-menu-spacing:calc(0.5rem+2px)]"],
+				content: [
+					"p-1 has-data-[slot=navigation-menu-body]:p-1",
+					"not-has-data-[slot=navigation-menu-body]:*:rounded-[11px] not-has-data-[slot=navigation-menu-body]:*:border not-has-data-[slot=navigation-menu-body]:*:border-border not-has-data-[slot=navigation-menu-body]:*:bg-popover not-has-data-[slot=navigation-menu-body]:*:p-2 not-has-data-[slot=navigation-menu-body]:*:shadow-surface",
+				],
+				body: "rounded-[11px] border border-border bg-popover shadow-surface",
+				footer: "border-t-0 px-3 pt-2 pb-1",
+			},
+		},
+	},
+	defaultVariants: { variant: "default" },
 });
+
+export type NavigationMenuVariant = NonNullable<
+	VariantProps<typeof navigationMenu>["variant"]
+>;

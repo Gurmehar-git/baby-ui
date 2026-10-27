@@ -1,59 +1,79 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
-// New days and rows open from 0fr via @starting-style; overflow-clip (not hidden) keeps day labels sticky.
-const OPEN =
-	"grid grid-rows-[1fr] transition-[grid-template-rows,opacity] duration-(--duration-collapse) ease-(--ease-out-quad) data-[fresh]:starting:grid-rows-[0fr] data-[fresh]:starting:opacity-0 motion-reduce:transition-none";
-
-export const timeline = tv({
+export const timelineScale = tv({
 	slots: {
-		root: "relative grid min-w-0 text-foreground [--tl-marker:--spacing(7)] [--tl-top:--spacing(2)]",
-		scroller: [
-			"min-w-0 [overflow-anchor:none]",
-			"data-[scrolls]:max-h-(--tl-height) data-[scrolls]:overflow-y-auto data-[scrolls]:overscroll-contain",
-			"data-[more]:[mask-image:linear-gradient(to_bottom,#000_calc(100%-2.25rem),transparent)]",
+		root: "group/timeline-scale relative grid min-w-0 text-foreground [--timeline-item-size:18rem]",
+		header:
+			"z-2 flex min-w-0 shrink-0 items-center justify-between gap-3 bg-background px-4 py-3 text-muted-foreground text-xs tabular-nums",
+		viewport: [
+			"min-w-0 overscroll-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]",
+			"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
 		],
-		group: OPEN,
-		groupInner: "min-h-0 overflow-clip [overflow-clip-margin:4px]",
-		day: "sticky top-0 z-2 flex items-baseline justify-between gap-3 bg-(--tl-surface) py-2 pr-3 font-medium text-sm",
-		count: "font-normal text-muted-foreground text-xs tabular-nums",
-		list: "mb-3 list-none p-0",
-		item: ["group/row", OPEN],
-		itemInner:
-			"relative min-h-0 overflow-clip pl-[calc(var(--tl-marker)+--spacing(2))] [overflow-clip-margin:4px]",
-		marker: [
-			"absolute top-(--tl-top) left-0 z-1 grid size-(--tl-marker) place-items-center rounded-full",
-			"transition-[scale,opacity] delay-(--tl-delay) duration-(--duration-spring-bouncy) ease-(--ease-spring-bouncy)",
-			"motion-safe:scale-40 motion-safe:opacity-0 group-data-[shown]/row:scale-100 group-data-[shown]/row:opacity-100",
+		track: "relative flex min-w-0 list-none p-0",
+		rail: "pointer-events-none absolute border-dashed border-border-strong",
+		item: "group/timeline-scale-item relative shrink-0 snap-center",
+		itemTrigger: [
+			"relative grid w-full cursor-pointer gap-3 rounded-xl text-left outline-none",
+			"transition-[scale,opacity,background-color] duration-(--duration-fast) ease-(--ease-out-quad)",
+			"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+			"active:scale-(--press-scale) motion-reduce:transition-none",
 		],
-		node: [
-			"border border-foreground/10 bg-(--tl-surface) text-muted-foreground [&_svg]:size-3.5",
-			"data-[tone=success]:bg-success/10 data-[tone=success]:text-success-strong",
-			"data-[tone=destructive]:bg-destructive/10 data-[tone=destructive]:text-destructive",
-		],
-		segment: [
-			"absolute top-[calc(var(--tl-top)+var(--tl-marker)+--spacing(1))] bottom-[calc(--spacing(1)-var(--tl-top))] left-[calc(var(--tl-marker)/2-0.5px)] w-px origin-top bg-border-strong",
-			"transition-[scale] delay-[calc(var(--tl-delay,0s)+0.1s)] duration-(--duration-collapse) ease-(--ease-out-quart)",
-			"motion-safe:scale-y-0 group-data-[shown]/row:scale-y-100",
-		],
-		trigger:
-			"grid w-full grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 rounded-lg px-3 py-3 text-left font-normal text-sm hover:text-foreground [&>[data-slot=collapsible-icon]]:order-last [&>[data-slot=collapsible-icon]]:mt-[3px]",
-		expandable: "grid-cols-[minmax(0,1fr)_auto_auto] hover:bg-muted",
-		text: "grid min-w-0 gap-0.5",
-		title: "text-muted-foreground text-sm leading-5",
-		actor: "font-medium text-foreground",
-		meta: "text-muted-foreground text-xs",
-		time: "flex min-w-11 justify-end whitespace-nowrap text-muted-foreground text-xs tabular-nums leading-5",
-		detail: "px-3 pb-4 text-muted-foreground text-sm",
+		tick: "pointer-events-none absolute z-1 block bg-border-strong transition-[scale,background-color] duration-(--duration-fast) group-data-[active]/timeline-scale-item:bg-foreground",
+		date: "relative z-1 whitespace-nowrap text-muted-foreground text-xs tabular-nums",
+		year: "pointer-events-none absolute font-medium text-foreground/[0.06] leading-none tracking-tighter tabular-nums",
+		content: "relative z-1 min-w-0",
 	},
 	variants: {
+		orientation: {
+			horizontal: {
+				root: "grid-cols-[minmax(0,1fr)_auto] items-stretch",
+				header: "col-span-2",
+				viewport:
+					"col-start-1 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory touch-pan-y",
+				track:
+					"w-max items-start gap-5 py-5 [padding-inline:max(--spacing(4),calc(50%-var(--timeline-item-size)/2))]",
+				rail: "inset-x-0 top-13 border-t",
+				item: "w-(--timeline-item-size)",
+				itemTrigger:
+					"min-h-48 origin-center bg-background p-4 opacity-45 scale-90 hover:opacity-75 group-data-[active]/timeline-scale-item:opacity-100 group-data-[active]/timeline-scale-item:scale-100",
+				tick: "top-8 left-1/2 h-8 w-px -translate-x-1/2 -translate-y-1/2 scale-y-65 group-data-[active]/timeline-scale-item:scale-y-100",
+				date: "pt-10",
+				year: "top-2 left-1/2 -translate-x-1/2 text-6xl",
+			},
+			// Below @md the date stacks over the content so neither column squeezes into one-word lines.
+			vertical: {
+				root: "@container/timeline-scale grid-cols-[minmax(0,1fr)]",
+				header: "border-b",
+				viewport: "overflow-y-auto",
+				track: "flex-col gap-0 py-3",
+				rail: "inset-y-0 left-6 border-l @md/timeline-scale:left-[8.75rem]",
+				item: "w-full",
+				itemTrigger: [
+					"grid-cols-[minmax(0,1fr)] gap-x-6 gap-y-1 rounded-lg py-3 pr-4 pl-11 opacity-70",
+					"@md/timeline-scale:grid-cols-[7rem_minmax(0,1fr)] @md/timeline-scale:pl-4",
+					"hover:bg-foreground/[0.04] group-data-[active]/timeline-scale-item:bg-foreground/[0.04] group-data-[active]/timeline-scale-item:opacity-100",
+				],
+				tick: "top-5 left-6 h-px w-3 -translate-x-1/2 scale-x-65 group-data-[active]/timeline-scale-item:scale-x-100 @md/timeline-scale:left-[8.75rem]",
+				date: "leading-5 @md/timeline-scale:col-start-1 @md/timeline-scale:row-start-1 @md/timeline-scale:text-right",
+				year: "hidden",
+				content: "@md/timeline-scale:col-start-2 @md/timeline-scale:row-start-1",
+			},
+		},
 		variant: {
-			default: { root: "[--tl-surface:var(--color-background)]" },
+			default: {},
 			card: {
-				root: "rounded-xl border bg-background p-2 pb-0 [--tl-surface:var(--color-background)]",
+				root: "overflow-hidden rounded-2xl border bg-background shadow-xs",
+				header: "border-b",
+				itemTrigger: "border bg-card shadow-xs",
 			},
 		},
 	},
-	defaultVariants: { variant: "default" },
+	defaultVariants: { orientation: "horizontal", variant: "default" },
 });
 
-export type TimelineVariant = NonNullable<VariantProps<typeof timeline>["variant"]>;
+export type TimelineOrientation = NonNullable<
+	VariantProps<typeof timelineScale>["orientation"]
+>;
+export type TimelineScaleVariant = NonNullable<
+	VariantProps<typeof timelineScale>["variant"]
+>;

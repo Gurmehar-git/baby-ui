@@ -49,7 +49,7 @@ let {
 	minScale?: number;
 	/** Vertical curve depth in pixels; responsive when omitted. */
 	arc?: number;
-	/** `default` scales and dims neighbours, `flat` is a plain row, `inset` floats the controls over the slide. */
+	/** Visual treatment for the track, slides, and controls. */
 	variant?: CarouselVariant;
 	/** Slide width preset; `slideSize` overrides it. */
 	size?: CarouselSize;
@@ -76,11 +76,15 @@ const last = $derived(Math.max(0, count - 1));
 const current = $derived(Math.min(last, Math.max(0, index ?? own)));
 // svelte-ignore state_referenced_locally -- the server places this slide before measuring
 const startIndex = untrack(() => index ?? defaultIndex);
+const s = $derived(carousel({ projection, variant, size }));
 
 setCarousel({
 	register: () => count++,
 	get index() {
 		return current;
+	},
+	get slideClass() {
+		return s.slide();
 	},
 	slideLabel: (i) => slideLabel(i, count),
 	slideId: (i) => `${uid}-slide-${i}`,
@@ -117,7 +121,7 @@ const options = $derived({
 	onDragChange: (value: boolean) => {
 		dragging = value;
 	},
-	flat: variant === "flat",
+	flat: variant === "flat" || variant === "showcase",
 	loop: wraps,
 	projection,
 	visibleItems,
@@ -184,8 +188,6 @@ function step(delta: number) {
 	if (wraps) engine?.go((next + count) % count);
 	else if (next >= 0 && next <= last) engine?.go(next);
 }
-
-const s = $derived(carousel({ projection, variant, size }));
 </script>
 
 <section
@@ -250,8 +252,9 @@ const s = $derived(carousel({ projection, variant, size }));
 				aria-label="Choose a slide"
 			>
 				{#each { length: count } as _, i (i)}
-					<button
-						type="button"
+					<Button
+						variant="ghost"
+						size="icon-sm"
 						role="tab"
 						data-carousel-dot=""
 						aria-selected={i === current}
@@ -259,14 +262,14 @@ const s = $derived(carousel({ projection, variant, size }));
 						aria-label={slideLabel(i, count)}
 						tabindex={i === current ? 0 : -1}
 						class={s.tab()}
-						style:--emphasis={i === startIndex ? 1 : 0}
+						style={`--emphasis: ${i === startIndex ? 1 : 0}`}
 						onclick={() => engine?.go(i)}
 					>
 						<span class={s.dot()} aria-hidden="true">
 							<span class={s.dotFill()}></span>
 							<span class={s.dotDrain()}></span>
 						</span>
-					</button>
+					</Button>
 				{/each}
 			</div>
 			{#if controls === "full" || controls === "arrows"}

@@ -134,6 +134,7 @@ const ARROW =
 		>
 			<span
 				aria-hidden="true"
+				data-slot="tabs-indicator"
 				style:transform={vertical
 					? `translate(${indicator.left}px, ${indicator.top}px)`
 					: `translateX(${indicator.left}px)`}

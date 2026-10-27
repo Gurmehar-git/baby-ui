@@ -1,127 +1,104 @@
 import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
-import { timeline as timelineVariants } from "./variants";
+import { timelineScale as timelineVariants } from "./variants";
 
 const VARIANTS = ["default", "card"];
+const ORIENTATIONS = ["horizontal", "vertical"];
 
 export const timeline = defineComponent({
 	slug: "timeline",
 	name: "Timeline",
 	description:
-		"A vertical activity feed grouped by day: pinned day labels, a line that draws as rows scroll in, rows that expand in place.",
+		"Composable horizontal or vertical milestone timeline with a snapping track, rail, ticks and dates.",
 	category: "advanced",
 	status: "stable",
-	variants: variantsOf(timelineVariants, ["variant"]),
+	variants: variantsOf(timelineVariants, ["variant", "orientation"]),
 	props: [
 		{
-			name: "events",
-			type: "TimelineEvent[]",
+			name: "orientation",
+			type: ORIENTATIONS.map((value) => `"${value}"`).join(" | "),
 			description:
-				"`{ id, at, title, actor?, meta?, detail?, avatar?, icon?, tone? }` in any order; the newest shows first. `tone` is neutral, success or destructive.",
-			required: true,
-			control: { kind: "none" },
+				"Direction used by the scale, keyboard navigation, rail, and viewport.",
+			default: "horizontal",
+			control: { kind: "select", options: ORIENTATIONS },
 		},
 		{
-			name: "now",
-			type: "number",
-			description:
-				"Reference time in epoch ms for relative labels and day groups; pass a ticking clock to keep them fresh.",
-			required: true,
-			control: { kind: "none" },
-		},
-		{
-			name: "label",
+			name: "value",
 			type: "string",
-			description: "Accessible name for the feed.",
-			required: true,
+			description: "Active item id, paired with `onValueChange`; bindable in Svelte.",
 			control: { kind: "none" },
 		},
 		{
-			name: "expanded",
-			type: "string[]",
+			name: "defaultValue",
+			type: "string",
 			description:
-				"Ids of expanded rows, paired with `onExpandedChange`; bindable in Svelte.",
+				"Initially active item id; otherwise the first registered item is active.",
 			control: { kind: "none" },
 		},
 		{
-			name: "maxHeight",
+			name: "itemSize",
 			type: "number | string",
-			description:
-				"Height of the scrolling area; without it the feed grows with the page.",
-			control: { kind: "none" },
-		},
-		{
-			name: "timeZone",
-			type: "string",
-			description:
-				"Time zone for day groups and clock times; fixed to UTC so server and client agree.",
-			default: "UTC",
-			control: { kind: "none" },
-		},
-		{
-			name: "scrollToNew",
-			type: "boolean",
-			description:
-				"Scroll back to the top when a new update arrives while scrolled down.",
-			default: true,
+			description: "Preferred horizontal item width.",
+			default: "18rem",
 			control: { kind: "none" },
 		},
 		{
 			name: "variant",
 			type: VARIANTS.map((v) => `"${v}"`).join(" | "),
-			description: "`card` frames the feed on a bordered surface.",
+			description: "`card` frames the scale and its milestones on bordered surfaces.",
 			default: "default",
 			control: { kind: "select", options: VARIANTS },
 		},
 	],
 	motion: {
 		springs: [],
-		reducedMotion: "Rows appear without the marker pop, line draw or slide-in.",
+		reducedMotion: "Selection updates without smooth scrolling or scaling.",
 		behaviour: [
-			"Markers pop and the line draws down as rows scroll into view, a beat apart.",
-			"New updates open from the top while older rows glide down; day counts roll.",
-			"Rows expand in place with the Collapsible height animation.",
+			"The focused milestone scales up while neighbours recede without leaving layout.",
+			"Native scrolling and snap preserve touch and trackpad momentum.",
 		],
 	},
 	a11y: {
 		keyboard: [
-			{ keys: ["ArrowDown", "ArrowUp"], action: "Move between expandable rows" },
-			{ keys: ["Home", "End"], action: "First or last expandable row" },
-			{ keys: ["Enter", "Space"], action: "Expand or collapse a row" },
+			{ keys: ["ArrowRight", "ArrowLeft"], action: "Move on a horizontal scale" },
+			{ keys: ["ArrowDown", "ArrowUp"], action: "Move on a vertical scale" },
+			{ keys: ["Home", "End"], action: "First or last item" },
+			{ keys: ["Enter", "Space"], action: "Select an item" },
 		],
 		notes: [
-			"Day labels are headings with the update count; new updates are announced politely.",
-			"Each time carries the full date for screen readers and as a tooltip.",
+			"Exactly one item is in the tab order; active items expose `aria-current=step`.",
 		],
 	},
 	guidance: {
 		when: [
-			"Project history, audit logs and deploy streams where order and recency matter.",
+			"Project history, milestones, changelogs and long event streams where order matters.",
 		],
 		whenNot: [
 			{ text: "Records people sort or compare.", use: "data-table" },
 			{ text: "An agent's plan with step status.", use: "task-steps" },
 		],
-		responsive: ["Fills its container; set `maxHeight` to scroll inside a panel."],
+		responsive: [
+			"Horizontal scales stay inside their viewport; vertical scales fill the container width.",
+		],
 		performance: [
-			"Rows reveal through one IntersectionObserver; nothing animates off screen.",
+			"Native scrolling handles momentum; one animation frame measures the nearest item per scroll event.",
 		],
 		ai: [
-			"Say the outcome in `title` too; `tone` only tints the marker.",
-			"Pass `timeZone` from the viewer once hydrated, or keep UTC for server output.",
+			"Keep chronological meaning in visible text; the rail and tick position are supplementary.",
+			"Use concise item labels and put extended context in the description or visible content.",
 		],
 	},
 	licenseOrigin: {
-		source: "arc",
+		source: "arc, sv-chanhdai and beUI",
 		url: "https://uiarc.dev",
 		license: "MIT",
-		copyright: "Copyright (c) 2026 Elia Kuratli",
+		copyright: "Copyright (c) 2026 Elia Kuratli, Sikandar Bhide and Saurabh Chauhan",
 	},
 	impl: {
 		react: {
-			entry: "Timeline",
+			entry: "TimelineScale",
 		},
 		svelte: {
-			entry: "Timeline",
+			entry: "TimelineScale",
 		},
 	},
 	keywords: ["timeline", "activity", "feed", "history", "audit", "log", "changelog"],

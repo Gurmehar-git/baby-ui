@@ -25,6 +25,16 @@ notices are reproduced here as those licenses require.
 - Source: https://uiarc.dev
 - License: MIT
 
+## arc and sv-chanhdai
+
+- Source: https://uiarc.dev
+- License: MIT
+
+## arc, sv-chanhdai and beUI
+
+- Source: https://uiarc.dev
+- License: MIT
+
 ## beUI
 
 - Source: https://beui.dev
@@ -58,6 +68,11 @@ notices are reproduced here as those licenses require.
 ## solar-icons
 
 - Source: https://github.com/saoudi-h/solar-icons
+- License: MIT
+
+## sv-chanhdai
+
+- Source: https://github.com/sv-chanhdai/sv-chanhdai
 - License: MIT
 
 ## swapy

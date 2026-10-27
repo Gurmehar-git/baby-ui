@@ -43,7 +43,7 @@ export interface CarouselProps {
 	minScale?: number;
 	/** Vertical curve depth in pixels; responsive when omitted. */
 	arc?: number;
-	/** `default` scales and dims neighbours, `flat` is a plain row, `inset` floats the controls over the slide. */
+	/** Visual treatment for the track, slides, and controls. */
 	variant?: CarouselVariant;
 	/** Slide width preset; `slideSize` overrides it. */
 	size?: CarouselSize;
@@ -62,7 +62,13 @@ export interface CarouselProps {
 	className?: string;
 }
 
-type SlideContext = { index: number; active: boolean; label: string; id: string };
+type SlideContext = {
+	index: number;
+	active: boolean;
+	label: string;
+	id: string;
+	className: string;
+};
 const SlideCtx = createContext<SlideContext | null>(null);
 
 const defaultSlideLabel = (index: number, count: number) => `${index + 1} of ${count}`;
@@ -78,7 +84,6 @@ const subscribeReduced = (onChange: () => void) => {
 export function CarouselItem({ className, children, ...props }: ComponentProps<"div">) {
 	const slide = useContext(SlideCtx);
 	if (!slide) throw new Error("CarouselItem must be a child of Carousel");
-	const { slide: slideClass } = carousel();
 	return (
 		<div
 			{...props}
@@ -89,7 +94,7 @@ export function CarouselItem({ className, children, ...props }: ComponentProps<"
 			aria-roledescription="slide"
 			aria-label={slide.label}
 			inert={!slide.active}
-			className={cn(slideClass(), className)}
+			className={cn(slide.className, className)}
 		>
 			{children}
 		</div>
@@ -201,7 +206,7 @@ export function Carousel({
 			if (announce) setAnnouncement(slideLabel(next, count));
 		},
 		onDragChange: setDragging,
-		flat: variant === "flat",
+		flat: variant === "flat" || variant === "showcase",
 		loop: wraps,
 		projection,
 		visibleItems,
@@ -316,6 +321,7 @@ export function Carousel({
 								active: i === index,
 								label: slideLabel(i, count),
 								id: `${id}-slide-${i}`,
+								className: s.slide(),
 							}}
 						>
 							{slide}
@@ -349,10 +355,11 @@ export function Carousel({
 						aria-label="Choose a slide"
 					>
 						{slides.map((_, i) => (
-							<button
+							<Button
 								// biome-ignore lint/suspicious/noArrayIndexKey: one indicator per slide position.
 								key={i}
-								type="button"
+								variant="ghost"
+								size="icon-sm"
 								role="tab"
 								data-carousel-dot=""
 								aria-selected={i === index}
@@ -367,7 +374,7 @@ export function Carousel({
 									<span className={s.dotFill()} />
 									<span className={s.dotDrain()} />
 								</span>
-							</button>
+							</Button>
 						))}
 					</div>
 					{controls === "full" || controls === "arrows" ? (

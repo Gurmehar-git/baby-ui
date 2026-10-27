@@ -9,6 +9,9 @@ tags: [navigation, menu, navbar, header]
 A drop-in for shadcn's Navigation Menu: the same part names, plus
 `navigationMenuTriggerStyle` for top-level links that should look like triggers.
 
+Use `variant="framed"` when the shared panel should sit inside a soft outer frame. The frame
+adds separation and depth without changing the menu's navigation or focus behaviour.
+
 ## One panel, not one popover per trigger
 
 Every trigger shares a single viewport. Moving from one trigger to the next resizes that

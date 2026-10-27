@@ -2,7 +2,7 @@ import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
 import { carousel as carouselVariants } from "./variants";
 
 const SIZES = ["sm", "default", "lg"];
-const VARIANTS = ["default", "flat", "inset"];
+const VARIANTS = ["default", "flat", "inset", "showcase"];
 const PROJECTIONS = ["linear", "concave", "convex"];
 const CONTROLS = ["full", "dots", "arrows", "none"];
 
@@ -56,7 +56,7 @@ export const carousel = defineComponent({
 			name: "variant",
 			type: VARIANTS.map((v) => `"${v}"`).join(" | "),
 			description:
-				"`default` scales and dims neighbours, `flat` keeps a plain row, `inset` floats the dots and arrows over the slide.",
+				"`default` scales and dims neighbours, `flat` keeps a plain row, `inset` floats controls over the slide, and `showcase` presents large media with pill progress controls.",
 			default: "default",
 			control: { kind: "select", options: VARIANTS },
 		},
@@ -185,10 +185,10 @@ export const carousel = defineComponent({
 		],
 	},
 	licenseOrigin: {
-		source: "arc",
+		source: "arc and sv-chanhdai",
 		url: "https://uiarc.dev",
 		license: "MIT",
-		copyright: "Copyright (c) 2026 Elia Kuratli",
+		copyright: "Copyright (c) 2026 Elia Kuratli and Sikandar Bhide",
 	},
 	impl: {
 		react: {

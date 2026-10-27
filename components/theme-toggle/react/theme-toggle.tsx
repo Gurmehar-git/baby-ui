@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import { cn } from "../../lib/cn";
 import { ensureRevealStyle, runThemeReveal, supportsViewTransition } from "../reveal";
@@ -13,6 +13,11 @@ import {
 
 export type { ThemeToggleStart, ThemeToggleValue, ThemeToggleVariant };
 
+export type ThemeToggleIconState = {
+	theme: ThemeToggleValue;
+	isDark: boolean;
+};
+
 export interface ThemeToggleProps {
 	/** Controlled: which theme is active. Omit to let the component own it. */
 	theme?: ThemeToggleValue;
@@ -24,6 +29,8 @@ export interface ThemeToggleProps {
 	start?: ThemeToggleStart;
 	className?: string;
 	iconClassName?: string;
+	/** Replaces the default swapping glyph while preserving the page reveal. */
+	icon?: (state: ThemeToggleIconState) => ReactNode;
 }
 
 function SunIcon({ className }: { className?: string }) {
@@ -61,6 +68,7 @@ export function ThemeToggle({
 	start = "bottom-up",
 	className,
 	iconClassName,
+	icon,
 }: ThemeToggleProps) {
 	const [internalTheme, setInternalTheme] = useState(defaultTheme);
 	const theme = themeProp ?? internalTheme;
@@ -94,13 +102,17 @@ export function ThemeToggle({
 			onClick={toggle}
 			className={cn(themeToggle({ variant, start }), className)}
 		>
-			<span key={theme} className="theme-toggle-icon">
-				{isDark ? (
-					<SunIcon className={cn("size-4", iconClassName)} />
-				) : (
-					<MoonIcon className={cn("size-4", iconClassName)} />
-				)}
-			</span>
+			{icon ? (
+				<span className="theme-toggle-icon">{icon({ theme, isDark })}</span>
+			) : (
+				<span key={theme} className="theme-toggle-icon">
+					{isDark ? (
+						<SunIcon className={cn("size-4", iconClassName)} />
+					) : (
+						<MoonIcon className={cn("size-4", iconClassName)} />
+					)}
+				</span>
+			)}
 		</button>
 	);
 }

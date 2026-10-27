@@ -240,6 +240,7 @@ export function TabsList({ className, children, ...props }: ComponentProps<"div"
 				>
 					<span
 						aria-hidden
+						data-slot="tabs-indicator"
 						style={
 							vertical
 								? {

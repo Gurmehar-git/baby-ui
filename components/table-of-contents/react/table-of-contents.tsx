@@ -124,6 +124,34 @@ export function TableOfContents({
 	const range = (activeIds && rangeFromIds(items, activeIds)) ?? spied?.range ?? null;
 	const thumb =
 		track && range ? cssVars(thumbStyle(track, range, spied?.up ?? false)) : {};
+	const inRange = (index: number) =>
+		range !== null && index >= range[0] && index <= range[1];
+	if (variant === "minimap") {
+		return (
+			<nav
+				data-slot="table-of-contents-minimap"
+				aria-label={label}
+				className={cn(styles.minimap(), className)}
+			>
+				<ul className={styles.minimapList()}>
+					{items.map((item, index) => (
+						<li key={item.id}>
+							<a
+								href={`#${item.id}`}
+								data-depth={item.depth}
+								data-active={inRange(index) ? "" : undefined}
+								aria-current={inRange(index) ? "location" : undefined}
+								className={styles.minimapLink()}
+							>
+								<span className={styles.minimapLabel()}>{item.label}</span>
+								<span aria-hidden className={styles.minimapTick()} />
+							</a>
+						</li>
+					))}
+				</ul>
+			</nav>
+		);
+	}
 
 	return (
 		<nav

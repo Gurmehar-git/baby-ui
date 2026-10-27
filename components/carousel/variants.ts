@@ -53,6 +53,19 @@ export const carousel = tv({
 					"pointer-events-none absolute inset-x-[calc((100cqw-var(--carousel-slide))/2+0.5rem)] top-1/2 z-10 ml-0 -translate-y-1/2 justify-between [&>*]:pointer-events-auto",
 				play: "absolute top-3 right-[calc((100cqw-var(--carousel-slide))/2+0.5rem)] z-10",
 			},
+			showcase: {
+				root: "gap-5 [--carousel-gap:1.25rem]",
+				viewport:
+					"rounded-[2rem] [clip-path:inset(0_round_2rem)] @max-[640px]:rounded-2xl @max-[640px]:[clip-path:inset(0_round_1rem)]",
+				slide: "overflow-hidden rounded-[2rem] @max-[640px]:rounded-2xl",
+				controls: "justify-center gap-3 px-0",
+				tabs: "h-14 rounded-full bg-muted px-3 @max-[640px]:h-11 @max-[640px]:px-2",
+				tab: "px-2 @max-[640px]:px-1.5",
+				dot: "h-2 bg-muted-foreground/45 group-aria-selected/dot:w-12",
+				play: "size-14 bg-muted shadow-none @max-[640px]:size-11",
+				arrows: "ml-0 gap-3",
+				control: "size-14 border-0 bg-muted shadow-none @max-[640px]:size-11",
+			},
 		},
 		size: {
 			sm: { root: "[--carousel-slide:min(70cqw,260px)]" },
@@ -60,6 +73,58 @@ export const carousel = tv({
 			lg: { root: "[--carousel-slide:min(86cqw,480px)]" },
 		},
 	},
+	compoundVariants: [
+		{
+			projection: ["concave", "convex"],
+			variant: "inset",
+			class: {
+				arrows: "inset-x-4",
+				play: "right-4",
+			},
+		},
+		{
+			projection: ["concave", "convex"],
+			variant: "showcase",
+			class: {
+				viewport: "rounded-3xl [clip-path:inset(0_round_1.5rem)]",
+				slide: "rounded-2xl",
+			},
+		},
+		// Projected slides sit on an arc inside a fixed-height viewport, so each size is narrower there.
+		{
+			projection: ["concave", "convex"],
+			size: "sm",
+			class: { root: "[--carousel-slide:min(26cqw,11rem)]" },
+		},
+		{
+			projection: ["concave", "convex"],
+			size: "default",
+			class: { root: "[--carousel-slide:min(32cqw,14.375rem)]" },
+		},
+		{
+			projection: ["concave", "convex"],
+			size: "lg",
+			class: { root: "[--carousel-slide:min(40cqw,17rem)]" },
+		},
+		{
+			projection: "linear",
+			variant: "showcase",
+			size: "sm",
+			class: { root: "[--carousel-slide:min(72cqw,40rem)]" },
+		},
+		{
+			projection: "linear",
+			variant: "showcase",
+			size: "default",
+			class: { root: "[--carousel-slide:min(87.5cqw,72rem)]" },
+		},
+		{
+			projection: "linear",
+			variant: "showcase",
+			size: "lg",
+			class: { root: "[--carousel-slide:min(94cqw,80rem)]" },
+		},
+	],
 	defaultVariants: { projection: "linear", variant: "default", size: "default" },
 });
 

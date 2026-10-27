@@ -4,6 +4,7 @@ export type CarouselContext = {
 	/** Called once by each CarouselItem during init; returns its position. */
 	register: () => number;
 	readonly index: number;
+	readonly slideClass: string;
 	slideLabel: (index: number) => string;
 	slideId: (index: number) => string;
 };

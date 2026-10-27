@@ -1,5 +1,8 @@
 import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
-import { navigationMenuTriggerStyle as navigationMenuTriggerStyleVariants } from "./variants";
+import {
+	navigationMenuTriggerStyle as navigationMenuTriggerStyleVariants,
+	navigationMenu as navigationMenuVariants,
+} from "./variants";
 
 export const navigationMenu = defineComponent({
 	slug: "navigation-menu",
@@ -8,8 +11,18 @@ export const navigationMenu = defineComponent({
 		"Site navigation with hover and focus triggers and one shared panel that resizes and slides between them.",
 	category: "base",
 	status: "beta",
-	variants: variantsOf(navigationMenuTriggerStyleVariants, ["size"]),
+	variants: {
+		...variantsOf(navigationMenuVariants, ["variant"]),
+		...variantsOf(navigationMenuTriggerStyleVariants, ["size"]),
+	},
 	props: [
+		{
+			name: "variant",
+			type: '"default" | "framed"',
+			description: "`framed` nests the menu surface inside a soft, elevated outer frame.",
+			default: "default",
+			control: { kind: "select", options: ["default", "framed"] },
+		},
 		{
 			name: "value",
 			type: "string",

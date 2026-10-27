@@ -1,13 +1,16 @@
 <script lang="ts">
 import { NavigationMenu as NavigationMenuPrimitive } from "bits-ui";
 import { cn } from "../../lib/cn";
-import { navigationMenu } from "../variants";
+import { type NavigationMenuVariant, navigationMenu } from "../variants";
 
 let {
 	ref = $bindable(null),
+	variant = "default",
 	class: classProp,
 	...rest
-}: NavigationMenuPrimitive.ViewportProps = $props();
+}: NavigationMenuPrimitive.ViewportProps & { variant?: NavigationMenuVariant } = $props();
+
+const styles = $derived(navigationMenu({ variant }));
 </script>
 
 <!-- shadcn-svelte's geometry: bits-ui measures the content without its p-2, hence the 1rem. -->
@@ -17,8 +20,8 @@ let {
 		data-slot="navigation-menu-viewport"
 		class={cn(
 			"nav-menu-viewport relative mt-1.5 w-full origin-top",
-			navigationMenu().viewport(),
-			"h-[calc(var(--bits-navigation-menu-viewport-height)+1rem)] md:w-[calc(var(--bits-navigation-menu-viewport-width)+1rem)]",
+			styles.viewport(),
+			"h-[calc(var(--bits-navigation-menu-viewport-height)+var(--navigation-menu-spacing))] md:w-[calc(var(--bits-navigation-menu-viewport-width)+var(--navigation-menu-spacing))]",
 			classProp,
 		)}
 		{...rest}

@@ -30,3 +30,46 @@ export const NAV_MENU_SAMPLE = [
 ] as const;
 
 export const NAV_MENU_LINKS = [{ href: "#pricing", label: "Pricing" }] as const;
+
+export const NAV_MENU_FRAMED_SAMPLE = [
+	{
+		heading: "Build",
+		links: [
+			{
+				href: "#components",
+				title: "Components",
+				description: "Buttons, inputs, cards, chat",
+				meta: "66",
+			},
+			{
+				href: "#screens",
+				title: "Screens",
+				description: "Complete app pages, ready to wire up",
+				meta: "15",
+			},
+			{
+				href: "#blocks",
+				title: "Blocks",
+				description: "Whole sections for real products",
+				meta: "11",
+			},
+		],
+	},
+	{
+		heading: "Animate",
+		links: [
+			{
+				href: "#illustrations",
+				title: "Illustrations",
+				description: "Animated scenes for landing pages",
+				meta: "24",
+			},
+			{
+				href: "#motion",
+				title: "Motion",
+				description: "Text, numbers, transitions, loaders",
+				meta: "8",
+			},
+		],
+	},
+] as const;
