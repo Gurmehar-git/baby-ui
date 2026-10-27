@@ -69,14 +69,23 @@ export async function verifyRegistryDependencies(
 			if (folder === spec.slug || !owner.has(folder)) owner.set(folder, spec.slug);
 		}
 
-	for (const spec of specs) {
+	const sources = await Promise.all(
+		specs.map((spec) =>
+			Promise.all(
+				(spec.impl[framework]?.files ?? []).map((f) =>
+					readSource(framework, f.path).catch(() => ""),
+				),
+			),
+		),
+	);
+	for (const [index, spec] of specs.entries()) {
 		const impl = spec.impl[framework];
 		if (!impl) continue;
 		const shipped = new Set(impl.files.map((f) => f.path.split("/")[0]));
 		const shippedFiles = new Set(impl.files.map((f) => f.path));
 		const declared = new Set(impl.registryDependencies ?? []);
-		for (const file of impl.files) {
-			const source = await readSource(framework, file.path).catch(() => "");
+		for (const [fileIndex, file] of impl.files.entries()) {
+			const source = sources[index]?.[fileIndex] ?? "";
 			const dir = file.path.split("/").slice(0, -1).join("/");
 			for (const [, name = ""] of source.matchAll(LOCAL_IMPORT)) {
 				const candidates = LOCAL_EXTENSIONS.map((ext) =>
