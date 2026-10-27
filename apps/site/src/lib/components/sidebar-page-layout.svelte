@@ -101,7 +101,7 @@ function active(match: string[]) {
 		</div>
 	</div>
 	{/if}
-	<div class="min-w-0 rounded-t-3xl border border-border border-b-0 bg-background md:rounded-b-3xl md:border-b md:border-t-0 md:px-10 xl:px-14">
+	<div class="min-w-0 rounded-t-3xl border border-border border-b-0 bg-background md:rounded-none md:border-b md:border-t-0 md:px-10 xl:px-14">
 		<div
 			class={[
 				"min-w-0 [&_main]:px-4 md:[&_main]:px-0",

@@ -16,6 +16,25 @@ export const dialog = defineComponent({
 			control: { kind: "none" },
 		},
 		{
+			name: "motion",
+			type: '"zoom" | "fade" | "slide-up" | "slide-down" | "slide-left" | "slide-right" | "morph"',
+			description:
+				"How the panel enters and exits. Every exit retraces the entrance path; `morph` unfolds from the centre.",
+			default: "zoom",
+			control: {
+				kind: "select",
+				options: [
+					"zoom",
+					"fade",
+					"slide-up",
+					"slide-down",
+					"slide-left",
+					"slide-right",
+					"morph",
+				],
+			},
+		},
+		{
 			name: "size",
 			type: '"sm" | "default" | "lg" | "xl"',
 			description: "Maximum width of the content panel.",
@@ -40,10 +59,11 @@ export const dialog = defineComponent({
 	],
 	motion: {
 		springs: [],
-		reducedMotion: "The panel appears at full size; the backdrop still dims.",
+		reducedMotion: "The panel appears in place without scale, travel or clipping.",
 		behaviour: [
-			"The panel scales from 0.96 and fades over 280ms; the backdrop blurs at the same time.",
-			"Closing is immediate: the decision is already made and holding the layout is just latency.",
+			"The default panel scales from 1.02 and fades; fade, four directional slides and a centre-unfolding morph are optional.",
+			"Fade, zoom and slide closes retrace their open path with shorter exit timing; morph stays opaque and folds fully back to its centre over the same duration it opens.",
+			"The backdrop fades and blurs in step with every panel treatment.",
 		],
 	},
 	a11y: {
@@ -53,7 +73,7 @@ export const dialog = defineComponent({
 			{ keys: ["Tab"], action: "Cycles within the dialog while it is open" },
 		],
 		notes: [
-			"Rendered with the native dialog element, so the top layer, the backdrop and inertness of the rest of the page come from the browser rather than a focus-trap library.",
+			"Base UI and bits-ui own focus trapping, inertness, top-layer emulation and focus restoration.",
 			"DialogTitle and DialogDescription own the ids that the dialog is labelled and described by, so the wiring cannot drift.",
 			'`variant="default"` renders a single flat surface (the DialogFooter padding moves inline with it), matching the shadcn/ui baseline exactly.',
 			"Part names and data-slot values match shadcn/ui, so this replaces an existing dialog without touching call sites.",
@@ -83,6 +103,7 @@ export const dialog = defineComponent({
 			"Control it with `open` and `onOpenChange`; never toggle it with CSS.",
 			"Always include a DialogTitle: it names the dialog for screen readers.",
 			"Escape and the close button always dismiss; `dismissOnBackdrop` only governs outside clicks.",
+			"Choose motion for spatial meaning: slide from the related edge, or keep `zoom` when there is no directional source.",
 		],
 	},
 	licenseOrigin: {

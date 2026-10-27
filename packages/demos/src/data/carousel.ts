@@ -31,4 +31,16 @@ export const CAROUSEL_SLIDES = [
 		price: "$890",
 		image: photo(1040, 680, 520),
 	},
+	{
+		title: "Marina corner",
+		detail: "King bed, wraparound view",
+		price: "$540",
+		image: photo(1060, 680, 520),
+	},
+	{
+		title: "Atrium studio",
+		detail: "Queen bed, garden light",
+		price: "$295",
+		image: photo(1050, 680, 520),
+	},
 ];

@@ -3,6 +3,9 @@
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import type { ComponentProps } from "react";
 import { cn } from "../../lib/cn";
+import { type AccordionMotion, accordion } from "../variants";
+
+export type { AccordionMotion };
 
 type AccordionType = "single" | "multiple";
 
@@ -18,6 +21,7 @@ export type AccordionProps = Omit<
 	value?: string | string[];
 	defaultValue?: string | string[];
 	onValueChange?: (value: string | string[]) => void;
+	motion?: AccordionMotion;
 };
 
 const toList = (v: string | string[] | undefined) =>
@@ -29,12 +33,14 @@ export function Accordion({
 	value,
 	defaultValue,
 	onValueChange,
+	motion = "smooth",
 	className,
 	...props
 }: AccordionProps) {
 	return (
 		<AccordionPrimitive.Root
 			data-slot="accordion"
+			data-motion={motion}
 			multiple={type === "multiple"}
 			value={toList(value)}
 			defaultValue={toList(defaultValue)}
@@ -42,10 +48,7 @@ export function Accordion({
 				onValueChange?.(type === "multiple" ? next : (next[0] ?? ""))
 			}
 			keepMounted
-			className={cn(
-				"divide-y divide-border overflow-hidden rounded-xl border border-border",
-				className,
-			)}
+			className={cn(accordion({ motion }), className)}
 			{...props}
 		/>
 	);
@@ -86,7 +89,7 @@ export function AccordionTrigger({
 					fill="none"
 					aria-hidden
 					data-slot="accordion-icon"
-					className="size-4 shrink-0 text-muted-foreground transition-[rotate] duration-(--duration-exit) ease-(--ease-ui-out) group-data-[panel-open]/accordion-trigger:rotate-180 group-data-[panel-open]/accordion-trigger:duration-(--duration-overlay) motion-reduce:transition-none"
+					className="size-4 shrink-0 text-muted-foreground transition-[rotate] duration-(--accordion-duration) ease-(--accordion-ease) group-data-[panel-open]/accordion-trigger:rotate-180 group-data-[panel-open]/accordion-trigger:duration-(--accordion-open-duration) group-data-[panel-open]/accordion-trigger:ease-(--accordion-open-ease) motion-reduce:transition-none"
 				>
 					<path
 						d="m4 6 4 4 4-4"
@@ -109,7 +112,7 @@ export function AccordionContent({
 	return (
 		<AccordionPrimitive.Panel
 			data-slot="accordion-content"
-			className="group/accordion-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--duration-dropdown)] ease-[var(--ease-out-quad)] data-[open]:grid-rows-[1fr] data-[open]:duration-[var(--duration-collapse)] motion-reduce:transition-none"
+			className="group/accordion-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-(--accordion-duration) ease-(--accordion-ease) data-[open]:grid-rows-[1fr] data-[open]:[--accordion-duration:var(--accordion-open-duration)] data-[open]:[--accordion-ease:var(--accordion-open-ease)] motion-reduce:transition-none"
 			render={(renderProps, state) => <div {...renderProps} inert={!state.open} />}
 			{...props}
 		>
@@ -117,7 +120,7 @@ export function AccordionContent({
 				<div
 					className={cn(
 						// The answer settles into place as the panel opens, and lifts back as it closes.
-						"px-4 pb-3 text-muted-foreground text-sm leading-relaxed -translate-y-1 opacity-0 transition-[translate,opacity] duration-(--duration-dropdown) ease-(--ease-ui-out) group-data-[open]/accordion-panel:translate-y-0 group-data-[open]/accordion-panel:opacity-100 motion-reduce:transition-none",
+						"px-4 pb-3 text-muted-foreground text-sm leading-relaxed translate-y-(--accordion-content-y) scale-y-(--accordion-content-scale) opacity-0 transition-[translate,scale,opacity] duration-(--accordion-duration) ease-(--accordion-ease) origin-top group-data-[open]/accordion-panel:translate-y-0 group-data-[open]/accordion-panel:scale-y-100 group-data-[open]/accordion-panel:opacity-100 motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:scale-y-100",
 						className,
 					)}
 				>

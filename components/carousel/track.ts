@@ -10,6 +10,10 @@ export type CarouselTrackOptions = {
 	flat: boolean;
 	/** Keys and arrows wrap from the last slide to the first and back. */
 	loop: boolean;
+	projection: "linear" | "concave" | "convex";
+	visibleItems: number;
+	minScale: number;
+	arc?: number;
 };
 
 type Drag = {
@@ -30,6 +34,8 @@ const FLICK = 360;
 /** Scale and opacity of a slide one full step from the centre. */
 const SCALE = 0.9;
 const DIM = 0.5;
+const EDGE_ANGLE = (72 * Math.PI) / 180;
+const CLAMP_ANGLE = (95 * Math.PI) / 180;
 /** Near-critical spring for the track, in physical units (stiffness, damping, unit mass). */
 const TRAVEL = { stiffness: 300, damping: 34 };
 
@@ -80,7 +86,11 @@ export function createCarouselTrack(
 	const slides = () => [...track.querySelectorAll<HTMLElement>("[data-carousel-slide]")];
 	const dots = () => [...root.querySelectorAll<HTMLElement>("[data-carousel-dot]")];
 	const last = () => Math.max(0, slides().length - 1);
-	const bounds = () => ({ min: -last() * step, max: 0 });
+	const wraps = () => opts.loop && opts.projection !== "linear" && slides().length > 1;
+	const bounds = () =>
+		wraps()
+			? { min: Number.NEGATIVE_INFINITY, max: Number.POSITIVE_INFINITY }
+			: { min: -last() * step, max: 0 };
 	const band = (raw: number) => {
 		const { min, max } = bounds();
 		const size = width || 1;
@@ -102,16 +112,61 @@ export function createCarouselTrack(
 
 	const paint = () => {
 		if (!step) return;
-		track.style.transform = `translate3d(${x}px, 0, 0)`;
+		track.style.transform =
+			opts.projection === "linear" ? `translate3d(${x}px, 0, 0)` : "";
 		const position = -x / step;
 		const end = last();
+		const count = slides().length;
 		slides().forEach((el, i) => {
-			const d = Math.min(1, Math.abs(position - i));
-			el.style.scale = opts.flat ? "1" : String(1 - (1 - SCALE) * d);
-			el.style.opacity = opts.flat ? "1" : String(1 - (1 - DIM) * d);
+			const rawOffset = i - position;
+			const offset = wraps()
+				? rawOffset - Math.round(rawOffset / count) * count
+				: rawOffset;
+			const d = Math.min(1, Math.abs(offset));
+			if (opts.projection === "linear") {
+				el.style.position = "";
+				el.style.left = "";
+				el.style.top = "";
+				el.style.translate = "";
+				el.style.scale = opts.flat ? "1" : String(1 - (1 - SCALE) * d);
+				el.style.opacity = opts.flat ? "1" : String(1 - (1 - DIM) * d);
+				return;
+			}
+
+			const halfWidth = width / 2;
+			const edgeOffset = Math.max(2, (opts.visibleItems + 1) / 2);
+			const alpha = EDGE_ANGLE / edgeOffset;
+			const theta = clamp(offset * alpha, -CLAMP_ANGLE, CLAMP_ANGLE);
+			const minScale = clamp(opts.minScale, 0.25, 0.95);
+			const camera = Math.max(0.2, (minScale - Math.cos(EDGE_ANGLE)) / (1 - minScale));
+			const projected =
+				opts.projection === "concave"
+					? (((halfWidth * (Math.cos(EDGE_ANGLE) + camera)) / Math.sin(EDGE_ANGLE)) *
+							Math.sin(theta)) /
+						(Math.cos(theta) + camera)
+					: offset * (width / (opts.visibleItems + 1));
+			const distance = Math.min(Math.abs(offset) / edgeOffset, CLAMP_ANGLE / EDGE_ANGLE);
+			const scale =
+				opts.projection === "convex"
+					? 1 - (1 - minScale) * distance
+					: minScale + (1 - minScale) * distance;
+			const normalizedX = projected / Math.max(1, halfWidth);
+			const curve =
+				(opts.arc ?? el.offsetWidth * 0.35) * (0.5 - normalizedX * normalizedX);
+			el.style.position = "absolute";
+			el.style.left = "50%";
+			el.style.top = "50%";
+			el.style.translate = `calc(-50% + ${projected}px) calc(-50% + ${opts.projection === "convex" ? -curve : curve}px)`;
+			el.style.scale = String(scale);
+			el.style.opacity = Math.abs(projected) <= halfWidth + el.offsetWidth ? "1" : "0";
 		});
 		dots().forEach((el, i) => {
-			const emphasis = Math.max(0, 1 - Math.abs(clamp(position, 0, end) - i));
+			const shownPosition = wraps()
+				? ((position % count) + count) % count
+				: clamp(position, 0, end);
+			const rawDistance = Math.abs(shownPosition - i);
+			const distance = wraps() ? Math.min(rawDistance, count - rawDistance) : rawDistance;
+			const emphasis = Math.max(0, 1 - distance);
 			el.style.setProperty("--emphasis", String(emphasis));
 			if (i !== target) el.style.setProperty("--drain", "0");
 		});
@@ -155,10 +210,17 @@ export function createCarouselTrack(
 	};
 
 	const select = (to: number, v = 0, announce = true) => {
-		const next = clamp(to, 0, last());
+		const count = last() + 1;
+		const next = wraps()
+			? ((Math.round(to) % count) + count) % count
+			: clamp(to, 0, last());
+		const position = -x / step;
+		const destination = wraps()
+			? next + Math.round((position - next) / count) * count
+			: next;
 		const changed = next !== target;
 		target = next;
-		glide(next, v);
+		glide(destination, v);
 		restartDrain();
 		if (changed) opts.onSelect(next, announce);
 	};
@@ -197,12 +259,9 @@ export function createCarouselTrack(
 	const measure = () => {
 		const [first, second] = slides();
 		if (!first) return;
-		const centre = (el: HTMLElement) => {
-			const rect = el.getBoundingClientRect();
-			return rect.left + rect.width / 2;
-		};
-		// Centres ignore each slide's scale, and rects keep the sub-pixel step offsetLeft rounds away.
-		const next = second ? centre(second) - centre(first) : first.offsetWidth;
+		const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+		// Width plus the declared gap stays stable when projected slides become absolute.
+		const next = second ? first.offsetWidth + gap : first.offsetWidth;
 		const changed = next !== step;
 		step = next;
 		width = viewport.clientWidth;
@@ -375,7 +434,12 @@ export function createCarouselTrack(
 		},
 		update(next: CarouselTrackOptions) {
 			const restart = next.running !== opts.running || next.interval !== opts.interval;
-			const repaint = next.flat !== opts.flat;
+			const repaint =
+				next.flat !== opts.flat ||
+				next.projection !== opts.projection ||
+				next.visibleItems !== opts.visibleItems ||
+				next.minScale !== opts.minScale ||
+				next.arc !== opts.arc;
 			opts = next;
 			if (repaint) paint();
 			if (!restart) return;

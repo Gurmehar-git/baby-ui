@@ -25,6 +25,7 @@ const id = $props.id();
 
 <Dialog
 	bind:open
+	motion={p.motion ?? "zoom"}
 	size={p.size ?? "default"}
 	variant={p.variant ?? "default"}
 	dismissOnBackdrop={p.dismissOnBackdrop !== false}

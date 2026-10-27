@@ -124,12 +124,12 @@ Motion is CSS-only. Exits undercut entrances; reduced motion keeps opacity and d
 | Contract | Used by | In | Out | Easing |
 | --- | --- | --- | --- | --- |
 | `ANCHORED` (`lib/anchor.ts`) | Popover, Tooltip, HoverCard, DropdownMenu, ContextMenu, Select, Combobox, MultiSelect, NavigationMenu, DatePicker, ColorPicker field | opacity + scale 0.97 to 1, 4px lean from the trigger, 150ms | to scale 0.98, 100ms | `ease` |
-| `dialogFrame` popup | Dialog, AlertDialog | opacity + scale 1.02 to 1, 250ms | to scale 0.98, 100ms | `--ease-out-quad` |
+| `dialogFrame` popup | Dialog, AlertDialog | `zoom` default; optional fade, directional slide or centre morph, 250ms | reverse the selected path, 100ms; morph stays opaque and folds for 250ms | `--ease-out-quad` |
 | `dialogFrame` backdrop | Dialog, AlertDialog, Command | opacity, 150ms | 100ms | `--ease-out` |
 | `sheet` panel and backdrop | Sheet | translate from the edge, 250ms | 200ms | `--ease-drawer` |
 | vaul | Drawer | vaul's drag physics, 500ms | gesture-driven | `--ease-drawer` |
 | Command popup | Command | instant (opened from the keyboard) | fade, 100ms | `--ease-out` |
-| Collapse | Accordion, Collapsible, FileTree | grid-template-rows, 200ms | 150ms | `--ease-out-quad` |
+| Collapse | Accordion, Collapsible, FileTree | grid-template-rows, 200ms; Accordion optionally expands on the 600ms bouncy spring or a 150ms fade | reverse geometry; bouncy closes on the 400ms snappy spring | `--ease-out-quad` / sampled springs |
 | Press | Button, menu rows, calendar days, pagination, breadcrumb ellipsis | `--press-scale*` per size | eases back over 250ms | `--ease-out-quart` |
 | Check and dot | Menu checkbox/radio rows, Select, MultiSelect, RadioGroup | tick draws (stroke-dashoffset), dot pops 0.7 to 1, 250ms | reverse | linear / `--ease-out-quart` |
 | Chip | MultiSelect, TagInput | pops in from 0.95, 200ms | removed at once | `--ease-out` |
@@ -137,6 +137,8 @@ Motion is CSS-only. Exits undercut entrances; reduced motion keeps opacity and d
 | Filter pill (`lib/pill.ts`) | Command filters and scopes, DateRangePicker presets | 250ms slide between options | 250ms | `--ease-out` |
 | Row marker | Command | snaps on keys; glides 150ms when the pointer moves it | snaps | `--ease-out` |
 | Key cap | Command hints | 1px press while its key is held | 100ms | `--ease-out` |
+| Carousel projection | Carousel | linear, concave or convex x/y/scale derived from the same drag position | retraces the same projected path | track spring (300 / 34) |
+| Aspect ratio morph | AspectRatio | native `aspect-ratio`, 250ms smooth or 600ms sampled spring | follows the next controlled ratio | `--ease-drawer` / `--ease-spring-bouncy` |
 
 Micro-interactions everywhere: every interactive part answers. Presses scale, the active
 option's indicator slides instead of repainting, paging views slide the way they travel, chevrons

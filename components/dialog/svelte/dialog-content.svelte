@@ -8,13 +8,14 @@ import { getDialog } from "./context";
 let { children, class: classProp }: { children?: Snippet; class?: string } = $props();
 
 const dialog = getDialog();
-const styles = $derived(dialogFrame({ variant: dialog.variant }));
+const styles = $derived(dialogFrame({ motion: dialog.motion, variant: dialog.variant }));
 </script>
 
 <DialogPrimitive.Portal>
 	<DialogPrimitive.Overlay data-slot="dialog-backdrop" aria-hidden="true" class={styles.backdrop()} />
 	<DialogPrimitive.Content
 		data-slot="dialog-content"
+		data-motion={dialog.motion}
 		data-variant={dialog.variant}
 		onInteractOutside={(event) => {
 			if (!dialog.dismissOnBackdrop) event.preventDefault();

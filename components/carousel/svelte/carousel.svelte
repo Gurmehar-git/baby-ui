@@ -6,6 +6,7 @@ import { cn } from "../../lib/cn";
 import { createCarouselTrack } from "../track";
 import {
 	type CarouselControls,
+	type CarouselProjection,
 	type CarouselSize,
 	type CarouselVariant,
 	carousel,
@@ -18,6 +19,10 @@ let {
 	index = $bindable(),
 	defaultIndex = 0,
 	onIndexChange,
+	projection = "linear",
+	visibleItems = 5,
+	minScale = 0.58,
+	arc,
 	variant = "default",
 	size = "default",
 	controls = "full",
@@ -36,6 +41,14 @@ let {
 	index?: number;
 	defaultIndex?: number;
 	onIndexChange?: (index: number) => void;
+	/** Projects slides as a linear row or onto the inside/outside of a cylinder. */
+	projection?: CarouselProjection;
+	/** Approximate number of slides visible across a cylindrical projection. */
+	visibleItems?: number;
+	/** Scale at the cylinder's farthest point. */
+	minScale?: number;
+	/** Vertical curve depth in pixels; responsive when omitted. */
+	arc?: number;
 	/** `default` scales and dims neighbours, `flat` is a plain row, `inset` floats the controls over the slide. */
 	variant?: CarouselVariant;
 	/** Slide width preset; `slideSize` overrides it. */
@@ -88,6 +101,7 @@ let track = $state<HTMLDivElement>();
 let engine: ReturnType<typeof createCarouselTrack> | null = null;
 
 const canRotate = $derived(Boolean(interval) && count > 1 && !reduced);
+const wraps = $derived(loop || projection !== "linear");
 const running = $derived(
 	canRotate && playing && !hovered && !focusPaused && !dragging && inView && pageVisible,
 );
@@ -104,7 +118,11 @@ const options = $derived({
 		dragging = value;
 	},
 	flat: variant === "flat",
-	loop,
+	loop: wraps,
+	projection,
+	visibleItems,
+	minScale,
+	arc,
 });
 
 $effect(() => {
@@ -163,16 +181,17 @@ function toggleRotation() {
 // Arrows wrap with `loop`; otherwise they stop at either end.
 function step(delta: number) {
 	const next = current + delta;
-	if (loop) engine?.go((next + count) % count);
+	if (wraps) engine?.go((next + count) % count);
 	else if (next >= 0 && next <= last) engine?.go(next);
 }
 
-const s = $derived(carousel({ variant, size }));
+const s = $derived(carousel({ projection, variant, size }));
 </script>
 
 <section
 	bind:this={root}
 	data-slot="carousel"
+	data-projection={projection}
 	aria-roledescription="carousel"
 	aria-label={label}
 	class={cn(s.root(), classProp)}

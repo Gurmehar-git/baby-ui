@@ -1,4 +1,5 @@
 export { type AccordionProps, Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@baby-ui/components/react/accordion";
+export { accordion, type AccordionMotion } from "@baby-ui/components/react/accordion";
 export { type ActionButtonState, type ActionButtonProps, ActionButton } from "@baby-ui/components/react/action-button";
 export { actionButton } from "@baby-ui/components/react/action-button";
 export { type AgentScreenProps, AgentScreen } from "@baby-ui/components/react/agent-screen";
@@ -22,6 +23,8 @@ export { area, type AreaVariant } from "@baby-ui/components/react/area-chart";
 export { type AsciiEffectProps, AsciiEffect } from "@baby-ui/components/react/ascii-effect";
 export { type AsciiOptions, mountAscii } from "@baby-ui/components/react/ascii-effect";
 export { asciiEffect, type AsciiEffectVariant, type AsciiEffectTone, type AsciiEffectDither, type AsciiEffectFit, type AsciiEffectPosition } from "@baby-ui/components/react/ascii-effect";
+export { type AspectRatioProps, AspectRatio, type AspectRatioImageProps, AspectRatioImage } from "@baby-ui/components/react/aspect-ratio";
+export { aspectRatio, type AspectRatioMotion, type AspectRatioFit } from "@baby-ui/components/react/aspect-ratio";
 export { type AttachmentsProps, Attachments, type AttachmentProps, Attachment, type AttachmentPreviewProps, AttachmentPreview, AttachmentContent, AttachmentName, type AttachmentMetaProps, AttachmentMeta, AttachmentProgress, AttachmentRemove, AttachmentRetry } from "@baby-ui/components/react/attachment";
 export { type AttachmentLabels, ATTACHMENT_LABELS } from "@baby-ui/components/react/attachment";
 export { attachments, attachment, type AttachmentsVariant, type AttachmentVariant, type AttachmentStatus, ATTACHMENT_ICON, fileType } from "@baby-ui/components/react/attachment";
@@ -71,7 +74,7 @@ export { type CardDecision, type DeckPoint, type DeckExit, type DeckReturn, type
 export { cardStack, type CardStackVariant, type CardStackSize } from "@baby-ui/components/react/card-stack";
 export { type CarouselProps, CarouselItem, Carousel } from "@baby-ui/components/react/carousel";
 export { type CarouselTrackOptions, createCarouselTrack } from "@baby-ui/components/react/carousel";
-export { carousel, type CarouselVariant, type CarouselSize, type CarouselControls } from "@baby-ui/components/react/carousel";
+export { carousel, type CarouselProjection, type CarouselVariant, type CarouselSize, type CarouselControls } from "@baby-ui/components/react/carousel";
 export { type CaseStudyFlipStackProps, CaseStudyFlipStack } from "@baby-ui/components/react/case-study-flip-stack";
 export { type CaseStudyFlipItem, flipCardOffsets, activeFlipCard } from "@baby-ui/components/react/case-study-flip-stack";
 export { caseStudyFlipStack, type CaseStudyFlipStackSize, type CaseStudyFlipStackTone } from "@baby-ui/components/react/case-study-flip-stack";
@@ -188,7 +191,7 @@ export { decisionInbox, type DecisionInboxVariant } from "@baby-ui/components/re
 export { type DiaTextProps, DiaText } from "@baby-ui/components/react/dia-text";
 export { diaText, type DiaTextSize, DIA_TEXT_COLORS, diaGradient } from "@baby-ui/components/react/dia-text";
 export { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose } from "@baby-ui/components/react/dialog";
-export { dialogFrame, type DialogVariant, dialogWidth, type DialogSize } from "@baby-ui/components/react/dialog";
+export { dialogFrame, type DialogVariant, type DialogMotion, dialogWidth, type DialogSize } from "@baby-ui/components/react/dialog";
 export { type DiffRow, type DiffTableProps, DiffTable } from "@baby-ui/components/react/diff-table";
 export { diffRow, type DiffRowChange } from "@baby-ui/components/react/diff-table";
 export { type DispersionRaysProps, DispersionRays } from "@baby-ui/components/react/dispersion-rays";

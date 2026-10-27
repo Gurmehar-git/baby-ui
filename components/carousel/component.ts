@@ -3,6 +3,7 @@ import { carousel as carouselVariants } from "./variants";
 
 const SIZES = ["sm", "default", "lg"];
 const VARIANTS = ["default", "flat", "inset"];
+const PROJECTIONS = ["linear", "concave", "convex"];
 const CONTROLS = ["full", "dots", "arrows", "none"];
 
 export const carousel = defineComponent({
@@ -12,7 +13,7 @@ export const carousel = defineComponent({
 		"Centred row of slides browsed by drag, flick, trackpad swipe or keys, with neighbours in view and an indicator that travels with them.",
 	category: "base",
 	status: "stable",
-	variants: variantsOf(carouselVariants, ["variant", "size"]),
+	variants: variantsOf(carouselVariants, ["projection", "variant", "size"]),
 	props: [
 		{
 			name: "label",
@@ -21,6 +22,35 @@ export const carousel = defineComponent({
 				'Names the carousel for assistive technology, e.g. "From the Harbour suites".',
 			required: true,
 			control: { kind: "none" },
+		},
+		{
+			name: "projection",
+			type: PROJECTIONS.map((v) => `"${v}"`).join(" | "),
+			description:
+				"Linear is the standard track; concave and convex project the same slides and controls onto cylindrical geometry.",
+			default: "linear",
+			control: { kind: "select", options: PROJECTIONS },
+		},
+		{
+			name: "visibleItems",
+			type: "number",
+			description: "Approximate number of slides across a cylindrical projection.",
+			default: 5,
+			control: { kind: "number", min: 3, max: 9, step: 2 },
+		},
+		{
+			name: "minScale",
+			type: "number",
+			description: "Scale at the farthest point of a cylindrical projection.",
+			default: 0.58,
+			control: { kind: "number", min: 0.35, max: 0.85, step: 0.05 },
+		},
+		{
+			name: "arc",
+			type: "number",
+			description: "Vertical cylinder depth in pixels; omitted for a responsive default.",
+			default: 64,
+			control: { kind: "number", min: 0, max: 120, step: 8 },
 		},
 		{
 			name: "variant",
@@ -98,6 +128,7 @@ export const carousel = defineComponent({
 			"Release lands where the flick's momentum would carry the track; any flick faster than 360px/s moves at least one slide.",
 			"Past either end the track rubber-bands and springs back on release.",
 			"Neighbours scale to 0.9 and dim to 50% per step of distance, read every frame from the track position.",
+			"Concave and convex projections derive x, y and scale from that same continuous, wrapping track position, so drag, keys, autoplay and controls never fork into a second state model.",
 			"The indicator under each slide widens from a 6px dot to a 22px pill as the track nears it, and drains left to right while rotation runs.",
 		],
 	},
@@ -148,6 +179,7 @@ export const carousel = defineComponent({
 		],
 		ai: [
 			"Wrap each slide in CarouselItem; give the Carousel a `label` that names the set.",
+			'Use `projection="concave"` or `projection="convex"` for short visual sets; reduce `slideSize` so neighbouring choices remain legible.',
 			"Keep slides to roughly three to seven. Past that, a grid with filters serves people better.",
 			"Leave `autoplay` off unless the user asked for rotation; set `interval` to offer the play control instead.",
 		],

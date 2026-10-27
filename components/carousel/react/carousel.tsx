@@ -18,12 +18,13 @@ import { cn } from "../../lib/cn";
 import { createCarouselTrack } from "../track";
 import {
 	type CarouselControls,
+	type CarouselProjection,
 	type CarouselSize,
 	type CarouselVariant,
 	carousel,
 } from "../variants";
 
-export type { CarouselControls, CarouselSize, CarouselVariant };
+export type { CarouselControls, CarouselProjection, CarouselSize, CarouselVariant };
 
 export interface CarouselProps {
 	/** Names the carousel for assistive technology, e.g. "From the Harbour suites". */
@@ -34,6 +35,14 @@ export interface CarouselProps {
 	index?: number;
 	defaultIndex?: number;
 	onIndexChange?: (index: number) => void;
+	/** Projects slides as a linear row or onto the inside/outside of a cylinder. */
+	projection?: CarouselProjection;
+	/** Approximate number of slides visible across a cylindrical projection. */
+	visibleItems?: number;
+	/** Scale at the cylinder's farthest point. */
+	minScale?: number;
+	/** Vertical curve depth in pixels; responsive when omitted. */
+	arc?: number;
 	/** `default` scales and dims neighbours, `flat` is a plain row, `inset` floats the controls over the slide. */
 	variant?: CarouselVariant;
 	/** Slide width preset; `slideSize` overrides it. */
@@ -126,6 +135,10 @@ export function Carousel({
 	index: controlledIndex,
 	defaultIndex = 0,
 	onIndexChange,
+	projection = "linear",
+	visibleItems = 5,
+	minScale = 0.58,
+	arc,
 	variant = "default",
 	size = "default",
 	controls = "full",
@@ -169,6 +182,7 @@ export function Carousel({
 	latest.current = { controlledIndex, onIndexChange, slideLabel, count };
 
 	const canRotate = Boolean(interval) && count > 1 && !(hydrated && reduced);
+	const wraps = loop || projection !== "linear";
 	const running =
 		canRotate &&
 		playing &&
@@ -188,7 +202,11 @@ export function Carousel({
 		},
 		onDragChange: setDragging,
 		flat: variant === "flat",
-		loop,
+		loop: wraps,
+		projection,
+		visibleItems,
+		minScale,
+		arc,
 	};
 	const optionsRef = useRef(options);
 	optionsRef.current = options;
@@ -244,11 +262,11 @@ export function Carousel({
 	// Arrows wrap with `loop`; otherwise they stop at either end.
 	const step = (delta: number) => {
 		const next = index + delta;
-		if (loop) engine.current?.go((next + count) % count);
+		if (wraps) engine.current?.go((next + count) % count);
 		else if (next >= 0 && next <= last) engine.current?.go(next);
 	};
 
-	const s = carousel({ variant, size });
+	const s = carousel({ projection, variant, size });
 	const rootStyle = {
 		"--carousel-start": startIndex,
 		...(slideSize ? { "--carousel-slide": slideSize } : {}),
@@ -258,6 +276,7 @@ export function Carousel({
 		<section
 			ref={rootRef}
 			data-slot="carousel"
+			data-projection={projection}
 			aria-roledescription="carousel"
 			aria-label={label}
 			className={cn(s.root(), className)}

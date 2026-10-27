@@ -11,7 +11,7 @@ export const carousel = tv({
 		track:
 			"flex select-none gap-(--carousel-gap) px-[calc((100cqw-var(--carousel-slide))/2)] [&:not([data-measured])]:translate-x-[calc(var(--carousel-start)*-1*(var(--carousel-slide)+var(--carousel-gap)))]",
 		slide:
-			"min-w-0 flex-[0_0_var(--carousel-slide)] origin-center will-change-[transform,opacity] [&_img]:[-webkit-user-drag:none]",
+			"w-(--carousel-slide) min-w-0 flex-[0_0_var(--carousel-slide)] origin-center will-change-[transform,opacity] [&_img]:[-webkit-user-drag:none]",
 		controls:
 			"flex min-w-0 items-center gap-2 px-[calc((100cqw-var(--carousel-slide))/2)] @max-[340px]:gap-1 @max-[340px]:px-[max(0px,calc((100cqw-var(--carousel-slide))/2-0.5rem))]",
 		tabs: "flex min-w-0 items-center",
@@ -28,6 +28,19 @@ export const carousel = tv({
 		icon: "col-start-1 row-start-1 size-4 transition-[opacity,scale,filter] duration-(--duration-fast) ease-[var(--ease-ui-out)] data-[on=false]:scale-60 data-[on=false]:opacity-0 data-[on=false]:blur-[2px] motion-reduce:transition-none",
 	},
 	variants: {
+		projection: {
+			linear: {},
+			concave: {
+				viewport:
+					"h-[min(42cqw,22rem)] rounded-3xl border border-border/60 bg-muted/20 [clip-path:inset(0_round_1.5rem)]",
+				track: "relative h-full px-0",
+			},
+			convex: {
+				viewport:
+					"h-[min(42cqw,22rem)] rounded-3xl border border-border/60 bg-muted/20 [clip-path:inset(0_round_1.5rem)]",
+				track: "relative h-full px-0",
+			},
+		},
 		variant: {
 			default: {},
 			flat: {},
@@ -47,9 +60,10 @@ export const carousel = tv({
 			lg: { root: "[--carousel-slide:min(86cqw,480px)]" },
 		},
 	},
-	defaultVariants: { variant: "default", size: "default" },
+	defaultVariants: { projection: "linear", variant: "default", size: "default" },
 });
 
+export type CarouselProjection = NonNullable<VariantProps<typeof carousel>["projection"]>;
 export type CarouselVariant = NonNullable<VariantProps<typeof carousel>["variant"]>;
 export type CarouselSize = NonNullable<VariantProps<typeof carousel>["size"]>;
 /** Which controls render under (or over) the slides. */

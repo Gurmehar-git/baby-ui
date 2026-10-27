@@ -1,4 +1,5 @@
-import { defineComponent } from "@baby-ui/registry-schema";
+import { defineComponent, variantsOf } from "@baby-ui/registry-schema";
+import { accordion as accordionVariants } from "./variants";
 
 export const accordion = defineComponent({
 	slug: "accordion",
@@ -6,6 +7,7 @@ export const accordion = defineComponent({
 	description: "Disclosure sections with animated height; one open at a time, or many.",
 	category: "base",
 	status: "stable",
+	variants: variantsOf(accordionVariants, ["motion"]),
 	props: [
 		{
 			name: "type",
@@ -13,6 +15,14 @@ export const accordion = defineComponent({
 			description: "Whether one panel or any number can be open.",
 			default: "single",
 			control: { kind: "select", options: ["single", "multiple"] },
+		},
+		{
+			name: "motion",
+			type: '"smooth" | "bouncy" | "fade"',
+			description:
+				"How height, content and chevron respond. Bouncy uses the shared CSS spring; fade removes content travel.",
+			default: "smooth",
+			control: { kind: "select", options: ["smooth", "bouncy", "fade"] },
 		},
 		{
 			name: "collapsible",
@@ -30,12 +40,13 @@ export const accordion = defineComponent({
 		},
 	],
 	motion: {
-		springs: [],
-		reducedMotion: "Panels open and close instantly; the chevron still rotates.",
+		springs: ["bouncy"],
+		reducedMotion:
+			"Height, content travel, scale and chevron rotation become instant; content opacity still communicates disclosure.",
 		behaviour: [
-			"The answer settles 4px into place as its panel opens, and lifts back as it closes.",
+			"Smooth settles the answer 4px into place; bouncy adds a restrained 8px/0.95 overshoot; fade changes opacity without travel.",
 			"Opening animates height from zero with a grid-template-rows transition, so no JS measures the panel.",
-			"The chevron rotates 180 degrees over the same 200ms, so the two read as one gesture.",
+			"Height, content and chevron share one easing per state; bouncy expands on the 600ms overshoot and collapses on the faster 400ms non-overshooting spring.",
 		],
 	},
 	a11y: {

@@ -447,6 +447,7 @@ export function AccordionDemo({ props }: { props: Props }) {
 		<div className="w-full max-w-md">
 			<Accordion
 				type={type}
+				motion={p.motion}
 				collapsible={p.collapsible !== false}
 				value={value}
 				onValueChange={setValue}

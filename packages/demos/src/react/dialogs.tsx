@@ -78,6 +78,7 @@ export function DialogDemo({ props }: { props: Props }) {
 		<Dialog
 			open={open}
 			onOpenChange={setOpen}
+			motion={p.motion ?? "zoom"}
 			size={p.size ?? "default"}
 			variant={p.variant ?? "default"}
 			dismissOnBackdrop={p.dismissOnBackdrop ?? true}

@@ -6,15 +6,17 @@ import { createContext, useContext, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "../../lib/cn";
 import {
+	type DialogMotion,
 	type DialogSize,
 	type DialogVariant,
 	dialogFrame,
 	dialogWidth,
 } from "../variants";
 
-export type { DialogSize, DialogVariant };
+export type { DialogMotion, DialogSize, DialogVariant };
 
 type Ctx = {
+	motion: DialogMotion;
 	size: DialogSize;
 	variant: DialogVariant;
 	/** The rim slot below the surface; DialogFooter portals into it. */
@@ -34,6 +36,7 @@ export function Dialog({
 	children,
 	open,
 	defaultOpen = false,
+	motion = "zoom",
 	size = "default",
 	variant = "default",
 	dismissOnBackdrop = true,
@@ -42,6 +45,7 @@ export function Dialog({
 	children?: ReactNode;
 	open?: boolean;
 	defaultOpen?: boolean;
+	motion?: DialogMotion;
 	size?: DialogSize;
 	variant?: DialogVariant;
 	dismissOnBackdrop?: boolean;
@@ -50,8 +54,8 @@ export function Dialog({
 	const [footerEl, setFooterEl] = useState<HTMLDivElement | null>(null);
 
 	const ctx = useMemo(
-		() => ({ size, variant, footerEl, setFooterEl }),
-		[size, variant, footerEl],
+		() => ({ motion, size, variant, footerEl, setFooterEl }),
+		[motion, size, variant, footerEl],
 	);
 
 	return (
@@ -86,7 +90,7 @@ export function DialogContent({
 	children,
 }: ComponentProps<typeof DialogPrimitive.Popup>) {
 	const dialog = useDialog();
-	const styles = dialogFrame({ variant: dialog.variant });
+	const styles = dialogFrame({ motion: dialog.motion, variant: dialog.variant });
 
 	return (
 		<DialogPrimitive.Portal>
@@ -96,6 +100,7 @@ export function DialogContent({
 			/>
 			<DialogPrimitive.Popup
 				data-slot="dialog-content"
+				data-motion={dialog.motion}
 				data-variant={dialog.variant}
 				// Base UI marks the page inert but omits aria-modal, which screen readers expect.
 				aria-modal="true"

@@ -232,7 +232,7 @@ function active(match: string[]) {
 			class={[
 				"flex h-14 min-w-0 items-center justify-between gap-2 px-4 sm:gap-4 md:px-6",
 				workspaceShell
-					? "md:rounded-t-3xl md:border md:border-b-0 md:border-border md:bg-background"
+					? "md:border md:border-b-0 md:border-border md:bg-background"
 					: "xl:px-8",
 			]}
 		>

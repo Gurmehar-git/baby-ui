@@ -16,6 +16,7 @@ export const demos: Record<string, DemoLoader> = {
 	"announcement-bar": () => import("./announcement-bar").then((m) => ({ default: m.AnnouncementBarDemo })),
 	"area-chart": () => import("./area-chart").then((m) => ({ default: m.AreaChartDemo })),
 	"ascii-effect": () => import("./ascii-effect").then((m) => ({ default: m.AsciiEffectDemo })),
+	"aspect-ratio": () => import("./aspect-ratio").then((m) => ({ default: m.AspectRatioDemo })),
 	attachment: () => import("./content").then((m) => ({ default: m.AttachmentDemo })),
 	"aurora-flow": () => import("./aurora-flow").then((m) => ({ default: m.AuroraFlowDemo })),
 	"auth-form": () => import("./auth-form").then((m) => ({ default: m.AuthFormDemo })),
