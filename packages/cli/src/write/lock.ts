@@ -6,7 +6,7 @@ import { toPosix } from "../project/fs.ts";
 
 export const STATE_DIR = ".baby-ui";
 
-export const sha256 = (content: string) =>
+export const sha256 = (content: string | Uint8Array) =>
 	createHash("sha256").update(content).digest("hex");
 
 const LockItemSchema = z.object({

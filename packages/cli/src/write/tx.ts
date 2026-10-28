@@ -8,7 +8,7 @@ import { relativeTo, STATE_DIR, sha256 } from "./lock.ts";
 /** One file to write, or delete when `content` is null. */
 export interface FileOp {
 	readonly path: string;
-	readonly content: string | null;
+	readonly content: string | Uint8Array | null;
 }
 
 const SideSchema = z.object({ exists: z.boolean(), hash: z.string().optional() });
@@ -35,9 +35,9 @@ export type Journal = z.infer<typeof JournalSchema>;
 export const KEEP = 20;
 const historyDir = (root: string) => join(root, STATE_DIR, "history");
 
-async function readText(path: string): Promise<string | undefined> {
+async function readContent(path: string): Promise<Buffer | undefined> {
 	try {
-		return await readFile(path, "utf8");
+		return await readFile(path);
 	} catch {
 		return undefined;
 	}
@@ -101,9 +101,9 @@ export async function commit(
 
 	const createdDirs = new Set<string>();
 	const entries: Journal["ops"] = [];
-	const before: Array<string | undefined> = [];
+	const before: Array<Buffer | undefined> = [];
 	for (const [index, op] of ops.entries()) {
-		const previous = await readText(op.path);
+		const previous = await readContent(op.path);
 		before.push(previous);
 		for (const created of missingDirs(root, op.path)) {
 			createdDirs.add(relativeTo(root, created));
@@ -182,9 +182,9 @@ export async function readJournal(
 	root: string,
 	id: string,
 ): Promise<Journal | undefined> {
-	const text = await readText(join(historyDir(root), id, "journal.json"));
+	const text = await readContent(join(historyDir(root), id, "journal.json"));
 	if (text === undefined) return undefined;
-	const parsed = JournalSchema.safeParse(JSON.parse(text));
+	const parsed = JournalSchema.safeParse(JSON.parse(text.toString("utf8")));
 	return parsed.success ? parsed.data : undefined;
 }
 
@@ -204,7 +204,7 @@ export interface Conflict {
 export async function conflicts(root: string, journal: Journal): Promise<Conflict[]> {
 	const found: Conflict[] = [];
 	for (const op of journal.ops) {
-		const current = await readText(join(root, op.path));
+		const current = await readContent(join(root, op.path));
 		if (op.after.exists && current === undefined)
 			found.push({ path: op.path, reason: "deleted" });
 		else if (!op.after.exists && current !== undefined) {
@@ -221,7 +221,7 @@ export async function amend(root: string, journal: Journal, paths: readonly stri
 	const ops = await Promise.all(
 		journal.ops.map(async (op) => {
 			if (!paths.includes(op.path)) return op;
-			const current = await readText(join(root, op.path));
+			const current = await readContent(join(root, op.path));
 			return {
 				...op,
 				after: {
@@ -243,7 +243,7 @@ export async function revert(root: string, journal: Journal): Promise<Journal> {
 	const ops: FileOp[] = [];
 	for (const op of [...journal.ops].reverse()) {
 		const content = op.before.snapshot
-			? await readFile(join(dir, op.before.snapshot), "utf8")
+			? await readFile(join(dir, op.before.snapshot))
 			: null;
 		ops.push({ path: join(root, op.path), content });
 	}
