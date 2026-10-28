@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { ancestors, type Json } from "./fs.ts";
+import { ancestors, type Json, readJson } from "./fs.ts";
 
 export const PACKAGE_MANAGERS = ["pnpm", "bun", "yarn", "npm"] as const;
 export type PackageManager = (typeof PACKAGE_MANAGERS)[number];
@@ -30,8 +30,12 @@ export function detectPm(
 		}
 		if (dir === stop) break;
 	}
-	const declared = String(pkg?.packageManager ?? "").split("@")[0] ?? "";
-	if (isPackageManager(declared)) return { pm: declared, pmSource: "packageManager" };
+	for (const dir of ancestors(root)) {
+		const manifest = dir === root ? pkg : readJson(join(dir, "package.json"));
+		const declared = String(manifest?.packageManager ?? "").split("@")[0] ?? "";
+		if (isPackageManager(declared)) return { pm: declared, pmSource: "packageManager" };
+		if (dir === stop) break;
+	}
 	const agent = (process.env.npm_config_user_agent ?? "").split("/")[0] ?? "";
 	if (isPackageManager(agent)) return { pm: agent, pmSource: "user agent" };
 	return { pm: "npm", pmSource: "default" };
