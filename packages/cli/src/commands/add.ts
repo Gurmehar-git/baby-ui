@@ -4,6 +4,7 @@ import { diffStat, formatDiff } from "../diff.ts";
 import { c } from "../logger.ts";
 import type { Project } from "../project/detect.ts";
 import { type InstallConfig, installConfig } from "../project/paths.ts";
+import { lockfilesFor } from "../project/pm.ts";
 import { discoverTargets, findWorkspace, type Target } from "../project/targets.ts";
 import { type ResolvedItem, resolveTree } from "../registry/graph.ts";
 import { canonicalUrl } from "../registry/resolve.ts";
@@ -176,7 +177,9 @@ function nextLock(
 const unchanged = (op: FileOp) =>
 	op.content !== null &&
 	existsSync(op.path) &&
-	readFileSync(op.path, "utf8") === op.content;
+	readFileSync(op.path).equals(
+		typeof op.content === "string" ? Buffer.from(op.content) : op.content,
+	);
 
 const LABEL: Record<Action, [string, (s: string) => string]> = {
 	create: ["created", c.green],
@@ -304,15 +307,14 @@ export async function installInto(
 	if (willInstall) {
 		for (const { project } of pending) {
 			snapshots.add(join(project.root, "package.json"));
-			if (project.pm === "pnpm") {
-				const workspace = await findWorkspace(project.root);
-				snapshots.add(join(workspace.root, "pnpm-lock.yaml"));
-			}
+			const workspace = await findWorkspace(project.root);
+			for (const file of lockfilesFor(project.pm))
+				snapshots.add(join(workspace.root, file));
 		}
 	}
 	// Missing lockfiles are recorded too, so undo removes files the install creates.
 	for (const path of snapshots)
-		ops.push({ path, content: existsSync(path) ? readFileSync(path, "utf8") : null });
+		ops.push({ path, content: existsSync(path) ? readFileSync(path) : null });
 	const styleRoot = plan.css?.root ?? workspace?.project.root ?? root;
 	for (const [lockRoot, lock] of locks) {
 		const next = nextLock(
