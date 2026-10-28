@@ -14,6 +14,10 @@ const LOCKFILES: ReadonlyArray<[string, PackageManager]> = [
 	["package-lock.json", "npm"],
 ];
 
+export function lockfilesFor(pm: PackageManager): string[] {
+	return LOCKFILES.filter(([, manager]) => manager === pm).map(([file]) => file);
+}
+
 export function isPackageManager(value: string): value is PackageManager {
 	return PACKAGE_MANAGERS.some((pm) => pm === value);
 }
