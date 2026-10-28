@@ -300,14 +300,19 @@ export async function installInto(
 	];
 	if (plan.css) ops.push({ path: plan.css.path, content: plan.css.content });
 	const willInstall = options.install !== false && pending.length > 0;
-	const snapshots = willInstall
-		? pending
-				.map((i) => join(i.project.root, "package.json"))
-				.filter((p) => existsSync(p))
-		: [];
-	// A no-op write snapshots package.json, so undo also reverts what the install adds.
-	for (const pkg of snapshots)
-		ops.push({ path: pkg, content: readFileSync(pkg, "utf8") });
+	const snapshots = new Set<string>();
+	if (willInstall) {
+		for (const { project } of pending) {
+			snapshots.add(join(project.root, "package.json"));
+			if (project.pm === "pnpm") {
+				const workspace = await findWorkspace(project.root);
+				snapshots.add(join(workspace.root, "pnpm-lock.yaml"));
+			}
+		}
+	}
+	// Missing lockfiles are recorded too, so undo removes files the install creates.
+	for (const path of snapshots)
+		ops.push({ path, content: existsSync(path) ? readFileSync(path, "utf8") : null });
 	const styleRoot = plan.css?.root ?? workspace?.project.root ?? root;
 	for (const [lockRoot, lock] of locks) {
 		const next = nextLock(
@@ -323,7 +328,7 @@ export async function installInto(
 
 	const summary = report(decisions, root, preOps);
 	if (summary) note(summary, target.path);
-	const changes = ops.filter((op) => snapshots.includes(op.path) || !unchanged(op));
+	const changes = ops.filter((op) => snapshots.has(op.path) || !unchanged(op));
 	if (!changes.length) {
 		message(c.dim("Nothing to change."));
 		return;
@@ -336,15 +341,18 @@ export async function installInto(
 	if (plan.css) message(`${c.brand("updated")} ${relativeTo(root, plan.css.path)}`);
 
 	if (willInstall) {
-		for (const i of pending) {
-			await install(i.project, i.deps, false);
-			await install(i.project, i.devDeps, true);
+		try {
+			for (const i of pending) {
+				await install(i.project, i.deps, false);
+				await install(i.project, i.devDeps, true);
+			}
+		} finally {
+			await amend(
+				root,
+				journal,
+				[...snapshots].map((p) => relativeTo(root, p)),
+			);
 		}
-		await amend(
-			root,
-			journal,
-			snapshots.map((p) => relativeTo(root, p)),
-		);
 	} else {
 		for (const i of pending) {
 			const all = [...i.deps, ...i.devDeps];
