@@ -20,7 +20,9 @@ import {
 	SheetTitle,
 } from "@baby-ui/svelte";
 import { type PageLayout, prefs, THEMES } from "#lib/preferences.svelte.js";
+import { prefetchReact } from "#lib/react-demos.js";
 import { DIALECT_OPTIONS, FRAMEWORK_OPTIONS } from "#lib/technology-options.js";
+import { page } from "$app/state";
 
 const LAYOUTS: { id: PageLayout; label: string; icon: Icon }[] = [
 	{ id: "library", label: "Library", icon: IconLayoutGrid },
@@ -125,7 +127,14 @@ function pickDialect(next: string) {
 							items={FRAMEWORK_OPTIONS.map((option) => ({ value: option.id, label: option.label }))}
 							bind:value={() => prefs.framework, pickFramework}
 						>
-							<SelectTrigger aria-label="Framework" class="w-full">
+							<!-- Hovering the switch warms React and this page's demo, so picking it is instant. -->
+							<SelectTrigger
+								aria-label="Framework"
+								class="w-full"
+								onpointerenter={() => {
+									if (prefs.framework !== "react") prefetchReact(page.params.slug);
+								}}
+							>
 								{#if currentFramework}
 									<currentFramework.icon class={currentFramework.iconClass} />
 									{currentFramework.label}

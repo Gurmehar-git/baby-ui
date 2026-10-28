@@ -29,7 +29,7 @@ const jobs = jobsArg > 0 ? jobsArg : defaultJobs();
 
 /** Workspace packages with a `check` script. */
 function checkTargets() {
-	const dirs = ["packages", "apps", "apps/playground"].flatMap((parent) =>
+	const dirs = ["packages", "apps"].flatMap((parent) =>
 		existsSync(join(ROOT, parent))
 			? readdirSync(join(ROOT, parent), { withFileTypes: true })
 					.filter((d) => d.isDirectory())

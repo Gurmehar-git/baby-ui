@@ -7,6 +7,7 @@ export type SlideToUnlockContext = {
 	readonly size: SlideToUnlockSize;
 	readonly label: string;
 	readonly loading: boolean;
+	readonly handle: string | undefined;
 };
 
 export const [getSlideToUnlock, setSlideToUnlock] = createContext<SlideToUnlockContext>();

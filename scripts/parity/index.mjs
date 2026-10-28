@@ -5,11 +5,11 @@ import { join } from "node:path";
 import { launch, openPage } from "../../skills/baby-ui-design/scripts/lib/browser.mjs";
 import { ROOT } from "../gen/core.mjs";
 import { compareSnapshots, SNAPSHOT } from "./compare.mjs";
-import { runners } from "./runners.mjs";
+import { frameUrl, siteUrl } from "./site.mjs";
 
 const HELP = `Usage: pnpm parity [slug ...] [options]
 
-Renders each component's demo in the React and Svelte runners and compares them part by part
+Renders each component's demo in both ports on the running site's /frame route and compares them part by part
 (data-slot): which parts render, their ARIA, layout and type styles, sizes, console errors and
 controls without an accessible name. Then it clicks the first trigger part in both, compares the
 open state, presses Escape and compares again.
@@ -17,8 +17,7 @@ open state, presses Escape and compares again.
   slug ...        components to check
   --all           every component with a demo in both ports
   --warn          also list style and size drift (counted either way)
-  --react=URL     React runner (default: the running react-runner, else one started here)
-  --svelte=URL    Svelte runner (default: the running svelte-runner, else one started here)
+  --url=URL       the running site (default: pnpm dev's site route); parity never starts one
   --json=PATH     write every issue as JSON
   --update        record today's errors as known in scripts/parity/baseline.json
   --jobs=N        components checked at once (default: cores - 1, max 2)
@@ -53,7 +52,7 @@ function bothPorts() {
 		.sort();
 }
 
-/** Each spec's initial dial values, as the playground shell sends them; demos expect them. */
+/** Each spec's initial dial values, as the site's controls send them; demos expect them. */
 function defaultProps() {
 	const script = [
 		'const { specs } = await import("./components/specs.ts");',
@@ -83,7 +82,7 @@ const TRIGGER = `(() => {
 	return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
 })()`;
 const PARTS = `document.querySelectorAll("[data-slot]").length`;
-const ELEMENTS = `document.querySelector("#root > div, #app > div")?.querySelectorAll("*").length ?? 0`;
+const ELEMENTS = `document.querySelector("[data-demo-canvas]")?.querySelectorAll("*").length ?? 0`;
 
 /** Waits until the demo has rendered and its part count holds still (lazy chunks, effects). */
 async function settle(page, timeout = 20000) {
@@ -109,11 +108,11 @@ async function changed(page, from) {
 }
 
 /** A cold dev server optimizes deps on first load and reloads the page; take that hit once here. */
-async function warm(port, urls) {
-	for (const url of Object.values(urls)) {
+async function warm(port, site) {
+	for (const framework of ["react", "svelte"]) {
 		const page = await openPage(port);
 		try {
-			await page.goto(`${url}/?slug=button`);
+			await page.goto(frameUrl(site, framework, "button"));
 			await settle(page, 90000);
 		} finally {
 			await page.close();
@@ -153,8 +152,7 @@ async function capture(page, url) {
 	return { parts, elements, states, errors: [...page.errors] };
 }
 
-async function check(port, urls, slug, props = {}) {
-	const query = `/?slug=${encodeURIComponent(slug)}&props=${encodeURIComponent(JSON.stringify(props))}`;
+async function check(port, site, slug, props = {}) {
 	const issues = [];
 	const results = {};
 	for (const framework of ["react", "svelte"]) {
@@ -162,7 +160,7 @@ async function check(port, urls, slug, props = {}) {
 		// Tabs run side by side and only one has real focus; focus-aware primitives need every one to.
 		await page.send("Emulation.setFocusEmulationEnabled", { enabled: true });
 		try {
-			results[framework] = await capture(page, `${urls[framework]}${query}`);
+			results[framework] = await capture(page, frameUrl(site, framework, slug, props));
 		} finally {
 			await page.close();
 		}
@@ -215,7 +213,7 @@ if (flag("help") || !slugs.length) {
 }
 
 const defaults = defaultProps();
-const servers = await runners({ react: option("react"), svelte: option("svelte") });
+const site = await siteUrl(option("url"));
 const browser = await launch();
 const jobs = Math.max(
 	1,
@@ -228,18 +226,15 @@ const queue = [...slugs];
 let failed = 0;
 let fixed = 0;
 try {
-	await warm(browser.port, servers.urls);
+	await warm(browser.port, site);
 	await Promise.all(
 		Array.from({ length: Math.min(jobs, queue.length) }, async () => {
 			for (let slug = queue.shift(); slug; slug = queue.shift()) {
-				const issues = await check(
-					browser.port,
-					servers.urls,
-					slug,
-					defaults[slug],
-				).catch((e) => [
-					{ level: "error", state: "rest", message: `check failed: ${e.message}` },
-				]);
+				const issues = await check(browser.port, site, slug, defaults[slug]).catch(
+					(e) => [
+						{ level: "error", state: "rest", message: `check failed: ${e.message}` },
+					],
+				);
 				report[slug] = issues;
 				const known = new Set(baseline[slug] ?? []);
 				const errors = issues.filter((i) => i.level === "error");
@@ -266,7 +261,6 @@ try {
 	);
 } finally {
 	browser.close();
-	servers.close();
 }
 const json = option("json");
 if (json) writeFileSync(json, `${JSON.stringify(report, null, 2)}\n`);

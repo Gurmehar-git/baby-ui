@@ -16,7 +16,15 @@ try {
 		stdio: "pipe",
 		shell: process.platform === "win32",
 	});
-	const bytes = gzipSync(readFileSync(join(out, "_worker.js")), { level: 9 }).length;
+	const worker = readFileSync(join(out, "_worker.js"));
+	// React previews are client-only (@baby-ui/react-preview); ReactDOM in the Worker means a leak.
+	if (/__reactContainer\$|react-dom\.production/.test(worker.toString("utf8"))) {
+		console.error(
+			"Worker bundle contains ReactDOM: a React import escaped its SSR guard.",
+		);
+		process.exit(1);
+	}
+	const bytes = gzipSync(worker, { level: 9 }).length;
 	const mib = (n) => `${(n / 1024 / 1024).toFixed(2)} MiB`;
 
 	if (bytes > BUDGET) {

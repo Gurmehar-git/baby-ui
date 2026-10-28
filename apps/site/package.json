@@ -37,6 +37,7 @@
 		"@baby-ui/components": "workspace:*",
 		"@baby-ui/demos": "workspace:*",
 		"@baby-ui/icons": "workspace:*",
+		"@baby-ui/react-preview": "workspace:*",
 		"@baby-ui/registry-schema": "workspace:*",
 		"@baby-ui/svelte": "workspace:*",
 		"@baby-ui/tokens": "workspace:*",
@@ -51,6 +52,8 @@
 		"detype": "^2.0.8",
 		"mode-watcher": "^1.1.0",
 		"posthog-js": "^1.434.12",
+		"react": "catalog:",
+		"react-dom": "catalog:",
 		"shiki": "catalog:",
 		"tailwind-merge": "catalog:",
 		"takumi-js": "^2.14.0"

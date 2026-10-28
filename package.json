@@ -20,7 +20,6 @@
 		"dev": "turbo run dev --filter=@baby-ui/site",
 		"dev:list": "portless list",
 		"dev:stop": "portless prune",
-		"playground": "turbo run dev --filter=@baby-ui/playground-*",
 		"registry": "node scripts/sync-fonts.mjs && turbo run registry",
 		"lint": "biome check . && node scripts/check-comments.mjs && node scripts/check-import-extensions.mjs",
 		"format": "biome check --write .",

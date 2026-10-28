@@ -58,7 +58,7 @@ Repo scripts, no scratchpad copies (they serve the last build unless `--url` is 
   interaction-only prop.
 - `pnpm parity <slug ...>` (or `--all`): both ports render the same parts with the same ARIA and
   styles, at rest and after their first trigger opens; new errors fail, known ones live in
-  `scripts/parity/baseline.json` (`--update` after fixing one). Uses running runners or starts its own.
+  `scripts/parity/baseline.json` (`--update` after fixing one). Needs the running site (`pnpm dev`).
 - `pnpm component check <slug>`: the per-component gate set (spec, lint, comments, gen, design
   rules, parity); `--design` adds the page audit and premium score against the running site.
 - Motion timelines (exits mirror entrances) still need a one-off probe built on

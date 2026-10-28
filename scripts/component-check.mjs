@@ -128,8 +128,7 @@ export async function checkComponent(slug, args) {
 		} else
 			console.log(`skip design audit (no site at ${url}; run pnpm dev or pass --url=)`);
 	}
-	if (pro) console.log("skip parity (Pro demos are not in the runners)");
-	else if (ports.length === 2)
+	if (ports.length === 2)
 		results.push(
 			run("parity", "node", ["scripts/parity/index.mjs", slug], { stream: true }),
 		);

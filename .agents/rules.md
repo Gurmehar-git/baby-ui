@@ -69,11 +69,10 @@ Any agent (Claude Code, Codex, Cursor, Copilot) should read this file first.
   (bits-ui) / rely on `keepMounted` (Base UI) and verify by sampling the animated property across
   frames, not just checking end-state attributes. See `base-primitives-hard-rule` /
   `prefer-primitives-for-menus` / `primitive-hidden-attribute-breaks-css-transitions` memory.
-- `apps/site`'s own component demo pages do NOT render the React port even when "React" is
-  selected — `REACT_RUNNER_URL` is hardcoded `null`, so it silently falls back to the Svelte
-  demo. Verify React live via `apps/playground/react-runner` (port 5174) or `pnpm playground`;
-  URL scheme `?slug=<component>&props=<json>`. See `react-preview-is-fake-use-playground-runners`
-  memory.
+- `apps/site` renders the real React port when "React" is the chosen framework, inline through
+  `@baby-ui/react-preview` (React loads on demand; the Worker bundle never contains it). The
+  `/frame?slug=<component>&framework=react|svelte&props=<json>` route shows one demo without site
+  chrome; `pnpm parity` compares both ports there. The playground runners are retired.
 - **HARD RULE (P1):** a component's `variant`/`size`-style prop types are *derived*, never
   hand-typed literal unions. One `variants.ts` per component (or shared, when two components
   genuinely share an axis, e.g. Dialog/AlertDialog/Command's inset-rim treatment):
@@ -121,7 +120,7 @@ Any agent (Claude Code, Codex, Cursor, Copilot) should read this file first.
   told apart, collapse them into one value instead of shipping a dead option.
 - React and Svelte ports change together, same spec, same classes, same measured motion.
 - `pnpm gen` (`scripts/generate.mjs`) writes gitignored files; it runs on `prepare`, before turbo
-  check/registry/build, and live during `pnpm dev`/`pnpm playground` as its own `gen:watch`
+  check/registry/build, and live during `pnpm dev` as its own `gen:watch`
   process (the site also gets `registry:watch`); never inside Vite. Edit sources, never its outputs:
   - Shared non-component `.ts` (variants, engines, types, labels) lives once at the component's
     folder root (`components/<slug>/variants.ts`, shared `lib/` at `components/lib/*.ts`); both
@@ -248,9 +247,8 @@ runs without workerd. Add it to dev again if a route ever reads `platform`.
 ## Dev servers
 
 Every app's `dev` script runs through `portless` (root devDependency): no more hand-picked
-ports, no port collisions between `apps/site` and the playgrounds. Named routes, not ports,
-under one `baby-ui` subdomain: `site.baby-ui.localhost`, `react-runner.baby-ui.localhost`,
-`svelte-runner.baby-ui.localhost` (the runners render one demo by `?slug=`; `pnpm parity` drives them).
+ports, no port collisions. Named routes, not ports, under one `baby-ui` subdomain:
+`site.baby-ui.localhost` (its `/frame` route renders one demo in either port; `pnpm parity` drives it).
 `pnpm dev:list` (`portless list`) shows what's actually running and its PID; `pnpm dev:stop`
 (`portless prune`) kills dev-server processes left behind by a session that ended without a
 clean shutdown: the real fix for stray `vite`/`wrangler` processes piling up across turns,

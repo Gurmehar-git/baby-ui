@@ -42,7 +42,10 @@ export const navigationMenu = tv({
 		footer:
 			"flex min-h-11 items-center justify-between gap-4 border-border border-t px-3 py-2 text-xs",
 		// Popover's own surface, so the panel and every popover look the same.
-		viewport: [popover().surface(), "overflow-hidden [--navigation-menu-spacing:1rem]"],
+		viewport: [
+			popover().surface(),
+			"overflow-hidden [--navigation-menu-spacing:calc(1rem+2px)]",
+		],
 		// The panel's rows follow the menu row contract: tint on hover and focus, squish on press.
 		link: [
 			"flex flex-col gap-0.5 rounded-md p-2 text-sm outline-none",

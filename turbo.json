@@ -18,7 +18,7 @@
 		},
 		"//#fonts": {
 			"inputs": ["scripts/sync-fonts.mjs", "packages/tokens/fonts/**"],
-			"outputs": ["apps/*/static/fonts/**", "apps/playground/*/public/fonts/**"]
+			"outputs": ["apps/*/static/fonts/**"]
 		},
 		"//#emails": {
 			"dependsOn": ["//#gen"],

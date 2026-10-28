@@ -26,6 +26,7 @@ type SlideContext = {
 	size: SlideToUnlockSize;
 	label: string;
 	loading: boolean;
+	handle?: string;
 };
 const SlideCtx = createContext<SlideContext | null>(null);
 
@@ -69,7 +70,6 @@ export function SlideToUnlock({
 	handleSize,
 	loading = false,
 	className,
-	style,
 	disabled,
 	onKeyDown,
 	onPointerDown,
@@ -86,7 +86,7 @@ export function SlideToUnlock({
 	const s = slideToUnlock({ variant, size });
 	const handle = typeof handleSize === "number" ? `${handleSize}px` : handleSize;
 	return (
-		<SlideCtx.Provider value={{ value, variant, size, label, loading }}>
+		<SlideCtx.Provider value={{ value, variant, size, label, loading, handle }}>
 			<SliderPrimitive.Root
 				data-slot="slide-to-unlock"
 				data-loading={loading || undefined}
@@ -115,7 +115,6 @@ export function SlideToUnlock({
 					}
 				}}
 				className={cn(s.root(), className)}
-				style={handle ? ({ "--slide-handle": handle, ...style } as CSSProperties) : style}
 				thumbAlignment="edge"
 				{...props}
 			>
@@ -127,15 +126,28 @@ export function SlideToUnlock({
 
 export function SlideToUnlockTrack({
 	className,
+	style,
 	children,
 	...props
 }: ComponentProps<typeof SliderPrimitive.Control>) {
-	const { variant, size } = useSlide("SlideToUnlockTrack");
+	const { variant, size, handle } = useSlide("SlideToUnlockTrack");
 	const s = slideToUnlock({ variant, size });
+	// Everything that reads --slide-handle sits inside the control, so the override lives here.
+	const handleStyle = handle
+		? ({ "--slide-handle": handle } as CSSProperties)
+		: undefined;
 	return (
 		<SliderPrimitive.Control
 			data-slot="slide-to-unlock-track"
 			className={cn(s.control(), className)}
+			style={
+				handleStyle
+					? (state) => ({
+							...handleStyle,
+							...(typeof style === "function" ? style(state) : style),
+						})
+					: style
+			}
 			{...props}
 		>
 			<SliderPrimitive.Track aria-hidden className={s.track()}>

@@ -395,7 +395,7 @@ export function indexes(output, report) {
 			"export type DemoComponent = ComponentType<{ props: Record<string, unknown> }>;",
 			"export type DemoLoader = () => Promise<{ default: DemoComponent }>;",
 			"",
-			"/** One dynamic import per slug, so a runner fetches only the demo it shows. */",
+			"/** One dynamic import per slug, so a preview fetches only the demo it shows. */",
 			"export const demos: Record<string, DemoLoader> = {",
 			...[...entries]
 				.sort(([a], [b]) => a.localeCompare(b))

@@ -1,0 +1,33 @@
+{
+	"name": "@baby-ui/react-preview",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./svelte": {
+			"svelte": "./src/react-preview.svelte",
+			"types": "./src/react-preview.svelte"
+		}
+	},
+	"scripts": {
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"test": "bun test"
+	},
+	"dependencies": {
+		"react": "catalog:",
+		"react-dom": "catalog:"
+	},
+	"peerDependencies": {
+		"svelte": "catalog:"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.4.2",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"svelte": "catalog:",
+		"svelte-check": "catalog:",
+		"typescript": "catalog:",
+		"vite": "catalog:"
+	}
+}

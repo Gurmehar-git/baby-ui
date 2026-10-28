@@ -75,6 +75,9 @@ setSlideToUnlock({
 	get loading() {
 		return loading;
 	},
+	get handle() {
+		return handle;
+	},
 });
 </script>
 
@@ -104,7 +107,7 @@ setSlideToUnlock({
 	data-loading={loading || undefined}
 	aria-busy={loading || undefined}
 	class={cn(s.root(), classProp)}
-	style={handle ? `--slide-handle: ${handle};${style ?? ""}` : style}
+	{style}
 	thumbPositioning="contain"
 	{...rest}
 >

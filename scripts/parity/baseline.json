@@ -1646,12 +1646,6 @@
 		"rest: date-segments: 1 in React, 0 in Svelte",
 		"rest: time-picker-group: name is Meetingstarts in React, unset in Svelte"
 	],
-	"timeline": [
-		"closed: collapsible-trigger[1]: aria-controls is unset in React, <ref> in Svelte",
-		"open: collapsible-trigger[1]: aria-controls is unset in React, <ref> in Svelte",
-		"rest: collapsible-trigger[0]: aria-controls is unset in React, <ref> in Svelte",
-		"rest: collapsible-trigger[1]: aria-controls is unset in React, <ref> in Svelte"
-	],
 	"toggle-group": [
 		"rest: toggle-group-item[0]: aria-checked is unset in React, true in Svelte",
 		"rest: toggle-group-item[0]: aria-pressed is true in React, unset in Svelte",

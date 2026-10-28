@@ -10,8 +10,9 @@ pnpm install   # also generates indexes and installs the pre-commit hook
 pnpm dev       # docs site at http://site.baby-ui.localhost
 ```
 
-`pnpm playground` starts the React and Svelte runners (one demo each, by `?slug=&props=`),
-which `pnpm parity` compares; it starts them itself when they are not running. Dev servers run
+The site renders both ports: React previews mount inline through `@baby-ui/react-preview`, and
+`/frame?slug=&framework=&props=` shows one demo without site chrome, which `pnpm parity` compares
+on the running `pnpm dev`. Dev servers run
 through [portless](https://portless.sh), so they get named `*.baby-ui.localhost` URLs;
 `pnpm dev:list` and `pnpm dev:stop` show and clean them up.
 
@@ -64,7 +65,7 @@ process logs its memory when it moves by 10%, and every registry rebuild prints 
 | `pnpm verify:full` | Everything CI and Deploy run, plus a browser sweep of every component page |
 | `pnpm probe <slug ...>` | Opens component pages headless: no console errors, demo renders in its frame, no sideways scroll |
 | `pnpm probe <slug> --dials` | Also operates every select and switch control and flags any that change nothing |
-| `pnpm parity <slug ...>` (or `--all`) | Renders the demo in both runners and compares parts, ARIA, styles, sizes and console errors, at rest and after opening the first trigger; errors in `scripts/parity/baseline.json` are known |
+| `pnpm parity <slug ...>` (or `--all`) | Renders the demo in both ports on the site's `/frame` and compares parts, ARIA, styles, sizes and console errors, at rest and after opening the first trigger; errors in `scripts/parity/baseline.json` are known |
 | `pnpm component check <slug>` | One component's gates: spec validates, lint, comments, generated files, design-system source rules, parity. `--design` adds the page audit and premium score against the running site (or `--url=`); `--types` adds the package type checks |
 
 `pnpm verify` runs in stages (gates, then tests and type checks, then build, then build checks);

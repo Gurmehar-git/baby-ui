@@ -8,10 +8,13 @@ import PreferencesPanel from "#lib/components/preferences-panel.svelte";
 import SiteHeader from "#lib/components/site-header.svelte";
 import { provideWebMcp } from "#lib/mcp/webmcp.js";
 import { prefs } from "#lib/preferences.svelte.js";
+import { warmReactWhenIdle } from "#lib/react-demos.js";
 import { afterNavigate, beforeNavigate } from "$app/navigation";
 import { page } from "$app/state";
 
 let { children } = $props();
+
+const bare = $derived(page.route.id === "/frame");
 
 $effect(() => prefs.apply());
 $effect(() => {
@@ -28,6 +31,7 @@ onMount(() => {
 	const root = document.documentElement;
 	root.dataset.ready = "";
 	setTimeout(() => document.getElementById("boot")?.remove(), 400);
+	if (prefs.framework === "react") warmReactWhenIdle();
 });
 
 // The landing view is sent by initAnalytics; client-side route changes are ours to send.
@@ -52,16 +56,21 @@ afterNavigate(({ from, to, type, shallow }) => {
 </script>
 
 <ModeWatcher />
-<NavProgress />
-<a
-	href="#main-content"
-	class="fixed top-2 left-2 z-50 -translate-y-16 rounded-md bg-foreground px-3 py-2 text-background text-sm focus:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
->
-	Skip to content
-</a>
-<SiteHeader />
-<PreferencesPanel />
-<!-- Matches SiteHeader's single 56px row; sticky rails and anchors offset by the same value. -->
-<div id="main-content" tabindex="-1" class="pt-(--header-h) outline-none [--header-h:3.5rem]">
+<!-- /frame renders one demo for tooling (parity, embeds), so it skips the site chrome. -->
+{#if bare}
 	{@render children()}
-</div>
+{:else}
+	<NavProgress />
+	<a
+		href="#main-content"
+		class="fixed top-2 left-2 z-50 -translate-y-16 rounded-md bg-foreground px-3 py-2 text-background text-sm focus:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+	>
+		Skip to content
+	</a>
+	<SiteHeader />
+	<PreferencesPanel />
+	<!-- Matches SiteHeader's single 56px row; sticky rails and anchors offset by the same value. -->
+	<div id="main-content" tabindex="-1" class="pt-(--header-h) outline-none [--header-h:3.5rem]">
+		{@render children()}
+	</div>
+{/if}

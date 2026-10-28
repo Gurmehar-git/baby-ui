@@ -53,7 +53,7 @@ export default defineConfig(({ command, mode, isPreview }) => {
 		resolve: {
 			// The Pro submodule has its own node_modules. One copy of each shared dep keeps the Svelte
 			// runtime (and kernel context) single, and stops dev re-optimizing when a Pro page loads.
-			dedupe: ["svelte", "tailwind-variants", "d3-scale"],
+			dedupe: ["svelte", "tailwind-variants", "d3-scale", "react", "react-dom"],
 		},
 		// The OG renderer worker lazy-loads takumi's backend, which an IIFE worker can't split.
 		worker: { format: "es" },
@@ -83,6 +83,10 @@ export default defineConfig(({ command, mode, isPreview }) => {
 				"@baby-ui/svelte > d3-shape",
 				"mode-watcher",
 				"posthog-js/dist/module.slim.no-external",
+				"react",
+				"react-dom/client",
+				"react/jsx-runtime",
+				"react/jsx-dev-runtime",
 				"shiki/core",
 				"shiki/engine/javascript",
 				"@baby-ui/svelte > svelte-sonner",
