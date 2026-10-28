@@ -66,15 +66,6 @@ jobs:
       - name: Pro stays hidden
         run: node scripts/check-pro-bundle.mjs --expect=hidden
 
-      # Built by `pnpm build`; kept so the React preview can be deployed once it has a host.
-      - name: Upload React runner build
-        uses: actions/upload-artifact@v4
-        with:
-          name: react-runner
-          path: apps/playground/react-runner/dist
-          if-no-files-found: error
-          retention-days: 14
-
   # Pro lives in a private repo and is always bundled; the flag only decides whether the site shows it.
   # With its token set, this builds both ways: flag on must show Pro, flag off (production) must not.
   pro:
